@@ -37,4 +37,6 @@ class Suite {
   @Test def testClosures2 = runTest("Closures2")
   
   @Test def testPathTypes1 = runTest("PathTypes1") 
+  @Test def testPathTypes2 = runTest("PathTypes2") 
+  @Test def testPathTypes3 = runTest("PathTypes3") 
 }
