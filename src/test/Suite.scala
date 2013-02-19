@@ -14,4 +14,5 @@ class Suite {
 
   @Test def testTest1 = runTest("Test1")
   @Test def testTest2 = runTest("Test2")
+  @Test def testTest3 = runTest("Test3")
 }
