@@ -6,7 +6,7 @@ class Test3 {
   p(new B());
   
   def p(x : A) : Unit = {
-    { {"A.foo"; "B.foo"}; x }.foo();
+    {"A.foo"; "B.foo"; x }.foo();
   }
   
 }

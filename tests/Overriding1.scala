@@ -9,7 +9,7 @@ object Overriding1 {
       // we represent multiple call targets using annotations consisting
       // of a block of strings. The result shown below is for CHA
       
-      { { "A.foo"; "B.foo" }; x }.foo({ { "C.bar"; "D.bar" }; y}.bar());
+      { "A.foo"; "B.foo"; x }.foo({"C.bar"; "D.bar"; y}.bar());
          
       }
 }
