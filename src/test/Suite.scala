@@ -17,7 +17,7 @@ class Suite {
       new (g.Run).compile(List("junit/src/tests/" + filename + ".scala", "junit/src/tests/target.scala"))
     } catch {case ex: Throwable =>
       ex.printStackTrace
-      Assert.fail
+      throw ex
     }
     println("")
   }
