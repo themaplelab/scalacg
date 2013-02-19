@@ -2,6 +2,7 @@ package test
 
 import org.junit.Test
 import scala.tools.nsc
+import org.junit.Assert
 
 class Suite {
   def runTest(filename: String) = {
@@ -12,7 +13,12 @@ class Suite {
     println("==============================")
     println(filename)
     println("==============================")
-    new (g.Run).compile(List("junit/src/tests/" + filename + ".scala", "junit/src/tests/target.scala"))
+    try {
+      new (g.Run).compile(List("junit/src/tests/" + filename + ".scala", "junit/src/tests/target.scala"))
+    } catch {case ex: Throwable =>
+      ex.printStackTrace
+      Assert.fail
+    }
     println("")
   }
   
