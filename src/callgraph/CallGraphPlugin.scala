@@ -6,6 +6,7 @@ import scala.collection.immutable.List
 import nsc.Global
 import nsc.plugins.PluginComponent
 import nsc.Phase
+import sun.reflect.generics.tree.TypeSignature
 
 class CallGraphPlugin(val global: Global) extends Plugin {
   val name = "callgraph"
@@ -105,10 +106,10 @@ class CallGraphPlugin(val global: Global) extends Plugin {
                 // TODO: can this ever happen? let's put in an assertion and see...
                 assert(false)
 
-              // TODO: use args to disambiguate overloaded methods
               case _ =>
+                // Disambiguate overloaded methods based on the types of the args
                 if (target.isOverloaded) {
-                  targets = target.alternatives ::: targets
+                  targets = target.alternatives.filter(_.typeSignature.paramTypes.corresponds(args.map(_.tpe.underlying).toList)(_ <:< _)) ::: targets
                 } else {
                   targets = target :: targets
                 }
