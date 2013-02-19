@@ -10,7 +10,7 @@ trait CHA { this: CGUtils =>
 
   def buildCallGraph = {
     for (callSite <- callSites) {
-      val targets = lookup(callSite.receiver.tpe, callSite.method, callSite.args)
+      val targets = lookup(callSite.receiver.tpe, callSite.method, classes)
       callGraph += (callSite -> targets)
     }
   }

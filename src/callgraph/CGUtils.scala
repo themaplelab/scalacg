@@ -53,10 +53,10 @@ trait CGUtils {
     }
   }
 
-  def lookup(receiverType: Type, staticTarget: MethodSymbol, args: List[Tree]): Set[MethodSymbol] = {
+  def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: List[ClassDef]): Set[MethodSymbol] = {
     var targets = List[MethodSymbol]()
     for {
-      classDef <- classes
+      classDef <- consideredClasses
       val tpe = classDef.symbol.tpe
       if tpe <:< receiverType
       val target = tpe.member(staticTarget.name)
