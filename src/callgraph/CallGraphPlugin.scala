@@ -107,7 +107,11 @@ class CallGraphPlugin(val global: Global) extends Plugin {
 
               // TODO: use args to disambiguate overloaded methods
               case _ =>
-                targets = target :: targets
+                if (target.isOverloaded) {
+                  targets = target.alternatives ::: targets
+                } else {
+                  targets = target :: targets
+                }
             }
           }
           targets.toSet
