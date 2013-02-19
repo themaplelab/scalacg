@@ -26,7 +26,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
         val trees = global.currentRun.units.map(_.body).toList
         val UNANNOT = "<unannotated>"
 
-        case class CallSite(receiver: Tree, method: Name, args: List[Tree], annotation: List[String])
+        case class CallSite(receiver: Tree, method: MethodSymbol, args: List[Tree], annotation: List[String])
         def findCallSites = {
           var callSites = List[CallSite]()
 
@@ -44,7 +44,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
                         (annot, plainReceiver)
                       case _ => (List(), receiver)
                     }
-                  callSites = CallSite(plainReceiver, methodName, args, annotation) :: callSites
+                  callSites = CallSite(plainReceiver, node.symbol.asMethod, args, annotation) :: callSites
                 case _ =>
               }
             }
@@ -92,13 +92,13 @@ class CallGraphPlugin(val global: Global) extends Plugin {
         //        val targets = findTargets
         val classes = findClasses
 
-        def lookup(receiverType: Type, methodName: Name, args: List[Tree]): Set[Symbol] = {
+        def lookup(receiverType: Type, staticTarget: MethodSymbol, args: List[Tree]): Set[Symbol] = {
           var targets = List[Symbol]()
           for {
             classDef <- classes
             val tpe = classDef.symbol.tpe
             if tpe <:< receiverType
-            val target = tpe.member(methodName)
+            val target = tpe.member(staticTarget.name)
             if !target.isDeferred
           } {
             target match {
@@ -109,7 +109,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
               case _ =>
                 // Disambiguate overloaded methods based on the types of the args
                 if (target.isOverloaded) {
-                  targets = target.alternatives.filter(_.typeSignature.paramTypes.corresponds(args.map(_.tpe.underlying).toList)(_ <:< _)) ::: targets
+                  targets = target.alternatives.filter(_.tpe.matches(staticTarget.tpe)) ::: targets
                 } else {
                   targets = target :: targets
                 }
