@@ -98,6 +98,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
             val tpe = classDef.symbol.tpe
             if tpe <:< receiverType
             val target = tpe.member(methodName)
+            if !target.isDeferred
           } {
             target match {
               case NoSymbol =>
