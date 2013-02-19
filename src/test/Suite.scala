@@ -6,12 +6,16 @@ import scala.tools.nsc
 class Suite {
   def runTest(filename: String) = {
     val settings = new nsc.Settings
-    settings.d.value = "tests/classes"
-    settings.plugin.value = List("bin/callgraph-plugin.jar")
+    settings.d.value = "junit/bin"
+    settings.plugin.value = List("jar/callgraph-plugin.jar")
     val g = new nsc.Global(settings)
-    new (g.Run).compile(List("tests/" + filename + ".scala", "tests/target.scala"))
+    println("==============================")
+    println(filename)
+    println("==============================")
+    new (g.Run).compile(List("junit/src/tests/" + filename + ".scala", "junit/src/tests/target.scala"))
+    println("")
   }
-
+  
   @Test def testTest1 = runTest("Test1")
   @Test def testTest2 = runTest("Test2")
   @Test def testTest3 = runTest("Test3")
@@ -20,6 +24,7 @@ class Suite {
   @Test def testTraits2 = runTest("Traits2")
 
   @Test def testOverriding1 = runTest("Overriding1")
+//  @Test def testOverloading = runTest("Overloading")
 
   @Test def testClosures1 = runTest("Closures1")
   @Test def testClosures2 = runTest("Closures2")

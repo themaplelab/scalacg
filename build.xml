@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project>
-	<target name="makejar">
-		<jar jarfile="bin/callgraph-plugin.jar">
-			<fileset dir="bin" includes="callgraph/*.class"/>
-			<fileset dir="" includes="scalac-plugin.xml"/>
-		</jar>
-	</target>
-</project>

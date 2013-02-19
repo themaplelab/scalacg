@@ -1,0 +1,4 @@
+<plugin>
+	<name>CallGraph</name>
+	<classname>callgraph.CallGraphPlugin</classname>
+</plugin>
