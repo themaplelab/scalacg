@@ -52,6 +52,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
           callSites
         }
 
+        // TODO: search for @target annotation; for now, just get first annotation
         def findTargetAnnotation(symbol: Symbol) = {
           symbol.annotations match {
             case AnnotationInfo(tpe, Literal(Constant(string: String)) :: _, javaArgs) :: _ =>
@@ -100,6 +101,9 @@ class CallGraphPlugin(val global: Global) extends Plugin {
           } {
             target match {
               case NoSymbol =>
+                // TODO: can this ever happen? let's put in an assertion and see...
+                assert(false)
+
               // TODO: use args to disambiguate overloaded methods
               case _ =>
                 targets = target :: targets
@@ -113,13 +117,19 @@ class CallGraphPlugin(val global: Global) extends Plugin {
           if !callSite.annotation.isEmpty
         } {
           println(callSite)
+
+          // resolved and resolved2 are equivalent. Which one do you find more readable?
           val resolved =
             for (target <- lookup(callSite.receiver.tpe, callSite.method, callSite.args))
               yield findTargetAnnotation(target)
+
+          val resolved2 = lookup(callSite.receiver.tpe, callSite.method, callSite.args).
+            map(findTargetAnnotation(_))
+
           val expected = callSite.annotation.toSet
           println("Resolved: " + resolved.toSeq.sorted.mkString(", "))
           println("Expected: " + expected.toSeq.sorted.mkString(", "))
-          assert(resolved == expected)
+          assert(callSite.annotation.isEmpty || (resolved == expected))
         }
       }
     }
