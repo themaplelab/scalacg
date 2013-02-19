@@ -17,4 +17,5 @@ class Suite {
   @Test def testTest3 = runTest("Test3")
   
    @Test def testTraits1 = runTest("Traits1")
+   @Test def testOverriding1 = runTest("Overriding1")
 }
