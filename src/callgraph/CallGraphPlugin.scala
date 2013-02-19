@@ -20,21 +20,106 @@ class CallGraphPlugin(val global: Global) extends Plugin {
     val phaseName = CallGraphPlugin.this.name
 
     class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) {
-      def apply(unit: global.CompilationUnit) = {
-        for (tree <- unit.body) {
-          tree match {
-            case Apply(
-              Select(
-                Block(
-                  List(annot),
-                  receiver
-                  ),
-                methodName
-                ), args) =>
-              println("noticed call site with annotation: " + annot)
+      def apply(unit: global.CompilationUnit) = assert(false)
+      override def run = {
+        val trees = global.currentRun.units.map(_.body).toList
+        val UNANNOT = "<unannotated>"
 
-            case _ =>
+        case class CallSite(receiver: Tree, method: Name, args: List[Tree], annotation: List[String])
+        def findCallSites = {
+          var callSites = List[CallSite]()
+
+          trees.foreach { tree =>
+            tree.foreach { node =>
+              node match {
+                case Apply(Select(receiver, methodName), args) =>
+                  // look for an annotation on the receiver
+                  val (annotation, plainReceiver) =
+                    receiver match {
+                      case Block(annotations, plainReceiver) =>
+                        val annot = annotations.collect {
+                          case Literal(Constant(string: String)) => string
+                        }
+                        (annot, plainReceiver)
+                      case _ => (List(), receiver)
+                    }
+                  callSites = CallSite(plainReceiver, methodName, args, annotation) :: callSites
+                case _ =>
+              }
+            }
           }
+
+          callSites
+        }
+
+        def findTargetAnnotation(symbol: Symbol) = {
+          symbol.annotations match {
+            case AnnotationInfo(tpe, Literal(Constant(string: String)) :: _, javaArgs) :: _ =>
+              string
+            case _ => UNANNOT
+          }
+        }
+
+        //        case class Target(annotation: String, tree: DefDef)
+        //        def findTargets: Set[Target] = {
+        //          var targets = List[Target]()
+        //
+        //          trees.foreach { tree =>
+        //            tree.foreach { node =>
+        //              node match {
+        //                case method @ DefDef(mods, name, tparams, vparamss, tpt, rhs) =>
+        //                  // TODO: search for @target annotation; for now, just get first annotation
+        //                  val annotation = method.symbol.annotations match {
+        //                    case AnnotationInfo(tpe, Literal(Constant(string: String)) :: _, javaArgs) :: _ =>
+        //                      string
+        //                    case _ => UNANNOT
+        //                  }
+        //                  targets = Target(annotation, method) :: targets
+        //              }
+        //            }
+        //          }
+        //          targets.toSet
+        //        }
+
+        def findClasses: List[ClassDef] = {
+          trees.flatMap { tree =>
+            tree.collect { case cd: ClassDef => cd }
+          }
+        }
+        val callSites = findCallSites
+        //        val targets = findTargets
+        val classes = findClasses
+
+        def lookup(receiverType: Type, methodName: Name, args: List[Tree]): Set[Symbol] = {
+          var targets = List[Symbol]()
+          for {
+            classDef <- classes
+            val tpe = classDef.symbol.tpe
+            if tpe <:< receiverType
+            val target = tpe.member(methodName)
+          } {
+            target match {
+              case NoSymbol =>
+              // TODO: use args to disambiguate overloaded methods
+              case _ =>
+                targets = target :: targets
+            }
+          }
+          targets.toSet
+        }
+
+        for {
+          callSite <- callSites
+          if !callSite.annotation.isEmpty
+        } {
+          println(callSite)
+          val resolved =
+            for (target <- lookup(callSite.receiver.tpe, callSite.method, callSite.args))
+              yield findTargetAnnotation(target)
+          val expected = callSite.annotation.toSet
+          println("Resolved: " + resolved.toSeq.sorted.mkString(", "))
+          println("Expected: " + expected.toSeq.sorted.mkString(", "))
+          assert(resolved == expected)
         }
       }
     }
