@@ -13,7 +13,7 @@ trait CGUtils {
   case class CallSite(receiver: Tree, method: MethodSymbol, args: List[Tree], annotation: List[String])
 
   var callSites = List[CallSite]()
-  var classes = List[ClassDef]()
+  var classes = Set[ClassSymbol]()
   def callGraph: CallSite => Set[MethodSymbol]
 
   def initialize = {
@@ -40,8 +40,8 @@ trait CGUtils {
 
     // find classes
     classes = trees.flatMap { tree =>
-      tree.collect { case cd: ClassDef => cd }
-    }
+      tree.collect { case cd: ClassDef => cd.symbol.asClass }
+    }.toSet
   }
 
   // TODO: search for @target annotation; for now, just get first annotation
@@ -53,11 +53,11 @@ trait CGUtils {
     }
   }
 
-  def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: List[ClassDef]): Set[MethodSymbol] = {
+  def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[ClassSymbol]): Set[MethodSymbol] = {
     var targets = List[MethodSymbol]()
     for {
-      classDef <- consideredClasses
-      val tpe = classDef.symbol.tpe
+      cls <- consideredClasses
+      val tpe = cls.tpe
       if tpe <:< receiverType
       val target = tpe.member(staticTarget.name)
       if !target.isDeferred
@@ -90,7 +90,7 @@ trait CGUtils {
       val expected = callSite.annotation.toSet
       println("Resolved: " + resolved.toSeq.sorted.mkString(", "))
       println("Expected: " + expected.toSeq.sorted.mkString(", "))
-      assert(callSite.annotation.isEmpty || (resolved == expected))
+      assert(callSite.annotation.isEmpty || (resolved == expected), expected.toSeq.sorted.mkString(", "))
     }
   }
 }
