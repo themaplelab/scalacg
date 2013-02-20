@@ -95,4 +95,11 @@ trait CGUtils {
       assert(callSite.annotation.isEmpty || (resolved == expected), expected.toSeq.sorted.mkString(", "))
     }
   }
+  
+//  /**
+//   * Map a name from bytecode to its original Scala name. This method is mainly used for call graph comparisons. 
+//   */
+//  def mapByteCodeName(byteCodeName : String) : Symbol {
+//    
+//  }
 }

@@ -34,6 +34,8 @@ class CallGraphPlugin(val global: Global) extends Plugin {
         buildCallGraph
 
         printAnnotatedCallsites
+        
+        classes foreach( cs => println( "ClassSymbol: " + cs + ", translated into: " + global.erasure.implClass(cs)))
 
       }
     }
