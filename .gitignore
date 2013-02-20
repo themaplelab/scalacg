@@ -1,5 +1,0 @@
-/bin
-.cache
-/tests/classes
-/junit/bin
-/jar/callgraph-plugin.jar
