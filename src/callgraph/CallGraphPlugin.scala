@@ -11,17 +11,18 @@ import sun.reflect.generics.tree.TypeSignature
 class CallGraphPlugin(val global: Global) extends Plugin {
   val name = "callgraph"
   val description = "builds a call graph"
-  val components = List[PluginComponent](Component)
+  val components = List[PluginComponent](AnnotationComponent, CallGraphComponent)
 
-  private object Component extends PluginComponent {
+  /** Phase that resolves call sites to compute call graph */
+  private object CallGraphComponent extends PluginComponent {
     val global = CallGraphPlugin.this.global
     val runsAfter = List[String]("refchecks") // TODO: is this the right place for the phase?
     def newPhase(prevPhase: Phase) = new CallGraphPhase(prevPhase)
     val phaseName = CallGraphPlugin.this.name
 
     class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with CGUtils with RTA {
-      def apply(unit: Component.this.global.CompilationUnit) = assert(false)
-      val global = Component.this.global
+      def apply(unit: CallGraphComponent.this.global.CompilationUnit) = assert(false)
+      val global = CallGraphComponent.this.global
       import global._
 
       var trees = List[Tree]()
@@ -34,6 +35,33 @@ class CallGraphPlugin(val global: Global) extends Plugin {
 
         printAnnotatedCallsites
 
+      }
+    }
+  }
+  
+  /** Phase that annotates each method with @annotation.targetmethod(serial number) */
+  private object AnnotationComponent extends PluginComponent {
+    val global = CallGraphPlugin.this.global
+    import global._
+    val runsAfter = List[String]("parser")
+    def newPhase(prevPhase: Phase) = new CallGraphPhase(prevPhase)
+    val phaseName = "targetannotation"
+
+    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) {
+      val global = AnnotationComponent.this.global
+      var serialNum = 1
+      def apply(unit: AnnotationComponent.this.global.CompilationUnit) = {
+        val targetAnnotationType =
+          rootMirror.getRequiredClass("annotation.targetmethod").info
+        val valueName = newTermName("value")
+        unit.body.foreach { node =>
+          if (node.isInstanceOf[DefDef]) {
+            val annotationInfo = AnnotationInfo(targetAnnotationType, List(),
+              List((valueName, LiteralAnnotArg(Constant(serialNum)))))
+            node.symbol.addAnnotation(annotationInfo)
+            serialNum += 1
+          }
+        }
       }
     }
   }

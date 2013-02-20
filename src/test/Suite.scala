@@ -9,6 +9,7 @@ class Suite {
     val settings = new nsc.Settings
     settings.d.value = "junit/bin"
     settings.plugin.value = List("jar/callgraph-plugin.jar")
+    settings.bootclasspath.append("junit/bin")
     val g = new nsc.Global(settings)
     println("==============================")
     println(filename)

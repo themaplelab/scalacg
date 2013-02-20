@@ -46,11 +46,13 @@ trait CGUtils {
 
   // TODO: search for @target annotation; for now, just get first annotation
   def findTargetAnnotation(symbol: Symbol) = {
-    symbol.annotations match {
-      case AnnotationInfo(tpe, Literal(Constant(string: String)) :: _, javaArgs) :: _ =>
-        string
-      case _ => UNANNOT
+    val targetAnnotationType =
+      rootMirror.getRequiredClass("tests.target").tpe
+    val targets = symbol.annotations.collect {
+      case AnnotationInfo(tpe, Literal(Constant(string: String)) :: _, _) if tpe == targetAnnotationType => string
     }
+    assert(targets.size <= 1)
+    targets.headOption.getOrElse(UNANNOT)
   }
 
   def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[ClassSymbol]): Set[MethodSymbol] = {
