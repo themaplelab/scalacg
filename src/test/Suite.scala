@@ -31,6 +31,7 @@ class Suite {
   @Test def testTraits2 = runTest("Traits2")
   @Test def testTraits3 = runTest("Traits3")
   @Test def testTraits4 = runTest("Traits4")
+  @Test def testTraits5 = runTest("Traits5")
 
   @Test def testOverriding1 = runTest("Overriding1")
   @Test def testOverloading = runTest("Overloading")
