@@ -56,30 +56,32 @@ object Traits3 {
     { "Y1.bar"; (new X1 with Y1) }.bar();
     { "Y2.bar"; (new X2 with Y2) }.bar();
   }
-}
 
-trait X1 {
-    @target("X1.foo")  def foo() : Unit = { println("X1.foo()"); }
-}
 
-trait X2 {
-    @target("X2.foo")  def foo() : Unit = { println("X2.foo()"); }
-}
+	trait X1 {
+	    @target("X1.foo")  def foo() : Unit = { println("X1.foo()"); }
+	}
+	
+	trait X2 {
+	    @target("X2.foo")  def foo() : Unit = { println("X2.foo()"); }
+	}
+	
+	trait Y {
+	    def foo(); 
+	}
+	
+	trait Y1 extends Y {
+	   @target("Y1.bar") def bar() : Unit = { 
+	     { "X1.foo"; this }.foo();  // resolving this call requires understanding how Y1 is composed with other traits
+	     println("Y1.bar()"); 
+	   }
+	}
+	
+	trait Y2 extends Y {
+	    @target("Y2.bar")  def bar() : Unit = { 
+	     { "X2.foo"; this }.foo();  // resolving this call requires understanding how Y2 is composed with other traits
+	     println("Y2.bar()"); 
+	   }
+	}
 
-trait Y {
-    def foo(); 
-}
-
-trait Y1 extends Y {
-   @target("Y1.bar") def bar() : Unit = { 
-     { "X1.foo"; this }.foo();  // resolving this call requires understanding how Y1 is composed with other traits
-     println("Y1.bar()"); 
-   }
-}
-
-trait Y2 extends Y {
-    @target("Y2.bar")  def bar() : Unit = { 
-     { "X2.foo"; this }.foo();  // resolving this call requires understanding how Y2 is composed with other traits
-     println("Y2.bar()"); 
-   }
 }
