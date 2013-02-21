@@ -16,6 +16,7 @@ trait CGUtils {
   var classes = Set[ClassSymbol]()
   def callGraph: CallSite => Set[MethodSymbol]
 
+  def annotationFilter: PartialFunction[Tree, String]
   def initialize = {
     // find call sites
     trees.foreach { tree =>
@@ -26,9 +27,7 @@ trait CGUtils {
             val (annotation, plainReceiver) =
               receiver match {
                 case Block(annotations, plainReceiver) =>
-                  val annot = annotations.collect {
-                    case Literal(Constant(string: String)) => string
-                  }
+                  val annot = annotations.collect(annotationFilter)
                   (annot, plainReceiver)
                 case _ => (List(), receiver)
               }
@@ -44,7 +43,6 @@ trait CGUtils {
     }.toSet
   }
 
-  // TODO: search for @target annotation; for now, just get first annotation
   def findTargetAnnotation(symbol: Symbol) = {
     val targetAnnotationType =
       rootMirror.getRequiredClass("tests.target").tpe

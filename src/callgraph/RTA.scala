@@ -76,4 +76,7 @@ trait RTA { this: CGUtils =>
       } addMethod(constr)
     }
   }
+  val annotationFilter: PartialFunction[Tree, String] = {
+    case Literal(Constant(string: String)) => string
+  }
 }

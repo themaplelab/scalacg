@@ -14,4 +14,10 @@ trait CHA { this: CGUtils =>
       callGraph += (callSite -> targets)
     }
   }
+  
+  val annotationFilter: PartialFunction[Tree, String] = {
+    case Literal(Constant(string: String)) => string
+    // TODO: replace _ with a more specific check for the cha case class
+    case Apply(_, List(Literal(Constant(string: String)))) => string
+  }
 }
