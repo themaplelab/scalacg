@@ -10,31 +10,43 @@ trait CGUtils {
 
   def trees: List[Tree]
 
-  case class CallSite(receiver: Tree, method: MethodSymbol, args: List[Tree], annotation: List[String])
+  case class CallSite(receiver: Tree, method: MethodSymbol, args: List[Tree], annotation: List[String], ancestors: List[Tree])
 
   var callSites = List[CallSite]()
   var classes = Set[ClassSymbol]()
   def callGraph: CallSite => Set[MethodSymbol]
 
   def annotationFilter: PartialFunction[Tree, String]
+  abstract class TraverseWithAncestors {
+    def visit(node: Tree, ancestors: List[Tree])
+    def traverse(tree: Tree, ancestors: List[Tree]): Unit = {
+      visit(tree, ancestors)
+      tree.children.foreach { child =>
+        traverse(child, tree :: ancestors)
+      }
+    }
+    def apply(root: Tree) = traverse(root, List())
+  }
   def initialize = {
     // find call sites
     trees.foreach { tree =>
-      tree.foreach { node =>
-        node match {
-          case Apply(Select(receiver, methodName), args) =>
-            // look for an annotation on the receiver
-            val (annotation, plainReceiver) =
-              receiver match {
-                case Block(annotations, plainReceiver) =>
-                  val annot = annotations.collect(annotationFilter)
-                  (annot, plainReceiver)
-                case _ => (List(), receiver)
-              }
-            callSites = CallSite(plainReceiver, node.symbol.asMethod, args, annotation) :: callSites
-          case _ =>
+      (new TraverseWithAncestors {
+        def visit(node: Tree, ancestors: List[Tree]) = {
+          node match {
+            case Apply(Select(receiver, methodName), args) =>
+              // look for an annotation on the receiver
+              val (annotation, plainReceiver) =
+                receiver match {
+                  case Block(annotations, plainReceiver) =>
+                    val annot = annotations.collect(annotationFilter)
+                    (annot, plainReceiver)
+                  case _ => (List(), receiver)
+                }
+              callSites = CallSite(plainReceiver, node.symbol.asMethod, args, annotation, ancestors) :: callSites
+            case _ =>
+          }
         }
-      }
+      })(tree)
     }
 
     // find classes
@@ -84,7 +96,7 @@ trait CGUtils {
       callSite <- callSites
       if !callSite.annotation.isEmpty
     } {
-      println(callSite)
+      println(callSite.method + " " + callSite.annotation)
 
       val resolved = callGraph(callSite).map(findTargetAnnotation)
       val expected = callSite.annotation.toSet
