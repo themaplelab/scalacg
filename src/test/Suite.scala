@@ -39,6 +39,8 @@ class Suite {
 
   @Test def testOverriding1 = runTest("Overriding1")
   @Test def testOverloading = runTest("Overloading")
+  
+  @Test def testSimple = runTest("Simple")
 
   @Test def testClosures1 = runTest("Closures1")
   @Test def testClosures2 = runTest("Closures2")
