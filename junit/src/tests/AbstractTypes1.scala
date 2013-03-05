@@ -15,8 +15,9 @@ object AbstractTypes1 {
     val element = List(-1,3,-5,7,-9)
   }
   
-  { "B.foo"; "B1.foo"; "B2.foo"; "C.foo"; "D.foo"; "E.foo"; b1 }.foo();
-  { "B.foo"; "B1.foo"; "B2.foo"; "C.foo"; "D.foo"; "E.foo"; b2 }.foo();
+  { "B1.foo"; "B2.foo"; "C.foo"; "D.foo"; "E.foo"; b1 }.foo()
+  
+  { "B1.foo"; "B2.foo"; "C.foo"; "D.foo"; "E.foo"; b2 }.foo()
  
   
   abstract class A {

@@ -66,29 +66,34 @@ trait CGUtils {
   }
 
   def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[ClassSymbol]): Set[MethodSymbol] = {
-    var targets = List[MethodSymbol]()
-    for {
-      cls <- consideredClasses
-      val tpe = cls.tpe
-      if tpe <:< receiverType
-      val target = tpe.member(staticTarget.name)
-      if !target.isDeferred
-    } {
-      target match {
-        case NoSymbol =>
-          // TODO: can this ever happen? let's put in an assertion and see...
-          assert(false)
+    if (staticTarget.isConstructor) Set(staticTarget) else {
+      var targets = List[MethodSymbol]()
+      println("target is " + staticTarget)
+      println("receiverType is " + receiverType)
+      println("receiverType.bounds.hi is " + receiverType.bounds.hi)
+      for {
+        cls <- consideredClasses
+        val tpe = cls.tpe
+        if tpe <:< receiverType.bounds.hi
+        val target = tpe.member(staticTarget.name)
+        if !target.isDeferred
+      } {
+        target match {
+          case NoSymbol =>
+            // TODO: can this ever happen? let's put in an assertion and see...
+            assert(false, "tpe is " + tpe)
 
-        case _ =>
-          // Disambiguate overloaded methods based on the types of the args
-          if (target.isOverloaded) {
-            targets = target.alternatives.filter(_.tpe.matches(staticTarget.tpe)).map(_.asMethod) ::: targets
-          } else {
-            targets = target.asMethod :: targets
-          }
+          case _ =>
+            // Disambiguate overloaded methods based on the types of the args
+            if (target.isOverloaded) {
+              targets = target.alternatives.filter(_.tpe.matches(staticTarget.tpe)).map(_.asMethod) ::: targets
+            } else {
+              targets = target.asMethod :: targets
+            }
+        }
       }
+      targets.toSet
     }
-    targets.toSet
   }
 
   def printAnnotatedCallsites = {
