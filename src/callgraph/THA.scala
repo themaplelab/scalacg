@@ -9,19 +9,31 @@ trait THA { this: CGUtils =>
   var callGraph = Map[CallSite, Set[MethodSymbol]]()
 
   def buildCallGraph = {
-    def containingMethod(ancestors: List[Tree]): Symbol = {
+    /* Given the ancestors of a This in the AST, determines the method that has that
+     * particular This as its implicit this parameter.
+     * 
+     * It is possible that there is no such method. For example:
+     * class A {
+     *   val a = 5
+     *   val b = this.a + 6
+     * }
+     * In such cases, returns NoSymbol
+     */
+    def containingMethod(ancestors: List[Tree], thisType: Symbol): Symbol = {
       (for {
-        firstDefDef <- ancestors.find(_.isInstanceOf[DefDef])
-        instanceMethod <- firstDefDef.symbol.ownersIterator.find { sym =>
-          sym.isMethod && sym.owner.isClass
+        firstContainer <- ancestors.find{ node =>
+          node.isInstanceOf[DefDef] || node.isInstanceOf[ClassDef]
+        }
+        instanceMethod <- firstContainer.symbol.ownersIterator.find { sym =>
+          sym.isMethod && sym.owner == thisType
         }
       } yield instanceMethod).getOrElse(NoSymbol)
     }
     for (callSite <- callSites) {
       val targets = callSite.receiver match {
         case ths: This =>
-          val method = containingMethod(callSite.ancestors)
-          if (method != NoSymbol && method.owner == ths.symbol)
+          val method = containingMethod(callSite.ancestors, ths.symbol)
+          if (method != NoSymbol)
             lookup(callSite.receiver.tpe, callSite.method, classes.filter(_.tpe.members.sorted.contains(method)))
           else
             lookup(callSite.receiver.tpe, callSite.method, classes)
