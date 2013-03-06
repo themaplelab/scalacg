@@ -9,15 +9,15 @@ trait THA extends CGUtils {
   var callGraph = Map[CallSite, Set[MethodSymbol]]()
 
   var superMethodNames = Set[TermName]()
-  
+
   override def initialize = {
     super.initialize
-    for{
+    for {
       tree <- trees
       node <- tree
     } {
       node match {
-        case Select(Super(_, _), name)  => superMethodNames += name
+        case Select(Super(_, _), name) => superMethodNames += name
         case _ =>
       }
     }
@@ -35,7 +35,7 @@ trait THA extends CGUtils {
      */
     def containingMethod(ancestors: List[Tree], thisType: Symbol): Symbol = {
       (for {
-        firstContainer <- ancestors.find{ node =>
+        firstContainer <- ancestors.find { node =>
           node.isInstanceOf[DefDef] || node.isInstanceOf[ClassDef]
         }
         instanceMethod <- firstContainer.symbol.ownersIterator.find { sym =>
@@ -44,16 +44,21 @@ trait THA extends CGUtils {
       } yield instanceMethod).getOrElse(NoSymbol)
     }
     for (callSite <- callSites) {
-      val targets = callSite.receiver match {
-        case ths: This =>
-          val method = containingMethod(callSite.ancestors, ths.symbol)
-          if (method != NoSymbol && !superMethodNames.contains(method.name))
-            lookup(callSite.receiver.tpe, callSite.method, classes.filter(_.tpe.members.sorted.contains(method)))
-          else
-            lookup(callSite.receiver.tpe, callSite.method, classes)
-        case _ =>
-          lookup(callSite.receiver.tpe, callSite.method, classes)
-      }
+      val thisSymbol =
+        if (callSite.receiver.isInstanceOf[This]) callSite.receiver.symbol
+        else if (callSite.receiver.tpe.isInstanceOf[ThisType]) 
+          callSite.receiver.tpe.asInstanceOf[ThisType].sym
+        else NoSymbol
+      val filteredClasses =
+        thisSymbol match {
+          case NoSymbol => classes
+          case symbol =>
+            val method = containingMethod(callSite.ancestors, symbol)
+            if (method == NoSymbol || superMethodNames.contains(method.name)) classes
+            else
+              classes.filter(_.tpe.members.sorted.contains(method))
+        }
+      val targets = lookup(callSite.receiver.tpe, callSite.method, filteredClasses)
       callGraph += (callSite -> targets)
     }
   }
