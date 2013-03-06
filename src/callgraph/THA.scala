@@ -2,12 +2,26 @@ package callgraph
 
 import scala.tools.nsc
 
-trait THA { this: CGUtils =>
+trait THA extends CGUtils {
   val global: nsc.Global
   import global._
 
   var callGraph = Map[CallSite, Set[MethodSymbol]]()
 
+  var superMethodNames = Set[TermName]()
+  
+  override def initialize = {
+    super.initialize
+    for{
+      tree <- trees
+      node <- tree
+    } {
+      node match {
+        case Select(Super(_, _), name)  => superMethodNames += name
+        case _ =>
+      }
+    }
+  }
   def buildCallGraph = {
     /* Given the ancestors of a This in the AST, determines the method that has that
      * particular This as its implicit this parameter.
@@ -33,7 +47,7 @@ trait THA { this: CGUtils =>
       val targets = callSite.receiver match {
         case ths: This =>
           val method = containingMethod(callSite.ancestors, ths.symbol)
-          if (method != NoSymbol)
+          if (method != NoSymbol && !superMethodNames.contains(method.name))
             lookup(callSite.receiver.tpe, callSite.method, classes.filter(_.tpe.members.sorted.contains(method)))
           else
             lookup(callSite.receiver.tpe, callSite.method, classes)
