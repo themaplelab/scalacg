@@ -68,9 +68,6 @@ trait CGUtils {
   def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[ClassSymbol]): Set[MethodSymbol] = {
     if (staticTarget.isConstructor) Set(staticTarget) else {
       var targets = List[MethodSymbol]()
-      println("target is " + staticTarget)
-      println("receiverType is " + receiverType)
-      println("receiverType.bounds.hi is " + receiverType.bounds.hi)
       for {
         cls <- consideredClasses
         val tpe = cls.tpe
