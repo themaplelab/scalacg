@@ -62,5 +62,6 @@ class Suite {
   @Test def testAbstractTypes6 = runTest("AbstractTypes6") 
   @Test def testAbstractTypes7 = runTest("AbstractTypes7") 
   @Test def testAbstractTypes8 = runTest("AbstractTypes8") 
+  @Test def testAbstractTypes9 = runTest("AbstractTypes9") 
 
 }
