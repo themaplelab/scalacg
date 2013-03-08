@@ -20,7 +20,7 @@ object AbstractTypes9 {
 	    
 	    {"Square.draw"; v}.draw()
 	    
-	    //{"Square.draw"; w}.draw()
+	    {"Square.draw"; w}.draw()
 	  }
   }
 }
