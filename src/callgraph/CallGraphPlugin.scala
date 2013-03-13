@@ -20,7 +20,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
     def newPhase(prevPhase: Phase) = new CallGraphPhase(prevPhase)
     val phaseName = CallGraphPlugin.this.name
 
-    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with CGUtils with THA {
+    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with CGUtils with CHA {
       def apply(unit: CallGraphComponent.this.global.CompilationUnit) = assert(false)
       val global = CallGraphComponent.this.global
       import global._
@@ -37,8 +37,8 @@ class CallGraphPlugin(val global: Global) extends Plugin {
       }
     }
   }
-  
-  /** Phase that annotates each method with @annotation.targetmethod(serial number) */
+
+  /** Phase that annotates each method with @callgraph.annotation.targetmethod(serial number) */
   private object AnnotationComponent extends PluginComponent {
     val global = CallGraphPlugin.this.global
     import global._
@@ -51,7 +51,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
       var serialNum = 1
       def apply(unit: AnnotationComponent.this.global.CompilationUnit) = {
         val targetAnnotationType =
-          rootMirror.getRequiredClass("annotation.targetmethod").info
+          rootMirror.getRequiredClass("callgraph.annotation.targetmethod").info
         val valueName = newTermName("value")
         unit.body.foreach { node =>
           if (node.isInstanceOf[DefDef]) {
