@@ -2,9 +2,8 @@
 <project>
 	<target name="makejar">
 		<jar destfile="jar/callgraph-plugin.jar">
-			<fileset dir="bin" includes="callgraph/*.class"/>
-			<fileset dir="junit/bin" includes="annotation/*.class"/>
-			<fileset file="jar/scalac-plugin.xml"/>
+			<fileset dir="bin" includes="callgraph/**/*.class" />
+			<fileset file="jar/scalac-plugin.xml" />
 		</jar>
 	</target>
 </project>
