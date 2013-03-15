@@ -23,4 +23,8 @@ object AbstractTypes9 {
 	    {"Square.draw"; w}.draw()
 	  }
   }
+  val x = new T {
+    type U = Shape
+    type V = Shape with FourSides
+  }
 }
