@@ -20,7 +20,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
     def newPhase(prevPhase: Phase) = new CallGraphPhase(prevPhase)
     val phaseName = CallGraphPlugin.this.name
 
-    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with CGUtils with CHA {
+    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with CGUtils with THA {
       def apply(unit: CallGraphComponent.this.global.CompilationUnit) = assert(false)
       val global = CallGraphComponent.this.global
       import global._

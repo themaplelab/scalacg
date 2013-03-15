@@ -7,7 +7,7 @@ object AbstractTypes8 {
     
   def bar() = 
     // call a method on an abstract type
-    { "C.bar"; "D.bar"; foo}.bar()
+    { "D.bar"; foo}.bar()
   }
   
   class B extends A {

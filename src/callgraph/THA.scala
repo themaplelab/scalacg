@@ -21,6 +21,7 @@ trait THA extends CGUtils {
         case _ =>
       }
     }
+    addTypeConcretizations(classes)
   }
   def buildCallGraph = {
     /* Given the ancestors of a This in the AST, determines the method that has that

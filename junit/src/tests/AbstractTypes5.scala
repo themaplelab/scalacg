@@ -6,7 +6,7 @@ object AbstractTypes5 {
     var foo: T
 
     def bar() =
-      { "C.toString"; "D.toString"; foo }.toString()
+      { "D.toString"; foo }.toString()
   }
 
   class B extends A {

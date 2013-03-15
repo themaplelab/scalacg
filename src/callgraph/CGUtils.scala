@@ -65,13 +65,36 @@ trait CGUtils {
     targets.headOption.getOrElse(UNANNOT)
   }
 
+  var concretization = Map[Symbol, Set[Type]]()
+  def addTypeConcretizations(classes: Set[ClassSymbol]) = {
+    for{
+      cls <- classes
+      sym <- cls.tpe.members
+      if sym.isAliasType
+      superClass <- cls.baseClasses
+      absSym <- superClass.tpe.decls
+      if absSym.isAbstractType
+      if absSym.name == sym.name
+    } {
+      concretization +=
+        (absSym -> (concretization.getOrElse(absSym, Set()) + sym.tpe))
+    }
+  }
+  def expand(t: Type): Set[Type] = {
+    val sym = t.typeSymbol
+    if (sym.isAbstractType) {
+      concretization.getOrElse(sym, Set())
+    } else Set(t)
+  }
+
   def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[ClassSymbol]): Set[MethodSymbol] = {
     if (staticTarget.isConstructor) Set(staticTarget) else {
       var targets = List[MethodSymbol]()
       for {
         cls <- consideredClasses
         val tpe = cls.tpe
-        if tpe <:< receiverType.bounds.hi
+        expandedType <- expand(receiverType.widen)
+        if tpe <:< expandedType
         val target = tpe.member(staticTarget.name)
         if !target.isDeferred
       } {
