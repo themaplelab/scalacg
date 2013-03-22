@@ -67,7 +67,8 @@ trait CGUtils {
 
   var concretization = Map[Symbol, Set[Type]]()
   def addTypeConcretizations(classes: Set[ClassSymbol]) = {
-    for{
+    // find all definitions of abstract type members ("type aliases")
+    for {
       cls <- classes
       sym <- cls.tpe.members
       if sym.isAliasType
@@ -79,6 +80,45 @@ trait CGUtils {
       concretization +=
         (absSym -> (concretization.getOrElse(absSym, Set()) + sym.tpe))
     }
+    
+    // find all instantiations of generic type parameters
+    for {
+      cls <- classes
+    } {
+      cls.info match {
+        case ClassInfoType(parents, _, _) =>
+          for { parent <- parents } {
+            val args = parent.typeArguments
+            val cstr = parent.typeConstructor
+            val params = cstr.typeParams
+            for {
+              (arg, param) <- (args zip params)
+            } {
+              concretization +=
+                (param -> (concretization.getOrElse(param, Set() + arg)))
+            }
+          }
+        case _ =>
+        // TODO: are we missing any cases?
+      }
+    }
+    
+    // transitively follow abstract type concretizations
+    var oldConcretization = concretization
+    do {
+      oldConcretization = concretization
+      for {
+        (absSym, tpes) <- concretization
+        tpe <- tpes
+      } {
+        tpe match {
+          case TypeRef(_, sym, _) =>
+            concretization +=
+              (absSym -> (concretization(absSym) ++ concretization.getOrElse(sym, Set())))
+          case _ =>
+        }
+      }
+    } while (oldConcretization != concretization)
   }
   def expand(t: Type): Set[Type] = {
     val sym = t.typeSymbol
