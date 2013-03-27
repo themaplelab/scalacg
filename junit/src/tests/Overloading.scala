@@ -4,15 +4,17 @@ package tests
  * This test shows if we correctly capture overloaded methods.
  */
 object Overloading {
+  def main(args: Array[String]) = {
 
-  var a = new A()
+    var a = new A()
 
-  { "A.foo(Int)"; a }.foo(1);
-  { "A.foo(String)"; a }.foo("bla");
-  { "A.foo(Int, Int)"; a }.foo(1, 1);
-  { "A.foo(Array[Int])"; a }.foo(Array[Int](1, 1, 1));
-  { "A.foo(A)"; a }.foo(new A);
-  { "A.foo(B)"; a }.foo(new B);
+    { "A.foo(Int)"; a }.foo(1);
+    { "A.foo(String)"; a }.foo("bla");
+    { "A.foo(Int, Int)"; a }.foo(1, 1);
+    { "A.foo(Array[Int])"; a }.foo(Array[Int](1, 1, 1));
+    { "A.foo(A)"; a }.foo(new A);
+    { "A.foo(B)"; a }.foo(new B);
+  }
 
   class A {
     @target("A.foo(Int)") def foo(x: Int): Unit = {}

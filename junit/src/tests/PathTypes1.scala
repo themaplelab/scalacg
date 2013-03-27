@@ -13,10 +13,10 @@ object PathTypes1 {
   val p2 = new Outer {
     var p2i: Inner = null
   }
-  val p1p1i = new p1.Inner { 
+  val p1p1i = new p1.Inner {
     @target("p1.i.m") override def m() = println("p1.Inner.m")
   }
-  val p2p2i = new p2.Inner { 
+  val p2p2i = new p2.Inner {
     @target("p2.i.m") override def m() = println("p2.Inner.m")
   }
   p1.p1i = p1p1i
@@ -28,7 +28,9 @@ object PathTypes1 {
   // CHA should rule out the call to p1.i.m on p2.p2i, because the receiver types
   // are PathTypes1.p1.Inner and PathTypes2.p2.Inner
 
-  { "p1.i.m"; p1.p1i }.m();
-  { "p2.i.m"; p2.p2i }.m();
+  def main(args: Array[String]) = {
+    { "p1.i.m"; p1.p1i }.m();
+    { "p2.i.m"; p2.p2i }.m();
+  }
 
 }

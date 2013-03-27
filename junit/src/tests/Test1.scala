@@ -5,7 +5,7 @@ class Test1 {
     5
   }
 
-  {
+  def main(args: Array[String]) = {
     "Test1.callee";
     new Test1
   }.callee()

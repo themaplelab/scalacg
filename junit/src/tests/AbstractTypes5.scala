@@ -22,5 +22,7 @@ object AbstractTypes5 {
     @target("D.toString") override def toString() = "D"
   }
 
-  new B().bar()
+  def main(args: Array[String]): Unit = {
+    new B().bar()
+  }
 }

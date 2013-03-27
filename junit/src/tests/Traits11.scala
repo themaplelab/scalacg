@@ -14,4 +14,7 @@ object Traits11 {
   def callSite(receiver: A with B) = {
     { "D.foo"; receiver }.foo()
   }
+  def main(args: Array[String]) = {
+    callSite(new D)
+  }
 }

@@ -4,8 +4,10 @@ package tests
 
 object Test3 {
 
-  p(new A());
-  p(new B());
+  def main(args: Array[String]) = {
+    p(new A());
+    p(new B());
+  }
 
   def p(x: A): Unit = {
     { "A.foo"; "B.foo"; x }.foo();

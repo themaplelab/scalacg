@@ -12,19 +12,21 @@ object AbstractTypes9 {
     @target("Square.draw") def draw() = "square"
   }
   trait T {
-	  type U <: Shape
-	  type V <: U with FourSides
-	  type W = V
-	  def bar(u: U, v: V, w: W) {
-	    {"Square.draw"; "Circle.draw"; u}.draw()
-	    
-	    {"Square.draw"; v}.draw()
-	    
-	    {"Square.draw"; w}.draw()
-	  }
+    type U <: Shape
+    type V <: U with FourSides
+    type W = V
+    def bar(u: U, v: V, w: W) {
+      { "Square.draw"; "Circle.draw"; u }.draw()
+
+      { "Square.draw"; v }.draw()
+
+      { "Square.draw"; w }.draw()
+    }
   }
-  val x = new T {
-    type U = Shape
-    type V = Shape with FourSides
+  def main(args: Array[String]): Unit = {
+    val x = new T {
+      type U = Shape
+      type V = Shape with FourSides
+    }
   }
 }
