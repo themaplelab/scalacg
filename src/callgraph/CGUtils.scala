@@ -208,7 +208,7 @@ trait CGUtils {
     // all main methods encountered in those classes
     val mainMethods = classes.collect{
       case cs: ClassSymbol => cs.tpe.member(mainName)
-    }.filter(_ != NoSymbol)
+    }.filter(_ != NoSymbol).filter(!_.isDeferred).filter(_.isMethod)
     
     // the first main method
     mainMethods.head

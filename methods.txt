@@ -1,0 +1,6 @@
+9 tests.SuperCall.$anon.<init>
+5 tests.SuperCall.Y.foo
+10 tests.SuperCall.$anon.<init>
+0 tests.SuperCall.Y.super$bar
+0 java.lang.Object.<init>
+8 tests.SuperCall.main
