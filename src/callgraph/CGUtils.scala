@@ -199,12 +199,19 @@ trait CGUtils {
   // just takes the first main method that it finds
   def mainMethod = {
     val mainName = stringToTermName("main")
-    // the first class encountered in the source files
-    val firstClass = trees.toStream.flatMap { tree =>
+    
+    // all classes encountered in the source files
+    val classes = trees.toStream.flatMap { tree =>
       tree.collect { case cd: ClassDef => cd.symbol.asClass }
-    }.head
-    // if the class has a main method, take it; else take the body of the class
-    firstClass.tpe.member(mainName).orElse(firstClass)
+    }
+    
+    // all main methods encountered in those classes
+    val mainMethods = classes.collect{
+      case cs: ClassSymbol => cs.tpe.member(mainName)
+    }.filter(_ != NoSymbol)
+    
+    // the first main method
+    mainMethods.head
   }
 
   lazy val reachableMethods = transitiveClosure(entryPoints, { source: Symbol =>
