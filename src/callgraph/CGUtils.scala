@@ -1,6 +1,8 @@
 package callgraph
 
 import scala.tools.nsc
+import scala.collection.mutable
+import scala.collection
 
 trait CGUtils {
   val global: nsc.Global
@@ -13,6 +15,7 @@ trait CGUtils {
   case class CallSite(receiver: Tree, method: MethodSymbol, args: List[Tree], annotation: List[String], ancestors: List[Tree])
 
   var callSites = List[CallSite]()
+  val callSitesInMethod = mutable.Map[Symbol, Set[CallSite]]()
   var classes = Set[ClassSymbol]()
   def callGraph: CallSite => Set[MethodSymbol]
 
@@ -26,6 +29,14 @@ trait CGUtils {
       }
     }
     def apply(root: Tree) = traverse(root, List())
+  }
+  def addCallSite(callSite: CallSite) = {
+    callSites = callSite :: callSites
+    val enclosingMethod = callSite.ancestors.find({
+      node => node.isInstanceOf[DefDef] || node.isInstanceOf[ClassDef]
+    }).get.symbol
+    callSitesInMethod(enclosingMethod) =
+      callSitesInMethod.getOrElse(enclosingMethod, Set()) + callSite
   }
   def initialize = {
     // find call sites
@@ -42,7 +53,7 @@ trait CGUtils {
                     (annot, plainReceiver)
                   case _ => (List(), receiver)
                 }
-              callSites = CallSite(plainReceiver, node.symbol.asMethod, args, annotation, ancestors) :: callSites
+              addCallSite(CallSite(plainReceiver, node.symbol.asMethod, args, annotation, ancestors))
             case _ =>
           }
         }
@@ -80,7 +91,7 @@ trait CGUtils {
       concretization +=
         (absSym -> (concretization.getOrElse(absSym, Set()) + sym.tpe))
     }
-    
+
     // find all instantiations of generic type parameters
     for {
       cls <- classes
@@ -102,7 +113,7 @@ trait CGUtils {
         // TODO: are we missing any cases?
       }
     }
-    
+
     // transitively follow abstract type concretizations
     var oldConcretization = concretization
     do {
@@ -169,5 +180,52 @@ trait CGUtils {
       println("Expected: " + expected.toSeq.sorted.mkString(", "))
       assert(callSite.annotation.isEmpty || (resolved == expected), expected.toSeq.sorted.mkString(", "))
     }
+  }
+
+  def transitiveClosure[T](initial: Set[T], transition: T => Set[T]): Set[T] = {
+    val seen = mutable.Set[T]() ++ initial
+    val queue = mutable.Queue[T]() ++ initial
+    while (!queue.isEmpty) {
+      val item = queue.dequeue
+      val image = transition(item) -- seen
+      queue ++= image
+      seen ++= image
+    }
+    Set() ++ seen
+  }
+
+  def entryPoints = Set(mainMethod)
+
+  // just takes the first main method that it finds
+  def mainMethod = {
+    val mainName = stringToTermName("main")
+    // the first class encountered in the source files
+    val firstClass = trees.toStream.flatMap { tree =>
+      tree.collect { case cd: ClassDef => cd.symbol.asClass }
+    }.head
+    // if the class has a main method, take it; else take the body of the class
+    firstClass.tpe.member(mainName).orElse(firstClass)
+  }
+
+  lazy val reachableMethods = transitiveClosure(entryPoints, { source: Symbol =>
+    for {
+      callSite <- callSitesInMethod.getOrElse(source, Set())
+      target <- callGraph(callSite)
+    } yield target: Symbol
+  })
+
+  val methodToId: collection.Map[Symbol, Int]
+  def printCallGraph(out: java.io.PrintStream) = {
+    for {
+      source <- reachableMethods
+      val sourceId = methodToId.getOrElse(source, 0)
+      callSite <- callSitesInMethod.getOrElse(source, Set())
+      target <- callGraph(callSite)
+      val targetId = methodToId.getOrElse(target, 0)
+    } out.println(sourceId + " " + targetId)
+  }
+  def printReachableMethods(out: java.io.PrintStream) = {
+    for (method <- reachableMethods)
+      out.println(methodToId.getOrElse(method, 0) + " " + method.fullName)
   }
 }

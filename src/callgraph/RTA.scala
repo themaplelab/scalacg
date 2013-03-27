@@ -17,17 +17,6 @@ trait RTA { this: CGUtils =>
     if (!reachableCode(method)) methodQueue += method
   }
   
-  // just takes the first main method that it finds
-  def entryPoint = {
-    val mainName = stringToTermName("main")
-    // the first class encountered in the source files
-    val firstClass = trees.toStream.flatMap { tree =>
-      tree.collect { case cd: ClassDef => cd.symbol.asClass }
-    }.head
-    // if the class has a main method, take it; else take the body of the class
-    firstClass.tpe.member(mainName).orElse(firstClass)
-  }
-
   // the set of classes instantiated in a given method
   lazy val classesInMethod = {
     val ret = mutable.Map[Symbol, Set[ClassSymbol]]().withDefaultValue(Set())
@@ -51,7 +40,7 @@ trait RTA { this: CGUtils =>
     // all objects are considered to be allocated
     instantiatedClasses ++= classes.filter(_.isModule)
 
-    methodQueue += entryPoint
+    methodQueue ++= entryPoints
 
     while (!methodQueue.isEmpty) {
       // process new methods
