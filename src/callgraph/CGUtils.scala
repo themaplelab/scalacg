@@ -312,7 +312,9 @@ trait CGUtils {
     val probeCallGraph = new CallGraph
 
     // Get the entry points
-    probeCallGraph.entryPoints.add(probeMethod(mainMethod))
+    for (entryPoint <- entryPoints) {
+      probeCallGraph.entryPoints.add(probeMethod(entryPoint))
+    }
 
     for {
       source <- reachableMethods
