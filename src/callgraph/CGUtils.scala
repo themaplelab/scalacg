@@ -240,12 +240,12 @@ trait CGUtils {
     for (method <- reachableMethods)
       out.println(methodToId.getOrElse(method, 0) + " " + methodSignature(method.asMethod))
   }
-  
+
   /**
    * Return a Soot-like method signature.
    */
-  def methodSignature(methodSymbol : MethodSymbol) = {
-    "<" + methodSymbol.fullName + " " + methodSymbol.typeSignature + ">"
+  def methodSignature(methodSymbol: MethodSymbol) = {
+    "<" + methodSymbol.fullName.replace("." + methodSymbol.simpleName, "") + ": " + methodSymbol.simpleName + " " + methodSymbol.signatureString + ">"
   }
 
   /**
@@ -266,7 +266,7 @@ trait CGUtils {
     } {
       probeCallGraph.edges.add(new CallEdge(probeMethod(source), probeMethod(target)))
     }
-    
+
     // Write GXL file
     new GXLWriter().write(probeCallGraph, out)
   }
@@ -274,7 +274,7 @@ trait CGUtils {
   /**
    * Get a probe method for the given symbol
    */
-  def probeMethod(methodSymbol: Symbol) : ProbeMethod = {
+  def probeMethod(methodSymbol: Symbol): ProbeMethod = {
     val probeClass = ObjectManager.v().getClass(methodSymbol.owner.signatureString)
     val probeMethod = ObjectManager.v().getMethod(probeClass, methodSymbol.simpleName.longString, methodSymbol.signatureString)
     probeMethod
