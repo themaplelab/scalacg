@@ -43,32 +43,80 @@ trait CGUtils {
     callSitesInMethod(enclosingMethod) =
       callSitesInMethod.getOrElse(enclosingMethod, Set()) + callSite
   }
+  // look for an annotation on the receiver
+  def findReceiverAnnotations(receiver: Tree): (List[String], Tree) = {
+    val (annotation, plainReceiver) =
+      receiver match {
+        case Block(annotations, plainReceiver) =>
+          val annot = annotations.collect(annotationFilter)
+          (annot, plainReceiver)
+        case _ => (List(), receiver)
+      }
+    (annotation, plainReceiver)
+  }
   def initialize = {
     // find call sites
     trees.foreach { tree =>
-      (new TraverseWithAncestors {
-        def visit(node: Tree, ancestors: List[Tree]) = {
-          node match {
-            case Apply(Select(receiver, methodName), args) =>
-              // look for an annotation on the receiver
-              val (annotation, plainReceiver) =
-                receiver match {
-                  case Block(annotations, plainReceiver) =>
-                    val annot = annotations.collect(annotationFilter)
-                    (annot, plainReceiver)
-                  case _ => (List(), receiver)
-                }
-              addCallSite(CallSite(plainReceiver, node.symbol.asMethod, args, annotation, ancestors))
-            case _ =>
-          }
-        }
-      })(tree)
+      findCallSites(tree, List())
     }
 
     // find classes
     classes = trees.flatMap { tree =>
       tree.collect { case cd: ClassDef => cd.symbol.asClass }
     }.toSet
+  }
+
+  def normalizeMultipleParameters(tree: Apply): Apply = tree.fun match {
+    case a: Apply => normalizeMultipleParameters(a)
+    case _ => tree
+  }
+
+  /** Returns the receiver of an apply or unapply. Some don't have a receiver. */
+  def getReceiver(tree: Tree): Option[Tree] = tree match {
+    case a: Apply => getReceiver(a.fun)
+    case s: Select => Some(s.qualifier)
+    case t: TypeApply => getReceiver(t.fun)
+    case _: Ident => None
+    case _ => assert(false, "getReceiver on unexpected tree " + tree + " of type " + tree.getClass); null
+  }
+
+  def findCallSites(tree: Tree, ancestors: List[Tree]) {
+    def processChildren() {
+      tree.children.foreach(findCallSites(_, tree :: ancestors))
+    }
+
+    def isMethod(symbol: Symbol) =
+      symbol.isInstanceOf[MethodSymbol] &&
+        symbol.name != nme.OUTER_SYNTH && // this is a fake method that never exists; such calls are
+        // later replaced by calls to a synthetic accessor method
+        !symbol.isLabel // gotos are implemented with a method-call-like syntax, but they do not call
+    // actual methods, only labels
+
+    tree match {
+      // trees that invoke methods
+      case apply: Apply =>
+        val a = normalizeMultipleParameters(apply)
+        val callee = a.fun
+        val args = a.args
+        val receiver = getReceiver(a)
+        if (isMethod(callee.symbol)) {
+          val (annotation, plainReceiver) = findReceiverAnnotations(receiver.getOrElse(null))
+          addCallSite(CallSite(plainReceiver, tree.symbol.asMethod, args, annotation, ancestors))
+        }
+        args.foreach(findCallSites(_, tree :: ancestors))
+        callee.children.foreach(findCallSites(_, tree :: ancestors))
+
+      case _: Select | _: Ident =>
+        if (isMethod(tree.symbol)) {
+          val receiver = getReceiver(tree)
+          val (annotation, plainReceiver) = findReceiverAnnotations(receiver.getOrElse(null))
+          addCallSite(CallSite(plainReceiver, tree.symbol.asMethod, List(), annotation, ancestors))
+        }
+        processChildren
+
+      case _ =>
+        processChildren
+    }
   }
 
   def findTargetAnnotation(symbol: Symbol) = {
@@ -144,7 +192,9 @@ trait CGUtils {
   }
 
   def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[ClassSymbol]): Set[MethodSymbol] = {
-    if (staticTarget.isConstructor) Set(staticTarget) else {
+    if (staticTarget.isConstructor)
+      Set(staticTarget)
+    else {
       var targets = List[MethodSymbol]()
       for {
         cls <- consideredClasses
@@ -199,10 +249,10 @@ trait CGUtils {
     Set() ++ seen
   }
 
-  def entryPoints = Set(mainMethod)
+  def entryPoints = mainMethods
 
   // just takes the first main method that it finds
-  def mainMethod = {
+  def mainMethods = {
     val mainName = stringToTermName("main")
 
     // all classes encountered in the source files
@@ -214,9 +264,7 @@ trait CGUtils {
     val mainMethods = classes.collect {
       case cs: ClassSymbol => cs.tpe.member(mainName)
     }.filter(_ != NoSymbol).filter(!_.isDeferred).filter(_.isMethod)
-
-    // the first main method
-    mainMethods.head
+    Set() ++ mainMethods
   }
 
   lazy val reachableMethods = transitiveClosure(entryPoints, { source: Symbol =>
@@ -236,9 +284,18 @@ trait CGUtils {
       val targetId = methodToId.getOrElse(target, 0)
     } out.println(sourceId + " " + targetId)
   }
+  def printTextualCallGraph(out: java.io.PrintStream) = {
+    for {
+      source <- reachableMethods
+      callSite <- callSitesInMethod.getOrElse(source, Set())
+      target <- callGraph(callSite)
+    } out.println(printableName(source) + " ==> " + printableName(target))
+  }
+  def printableName(method: Symbol) =
+    method.fullName + method.signatureString
   def printReachableMethods(out: java.io.PrintStream) = {
     for (method <- reachableMethods)
-      out.println(methodToId.getOrElse(method, 0) + " " + methodSignature(method.asMethod))
+      out.println(methodToId.getOrElse(method, 0) + " " + printableName(method))
   }
 
   /**

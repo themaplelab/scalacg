@@ -45,22 +45,26 @@ trait THA extends CGUtils {
       } yield instanceMethod).getOrElse(NoSymbol)
     }
     for (callSite <- callSites) {
-      val thisSymbol =
-        if (callSite.receiver.isInstanceOf[This]) callSite.receiver.symbol
-        else if (callSite.receiver.tpe.isInstanceOf[ThisType]) 
-          callSite.receiver.tpe.asInstanceOf[ThisType].sym
-        else NoSymbol
-      val filteredClasses =
-        thisSymbol match {
-          case NoSymbol => classes
-          case symbol =>
-            val method = containingMethod(callSite.ancestors, symbol)
-            if (method == NoSymbol || superMethodNames.contains(method.name)) classes
-            else
-              classes.filter(_.tpe.members.sorted.contains(method))
-        }
-      val targets = lookup(callSite.receiver.tpe, callSite.method, filteredClasses)
-      callGraph += (callSite -> targets)
+      if (callSite.receiver == null) {
+        callGraph += (callSite -> Set(callSite.method))
+      } else {
+        val thisSymbol =
+          if (callSite.receiver.isInstanceOf[This]) callSite.receiver.symbol
+          else if (callSite.receiver.tpe.isInstanceOf[ThisType])
+            callSite.receiver.tpe.asInstanceOf[ThisType].sym
+          else NoSymbol
+        val filteredClasses =
+          thisSymbol match {
+            case NoSymbol => classes
+            case symbol =>
+              val method = containingMethod(callSite.ancestors, symbol)
+              if (method == NoSymbol || superMethodNames.contains(method.name)) classes
+              else
+                classes.filter(_.tpe.members.sorted.contains(method))
+          }
+        val targets = lookup(callSite.receiver.tpe, callSite.method, filteredClasses)
+        callGraph += (callSite -> targets)
+      }
     }
   }
   val annotationFilter: PartialFunction[Tree, String] = {
