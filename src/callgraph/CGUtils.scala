@@ -3,6 +3,11 @@ package callgraph
 import scala.tools.nsc
 import scala.collection.mutable
 import scala.collection
+import probe.CallGraph
+import probe.ProbeMethod
+import probe.ObjectManager
+import probe.CallEdge
+import probe.GXLWriter
 
 trait CGUtils {
   val global: nsc.Global
@@ -199,17 +204,17 @@ trait CGUtils {
   // just takes the first main method that it finds
   def mainMethod = {
     val mainName = stringToTermName("main")
-    
+
     // all classes encountered in the source files
     val classes = trees.toStream.flatMap { tree =>
       tree.collect { case cd: ClassDef => cd.symbol.asClass }
     }
-    
+
     // all main methods encountered in those classes
-    val mainMethods = classes.collect{
+    val mainMethods = classes.collect {
       case cs: ClassSymbol => cs.tpe.member(mainName)
     }.filter(_ != NoSymbol).filter(!_.isDeferred).filter(_.isMethod)
-    
+
     // the first main method
     mainMethods.head
   }
@@ -233,6 +238,45 @@ trait CGUtils {
   }
   def printReachableMethods(out: java.io.PrintStream) = {
     for (method <- reachableMethods)
-      out.println(methodToId.getOrElse(method, 0) + " " + method.fullName)
+      out.println(methodToId.getOrElse(method, 0) + " " + methodSignature(method.asMethod))
+  }
+  
+  /**
+   * Return a Soot-like method signature.
+   */
+  def methodSignature(methodSymbol : MethodSymbol) = {
+    "<" + methodSymbol.fullName + " " + methodSymbol.typeSignature + ">"
+  }
+
+  /**
+   * Return a probe call graph in GXL format.
+   */
+  def printProbeCallGraph(out: java.io.PrintStream) = {
+    val probeCallGraph = new CallGraph
+
+    // Get the entry points
+    probeCallGraph.entryPoints.add(probeMethod(mainMethod))
+
+    for {
+      source <- reachableMethods
+      val sourceId = methodToId.getOrElse(source, 0)
+      callSite <- callSitesInMethod.getOrElse(source, Set())
+      target <- callGraph(callSite)
+      val targetId = methodToId.getOrElse(target, 0)
+    } {
+      probeCallGraph.edges.add(new CallEdge(probeMethod(source), probeMethod(target)))
+    }
+    
+    // Write GXL file
+    new GXLWriter().write(probeCallGraph, out)
+  }
+
+  /**
+   * Get a probe method for the given symbol
+   */
+  def probeMethod(methodSymbol: Symbol) : ProbeMethod = {
+    val probeClass = ObjectManager.v().getClass(methodSymbol.owner.signatureString)
+    val probeMethod = ObjectManager.v().getMethod(probeClass, methodSymbol.simpleName.longString, methodSymbol.signatureString)
+    probeMethod
   }
 }
