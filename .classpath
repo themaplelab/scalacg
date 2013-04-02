@@ -7,5 +7,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/scala-compiler.jar" sourcepath="lib/scala-compiler-src.jar"/>
 	<classpathentry kind="lib" path="lib/probe.jar" sourcepath="lib/probe-src.zip"/>
+	<classpathentry kind="lib" path="lib/gxl.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
