@@ -255,7 +255,7 @@ trait CGUtils {
   def mainMethods = {
     val mainName = stringToTermName("main")
 
-    val mainMethods = classes.filter(_.isModule). // filter classes that are objects
+    val mainMethods = classes.filter(_.isModuleClass). // filter classes that are objects
       collect { case cs: ClassSymbol => cs.tpe.member(mainName) }. // collect main methods
       filter(_.isMethod). // consider only methods, not fields or other members
       filter(!_.isDeferred) // filter out abstract methods
@@ -297,7 +297,7 @@ trait CGUtils {
   /**
    * Return a Soot-like method signature.
    */
-  def methodSignature(methodSymbol: MethodSymbol): String = {
+  def methodSignature(methodSymbol: Symbol): String = {
     "<" + methodSymbol.fullName + methodSymbol.signatureString + ">"
   }
 
@@ -310,7 +310,7 @@ trait CGUtils {
     // Get the entry points
     for {
       entry <- entryPoints
-    } probeCallGraph.entryPoints.add(probeMethod(entry.asMethod))
+    } probeCallGraph.entryPoints.add(probeMethod(entry))
 
     // Get the edges
     for {
@@ -319,7 +319,7 @@ trait CGUtils {
       callSite <- callSitesInMethod.getOrElse(source, Set())
       target <- callGraph(callSite)
       val targetId = methodToId.getOrElse(target, 0)
-    } probeCallGraph.edges.add(new CallEdge(probeMethod(source.asMethod), probeMethod(target.asMethod)))
+    } probeCallGraph.edges.add(new CallEdge(probeMethod(source), probeMethod(target)))
 
     // Write GXL file
     new GXLWriter().write(probeCallGraph, out)
@@ -328,7 +328,7 @@ trait CGUtils {
   /**
    * Get a probe method for the given symbol
    */
-  def probeMethod(methodSymbol: MethodSymbol): ProbeMethod = {
+  def probeMethod(methodSymbol: Symbol): ProbeMethod = {
     val probeClass = ObjectManager.v().getClass(effectiveOwnerName(methodSymbol))
     val probeMethod = ObjectManager.v().getMethod(probeClass, methodSymbol.simpleName.decode, paramsSignatureString(methodSymbol))
     probeMethod
@@ -337,14 +337,14 @@ trait CGUtils {
   /**
    * Get the full name (dot separated) of the owner of a method symbol. That acts like the method declaring class in Soot.
    */
-  def effectiveOwnerName(methodSymbol: MethodSymbol): String = {
+  def effectiveOwnerName(methodSymbol: Symbol): String = {
     methodSymbol.fullName.replace("." + methodSymbol.simpleName, "")
   }
 
   /**
    * Get the params string of a method symbol
    */
-  def paramsSignatureString(methodSymbol: MethodSymbol): String = {
+  def paramsSignatureString(methodSymbol: Symbol): String = {
     methodSymbol.signatureString.substring(0, methodSymbol.signatureString.indexOf(')') + 1).replace("(", "").replace(")", "")
   }
 }
