@@ -22,7 +22,7 @@ trait CGUtils {
   var callSites = List[CallSite]()
   val callSitesInMethod = mutable.Map[Symbol, Set[CallSite]]()
   var classes = Set[ClassSymbol]()
-  def callGraph: CallSite => Set[MethodSymbol]
+  def callGraph: CallSite => Set[Symbol]
 
   def annotationFilter: PartialFunction[Tree, String]
   abstract class TraverseWithAncestors {
@@ -191,11 +191,11 @@ trait CGUtils {
     } else Set(t)
   }
 
-  def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[ClassSymbol]): Set[MethodSymbol] = {
+  def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[ClassSymbol]): Set[Symbol] = {
     if (staticTarget.isConstructor)
       Set(staticTarget)
     else {
-      var targets = List[MethodSymbol]()
+      var targets = List[Symbol]()
       for {
         cls <- consideredClasses
         val tpe = cls.tpe
@@ -212,9 +212,9 @@ trait CGUtils {
           case _ =>
             // Disambiguate overloaded methods based on the types of the args
             if (target.isOverloaded) {
-              targets = target.alternatives.filter(_.tpe.matches(staticTarget.tpe)).map(_.asMethod) ::: targets
+              targets = target.alternatives.filter(_.tpe.matches(staticTarget.tpe)) ::: targets
             } else {
-              targets = target.asMethod :: targets
+              targets = target :: targets
             }
         }
       }
@@ -251,19 +251,15 @@ trait CGUtils {
 
   def entryPoints = mainMethods
 
-  // just takes the first main method that it finds
+  // return all main methods that are inherited into some object
   def mainMethods = {
     val mainName = stringToTermName("main")
 
-    // all classes encountered in the source files
-    val classes = trees.toStream.flatMap { tree =>
-      tree.collect { case cd: ClassDef => cd.symbol.asClass }
-    }
+    val mainMethods = classes.filter(_.isModule). // filter classes that are objects
+      collect { case cs: ClassSymbol => cs.tpe.member(mainName) }. // collect main methods
+      filter(_.isMethod). // consider only methods, not fields or other members
+      filter(!_.isDeferred) // filter out abstract methods
 
-    // all main methods encountered in those classes
-    val mainMethods = classes.collect {
-      case cs: ClassSymbol => cs.tpe.member(mainName)
-    }.filter(_ != NoSymbol).filter(!_.isDeferred).filter(_.isMethod)
     Set() ++ mainMethods
   }
 

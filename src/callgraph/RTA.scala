@@ -34,7 +34,7 @@ trait RTA { this: CGUtils =>
     ret
   }
   
-  var callGraph = Map[CallSite, Set[MethodSymbol]]()
+  var callGraph = Map[CallSite, Set[Symbol]]()
 
   def buildCallGraph = {
     // all objects are considered to be allocated

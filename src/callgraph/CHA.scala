@@ -6,7 +6,7 @@ trait CHA { this: CGUtils =>
   val global: nsc.Global
   import global._
 
-  var callGraph = Map[CallSite, Set[MethodSymbol]]()
+  var callGraph = Map[CallSite, Set[Symbol]]()
 
   def buildCallGraph = {
     for (callSite <- callSites) {

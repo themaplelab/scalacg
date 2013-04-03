@@ -1,12 +1,13 @@
 package callgraph
 
 import scala.tools.nsc
+import scala.collection.mutable
 
 trait THA extends CGUtils {
   val global: nsc.Global
   import global._
 
-  var callGraph = Map[CallSite, Set[MethodSymbol]]()
+  var callGraph = Map[CallSite, Set[Symbol]]()
 
   var superMethodNames = Set[TermName]()
 
@@ -23,6 +24,7 @@ trait THA extends CGUtils {
     }
     addTypeConcretizations(classes)
   }
+  val classToMembers = mutable.Map[Symbol, Set[Symbol]]()
   def buildCallGraph = {
     /* Given the ancestors of a This in the AST, determines the method that has that
      * particular This as its implicit this parameter.
@@ -60,7 +62,10 @@ trait THA extends CGUtils {
               val method = containingMethod(callSite.ancestors, symbol)
               if (method == NoSymbol || superMethodNames.contains(method.name)) classes
               else
-                classes.filter(_.tpe.members.sorted.contains(method))
+                classes.filter { cls =>
+                  val members = classToMembers.getOrElseUpdate(cls, cls.tpe.members.sorted.toSet)
+                  members.contains(method)
+                }
           }
         val targets = lookup(callSite.receiver.tpe, callSite.method, filteredClasses)
         callGraph += (callSite -> targets)
