@@ -50,6 +50,8 @@ class Suite {
   
   @Test def testSimple = runTest("Simple")
 
+  @Test def testCaseClass1 = runTest("CaseClass1")
+  
   @Test def testClosures1 = runTest("Closures1")
   @Test def testClosures2 = runTest("Closures2")
   
