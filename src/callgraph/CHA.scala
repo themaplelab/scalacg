@@ -10,11 +10,15 @@ trait CHA { this: CGUtils =>
 
   def buildCallGraph = {
     for (callSite <- callSites) {
-      val targets = lookup(callSite.receiver.tpe, callSite.method, classes)
-      callGraph += (callSite -> targets)
+      if (callSite.receiver == null) {
+        callGraph += (callSite -> Set(callSite.method))
+      } else {
+        val targets = lookup(callSite.receiver.tpe, callSite.method, classes)
+        callGraph += (callSite -> targets)
+      }
     }
   }
-  
+
   val annotationFilter: PartialFunction[Tree, String] = {
     case Literal(Constant(string: String)) => string
     // TODO: replace _ with a more specific check for the cha case class

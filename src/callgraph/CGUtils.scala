@@ -200,11 +200,11 @@ trait CGUtils {
         cls <- consideredClasses
         val tpe = cls.tpe
         expandedType <- expand(receiverType.widen)
-        if tpe <:< expandedType
+        if tpe.typeConstructor <:< expandedType.typeConstructor
         val target = tpe.member(staticTarget.name)
         if !target.isDeferred
       } {
-        target match {
+        target match { 
           case NoSymbol =>
             // TODO: can this ever happen? let's put in an assertion and see...
             assert(false, "tpe is " + tpe)
