@@ -23,6 +23,8 @@ object Generics12 {
     var x : scala.AnyVal = 3;
     var y : P[AnyVal] = new P[Int]();
     
+    val a = new A[P[AnyVal]]{};
+    
    { "A.foo"; "B.foo"; b}.foo( y );
   }
 }

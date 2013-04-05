@@ -21,7 +21,7 @@ trait CGUtils {
 
   var callSites = List[CallSite]()
   val callSitesInMethod = mutable.Map[Symbol, Set[CallSite]]()
-  var classes = Set[ClassSymbol]()
+  var classes = Set[Symbol]()
   def callGraph: CallSite => Set[Symbol]
 
   def annotationFilter: PartialFunction[Tree, String]
@@ -62,7 +62,10 @@ trait CGUtils {
 
     // find classes
     classes = trees.flatMap { tree =>
-      tree.collect { case cd: ClassDef => cd.symbol.asClass }
+      tree.collect {
+        case cd: ClassDef => cd.symbol.asClass
+        case nw: New => nw.tpt.symbol
+      }
     }.toSet
   }
 
@@ -130,7 +133,7 @@ trait CGUtils {
   }
 
   var concretization = Map[Symbol, Set[Type]]()
-  def addTypeConcretizations(classes: Set[ClassSymbol]) = {
+  def addTypeConcretizations(classes: Set[Symbol]) = {
     // find all definitions of abstract type members ("type aliases")
     for {
       cls <- classes
@@ -191,20 +194,27 @@ trait CGUtils {
     } else Set(t)
   }
 
-  def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[ClassSymbol]): Set[Symbol] = {
+  def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Symbol]): Set[Symbol] = {
     if (staticTarget.isConstructor)
       Set(staticTarget)
     else {
       var targets = List[Symbol]()
+      def instantiateTypeParams(actual: Type, declared: Type): Type = {
+        val tparams = declared.typeArgs
+        val args = tparams map
+          { _.asSeenFrom(ThisType(actual.typeSymbol.asClass), declared.typeSymbol.asClass) }
+        declared.instantiateTypeParams(tparams map { _.typeSymbol }, args)
+      }
+
       for {
         cls <- consideredClasses
         val tpe = cls.tpe
-        expandedType <- expand(receiverType.widen)
-        if tpe.typeConstructor <:< expandedType.typeConstructor
+        expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
+        if tpe <:< expandedType
         val target = tpe.member(staticTarget.name)
         if !target.isDeferred
       } {
-        target match { 
+        target match {
           case NoSymbol =>
             // TODO: can this ever happen? let's put in an assertion and see...
             assert(false, "tpe is " + tpe)

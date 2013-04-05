@@ -7,7 +7,7 @@ trait RTA { this: CGUtils =>
   val global: nsc.Global
   import global._
 
-  var instantiatedClasses = Set[ClassSymbol]()
+  var instantiatedClasses = Set[Symbol]()
   // in Scala, code can appear in classes as well as in methods, so reachableCode generalizes reachable methods
   var reachableCode = Set[Symbol]()
 

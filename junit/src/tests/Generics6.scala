@@ -14,6 +14,7 @@ object Generics6 {
   
   def main(args: Array[String]): Unit = {
     val b : A[Int,Any] = new B[Int]{};
+    val a = new A[Int,Any]{};
     
    { "A.foo"; "B.foo"; b}.foo(3);
   }

@@ -13,6 +13,7 @@ object Generics9 {
   
   def main(args: Array[String]): Unit = {
     val b : A[Int] = new B{};
+    val a = new A[Int]{};
     
    { "A.foo"; "B.foo"; b}.foo(3);
   }
