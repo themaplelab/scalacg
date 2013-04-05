@@ -75,6 +75,14 @@ class Suite {
   @Test def testGenerics2 = runTest("Generics2") 
   @Test def testGenerics3 = runTest("Generics3") 
   @Test def testGenerics4 = runTest("Generics4") 
+  @Test def testGenerics5 = runTest("Generics5") 
+  @Test def testGenerics6 = runTest("Generics6") 
+  @Test def testGenerics7 = runTest("Generics7") 
+  @Test def testGenerics8 = runTest("Generics8") 
+  @Test def testGenerics9 = runTest("Generics9") 
+  @Test def testGenerics10 = runTest("Generics10") 
+  @Test def testGenerics11 = runTest("Generics11") 
+  @Test def testGenerics12 = runTest("Generics12") 
   
    @Test def testSuperCall = runTest("SuperCall") 
 }

@@ -1,7 +1,7 @@
-tests.SuperCall.$anon.<init>(): tests.SuperCall.Y with tests.SuperCall.Z ==> java.lang.Object.<init>(): Object
 tests.SuperCall.Y.foo(): Unit ==> tests.SuperCall.Y.super$bar(): Unit
 tests.SuperCall.$anon.<init>(): tests.SuperCall.Z with tests.SuperCall.Y ==> java.lang.Object.<init>(): Object
 tests.SuperCall.main(args: Array[String]): Unit ==> tests.SuperCall.Y.foo(): Unit
 tests.SuperCall.main(args: Array[String]): Unit ==> tests.SuperCall.$anon.<init>(): tests.SuperCall.Y with tests.SuperCall.Z
 tests.SuperCall.main(args: Array[String]): Unit ==> tests.SuperCall.Y.foo(): Unit
 tests.SuperCall.main(args: Array[String]): Unit ==> tests.SuperCall.$anon.<init>(): tests.SuperCall.Z with tests.SuperCall.Y
+tests.SuperCall.$anon.<init>(): tests.SuperCall.Y with tests.SuperCall.Z ==> java.lang.Object.<init>(): Object

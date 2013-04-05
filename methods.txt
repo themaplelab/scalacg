@@ -1,6 +1,6 @@
-9 tests.SuperCall.$anon.<init>(): tests.SuperCall.Y with tests.SuperCall.Z
 0 tests.SuperCall.Y.super$bar(): Unit
+0 java.lang.Object.<init>(): Object
 5 tests.SuperCall.Y.foo(): Unit
 10 tests.SuperCall.$anon.<init>(): tests.SuperCall.Z with tests.SuperCall.Y
-0 java.lang.Object.<init>(): Object
 8 tests.SuperCall.main(args: Array[String]): Unit
+9 tests.SuperCall.$anon.<init>(): tests.SuperCall.Y with tests.SuperCall.Z
