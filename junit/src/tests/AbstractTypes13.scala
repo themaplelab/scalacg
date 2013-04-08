@@ -7,13 +7,13 @@ object AbstractTypes13 {
   
   class R {
     class A extends HasFoo {
-      def foo = "R.A.foo"
+      @target("R.A.foo") def foo = "R.A.foo"
     }
   }
 
   trait X {
     class A extends HasFoo {
-      def foo = "X.A.foo"
+      @target("X.A.foo") def foo = "X.A.foo"
     }
     val o = new A
   }
@@ -26,7 +26,7 @@ object AbstractTypes13 {
   trait Z {
     type B <: HasFoo
     val o: B
-    def go = println(o.foo)
+    def go = println({ "X.A.foo"; o}.foo)
   }
 
   def main(args: Array[String]) {
