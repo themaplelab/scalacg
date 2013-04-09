@@ -16,6 +16,9 @@ object AbstractTypes1 {
   }
   
   def main(args: Array[String]) = {
+    new C() { type T = List[String]; val element = List("C") }
+    new D() { type T = List[Int]; val element = List(42) }
+    new E() { type T = List[Int]; val element = List(42) }
     { "B1.foo"; "B2.foo"; "C.foo"; "D.foo"; "E.foo"; b1 }.foo()
 
     { "B1.foo"; "B2.foo"; "C.foo"; "D.foo"; "E.foo"; b2 }.foo()

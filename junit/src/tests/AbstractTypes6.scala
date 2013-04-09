@@ -26,5 +26,7 @@ object AbstractTypes6 {
 
   def main(args: Array[String]): Unit = {
     new B().bar()
+    new C()
+    new D()
   }
 }

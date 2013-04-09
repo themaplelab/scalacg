@@ -20,5 +20,8 @@ object AbstractTypes10 {
     @target("D.hashCode") override def hashCode() = 23
   }
   def main(args: Array[String]): Unit = {
+    new B()
+    new C()
+    new D()
   }
 }

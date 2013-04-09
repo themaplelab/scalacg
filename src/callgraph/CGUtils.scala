@@ -63,7 +63,7 @@ trait CGUtils {
     // find classes
     classes = trees.flatMap { tree =>
       tree.collect {
-        case cd: ClassDef => cd.symbol
+        case cd: ClassDef if cd.symbol.isModuleClass => cd.symbol
         case nw: New => nw.tpt.symbol
       }
     }.toSet

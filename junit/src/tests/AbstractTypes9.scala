@@ -28,5 +28,7 @@ object AbstractTypes9 {
       type U = Shape
       type V = Shape with FourSides
     }
+    new Circle {}
+    new Square {}
   }
 }

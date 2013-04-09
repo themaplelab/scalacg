@@ -24,5 +24,8 @@ object AbstractTypes11 {
     @target("D.bar") override def bar() = {}
   }
   def main(args: Array[String]): Unit = {
+    new B
+    new C
+    new D
   }
 }

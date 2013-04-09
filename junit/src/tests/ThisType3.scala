@@ -12,6 +12,7 @@ object ThisType3 {
     
     def main(args: Array[String]) = {
       val x : A = new B();
+      val _ = new A();
       x.zip(x);
     }  
 } 

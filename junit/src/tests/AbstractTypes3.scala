@@ -6,6 +6,7 @@ object AbstractTypes3 {
       type T = List[U]
       val element = List(-1, 3, -5, 7, -9)
     }
+    new E() { type T = List[Int]; val element = List(42) };
     { "D.foo"; "E.foo"; d }.foo();
   }
 

@@ -3,7 +3,8 @@ package tests
 
 object SimpleTraits {
   def main(args: Array[String]) = {
-    
+    new B();
+    new C();
   }
 
   trait A {

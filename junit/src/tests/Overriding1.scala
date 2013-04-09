@@ -4,7 +4,10 @@ object Overriding1 {
   def main(args: Array[String]) = {
 
     var x = new A();
+    new B();
     var y = new C();
+    new D();
+    new E();
 
     // this test shows how we plan model nested calls, and how
     // we represent multiple call targets using annotations consisting
