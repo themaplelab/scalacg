@@ -59,6 +59,8 @@ class Suite {
   @Test def testPathTypes1 = runTest("PathTypes1") 
   @Test def testPathTypes2 = runTest("PathTypes2") 
   @Test def testPathTypes3 = runTest("PathTypes3") 
+  @Test def testPathTypes4 = runTest("PathTypes4") 
+  @Test def testPathTypes5 = runTest("PathTypes5") 
   
   @Test def testAbstractTypes1 = runTest("AbstractTypes1") 
   @Test def testAbstractTypes2 = runTest("AbstractTypes2") 
