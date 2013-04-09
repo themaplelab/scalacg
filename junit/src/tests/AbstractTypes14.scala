@@ -1,19 +1,17 @@
-package p
-
-import tests.target
-
+package tests
+ 
 object AbstractTypes14 {
   trait HasFoo {
-    def foo: String
+    def foo: Unit
   }
   trait X {
     class A extends HasFoo {
-       @target("X.A.foo") def foo = "X.A.foo"
+       @target("X.A.foo") def foo = println("X.A.foo")
     }
   }
   trait Y {
     class A extends HasFoo {
-      @target("Y.A.foo") def foo = "Y.A.foo"
+      @target("Y.A.foo") def foo = println("Y.A.foo")
     }
     type B = A
     val o = new A
@@ -21,10 +19,10 @@ object AbstractTypes14 {
   trait Z {
     type B <: HasFoo
     val o: B
-    def go = println({ "Y.A.foo"; o}.foo)
+    def bar = { "Y.A.foo"; o}.foo
   }
 
   def main(args: Array[String]) {
-    (new Y with Z {}).go
+    (new Y with Z {}).bar
   }
 }
