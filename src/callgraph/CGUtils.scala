@@ -63,7 +63,7 @@ trait CGUtils {
     // find classes
     classes = trees.flatMap { tree =>
       tree.collect {
-        case cd: ClassDef => cd.symbol.asClass
+        case cd: ClassDef => cd.symbol
         case nw: New => nw.tpt.symbol
       }
     }.toSet
@@ -138,14 +138,13 @@ trait CGUtils {
     for {
       cls <- classes
       sym <- cls.tpe.members
-      if sym.isAliasType
       superClass <- cls.baseClasses
       absSym <- superClass.tpe.decls
       if absSym.isAbstractType
       if absSym.name == sym.name
     } {
       concretization +=
-        (absSym -> (concretization.getOrElse(absSym, Set()) + sym.tpe))
+        (absSym -> (concretization.getOrElse(absSym, Set()) + sym.tpe.dealias))
     }
 
     // find all instantiations of generic type parameters
@@ -191,7 +190,9 @@ trait CGUtils {
     val sym = t.typeSymbol
     if (sym.isAbstractType) {
       concretization.getOrElse(sym, Set())
-    } else Set(t)
+    } else {
+      Set(t)
+    }
   }
 
   def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Symbol]): Set[Symbol] = {
@@ -202,7 +203,7 @@ trait CGUtils {
       def instantiateTypeParams(actual: Type, declared: Type): Type = {
         val tparams = declared.typeArgs
         val args = tparams map
-          { _.asSeenFrom(ThisType(actual.typeSymbol.asClass), declared.typeSymbol.asClass) }
+          { _.asSeenFrom(ThisType(actual.typeSymbol), declared.typeSymbol) }
         declared.instantiateTypeParams(tparams map { _.typeSymbol }, args)
       }
 
