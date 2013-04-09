@@ -16,7 +16,7 @@ object PathTypes4 {
 	  a2.a2b = b2
 //	  a1.a1b = b2; // Note: type-incorrect in Scala
 	
-	  { "a1.b.m"; a1}.a1b.m();
-	  { "a2.b.m"; a2}.a2b.m();
+	  { "a1.B.m"; a1}.a1b.m();
+	  { "a2.B.m"; a2}.a2b.m();
   }
 }
