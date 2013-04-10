@@ -56,6 +56,10 @@ class CallGraphPlugin(val global: Global) extends Plugin {
         val callgraphgxl = new PrintStream("callgraph.gxl")
         printProbeCallGraph(callgraphgxl)
         callgraphgxl.close()
+        
+        val eclipsecgtxt = new PrintStream("eclipsecg.txt")
+        printEclipseCallGraph(eclipsecgtxt)
+        eclipsecgtxt.close()
       }
     }
   }

@@ -17,7 +17,8 @@ trait CGUtils {
 
   def trees: List[Tree]
 
-  case class CallSite(receiver: Tree, method: MethodSymbol, args: List[Tree], annotation: List[String], ancestors: List[Tree])
+  case class CallSite(receiver: Tree, method: MethodSymbol, args: List[Tree],
+    annotation: List[String], ancestors: List[Tree], pos: Position)
 
   var callSites = List[CallSite]()
   val callSitesInMethod = mutable.Map[Symbol, Set[CallSite]]()
@@ -104,7 +105,7 @@ trait CGUtils {
         val receiver = getReceiver(a)
         if (isMethod(callee.symbol)) {
           val (annotation, plainReceiver) = findReceiverAnnotations(receiver.getOrElse(null))
-          addCallSite(CallSite(plainReceiver, tree.symbol.asMethod, args, annotation, ancestors))
+          addCallSite(CallSite(plainReceiver, tree.symbol.asMethod, args, annotation, ancestors, tree.pos))
         }
         args.foreach(findCallSites(_, tree :: ancestors))
         callee.children.foreach(findCallSites(_, tree :: ancestors))
@@ -113,7 +114,7 @@ trait CGUtils {
         if (isMethod(tree.symbol)) {
           val receiver = getReceiver(tree)
           val (annotation, plainReceiver) = findReceiverAnnotations(receiver.getOrElse(null))
-          addCallSite(CallSite(plainReceiver, tree.symbol.asMethod, List(), annotation, ancestors))
+          addCallSite(CallSite(plainReceiver, tree.symbol.asMethod, List(), annotation, ancestors, tree.pos))
         }
         processChildren
 
@@ -297,6 +298,21 @@ trait CGUtils {
       callSite <- callSitesInMethod.getOrElse(source, Set())
       target <- callGraph(callSite)
     } out.println(printableName(source) + " ==> " + printableName(target))
+  }
+  def printEclipseCallGraph(out: java.io.PrintStream) = {
+    def formatPosition(pos: Position, method: Symbol) = {
+      (if (pos.isDefined) pos.source.file + " ::: " + pos.line
+      else "unknown ::: 0") + " ::: " + printableName(method)
+    }
+    for {
+      source <- reachableMethods
+      callSite <- callSitesInMethod.getOrElse(source, Set())
+      target <- callGraph(callSite)
+    } {
+      out.println(
+        formatPosition(callSite.pos, source) + " ==> " +
+          formatPosition(target.pos, target))
+    }
   }
   def printableName(method: Symbol) =
     method.fullName + method.signatureString
