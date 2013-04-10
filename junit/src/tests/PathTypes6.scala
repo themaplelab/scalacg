@@ -15,7 +15,7 @@ object PathTypes6 {
 	  a2.b = new a2.B { @target("a2.B.m") override def m() = println("a2.B.m") }
 //	  a1.b = a2.b; // Note: type-incorrect in Scala
 	
-	  { "a1.B.m"; a1}.b.m();
-	  { "a2.B.m"; a2}.b.m();
+	  { "a1.B.m"; a1.b }.m();
+	  { "a2.B.m"; a2.b }.m();
   }
 }

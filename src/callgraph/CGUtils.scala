@@ -122,14 +122,14 @@ trait CGUtils {
     }
   }
 
-  def findTargetAnnotation(symbol: Symbol) = {
+  def findTargetAnnotation(symbol: Symbol): String = {
     val targetAnnotationType =
       rootMirror.getRequiredClass("tests.target").tpe
     val targets = symbol.annotations.collect {
       case AnnotationInfo(tpe, Literal(Constant(string: String)) :: _, _) if tpe == targetAnnotationType => string
     }
     assert(targets.size <= 1)
-    targets.headOption.getOrElse(UNANNOT)
+    targets.headOption.getOrElse(UNANNOT + " " + printableName(symbol))
   }
 
   var concretization = Map[Symbol, Set[Type]]()
