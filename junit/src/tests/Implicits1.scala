@@ -15,7 +15,7 @@ object Implicits1 {
   }
   
   def main(args: Array[String]) {
-     val b1 = new B(7);
-     printA(b1); // prints "A[49]"
+     val b = new B(7);
+     printA(b); // prints "A[49]"
   }
 }
