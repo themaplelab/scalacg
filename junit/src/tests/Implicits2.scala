@@ -1,6 +1,6 @@
 package tests
 
-object Implicits3 {
+object Implicits2 {
   class B(n : Int){
     def get : Int = n;
     override def toString() = "B[" + n + "]";
