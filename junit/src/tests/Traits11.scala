@@ -11,10 +11,10 @@ object Traits11 {
   class D extends A with B {
     @target("D.foo") def foo() { println("D.foo") }
   }
-  def callSite(receiver: A with B) = {
-    { "D.foo"; receiver }.foo()
+  def bar(e: A with B) = {
+    { "D.foo"; e }.foo()
   }
   def main(args: Array[String]) = {
-    callSite(new D)
+    bar(new D)
   }
 }
