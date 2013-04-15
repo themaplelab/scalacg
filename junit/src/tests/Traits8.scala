@@ -7,12 +7,12 @@ object Traits8 {
   }
 
   class B extends A {
-    @target("B.foo") def foo() {}
+    @target("B.foo") def foo() = println("B.foo")
   }
 
   class C extends A {
-    @target("C.foo") def foo() {}
-    override def bar() {}
+    @target("C.foo") def foo() = println("C.foo")
+    override def bar() = println("C.bar")
   }
 
   def main(args: Array[String]) = {
