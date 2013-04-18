@@ -2,7 +2,7 @@
 <project>
 	<target name="makejar">
 		<jar destfile="jar/callgraph-plugin.jar">
-			<fileset dir="bin" includes="callgraph/**/*.class" />
+			<fileset dir="bin" excludes="test/**/*.class" />
 			<fileset file="jar/scalac-plugin.xml" />
 			<zipgroupfileset file="lib/probe.jar" />
 			<zipgroupfileset file="lib/gxl.jar" />

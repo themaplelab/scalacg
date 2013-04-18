@@ -6,8 +6,9 @@ import scala.collection
 import probe.CallGraph
 import probe.ProbeMethod
 import probe.ObjectManager
-import probe.CallEdge
-import probe.GXLWriter
+import scalacg.probe.CallSiteContext
+import scalacg.probe.CallEdge
+import scalacg.probe.GXLWriter
 
 trait CGUtils {
   val global: nsc.Global
@@ -342,11 +343,9 @@ trait CGUtils {
     // Get the edges
     for {
       source <- reachableMethods
-      val sourceId = methodToId.getOrElse(source, 0)
       callSite <- callSitesInMethod.getOrElse(source, Set())
       target <- callGraph(callSite)
-      val targetId = methodToId.getOrElse(target, 0)
-    } probeCallGraph.edges.add(new CallEdge(probeMethod(source), probeMethod(target)))
+    } probeCallGraph.edges.add(new CallEdge(probeMethod(source), probeMethod(target), new CallSiteContext(callSite.pos.line.toString)))
 
     // Write GXL file
     new GXLWriter().write(probeCallGraph, out)
