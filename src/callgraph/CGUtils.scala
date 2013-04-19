@@ -271,7 +271,8 @@ trait CGUtils {
     val mainMethods = classes.filter(_.isModuleClass). // filter classes that are objects
       collect { case cs: ClassSymbol => cs.tpe.member(mainName) }. // collect main methods
       filter(_.isMethod). // consider only methods, not fields or other members
-      filter(!_.isDeferred) // filter out abstract methods
+      filter(!_.isDeferred). // filter out abstract methods
+      filter(_.typeSignature.toString.equals("(args: Array[String])Unit")) // filter out methods accidentally named "main"
 
     Set() ++ mainMethods
   }
