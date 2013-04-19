@@ -9,6 +9,8 @@ import probe.ObjectManager
 import scalacg.probe.CallSiteContext
 import scalacg.probe.CallEdge
 import scalacg.probe.GXLWriter
+import java.io.File
+import scala.reflect.io.AbstractFile
 
 trait CGUtils {
   val global: nsc.Global
@@ -303,7 +305,7 @@ trait CGUtils {
   }
   def printEclipseCallGraph(out: java.io.PrintStream) = {
     def formatPosition(pos: Position, method: Symbol) = {
-      (if (pos.isDefined) pos.source.file + " ::: " + pos.line
+      (if (pos.isDefined) relativize(pos.source.file) + " ::: " + pos.line
       else "unknown ::: 0") + " ::: " + printableName(method)
     }
     for {
@@ -346,10 +348,26 @@ trait CGUtils {
       source <- reachableMethods
       callSite <- callSitesInMethod.getOrElse(source, Set())
       target <- callGraph(callSite)
-    } probeCallGraph.edges.add(new CallEdge(probeMethod(source), probeMethod(target), new CallSiteContext(callSite.pos.line.toString)))
+      val sourceFile = relativize(callSite.pos.source.file)
+      val line = callSite.pos.line.toString
+    } probeCallGraph.edges.add(new CallEdge(probeMethod(source), probeMethod(target), new CallSiteContext(sourceFile + " : line " + line)))
 
     // Write GXL file
     new GXLWriter().write(probeCallGraph, out)
+  }
+
+  /**
+   * Get the relative path for an absolute source file path.
+   */
+  def relativize(file: AbstractFile): String = {
+    file.toString.replaceFirst(".+/build_src/[^/]+/", "")
+  }
+  
+  /**
+   * Get the relative path for an absolute source file path.
+   */
+  def relativize(absolute: String): String = {
+    absolute.replaceFirst(".+/build_src/[^/]+/", "")
   }
 
   /**

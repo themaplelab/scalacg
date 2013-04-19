@@ -196,7 +196,7 @@ public class CallGraphView extends Jui {
 		// Add the other incoming nodes
 		for (probe.CallEdge edge : supergraph.edges()) {
 			if (edge.dst().equals(m)) {
-				sb.append(node(edge.src()));
+				sb.append(node(edge.src(), ((CallEdge) edge).context()));
 			}
 		}
 		sb.append("</td>");
