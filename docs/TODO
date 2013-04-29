@@ -1,0 +1,5 @@
+- Karim: ProBe should display field access using different type of 
+call edge
+    - also different types of edges for constructors, implicits
+    - special kind of edge to methods in libraries
+    - order outgoing edges by line number
