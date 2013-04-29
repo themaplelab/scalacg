@@ -103,5 +103,6 @@ class Suite {
   @Test def testSealed1 = runTest("Sealed1") 
   
   @Test def testBreakable = runTest("Breakable")
+  @Test def testInfix = runTest("Infix")
    
 }
