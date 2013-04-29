@@ -101,5 +101,7 @@ class Suite {
   @Test def testGetterMethod1 = runTest("GetterMethod1") 
   @Test def testGetterMethod2 = runTest("GetterMethod2") 
   @Test def testSealed1 = runTest("Sealed1") 
+  
+  @Test def testBreakable = runTest("Breakable")
    
 }
