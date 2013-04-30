@@ -5,7 +5,7 @@ import java.io.InputStreamReader
 import java.io.FileInputStream
 import java.io.FileNotFoundException
 
-object ImplicitArgument1 {
+object ImplicitArguments1 {
 
   @target("filereader") def filereader (name : String, encoding : String = "UTF-8") : BufferedReader =
         try {

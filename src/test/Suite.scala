@@ -51,7 +51,8 @@ class Suite {
   @Test def testSimple = runTest("Simple")
 
   @Test def testCaseClass1 = runTest("CaseClass1")
-  @Test def testCaseClass2 = runTest("CaseClass2")
+  @Test def testCaseClass2 = runTest("CaseClass2") 
+  @Test def testCaseClass3 = runTest("CaseClass3") 
   
   @Test def testClosures1 = runTest("Closures1")
   @Test def testClosures2 = runTest("Closures2")
@@ -96,7 +97,11 @@ class Suite {
   @Test def testImplicits1 = runTest("Implicits1") 
   @Test def testImplicits2 = runTest("Implicits2") 
   @Test def testImplicits3 = runTest("Implicits3") 
-  @Test def testImplicitArguments1 = runTest("ImplicitsArguments1") 
+  @Test def testImplicitArguments1 = runTest("ImplicitArguments1") 
+  @Test def testImplicitArguments2 = runTest("ImplicitArguments2") 
+  @Test def testImplicitArguments3 = runTest("ImplicitArguments3") 
+  
+  @Test def testOperator1 = runTest("Operator1") 
    
   @Test def testGetterMethod1 = runTest("GetterMethod1") 
   @Test def testGetterMethod2 = runTest("GetterMethod2") 
