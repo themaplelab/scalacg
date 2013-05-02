@@ -11,6 +11,7 @@ import scalacg.probe.CallEdge
 import scalacg.probe.GXLWriter
 import java.io.File
 import scala.reflect.io.AbstractFile
+import java.io.PrintStream
 
 trait CGUtils {
   val global: nsc.Global
@@ -322,7 +323,7 @@ trait CGUtils {
     method.fullName + method.signatureString
   def printReachableMethods(out: java.io.PrintStream) = {
     for (method <- reachableMethods)
-      out.println(methodToId.getOrElse(method, 0) + " " + printableName(method))
+      out.println(methodToId.getOrElse(method, 0) + " ===> " + printableName(method))
   }
 
   /**
@@ -337,11 +338,15 @@ trait CGUtils {
    */
   def printProbeCallGraph(out: java.io.PrintStream) = {
     val probeCallGraph = new CallGraph
+    val entryPointsOut = new PrintStream("entrypoints.txt")
 
     // Get the entry points
     for {
       entry <- entryPoints
-    } probeCallGraph.entryPoints.add(probeMethod(entry))
+    } {
+     probeCallGraph.entryPoints.add(probeMethod(entry))
+     entryPointsOut.println(methodToId.getOrElse(entry, 0) + " ===> " + printableName(entry))
+    }
 
     // Get the edges
     for {
