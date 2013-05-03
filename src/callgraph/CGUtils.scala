@@ -327,6 +327,15 @@ trait CGUtils {
   }
 
   /**
+   * Print the mapping of all annotated methods to their source level signature.
+   */
+  def printMethods(out: java.io.PrintStream) = {
+    for (method <- methodToId.keys) {
+      out.println(methodToId.getOrElse(method, 0) + " ===> " + printableName(method))
+    }
+  }
+
+  /**
    * Return a Soot-like method signature.
    */
   def methodSignature(methodSymbol: Symbol): String = {
@@ -344,8 +353,8 @@ trait CGUtils {
     for {
       entry <- entryPoints
     } {
-     probeCallGraph.entryPoints.add(probeMethod(entry))
-     entryPointsOut.println(methodToId.getOrElse(entry, 0) + " ===> " + printableName(entry))
+      probeCallGraph.entryPoints.add(probeMethod(entry))
+      entryPointsOut.println(methodToId.getOrElse(entry, 0) + " ===> " + printableName(entry))
     }
 
     // Get the edges
@@ -367,7 +376,7 @@ trait CGUtils {
   def relativize(file: AbstractFile): String = {
     file.toString.replaceFirst(".+/build_src/[^/]+/", "")
   }
-  
+
   /**
    * Get the relative path for an absolute source file path.
    */

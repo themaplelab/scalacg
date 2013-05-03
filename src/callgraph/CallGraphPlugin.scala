@@ -49,8 +49,12 @@ class CallGraphPlugin(val global: Global) extends Plugin {
         printTextualCallGraph(printcgtxt)
         printcgtxt.close()
         
+        val reachablestxt = new PrintStream("reachables.txt")
+        printReachableMethods(reachablestxt)
+        reachablestxt.close()
+        
         val methodstxt = new PrintStream("methods.txt")
-        printReachableMethods(methodstxt)
+        printMethods(methodstxt)
         methodstxt.close()
         
         val callgraphgxl = new PrintStream("callgraph.gxl")
