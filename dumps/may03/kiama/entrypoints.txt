@@ -1,0 +1,7 @@
+9580 ===> org.kiama.example.oneohonecompanies.Main.main(args: Array[String]): Unit
+9989 ===> org.kiama.example.prolog.Main.main(args: Array[String]): Unit
+0 ===> scala.App.main(args: Array[String]): Unit
+12601 ===> org.kiama.util.REPLBase.main(args: Array[String]): Unit
+2753 ===> org.kiama.example.iswim.driver.Main.main(args: Array[String]): Unit
+10328 ===> org.kiama.example.til.Main.main(args: Array[String]): Unit
+12258 ===> org.kiama.util.CompilerBase.main(args: Array[String]): Unit

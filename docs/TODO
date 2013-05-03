@@ -3,3 +3,14 @@ call edge
     - also different types of edges for constructors, implicits
     - special kind of edge to methods in libraries
     - order outgoing edges by line number
+    
+- name-based resolution for scala as a straw-man
+- figure 10 with the box in grey to show THIS pointer treatment
+- compare three to each other
+- runtime-types
+- algorithm name: Trait Call graph Analysis (TCA)
+- ondrej: define name-based resolution
+- frank: algorithm section -> formalism, name-based, TCA, example
+- ondrej: appendix with FS and our extensions
+- frank: the issue with the union operator
+- frank: assertions for constructors, super calls, implicits, colon operator

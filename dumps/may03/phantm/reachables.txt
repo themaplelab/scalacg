@@ -1,0 +1,2151 @@
+29 ===> phantm.Settings.dumps: List[String]
+4477 ===> phantm.phases.CallGraphGeneration.CallGraph.vToOsym_$eq(x$1: scala.collection.immutable.Map[phantm.phases.CallGraphGeneration.CallGraph.Vertex,Option[phantm.symbols.FunctionSymbol]]): Unit
+1226 ===> phantm.ast.Trees.InterfaceDecl.<init>(name: phantm.ast.Trees.NSIdentifier,interfaces: List[phantm.ast.Trees.StaticClassRef],methods: List[phantm.ast.Trees.MethodDecl],consts: List[phantm.ast.Trees.ClassConstantDecl]): phantm.ast.Trees.InterfaceDecl
+3171 ===> phantm.cfg.Trees.Empty.productElement(x$1: Int): Any
+326 ===> phantm.ast.STToAST.class_statement(n: phantm.parser.ParseNode,st: (List[phantm.ast.Trees.MethodDecl], List[phantm.ast.Trees.PropertyDecl], List[phantm.ast.Trees.PropertyDecl], List[phantm.ast.Trees.ClassConstantDecl])): (List[phantm.ast.Trees.MethodDecl], List[phantm.ast.Trees.PropertyDecl], List[phantm.ast.Trees.PropertyDecl], List[phantm.ast.Trees.ClassConstantDecl])
+4318 ===> phantm.helpers.Main.output: Option[String]
+4474 ===> phantm.phases.CallGraphGeneration.CallGraph.osymToV: scala.collection.immutable.Map[Option[phantm.symbols.FunctionSymbol],phantm.phases.CallGraphGeneration.CallGraph.Vertex]
+2714 ===> phantm.ast.Trees.PHPInteger.value: Long
+3693 ===> phantm.cfg.Trees.PHPEmptyArray.productArity: Int
+2304 ===> phantm.ast.Trees.InstanceOf.productElement(x$1: Int): Any
+2522 ===> phantm.ast.Trees.Include.productElement(x$1: Int): Any
+5337 ===> phantm.types.IntKey.v: Long
+4361 ===> phantm.phases.CheckContext.<init>(topLevel: Boolean,inCond: Boolean): phantm.phases.CheckContext
+1154 ===> phantm.ast.Trees.Namespaced.body: List[phantm.ast.Trees.Statement]
+3572 ===> phantm.cfg.Trees.PHPLong.value: Long
+267 ===> phantm.annotations.SourceAnnotations.Parser.typVar: phantm.annotations.SourceAnnotations.Parser.Parser[(String, phantm.types.Type)]
+268 ===> phantm.annotations.SourceAnnotations.Parser.filterLines(comment: String,tag: String): List[String]
+2628 ===> phantm.ast.Trees.MethodCall.args: List[phantm.ast.Trees.CallArg]
+2798 ===> phantm.ast.Trees.MCLine.productArity: Int
+604 ===> phantm.ast.Trees.THArray.productElement(x$1: Int): Any
+5715 ===> phantm.util.IncludeResolver.productArity: Int
+56 ===> phantm.Settings.copy$default$19: Option[String] @scala.annotation.unchecked.uncheckedVariance
+2934 ===> phantm.cfg.VertexImp.in_$eq(x$1: Set[phantm.cfg.EdgeImp[L]]): Unit
+43 ===> phantm.Settings.copy$default$6: Boolean @scala.annotation.unchecked.uncheckedVariance
+3560 ===> phantm.cfg.Trees.NoVar.productArity: Int
+1117 ===> phantm.ast.Trees.FunctionDecl.<init>(name: phantm.ast.Trees.NSIdentifier,args: List[phantm.ast.Trees.ArgumentDecl],retref: Boolean,body: phantm.ast.Trees.Statement): phantm.ast.Trees.FunctionDecl
+3439 ===> phantm.cfg.Trees.TempID.value: String
+4704 ===> phantm.phases.CollectSymbols.pctx: phantm.phases.PhasesContext
+386 ===> phantm.ast.STToAST.dynamic_class_name_variable_properties(n: phantm.parser.ParseNode): List[phantm.ast.Trees.ObjectAccess]
+5199 ===> phantm.types.ObjectIdTmp.productElement(x$1: Int): Any
+350 ===> phantm.ast.STToAST.static_array_pair_list(n: phantm.parser.ParseNode): List[(Option[phantm.ast.Trees.Expression], phantm.ast.Trees.Expression, Boolean)]
+4172 ===> phantm.cfg.Trees.BITSIWENOT.productElement(x$1: Int): Any
+4962 ===> phantm.types.TypeFlowAnalyzer.setupEnvironment: phantm.types.TypeEnvironment
+4656 ===> phantm.phases.PureStatementsChecks.checkPure(stmt: phantm.ast.Trees.Statement): AnyVal
+5801 ===> phantm.util.Reporter.errors: scala.collection.immutable.Map[Option[String],scala.collection.immutable.Set[Reporter.this.Error]]
+1528 ===> phantm.ast.Trees.Global.productElement(x$1: Int): Any
+1723 ===> phantm.ast.Trees.ObjectProperty.<init>(obj: phantm.ast.Trees.Expression,property: phantm.ast.Trees.Identifier): phantm.ast.Trees.ObjectProperty
+2596 ===> phantm.ast.Trees.New.productElement(x$1: Int): Any
+5927 ===> phantm.util.UFloat.str: Float
+5033 ===> phantm.types.TypeTransferFunction.noticesFct: (String, phantm.util.Positional) => Unit
+1325 ===> phantm.ast.Trees.LabelDecl.productElement(x$1: Int): Any
+35 ===> phantm.Settings.anyInput: Boolean
+4454 ===> phantm.phases.CGContext.productArity: Int
+251 ===> phantm.annotations.SourceAnnotations.Parser.Entry.productElement(x$1: Int): Any
+0 ===> java.io.FileWriter.<init>(x$1: String): java.io.FileWriter
+3001 ===> phantm.cfg.LabeledDirectedGraphImp.Group.<init>(name: String,vertIn: LabeledDirectedGraphImp.this.Vertex): LabeledDirectedGraphImp.this.Group
+1027 ===> phantm.ast.Trees.CallArg.productElement(x$1: Int): Any
+5288 ===> phantm.types.TRealObject.fields: Map[String,phantm.types.Type]
+3358 ===> phantm.cfg.Trees.FuncRef.<init>(id: phantm.ast.Trees.NSIdentifier): phantm.cfg.Trees.FuncRef
+5327 ===> phantm.types.StringKey.productElement(x$1: Int): Any
+468 ===> phantm.ast.Trees.ArgumentDecl.byref: Boolean
+534 ===> phantm.ast.Trees.ClassConstantDecl.v: phantm.ast.Trees.Identifier
+106 ===> phantm.Settings.stgs: Option[phantm.Settings]
+4956 ===> phantm.types.TypeFlowAnalyzer.ctx: phantm.phases.PhasesContext
+5740 ===> phantm.util.Position.<init>(): phantm.util.Position
+5171 ===> phantm.types.TFunction.productArity: Int
+5814 ===> phantm.util.Reporter.emitQuickFix(tags: Set[phantm.util.ErrorTag],msg: String,pos: phantm.util.Positional): Unit
+1854 ===> phantm.ast.Trees.Plus.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.Plus
+2650 ===> phantm.ast.Trees.StaticMethodCall.<init>(cl: phantm.ast.Trees.ClassRef,name: phantm.ast.Trees.MethodRef,args: List[phantm.ast.Trees.CallArg]): phantm.ast.Trees.StaticMethodCall
+3858 ===> phantm.cfg.Trees.FunctionCall.fun: phantm.cfg.Trees.FuncRef
+2995 ===> phantm.cfg.LabeledDirectedGraphImp.groupStack: List[LabeledDirectedGraphImp.this.Group]
+48 ===> phantm.Settings.copy$default$11: List[String] @scala.annotation.unchecked.uncheckedVariance
+1324 ===> phantm.ast.Trees.LabelDecl.productArity: Int
+4265 ===> phantm.helpers.ASTGraph.getId: Int
+3609 ===> phantm.cfg.Trees.PHPString.productArity: Int
+4927 ===> phantm.types.BaseTypeEnvironment.union(e: phantm.types.TypeEnvironment): phantm.types.TypeEnvironment
+3007 ===> phantm.cfg.LabeledDirectedGraphImp.Group.newSubGroup(name: String,vertIn: LabeledDirectedGraphImp.this.Vertex): LabeledDirectedGraphImp.this.Group
+1966 ===> phantm.ast.Trees.PreInc.rhs: phantm.ast.Trees.Variable
+4288 ===> phantm.helpers.CFGGraphs.pctx: phantm.phases.PhasesContext
+4293 ===> phantm.helpers.CFGGraphs.n_$eq(x$1: Int): Unit
+0 ===> java_cup.runtime.lr_parser.parse(): java_cup.runtime.Symbol
+1748 ===> phantm.ast.Trees.DynamicObjectProperty.productElement(x$1: Int): Any
+1193 ===> phantm.ast.Trees.ClassDecl.parent: Option[phantm.ast.Trees.StaticClassRef]
+324 ===> phantm.ast.STToAST.class_declaration_statement(n: phantm.parser.ParseNode): phantm.ast.Trees.Statement
+3777 ===> phantm.cfg.Trees.ArrayCurKey.productArity: Int
+1916 ===> phantm.ast.Trees.Mult.productArity: Int
+4315 ===> phantm.helpers.Lint.<init>(): phantm.helpers.Lint
+6020 ===> phantm.util.Unserializer.recursionLimit: Int
+5407 ===> phantm.types.TIntLit.toText(e: phantm.types.TypeEnvironment): String
+3788 ===> phantm.cfg.Trees.ArrayCurIsValid.ar: phantm.cfg.Trees.SimpleValue
+4418 ===> phantm.phases.CFGGenerationPhase.name: String
+4864 ===> phantm.symbols.LookupResult.staticClash: Boolean
+4035 ===> phantm.cfg.Trees.BOOLEANXOR.productArity: Int
+3081 ===> phantm.cfg.Trees.AssignUnary.variable: phantm.cfg.Trees.Variable
+4545 ===> phantm.phases.NSResolver.trStmt(st: phantm.ast.Trees.Statement): phantm.ast.Trees.Statement
+2895 ===> phantm.cfg.ASTToCFG.Emit.pc_$eq(x$1: Vertex): Unit
+2627 ===> phantm.ast.Trees.MethodCall.name: phantm.ast.Trees.MethodRef
+3488 ===> phantm.cfg.Trees.ArrayEntry.index: phantm.cfg.Trees.SimpleValue
+4885 ===> phantm.symbols.IfaceSymbol.parents: List[phantm.symbols.IfaceSymbol]
+3335 ===> phantm.cfg.Trees.SimpleValue.<init>(): phantm.cfg.Trees.SimpleValue
+4558 ===> phantm.phases.PhaseException.error: String
+1936 ===> phantm.ast.Trees.Concat.productElement(x$1: Int): Any
+5860 ===> phantm.util.UArray.productElement(x$1: Int): Any
+0 ===> phantm.symbols.ClassConstantSymbol.name: String
+158 ===> phantm.annotations.TypeAnnotation.typ: phantm.types.Type
+4544 ===> phantm.phases.NSResolver.trFuncRef(fr: phantm.ast.Trees.FunctionRef): phantm.ast.Trees.FunctionRef
+4937 ===> phantm.types.TypeEnvironment.getGlobalsType: phantm.types.Type
+1194 ===> phantm.ast.Trees.ClassDecl.interfaces: List[phantm.ast.Trees.StaticClassRef]
+765 ===> phantm.ast.Trees.ClassRef.<init>(): phantm.ast.Trees.ClassRef
+5182 ===> phantm.types.ObjectIdType.<init>(): phantm.types.ObjectIdType
+4235 ===> phantm.dataflow.StronglyConnectedComponents.<init>(cfg: phantm.cfg.LabeledDirectedGraphImp[S]): phantm.dataflow.StronglyConnectedComponents[S]
+1767 ===> phantm.ast.Trees.ClassProperty.productElement(x$1: Int): Any
+369 ===> phantm.ast.STToAST.for_expr(n: phantm.parser.ParseNode): List[phantm.ast.Trees.Expression]
+959 ===> phantm.ast.Trees.CastBool.productElement(x$1: Int): Any
+1852 ===> phantm.ast.Trees.Plus.lhs: phantm.ast.Trees.Expression
+4342 ===> phantm.parser.Parser.comments_$eq(x$1: List[(phantm.util.Positional, String)]): Unit
+1063 ===> phantm.ast.Trees.OAExpression.productElement(x$1: Int): Any
+2905 ===> phantm.cfg.ASTToCFG.varFromVar(v: phantm.ast.Trees.Variable): phantm.cfg.Trees.Variable
+4433 ===> phantm.phases.CFGGenerator.productElement(x$1: Int): Any
+5708 ===> phantm.util.IncludeResolver.getAST(path: String): phantm.ast.Trees.Expression
+297 ===> phantm.ast.ASTTransform.trClassRef(cr: phantm.ast.Trees.ClassRef): phantm.ast.Trees.ClassRef
+4792 ===> phantm.symbols.Symbol.setUserland(value: Boolean): Symbol.this.type
+1222 ===> phantm.ast.Trees.InterfaceDecl.name: phantm.ast.Trees.NSIdentifier
+5312 ===> phantm.types.TRealObject.toString(): String
+2298 ===> phantm.ast.Trees.InstanceOf.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.ClassRef): phantm.ast.Trees.InstanceOf
+4894 ===> phantm.symbols.ClassSymbol.parent: Option[phantm.symbols.ClassSymbol]
+1245 ===> phantm.ast.Trees.Try.body: phantm.ast.Trees.Statement
+5795 ===> phantm.util.Reporter.tickCount_$eq(x$1: Int): Unit
+1928 ===> phantm.ast.Trees.Concat.lhs: phantm.ast.Trees.Expression
+360 ===> phantm.ast.STToAST.foreach_variable(n: phantm.parser.ParseNode): (phantm.ast.Trees.Variable, Boolean)
+2899 ===> phantm.cfg.ASTToCFG.Emit.statement(stat: phantm.cfg.Trees.Statement): Unit
+138 ===> phantm.Settings.$lessinit$greater$default$5: Boolean @scala.annotation.unchecked.uncheckedVariance
+5210 ===> phantm.types.ObjectIdDump.<init>(offset: Int): phantm.types.ObjectIdDump
+1379 ===> phantm.ast.Trees.If.productArity: Int
+3362 ===> phantm.cfg.Trees.FuncRef.productArity: Int
+3906 ===> phantm.cfg.Trees.MethodCall.productElement(x$1: Int): Any
+1674 ===> phantm.ast.Trees.VariableVariable.productElement(x$1: Int): Any
+155 ===> phantm.Settings.$lessinit$greater$default$22: Boolean @scala.annotation.unchecked.uncheckedVariance
+0 ===> java.lang.Object.<init>(): Object
+1948 ===> phantm.ast.Trees.Mod.rhs: phantm.ast.Trees.Expression
+2423 ===> phantm.ast.Trees.Print.value: phantm.ast.Trees.Expression
+2614 ===> phantm.ast.Trees.FunctionCall.productArity: Int
+330 ===> phantm.ast.STToAST.method_body(n: phantm.parser.ParseNode): Option[phantm.ast.Trees.Statement]
+1506 ===> phantm.ast.Trees.Return.<init>(expr: phantm.ast.Trees.Expression): phantm.ast.Trees.Return
+298 ===> phantm.ast.ASTTransform.trHint(th: phantm.ast.Trees.TypeHint): phantm.ast.Trees.TypeHint
+3392 ===> phantm.cfg.Trees.ClassRefFixed.cs: phantm.symbols.ClassSymbol
+4292 ===> phantm.helpers.CFGGraphs.n: Int
+771 ===> phantm.ast.Trees.VarClassRef.productArity: Int
+1173 ===> phantm.ast.Trees.Import.to: String
+3593 ===> phantm.cfg.Trees.PHPFloat.productArity: Int
+3476 ===> phantm.cfg.Trees.VariableVar.productArity: Int
+5820 ===> phantm.util.Reporter.rep_$eq(x$1: Option[phantm.util.Reporter]): Unit
+3820 ===> phantm.cfg.Trees.ClassConstant.cl: phantm.cfg.Trees.ClassRef
+4135 ===> phantm.cfg.Trees.IDENTICAL.productElement(x$1: Int): Any
+1224 ===> phantm.ast.Trees.InterfaceDecl.methods: List[phantm.ast.Trees.MethodDecl]
+5616 ===> phantm.util.ConstantsResolver.issueErrors: Boolean
+0 ===> scala.runtime.AbstractPartialFunction.<init>(): scala.runtime.AbstractPartialFunction[T1,R]
+0 ===> scala.util.parsing.combinator.syntactical.StandardTokenParsers.lexical: scala.util.parsing.combinator.lexical.StdLexical
+2001 ===> phantm.ast.Trees.PreDec.<init>(rhs: phantm.ast.Trees.Variable): phantm.ast.Trees.PreDec
+5605 ===> phantm.util.API.Reader.load: AnyVal
+1879 ===> phantm.ast.Trees.Minus.productElement(x$1: Int): Any
+4847 ===> phantm.symbols.MVProtected.stricterThan(o: phantm.symbols.MemberVisibility): Boolean
+5132 ===> phantm.types.TAnyClass.isSubtypeOf(cl2: phantm.types.ClassType): Boolean
+418 ===> phantm.ast.STToAST.internal_functions_in_yacc(n: phantm.parser.ParseNode): phantm.ast.Trees.Expression
+6018 ===> phantm.util.Unserializer.uValueToField(v: phantm.util.UValue): String
+0 ===> scala.util.parsing.combinator.Parsers.rep[T](p: => Parsers.this.Parser[T]): Parsers.this.Parser[List[T]]
+2964 ===> phantm.cfg.EdgeImp.productElement(x$1: Int): Any
+2989 ===> phantm.cfg.LabeledDirectedGraphImp.$plus$eq(from: LabeledDirectedGraphImp.this.Vertex,lab: LabelType,to: LabeledDirectedGraphImp.this.Vertex): Unit
+408 ===> phantm.ast.STToAST.simple_indirect_reference(n: phantm.parser.ParseNode): Int
+4126 ===> phantm.cfg.Trees.EQUALS.productElement(x$1: Int): Any
+3773 ===> phantm.cfg.Trees.ArrayCurKey.<init>(ar: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.ArrayCurKey
+4008 ===> phantm.cfg.Trees.INSTANCEOF.productArity: Int
+3789 ===> phantm.cfg.Trees.ArrayCurIsValid.<init>(ar: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.ArrayCurIsValid
+4933 ===> phantm.types.TypeEnvironment.store: phantm.types.ObjectStore
+1195 ===> phantm.ast.Trees.ClassDecl.methods: List[phantm.ast.Trees.MethodDecl]
+4733 ===> phantm.phases.CollectSymbols.productArity: Int
+1859 ===> phantm.ast.Trees.Plus.productArity: Int
+4468 ===> phantm.phases.CallGraphGeneration.pctx: phantm.phases.PhasesContext
+4829 ===> phantm.symbols.FunctionSymbol.argList_$eq(x$1: List[(String, phantm.symbols.ArgumentSymbol)]): Unit
+2915 ===> phantm.cfg.ASTToCFG.stmt(s: phantm.ast.Trees.Statement,cont: Vertex): Unit
+147 ===> phantm.Settings.$lessinit$greater$default$14: Set[String] @scala.annotation.unchecked.uncheckedVariance
+5802 ===> phantm.util.Reporter.errors_$eq(x$1: scala.collection.immutable.Map[Option[String],scala.collection.immutable.Set[Reporter.this.Error]]): Unit
+3266 ===> phantm.cfg.Trees.AssumeProperty.productElement(x$1: Int): Any
+400 ===> phantm.ast.STToAST.object_property(n: phantm.parser.ParseNode): phantm.ast.Trees.ObjectAccess
+5743 ===> phantm.util.Positional.line: Int
+5832 ===> phantm.util.ErrorException.ntn: Int
+4045 ===> phantm.cfg.Trees.BITWISEAND.productElement(x$1: Int): Any
+5810 ===> phantm.util.Reporter.emitAll: Unit
+344 ===> phantm.ast.STToAST.static_var_list(n: phantm.parser.ParseNode): List[phantm.ast.Trees.InitVariable]
+3016 ===> phantm.cfg.LabeledDirectedGraphImp.Group.productArity: Int
+1174 ===> phantm.ast.Trees.Import.<init>(src: phantm.ast.Trees.NSIdentifier,to: String): phantm.ast.Trees.Import
+5286 ===> phantm.types.TObjectTmp.toText(e: phantm.types.TypeEnvironment): String
+0 ===> java.lang.Throwable.getMessage(): String
+5103 ===> phantm.types.TypeTransferFunction.apply$default$4: Boolean @scala.annotation.unchecked.uncheckedVariance
+4805 ===> phantm.symbols.GlobalSymbols.classes: scala.collection.mutable.HashMap[String,phantm.symbols.ClassSymbol]
+2932 ===> phantm.cfg.VertexImp.<init>(name: String): phantm.cfg.VertexImp[L]
+4727 ===> phantm.phases.CollectSymbols.getVisibility(flags: List[phantm.ast.Trees.MemberFlag]): phantm.symbols.MemberVisibility
+4715 ===> phantm.phases.CollectSymbols.classList_$eq(x$1: List[(phantm.symbols.ClassSymbol, phantm.ast.Trees.ClassDecl)]): Unit
+4754 ===> phantm.phases.TypeFlowAnalysis.ctx: phantm.phases.PhasesContext
+1266 ===> phantm.ast.Trees.Catch.body: phantm.ast.Trees.Statement
+1116 ===> phantm.ast.Trees.FunctionDecl.body: phantm.ast.Trees.Statement
+600 ===> phantm.ast.Trees.TypeHint.<init>(): phantm.ast.Trees.TypeHint
+4965 ===> phantm.types.TypeFlowAnalyzer.injectSuperGlobal(name: String): Unit
+0 ===> java.lang.Object.$eq$eq(x$1: AnyRef): Boolean
+1393 ===> phantm.ast.Trees.While.<init>(cond: phantm.ast.Trees.Expression,then: phantm.ast.Trees.Statement): phantm.ast.Trees.While
+5165 ===> phantm.types.TFunction.<init>(args: List[(phantm.types.Type, Boolean, Boolean)],ret: phantm.types.Type): phantm.types.TFunction
+337 ===> phantm.ast.STToAST.member_modifier(n: phantm.parser.ParseNode): phantm.ast.Trees.MemberFlag
+1835 ===> phantm.ast.Trees.Clone.obj: phantm.ast.Trees.Expression
+514 ===> phantm.ast.Trees.PropertyDecl.flags: List[phantm.ast.Trees.MemberFlag]
+3886 ===> phantm.cfg.Trees.StaticMethodCall.productElement(x$1: Int): Any
+2395 ===> phantm.ast.Trees.Array.productElement(x$1: Int): Any
+135 ===> phantm.Settings.$lessinit$greater$default$2: String @scala.annotation.unchecked.uncheckedVariance
+3206 ===> phantm.cfg.Trees.IsBool.productArity: Int
+4903 ===> phantm.symbols.ClassSymbol.lookupMethod(name: String,from: Option[phantm.symbols.ClassSymbol]): phantm.symbols.LookupResult[phantm.symbols.MethodSymbol]
+2378 ===> phantm.ast.Trees.Exit.productElement(x$1: Int): Any
+5106 ===> phantm.types.TypeTransferFunction.apply$default$7: (String, phantm.util.Positional) => Unit @scala.annotation.unchecked.uncheckedVariance
+2457 ===> phantm.ast.Trees.Closure.args: List[phantm.ast.Trees.ArgumentDecl]
+5824 ===> phantm.util.Reporter.error(msg: String,pos: phantm.util.Positional,tags: Set[phantm.util.ErrorTag]): Boolean
+4581 ===> phantm.phases.PhaseSeq.productArity: Int
+5148 ===> phantm.types.TClass.productArity: Int
+3589 ===> phantm.cfg.Trees.PHPFloat.<init>(value: Float): phantm.cfg.Trees.PHPFloat
+5375 ===> phantm.types.TArray.merge(a2: phantm.types.TArray): phantm.types.TArray
+715 ===> phantm.ast.Trees.NSResolved.value: String
+2609 ===> phantm.ast.Trees.FunctionCall.<init>(name: phantm.ast.Trees.FunctionRef,args: List[phantm.ast.Trees.CallArg]): phantm.ast.Trees.FunctionCall
+3028 ===> phantm.cfg.LabeledDirectedGraphImp.openGroup(name: String,vertIn: LabeledDirectedGraphImp.this.Vertex): Unit
+3840 ===> phantm.cfg.Trees.Ternary.elze: phantm.cfg.Trees.SimpleValue
+5949 ===> phantm.util.UObjRef.productArity: Int
+0 ===> phantm.symbols.ClassConstantSymbol.value: Option[phantm.ast.Trees.Scalar]
+356 ===> phantm.ast.STToAST.additional_catch(n: phantm.parser.ParseNode): phantm.ast.Trees.Catch
+5399 ===> phantm.types.TInt.productElement(x$1: Int): Any
+2377 ===> phantm.ast.Trees.Exit.productArity: Int
+5591 ===> phantm.util.API.Reader.APIPos.productElement(x$1: Int): Any
+2825 ===> phantm.ast.Trees.MCClass.<init>(): phantm.ast.Trees.MCClass
+1814 ===> phantm.ast.Trees.Assign.vari: phantm.ast.Trees.Variable
+3374 ===> phantm.cfg.Trees.ClassRef.<init>(): phantm.cfg.Trees.ClassRef
+4323 ===> phantm.helpers.Main.input_$eq(x$1: Option[String]): Unit
+4328 ===> phantm.helpers.STGraph.generate(input: String,printStream: java.io.PrintStream,ctx: phantm.phases.PhasesContext): Unit
+5258 ===> phantm.types.ObjectStore.productArity: Int
+2983 ===> phantm.cfg.LabeledDirectedGraphImp.V: scala.collection.immutable.Set[phantm.cfg.VertexImp[LabelType]]
+4831 ===> phantm.symbols.FunctionSymbol.registerArgument(as: phantm.symbols.ArgumentSymbol): AnyVal
+3460 ===> phantm.cfg.Trees.ClassProperty.productArity: Int
+434 ===> phantm.ast.STToAST.productElement(x$1: Int): Any
+4850 ===> phantm.symbols.MethodSymbol.<init>(cs: phantm.symbols.ClassSymbol,name: String,visibility: phantm.symbols.MemberVisibility): phantm.symbols.MethodSymbol
+2343 ===> phantm.ast.Trees.Cast.productArity: Int
+5522 ===> phantm.types.TResource.productArity: Int
+162 ===> phantm.annotations.FunctionTypeAnnotation.ftyps: scala.collection.immutable.Set[phantm.types.FunctionType]
+2540 ===> phantm.ast.Trees.Require.productArity: Int
+3147 ===> phantm.cfg.Trees.Assume.productArity: Int
+5803 ===> phantm.util.Reporter.error(msg: String): Boolean
+0 ===> phantm.symbols.MethodSymbol.name: String
+4198 ===> phantm.cfg.Trees.PREDEC.productArity: Int
+3982 ===> phantm.cfg.Trees.DIV.productElement(x$1: Int): Any
+412 ===> phantm.ast.STToAST.encaps_var(n: phantm.parser.ParseNode): phantm.ast.Trees.Expression
+3112 ===> phantm.cfg.Trees.AssignBinary.productArity: Int
+4413 ===> phantm.phases.ASTPruner.afterDump: Boolean
+232 ===> phantm.annotations.SourceAnnotations.Parser.AnyIntEntry.productElement(x$1: Int): Any
+2607 ===> phantm.ast.Trees.FunctionCall.name: phantm.ast.Trees.FunctionRef
+2220 ===> phantm.ast.Trees.Equal.lhs: phantm.ast.Trees.Expression
+850 ===> phantm.ast.Trees.DynamicFunctionRef.ex: phantm.ast.Trees.Expression
+4938 ===> phantm.types.TypeEnvironment.$anonfun.<init>(): scala.runtime.AbstractPartialFunction[(phantm.cfg.Trees.SimpleVariable, phantm.types.Type),(phantm.types.ArrayKey, phantm.types.Type)] with Serializable
+1125 ===> phantm.ast.Trees.FunctionDecl.productElement(x$1: Int): Any
+4884 ===> phantm.symbols.IfaceSymbol.name: String
+269 ===> phantm.annotations.SourceAnnotations.Parser.filterLines(lines: List[String],tag: String): List[String]
+4677 ===> phantm.phases.SymbolsChecksPhase.run(ctx: phantm.phases.PhasesContext): phantm.phases.PhasesContext
+3064 ===> phantm.cfg.Trees.Assign.value: phantm.cfg.Trees.SimpleValue
+355 ===> phantm.ast.STToAST.non_empty_additional_catches(n: phantm.parser.ParseNode): List[phantm.ast.Trees.Catch]
+1971 ===> phantm.ast.Trees.PreInc.productArity: Int
+5773 ===> phantm.util.Reporter.Error.tags: Set[phantm.util.ErrorTag]
+2356 ===> phantm.ast.Trees.Silence.<init>(value: phantm.ast.Trees.Expression): phantm.ast.Trees.Silence
+276 ===> phantm.annotations.SourceAnnotations.Parser.getVarType: String => Option[phantm.types.Type]
+4753 ===> phantm.phases.TypeFlowAnalysis.<init>(initCtx: phantm.phases.PhasesContext,node: phantm.ast.Trees.Tree): phantm.phases.TypeFlowAnalysis
+2459 ===> phantm.ast.Trees.Closure.retref: Boolean
+5646 ===> phantm.util.DumpCollector.functions: Map[String,(String, Int)]
+5491 ===> phantm.types.TStringLit.value: String
+364 ===> phantm.ast.STToAST.ns_name(n: phantm.parser.ParseNode): List[String]
+4313 ===> phantm.helpers.Helper.generate(input: String,output: String,ctx: phantm.phases.PhasesContext): Unit
+5697 ===> phantm.util.IncludeResolver.consumeInt: Int
+0 ===> scala.Product2.productArity: Int
+554 ===> phantm.ast.Trees.ConstantDecl.value: phantm.ast.Trees.Expression
+2192 ===> phantm.ast.Trees.BooleanNot.productElement(x$1: Int): Any
+289 ===> phantm.ast.ASTTransform.trExpr(ex: phantm.ast.Trees.Expression): phantm.ast.Trees.Expression
+4651 ===> phantm.phases.PureStatementsChecks.node: phantm.ast.Trees.Tree
+0 ===> scala.Some.productArity: Int
+5961 ===> phantm.util.URealRef.i: Int
+5003 ===> phantm.types.TypeLattice.leq(x: phantm.types.Type,y: phantm.types.Type): Boolean
+3029 ===> phantm.cfg.LabeledDirectedGraphImp.closeGroup(vertOut: LabeledDirectedGraphImp.this.Vertex): Unit
+405 ===> phantm.ast.STToAST.reference_variable(n: phantm.parser.ParseNode): phantm.ast.Trees.Variable
+1649 ===> phantm.ast.Trees.Expression.<init>(): phantm.ast.Trees.Expression
+1040 ===> phantm.ast.Trees.OAIdentifier.id: phantm.ast.Trees.Identifier
+4857 ===> phantm.symbols.IfaceMethodSymbol.is: phantm.symbols.IfaceSymbol
+5775 ===> phantm.util.Reporter.Error.<init>(message: String,pos: phantm.util.Positional,tags: Set[phantm.util.ErrorTag]): Reporter.this.Error
+3260 ===> phantm.cfg.Trees.AssumeProperty.<init>(prop: phantm.cfg.Trees.Property,vs: List[phantm.cfg.Trees.Variable]): phantm.cfg.Trees.AssumeProperty
+4627 ===> phantm.phases.PhasesContext.$lessinit$greater$default$2: Set[String] @scala.annotation.unchecked.uncheckedVariance
+1076 ===> phantm.ast.Trees.OAArray.<init>(array: phantm.ast.Trees.OAScalar,indexes: List[Option[phantm.ast.Trees.Expression]]): phantm.ast.Trees.OAArray
+2227 ===> phantm.ast.Trees.Equal.productArity: Int
+5684 ===> phantm.util.GlobalAnalysisResults.reachableFromMain_$eq(x$1: Map[phantm.symbols.FunctionSymbol,Set[phantm.symbols.FunctionSymbol]]): Unit
+20 ===> phantm.Settings.displayFixPoint: Boolean
+5826 ===> phantm.util.Reporter.notice(msg: String): Boolean
+2241 ===> phantm.ast.Trees.Identical.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.Identical
+5611 ===> phantm.util.API.Writer.simpleTypVal(name: String,value: String): String
+560 ===> phantm.ast.Trees.ConstantDecl.productArity: Int
+2297 ===> phantm.ast.Trees.InstanceOf.rhs: phantm.ast.Trees.ClassRef
+3347 ===> phantm.cfg.Trees.Identifier.productElement(x$1: Int): Any
+1954 ===> phantm.ast.Trees.Mod.productArity: Int
+5640 ===> phantm.util.DumpCollector.<init>(path: String,ctx: phantm.phases.PhasesContext): phantm.util.DumpCollector
+3924 ===> phantm.cfg.Trees.New.productElement(x$1: Int): Any
+4518 ===> phantm.phases.MethodGraphGeneration.MethodGraph.symToV: scala.collection.immutable.Map[phantm.symbols.MethodSymbol,phantm.cfg.VertexImp[String]]
+4716 ===> phantm.phases.CollectSymbols.ifaceList: List[(phantm.symbols.IfaceSymbol, phantm.ast.Trees.InterfaceDecl)]
+5751 ===> phantm.util.Positional.file: Option[String]
+5966 ===> phantm.util.URealRef.productArity: Int
+5533 ===> phantm.types.TNull.productElement(x$1: Int): Any
+5226 ===> phantm.types.ObjectId.pos: Int
+4683 ===> phantm.phases.SymContext.cl: Option[phantm.symbols.ClassSymbol]
+4804 ===> phantm.symbols.GlobalSymbols.<init>(): phantm.symbols.GlobalSymbols
+5830 ===> phantm.util.ErrorException.nn: Int
+4631 ===> phantm.phases.PhasesContext.$lessinit$greater$default$6: phantm.util.GlobalAnalysisResults @scala.annotation.unchecked.uncheckedVariance
+2911 ===> phantm.cfg.ASTToCFG.internalFunction(name: String): phantm.cfg.Trees.FuncRef
+5584 ===> phantm.util.API.Reader.APIPos.elem: scala.xml.Node
+1155 ===> phantm.ast.Trees.Namespaced.<init>(name: phantm.ast.Trees.NSIdentifier,body: List[phantm.ast.Trees.Statement]): phantm.ast.Trees.Namespaced
+1742 ===> phantm.ast.Trees.DynamicObjectProperty.<init>(obj: phantm.ast.Trees.Expression,property: phantm.ast.Trees.Expression): phantm.ast.Trees.DynamicObjectProperty
+5234 ===> phantm.types.ObjectId.productElement(x$1: Int): Any
+5716 ===> phantm.util.IncludeResolver.productElement(x$1: Int): Any
+4601 ===> phantm.phases.PhasesContext.results: phantm.util.GlobalAnalysisResults
+0 ===> scala.util.parsing.combinator.syntactical.StdTokenParsers.numericLit: StdTokenParsers.this.Parser[String]
+4401 ===> phantm.phases.ASTPruningPhase.name: String
+2886 ===> phantm.cfg.ASTToCFG.convertAST(statements: List[phantm.ast.Trees.Statement],scope: phantm.symbols.Scope,ctx: phantm.phases.PhasesContext): phantm.cfg.ControlFlowGraph
+365 ===> phantm.ast.STToAST.fully_qualified_class_name(n: phantm.parser.ParseNode): phantm.ast.Trees.StaticClassRef
+390 ===> phantm.ast.STToAST.variable_w(n: phantm.parser.ParseNode): phantm.ast.Trees.Variable
+4645 ===> phantm.phases.PhasesRunner.getPhasesToRun: phantm.phases.PhaseSeq
+274 ===> phantm.annotations.SourceAnnotations.Parser.getAnyType(tag: String)(comment: String): Option[phantm.types.Type]
+6006 ===> phantm.util.Unserializer.valueStore: List[phantm.util.UValue]
+5755 ===> phantm.util.Positional.setPos(line: Int,col: Int,file: String): Positional.this.type
+4825 ===> phantm.symbols.FunctionSymbol.name: String
+21 ===> phantm.Settings.displayIncludes: Boolean
+2687 ===> phantm.ast.Trees.PHPTrue.productArity: Int
+5553 ===> phantm.types.TBottom.productElement(x$1: Int): Any
+4475 ===> phantm.phases.CallGraphGeneration.CallGraph.osymToV_$eq(x$1: scala.collection.immutable.Map[Option[phantm.symbols.FunctionSymbol],phantm.phases.CallGraphGeneration.CallGraph.Vertex]): Unit
+4432 ===> phantm.phases.CFGGenerator.productArity: Int
+354 ===> phantm.ast.STToAST.additional_catches(n: phantm.parser.ParseNode): List[phantm.ast.Trees.Catch]
+3955 ===> phantm.cfg.Trees.PLUS.productElement(x$1: Int): Any
+5859 ===> phantm.util.UArray.productArity: Int
+3299 ===> phantm.cfg.Trees.Print.productArity: Int
+3605 ===> phantm.cfg.Trees.PHPString.<init>(value: String): phantm.cfg.Trees.PHPString
+872 ===> phantm.ast.Trees.StaticFunctionRef.productArity: Int
+2978 ===> phantm.cfg.LabeledDirectedGraphImp.<init>(): phantm.cfg.LabeledDirectedGraphImp[LabelType]
+5251 ===> phantm.types.ObjectStore.set(id: phantm.types.ObjectId,robj: phantm.types.TRealObject): phantm.types.ObjectStore
+3505 ===> phantm.cfg.Trees.NextArrayEntry.arr: phantm.cfg.Trees.SimpleValue
+5757 ===> phantm.util.Positional.setPosBetween(from: phantm.util.Positional,to: phantm.util.Positional): Positional.this.type
+187 ===> phantm.annotations.SourceAnnotations.Parser.typedefs_$eq(x$1: scala.collection.immutable.Map[String,phantm.types.Type]): Unit
+3990 ===> phantm.cfg.Trees.CONCAT.productArity: Int
+5482 ===> phantm.types.TString.toText(e: phantm.types.TypeEnvironment): String
+730 ===> phantm.ast.Trees.Identifier.productElement(x$1: Int): Any
+6019 ===> phantm.util.Unserializer.uValueToKey(v: phantm.util.UValue): phantm.types.ArrayKey
+2318 ===> phantm.ast.Trees.Ternary.<init>(cond: phantm.ast.Trees.Expression,then: Option[phantm.ast.Trees.Expression],elze: phantm.ast.Trees.Expression): phantm.ast.Trees.Ternary
+1157 ===> phantm.ast.Trees.Namespaced.copy$default$1: phantm.ast.Trees.NSIdentifier @scala.annotation.unchecked.uncheckedVariance
+4512 ===> phantm.phases.MethodGraphPhase.name: String
+4352 ===> phantm.phases.APIImportationPhase.name: String
+143 ===> phantm.Settings.$lessinit$greater$default$10: Boolean @scala.annotation.unchecked.uncheckedVariance
+5355 ===> phantm.types.TArray.entries: Map[phantm.types.ArrayKey,phantm.types.Type]
+3762 ===> phantm.cfg.Trees.ArrayCurElement.productElement(x$1: Int): Any
+6014 ===> phantm.util.Unserializer.result: phantm.util.UValue
+5013 ===> phantm.types.TypeLattice.joinTypes(t1: phantm.types.Type,t2: phantm.types.Type): phantm.types.Type
+4478 ===> phantm.phases.CallGraphGeneration.CallGraph.addNode(osym: phantm.phases.CallGraphGeneration.CallGraph.AVertex): phantm.phases.CallGraphGeneration.CallGraph.Vertex
+5563 ===> phantm.types.TUninitialized.productElement(x$1: Int): Any
+2754 ===> phantm.ast.Trees.PHPString.productElement(x$1: Int): Any
+1709 ===> phantm.ast.Trees.NextArrayEntry.productArity: Int
+1476 ===> phantm.ast.Trees.Break.productArity: Int
+5382 ===> phantm.types.TAnyArray.toText(e: phantm.types.TypeEnvironment): String
+5932 ===> phantm.util.UFloat.productArity: Int
+2703 ===> phantm.ast.Trees.PHPFalse.productElement(x$1: Int): Any
+285 ===> phantm.ast.ASTTransform.trStmts(stmts: List[phantm.ast.Trees.Statement]): List[phantm.ast.Trees.Statement]
+2407 ===> phantm.ast.Trees.Execute.<init>(value: String): phantm.ast.Trees.Execute
+666 ===> phantm.ast.Trees.MFFinal.productArity: Int
+5164 ===> phantm.types.TFunction.ret: phantm.types.Type
+561 ===> phantm.ast.Trees.ConstantDecl.productElement(x$1: Int): Any
+1761 ===> phantm.ast.Trees.ClassProperty.<init>(cl: phantm.ast.Trees.ClassRef,property: phantm.ast.Trees.Variable): phantm.ast.Trees.ClassProperty
+1373 ===> phantm.ast.Trees.If.<init>(cond: phantm.ast.Trees.Expression,then: phantm.ast.Trees.Statement,elze: Option[phantm.ast.Trees.Statement]): phantm.ast.Trees.If
+4705 ===> phantm.phases.CollectSymbols.<init>(node: phantm.ast.Trees.Tree,pctx: phantm.phases.PhasesContext): phantm.phases.CollectSymbols
+0 ===> scala.Product3.productArity: Int
+4862 ===> phantm.symbols.LookupResult.ms: Option[T]
+5695 ===> phantm.util.IncludeResolver.inclsInstr_$eq(x$1: scala.collection.immutable.Map[(String, Int),Set[String]]): Unit
+391 ===> phantm.ast.STToAST.variable_u(n: phantm.parser.ParseNode): phantm.ast.Trees.Variable
+5798 ===> phantm.util.Reporter.endTicks: Unit
+6023 ===> phantm.util.Unserializer.uValueToType(v: phantm.util.UValue): phantm.types.Type
+3357 ===> phantm.cfg.Trees.FuncRef.id: phantm.ast.Trees.NSIdentifier
+3487 ===> phantm.cfg.Trees.ArrayEntry.arr: phantm.cfg.Trees.SimpleValue
+423 ===> phantm.ast.STToAST.echo_expr_list(n: phantm.parser.ParseNode): List[phantm.ast.Trees.Expression]
+2441 ===> phantm.ast.Trees.Eval.<init>(value: phantm.ast.Trees.Expression): phantm.ast.Trees.Eval
+5614 ===> phantm.util.API.Writer.widenArgs(t: phantm.types.Type): phantm.types.Type
+2325 ===> phantm.ast.Trees.Ternary.productElement(x$1: Int): Any
+4734 ===> phantm.phases.CollectSymbols.productElement(x$1: Int): Any
+347 ===> phantm.ast.STToAST.common_scalar(n: phantm.parser.ParseNode): phantm.ast.Trees.Expression
+1440 ===> phantm.ast.Trees.For.productArity: Int
+3128 ===> phantm.cfg.Trees.Error.productElement(x$1: Int): Any
+4539 ===> phantm.phases.NSResolver.resolveNSId(nsid: phantm.ast.Trees.NSIdentifier): phantm.ast.Trees.NSIdentifier
+189 ===> phantm.annotations.SourceAnnotations.Parser.identToType(name: String): phantm.types.Type
+4366 ===> phantm.phases.CheckContext.productArity: Int
+5648 ===> phantm.util.DumpCollector.classes: Map[String,(String, Int)]
+1650 ===> phantm.ast.Trees.Variable.<init>(): phantm.ast.Trees.Variable
+1433 ===> phantm.ast.Trees.For.<init>(init: phantm.ast.Trees.Statement,cond: phantm.ast.Trees.Expression,step: phantm.ast.Trees.Statement,then: phantm.ast.Trees.Statement): phantm.ast.Trees.For
+4819 ===> phantm.symbols.GlobalSymbols.lookupConstant(n: String): Option[phantm.symbols.ConstantSymbol]
+1180 ===> phantm.ast.Trees.Import.productElement(x$1: Int): Any
+141 ===> phantm.Settings.$lessinit$greater$default$8: Boolean @scala.annotation.unchecked.uncheckedVariance
+0 ===> scala.Product7.productArity: Int
+5128 ===> phantm.types.ConcreteType.<init>(): phantm.types.ConcreteType
+3724 ===> phantm.cfg.Trees.Cast.<init>(to: phantm.ast.Trees.CastType,e: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.Cast
+553 ===> phantm.ast.Trees.ConstantDecl.v: phantm.ast.Trees.NSIdentifier
+1873 ===> phantm.ast.Trees.Minus.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.Minus
+1823 ===> phantm.ast.Trees.Assign.productArity: Int
+90 ===> phantm.InlineFull.productElement(x$1: Int): Any
+1137 ===> phantm.ast.Trees.NamespaceStart.<init>(name: phantm.ast.Trees.NSIdentifier): phantm.ast.Trees.NamespaceStart
+4777 ===> phantm.symbols.Symbolic.opt_sym: Option[phantm.symbols.Symbol]
+5813 ===> phantm.util.Reporter.emitNormal(tags: Set[phantm.util.ErrorTag],msg: String,pos: phantm.util.Positional): Unit
+1161 ===> phantm.ast.Trees.Namespaced.productElement(x$1: Int): Any
+4596 ===> phantm.phases.PhasesContext.includedFiles: Set[String]
+379 ===> phantm.ast.STToAST.lexical_var_list(n: phantm.parser.ParseNode): List[phantm.ast.Trees.ArgumentDecl]
+2355 ===> phantm.ast.Trees.Silence.value: phantm.ast.Trees.Expression
+2588 ===> phantm.ast.Trees.New.cl: phantm.ast.Trees.ClassRef
+4276 ===> phantm.helpers.CheckContext.productElement(x$1: Int): Any
+1983 ===> phantm.ast.Trees.PostInc.rhs: phantm.ast.Trees.Variable
+3103 ===> phantm.cfg.Trees.AssignBinary.binOp: phantm.cfg.Trees.BinaryOperator
+4907 ===> phantm.symbols.ClassSymbol.registerProperty(ps: phantm.symbols.PropertySymbol): Unit
+4421 ===> phantm.phases.CFGGenerator.initCtx: phantm.phases.PhasesContext
+315 ===> phantm.ast.STToAST.st: phantm.parser.ParseNode
+2005 ===> phantm.ast.Trees.PreDec.productArity: Int
+3637 ===> phantm.cfg.Trees.PHPAny.productArity: Int
+197 ===> phantm.annotations.SourceAnnotations.Parser.AnyEntry.productArity: Int
+3005 ===> phantm.cfg.LabeledDirectedGraphImp.Group.subgroups: List[LabeledDirectedGraphImp.this.Group]
+5771 ===> phantm.util.Reporter.Error.message: String
+5462 ===> phantm.types.TTrue.toText(e: phantm.types.TypeEnvironment): String
+838 ===> phantm.ast.Trees.VarFunctionRef.productArity: Int
+4932 ===> phantm.types.TypeEnvironment.scope: Option[phantm.symbols.ClassSymbol]
+5149 ===> phantm.types.TClass.productElement(x$1: Int): Any
+4081 ===> phantm.cfg.Trees.SHIFTRIGHT.productElement(x$1: Int): Any
+209 ===> phantm.annotations.SourceAnnotations.Parser.AnyStringEntry.t: phantm.types.Type
+3898 ===> phantm.cfg.Trees.MethodCall.params: List[phantm.cfg.Trees.SimpleValue]
+4217 ===> phantm.cfg.Trees.SILENCE.productElement(x$1: Int): Any
+941 ===> phantm.ast.Trees.CastDouble.productElement(x$1: Int): Any
+1246 ===> phantm.ast.Trees.Try.catches: List[phantm.ast.Trees.Catch]
+2296 ===> phantm.ast.Trees.InstanceOf.lhs: phantm.ast.Trees.Expression
+4582 ===> phantm.phases.PhaseSeq.productElement(x$1: Int): Any
+3393 ===> phantm.cfg.Trees.ClassRefFixed.<init>(cs: phantm.symbols.ClassSymbol): phantm.cfg.Trees.ClassRefFixed
+6022 ===> phantm.util.Unserializer.uValueToScalar(v: phantm.util.UValue): phantm.ast.Trees.Scalar
+5010 ===> phantm.types.TypeLattice.join(envInit: phantm.types.TypeLattice.Env,x: phantm.types.Type,y: phantm.types.Type): (phantm.types.TypeLattice.Env, phantm.types.Type)
+5434 ===> phantm.types.TFloatLit.<init>(value: Float): phantm.types.TFloatLit
+3847 ===> phantm.cfg.Trees.Ternary.productArity: Int
+5710 ===> phantm.util.IncludeResolver.astFromScalar(scalar: phantm.ast.Trees.Scalar): phantm.ast.Trees.Expression
+2608 ===> phantm.ast.Trees.FunctionCall.args: List[phantm.ast.Trees.CallArg]
+6025 ===> phantm.util.Unserializer.toMap: scala.collection.immutable.Map[String,phantm.util.UValue]
+2093 ===> phantm.ast.Trees.BitwiseAnd.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.BitwiseAnd
+384 ===> phantm.ast.STToAST.deriveOAList(baseex: phantm.ast.Trees.Expression,oaList: List[phantm.ast.Trees.ObjectAccess]): phantm.ast.Trees.Expression
+4964 ===> phantm.types.TypeFlowAnalyzer.injectPredef(name: String,typ: phantm.types.Type): Unit
+5227 ===> phantm.types.ObjectId.typ: phantm.types.ObjectIdType
+1984 ===> phantm.ast.Trees.PostInc.<init>(rhs: phantm.ast.Trees.Variable): phantm.ast.Trees.PostInc
+3461 ===> phantm.cfg.Trees.ClassProperty.productElement(x$1: Int): Any
+2316 ===> phantm.ast.Trees.Ternary.then: Option[phantm.ast.Trees.Expression]
+950 ===> phantm.ast.Trees.CastArray.productElement(x$1: Int): Any
+370 ===> phantm.ast.STToAST.non_empty_for_expr(n: phantm.parser.ParseNode): List[phantm.ast.Trees.Expression]
+3278 ===> phantm.cfg.Trees.AssumeNotProperty.<init>(prop: phantm.cfg.Trees.Property,vs: List[phantm.cfg.Trees.Variable]): phantm.cfg.Trees.AssumeNotProperty
+1285 ===> phantm.ast.Trees.Throw.ex: phantm.ast.Trees.Expression
+5990 ===> phantm.util.UFalse.productElement(x$1: Int): Any
+3477 ===> phantm.cfg.Trees.VariableVar.productElement(x$1: Int): Any
+2558 ===> phantm.ast.Trees.Constant.productElement(x$1: Int): Any
+2034 ===> phantm.ast.Trees.BooleanAnd.lhs: phantm.ast.Trees.Expression
+2906 ===> phantm.cfg.ASTToCFG.idFromId(id: phantm.ast.Trees.Identifier): phantm.cfg.Trees.Identifier
+5809 ===> phantm.util.Reporter.addError(e: Reporter.this.Error): Boolean
+4027 ===> phantm.cfg.Trees.BOOLEANOR.productElement(x$1: Int): Any
+5706 ===> phantm.util.IncludeResolver.shouldInclude(p: String,pos: phantm.util.Positional): Boolean
+1002 ===> phantm.ast.Trees.Label.name: phantm.ast.Trees.Identifier
+4641 ===> phantm.phases.PhasesContext.apply$default$8: phantm.symbols.GlobalSymbols @scala.annotation.unchecked.uncheckedVariance
+4711 ===> phantm.phases.CollectSymbols.classesToPass_$eq(x$1: List[phantm.ast.Trees.ClassDecl]): Unit
+1253 ===> phantm.ast.Trees.Try.productElement(x$1: Int): Any
+1082 ===> phantm.ast.Trees.OAArray.productElement(x$1: Int): Any
+137 ===> phantm.Settings.$lessinit$greater$default$4: Boolean @scala.annotation.unchecked.uncheckedVariance
+2175 ===> phantm.ast.Trees.ShiftRight.productElement(x$1: Int): Any
+4143 ===> phantm.cfg.Trees.NOTEQUALS.productArity: Int
+4485 ===> phantm.phases.CallGraphGeneration.execute: Unit
+3428 ===> phantm.cfg.Trees.ClassRefUnknown.productArity: Int
+5016 ===> phantm.types.TypeLattice.meet(x: phantm.types.Type,y: phantm.types.Type): phantm.types.Type
+1038 ===> phantm.ast.Trees.ObjectAccess.<init>(): phantm.ast.Trees.ObjectAccess
+5029 ===> phantm.types.TypeTransferFunction.ctx: phantm.phases.PhasesContext
+5749 ===> phantm.util.Positional.col_end: Int
+264 ===> phantm.annotations.SourceAnnotations.Parser.utyp: phantm.annotations.SourceAnnotations.Parser.Parser[phantm.types.Type]
+5881 ===> phantm.util.UObject.productArity: Int
+5228 ===> phantm.types.ObjectId.<init>(pos: Int,typ: phantm.types.ObjectIdType): phantm.types.ObjectId
+2074 ===> phantm.ast.Trees.BooleanXor.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.BooleanXor
+5001 ===> phantm.types.TypeHelpers.typeHintToType(th: phantm.ast.Trees.TypeHint): phantm.types.Type
+5406 ===> phantm.types.TIntLit.<init>(value: Long): phantm.types.TIntLit
+287 ===> phantm.ast.ASTTransform.trVariable(v: phantm.ast.Trees.Variable): phantm.ast.Trees.Variable
+4728 ===> phantm.phases.CollectSymbols.execute: Unit
+891 ===> phantm.ast.Trees.DynamicMethodRef.productElement(x$1: Int): Any
+4807 ===> phantm.symbols.GlobalSymbols.ifaces: scala.collection.mutable.HashMap[String,phantm.symbols.IfaceSymbol]
+3905 ===> phantm.cfg.Trees.MethodCall.productArity: Int
+4654 ===> phantm.phases.PureStatementsChecks.checkPures(stmts: List[phantm.ast.Trees.Statement]): Unit
+5672 ===> phantm.util.Evaluator.staticEval(ex: phantm.ast.Trees.Expression,ctx: phantm.phases.PhasesContext,issueErrors: Boolean): Option[phantm.ast.Trees.Scalar]
+288 ===> phantm.ast.ASTTransform.trScalar(s: phantm.ast.Trees.Scalar): phantm.ast.Trees.Scalar
+5 ===> phantm.Main.displayUsage_$eq(x$1: Boolean): Unit
+1341 ===> phantm.ast.Trees.Alternatives.productArity: Int
+4356 ===> phantm.phases.ASTChecksPhase.name: String
+328 ===> phantm.ast.STToAST.non_empty_parameter_list(n: phantm.parser.ParseNode): List[phantm.ast.Trees.ArgumentDecl]
+3328 ===> phantm.cfg.Trees.Skip.productArity: Int
+4638 ===> phantm.phases.PhasesContext.apply$default$5: Option[phantm.symbols.Symbol] @scala.annotation.unchecked.uncheckedVariance
+1417 ===> phantm.ast.Trees.DoWhile.productArity: Int
+0 ===> java.io.FileOutputStream.<init>(x$1: String): java.io.FileOutputStream
+2337 ===> phantm.ast.Trees.Cast.value: phantm.ast.Trees.Expression
+0 ===> scala.Some.<init>(x: A): Some[A]
+2784 ===> phantm.ast.Trees.MCFile.productElement(x$1: Int): Any
+342 ===> phantm.ast.STToAST.interface_list(n: phantm.parser.ParseNode): List[phantm.ast.Trees.StaticClassRef]
+4710 ===> phantm.phases.CollectSymbols.classesToPass: List[phantm.ast.Trees.ClassDecl]
+1910 ===> phantm.ast.Trees.Mult.rhs: phantm.ast.Trees.Expression
+4223 ===> phantm.dataflow.AnalysisAlgorithm.<init>(transferFun: phantm.dataflow.TransferFunction[E,S],bottomEnv: E,baseEnv: E,cfg: phantm.cfg.LabeledDirectedGraphImp[S]): phantm.dataflow.AnalysisAlgorithm[E,S]
+4608 ===> phantm.phases.PhasesContext.copy$default$3: Option[phantm.ast.Trees.Program] @scala.annotation.unchecked.uncheckedVariance
+376 ===> phantm.ast.STToAST.function_declaration_statement(n: phantm.parser.ParseNode): phantm.ast.Trees.FunctionDecl
+649 ===> phantm.ast.Trees.MFProtected.productElement(x$1: Int): Any
+4721 ===> phantm.phases.CollectSymbols.secondIfacePass(id: phantm.ast.Trees.InterfaceDecl,is: phantm.symbols.IfaceSymbol): Unit
+4424 ===> phantm.phases.CFGGenerator.ctx: phantm.phases.PhasesContext
+1740 ===> phantm.ast.Trees.DynamicObjectProperty.obj: phantm.ast.Trees.Expression
+2118 ===> phantm.ast.Trees.BitwiseOr.productElement(x$1: Int): Any
+4479 ===> phantm.phases.CallGraphGeneration.CallGraph.addCallLocation(sym: phantm.symbols.FunctionSymbol,pos: phantm.util.Positional): Unit
+542 ===> phantm.ast.Trees.ClassConstantDecl.productElement(x$1: Int): Any
+41 ===> phantm.Settings.copy$default$4: Boolean @scala.annotation.unchecked.uncheckedVariance
+2130 ===> phantm.ast.Trees.BitwiseXor.rhs: phantm.ast.Trees.Expression
+834 ===> phantm.ast.Trees.VarFunctionRef.<init>(v: phantm.ast.Trees.Variable): phantm.ast.Trees.VarFunctionRef
+5550 ===> phantm.types.TBottom.toText(e: phantm.types.TypeEnvironment): String
+5455 ===> phantm.types.TBoolean.productElement(x$1: Int): Any
+1494 ===> phantm.ast.Trees.Continue.productElement(x$1: Int): Any
+4756 ===> phantm.phases.TypeFlowAnalysis.getCFG(sym: Option[phantm.symbols.FunctionSymbol]): phantm.cfg.ControlFlowGraph
+640 ===> phantm.ast.Trees.MFPublic.productElement(x$1: Int): Any
+454 ===> phantm.ast.Trees.Program.productElement(x$1: Int): Any
+0 ===> java.lang.Exception.<init>(x$1: String): Exception
+3472 ===> phantm.cfg.Trees.VariableVar.<init>(v: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.VariableVar
+3030 ===> phantm.cfg.LabeledDirectedGraphImp.inEdges(v: LabeledDirectedGraphImp.this.Vertex): Set[phantm.cfg.EdgeImp[LabelType]]
+2719 ===> phantm.ast.Trees.PHPInteger.productArity: Int
+3865 ===> phantm.cfg.Trees.FunctionCall.productArity: Int
+3634 ===> phantm.cfg.Trees.PHPAny.<init>(): phantm.cfg.Trees.PHPAny
+1610 ===> phantm.ast.Trees.Foreach.key: Option[phantm.ast.Trees.Variable]
+5613 ===> phantm.util.API.Writer.emit(str: String): Unit
+0 ===> scala.Tuple3._2: T2
+4345 ===> phantm.parser.Parser.parse: Option[phantm.parser.ParseNode]
+5800 ===> phantm.util.Reporter.files_$eq(x$1: scala.collection.immutable.Map[String,List[String]]): Unit
+1578 ===> phantm.ast.Trees.Html.productArity: Int
+2890 ===> phantm.cfg.ASTToCFG.FreshName.apply(prefix: String): String
+2963 ===> phantm.cfg.EdgeImp.productArity: Int
+1673 ===> phantm.ast.Trees.VariableVariable.productArity: Int
+2023 ===> phantm.ast.Trees.PostDec.productElement(x$1: Int): Any
+5319 ===> phantm.types.StringKey.v: String
+170 ===> phantm.annotations.FunctionAnnotation.isPure_$eq(x$1: Boolean): Unit
+4813 ===> phantm.symbols.GlobalSymbols.lookupIface(n: String): Option[phantm.symbols.IfaceSymbol]
+144 ===> phantm.Settings.$lessinit$greater$default$11: List[String] @scala.annotation.unchecked.uncheckedVariance
+2481 ===> phantm.ast.Trees.Isset.<init>(vs: List[phantm.ast.Trees.Variable]): phantm.ast.Trees.Isset
+3999 ===> phantm.cfg.Trees.MOD.productArity: Int
+396 ===> phantm.ast.STToAST.base_variable_with_function_calls(n: phantm.parser.ParseNode): phantm.ast.Trees.Expression
+2258 ===> phantm.ast.Trees.Smaller.lhs: phantm.ast.Trees.Expression
+5344 ===> phantm.types.IntKey.productArity: Int
+2209 ===> phantm.ast.Trees.BitwiseNot.productElement(x$1: Int): Any
+393 ===> phantm.ast.STToAST.object_property_method(op: phantm.parser.ParseNode,mon: phantm.parser.ParseNode): phantm.ast.Trees.ObjectAccess
+2903 ===> phantm.cfg.ASTToCFG.assumeProp(p: phantm.cfg.Trees.Property,vs: List[phantm.ast.Trees.Variable]): Unit
+3141 ===> phantm.cfg.Trees.Assume.<init>(lhs: phantm.cfg.Trees.SimpleValue,relOp: phantm.cfg.Trees.RelationalOperator,rhs: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.Assume
+0 ===> scala.MatchError.<init>(obj: Any): MatchError
+402 ===> phantm.ast.STToAST.accumulate(n: phantm.parser.ParseNode,acc: List[Option[phantm.ast.Trees.Expression]]): (phantm.ast.Trees.OAScalar, List[Option[phantm.ast.Trees.Expression]])
+4270 ===> phantm.helpers.CFGGraph.<init>(): phantm.helpers.CFGGraph
+5609 ===> phantm.util.API.Writer.typeToXML(typ: phantm.types.Type,widen: phantm.types.Type => phantm.types.Type): String
+387 ===> phantm.ast.STToAST.method_or_not(n: phantm.parser.ParseNode): Option[List[phantm.ast.Trees.CallArg]]
+3494 ===> phantm.cfg.Trees.ArrayEntry.productArity: Int
+279 ===> phantm.annotations.SourceAnnotations.Parser.shouldInline(comment: String): Boolean
+0 ===> java.lang.Object.$bang$eq(x$1: AnyRef): Boolean
+4853 ===> phantm.symbols.PropertySymbol.visibility: phantm.symbols.MemberVisibility
+5273 ===> phantm.types.TPreciseObject.<init>(): phantm.types.TPreciseObject
+821 ===> phantm.ast.Trees.CalledClass.productElement(x$1: Int): Any
+210 ===> phantm.annotations.SourceAnnotations.Parser.AnyStringEntry.<init>(t: phantm.types.Type): phantm.annotations.SourceAnnotations.Parser.AnyStringEntry
+5318 ===> phantm.types.ArrayKey.$less(o: phantm.types.ArrayKey): Boolean
+4889 ===> phantm.symbols.IfaceSymbol.registerMethod(ms: phantm.symbols.IfaceMethodSymbol): Unit
+4181 ===> phantm.cfg.Trees.PREINC.productElement(x$1: Int): Any
+4759 ===> phantm.phases.TypeFlowAnalysis.visit(node: phantm.ast.Trees.Tree): Boolean
+746 ===> phantm.ast.Trees.NSIdentifier.defWithin(parent: phantm.ast.Trees.NSIdentifier): phantm.ast.Trees.NSIdentifier
+4415 ===> phantm.phases.ASTPruner.trStmts(sts: List[phantm.ast.Trees.Statement]): List[phantm.ast.Trees.Statement]
+805 ===> phantm.ast.Trees.StaticClassRef.productArity: Int
+0 ===> scala.Product22.productElement(n: Int): Any
+0 ===> scala.Product3.productElement(n: Int): Any
+385 ===> phantm.ast.STToAST.dynamic_class_name_reference(n: phantm.parser.ParseNode): phantm.ast.Trees.ClassRef
+0 ===> java.io.FileInputStream.<init>(x$1: java.io.File): java.io.FileInputStream
+175 ===> phantm.annotations.CommentAnnotation.annotateFromC(from: phantm.annotations.CommentAnnotation): CommentAnnotation.this.type
+2461 ===> phantm.ast.Trees.Closure.<init>(args: List[phantm.ast.Trees.ArgumentDecl],imports: List[phantm.ast.Trees.ArgumentDecl],retref: Boolean,body: phantm.ast.Trees.Statement): phantm.ast.Trees.Closure
+4054 ===> phantm.cfg.Trees.BITWISEOR.productElement(x$1: Int): Any
+5822 ===> phantm.util.Reporter.set(newrep: phantm.util.Reporter): Unit
+1729 ===> phantm.ast.Trees.ObjectProperty.productElement(x$1: Int): Any
+2671 ===> phantm.ast.Trees.VoidExpr.productArity: Int
+2092 ===> phantm.ast.Trees.BitwiseAnd.rhs: phantm.ast.Trees.Expression
+1705 ===> phantm.ast.Trees.NextArrayEntry.<init>(array: phantm.ast.Trees.Expression): phantm.ast.Trees.NextArrayEntry
+358 ===> phantm.ast.STToAST.inner_statement_list2(n: phantm.parser.ParseNode): List[phantm.ast.Trees.Statement]
+4917 ===> phantm.symbols.ConstantSymbol.value: Option[phantm.ast.Trees.Scalar]
+340 ===> phantm.ast.STToAST.interface_extends_list(n: phantm.parser.ParseNode): List[phantm.ast.Trees.StaticClassRef]
+335 ===> phantm.ast.STToAST.method_modifiers(n: phantm.parser.ParseNode): List[phantm.ast.Trees.MemberFlag]
+3398 ===> phantm.cfg.Trees.ClassRefFixed.productArity: Int
+5338 ===> phantm.types.IntKey.<init>(v: Long): phantm.types.IntKey
+1041 ===> phantm.ast.Trees.OAIdentifier.<init>(id: phantm.ast.Trees.Identifier): phantm.ast.Trees.OAIdentifier
+3188 ===> phantm.cfg.Trees.IsInt.productArity: Int
+3809 ===> phantm.cfg.Trees.Constant.productArity: Int
+3102 ===> phantm.cfg.Trees.AssignBinary.lhs: phantm.cfg.Trees.SimpleValue
+4484 ===> phantm.phases.CallGraphGeneration.scopeFromSym(s: phantm.symbols.Symbol): Option[phantm.symbols.FunctionSymbol]
+1608 ===> phantm.ast.Trees.Foreach.as: phantm.ast.Trees.Variable
+4360 ===> phantm.phases.CheckContext.inCond: Boolean
+0 ===> java.io.FileInputStream.<init>(x$1: String): java.io.FileInputStream
+5831 ===> phantm.util.ErrorException.etn: Int
+1489 ===> phantm.ast.Trees.Continue.<init>(level: phantm.ast.Trees.Expression): phantm.ast.Trees.Continue
+3557 ===> phantm.cfg.Trees.NoVar.<init>(): phantm.cfg.Trees.NoVar
+1153 ===> phantm.ast.Trees.Namespaced.name: phantm.ast.Trees.NSIdentifier
+4171 ===> phantm.cfg.Trees.BITSIWENOT.productArity: Int
+2557 ===> phantm.ast.Trees.Constant.productArity: Int
+5031 ===> phantm.types.TypeTransferFunction.collectGlobals: Boolean
+1045 ===> phantm.ast.Trees.OAIdentifier.productArity: Int
+362 ===> phantm.ast.STToAST.foreach_optional_arg(n: phantm.parser.ParseNode): Option[(phantm.ast.Trees.Variable, Boolean)]
+409 ===> phantm.ast.STToAST.scalar(n: phantm.parser.ParseNode): phantm.ast.Trees.Expression
+4411 ===> phantm.phases.ASTCollector.visit(t: phantm.ast.Trees.Tree): Boolean
+1909 ===> phantm.ast.Trees.Mult.lhs: phantm.ast.Trees.Expression
+2769 ===> phantm.ast.Trees.PHPNull.productElement(x$1: Int): Any
+5289 ===> phantm.types.TRealObject.globalType: phantm.types.Type
+2917 ===> phantm.cfg.ControlFlowGraph.<init>(): phantm.cfg.ControlFlowGraph
+3329 ===> phantm.cfg.Trees.Skip.productElement(x$1: Int): Any
+4826 ===> phantm.symbols.FunctionSymbol.<init>(name: String): phantm.symbols.FunctionSymbol
+2091 ===> phantm.ast.Trees.BitwiseAnd.lhs: phantm.ast.Trees.Expression
+0 ===> scala.Tuple3._3: T3
+4630 ===> phantm.phases.PhasesContext.$lessinit$greater$default$5: Option[phantm.symbols.Symbol] @scala.annotation.unchecked.uncheckedVariance
+1264 ===> phantm.ast.Trees.Catch.cl: phantm.ast.Trees.ClassRef
+5827 ===> phantm.util.Reporter.notice(msg: String,pos: phantm.util.Positional,tags: Set[phantm.util.ErrorTag]): Boolean
+2954 ===> phantm.cfg.EdgeImp.v2: phantm.cfg.VertexImp[L]
+280 ===> phantm.annotations.SourceAnnotations.Parser.isPure(comment: String): Boolean
+3916 ===> phantm.cfg.Trees.New.cl: phantm.cfg.Trees.ClassRef
+4543 ===> phantm.phases.NSResolver.trStaticClassRef(scr: phantm.ast.Trees.StaticClassRef): phantm.ast.Trees.StaticClassRef
+4599 ===> phantm.phases.PhasesContext.dumpedData: List[phantm.util.DumpCollector]
+5705 ===> phantm.util.IncludeResolver.includeFile(inc: phantm.ast.Trees.Expression,path: phantm.ast.Trees.Expression,once: Boolean,require: Boolean): phantm.ast.Trees.Expression
+1008 ===> phantm.ast.Trees.Label.productElement(x$1: Int): Any
+4134 ===> phantm.cfg.Trees.IDENTICAL.productArity: Int
+867 ===> phantm.ast.Trees.StaticFunctionRef.name: phantm.ast.Trees.NSIdentifier
+1721 ===> phantm.ast.Trees.ObjectProperty.obj: phantm.ast.Trees.Expression
+2589 ===> phantm.ast.Trees.New.args: List[phantm.ast.Trees.CallArg]
+108 ===> phantm.Settings.get: phantm.Settings
+1947 ===> phantm.ast.Trees.Mod.lhs: phantm.ast.Trees.Expression
+3666 ===> phantm.cfg.Trees.PHPNull.productElement(x$1: Int): Any
+2360 ===> phantm.ast.Trees.Silence.productArity: Int
+281 ===> phantm.annotations.SourceAnnotations.Parser.getFunctionTypes(comment: String): (Map[String,phantm.types.Type], phantm.types.Type)
+3877 ===> phantm.cfg.Trees.StaticMethodCall.id: phantm.ast.Trees.Identifier
+4998 ===> phantm.types.TypeHelpers.exprToType(oe: Option[phantm.ast.Trees.Expression]): phantm.types.Type
+5651 ===> phantm.util.DumpCollector.constants: phantm.util.Unserializer
+1590 ===> phantm.ast.Trees.Unset.vars: List[phantm.ast.Trees.Variable]
+1728 ===> phantm.ast.Trees.ObjectProperty.productArity: Int
+1669 ===> phantm.ast.Trees.VariableVariable.<init>(name: phantm.ast.Trees.Expression): phantm.ast.Trees.VariableVariable
+140 ===> phantm.Settings.$lessinit$greater$default$7: Boolean @scala.annotation.unchecked.uncheckedVariance
+1522 ===> phantm.ast.Trees.Global.vars: List[phantm.ast.Trees.Variable]
+226 ===> phantm.annotations.SourceAnnotations.Parser.AnyIntEntry.t: phantm.types.Type
+1955 ===> phantm.ast.Trees.Mod.productElement(x$1: Int): Any
+2278 ===> phantm.ast.Trees.SmallerEqual.rhs: phantm.ast.Trees.Expression
+2843 ===> phantm.ast.Trees.MCFunction.productArity: Int
+985 ===> phantm.ast.Trees.InitVariable.<init>(v: phantm.ast.Trees.Variable,init: Option[phantm.ast.Trees.Expression]): phantm.ast.Trees.InitVariable
+139 ===> phantm.Settings.$lessinit$greater$default$6: Boolean @scala.annotation.unchecked.uncheckedVariance
+363 ===> phantm.ast.STToAST.namespace_name(n: phantm.parser.ParseNode,root: phantm.ast.Trees.NSRoot): phantm.ast.Trees.NSIdentifier
+4263 ===> phantm.helpers.ASTGraph.generateDotGraph(root: phantm.ast.Trees.Program,printStream: java.io.PrintStream): Unit
+410 ===> phantm.ast.STToAST.class_constant(n: phantm.parser.ParseNode): phantm.ast.Trees.Expression
+2060 ===> phantm.ast.Trees.BooleanOr.productArity: Int
+3859 ===> phantm.cfg.Trees.FunctionCall.params: List[phantm.cfg.Trees.SimpleValue]
+283 ===> phantm.ast.ASTTransform.<init>(p: phantm.ast.Trees.Program): phantm.ast.ASTTransform
+5772 ===> phantm.util.Reporter.Error.pos: phantm.util.Positional
+424 ===> phantm.ast.STToAST.child(node: phantm.parser.ParseNode): phantm.parser.ParseNode
+5021 ===> phantm.types.TypeLattice.productArity: Int
+4504 ===> phantm.phases.DumpsCollectionPhase.name: String
+107 ===> phantm.Settings.stgs_$eq(x$1: Option[phantm.Settings]): Unit
+1101 ===> phantm.ast.Trees.OAMethod.productElement(x$1: Int): Any
+3963 ===> phantm.cfg.Trees.MINUS.productArity: Int
+3810 ===> phantm.cfg.Trees.Constant.productElement(x$1: Int): Any
+2260 ===> phantm.ast.Trees.Smaller.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.Smaller
+976 ===> phantm.ast.Trees.CastUnset.productArity: Int
+3757 ===> phantm.cfg.Trees.ArrayCurElement.<init>(ar: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.ArrayCurElement
+3295 ===> phantm.cfg.Trees.Print.<init>(rhs: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.Print
+193 ===> phantm.annotations.SourceAnnotations.Parser.AnyEntry.<init>(t: phantm.types.Type): phantm.annotations.SourceAnnotations.Parser.AnyEntry
+594 ===> phantm.ast.Trees.CFFinal.productElement(x$1: Int): Any
+5035 ===> phantm.types.TypeTransferFunction.<init>(silent: Boolean,ctx: phantm.phases.PhasesContext,collectAnnotations: Boolean,collectGlobals: Boolean,inlined: Boolean,noticesFct: (String, phantm.util.Positional) => Unit,errorsFct: (String, phantm.util.Positional) => Unit): phantm.types.TypeTransferFunction
+186 ===> phantm.annotations.SourceAnnotations.Parser.typedefs: scala.collection.immutable.Map[String,phantm.types.Type]
+5492 ===> phantm.types.TStringLit.<init>(value: String): phantm.types.TStringLit
+398 ===> phantm.ast.STToAST.base_variable(n: phantm.parser.ParseNode): phantm.ast.Trees.Variable
+2174 ===> phantm.ast.Trees.ShiftRight.productArity: Int
+4420 ===> phantm.phases.CFGGenerationPhase.run(ctx: phantm.phases.PhasesContext): phantm.phases.PhasesContext
+6008 ===> phantm.util.Unserializer.uidToOId: Map[Int,phantm.types.ObjectId]
+2953 ===> phantm.cfg.EdgeImp.lab: L
+4018 ===> phantm.cfg.Trees.BOOLEANAND.productElement(x$1: Int): Any
+3224 ===> phantm.cfg.Trees.IsString.productArity: Int
+5796 ===> phantm.util.Reporter.beginTicks: Unit
+1392 ===> phantm.ast.Trees.While.then: phantm.ast.Trees.Statement
+2930 ===> phantm.cfg.VertexImp.name: String
+4330 ===> phantm.helpers.STGraph.emit(str: String): Unit
+5105 ===> phantm.types.TypeTransferFunction.apply$default$6: (String, phantm.util.Positional) => Unit @scala.annotation.unchecked.uncheckedVariance
+465 ===> phantm.ast.Trees.ArgumentDecl.v: phantm.ast.Trees.SimpleVariable
+784 ===> phantm.ast.Trees.DynamicClassRef.<init>(ex: phantm.ast.Trees.Expression): phantm.ast.Trees.DynamicClassRef
+907 ===> phantm.ast.Trees.StaticMethodRef.productArity: Int
+1989 ===> phantm.ast.Trees.PostInc.productElement(x$1: Int): Any
+5117 ===> phantm.types.RecProtection.objectToStringDepth: Int
+3879 ===> phantm.cfg.Trees.StaticMethodCall.<init>(cl: phantm.cfg.Trees.ClassRef,id: phantm.ast.Trees.Identifier,params: List[phantm.cfg.Trees.SimpleValue]): phantm.cfg.Trees.StaticMethodCall
+5144 ===> phantm.types.TClass.isSubtypeOf(cl2: phantm.types.ClassType): Boolean
+4523 ===> phantm.phases.MethodGraphGeneration.MethodGraph.addEdge(from: phantm.phases.MethodGraphGeneration.MethodGraph.AVertex,to: phantm.phases.MethodGraphGeneration.MethodGraph.AVertex): Unit
+3935 ===> phantm.cfg.Trees.Clone.<init>(obj: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.Clone
+1274 ===> phantm.ast.Trees.Catch.productElement(x$1: Int): Any
+5612 ===> phantm.util.API.Writer.escapeVal(s: String): String
+2649 ===> phantm.ast.Trees.StaticMethodCall.args: List[phantm.ast.Trees.CallArg]
+4722 ===> phantm.phases.CollectSymbols.firstClassPass: Unit
+5694 ===> phantm.util.IncludeResolver.inclsInstr: scala.collection.immutable.Map[(String, Int),Set[String]]
+3827 ===> phantm.cfg.Trees.ClassConstant.productArity: Int
+2912 ===> phantm.cfg.ASTToCFG.expr(ex: phantm.ast.Trees.Expression): phantm.cfg.Trees.SimpleValue
+3000 ===> phantm.cfg.LabeledDirectedGraphImp.Group.vertIn: LabeledDirectedGraphImp.this.Vertex
+3665 ===> phantm.cfg.Trees.PHPNull.productArity: Int
+3413 ===> phantm.cfg.Trees.ClassRefCalledClass.productArity: Int
+5610 ===> phantm.util.API.Writer.simpleTyp(name: String): String
+5192 ===> phantm.types.ObjectIdTmp.offset: Int
+5009 ===> phantm.types.TypeLattice.join(x: phantm.types.Type,y: phantm.types.Type): phantm.types.Type
+3577 ===> phantm.cfg.Trees.PHPLong.productArity: Int
+245 ===> phantm.annotations.SourceAnnotations.Parser.Entry.<init>(s: String,t: phantm.types.Type): phantm.annotations.SourceAnnotations.Parser.Entry
+1380 ===> phantm.ast.Trees.If.productElement(x$1: Int): Any
+1342 ===> phantm.ast.Trees.Alternatives.productElement(x$1: Int): Any
+4319 ===> phantm.helpers.Main.output_$eq(x$1: Option[String]): Unit
+1611 ===> phantm.ast.Trees.Foreach.keybyref: Boolean
+45 ===> phantm.Settings.copy$default$8: Boolean @scala.annotation.unchecked.uncheckedVariance
+2035 ===> phantm.ast.Trees.BooleanAnd.rhs: phantm.ast.Trees.Expression
+2595 ===> phantm.ast.Trees.New.productArity: Int
+317 ===> phantm.ast.STToAST.getAST: phantm.ast.Trees.Program
+4931 ===> phantm.types.TypeEnvironment.map: Map[phantm.cfg.Trees.SimpleVariable,phantm.types.Type]
+1062 ===> phantm.ast.Trees.OAExpression.productArity: Int
+4380 ===> phantm.phases.ASTIntegrityChecks.<init>(node: phantm.ast.Trees.Tree,context: phantm.phases.CheckContext): phantm.phases.ASTIntegrityChecks
+695 ===> phantm.ast.Trees.NSGlobal.value: String
+923 ===> phantm.ast.Trees.CastInt.productElement(x$1: Int): Any
+3934 ===> phantm.cfg.Trees.Clone.obj: phantm.cfg.Trees.SimpleValue
+3036 ===> phantm.cfg.LabeledDirectedGraphImp.makeBoxed(id: String,name: String): StringBuffer
+4988 ===> phantm.types.TypeFlowAnalyzer.$lessinit$greater$default$4: Boolean @scala.annotation.unchecked.uncheckedVariance
+5693 ===> phantm.util.IncludeResolver.end: Unit
+4301 ===> phantm.helpers.CFGGraphs.productElement(x$1: Int): Any
+3648 ===> phantm.cfg.Trees.PHPFalse.<init>(): phantm.cfg.Trees.PHPFalse
+154 ===> phantm.Settings.$lessinit$greater$default$21: Boolean @scala.annotation.unchecked.uncheckedVariance
+4616 ===> phantm.phases.PhasesContext.productElement(x$1: Int): Any
+2699 ===> phantm.ast.Trees.PHPFalse.<init>(): phantm.ast.Trees.PHPFalse
+2486 ===> phantm.ast.Trees.Isset.productElement(x$1: Int): Any
+1267 ===> phantm.ast.Trees.Catch.<init>(cl: phantm.ast.Trees.ClassRef,v: phantm.ast.Trees.SimpleVariable,body: phantm.ast.Trees.Statement): phantm.ast.Trees.Catch
+630 ===> phantm.ast.Trees.MFAbstract.productArity: Int
+5465 ===> phantm.types.TTrue.productElement(x$1: Int): Any
+5692 ===> phantm.util.IncludeResolver.begin: Unit
+1336 ===> phantm.ast.Trees.Alternatives.blocks: List[phantm.ast.Trees.Expression]
+134 ===> phantm.Settings.$lessinit$greater$default$1: Int @scala.annotation.unchecked.uncheckedVariance
+536 ===> phantm.ast.Trees.ClassConstantDecl.<init>(v: phantm.ast.Trees.Identifier,value: phantm.ast.Trees.Expression): phantm.ast.Trees.ClassConstantDecl
+5570 ===> phantm.types.TUnion.apply(ts: Iterable[phantm.types.Type]): phantm.types.Type
+5015 ===> phantm.types.TypeLattice.meetTypes(t1: phantm.types.Type,t2: phantm.types.Type): phantm.types.Type
+2994 ===> phantm.cfg.LabeledDirectedGraphImp.groups_$eq(x$1: List[LabeledDirectedGraphImp.this.Group]): Unit
+4294 ===> phantm.helpers.CFGGraphs.visit(node: phantm.ast.Trees.Tree,ctx: phantm.helpers.CheckContext): (phantm.helpers.CheckContext, Boolean)
+5753 ===> phantm.util.Positional.$less(p: phantm.util.Positional): Boolean
+1179 ===> phantm.ast.Trees.Import.productArity: Int
+0 ===> phantm.parser.Lexer.next_token(): java_cup.runtime.Symbol
+3651 ===> phantm.cfg.Trees.PHPFalse.productArity: Int
+5825 ===> phantm.util.Reporter.error$default$3: Set[phantm.util.ErrorTag] @scala.annotation.unchecked.uncheckedVariance
+3745 ===> phantm.cfg.Trees.ArrayNext.productArity: Int
+3161 ===> phantm.cfg.Trees.Isset.productArity: Int
+1741 ===> phantm.ast.Trees.DynamicObjectProperty.property: phantm.ast.Trees.Expression
+1472 ===> phantm.ast.Trees.Break.<init>(level: phantm.ast.Trees.Expression): phantm.ast.Trees.Break
+3258 ===> phantm.cfg.Trees.AssumeProperty.prop: phantm.cfg.Trees.Property
+4662 ===> phantm.phases.PureStatementsChecks.productArity: Int
+5513 ===> phantm.types.TAny.productElement(x$1: Int): Any
+3179 ===> phantm.cfg.Trees.IsNull.productArity: Int
+0 ===> java.lang.IndexOutOfBoundsException.<init>(x$1: String): IndexOutOfBoundsException
+151 ===> phantm.Settings.$lessinit$greater$default$18: Option[String] @scala.annotation.unchecked.uncheckedVariance
+5704 ===> phantm.util.IncludeResolver.trExpr(ex: phantm.ast.Trees.Expression): phantm.ast.Trees.Expression
+675 ===> phantm.ast.Trees.MFStatic.productArity: Int
+5530 ===> phantm.types.TNull.toText(e: phantm.types.TypeEnvironment): String
+742 ===> phantm.ast.Trees.NSIdentifier.parts: List[String]
+3276 ===> phantm.cfg.Trees.AssumeNotProperty.prop: phantm.cfg.Trees.Property
+4859 ===> phantm.symbols.IfaceMethodSymbol.<init>(is: phantm.symbols.IfaceSymbol,name: String,visibility: phantm.symbols.MemberVisibility): phantm.symbols.IfaceMethodSymbol
+886 ===> phantm.ast.Trees.DynamicMethodRef.<init>(ex: phantm.ast.Trees.Expression): phantm.ast.Trees.DynamicMethodRef
+4564 ===> phantm.phases.PhaseException.productArity: Int
+5472 ===> phantm.types.TFalse.toText(e: phantm.types.TypeEnvironment): String
+352 ===> phantm.ast.STToAST.global_var_list(n: phantm.parser.ParseNode): List[phantm.ast.Trees.Variable]
+4406 ===> phantm.phases.ASTCollector.afterDump_$eq(x$1: Boolean): Unit
+275 ===> phantm.annotations.SourceAnnotations.Parser.getReturnType: String => Option[phantm.types.Type]
+3316 ===> phantm.cfg.Trees.Return.productElement(x$1: Int): Any
+4532 ===> phantm.phases.NSWrapper.appendSoFar(): Unit
+4000 ===> phantm.cfg.Trees.MOD.productElement(x$1: Int): Any
+26 ===> phantm.Settings.dumpAfter: Set[String]
+3652 ===> phantm.cfg.Trees.PHPFalse.productElement(x$1: Int): Any
+3091 ===> phantm.cfg.Trees.AssignUnary.productElement(x$1: Int): Any
+3009 ===> phantm.cfg.LabeledDirectedGraphImp.Group.toDotString(res: StringBuffer): Unit
+1290 ===> phantm.ast.Trees.Throw.productArity: Int
+2372 ===> phantm.ast.Trees.Exit.value: Option[phantm.ast.Trees.Expression]
+1897 ===> phantm.ast.Trees.Div.productArity: Int
+4751 ===> phantm.phases.TypeFlowAnalysis.initCtx: phantm.phases.PhasesContext
+308 ===> phantm.ast.ASTSimpleTraversal.execute: Unit
+334 ===> phantm.ast.STToAST.variable_modifiers(n: phantm.parser.ParseNode): List[phantm.ast.Trees.MemberFlag]
+406 ===> phantm.ast.STToAST.compound_variable(n: phantm.parser.ParseNode): phantm.ast.Trees.Variable
+2810 ===> phantm.ast.Trees.MCDir.<init>(): phantm.ast.Trees.MCDir
+331 ===> phantm.ast.STToAST.optional_class_type(n: phantm.parser.ParseNode): Option[phantm.ast.Trees.TypeHint]
+414 ===> phantm.ast.STToAST.identifier(n: phantm.parser.ParseNode): phantm.ast.Trees.Identifier
+2942 ===> phantm.cfg.VertexImp.productElement(x$1: Int): Any
+2424 ===> phantm.ast.Trees.Print.<init>(value: phantm.ast.Trees.Expression): phantm.ast.Trees.Print
+4565 ===> phantm.phases.PhaseException.productElement(x$1: Int): Any
+3424 ===> phantm.cfg.Trees.ClassRefUnknown.<init>(): phantm.cfg.Trees.ClassRefUnknown
+1824 ===> phantm.ast.Trees.Assign.productElement(x$1: Int): Any
+676 ===> phantm.ast.Trees.MFStatic.productElement(x$1: Int): Any
+3821 ===> phantm.cfg.Trees.ClassConstant.name: phantm.ast.Trees.Identifier
+5785 ===> phantm.util.Reporter.Error.productElement(x$1: Int): Any
+4548 ===> phantm.phases.ParsingPhase.name: String
+6009 ===> phantm.util.Unserializer.uidToOId_$eq(x$1: Map[Int,phantm.types.ObjectId]): Unit
+4692 ===> phantm.phases.SymContext.productElement(x$1: Int): Any
+346 ===> phantm.ast.STToAST.static_expr(n: phantm.parser.ParseNode): phantm.ast.Trees.Expression
+5998 ===> phantm.util.UTrue.productArity: Int
+2131 ===> phantm.ast.Trees.BitwiseXor.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.BitwiseXor
+4378 ===> phantm.phases.ASTIntegrityChecks.node: phantm.ast.Trees.Tree
+5763 ===> phantm.util.ENotice.productArity: Int
+382 ===> phantm.ast.STToAST.ctor_arguments(n: phantm.parser.ParseNode): List[phantm.ast.Trees.CallArg]
+1557 ===> phantm.ast.Trees.Echo.<init>(exprs: List[phantm.ast.Trees.Expression]): phantm.ast.Trees.Echo
+1815 ===> phantm.ast.Trees.Assign.value: phantm.ast.Trees.Expression
+515 ===> phantm.ast.Trees.PropertyDecl.default: Option[phantm.ast.Trees.Expression]
+2534 ===> phantm.ast.Trees.Require.once: Boolean
+4954 ===> phantm.types.TypeFlowAnalyzer.cfg: phantm.cfg.ControlFlowGraph
+3010 ===> phantm.cfg.LabeledDirectedGraphImp.Group.emit(s: String): StringBuffer
+5532 ===> phantm.types.TNull.productArity: Int
+4921 ===> phantm.symbols.ArgumentSymbol.name: String
+4597 ===> phantm.phases.PhasesContext.includedFiles_$eq(x$1: Set[String]): Unit
+1685 ===> phantm.ast.Trees.ArrayEntry.array: phantm.ast.Trees.Expression
+4978 ===> phantm.types.TypeFlowAnalyzer.productElement(x$1: Int): Any
+5590 ===> phantm.util.API.Reader.APIPos.productArity: Int
+2503 ===> phantm.ast.Trees.Empty.productElement(x$1: Int): Any
+5246 ===> phantm.types.ObjectStore.<init>(store: Map[phantm.types.ObjectId,phantm.types.TRealObject]): phantm.types.ObjectStore
+2485 ===> phantm.ast.Trees.Isset.productArity: Int
+4427 ===> phantm.phases.CFGGenerator.visit(node: phantm.ast.Trees.Tree): Boolean
+5484 ===> phantm.types.TString.productArity: Int
+2017 ===> phantm.ast.Trees.PostDec.rhs: phantm.ast.Trees.Variable
+4180 ===> phantm.cfg.Trees.PREINC.productArity: Int
+2498 ===> phantm.ast.Trees.Empty.<init>(v: phantm.ast.Trees.Variable): phantm.ast.Trees.Empty
+4785 ===> phantm.symbols.Symbol.overwriteable_$eq(x$1: Boolean): Unit
+415 ===> phantm.ast.STToAST.varIdentifier(n: phantm.parser.ParseNode): phantm.ast.Trees.Identifier
+3113 ===> phantm.cfg.Trees.AssignBinary.productElement(x$1: Int): Any
+4919 ===> phantm.symbols.VariableSymbol.name: String
+1142 ===> phantm.ast.Trees.NamespaceStart.productElement(x$1: Int): Any
+5702 ===> phantm.util.IncludeResolver.ctx: phantm.phases.PhasesContext
+4381 ===> phantm.phases.ASTIntegrityChecks.<init>(node: phantm.ast.Trees.Tree): phantm.phases.ASTIntegrityChecks
+399 ===> phantm.ast.STToAST.static_member(n: phantm.parser.ParseNode): phantm.ast.Trees.ClassProperty
+751 ===> phantm.ast.Trees.NSIdentifier.productArity: Int
+2910 ===> phantm.cfg.ASTToCFG.exprStoreGet(v: phantm.cfg.Trees.Variable,ex: phantm.ast.Trees.Expression): Option[phantm.cfg.Trees.Statement]
+71 ===> phantm.InlineNone.productArity: Int
+1398 ===> phantm.ast.Trees.While.productArity: Int
+5512 ===> phantm.types.TAny.productArity: Int
+3300 ===> phantm.cfg.Trees.Print.productElement(x$1: Int): Any
+707 ===> phantm.ast.Trees.NSCurrent.productArity: Int
+1046 ===> phantm.ast.Trees.OAIdentifier.productElement(x$1: Int): Any
+4300 ===> phantm.helpers.CFGGraphs.productArity: Int
+262 ===> phantm.annotations.SourceAnnotations.Parser.arrayentry: phantm.annotations.SourceAnnotations.Parser.Parser[phantm.annotations.SourceAnnotations.Parser.ArrayEntryType]
+296 ===> phantm.ast.ASTTransform.trFuncRef(fr: phantm.ast.Trees.FunctionRef): phantm.ast.Trees.FunctionRef
+3234 ===> phantm.cfg.Trees.IsObject.productElement(x$1: Int): Any
+4578 ===> phantm.phases.PhaseSeq.copy(list: Seq[phantm.phases.Phase]): phantm.phases.PhaseSeq
+1003 ===> phantm.ast.Trees.Label.<init>(name: phantm.ast.Trees.Identifier): phantm.ast.Trees.Label
+1796 ===> phantm.ast.Trees.ExpandArray.expr: phantm.ast.Trees.Expression
+3381 ===> phantm.cfg.Trees.ClassRefDynamic.productArity: Int
+2440 ===> phantm.ast.Trees.Eval.value: phantm.ast.Trees.Expression
+4472 ===> phantm.phases.CallGraphGeneration.CallGraph.mainCallPositions: scala.collection.immutable.Map[phantm.symbols.FunctionSymbol,Set[phantm.util.Positional]]
+19 ===> phantm.Settings.summaryOnly: Boolean
+332 ===> phantm.ast.STToAST.class_variable_declaration(n: phantm.parser.ParseNode,vm: List[phantm.ast.Trees.MemberFlag]): List[phantm.ast.Trees.PropertyDecl]
+4320 ===> phantm.helpers.Main.helper: phantm.helpers.Helper
+4208 ===> phantm.cfg.Trees.POSTDEC.productElement(x$1: Int): Any
+4920 ===> phantm.symbols.VariableSymbol.<init>(name: String): phantm.symbols.VariableSymbol
+5910 ===> phantm.util.UInt.v: Int
+1418 ===> phantm.ast.Trees.DoWhile.productElement(x$1: Int): Any
+4818 ===> phantm.symbols.GlobalSymbols.registerFunction(fs: phantm.symbols.FunctionSymbol): Unit
+4856 ===> phantm.symbols.ClassConstantSymbol.<init>(cs: phantm.symbols.ClassSymbol,name: String,value: Option[phantm.ast.Trees.Scalar]): phantm.symbols.ClassConstantSymbol
+2535 ===> phantm.ast.Trees.Require.<init>(path: phantm.ast.Trees.Expression,once: Boolean): phantm.ast.Trees.Require
+5022 ===> phantm.types.TypeLattice.productElement(x$1: Int): Any
+1653 ===> phantm.ast.Trees.SimpleVariable.copy(name: phantm.ast.Trees.Identifier): phantm.ast.Trees.SimpleVariable
+1766 ===> phantm.ast.Trees.ClassProperty.productArity: Int
+5384 ===> phantm.types.TNumericLit.<init>(): phantm.types.TNumericLit
+5386 ===> phantm.types.TNumeric.toText(e: phantm.types.TypeEnvironment): String
+4416 ===> phantm.phases.ASTPruner.trStmt(st: phantm.ast.Trees.Statement): phantm.ast.Trees.Statement
+2521 ===> phantm.ast.Trees.Include.productArity: Int
+168 ===> phantm.annotations.FunctionAnnotation.shouldInline_$eq(x$1: Boolean): Unit
+5187 ===> phantm.types.ObjectIdUse.productElement(x$1: Int): Any
+1656 ===> phantm.ast.Trees.SimpleVariable.productArity: Int
+2590 ===> phantm.ast.Trees.New.<init>(cl: phantm.ast.Trees.ClassRef,args: List[phantm.ast.Trees.CallArg]): phantm.ast.Trees.New
+3090 ===> phantm.cfg.Trees.AssignUnary.productArity: Int
+1095 ===> phantm.ast.Trees.OAMethod.<init>(name: phantm.ast.Trees.ObjectAccess,args: List[phantm.ast.Trees.CallArg]): phantm.ast.Trees.OAMethod
+1113 ===> phantm.ast.Trees.FunctionDecl.name: phantm.ast.Trees.NSIdentifier
+3170 ===> phantm.cfg.Trees.Empty.productArity: Int
+648 ===> phantm.ast.Trees.MFProtected.productArity: Int
+5129 ===> phantm.types.ClassType.<init>(): phantm.types.ClassType
+0 ===> java.io.PrintStream.println(x$1: String): Unit
+5093 ===> phantm.types.TypeTransferFunction.productElement(x$1: Int): Any
+5389 ===> phantm.types.TNumeric.productElement(x$1: Int): Any
+0 ===> phantm.parser.CUPParser.<init>(s: java_cup.runtime.Scanner): phantm.parser.CUPParser
+1609 ===> phantm.ast.Trees.Foreach.asbyref: Boolean
+148 ===> phantm.Settings.$lessinit$greater$default$15: List[String] @scala.annotation.unchecked.uncheckedVariance
+2502 ===> phantm.ast.Trees.Empty.productArity: Int
+1124 ===> phantm.ast.Trees.FunctionDecl.productArity: Int
+4908 ===> phantm.symbols.ClassSymbol.lookupAnyProperty(name: String,from: Option[phantm.symbols.ClassSymbol],in: scala.collection.mutable.HashMap[String,phantm.symbols.PropertySymbol]): phantm.symbols.LookupResult[phantm.symbols.PropertySymbol]
+5357 ===> phantm.types.TArray.globalString: phantm.types.Type
+5690 ===> phantm.util.IncludeResolver.deepNess: Int
+4506 ===> phantm.phases.DumpsCollectionPhase.run(ctx: phantm.phases.PhasesContext): phantm.phases.PhasesContext
+5829 ===> phantm.util.ErrorException.en: Int
+4815 ===> phantm.symbols.GlobalSymbols.lookupClass(n: String): Option[phantm.symbols.ClassSymbol]
+2986 ===> phantm.cfg.LabeledDirectedGraphImp.counter_$eq(x$1: Int): Unit
+2987 ===> phantm.cfg.LabeledDirectedGraphImp.newVertex: phantm.cfg.VertexImp[LabelType]
+0 ===> scala.Product7.productElement(n: Int): Any
+2635 ===> phantm.ast.Trees.MethodCall.productArity: Int
+932 ===> phantm.ast.Trees.CastString.productElement(x$1: Int): Any
+1634 ===> phantm.ast.Trees.Void.<init>(): phantm.ast.Trees.Void
+448 ===> phantm.ast.Trees.Program.<init>(stmts: List[phantm.ast.Trees.Statement]): phantm.ast.Trees.Program
+1797 ===> phantm.ast.Trees.ExpandArray.<init>(vars: List[Option[phantm.ast.Trees.Variable]],expr: phantm.ast.Trees.Expression): phantm.ast.Trees.ExpandArray
+2098 ===> phantm.ast.Trees.BitwiseAnd.productArity: Int
+5017 ===> phantm.types.TypeLattice.meet(envInit: phantm.types.TypeLattice.Env,x: phantm.types.Type,y: phantm.types.Type): (phantm.types.TypeEnvironment, phantm.types.Type)
+366 ===> phantm.ast.STToAST.variable_list(n: phantm.parser.ParseNode): List[phantm.ast.Trees.Variable]
+4412 ===> phantm.phases.ASTPruner.<init>(ast: phantm.ast.Trees.Program): phantm.phases.ASTPruner
+492 ===> phantm.ast.Trees.MethodDecl.body: Option[phantm.ast.Trees.Statement]
+1949 ===> phantm.ast.Trees.Mod.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.Mod
+2859 ===> phantm.ast.Trees.MCMethod.productElement(x$1: Int): Any
+2844 ===> phantm.ast.Trees.MCFunction.productElement(x$1: Int): Any
+5619 ===> phantm.util.ConstantsResolver.trExpr(ex: phantm.ast.Trees.Expression): phantm.ast.Trees.Expression
+4714 ===> phantm.phases.CollectSymbols.classList: List[(phantm.symbols.ClassSymbol, phantm.ast.Trees.ClassDecl)]
+2221 ===> phantm.ast.Trees.Equal.rhs: phantm.ast.Trees.Expression
+421 ===> phantm.ast.STToAST.non_empty_array_pair_list(n: phantm.parser.ParseNode): List[(Option[phantm.ast.Trees.Expression], phantm.ast.Trees.Expression, Boolean)]
+320 ===> phantm.ast.STToAST.top_statement(n: phantm.parser.ParseNode): List[phantm.ast.Trees.Statement]
+3277 ===> phantm.cfg.Trees.AssumeNotProperty.vs: List[phantm.cfg.Trees.Variable]
+1591 ===> phantm.ast.Trees.Unset.<init>(vars: List[phantm.ast.Trees.Variable]): phantm.ast.Trees.Unset
+3690 ===> phantm.cfg.Trees.PHPEmptyArray.<init>(): phantm.cfg.Trees.PHPEmptyArray
+2389 ===> phantm.ast.Trees.Array.values: List[(Option[phantm.ast.Trees.Expression], phantm.ast.Trees.Expression, Boolean)]
+1252 ===> phantm.ast.Trees.Try.productArity: Int
+2000 ===> phantm.ast.Trees.PreDec.rhs: phantm.ast.Trees.Variable
+3065 ===> phantm.cfg.Trees.Assign.<init>(variable: phantm.cfg.Trees.Variable,value: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.Assign
+3259 ===> phantm.cfg.Trees.AssumeProperty.vs: List[phantm.cfg.Trees.Variable]
+0 ===> scala.util.parsing.combinator.syntactical.StdTokenParsers.ident: StdTokenParsers.this.Parser[String]
+2985 ===> phantm.cfg.LabeledDirectedGraphImp.counter: Int
+3885 ===> phantm.cfg.Trees.StaticMethodCall.productArity: Int
+3604 ===> phantm.cfg.Trees.PHPString.value: String
+422 ===> phantm.ast.STToAST.exit_expr(n: phantm.parser.ParseNode): Option[phantm.ast.Trees.Expression]
+3197 ===> phantm.cfg.Trees.IsFloat.productArity: Int
+2936 ===> phantm.cfg.VertexImp.out_$eq(x$1: Set[phantm.cfg.EdgeImp[L]]): Unit
+725 ===> phantm.ast.Trees.Identifier.<init>(value: String): phantm.ast.Trees.Identifier
+3848 ===> phantm.cfg.Trees.Ternary.productElement(x$1: Int): Any
+5872 ===> phantm.util.UObject.classname: String
+5427 ===> phantm.types.TFloat.productElement(x$1: Int): Any
+3052 ===> phantm.cfg.Trees.Unset.productArity: Int
+2657 ===> phantm.ast.Trees.StaticMethodCall.productElement(x$1: Int): Any
+1493 ===> phantm.ast.Trees.Continue.productArity: Int
+502 ===> phantm.ast.Trees.MethodDecl.productElement(x$1: Int): Any
+2656 ===> phantm.ast.Trees.StaticMethodCall.productArity: Int
+5980 ===> phantm.util.UNull.productArity: Int
+291 ===> phantm.ast.ASTTransform.trMethod(md: phantm.ast.Trees.MethodDecl): phantm.ast.Trees.MethodDecl
+4216 ===> phantm.cfg.Trees.SILENCE.productArity: Int
+5280 ===> phantm.types.TObjectRef.toText(e: phantm.types.TypeEnvironment): String
+4071 ===> phantm.cfg.Trees.SHIFTLEFT.productArity: Int
+380 ===> phantm.ast.STToAST.assignment_list(n: phantm.parser.ParseNode): List[Option[phantm.ast.Trees.Variable]]
+5340 ===> phantm.types.IntKey.vToString: String
+1354 ===> phantm.ast.Trees.Block.<init>(stmts: List[phantm.ast.Trees.Statement]): phantm.ast.Trees.Block
+1197 ===> phantm.ast.Trees.ClassDecl.props: List[phantm.ast.Trees.PropertyDecl]
+4275 ===> phantm.helpers.CheckContext.productArity: Int
+3233 ===> phantm.cfg.Trees.IsObject.productArity: Int
+5439 ===> phantm.types.TFloatLit.productArity: Int
+1459 ===> phantm.ast.Trees.Switch.productArity: Int
+1693 ===> phantm.ast.Trees.ArrayEntry.productElement(x$1: Int): Any
+47 ===> phantm.Settings.copy$default$10: Boolean @scala.annotation.unchecked.uncheckedVariance
+2429 ===> phantm.ast.Trees.Print.productElement(x$1: Int): Any
+5745 ===> phantm.util.Positional.col: Int
+4615 ===> phantm.phases.PhasesContext.productArity: Int
+2373 ===> phantm.ast.Trees.Exit.<init>(value: Option[phantm.ast.Trees.Expression]): phantm.ast.Trees.Exit
+5424 ===> phantm.types.TFloat.toText(e: phantm.types.TypeEnvironment): String
+3778 ===> phantm.cfg.Trees.ArrayCurKey.productElement(x$1: Int): Any
+453 ===> phantm.ast.Trees.Program.productArity: Int
+4469 ===> phantm.phases.CallGraphGeneration.<init>(node: phantm.ast.Trees.Tree,context: phantm.phases.CGContext,pctx: phantm.phases.PhasesContext): phantm.phases.CallGraphGeneration
+72 ===> phantm.InlineNone.productElement(x$1: Int): Any
+4639 ===> phantm.phases.PhasesContext.apply$default$6: phantm.util.GlobalAnalysisResults @scala.annotation.unchecked.uncheckedVariance
+22 ===> phantm.Settings.displayProgress: Boolean
+3011 ===> phantm.cfg.LabeledDirectedGraphImp.Group.followGraph(vinit: LabeledDirectedGraphImp.this.Vertex): Unit
+6010 ===> phantm.util.Unserializer.objectsStore: Map[phantm.types.ObjectId,phantm.types.TRealObject]
+2042 ===> phantm.ast.Trees.BooleanAnd.productElement(x$1: Int): Any
+3440 ===> phantm.cfg.Trees.TempID.<init>(value: String): phantm.cfg.Trees.TempID
+2361 ===> phantm.ast.Trees.Silence.productElement(x$1: Int): Any
+33 ===> phantm.Settings.inlineMode: phantm.InlineMode
+5746 ===> phantm.util.Positional.col_$eq(x$1: Int): Unit
+31 ===> phantm.Settings.exportCGPath: Option[String]
+5159 ===> phantm.types.FunctionType.<init>(): phantm.types.FunctionType
+164 ===> phantm.annotations.FunctionTypeAnnotation.registerFType(ftyp: phantm.types.FunctionType): FunctionTypeAnnotation.this.type
+603 ===> phantm.ast.Trees.THArray.productArity: Int
+2916 ===> phantm.cfg.ASTToCFG.fewerSkips: Unit
+3456 ===> phantm.cfg.Trees.ClassProperty.<init>(symbol: phantm.symbols.PropertySymbol): phantm.cfg.Trees.ClassProperty
+2149 ===> phantm.ast.Trees.ShiftLeft.rhs: phantm.ast.Trees.Expression
+7 ===> phantm.Main.displayVersion_$eq(x$1: Boolean): Unit
+2780 ===> phantm.ast.Trees.MCFile.<init>(): phantm.ast.Trees.MCFile
+2208 ===> phantm.ast.Trees.BitwiseNot.productArity: Int
+1816 ===> phantm.ast.Trees.Assign.byref: Boolean
+373 ===> phantm.ast.STToAST.elseif_list(n: phantm.parser.ParseNode): List[(phantm.ast.Trees.Expression, phantm.ast.Trees.Statement)]
+5606 ===> phantm.util.API.Writer.<init>(path: String,ctx: phantm.phases.PhasesContext): phantm.util.API.Writer
+1039 ===> phantm.ast.Trees.OAScalar.<init>(): phantm.ast.Trees.OAScalar
+98 ===> phantm.InlineManual.productArity: Int
+2054 ===> phantm.ast.Trees.BooleanOr.rhs: phantm.ast.Trees.Expression
+304 ===> phantm.ast.ASTSimpleTraversal.<init>(root: phantm.ast.Trees.Tree): phantm.ast.ASTSimpleTraversal
+4957 ===> phantm.types.TypeFlowAnalyzer.inlined: Boolean
+3 ===> phantm.Main.settings_$eq(x$1: phantm.Settings): Unit
+4999 ===> phantm.types.TypeHelpers.exprToType(e: phantm.ast.Trees.Expression): phantm.types.Type
+5815 ===> phantm.util.Reporter.emit(tags: Set[phantm.util.ErrorTag],msg: String,pos: phantm.util.Positional): Unit
+1637 ===> phantm.ast.Trees.Void.productArity: Int
+271 ===> phantm.annotations.SourceAnnotations.Parser.strToType(str: String): Option[phantm.types.Type]
+4844 ===> phantm.symbols.MVPrivate.stricterThan(o: phantm.symbols.MemberVisibility): Boolean
+2919 ===> phantm.cfg.ControlFlowGraph.exit: ControlFlowGraph.this.Vertex
+3429 ===> phantm.cfg.Trees.ClassRefUnknown.productElement(x$1: Int): Any
+4269 ===> phantm.helpers.ASTGraph.dotPrint(o: Any,pid: Int): Unit
+890 ===> phantm.ast.Trees.DynamicMethodRef.productArity: Int
+6026 ===> phantm.util.Unserializer.toScalarMap: scala.collection.immutable.Map[String,phantm.ast.Trees.Scalar]
+4476 ===> phantm.phases.CallGraphGeneration.CallGraph.vToOsym: scala.collection.immutable.Map[phantm.phases.CallGraphGeneration.CallGraph.Vertex,Option[phantm.symbols.FunctionSymbol]]
+3918 ===> phantm.cfg.Trees.New.<init>(cl: phantm.cfg.Trees.ClassRef,params: List[phantm.cfg.Trees.SimpleValue]): phantm.cfg.Trees.New
+159 ===> phantm.annotations.TypeAnnotation.typ_$eq(x$1: phantm.types.Type): Unit
+2855 ===> phantm.ast.Trees.MCMethod.<init>(): phantm.ast.Trees.MCMethod
+273 ===> phantm.annotations.SourceAnnotations.Parser.importTypeDefs(comment: String): Unit
+4414 ===> phantm.phases.ASTPruner.afterDump_$eq(x$1: Boolean): Unit
+5398 ===> phantm.types.TInt.productArity: Int
+425 ===> phantm.ast.STToAST.child(node: phantm.parser.ParseNode,num: Int): phantm.parser.ParseNode
+5627 ===> phantm.util.ConstantsResolver.productElement(x$1: Int): Any
+4425 ===> phantm.phases.CFGGenerator.ctx_$eq(x$1: phantm.phases.PhasesContext): Unit
+0 ===> scala.Tuple3._1: T1
+4609 ===> phantm.phases.PhasesContext.copy$default$4: List[phantm.util.DumpCollector] @scala.annotation.unchecked.uncheckedVariance
+4900 ===> phantm.symbols.ClassSymbol.static_properties: scala.collection.mutable.HashMap[String,phantm.symbols.PropertySymbol]
+4267 ===> phantm.helpers.ASTGraph.escape(s: String): String
+401 ===> phantm.ast.STToAST.object_dim_list(n: phantm.parser.ParseNode): phantm.ast.Trees.ObjectAccess
+10 ===> phantm.Main.main(args: Array[String]): Unit
+2898 ===> phantm.cfg.ASTToCFG.Emit.statementBetween(from: Vertex,stat: phantm.cfg.Trees.Statement,to: Vertex): Unit
+493 ===> phantm.ast.Trees.MethodDecl.<init>(name: phantm.ast.Trees.Identifier,flags: List[phantm.ast.Trees.MemberFlag],args: List[phantm.ast.Trees.ArgumentDecl],retref: Boolean,body: Option[phantm.ast.Trees.Statement]): phantm.ast.Trees.MethodDecl
+2150 ===> phantm.ast.Trees.ShiftLeft.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.ShiftLeft
+1704 ===> phantm.ast.Trees.NextArrayEntry.array: phantm.ast.Trees.Expression
+466 ===> phantm.ast.Trees.ArgumentDecl.hint: Option[phantm.ast.Trees.TypeHint]
+5412 ===> phantm.types.TIntLit.productElement(x$1: Int): Any
+0 ===> java.lang.StringBuffer.<init>(): StringBuffer
+541 ===> phantm.ast.Trees.ClassConstantDecl.productArity: Int
+0 ===> java.lang.RuntimeException.<init>(x$1: String): RuntimeException
+3722 ===> phantm.cfg.Trees.Cast.to: phantm.ast.Trees.CastType
+2828 ===> phantm.ast.Trees.MCClass.productArity: Int
+2897 ===> phantm.cfg.ASTToCFG.Emit.setPC(v: Vertex): Unit
+4287 ===> phantm.helpers.CFGGraphs.node: phantm.ast.Trees.Tree
+2982 ===> phantm.cfg.LabeledDirectedGraphImp.edges_$eq(x$1: scala.collection.immutable.Set[phantm.cfg.EdgeImp[LabelType]]): Unit
+3252 ===> phantm.cfg.Trees.IsResource.productElement(x$1: Int): Any
+5806 ===> phantm.util.Reporter.notice(msg: String): Boolean
+1074 ===> phantm.ast.Trees.OAArray.array: phantm.ast.Trees.OAScalar
+54 ===> phantm.Settings.copy$default$17: Option[String] @scala.annotation.unchecked.uncheckedVariance
+0 ===> scala.Product6.productElement(n: Int): Any
+4604 ===> phantm.phases.PhasesContext.<init>(files: List[String],includedFiles: Set[String],oast: Option[phantm.ast.Trees.Program],dumpedData: List[phantm.util.DumpCollector],symbol: Option[phantm.symbols.Symbol],results: phantm.util.GlobalAnalysisResults,cfgs: Map[Option[phantm.symbols.FunctionSymbol],phantm.cfg.ControlFlowGraph],globalSymbols: phantm.symbols.GlobalSymbols): phantm.phases.PhasesContext
+5523 ===> phantm.types.TResource.productElement(x$1: Int): Any
+299 ===> phantm.ast.ASTTransform.trMethodRef(mr: phantm.ast.Trees.MethodRef): phantm.ast.Trees.MethodRef
+3662 ===> phantm.cfg.Trees.PHPNull.<init>(): phantm.cfg.Trees.PHPNull
+3923 ===> phantm.cfg.Trees.New.productArity: Int
+2303 ===> phantm.ast.Trees.InstanceOf.productArity: Int
+1247 ===> phantm.ast.Trees.Try.<init>(body: phantm.ast.Trees.Statement,catches: List[phantm.ast.Trees.Catch]): phantm.ast.Trees.Try
+5315 ===> phantm.types.ArrayKey.fromString(str: String): phantm.types.ArrayKey
+958 ===> phantm.ast.Trees.CastBool.productArity: Int
+5607 ===> phantm.util.API.Writer.reduceFT(ft1: phantm.types.TFunction,ft2: phantm.types.TFunction): phantm.types.TFunction
+3878 ===> phantm.cfg.Trees.StaticMethodCall.params: List[phantm.cfg.Trees.SimpleValue]
+3972 ===> phantm.cfg.Trees.MULT.productArity: Int
+4821 ===> phantm.symbols.GlobalSymbols.registerConstant(cs: phantm.symbols.ConstantSymbol): Unit
+37 ===> phantm.Settings.copy(verbosity: Int,format: String,resolveIncludes: Boolean,importAPI: Boolean,testsActive: Boolean,summaryOnly: Boolean,displayFixPoint: Boolean,displayIncludes: Boolean,displayProgress: Boolean,onlyLint: Boolean,typeFlowFilter: List[String],includePaths: List[String],dumpAfter: Set[String],printAfter: Set[String],apis: List[String],dumps: List[String],exportAPIPath: Option[String],exportCGPath: Option[String],exportMGPath: Option[String],inlineMode: phantm.InlineMode,compactErrors: Boolean,anyInput: Boolean): phantm.Settings
+5807 ===> phantm.util.Reporter.notice(msg: String,pos: phantm.util.Positional,tags: Set[phantm.util.ErrorTag]): Boolean
+4266 ===> phantm.helpers.ASTGraph.getLabel(node: phantm.ast.Trees.Tree): String
+611 ===> phantm.ast.Trees.THObject.<init>(cl: phantm.ast.Trees.ClassRef): phantm.ast.Trees.THObject
+2112 ===> phantm.ast.Trees.BitwiseOr.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.BitwiseOr
+593 ===> phantm.ast.Trees.CFFinal.productArity: Int
+4784 ===> phantm.symbols.Symbol.overwriteable: Boolean
+4958 ===> phantm.types.TypeFlowAnalyzer.collectGlobals: Boolean
+4410 ===> phantm.phases.ASTCollector.classesDecls_$eq(x$1: List[phantm.ast.Trees.ClassDecl]): Unit
+3006 ===> phantm.cfg.LabeledDirectedGraphImp.Group.subgroups_$eq(x$1: List[LabeledDirectedGraphImp.this.Group]): Unit
+5585 ===> phantm.util.API.Reader.APIPos.<init>(elem: scala.xml.Node): Reader.this.APIPos
+3638 ===> phantm.cfg.Trees.PHPAny.productElement(x$1: Int): Any
+301 ===> phantm.ast.ASTTransform.trStmt(st: phantm.ast.Trees.Statement): phantm.ast.Trees.Statement
+4080 ===> phantm.cfg.Trees.SHIFTRIGHT.productArity: Int
+4325 ===> phantm.helpers.Main.handle_options(opts: List[String]): Unit
+3940 ===> phantm.cfg.Trees.Clone.productElement(x$1: Int): Any
+4514 ===> phantm.phases.MethodGraphPhase.run(initCtx: phantm.phases.PhasesContext): phantm.phases.PhasesContext
+5950 ===> phantm.util.UObjRef.productElement(x$1: Int): Any
+5283 ===> phantm.types.TObjectTmp.obj: phantm.types.TRealObject
+1891 ===> phantm.ast.Trees.Div.rhs: phantm.ast.Trees.Expression
+2390 ===> phantm.ast.Trees.Array.<init>(values: List[(Option[phantm.ast.Trees.Expression], phantm.ast.Trees.Expression, Boolean)]): phantm.ast.Trees.Array
+3140 ===> phantm.cfg.Trees.Assume.rhs: phantm.cfg.Trees.SimpleValue
+2169 ===> phantm.ast.Trees.ShiftRight.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.ShiftRight
+2277 ===> phantm.ast.Trees.SmallerEqual.lhs: phantm.ast.Trees.Expression
+4663 ===> phantm.phases.PureStatementsChecks.productElement(x$1: Int): Any
+3243 ===> phantm.cfg.Trees.IsScalar.productElement(x$1: Int): Any
+5301 ===> phantm.types.TRealObject.lookupField(index: String): phantm.types.Type
+4607 ===> phantm.phases.PhasesContext.copy$default$2: Set[String] @scala.annotation.unchecked.uncheckedVariance
+5121 ===> phantm.types.Type.<init>(): phantm.types.Type
+389 ===> phantm.ast.STToAST.non_empty_function_call_parameter_list(n: phantm.parser.ParseNode): List[phantm.ast.Trees.CallArg]
+0 ===> scala.util.parsing.combinator.syntactical.StdTokenParsers.stringLit: StdTokenParsers.this.Parser[String]
+3382 ===> phantm.cfg.Trees.ClassRefDynamic.productElement(x$1: Int): Any
+3761 ===> phantm.cfg.Trees.ArrayCurElement.productArity: Int
+1892 ===> phantm.ast.Trees.Div.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.Div
+4450 ===> phantm.phases.CGContext.<init>(scope: Option[phantm.symbols.FunctionSymbol]): phantm.phases.CGContext
+1410 ===> phantm.ast.Trees.DoWhile.body: phantm.ast.Trees.Statement
+4791 ===> phantm.symbols.Symbol.setUserland: Symbol.this.type
+984 ===> phantm.ast.Trees.InitVariable.init: Option[phantm.ast.Trees.Expression]
+0 ===> java.io.File.<init>(x$1: String): java.io.File
+270 ===> phantm.annotations.SourceAnnotations.Parser.contains(comment: String,tag: String): Boolean
+5363 ===> phantm.types.TArray.lookup(index: phantm.types.ArrayKey): phantm.types.Type
+0 ===> scala.util.parsing.combinator.lexical.Scanners.Scanner.<init>(in: String): Scanners.this.Scanner
+3917 ===> phantm.cfg.Trees.New.params: List[phantm.cfg.Trees.SimpleValue]
+1141 ===> phantm.ast.Trees.NamespaceStart.productArity: Int
+820 ===> phantm.ast.Trees.CalledClass.productArity: Int
+4990 ===> phantm.types.TypeFlowAnalyzer.$lessinit$greater$default$6: phantm.types.TypeEnvironment @scala.annotation.unchecked.uncheckedVariance
+1898 ===> phantm.ast.Trees.Div.productElement(x$1: Int): Any
+4556 ===> phantm.phases.Phase.followedBy(phase: phantm.phases.Phase): phantm.phases.PhaseSeq
+0 ===> scala.Product2.productElement(n: Int): Any
+3071 ===> phantm.cfg.Trees.Assign.productElement(x$1: Int): Any
+404 ===> phantm.ast.STToAST.dim_offset(n: phantm.parser.ParseNode): Option[phantm.ast.Trees.Expression]
+4447 ===> phantm.phases.CallGraphPhase.run(initCtx: phantm.phases.PhasesContext): phantm.phases.PhasesContext
+0 ===> scala.util.parsing.combinator.Parsers.repsep[T](p: => Parsers.this.Parser[T],q: => Parsers.this.Parser[Any]): Parsers.this.Parser[List[T]]
+12 ===> phantm.Main.version: Unit
+5604 ===> phantm.util.API.Reader.optArg(node: scala.xml.Node,name: String): Boolean
+832 ===> phantm.ast.Trees.FunctionRef.<init>(): phantm.ast.Trees.FunctionRef
+2018 ===> phantm.ast.Trees.PostDec.<init>(rhs: phantm.ast.Trees.Variable): phantm.ast.Trees.PostDec
+801 ===> phantm.ast.Trees.StaticClassRef.<init>(name: phantm.ast.Trees.NSIdentifier): phantm.ast.Trees.StaticClassRef
+447 ===> phantm.ast.Trees.Program.stmts: List[phantm.ast.Trees.Statement]
+0 ===> scala.Tuple3.<init>(_1: T1,_2: T2,_3: T3): (T1, T2, T3)
+2840 ===> phantm.ast.Trees.MCFunction.<init>(): phantm.ast.Trees.MCFunction
+2266 ===> phantm.ast.Trees.Smaller.productElement(x$1: Int): Any
+5602 ===> phantm.util.API.Reader.elemsToType(elems: scala.xml.NodeSeq): phantm.types.Type
+2765 ===> phantm.ast.Trees.PHPNull.<init>(): phantm.ast.Trees.PHPNull
+616 ===> phantm.ast.Trees.THObject.productElement(x$1: Int): Any
+4841 ===> phantm.symbols.MVPublic.stricterThan(o: phantm.symbols.MemberVisibility): Boolean
+5811 ===> phantm.util.Reporter.clear: Unit
+523 ===> phantm.ast.Trees.PropertyDecl.productElement(x$1: Int): Any
+0 ===> phantm.parser.Lexer.<init>(in: java.io.Reader): phantm.parser.Lexer
+381 ===> phantm.ast.STToAST.assignment_list_element(n: phantm.parser.ParseNode): Option[phantm.ast.Trees.Variable]
+5233 ===> phantm.types.ObjectId.productArity: Int
+4515 ===> phantm.phases.MethodGraphGeneration.<init>(ctx: phantm.phases.PhasesContext): phantm.phases.MethodGraphGeneration
+0 ===> scala.Product6.productArity: Int
+3363 ===> phantm.cfg.Trees.FuncRef.productElement(x$1: Int): Any
+5916 ===> phantm.util.UInt.productElement(x$1: Int): Any
+4718 ===> phantm.phases.CollectSymbols.visitClasses(node: phantm.ast.Trees.Tree,ctx: phantm.phases.SymContext): (phantm.phases.SymContext, Boolean)
+1172 ===> phantm.ast.Trees.Import.src: phantm.ast.Trees.NSIdentifier
+2813 ===> phantm.ast.Trees.MCDir.productArity: Int
+585 ===> phantm.ast.Trees.CFAbstract.productElement(x$1: Int): Any
+2768 ===> phantm.ast.Trees.PHPNull.productArity: Int
+5933 ===> phantm.util.UFloat.productElement(x$1: Int): Any
+0 ===> java.lang.Object.getClass(): Class[_]
+3311 ===> phantm.cfg.Trees.Return.<init>(rhs: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.Return
+884 ===> phantm.ast.Trees.MethodRef.<init>(): phantm.ast.Trees.MethodRef
+4163 ===> phantm.cfg.Trees.BOOLEANNOT.productElement(x$1: Int): Any
+3002 ===> phantm.cfg.LabeledDirectedGraphImp.Group.n: Int
+3127 ===> phantm.cfg.Trees.Error.productArity: Int
+1441 ===> phantm.ast.Trees.For.productElement(x$1: Int): Any
+2111 ===> phantm.ast.Trees.BitwiseOr.rhs: phantm.ast.Trees.Expression
+5259 ===> phantm.types.ObjectStore.productElement(x$1: Int): Any
+3444 ===> phantm.cfg.Trees.TempID.productArity: Int
+5249 ===> phantm.types.ObjectStore.lookup(id: phantm.types.ObjectId): phantm.types.TRealObject
+4537 ===> phantm.phases.NSResolver.nsContext: phantm.ast.Trees.NSIdentifier
+3489 ===> phantm.cfg.Trees.ArrayEntry.<init>(arr: phantm.cfg.Trees.SimpleValue,index: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.ArrayEntry
+6021 ===> phantm.util.Unserializer.recursionLimit_$eq(x$1: Int): Unit
+1562 ===> phantm.ast.Trees.Echo.productElement(x$1: Int): Any
+1075 ===> phantm.ast.Trees.OAArray.indexes: List[Option[phantm.ast.Trees.Expression]]
+4851 ===> phantm.symbols.MethodSymbol.registerPredefVariables: Unit
+855 ===> phantm.ast.Trees.DynamicFunctionRef.productArity: Int
+25 ===> phantm.Settings.includePaths: List[String]
+5276 ===> phantm.types.TObjectRef.id: phantm.types.ObjectId
+5358 ===> phantm.types.TArray.<init>(entries: Map[phantm.types.ArrayKey,phantm.types.Type],globalInt: phantm.types.Type,globalString: phantm.types.Type): phantm.types.TArray
+49 ===> phantm.Settings.copy$default$12: List[String] @scala.annotation.unchecked.uncheckedVariance
+4268 ===> phantm.helpers.ASTGraph.elements(p: Product): scala.collection.immutable.IndexedSeq[Any]
+89 ===> phantm.InlineFull.productArity: Int
+136 ===> phantm.Settings.$lessinit$greater$default$3: Boolean @scala.annotation.unchecked.uncheckedVariance
+5582 ===> phantm.util.API.Reader.<init>(is: java.io.InputStream,ctx: phantm.phases.PhasesContext): phantm.util.API.Reader
+5652 ===> phantm.util.DumpCollector.heap: phantm.util.Unserializer
+2874 ===> phantm.ast.Trees.MCNamespace.productElement(x$1: Int): Any
+4910 ===> phantm.symbols.ClassSymbol.lookupStaticProperty(name: String,from: Option[phantm.symbols.ClassSymbol]): phantm.symbols.LookupResult[phantm.symbols.PropertySymbol]
+163 ===> phantm.annotations.FunctionTypeAnnotation.ftyps_$eq(x$1: scala.collection.immutable.Set[phantm.types.FunctionType]): Unit
+368 ===> phantm.ast.STToAST.case_list(n: phantm.parser.ParseNode): List[(Option[phantm.ast.Trees.Expression], phantm.ast.Trees.Statement)]
+42 ===> phantm.Settings.copy$default$5: Boolean @scala.annotation.unchecked.uncheckedVariance
+1573 ===> phantm.ast.Trees.Html.content: String
+0 ===> java.io.BufferedWriter.<init>(x$1: java.io.Writer): java.io.BufferedWriter
+0 ===> scala.Tuple2._1: T1
+2338 ===> phantm.ast.Trees.Cast.<init>(typ: phantm.ast.Trees.CastType,value: phantm.ast.Trees.Expression): phantm.ast.Trees.Cast
+1687 ===> phantm.ast.Trees.ArrayEntry.<init>(array: phantm.ast.Trees.Expression,index: phantm.ast.Trees.Expression): phantm.ast.Trees.ArrayEntry
+4358 ===> phantm.phases.ASTChecksPhase.run(ctx: phantm.phases.PhasesContext): phantm.phases.PhasesContext
+3139 ===> phantm.cfg.Trees.Assume.relOp: phantm.cfg.Trees.RelationalOperator
+4922 ===> phantm.symbols.ArgumentSymbol.byref: Boolean
+4748 ===> phantm.phases.TypeAnalyzingPhase.run(ctx: phantm.phases.PhasesContext): phantm.phases.PhasesContext
+3044 ===> phantm.cfg.Trees.Statement.<init>(): phantm.cfg.Trees.Statement
+1412 ===> phantm.ast.Trees.DoWhile.<init>(body: phantm.ast.Trees.Statement,cond: phantm.ast.Trees.Expression): phantm.ast.Trees.DoWhile
+488 ===> phantm.ast.Trees.MethodDecl.name: phantm.ast.Trees.Identifier
+1710 ===> phantm.ast.Trees.NextArrayEntry.productElement(x$1: Int): Any
+2894 ===> phantm.cfg.ASTToCFG.Emit.pc: Vertex
+4611 ===> phantm.phases.PhasesContext.copy$default$6: phantm.util.GlobalAnalysisResults @scala.annotation.unchecked.uncheckedVariance
+5967 ===> phantm.util.URealRef.productElement(x$1: Int): Any
+4612 ===> phantm.phases.PhasesContext.copy$default$7: Map[Option[phantm.symbols.FunctionSymbol],phantm.cfg.ControlFlowGraph] @scala.annotation.unchecked.uncheckedVariance
+367 ===> phantm.ast.STToAST.switch_case_list(n: phantm.parser.ParseNode): List[(Option[phantm.ast.Trees.Expression], phantm.ast.Trees.Statement)]
+5034 ===> phantm.types.TypeTransferFunction.errorsFct: (String, phantm.util.Positional) => Unit
+3283 ===> phantm.cfg.Trees.AssumeNotProperty.productArity: Int
+2888 ===> phantm.cfg.ASTToCFG.FreshName.count: Int
+3741 ===> phantm.cfg.Trees.ArrayNext.<init>(ar: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.ArrayNext
+3047 ===> phantm.cfg.Trees.Unset.variable: phantm.cfg.Trees.Variable
+2279 ===> phantm.ast.Trees.SmallerEqual.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.SmallerEqual
+1760 ===> phantm.ast.Trees.ClassProperty.property: phantm.ast.Trees.Variable
+5272 ===> phantm.types.TAnyObject.toText(e: phantm.types.TypeEnvironment): String
+4522 ===> phantm.phases.MethodGraphGeneration.MethodGraph.addNode(sym: phantm.phases.MethodGraphGeneration.MethodGraph.AVertex): phantm.phases.MethodGraphGeneration.MethodGraph.Vertex
+4865 ===> phantm.symbols.LookupResult.<init>(ms: Option[T],visibError: Option[phantm.symbols.MemberVisibility],staticClash: Boolean): phantm.symbols.LookupResult[T]
+4272 ===> phantm.helpers.CheckContext.<init>(): phantm.helpers.CheckContext
+321 ===> phantm.ast.STToAST.constant_declaration(n: phantm.parser.ParseNode): List[phantm.ast.Trees.Statement]
+4811 ===> phantm.symbols.GlobalSymbols.constants: scala.collection.mutable.HashMap[String,phantm.symbols.ConstantSymbol]
+4026 ===> phantm.cfg.Trees.BOOLEANOR.productArity: Int
+851 ===> phantm.ast.Trees.DynamicFunctionRef.<init>(ex: phantm.ast.Trees.Expression): phantm.ast.Trees.DynamicFunctionRef
+198 ===> phantm.annotations.SourceAnnotations.Parser.AnyEntry.productElement(x$1: Int): Any
+5454 ===> phantm.types.TBoolean.productArity: Int
+718 ===> phantm.ast.Trees.NSResolved.productElement(x$1: Int): Any
+5728 ===> phantm.util.JavaListIteratorWrapper.productArity: Int
+1911 ===> phantm.ast.Trees.Mult.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.Mult
+4635 ===> phantm.phases.PhasesContext.apply$default$2: Set[String] @scala.annotation.unchecked.uncheckedVariance
+3623 ===> phantm.cfg.Trees.PHPTrue.productArity: Int
+2996 ===> phantm.cfg.LabeledDirectedGraphImp.groupStack_$eq(x$1: List[LabeledDirectedGraphImp.this.Group]): Unit
+4152 ===> phantm.cfg.Trees.NOTIDENTICAL.productArity: Int
+4053 ===> phantm.cfg.Trees.BITWISEOR.productArity: Int
+2979 ===> phantm.cfg.LabeledDirectedGraphImp.vertices: scala.collection.immutable.Set[phantm.cfg.VertexImp[LabelType]]
+1058 ===> phantm.ast.Trees.OAExpression.<init>(exp: phantm.ast.Trees.Expression): phantm.ast.Trees.OAExpression
+1337 ===> phantm.ast.Trees.Alternatives.<init>(blocks: List[phantm.ast.Trees.Expression]): phantm.ast.Trees.Alternatives
+4403 ===> phantm.phases.ASTPruningPhase.run(ctx: phantm.phases.PhasesContext): phantm.phases.PhasesContext
+343 ===> phantm.ast.STToAST.statement(n: phantm.parser.ParseNode): phantm.ast.Trees.Statement
+657 ===> phantm.ast.Trees.MFPrivate.productArity: Int
+4044 ===> phantm.cfg.Trees.BITWISEAND.productArity: Int
+5747 ===> phantm.util.Positional.line_end: Int
+4924 ===> phantm.symbols.ArgumentSymbol.optional_$eq(x$1: Boolean): Unit
+2168 ===> phantm.ast.Trees.ShiftRight.rhs: phantm.ast.Trees.Expression
+4343 ===> phantm.parser.Parser.clearPreviousComment(pos: phantm.util.Positional): Option[String]
+2914 ===> phantm.cfg.ASTToCFG.stmts(sts: List[phantm.ast.Trees.Statement],cont: Vertex): Unit
+4854 ===> phantm.symbols.PropertySymbol.<init>(cs: phantm.symbols.ClassSymbol,name: String,visibility: phantm.symbols.MemberVisibility): phantm.symbols.PropertySymbol
+3310 ===> phantm.cfg.Trees.Return.rhs: phantm.cfg.Trees.SimpleValue
+4779 ===> phantm.symbols.Symbolic.setSymbol(sym: phantm.symbols.Symbol): Symbolic.this.type
+50 ===> phantm.Settings.copy$default$13: Set[String] @scala.annotation.unchecked.uncheckedVariance
+4409 ===> phantm.phases.ASTCollector.classesDecls: List[phantm.ast.Trees.ClassDecl]
+5816 ===> phantm.util.Reporter.getFileLine(file: String,line: Int): Option[String]
+4090 ===> phantm.cfg.Trees.LT.productElement(x$1: Int): Any
+5764 ===> phantm.util.ENotice.productElement(x$1: Int): Any
+3039 ===> phantm.cfg.Trees.Tree.<init>(): phantm.cfg.Trees.Tree
+394 ===> phantm.ast.STToAST.variable_properties(n: phantm.parser.ParseNode): List[phantm.ast.Trees.ObjectAccess]
+2137 ===> phantm.ast.Trees.BitwiseXor.productElement(x$1: Int): Any
+1156 ===> phantm.ast.Trees.Namespaced.copy(name: phantm.ast.Trees.NSIdentifier,body: List[phantm.ast.Trees.Statement]): phantm.ast.Trees.Namespaced
+3376 ===> phantm.cfg.Trees.ClassRefDynamic.<init>(sv: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.ClassRefDynamic
+215 ===> phantm.annotations.SourceAnnotations.Parser.AnyStringEntry.productElement(x$1: Int): Any
+4725 ===> phantm.phases.CollectSymbols.checkTypeHint(annoType: phantm.types.Type,hintType: phantm.types.Type,pos: phantm.util.Positional): phantm.types.Type
+192 ===> phantm.annotations.SourceAnnotations.Parser.AnyEntry.t: phantm.types.Type
+4510 ===> phantm.phases.IncludesConstantsResolutionPhase.run(ctx: phantm.phases.PhasesContext): phantm.phases.PhasesContext
+1803 ===> phantm.ast.Trees.ExpandArray.productElement(x$1: Int): Any
+349 ===> phantm.ast.STToAST.class_name(n: phantm.parser.ParseNode): phantm.ast.Trees.ClassRef
+1057 ===> phantm.ast.Trees.OAExpression.exp: phantm.ast.Trees.Expression
+4480 ===> phantm.phases.CallGraphGeneration.CallGraph.addEdge(from: phantm.phases.CallGraphGeneration.CallGraph.AVertex,to: phantm.phases.CallGraphGeneration.CallGraph.AVertex): Unit
+2913 ===> phantm.cfg.ASTToCFG.assignListItem(vars: List[Option[phantm.ast.Trees.Variable]],from: phantm.cfg.Trees.SimpleValue): Unit
+991 ===> phantm.ast.Trees.InitVariable.productElement(x$1: Int): Any
+1370 ===> phantm.ast.Trees.If.cond: phantm.ast.Trees.Expression
+3540 ===> phantm.cfg.Trees.VariableClassProperty.index: phantm.cfg.Trees.SimpleValue
+4322 ===> phantm.helpers.Main.input: Option[String]
+2533 ===> phantm.ast.Trees.Require.path: phantm.ast.Trees.Expression
+3375 ===> phantm.cfg.Trees.ClassRefDynamic.sv: phantm.cfg.Trees.SimpleValue
+2148 ===> phantm.ast.Trees.ShiftLeft.lhs: phantm.ast.Trees.Expression
+3794 ===> phantm.cfg.Trees.ArrayCurIsValid.productElement(x$1: Int): Any
+2187 ===> phantm.ast.Trees.BooleanNot.<init>(rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.BooleanNot
+5821 ===> phantm.util.Reporter.get: phantm.util.Reporter
+4650 ===> phantm.phases.PureStatementsPhase.run(ctx: phantm.phases.PhasesContext): phantm.phases.PhasesContext
+2228 ===> phantm.ast.Trees.Equal.productElement(x$1: Int): Any
+4334 ===> phantm.helpers.Tokenizer.generate(input: String,printStream: java.io.PrintStream,ctx: phantm.phases.PhasesContext): Unit
+2736 ===> phantm.ast.Trees.PHPFloat.productArity: Int
+2648 ===> phantm.ast.Trees.StaticMethodCall.name: phantm.ast.Trees.MethodRef
+729 ===> phantm.ast.Trees.Identifier.productArity: Int
+839 ===> phantm.ast.Trees.VarFunctionRef.productElement(x$1: Int): Any
+1841 ===> phantm.ast.Trees.Clone.productElement(x$1: Int): Any
+5752 ===> phantm.util.Positional.file_$eq(x$1: Option[String]): Unit
+2265 ===> phantm.ast.Trees.Smaller.productArity: Int
+5898 ===> phantm.util.UString.productArity: Int
+2672 ===> phantm.ast.Trees.VoidExpr.productElement(x$1: Int): Any
+2516 ===> phantm.ast.Trees.Include.<init>(path: phantm.ast.Trees.Expression,once: Boolean): phantm.ast.Trees.Include
+4344 ===> phantm.parser.Parser.getPreviousComment(pos: phantm.util.Positional): Option[String]
+873 ===> phantm.ast.Trees.StaticFunctionRef.productElement(x$1: Int): Any
+1391 ===> phantm.ast.Trees.While.cond: phantm.ast.Trees.Expression
+5124 ===> phantm.types.Type.union(t: phantm.types.Type): phantm.types.Type
+4550 ===> phantm.phases.ParsingPhase.run(ctx: phantm.phases.PhasesContext): phantm.phases.PhasesContext
+4923 ===> phantm.symbols.ArgumentSymbol.optional: Boolean
+5750 ===> phantm.util.Positional.col_end_$eq(x$1: Int): Unit
+4535 ===> phantm.phases.NSResolver.importRules: scala.collection.immutable.Map[String,List[String]]
+4898 ===> phantm.symbols.ClassSymbol.methods: scala.collection.mutable.HashMap[String,phantm.symbols.MethodSymbol]
+1784 ===> phantm.ast.Trees.ListVar.productElement(x$1: Int): Any
+14 ===> phantm.Settings.verbosity: Int
+5493 ===> phantm.types.TStringLit.toText(e: phantm.types.TypeEnvironment): String
+1574 ===> phantm.ast.Trees.Html.<init>(content: String): phantm.ast.Trees.Html
+1623 ===> phantm.ast.Trees.Foreach.productElement(x$1: Int): Any
+1199 ===> phantm.ast.Trees.ClassDecl.<init>(name: phantm.ast.Trees.NSIdentifier,flags: phantm.ast.Trees.ClassFlag,parent: Option[phantm.ast.Trees.StaticClassRef],interfaces: List[phantm.ast.Trees.StaticClassRef],methods: List[phantm.ast.Trees.MethodDecl],static_props: List[phantm.ast.Trees.PropertyDecl],props: List[phantm.ast.Trees.PropertyDecl],consts: List[phantm.ast.Trees.ClassConstantDecl]): phantm.ast.Trees.ClassDecl
+5396 ===> phantm.types.TInt.toText(e: phantm.types.TypeEnvironment): String
+5028 ===> phantm.types.TypeTransferFunction.silent: Boolean
+2497 ===> phantm.ast.Trees.Empty.v: phantm.ast.Trees.Variable
+15 ===> phantm.Settings.format: String
+743 ===> phantm.ast.Trees.NSIdentifier.<init>(root: phantm.ast.Trees.NSRoot,parts: List[String]): phantm.ast.Trees.NSIdentifier
+2468 ===> phantm.ast.Trees.Closure.productArity: Int
+4538 ===> phantm.phases.NSResolver.nsContext_$eq(x$1: phantm.ast.Trees.NSIdentifier): Unit
+3339 ===> phantm.cfg.Trees.Identifier.<init>(symbol: phantm.symbols.VariableSymbol): phantm.cfg.Trees.Identifier
+1544 ===> phantm.ast.Trees.Static.productArity: Int
+3399 ===> phantm.cfg.Trees.ClassRefFixed.productElement(x$1: Int): Any
+1372 ===> phantm.ast.Trees.If.elze: Option[phantm.ast.Trees.Statement]
+3804 ===> phantm.cfg.Trees.Constant.cs: phantm.symbols.ConstantSymbol
+1452 ===> phantm.ast.Trees.Switch.expr: phantm.ast.Trees.Expression
+348 ===> phantm.ast.STToAST.static_class_constant(n: phantm.parser.ParseNode): phantm.ast.Trees.Expression
+1668 ===> phantm.ast.Trees.VariableVariable.name: phantm.ast.Trees.Expression
+1595 ===> phantm.ast.Trees.Unset.productArity: Int
+306 ===> phantm.ast.ASTSimpleTraversal.traverse(visit: phantm.ast.Trees.Tree => Boolean): Unit
+413 ===> phantm.ast.STToAST.nsidentifier(n: phantm.parser.ParseNode): phantm.ast.Trees.NSIdentifier
+2072 ===> phantm.ast.Trees.BooleanXor.lhs: phantm.ast.Trees.Expression
+5252 ===> phantm.types.ObjectStore.initIfNotExist(id: phantm.types.ObjectId,ocs: Option[phantm.symbols.ClassSymbol]): phantm.types.ObjectStore
+2615 ===> phantm.ast.Trees.FunctionCall.productElement(x$1: Int): Any
+4750 ===> phantm.phases.TypeAnalyzingPhase.displaySummary(fs: phantm.symbols.FunctionSymbol,noticesCount: Int,name: String): Unit
+5411 ===> phantm.types.TIntLit.productArity: Int
+8 ===> phantm.Main.files: List[String]
+4559 ===> phantm.phases.PhaseException.<init>(ph: phantm.phases.Phase,error: String): phantm.phases.PhaseException
+5253 ===> phantm.types.ObjectStore.newObject(id: phantm.types.ObjectId,ocs: Option[phantm.symbols.ClassSymbol]): phantm.types.TRealObject
+490 ===> phantm.ast.Trees.MethodDecl.args: List[phantm.ast.Trees.ArgumentDecl]
+1510 ===> phantm.ast.Trees.Return.productArity: Int
+968 ===> phantm.ast.Trees.CastObject.productElement(x$1: Int): Any
+1488 ===> phantm.ast.Trees.Continue.level: phantm.ast.Trees.Expression
+3455 ===> phantm.cfg.Trees.ClassProperty.symbol: phantm.symbols.PropertySymbol
+4359 ===> phantm.phases.CheckContext.topLevel: Boolean
+1291 ===> phantm.ast.Trees.Throw.productElement(x$1: Int): Any
+0 ===> scala.Product4.productArity: Int
+36 ===> phantm.Settings.<init>(verbosity: Int,format: String,resolveIncludes: Boolean,importAPI: Boolean,testsActive: Boolean,summaryOnly: Boolean,displayFixPoint: Boolean,displayIncludes: Boolean,displayProgress: Boolean,onlyLint: Boolean,typeFlowFilter: List[String],includePaths: List[String],dumpAfter: Set[String],printAfter: Set[String],apis: List[String],dumps: List[String],exportAPIPath: Option[String],exportCGPath: Option[String],exportMGPath: Option[String],inlineMode: phantm.InlineMode,compactErrors: Boolean,anyInput: Boolean): phantm.Settings
+4906 ===> phantm.symbols.ClassSymbol.registerStaticProperty(ps: phantm.symbols.PropertySymbol): Unit
+2458 ===> phantm.ast.Trees.Closure.imports: List[phantm.ast.Trees.ArgumentDecl]
+1022 ===> phantm.ast.Trees.CallArg.copy(value: phantm.ast.Trees.Expression,forceref: Boolean): phantm.ast.Trees.CallArg
+0 ===> scala.Product22.productArity: Int
+1019 ===> phantm.ast.Trees.CallArg.value: phantm.ast.Trees.Expression
+2683 ===> phantm.ast.Trees.Scalar.<init>(): phantm.ast.Trees.Scalar
+3588 ===> phantm.cfg.Trees.PHPFloat.value: Float
+3346 ===> phantm.cfg.Trees.Identifier.productArity: Int
+3048 ===> phantm.cfg.Trees.Unset.<init>(variable: phantm.cfg.Trees.Variable): phantm.cfg.Trees.Unset
+3198 ===> phantm.cfg.Trees.IsFloat.productElement(x$1: Int): Any
+388 ===> phantm.ast.STToAST.function_call_parameter_list(n: phantm.parser.ParseNode): List[phantm.ast.Trees.CallArg]
+5440 ===> phantm.types.TFloatLit.productElement(x$1: Int): Any
+0 ===> scala.Product8.productArity: Int
+0 ===> java.io.File.exists(): Boolean
+908 ===> phantm.ast.Trees.StaticMethodRef.productElement(x$1: Int): Any
+0 ===> java.io.PrintStream.<init>(x$1: java.io.OutputStream): java.io.PrintStream
+244 ===> phantm.annotations.SourceAnnotations.Parser.Entry.t: phantm.types.Type
+4340 ===> phantm.parser.Parser.<init>(filename: String): phantm.parser.Parser
+5032 ===> phantm.types.TypeTransferFunction.inlined: Boolean
+4890 ===> phantm.symbols.IfaceSymbol.lookupMethod(name: String): Option[phantm.symbols.IfaceMethodSymbol]
+833 ===> phantm.ast.Trees.VarFunctionRef.v: phantm.ast.Trees.Variable
+172 ===> phantm.annotations.CommentAnnotation.comment: Option[String]
+5626 ===> phantm.util.ConstantsResolver.productArity: Int
+3189 ===> phantm.cfg.Trees.IsInt.productElement(x$1: Int): Any
+1273 ===> phantm.ast.Trees.Catch.productArity: Int
+2079 ===> phantm.ast.Trees.BooleanXor.productArity: Int
+4717 ===> phantm.phases.CollectSymbols.ifaceList_$eq(x$1: List[(phantm.symbols.IfaceSymbol, phantm.ast.Trees.InterfaceDecl)]): Unit
+44 ===> phantm.Settings.copy$default$7: Boolean @scala.annotation.unchecked.uncheckedVariance
+295 ===> phantm.ast.ASTTransform.trCallArg(ca: phantm.ast.Trees.CallArg): phantm.ast.Trees.CallArg
+4036 ===> phantm.cfg.Trees.BOOLEANXOR.productElement(x$1: Int): Any
+4966 ===> phantm.types.TypeFlowAnalyzer.analyze: Map[TypeFlowAnalyzer.this.Vertex,phantm.types.TypeEnvironment]
+4936 ===> phantm.types.TypeEnvironment.<init>(): phantm.types.TypeEnvironment
+407 ===> phantm.ast.STToAST.variable_without_objects(n: phantm.parser.ParseNode): phantm.ast.Trees.Variable
+3746 ===> phantm.cfg.Trees.ArrayNext.productElement(x$1: Int): Any
+2647 ===> phantm.ast.Trees.StaticMethodCall.cl: phantm.ast.Trees.ClassRef
+5574 ===> phantm.types.TUnion.types: Set[phantm.types.Type]
+685 ===> phantm.ast.Trees.NSNone.value: String
+4467 ===> phantm.phases.CallGraphGeneration.context: phantm.phases.CGContext
+4125 ===> phantm.cfg.Trees.EQUALS.productArity: Int
+4719 ===> phantm.phases.CollectSymbols.firstIfacePass: Unit
+4405 ===> phantm.phases.ASTCollector.afterDump: Boolean
+2446 ===> phantm.ast.Trees.Eval.productElement(x$1: Int): Any
+3053 ===> phantm.cfg.Trees.Unset.productElement(x$1: Int): Any
+374 ===> phantm.ast.STToAST.else_single(n: phantm.parser.ParseNode): Option[phantm.ast.Trees.Statement]
+4849 ===> phantm.symbols.MethodSymbol.visibility: phantm.symbols.MemberVisibility
+2626 ===> phantm.ast.Trees.MethodCall.obj: phantm.ast.Trees.Expression
+5279 ===> phantm.types.TObjectRef.realObject(e: phantm.types.TypeEnvironment): phantm.types.TRealObject
+0 ===> java.io.File.getAbsolutePath(): String
+1686 ===> phantm.ast.Trees.ArrayEntry.index: phantm.ast.Trees.Expression
+2460 ===> phantm.ast.Trees.Closure.body: phantm.ast.Trees.Statement
+4782 ===> phantm.symbols.Symbol.<init>(): phantm.symbols.Symbol
+5573 ===> phantm.types.TUnion.addToSet(typs: Set[phantm.types.Type],typ: phantm.types.Type): Set[phantm.types.Type]
+2156 ===> phantm.ast.Trees.ShiftLeft.productElement(x$1: Int): Any
+1114 ===> phantm.ast.Trees.FunctionDecl.args: List[phantm.ast.Trees.ArgumentDecl]
+5756 ===> phantm.util.Positional.setPos(p: phantm.parser.ParseNode): Positional.this.type
+2918 ===> phantm.cfg.ControlFlowGraph.entry: ControlFlowGraph.this.Vertex
+5823 ===> phantm.util.Reporter.error(msg: String): Boolean
+2748 ===> phantm.ast.Trees.PHPString.value: String
+584 ===> phantm.ast.Trees.CFAbstract.productArity: Int
+708 ===> phantm.ast.Trees.NSCurrent.productElement(x$1: Int): Any
+323 ===> phantm.ast.STToAST.use_declaration(n: phantm.parser.ParseNode): phantm.ast.Trees.Statement
+313 ===> phantm.ast.ASTTraversal.traverse0: Unit
+2688 ===> phantm.ast.Trees.PHPTrue.productElement(x$1: Int): Any
+359 ===> phantm.ast.STToAST.inner_statement(n: phantm.parser.ParseNode): phantm.ast.Trees.Statement
+5882 ===> phantm.util.UObject.productElement(x$1: Int): Any
+3471 ===> phantm.cfg.Trees.VariableVar.v: phantm.cfg.Trees.SimpleValue
+949 ===> phantm.ast.Trees.CastArray.productArity: Int
+4786 ===> phantm.symbols.Symbol.userland: Boolean
+0 ===> java.io.BufferedWriter.close(): Unit
+6027 ===> phantm.util.Unserializer.toTypeMap: scala.collection.immutable.Map[String,phantm.types.Type]
+4902 ===> phantm.symbols.ClassSymbol.registerMethod(ms: phantm.symbols.MethodSymbol): Unit
+4899 ===> phantm.symbols.ClassSymbol.properties: scala.collection.mutable.HashMap[String,phantm.symbols.PropertySymbol]
+383 ===> phantm.ast.STToAST.class_name_reference(n: phantm.parser.ParseNode): phantm.ast.Trees.ClassRef
+5799 ===> phantm.util.Reporter.files: scala.collection.immutable.Map[String,List[String]]
+428 ===> phantm.ast.STToAST.notyet(n: phantm.parser.ParseNode): Nothing
+4533 ===> phantm.phases.NSWrapper.trStmt(st: phantm.ast.Trees.Statement): phantm.ast.Trees.Statement
+5011 ===> phantm.types.TypeLattice.joinTypes(x: phantm.types.Type,y: phantm.types.Type): phantm.types.Type
+5540 ===> phantm.types.TTop.toText(e: phantm.types.TypeEnvironment): String
+1878 ===> phantm.ast.Trees.Minus.productArity: Int
+4162 ===> phantm.cfg.Trees.BOOLEANNOT.productArity: Int
+555 ===> phantm.ast.Trees.ConstantDecl.<init>(v: phantm.ast.Trees.NSIdentifier,value: phantm.ast.Trees.Expression): phantm.ast.Trees.ConstantDecl
+4765 ===> phantm.phases.TypeFlowAnalysis.productElement(x$1: Int): Any
+513 ===> phantm.ast.Trees.PropertyDecl.v: phantm.ast.Trees.Identifier
+5092 ===> phantm.types.TypeTransferFunction.productArity: Int
+5784 ===> phantm.util.Reporter.Error.productArity: Int
+0 ===> java.io.BufferedReader.<init>(x$1: java.io.Reader): java.io.BufferedReader
+3876 ===> phantm.cfg.Trees.StaticMethodCall.cl: phantm.cfg.Trees.ClassRef
+286 ===> phantm.ast.ASTTransform.trIdentifier(id: phantm.ast.Trees.Identifier): phantm.ast.Trees.Identifier
+2991 ===> phantm.cfg.LabeledDirectedGraphImp.$minus$eq(from: LabeledDirectedGraphImp.this.Vertex,lab: LabelType,to: LabeledDirectedGraphImp.this.Vertex): Unit
+3772 ===> phantm.cfg.Trees.ArrayCurKey.ar: phantm.cfg.Trees.SimpleValue
+4466 ===> phantm.phases.CallGraphGeneration.node: phantm.ast.Trees.Tree
+3414 ===> phantm.cfg.Trees.ClassRefCalledClass.productElement(x$1: Int): Any
+34 ===> phantm.Settings.compactErrors: Boolean
+5292 ===> phantm.types.TRealObject.<init>(fields: Map[String,phantm.types.Type],globalType: phantm.types.Type,singleton: Boolean,ct: phantm.types.ClassType): phantm.types.TRealObject
+1234 ===> phantm.ast.Trees.InterfaceDecl.productElement(x$1: Int): Any
+1539 ===> phantm.ast.Trees.Static.vars: List[phantm.ast.Trees.InitVariable]
+403 ===> phantm.ast.STToAST.variable_name(n: phantm.parser.ParseNode): phantm.ast.Trees.OAScalar
+4261 ===> phantm.helpers.ASTGraph.<init>(): phantm.helpers.ASTGraph
+3315 ===> phantm.cfg.Trees.Return.productArity: Int
+1545 ===> phantm.ast.Trees.Static.productElement(x$1: Int): Any
+4706 ===> phantm.phases.CollectSymbols.classCycleDetectionSet: scala.collection.mutable.HashSet[phantm.ast.Trees.ClassDecl]
+4809 ===> phantm.symbols.GlobalSymbols.functions: scala.collection.mutable.HashMap[String,phantm.symbols.FunctionSymbol]
+4575 ===> phantm.phases.PhaseSeq.list: Seq[phantm.phases.Phase]
+392 ===> phantm.ast.STToAST.variable(n: phantm.parser.ParseNode): phantm.ast.Trees.Expression
+4752 ===> phantm.phases.TypeFlowAnalysis.node: phantm.ast.Trees.Tree
+265 ===> phantm.annotations.SourceAnnotations.Parser.variable: phantm.annotations.SourceAnnotations.Parser.Parser[String]
+2036 ===> phantm.ast.Trees.BooleanAnd.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.BooleanAnd
+3409 ===> phantm.cfg.Trees.ClassRefCalledClass.<init>(): phantm.cfg.Trees.ClassRefCalledClass
+4872 ===> phantm.symbols.LookupResult.productArity: Int
+4960 ===> phantm.types.TypeFlowAnalyzer.thisObj: Option[phantm.types.TObjectRef]
+0 ===> scala.Product5.productArity: Int
+5562 ===> phantm.types.TUninitialized.productArity: Int
+1840 ===> phantm.ast.Trees.Clone.productArity: Int
+4341 ===> phantm.parser.Parser.comments: List[(phantm.util.Positional, String)]
+3082 ===> phantm.cfg.Trees.AssignUnary.unOp: phantm.cfg.Trees.UnaryOperator
+5828 ===> phantm.util.Reporter.notice$default$3: Set[phantm.util.ErrorTag] @scala.annotation.unchecked.uncheckedVariance
+2900 ===> phantm.cfg.ASTToCFG.Emit.statementCont(stat: phantm.cfg.Trees.Statement,cont: Vertex): Unit
+5135 ===> phantm.types.TAnyClass.productArity: Int
+3180 ===> phantm.cfg.Trees.IsNull.productElement(x$1: Int): Any
+417 ===> phantm.ast.STToAST.encaps_var_offset(n: phantm.parser.ParseNode): phantm.ast.Trees.Expression
+2980 ===> phantm.cfg.LabeledDirectedGraphImp.vertices_$eq(x$1: scala.collection.immutable.Set[phantm.cfg.VertexImp[LabelType]]): Unit
+1021 ===> phantm.ast.Trees.CallArg.<init>(value: phantm.ast.Trees.Expression,forceref: Boolean): phantm.ast.Trees.CallArg
+903 ===> phantm.ast.Trees.StaticMethodRef.<init>(id: phantm.ast.Trees.Identifier): phantm.ast.Trees.StaticMethodRef
+5754 ===> phantm.util.Positional.getPos: String
+99 ===> phantm.InlineManual.productElement(x$1: Int): Any
+477 ===> phantm.ast.Trees.ArgumentDecl.productElement(x$1: Int): Any
+5136 ===> phantm.types.TAnyClass.productElement(x$1: Int): Any
+1783 ===> phantm.ast.Trees.ListVar.productArity: Int
+697 ===> phantm.ast.Trees.NSGlobal.productArity: Int
+3265 ===> phantm.cfg.Trees.AssumeProperty.productArity: Int
+5290 ===> phantm.types.TRealObject.singleton: Boolean
+243 ===> phantm.annotations.SourceAnnotations.Parser.Entry.s: String
+4602 ===> phantm.phases.PhasesContext.cfgs: Map[Option[phantm.symbols.FunctionSymbol],phantm.cfg.ControlFlowGraph]
+3704 ===> phantm.cfg.Trees.SubTypeOf.lhs: phantm.cfg.Trees.SimpleValue
+2892 ===> phantm.cfg.ASTToCFG.FreshVariable.apply(prefix: String): phantm.cfg.Trees.TempID
+1527 ===> phantm.ast.Trees.Global.productArity: Int
+5679 ===> phantm.util.GlobalAnalysisResults.globalCalls: Map[phantm.symbols.FunctionSymbol,Map[String,phantm.types.TypeEnvironment]]
+885 ===> phantm.ast.Trees.DynamicMethodRef.ex: phantm.ast.Trees.Expression
+931 ===> phantm.ast.Trees.CastString.productArity: Int
+1929 ===> phantm.ast.Trees.Concat.rhs: phantm.ast.Trees.Expression
+4189 ===> phantm.cfg.Trees.POSTINC.productArity: Int
+467 ===> phantm.ast.Trees.ArgumentDecl.default: Option[phantm.ast.Trees.Expression]
+705 ===> phantm.ast.Trees.NSCurrent.value: String
+783 ===> phantm.ast.Trees.DynamicClassRef.ex: phantm.ast.Trees.Expression
+5361 ===> phantm.types.TArray.<init>(global: phantm.types.Type): phantm.types.TArray
+2117 ===> phantm.ast.Trees.BitwiseOr.productArity: Int
+372 ===> phantm.ast.STToAST.while_statement(n: phantm.parser.ParseNode): phantm.ast.Trees.Statement
+4332 ===> phantm.helpers.STGraph.dotPrint(node: phantm.parser.ParseNode,id: Int): Unit
+688 ===> phantm.ast.Trees.NSNone.productElement(x$1: Int): Any
+378 ===> phantm.ast.STToAST.lexical_vars(n: phantm.parser.ParseNode): List[phantm.ast.Trees.ArgumentDecl]
+177 ===> phantm.annotations.AnnotationsStore.functions: scala.collection.immutable.Map[String,(List[phantm.types.TFunction], List[phantm.types.Type])]
+5794 ===> phantm.util.Reporter.tickCount: Int
+3034 ===> phantm.cfg.LabeledDirectedGraphImp.emit(s: String): StringBuffer
+658 ===> phantm.ast.Trees.MFPrivate.productElement(x$1: Int): Any
+4271 ===> phantm.helpers.CFGGraph.generate(input: String,printStream: java.io.PrintStream,ctx: phantm.phases.PhasesContext): Unit
+1460 ===> phantm.ast.Trees.Switch.productElement(x$1: Int): Any
+535 ===> phantm.ast.Trees.ClassConstantDecl.value: phantm.ast.Trees.Expression
+0 ===> java.lang.Throwable.printStackTrace(): Unit
+5520 ===> phantm.types.TResource.toText(e: phantm.types.TypeEnvironment): String
+333 ===> phantm.ast.STToAST.class_constant_declaration(n: phantm.parser.ParseNode): List[phantm.ast.Trees.ClassConstantDecl]
+377 ===> phantm.ast.STToAST.expr(n: phantm.parser.ParseNode): phantm.ast.Trees.Expression
+1596 ===> phantm.ast.Trees.Unset.productElement(x$1: Int): Any
+1935 ===> phantm.ast.Trees.Concat.productArity: Int
+5012 ===> phantm.types.TypeLattice.joinObjects(envInit: phantm.types.TypeEnvironment,a1: phantm.types.TRealObject,a2: phantm.types.TRealObject): (phantm.types.TypeEnvironment, phantm.types.TRealObject)
+4576 ===> phantm.phases.PhaseSeq.<init>(list: Seq[phantm.phases.Phase]): phantm.phases.PhaseSeq
+3528 ===> phantm.cfg.Trees.ObjectProperty.productArity: Int
+325 ===> phantm.ast.STToAST.class_statement_list(n: phantm.parser.ParseNode): (List[phantm.ast.Trees.MethodDecl], List[phantm.ast.Trees.PropertyDecl], List[phantm.ast.Trees.PropertyDecl], List[phantm.ast.Trees.ClassConstantDecl])
+5291 ===> phantm.types.TRealObject.ct: phantm.types.ClassType
+1225 ===> phantm.ast.Trees.InterfaceDecl.consts: List[phantm.ast.Trees.ClassConstantDecl]
+2577 ===> phantm.ast.Trees.ClassConstant.productElement(x$1: Int): Any
+3694 ===> phantm.cfg.Trees.PHPEmptyArray.productElement(x$1: Int): Any
+314 ===> phantm.ast.STToAST.parser: phantm.parser.Parser
+1007 ===> phantm.ast.Trees.Label.productArity: Int
+4529 ===> phantm.phases.NamespaceResolverPhase.run(ctx: phantm.phases.PhasesContext): phantm.phases.PhasesContext
+3578 ===> phantm.cfg.Trees.PHPLong.productElement(x$1: Int): Any
+2990 ===> phantm.cfg.LabeledDirectedGraphImp.betweenEdges(from: LabeledDirectedGraphImp.this.Vertex,to: LabeledDirectedGraphImp.this.Vertex): scala.collection.immutable.Set[phantm.cfg.EdgeImp[LabelType]]
+4991 ===> phantm.types.TypeFlowAnalyzer.$lessinit$greater$default$7: Option[phantm.types.TObjectRef] @scala.annotation.unchecked.uncheckedVariance
+5163 ===> phantm.types.TFunction.args: List[(phantm.types.Type, Boolean, Boolean)]
+4834 ===> phantm.symbols.FunctionSymbol.lookupVariable(n: String): Option[phantm.symbols.VariableSymbol]
+5172 ===> phantm.types.TFunction.productElement(x$1: Int): Any
+4943 ===> phantm.types.TypeEnvironment.setStore(st: phantm.types.ObjectStore): phantm.types.TypeEnvironment
+3841 ===> phantm.cfg.Trees.Ternary.<init>(cond: phantm.cfg.Trees.SimpleValue,then: phantm.cfg.Trees.SimpleValue,elze: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.Ternary
+0 ===> scala.Tuple4.<init>(_1: T1,_2: T2,_3: T3,_4: T4): (T1, T2, T3, T4)
+3723 ===> phantm.cfg.Trees.Cast.e: phantm.cfg.Trees.SimpleValue
+4389 ===> phantm.phases.ASTIntegrityChecks.productElement(x$1: Int): Any
+1853 ===> phantm.ast.Trees.Plus.rhs: phantm.ast.Trees.Expression
+631 ===> phantm.ast.Trees.MFAbstract.productElement(x$1: Int): Any
+4682 ===> phantm.phases.SymContext.varScope: phantm.symbols.Scope
+1358 ===> phantm.ast.Trees.Block.productArity: Int
+1692 ===> phantm.ast.Trees.ArrayEntry.productArity: Int
+4802 ===> phantm.symbols.Scope.registerVariable(cs: phantm.symbols.VariableSymbol): Unit
+397 ===> phantm.ast.STToAST.function_call(n: phantm.parser.ParseNode): phantm.ast.Trees.Expression
+316 ===> phantm.ast.STToAST.<init>(parser: phantm.parser.Parser,st: phantm.parser.ParseNode): phantm.ast.STToAST
+5709 ===> phantm.util.IncludeResolver.notfound(p: String): phantm.ast.Trees.Expression
+940 ===> phantm.ast.Trees.CastDouble.productArity: Int
+2129 ===> phantm.ast.Trees.BitwiseXor.lhs: phantm.ast.Trees.Expression
+5356 ===> phantm.types.TArray.globalInt: phantm.types.Type
+290 ===> phantm.ast.ASTTransform.trArgDecl(ad: phantm.ast.Trees.ArgumentDecl): phantm.ast.Trees.ArgumentDecl
+1747 ===> phantm.ast.Trees.DynamicObjectProperty.productArity: Int
+1802 ===> phantm.ast.Trees.ExpandArray.productArity: Int
+3706 ===> phantm.cfg.Trees.SubTypeOf.<init>(lhs: phantm.cfg.Trees.SimpleValue,cl: phantm.cfg.Trees.ClassRef): phantm.cfg.Trees.SubTypeOf
+2428 ===> phantm.ast.Trees.Print.productArity: Int
+4483 ===> phantm.phases.CallGraphGeneration.visit(node: phantm.ast.Trees.Tree,ctx: phantm.phases.CGContext): (phantm.phases.CGContext, Boolean)
+5543 ===> phantm.types.TTop.productElement(x$1: Int): Any
+4961 ===> phantm.types.TypeFlowAnalyzer.<init>(cfg: phantm.cfg.ControlFlowGraph,scope: phantm.symbols.Scope,ctx: phantm.phases.PhasesContext,inlined: Boolean,collectGlobals: Boolean,baseEnvInit: phantm.types.TypeEnvironment,thisObj: Option[phantm.types.TObjectRef]): phantm.types.TypeFlowAnalyzer
+4977 ===> phantm.types.TypeFlowAnalyzer.productArity: Int
+4408 ===> phantm.phases.ASTCollector.functionsDecls_$eq(x$1: List[phantm.ast.Trees.FunctionDecl]): Unit
+3035 ===> phantm.cfg.LabeledDirectedGraphImp.arrow(x: String,y: String): StringBuffer
+3939 ===> phantm.cfg.Trees.Clone.productArity: Int
+2247 ===> phantm.ast.Trees.Identical.productElement(x$1: Int): Any
+420 ===> phantm.ast.STToAST.array_pair_list(n: phantm.parser.ParseNode): List[(Option[phantm.ast.Trees.Expression], phantm.ast.Trees.Expression, Boolean)]
+4955 ===> phantm.types.TypeFlowAnalyzer.scope: phantm.symbols.Scope
+2186 ===> phantm.ast.Trees.BooleanNot.rhs: phantm.ast.Trees.Expression
+6 ===> phantm.Main.displayVersion: Boolean
+3711 ===> phantm.cfg.Trees.SubTypeOf.productArity: Int
+3712 ===> phantm.cfg.Trees.SubTypeOf.productElement(x$1: Int): Any
+5118 ===> phantm.types.RecProtection.objectToStringDepth_$eq(x$1: Int): Unit
+5485 ===> phantm.types.TString.productElement(x$1: Int): Any
+4684 ===> phantm.phases.SymContext.iface: Option[phantm.symbols.IfaceSymbol]
+5999 ===> phantm.util.UTrue.productElement(x$1: Int): Any
+142 ===> phantm.Settings.$lessinit$greater$default$9: Boolean @scala.annotation.unchecked.uncheckedVariance
+152 ===> phantm.Settings.$lessinit$greater$default$19: Option[String] @scala.annotation.unchecked.uncheckedVariance
+4703 ===> phantm.phases.CollectSymbols.node: phantm.ast.Trees.Tree
+4989 ===> phantm.types.TypeFlowAnalyzer.$lessinit$greater$default$5: Boolean @scala.annotation.unchecked.uncheckedVariance
+4536 ===> phantm.phases.NSResolver.importRules_$eq(x$1: scala.collection.immutable.Map[String,List[String]]): Unit
+0 ===> phantm.parser.Lexer.setFileName(fileName: String): Unit
+5435 ===> phantm.types.TFloatLit.toText(e: phantm.types.TypeEnvironment): String
+227 ===> phantm.annotations.SourceAnnotations.Parser.AnyIntEntry.<init>(t: phantm.types.Type): phantm.annotations.SourceAnnotations.Parser.AnyIntEntry
+5575 ===> phantm.types.TUnion.<init>(types: Set[phantm.types.Type]): phantm.types.TUnion
+145 ===> phantm.Settings.$lessinit$greater$default$12: List[String] @scala.annotation.unchecked.uncheckedVariance
+3839 ===> phantm.cfg.Trees.Ternary.then: phantm.cfg.Trees.SimpleValue
+1431 ===> phantm.ast.Trees.For.step: phantm.ast.Trees.Statement
+361 ===> phantm.ast.STToAST.foreach_statement(n: phantm.parser.ParseNode): phantm.ast.Trees.Statement
+1432 ===> phantm.ast.Trees.For.then: phantm.ast.Trees.Statement
+3070 ===> phantm.cfg.Trees.Assign.productArity: Int
+3561 ===> phantm.cfg.Trees.NoVar.productElement(x$1: Int): Any
+967 ===> phantm.ast.Trees.CastObject.productArity: Int
+3680 ===> phantm.cfg.Trees.PHPThis.productElement(x$1: Int): Any
+3981 ===> phantm.cfg.Trees.DIV.productArity: Int
+4947 ===> phantm.types.TypeEnvironment.union(e: phantm.types.TypeEnvironment): phantm.types.TypeEnvironment
+5915 ===> phantm.util.UInt.productArity: Int
+5758 ===> phantm.util.Positional.setPos(p: phantm.util.Positional): Positional.this.type
+4911 ===> phantm.symbols.ClassSymbol.subclassOf(target: phantm.symbols.ClassSymbol): Boolean
+1359 ===> phantm.ast.Trees.Block.productElement(x$1: Int): Any
+1972 ===> phantm.ast.Trees.PreInc.productElement(x$1: Int): Any
+5464 ===> phantm.types.TTrue.productArity: Int
+5703 ===> phantm.util.IncludeResolver.<init>(ast: phantm.ast.Trees.Program,ctx: phantm.phases.PhasesContext): phantm.util.IncludeResolver
+575 ===> phantm.ast.Trees.CFNormal.productArity: Int
+3991 ===> phantm.cfg.Trees.CONCAT.productElement(x$1: Int): Any
+4780 ===> phantm.symbols.Symbolic.hasSymbol: Boolean
+806 ===> phantm.ast.Trees.StaticClassRef.productElement(x$1: Int): Any
+4633 ===> phantm.phases.PhasesContext.$lessinit$greater$default$8: phantm.symbols.GlobalSymbols @scala.annotation.unchecked.uncheckedVariance
+4530 ===> phantm.phases.NSWrapper.<init>(ast: phantm.ast.Trees.Program): phantm.phases.NSWrapper
+1540 ===> phantm.ast.Trees.Static.<init>(vars: List[phantm.ast.Trees.InitVariable]): phantm.ast.Trees.Static
+5498 ===> phantm.types.TStringLit.productElement(x$1: Int): Any
+4632 ===> phantm.phases.PhasesContext.$lessinit$greater$default$7: Map[Option[phantm.symbols.FunctionSymbol],phantm.cfg.ControlFlowGraph] @scala.annotation.unchecked.uncheckedVariance
+922 ===> phantm.ast.Trees.CastInt.productArity: Int
+4613 ===> phantm.phases.PhasesContext.copy$default$8: phantm.symbols.GlobalSymbols @scala.annotation.unchecked.uncheckedVariance
+353 ===> phantm.ast.STToAST.global_var(n: phantm.parser.ParseNode): phantm.ast.Trees.Variable
+4540 ===> phantm.phases.NSResolver.resolveConstant(nsid: phantm.ast.Trees.NSIdentifier): phantm.ast.Trees.NSIdentifier
+2684 ===> phantm.ast.Trees.PHPTrue.<init>(): phantm.ast.Trees.PHPTrue
+4598 ===> phantm.phases.PhasesContext.oast: Option[phantm.ast.Trees.Program]
+4289 ===> phantm.helpers.CFGGraphs.<init>(node: phantm.ast.Trees.Tree,pctx: phantm.phases.PhasesContext): phantm.helpers.CFGGraphs
+3866 ===> phantm.cfg.Trees.FunctionCall.productElement(x$1: Int): Any
+3251 ===> phantm.cfg.Trees.IsResource.productArity: Int
+5452 ===> phantm.types.TBoolean.toText(e: phantm.types.TypeEnvironment): String
+4534 ===> phantm.phases.NSResolver.<init>(ast: phantm.ast.Trees.Program,constants: Set[phantm.ast.Trees.NSIdentifier],functions: Set[phantm.ast.Trees.NSIdentifier]): phantm.phases.NSResolver
+169 ===> phantm.annotations.FunctionAnnotation.isPure: Boolean
+27 ===> phantm.Settings.printAfter: Set[String]
+188 ===> phantm.annotations.SourceAnnotations.Parser.arrentriesToArray(aes: List[phantm.annotations.SourceAnnotations.Parser.ArrayEntryType]): phantm.types.TArray
+5284 ===> phantm.types.TObjectTmp.<init>(obj: phantm.types.TRealObject): phantm.types.TObjectTmp
+4 ===> phantm.Main.displayUsage: Boolean
+4605 ===> phantm.phases.PhasesContext.copy(files: List[String],includedFiles: Set[String],oast: Option[phantm.ast.Trees.Program],dumpedData: List[phantm.util.DumpCollector],symbol: Option[phantm.symbols.Symbol],results: phantm.util.GlobalAnalysisResults,cfgs: Map[Option[phantm.symbols.FunctionSymbol],phantm.cfg.ControlFlowGraph],globalSymbols: phantm.symbols.GlobalSymbols): phantm.phases.PhasesContext
+1657 ===> phantm.ast.Trees.SimpleVariable.productElement(x$1: Int): Any
+1399 ===> phantm.ast.Trees.While.productElement(x$1: Int): Any
+2941 ===> phantm.cfg.VertexImp.productArity: Int
+3495 ===> phantm.cfg.Trees.ArrayEntry.productElement(x$1: Int): Any
+4652 ===> phantm.phases.PureStatementsChecks.ctx: phantm.phases.PhasesContext
+0 ===> java.io.FileReader.<init>(x$1: String): java.io.FileReader
+165 ===> phantm.annotations.FunctionTypeAnnotation.annotateFromFT(from: phantm.annotations.FunctionTypeAnnotation): FunctionTypeAnnotation.this.type
+2412 ===> phantm.ast.Trees.Execute.productElement(x$1: Int): Any
+39 ===> phantm.Settings.copy$default$2: String @scala.annotation.unchecked.uncheckedVariance
+4350 ===> phantm.phases.APIExportingPhase.run(ctx: phantm.phases.PhasesContext): phantm.phases.PhasesContext
+4492 ===> phantm.phases.CallGraphGeneration.productElement(x$1: Int): Any
+5542 ===> phantm.types.TTop.productArity: Int
+667 ===> phantm.ast.Trees.MFFinal.productElement(x$1: Int): Any
+2406 ===> phantm.ast.Trees.Execute.value: String
+4778 ===> phantm.symbols.Symbolic.opt_sym_$eq(x$1: Option[phantm.symbols.Symbol]): Unit
+4873 ===> phantm.symbols.LookupResult.productElement(x$1: Int): Any
+3003 ===> phantm.cfg.LabeledDirectedGraphImp.Group.vertOut: Option[LabeledDirectedGraphImp.this.Vertex]
+5005 ===> phantm.types.TypeLattice.leq(envx: phantm.types.TypeLattice.Env,envy: phantm.types.TypeLattice.Env,x: phantm.types.Type,y: phantm.types.Type): Boolean
+318 ===> phantm.ast.STToAST.S(n: phantm.parser.ParseNode): phantm.ast.Trees.Program
+302 ===> phantm.ast.ASTTransform.trInitVariable(iv: phantm.ast.Trees.InitVariable): phantm.ast.Trees.InitVariable
+1511 ===> phantm.ast.Trees.Return.productElement(x$1: Int): Any
+1353 ===> phantm.ast.Trees.Block.stmts: List[phantm.ast.Trees.Statement]
+3084 ===> phantm.cfg.Trees.AssignUnary.<init>(variable: phantm.cfg.Trees.Variable,unOp: phantm.cfg.Trees.UnaryOperator,expr: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.AssignUnary
+4524 ===> phantm.phases.MethodGraphGeneration.execute: Unit
+0 ===> java.lang.Object.ne(x$1: AnyRef): Boolean
+3954 ===> phantm.cfg.Trees.PLUS.productArity: Int
+294 ===> phantm.ast.ASTTransform.trNSId(nsid: phantm.ast.Trees.NSIdentifier): phantm.ast.Trees.NSIdentifier
+416 ===> phantm.ast.STToAST.t_variable(n: phantm.parser.ParseNode): phantm.ast.Trees.SimpleVariable
+4643 ===> phantm.phases.PhasesRunner.reporter: phantm.util.Reporter
+4327 ===> phantm.helpers.STGraph.<init>(): phantm.helpers.STGraph
+329 ===> phantm.ast.STToAST.is_reference(n: phantm.parser.ParseNode): Boolean
+5853 ===> phantm.util.UArray.entries: Map[phantm.util.UValue,phantm.util.UValue]
+1779 ===> phantm.ast.Trees.ListVar.<init>(vars: List[Option[phantm.ast.Trees.Variable]]): phantm.ast.Trees.ListVar
+0 ===> scala.Some.productElement(x$1: Int): Any
+977 ===> phantm.ast.Trees.CastUnset.productElement(x$1: Int): Any
+5686 ===> phantm.util.GlobalAnalysisResults.summary_$eq(x$1: Map[phantm.symbols.FunctionSymbol,Int]): Unit
+1579 ===> phantm.ast.Trees.Html.productElement(x$1: Int): Any
+375 ===> phantm.ast.STToAST.elseif_else(elseifs: List[(phantm.ast.Trees.Expression, phantm.ast.Trees.Statement)],elze: Option[phantm.ast.Trees.Statement]): Option[phantm.ast.Trees.Statement]
+4407 ===> phantm.phases.ASTCollector.functionsDecls: List[phantm.ast.Trees.FunctionDecl]
+2858 ===> phantm.ast.Trees.MCMethod.productArity: Int
+0 ===> java.io.PrintStream.print(x$1: String): Unit
+149 ===> phantm.Settings.$lessinit$greater$default$16: List[String] @scala.annotation.unchecked.uncheckedVariance
+3523 ===> phantm.cfg.Trees.ObjectProperty.<init>(obj: phantm.cfg.Trees.SimpleValue,index: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.ObjectProperty
+5216 ===> phantm.types.ObjectIdDump.productElement(x$1: Int): Any
+0 ===> java.io.Writer.write(x$1: String): Unit
+2795 ===> phantm.ast.Trees.MCLine.<init>(): phantm.ast.Trees.MCLine
+522 ===> phantm.ast.Trees.PropertyDecl.productArity: Int
+4893 ===> phantm.symbols.ClassSymbol.name: String
+427 ===> phantm.ast.STToAST.unspecified(n: phantm.parser.ParseNode): Nothing
+4637 ===> phantm.phases.PhasesContext.apply$default$4: List[phantm.util.DumpCollector] @scala.annotation.unchecked.uncheckedVariance
+4655 ===> phantm.phases.PureStatementsChecks.isPure(stmt: phantm.ast.Trees.Statement): Boolean
+3294 ===> phantm.cfg.Trees.Print.rhs: phantm.cfg.Trees.SimpleValue
+3571 ===> phantm.cfg.Trees.StaticValue.<init>(): phantm.cfg.Trees.StaticValue
+687 ===> phantm.ast.Trees.NSNone.productArity: Int
+5313 ===> phantm.types.TRealObject.toText(e: phantm.types.TypeEnvironment): String
+2896 ===> phantm.cfg.ASTToCFG.Emit.getPC: Vertex
+3337 ===> phantm.cfg.Trees.SimpleVariable.<init>(): phantm.cfg.Trees.SimpleVariable
+610 ===> phantm.ast.Trees.THObject.cl: phantm.ast.Trees.ClassRef
+2933 ===> phantm.cfg.VertexImp.in: Set[phantm.cfg.EdgeImp[L]]
+5674 ===> phantm.util.GlobalAnalysisResults.<init>(): phantm.util.GlobalAnalysisResults
+1860 ===> phantm.ast.Trees.Plus.productElement(x$1: Int): Any
+4089 ===> phantm.cfg.Trees.LT.productArity: Int
+2136 ===> phantm.ast.Trees.BitwiseXor.productArity: Int
+3805 ===> phantm.cfg.Trees.Constant.<init>(cs: phantm.symbols.ConstantSymbol): phantm.cfg.Trees.Constant
+310 ===> phantm.ast.ASTTraversal.elements(p: Product): scala.collection.immutable.IndexedSeq[Any]
+277 ===> phantm.annotations.SourceAnnotations.Parser.getConstType: String => Option[phantm.types.Type]
+5142 ===> phantm.types.TClass.<init>(cs: phantm.symbols.ClassSymbol): phantm.types.TClass
+3522 ===> phantm.cfg.Trees.ObjectProperty.index: phantm.cfg.Trees.SimpleValue
+2073 ===> phantm.ast.Trees.BooleanXor.rhs: phantm.ast.Trees.Expression
+1817 ===> phantm.ast.Trees.Assign.<init>(vari: phantm.ast.Trees.Variable,value: phantm.ast.Trees.Expression,byref: Boolean): phantm.ast.Trees.Assign
+1081 ===> phantm.ast.Trees.OAArray.productArity: Int
+1453 ===> phantm.ast.Trees.Switch.cases: List[(Option[phantm.ast.Trees.Expression], phantm.ast.Trees.Statement)]
+1196 ===> phantm.ast.Trees.ClassDecl.static_props: List[phantm.ast.Trees.PropertyDecl]
+4817 ===> phantm.symbols.GlobalSymbols.lookupFunction(n: String): Option[phantm.symbols.FunctionSymbol]
+788 ===> phantm.ast.Trees.DynamicClassRef.productArity: Int
+5378 ===> phantm.types.TArray.toText(env: phantm.types.TypeEnvironment): String
+5019 ===> phantm.types.TypeLattice.meetTypes(x: phantm.types.Type,y: phantm.types.Type): phantm.types.Type
+3101 ===> phantm.cfg.Trees.AssignBinary.variable: phantm.cfg.Trees.Variable
+3008 ===> phantm.cfg.LabeledDirectedGraphImp.Group.closeGroup(vertOut: LabeledDirectedGraphImp.this.Vertex): Unit
+282 ===> phantm.annotations.SourceAnnotations.Parser.importTypeDef(line: String): Unit
+214 ===> phantm.annotations.SourceAnnotations.Parser.AnyStringEntry.productArity: Int
+2541 ===> phantm.ast.Trees.Require.productElement(x$1: Int): Any
+174 ===> phantm.annotations.CommentAnnotation.attachComment(com: Option[String]): CommentAnnotation.this.type
+5405 ===> phantm.types.TIntLit.value: Long
+419 ===> phantm.ast.STToAST.isset_variables(n: phantm.parser.ParseNode): List[phantm.ast.Trees.Variable]
+4295 ===> phantm.helpers.CFGGraphs.execute: Unit
+0 ===> scala.Product4.productElement(n: Int): Any
+52 ===> phantm.Settings.copy$default$15: List[String] @scala.annotation.unchecked.uncheckedVariance
+5209 ===> phantm.types.ObjectIdDump.offset: Int
+2702 ===> phantm.ast.Trees.PHPFalse.productArity: Int
+2515 ===> phantm.ast.Trees.Include.once: Boolean
+1759 ===> phantm.ast.Trees.ClassProperty.cl: phantm.ast.Trees.ClassRef
+0 ===> scala.Tuple2.<init>(_1: T1,_2: T2): (T1, T2)
+4333 ===> phantm.helpers.Tokenizer.<init>(): phantm.helpers.Tokenizer
+3620 ===> phantm.cfg.Trees.PHPTrue.<init>(): phantm.cfg.Trees.PHPTrue
+741 ===> phantm.ast.Trees.NSIdentifier.root: phantm.ast.Trees.NSRoot
+5615 ===> phantm.util.ConstantsResolver.ast: phantm.ast.Trees.Program
+5603 ===> phantm.util.API.Reader.elemToType(elem: scala.xml.Node): phantm.types.Type
+9 ===> phantm.Main.files_$eq(x$1: List[String]): Unit
+4017 ===> phantm.cfg.Trees.BOOLEANAND.productArity: Int
+1223 ===> phantm.ast.Trees.InterfaceDecl.interfaces: List[phantm.ast.Trees.StaticClassRef]
+2315 ===> phantm.ast.Trees.Ternary.cond: phantm.ast.Trees.Expression
+2317 ===> phantm.ast.Trees.Ternary.elze: phantm.ast.Trees.Expression
+2576 ===> phantm.ast.Trees.ClassConstant.productArity: Int
+5115 ===> phantm.types.defaultTypeWF.apply(t: phantm.types.Type): phantm.types.Type
+752 ===> phantm.ast.Trees.NSIdentifier.productElement(x$1: Int): Any
+767 ===> phantm.ast.Trees.VarClassRef.<init>(v: phantm.ast.Trees.Variable): phantm.ast.Trees.VarClassRef
+902 ===> phantm.ast.Trees.StaticMethodRef.id: phantm.ast.Trees.Identifier
+0 ===> scala.Some.x: A
+5245 ===> phantm.types.ObjectStore.store: Map[phantm.types.ObjectId,phantm.types.TRealObject]
+4321 ===> phantm.helpers.Main.helper_$eq(x$1: phantm.helpers.Helper): Unit
+1286 ===> phantm.ast.Trees.Throw.<init>(ex: phantm.ast.Trees.Expression): phantm.ast.Trees.Throw
+5247 ===> phantm.types.ObjectStore.<init>(): phantm.types.ObjectStore
+1871 ===> phantm.ast.Trees.Minus.lhs: phantm.ast.Trees.Expression
+319 ===> phantm.ast.STToAST.top_statement_list(n: phantm.parser.ParseNode): List[phantm.ast.Trees.Statement]
+4521 ===> phantm.phases.MethodGraphGeneration.MethodGraph.vToSym_$eq(x$1: scala.collection.immutable.Map[phantm.cfg.VertexImp[String],phantm.symbols.MethodSymbol]): Unit
+2022 ===> phantm.ast.Trees.PostDec.productArity: Int
+4354 ===> phantm.phases.APIImportationPhase.run(ctx: phantm.phases.PhasesContext): phantm.phases.PhasesContext
+1210 ===> phantm.ast.Trees.ClassDecl.productArity: Int
+4915 ===> phantm.symbols.ClassSymbol.getStaticProperties: List[phantm.symbols.PropertySymbol]
+1136 ===> phantm.ast.Trees.NamespaceStart.name: phantm.ast.Trees.NSIdentifier
+5287 ===> phantm.types.TObjectTmp.realObject(e: phantm.types.TypeEnvironment): phantm.types.TRealObject
+3896 ===> phantm.cfg.Trees.MethodCall.receiver: phantm.cfg.Trees.SimpleValue
+3138 ===> phantm.cfg.Trees.Assume.lhs: phantm.cfg.Trees.SimpleValue
+4948 ===> phantm.types.TypeEnvironment.unionStoreFrom(e: phantm.types.TypeEnvironment): phantm.types.TypeEnvironment
+5579 ===> phantm.types.TUnion.toText(e: phantm.types.TypeEnvironment): String
+190 ===> phantm.annotations.SourceAnnotations.Parser.array: phantm.annotations.SourceAnnotations.Parser.Parser[phantm.types.TArray]
+2155 ===> phantm.ast.Trees.ShiftLeft.productArity: Int
+303 ===> phantm.ast.DummyContext.<init>(): phantm.ast.DummyContext
+4388 ===> phantm.phases.ASTIntegrityChecks.productArity: Int
+4959 ===> phantm.types.TypeFlowAnalyzer.baseEnvInit: phantm.types.TypeEnvironment
+2191 ===> phantm.ast.Trees.BooleanNot.productArity: Int
+4636 ===> phantm.phases.PhasesContext.apply$default$3: Option[phantm.ast.Trees.Program] @scala.annotation.unchecked.uncheckedVariance
+1622 ===> phantm.ast.Trees.Foreach.productArity: Int
+1024 ===> phantm.ast.Trees.CallArg.copy$default$2: Boolean @scala.annotation.unchecked.uncheckedVariance
+3017 ===> phantm.cfg.LabeledDirectedGraphImp.Group.productElement(x$1: Int): Any
+5691 ===> phantm.util.IncludeResolver.deepNess_$eq(x$1: Int): Unit
+2552 ===> phantm.ast.Trees.Constant.name: phantm.ast.Trees.NSIdentifier
+501 ===> phantm.ast.Trees.MethodDecl.productArity: Int
+0 ===> scala.MatchError.getMessage(): String
+2239 ===> phantm.ast.Trees.Identical.lhs: phantm.ast.Trees.Expression
+2993 ===> phantm.cfg.LabeledDirectedGraphImp.groups: List[LabeledDirectedGraphImp.this.Group]
+81 ===> phantm.InlineLeaves.productElement(x$1: Int): Any
+1795 ===> phantm.ast.Trees.ExpandArray.vars: List[Option[phantm.ast.Trees.Variable]]
+4449 ===> phantm.phases.CGContext.scope: Option[phantm.symbols.FunctionSymbol]
+4681 ===> phantm.phases.SymbolsCollectionPhase.run(ctx: phantm.phases.PhasesContext): phantm.phases.PhasesContext
+2336 ===> phantm.ast.Trees.Cast.typ: phantm.ast.Trees.CastType
+4822 ===> phantm.symbols.GlobalSymbols.getClasses: List[phantm.symbols.ClassSymbol]
+146 ===> phantm.Settings.$lessinit$greater$default$13: Set[String] @scala.annotation.unchecked.uncheckedVariance
+4527 ===> phantm.phases.NamespaceResolverPhase.name: String
+0 ===> java.io.BufferedReader.readLine(): String
+2737 ===> phantm.ast.Trees.PHPFloat.productElement(x$1: Int): Any
+5004 ===> phantm.types.TypeLattice.leq(env: phantm.types.TypeLattice.Env,x: phantm.types.Type,y: phantm.types.Type): Boolean
+2799 ===> phantm.ast.Trees.MCLine.productElement(x$1: Int): Any
+990 ===> phantm.ast.Trees.InitVariable.productArity: Int
+2904 ===> phantm.cfg.ASTToCFG.resolveClassRef(cr: phantm.ast.Trees.ClassRef): phantm.cfg.Trees.ClassRef
+3860 ===> phantm.cfg.Trees.FunctionCall.<init>(fun: phantm.cfg.Trees.FuncRef,params: List[phantm.cfg.Trees.SimpleValue]): phantm.cfg.Trees.FunctionCall
+0 ===> java.io.PrintStream.<init>(x$1: String): java.io.PrintStream
+3828 ===> phantm.cfg.Trees.ClassConstant.productElement(x$1: Int): Any
+0 ===> java.lang.StringBuffer.append(x$1: String): StringBuffer
+745 ===> phantm.ast.Trees.NSIdentifier.value: String
+80 ===> phantm.InlineLeaves.productArity: Int
+4382 ===> phantm.phases.ASTIntegrityChecks.visit(node: phantm.ast.Trees.Tree,ctx: phantm.phases.CheckContext): (phantm.phases.CheckContext, Boolean)
+789 ===> phantm.ast.Trees.DynamicClassRef.productElement(x$1: Int): Any
+1430 ===> phantm.ast.Trees.For.cond: phantm.ast.Trees.Expression
+983 ===> phantm.ast.Trees.InitVariable.v: phantm.ast.Trees.Variable
+5681 ===> phantm.util.GlobalAnalysisResults.endGlobals: Option[phantm.types.TypeEnvironment]
+5851 ===> phantm.util.UnserializeException.<init>(msg: String): phantm.util.UnserializeException
+615 ===> phantm.ast.Trees.THObject.productArity: Int
+5030 ===> phantm.types.TypeTransferFunction.collectAnnotations: Boolean
+4199 ===> phantm.cfg.Trees.PREDEC.productElement(x$1: Int): Any
+2041 ===> phantm.ast.Trees.BooleanAnd.productArity: Int
+5899 ===> phantm.util.UString.productElement(x$1: Int): Any
+250 ===> phantm.annotations.SourceAnnotations.Parser.Entry.productArity: Int
+4691 ===> phantm.phases.SymContext.productArity: Int
+469 ===> phantm.ast.Trees.ArgumentDecl.<init>(v: phantm.ast.Trees.SimpleVariable,hint: Option[phantm.ast.Trees.TypeHint],default: Option[phantm.ast.Trees.Expression],byref: Boolean): phantm.ast.Trees.ArgumentDecl
+2571 ===> phantm.ast.Trees.ClassConstant.<init>(cl: phantm.ast.Trees.ClassRef,const: phantm.ast.Trees.Identifier): phantm.ast.Trees.ClassConstant
+0 ===> scala.Product5.productElement(n: Int): Any
+4781 ===> phantm.symbols.Symbolic.getSymbol: phantm.symbols.Symbol
+2285 ===> phantm.ast.Trees.SmallerEqual.productElement(x$1: Int): Any
+4887 ===> phantm.symbols.IfaceSymbol.methods: scala.collection.mutable.HashMap[String,phantm.symbols.IfaceMethodSymbol]
+5696 ===> phantm.util.IncludeResolver.importIncludes(files: List[String]): Unit
+1191 ===> phantm.ast.Trees.ClassDecl.name: phantm.ast.Trees.NSIdentifier
+4099 ===> phantm.cfg.Trees.LEQ.productElement(x$1: Int): Any
+4600 ===> phantm.phases.PhasesContext.symbol: Option[phantm.symbols.Symbol]
+2324 ===> phantm.ast.Trees.Ternary.productArity: Int
+5141 ===> phantm.types.TClass.cs: phantm.symbols.ClassSymbol
+3284 ===> phantm.cfg.Trees.AssumeNotProperty.productElement(x$1: Int): Any
+3037 ===> phantm.cfg.LabeledDirectedGraphImp.writeDottyToFile(fname: String,title: String): Unit
+4531 ===> phantm.phases.NSWrapper.trStmts(sts: List[phantm.ast.Trees.Statement]): List[phantm.ast.Trees.Statement]
+5778 ===> phantm.util.Reporter.Error.before(e2: Reporter.this.Error): Boolean
+167 ===> phantm.annotations.FunctionAnnotation.shouldInline: Boolean
+2901 ===> phantm.cfg.ASTToCFG.Emit.goto(cont: Vertex): Unit
+5388 ===> phantm.types.TNumeric.productArity: Int
+2909 ===> phantm.cfg.ASTToCFG.exprStore(v: phantm.cfg.Trees.Variable,ex: phantm.ast.Trees.Expression): phantm.cfg.Trees.Statement
+173 ===> phantm.annotations.CommentAnnotation.comment_$eq(x$1: Option[String]): Unit
+5683 ===> phantm.util.GlobalAnalysisResults.reachableFromMain: Map[phantm.symbols.FunctionSymbol,Set[phantm.symbols.FunctionSymbol]]
+4542 ===> phantm.phases.NSResolver.resolveClass(nsid: phantm.ast.Trees.NSIdentifier): phantm.ast.Trees.NSIdentifier
+5316 ===> phantm.types.ArrayKey.<init>(): phantm.types.ArrayKey
+1308 ===> phantm.ast.Trees.Goto.productElement(x$1: Int): Any
+2006 ===> phantm.ast.Trees.PreDec.productElement(x$1: Int): Any
+3242 ===> phantm.cfg.Trees.IsScalar.productArity: Int
+2814 ===> phantm.ast.Trees.MCDir.productElement(x$1: Int): Any
+2099 ===> phantm.ast.Trees.BitwiseAnd.productElement(x$1: Int): Any
+1612 ===> phantm.ast.Trees.Foreach.body: phantm.ast.Trees.Statement
+1307 ===> phantm.ast.Trees.Goto.productArity: Int
+13 ===> phantm.Main.usage: Unit
+1198 ===> phantm.ast.Trees.ClassDecl.consts: List[phantm.ast.Trees.ClassConstantDecl]
+24 ===> phantm.Settings.typeFlowFilter: List[String]
+3729 ===> phantm.cfg.Trees.Cast.productArity: Int
+4326 ===> phantm.helpers.Main.usage: Unit
+446 ===> phantm.ast.Trees.Tree.<init>(): phantm.ast.Trees.Tree
+3510 ===> phantm.cfg.Trees.NextArrayEntry.productArity: Int
+4901 ===> phantm.symbols.ClassSymbol.constants: scala.collection.mutable.HashMap[String,phantm.symbols.ClassConstantSymbol]
+357 ===> phantm.ast.STToAST.inner_statement_list(n: phantm.parser.ParseNode): phantm.ast.Trees.Block
+4062 ===> phantm.cfg.Trees.BITWISEXOR.productArity: Int
+4108 ===> phantm.cfg.Trees.GEQ.productElement(x$1: Int): Any
+3104 ===> phantm.cfg.Trees.AssignBinary.rhs: phantm.cfg.Trees.SimpleValue
+5797 ===> phantm.util.Reporter.tick: Unit
+1094 ===> phantm.ast.Trees.OAMethod.args: List[phantm.ast.Trees.CallArg]
+1429 ===> phantm.ast.Trees.For.init: phantm.ast.Trees.Statement
+5701 ===> phantm.util.IncludeResolver.ast: phantm.ast.Trees.Program
+2344 ===> phantm.ast.Trees.Cast.productElement(x$1: Int): Any
+336 ===> phantm.ast.STToAST.non_empty_member_modifiers(n: phantm.parser.ParseNode): List[phantm.ast.Trees.MemberFlag]
+5618 ===> phantm.util.ConstantsResolver.<init>(ast: phantm.ast.Trees.Program,issueErrors: Boolean,ctx: phantm.phases.PhasesContext): phantm.util.ConstantsResolver
+4798 ===> phantm.symbols.Scope.variables: scala.collection.mutable.HashMap[String,phantm.symbols.VariableSymbol]
+4098 ===> phantm.cfg.Trees.LEQ.productArity: Int
+4346 ===> phantm.parser.Parser.error(msg: String): Unit
+312 ===> phantm.ast.ASTTraversal.traverse(visit: (phantm.ast.Trees.Tree, UserDataType) => (UserDataType, Boolean)): Unit
+2553 ===> phantm.ast.Trees.Constant.<init>(name: phantm.ast.Trees.NSIdentifier): phantm.ast.Trees.Constant
+3083 ===> phantm.cfg.Trees.AssignUnary.expr: phantm.cfg.Trees.SimpleValue
+4455 ===> phantm.phases.CGContext.productElement(x$1: Int): Any
+191 ===> phantm.annotations.SourceAnnotations.Parser.ArrayEntryType.<init>(): phantm.annotations.SourceAnnotations.Parser.ArrayEntryType
+4116 ===> phantm.cfg.Trees.GT.productArity: Int
+4153 ===> phantm.cfg.Trees.NOTIDENTICAL.productElement(x$1: Int): Any
+150 ===> phantm.Settings.$lessinit$greater$default$17: Option[String] @scala.annotation.unchecked.uncheckedVariance
+5707 ===> phantm.util.IncludeResolver.pathExists(p: String): Option[String]
+4009 ===> phantm.cfg.Trees.INSTANCEOF.productElement(x$1: Int): Any
+5840 ===> phantm.util.ErrorException.productArity: Int
+2259 ===> phantm.ast.Trees.Smaller.rhs: phantm.ast.Trees.Expression
+4967 ===> phantm.types.TypeFlowAnalyzer.notice(msg: String,pos: phantm.util.Positional): Unit
+516 ===> phantm.ast.Trees.PropertyDecl.<init>(v: phantm.ast.Trees.Identifier,flags: List[phantm.ast.Trees.MemberFlag],default: Option[phantm.ast.Trees.Expression]): phantm.ast.Trees.PropertyDecl
+5639 ===> phantm.util.DumpCollector.ctx: phantm.phases.PhasesContext
+57 ===> phantm.Settings.copy$default$20: phantm.InlineMode @scala.annotation.unchecked.uncheckedVariance
+4675 ===> phantm.phases.SymbolsChecksPhase.name: String
+292 ===> phantm.ast.ASTTransform.trProperty(pd: phantm.ast.Trees.PropertyDecl): phantm.ast.Trees.PropertyDecl
+40 ===> phantm.Settings.copy$default$3: Boolean @scala.annotation.unchecked.uncheckedVariance
+3506 ===> phantm.cfg.Trees.NextArrayEntry.<init>(arr: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.NextArrayEntry
+4259 ===> phantm.dataflow.TransferFunction.<init>(): phantm.dataflow.TransferFunction[E,S]
+5326 ===> phantm.types.StringKey.productArity: Int
+4117 ===> phantm.cfg.Trees.GT.productElement(x$1: Int): Any
+4379 ===> phantm.phases.ASTIntegrityChecks.context: phantm.phases.CheckContext
+5670 ===> phantm.util.Evaluator.scalarToString(ex: phantm.ast.Trees.Scalar): String
+2783 ===> phantm.ast.Trees.MCFile.productArity: Int
+1930 ===> phantm.ast.Trees.Concat.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.Concat
+1026 ===> phantm.ast.Trees.CallArg.productArity: Int
+2284 ===> phantm.ast.Trees.SmallerEqual.productArity: Int
+1302 ===> phantm.ast.Trees.Goto.to: phantm.ast.Trees.Label
+1020 ===> phantm.ast.Trees.CallArg.forceref: Boolean
+2952 ===> phantm.cfg.EdgeImp.v1: phantm.cfg.VertexImp[L]
+5277 ===> phantm.types.TObjectRef.<init>(id: phantm.types.ObjectId): phantm.types.TObjectRef
+766 ===> phantm.ast.Trees.VarClassRef.v: phantm.ast.Trees.Variable
+2870 ===> phantm.ast.Trees.MCNamespace.<init>(): phantm.ast.Trees.MCNamespace
+0 ===> scala.Product8.productElement(n: Int): Any
+4628 ===> phantm.phases.PhasesContext.$lessinit$greater$default$3: Option[phantm.ast.Trees.Program] @scala.annotation.unchecked.uncheckedVariance
+5759 ===> phantm.util.Positional.previousPos: String
+5893 ===> phantm.util.UString.str: String
+3546 ===> phantm.cfg.Trees.VariableClassProperty.productArity: Int
+5572 ===> phantm.types.TUnion.getSet(t1: phantm.types.Type,t2: phantm.types.Type): Set[phantm.types.Type]
+5729 ===> phantm.util.JavaListIteratorWrapper.productElement(x$1: Int): Any
+5722 ===> phantm.util.JavaListIteratorWrapper.iter: java.util.Iterator[A]
+3511 ===> phantm.cfg.Trees.NextArrayEntry.productElement(x$1: Int): Any
+4482 ===> phantm.phases.CallGraphGeneration.<init>(node: phantm.ast.Trees.Tree,pctx: phantm.phases.PhasesContext): phantm.phases.CallGraphGeneration
+5723 ===> phantm.util.JavaListIteratorWrapper.<init>(iter: java.util.Iterator[A]): phantm.util.JavaListIteratorWrapper[A]
+5497 ===> phantm.types.TStringLit.productArity: Int
+3033 ===> phantm.cfg.LabeledDirectedGraphImp.toDotString(title: String): String
+5620 ===> phantm.util.ConstantsResolver.trStmt(st: phantm.ast.Trees.Statement): phantm.ast.Trees.Statement
+2080 ===> phantm.ast.Trees.BooleanXor.productElement(x$1: Int): Any
+5748 ===> phantm.util.Positional.line_end_$eq(x$1: Int): Unit
+4897 ===> phantm.symbols.ClassSymbol.<init>(name: String,parent: Option[phantm.symbols.ClassSymbol],ifaces: List[phantm.symbols.IfaceSymbol]): phantm.symbols.ClassSymbol
+5871 ===> phantm.util.UObject.i: Int
+4835 ===> phantm.symbols.FunctionSymbol.registerVariable(vs: phantm.symbols.VariableSymbol): Unit
+1638 ===> phantm.ast.Trees.Void.productElement(x$1: Int): Any
+2480 ===> phantm.ast.Trees.Isset.vs: List[phantm.ast.Trees.Variable]
+1651 ===> phantm.ast.Trees.SimpleVariable.name: phantm.ast.Trees.Identifier
+4640 ===> phantm.phases.PhasesContext.apply$default$7: Map[Option[phantm.symbols.FunctionSymbol],phantm.cfg.ControlFlowGraph] @scala.annotation.unchecked.uncheckedVariance
+449 ===> phantm.ast.Trees.Program.combine(p2: phantm.ast.Trees.Program): phantm.ast.Trees.Program
+1160 ===> phantm.ast.Trees.Namespaced.productArity: Int
+4653 ===> phantm.phases.PureStatementsChecks.<init>(node: phantm.ast.Trees.Tree,ctx: phantm.phases.PhasesContext): phantm.phases.PureStatementsChecks
+6011 ===> phantm.util.Unserializer.objectsStore_$eq(x$1: Map[phantm.types.ObjectId,phantm.types.TRealObject]): Unit
+2055 ===> phantm.ast.Trees.BooleanOr.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.BooleanOr
+16 ===> phantm.Settings.resolveIncludes: Boolean
+2731 ===> phantm.ast.Trees.PHPFloat.value: Float
+4426 ===> phantm.phases.CFGGenerator.display(content: String): Unit
+231 ===> phantm.annotations.SourceAnnotations.Parser.AnyIntEntry.productArity: Int
+4814 ===> phantm.symbols.GlobalSymbols.registerIface(is: phantm.symbols.IfaceSymbol): Unit
+4827 ===> phantm.symbols.FunctionSymbol.args: scala.collection.mutable.HashMap[String,phantm.symbols.ArgumentSymbol]
+2907 ===> phantm.cfg.ASTToCFG.alreadySimple(ex: phantm.ast.Trees.Expression): Option[phantm.cfg.Trees.SimpleValue]
+4595 ===> phantm.phases.PhasesContext.files: List[String]
+491 ===> phantm.ast.Trees.MethodDecl.retref: Boolean
+1411 ===> phantm.ast.Trees.DoWhile.cond: phantm.ast.Trees.Expression
+5000 ===> phantm.types.TypeHelpers.typeHintToType(th: Option[phantm.ast.Trees.TypeHint]): phantm.types.Type
+3334 ===> phantm.cfg.Trees.Expression.<init>(): phantm.cfg.Trees.Expression
+0 ===> java.lang.Exception.<init>(): Exception
+5673 ===> phantm.util.Evaluator.dirname(path: String): String
+1233 ===> phantm.ast.Trees.InterfaceDecl.productArity: Int
+5510 ===> phantm.types.TAny.toText(e: phantm.types.TypeEnvironment): String
+4657 ===> phantm.phases.PureStatementsChecks.visit(tr: phantm.ast.Trees.Tree): Boolean
+2981 ===> phantm.cfg.LabeledDirectedGraphImp.edges: scala.collection.immutable.Set[phantm.cfg.EdgeImp[LabelType]]
+4634 ===> phantm.phases.PhasesContext.apply$default$1: List[String] @scala.annotation.unchecked.uncheckedVariance
+341 ===> phantm.ast.STToAST.implements_list(n: phantm.parser.ParseNode): List[phantm.ast.Trees.StaticClassRef]
+4790 ===> phantm.symbols.Symbol.setOverwriteable(value: Boolean): Symbol.this.type
+4904 ===> phantm.symbols.ClassSymbol.registerConstant(cs: phantm.symbols.ClassConstantSymbol): Unit
+5658 ===> phantm.util.DumpCollector.productElement(x$1: Int): Any
+2394 ===> phantm.ast.Trees.Array.productArity: Int
+4520 ===> phantm.phases.MethodGraphGeneration.MethodGraph.vToSym: scala.collection.immutable.Map[phantm.cfg.VertexImp[String],phantm.symbols.MethodSymbol]
+293 ===> phantm.ast.ASTTransform.trClassConst(cl: phantm.ast.Trees.ClassConstantDecl): phantm.ast.Trees.ClassConstantDecl
+4724 ===> phantm.phases.CollectSymbols.secondClassPass(cd: phantm.ast.Trees.ClassDecl,cs: phantm.symbols.ClassSymbol): Unit
+0 ===> scala.Tuple2._2: T2
+4712 ===> phantm.phases.CollectSymbols.interfacesToPass: List[phantm.ast.Trees.InterfaceDecl]
+3822 ===> phantm.cfg.Trees.ClassConstant.<init>(cl: phantm.cfg.Trees.ClassRef,name: phantm.ast.Trees.Identifier): phantm.cfg.Trees.ClassConstant
+4803 ===> phantm.symbols.Scope.registerPredefVariables: Unit
+5320 ===> phantm.types.StringKey.<init>(v: String): phantm.types.StringKey
+5215 ===> phantm.types.ObjectIdDump.productArity: Int
+426 ===> phantm.ast.STToAST.childrenNames(node: phantm.parser.ParseNode): List[String]
+4629 ===> phantm.phases.PhasesContext.$lessinit$greater$default$4: List[phantm.util.DumpCollector] @scala.annotation.unchecked.uncheckedVariance
+1778 ===> phantm.ast.Trees.ListVar.vars: List[Option[phantm.ast.Trees.Variable]]
+32 ===> phantm.Settings.exportMGPath: Option[String]
+576 ===> phantm.ast.Trees.CFNormal.productElement(x$1: Int): Any
+1836 ===> phantm.ast.Trees.Clone.<init>(obj: phantm.ast.Trees.Expression): phantm.ast.Trees.Clone
+3336 ===> phantm.cfg.Trees.Variable.<init>(): phantm.cfg.Trees.Variable
+4508 ===> phantm.phases.IncludesConstantsResolutionPhase.name: String
+4757 ===> phantm.phases.TypeFlowAnalysis.display(content: String): Unit
+5014 ===> phantm.types.TypeLattice.meetObjects(envInit: phantm.types.TypeEnvironment,a1: phantm.types.TRealObject,a2: phantm.types.TRealObject): (phantm.types.TypeEnvironment, phantm.types.TRealObject)
+3897 ===> phantm.cfg.Trees.MethodCall.id: phantm.ast.Trees.Identifier
+4646 ===> phantm.phases.PhasesRunner.run(initCtx: phantm.phases.PhasesContext): Unit
+284 ===> phantm.ast.ASTTransform.transform: phantm.ast.Trees.Program
+2732 ===> phantm.ast.Trees.PHPFloat.<init>(value: Float): phantm.ast.Trees.PHPFloat
+2240 ===> phantm.ast.Trees.Identical.rhs: phantm.ast.Trees.Expression
+4746 ===> phantm.phases.TypeAnalyzingPhase.name: String
+3793 ===> phantm.cfg.Trees.ArrayCurIsValid.productArity: Int
+338 ===> phantm.ast.STToAST.class_entry_type(n: phantm.parser.ParseNode): phantm.ast.Trees.ClassFlag
+5322 ===> phantm.types.StringKey.vToString: String
+724 ===> phantm.ast.Trees.Identifier.value: String
+263 ===> phantm.annotations.SourceAnnotations.Parser.typ: phantm.annotations.SourceAnnotations.Parser.Parser[phantm.types.Type]
+1505 ===> phantm.ast.Trees.Return.expr: phantm.ast.Trees.Expression
+4404 ===> phantm.phases.ASTCollector.<init>(functs: Map[String,(String, Int)],classes: Map[String,(String, Int)],ast: phantm.ast.Trees.Program): phantm.phases.ASTCollector
+4723 ===> phantm.phases.CollectSymbols.firstClassPass0(cd: phantm.ast.Trees.ClassDecl): Unit
+4787 ===> phantm.symbols.Symbol.userland_$eq(x$1: Boolean): Unit
+5433 ===> phantm.types.TFloatLit.value: Float
+4577 ===> phantm.phases.PhaseSeq.followedBy(p: phantm.phases.Phase): phantm.phases.PhaseSeq
+1115 ===> phantm.ast.Trees.FunctionDecl.retref: Boolean
+4708 ===> phantm.phases.CollectSymbols.ifaceCycleDetectionSet: scala.collection.mutable.HashSet[phantm.ast.Trees.InterfaceDecl]
+4934 ===> phantm.types.TypeEnvironment.<init>(map: Map[phantm.cfg.Trees.SimpleVariable,phantm.types.Type],scope: Option[phantm.symbols.ClassSymbol],store: phantm.types.ObjectStore): phantm.types.TypeEnvironment
+4726 ===> phantm.phases.CollectSymbols.visit(node: phantm.ast.Trees.Tree,ctx: phantm.phases.SymContext): (phantm.phases.SymContext, Boolean)
+5981 ===> phantm.util.UNull.productElement(x$1: Int): Any
+278 ===> phantm.annotations.SourceAnnotations.Parser.isAnnotated(comment: String): Boolean
+5345 ===> phantm.types.IntKey.productElement(x$1: Int): Any
+3573 ===> phantm.cfg.Trees.PHPLong.<init>(value: Long): phantm.cfg.Trees.PHPLong
+764 ===> phantm.ast.Trees.NSName.unapply(ns: phantm.ast.Trees.NSIdentifier): Option[String]
+53 ===> phantm.Settings.copy$default$16: List[String] @scala.annotation.unchecked.uncheckedVariance
+5819 ===> phantm.util.Reporter.rep: Option[phantm.util.Reporter]
+856 ===> phantm.ast.Trees.DynamicFunctionRef.productElement(x$1: Int): Any
+4473 ===> phantm.phases.CallGraphGeneration.CallGraph.mainCallPositions_$eq(x$1: scala.collection.immutable.Map[phantm.symbols.FunctionSymbol,Set[phantm.util.Positional]]): Unit
+1967 ===> phantm.ast.Trees.PreInc.<init>(rhs: phantm.ast.Trees.Variable): phantm.ast.Trees.PreInc
+4916 ===> phantm.symbols.ConstantSymbol.name: String
+2720 ===> phantm.ast.Trees.PHPInteger.productElement(x$1: Int): Any
+4072 ===> phantm.cfg.Trees.SHIFTLEFT.productElement(x$1: Int): Any
+1917 ===> phantm.ast.Trees.Mult.productElement(x$1: Int): Any
+4207 ===> phantm.cfg.Trees.POSTDEC.productArity: Int
+5685 ===> phantm.util.GlobalAnalysisResults.summary: Map[phantm.symbols.FunctionSymbol,Int]
+1192 ===> phantm.ast.Trees.ClassDecl.flags: phantm.ast.Trees.ClassFlag
+2110 ===> phantm.ast.Trees.BitwiseOr.lhs: phantm.ast.Trees.Expression
+4918 ===> phantm.symbols.ConstantSymbol.<init>(name: String,value: Option[phantm.ast.Trees.Scalar]): phantm.symbols.ConstantSymbol
+17 ===> phantm.Settings.importAPI: Boolean
+5617 ===> phantm.util.ConstantsResolver.ctx: phantm.phases.PhasesContext
+6017 ===> phantm.util.Unserializer.getVal(i: Int): phantm.util.UValue
+4863 ===> phantm.symbols.LookupResult.visibError: Option[phantm.symbols.MemberVisibility]
+1890 ===> phantm.ast.Trees.Div.lhs: phantm.ast.Trees.Expression
+5552 ===> phantm.types.TBottom.productArity: Int
+3547 ===> phantm.cfg.Trees.VariableClassProperty.productElement(x$1: Int): Any
+1303 ===> phantm.ast.Trees.Goto.<init>(to: phantm.ast.Trees.Label): phantm.ast.Trees.Goto
+0 ===> phantm.symbols.IfaceMethodSymbol.name: String
+5644 ===> phantm.util.DumpCollector.files: List[String]
+717 ===> phantm.ast.Trees.NSResolved.productArity: Int
+3964 ===> phantm.cfg.Trees.MINUS.productElement(x$1: Int): Any
+3105 ===> phantm.cfg.Trees.AssignBinary.<init>(variable: phantm.cfg.Trees.Variable,lhs: phantm.cfg.Trees.SimpleValue,binOp: phantm.cfg.Trees.BinaryOperator,rhs: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.AssignBinary
+1211 ===> phantm.ast.Trees.ClassDecl.productElement(x$1: Int): Any
+4546 ===> phantm.phases.NSResolver.trExpr(e: phantm.ast.Trees.Expression): phantm.ast.Trees.Expression
+4316 ===> phantm.helpers.Lint.generate(input: String,printStream: java.io.PrintStream,ctx: phantm.phases.PhasesContext): Unit
+1523 ===> phantm.ast.Trees.Global.<init>(vars: List[phantm.ast.Trees.Variable]): phantm.ast.Trees.Global
+2749 ===> phantm.ast.Trees.PHPString.<init>(value: String): phantm.ast.Trees.PHPString
+4331 ===> phantm.helpers.STGraph.getId: Int
+3594 ===> phantm.cfg.Trees.PHPFloat.productElement(x$1: Int): Any
+1471 ===> phantm.ast.Trees.Break.level: phantm.ast.Trees.Expression
+4886 ===> phantm.symbols.IfaceSymbol.<init>(name: String,parents: List[phantm.symbols.IfaceSymbol]): phantm.symbols.IfaceSymbol
+5608 ===> phantm.util.API.Writer.emitXML: Unit
+4445 ===> phantm.phases.CallGraphPhase.name: String
+4764 ===> phantm.phases.TypeFlowAnalysis.productArity: Int
+3004 ===> phantm.cfg.LabeledDirectedGraphImp.Group.vertOut_$eq(x$1: Option[LabeledDirectedGraphImp.this.Vertex]): Unit
+4749 ===> phantm.phases.TypeAnalyzingPhase.limitFileName(s: String): String
+3973 ===> phantm.cfg.Trees.MULT.productElement(x$1: Int): Any
+2999 ===> phantm.cfg.LabeledDirectedGraphImp.Group.name: String
+3445 ===> phantm.cfg.Trees.TempID.productElement(x$1: Int): Any
+2204 ===> phantm.ast.Trees.BitwiseNot.<init>(rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.BitwiseNot
+109 ===> phantm.Settings.set(stgs: phantm.Settings): Unit
+2167 ===> phantm.ast.Trees.ShiftRight.lhs: phantm.ast.Trees.Expression
+1319 ===> phantm.ast.Trees.LabelDecl.name: phantm.ast.Trees.Identifier
+489 ===> phantm.ast.Trees.MethodDecl.flags: List[phantm.ast.Trees.MemberFlag]
+46 ===> phantm.Settings.copy$default$9: Boolean @scala.annotation.unchecked.uncheckedVariance
+5104 ===> phantm.types.TypeTransferFunction.apply$default$5: Boolean @scala.annotation.unchecked.uncheckedVariance
+4324 ===> phantm.helpers.Main.main(args: Array[String]): Unit
+3529 ===> phantm.cfg.Trees.ObjectProperty.productElement(x$1: Int): Any
+4491 ===> phantm.phases.CallGraphGeneration.productArity: Int
+23 ===> phantm.Settings.onlyLint: Boolean
+4828 ===> phantm.symbols.FunctionSymbol.argList: List[(String, phantm.symbols.ArgumentSymbol)]
+5475 ===> phantm.types.TFalse.productElement(x$1: Int): Any
+5583 ===> phantm.util.API.Reader.<init>(path: String,ctx: phantm.phases.PhasesContext): phantm.util.API.Reader
+5269 ===> phantm.types.ObjectType.<init>(): phantm.types.ObjectType
+2992 ===> phantm.cfg.LabeledDirectedGraphImp.escape(s: String): String
+38 ===> phantm.Settings.copy$default$1: Int @scala.annotation.unchecked.uncheckedVariance
+2569 ===> phantm.ast.Trees.ClassConstant.cl: phantm.ast.Trees.ClassRef
+5426 ===> phantm.types.TFloat.productArity: Int
+18 ===> phantm.Settings.testsActive: Boolean
+476 ===> phantm.ast.Trees.ArgumentDecl.productArity: Int
+1652 ===> phantm.ast.Trees.SimpleVariable.<init>(name: phantm.ast.Trees.Identifier): phantm.ast.Trees.SimpleVariable
+1613 ===> phantm.ast.Trees.Foreach.<init>(what: phantm.ast.Trees.Expression,as: phantm.ast.Trees.Variable,asbyref: Boolean,key: Option[phantm.ast.Trees.Variable],keybyref: Boolean,body: phantm.ast.Trees.Statement): phantm.ast.Trees.Foreach
+2873 ===> phantm.ast.Trees.MCNamespace.productArity: Int
+4541 ===> phantm.phases.NSResolver.resolveFunction(nsid: phantm.ast.Trees.NSIdentifier): phantm.ast.Trees.NSIdentifier
+51 ===> phantm.Settings.copy$default$14: Set[String] @scala.annotation.unchecked.uncheckedVariance
+3838 ===> phantm.cfg.Trees.Ternary.cond: phantm.cfg.Trees.SimpleValue
+0 ===> phantm.symbols.PropertySymbol.name: String
+0 ===> scala.util.parsing.combinator.syntactical.StandardTokenParsers.keyword(chars: String): StandardTokenParsers.this.Parser[String]
+4942 ===> phantm.types.TypeEnvironment.inject(v: phantm.cfg.Trees.SimpleVariable,typ: phantm.types.Type): phantm.types.TypeEnvironment
+11 ===> phantm.Main.handleArgs(args: List[String]): Unit
+4963 ===> phantm.types.TypeFlowAnalyzer.getSuperGlobal(name: String): phantm.types.Type
+3215 ===> phantm.cfg.Trees.IsArray.productArity: Int
+4063 ===> phantm.cfg.Trees.BITWISEXOR.productElement(x$1: Int): Any
+4383 ===> phantm.phases.ASTIntegrityChecks.execute: Unit
+3730 ===> phantm.cfg.Trees.Cast.productElement(x$1: Int): Any
+4830 ===> phantm.symbols.FunctionSymbol.importAPIFrom(fs: phantm.symbols.FunctionSymbol): Unit
+2636 ===> phantm.ast.Trees.MethodCall.productElement(x$1: Int): Any
+5817 ===> phantm.util.Reporter.emitSummary: Unit
+2829 ===> phantm.ast.Trees.MCClass.productElement(x$1: Int): Any
+4231 ===> phantm.dataflow.Environment.<init>(): phantm.dataflow.Environment[E,S]
+4685 ===> phantm.phases.SymContext.<init>(varScope: phantm.symbols.Scope,cl: Option[phantm.symbols.ClassSymbol],iface: Option[phantm.symbols.IfaceSymbol]): phantm.phases.SymContext
+5186 ===> phantm.types.ObjectIdUse.productArity: Int
+61 ===> phantm.Settings.productArity: Int
+3541 ===> phantm.cfg.Trees.VariableClassProperty.<init>(cl: phantm.cfg.Trees.ClassRef,index: phantm.cfg.Trees.SimpleValue): phantm.cfg.Trees.VariableClassProperty
+3899 ===> phantm.cfg.Trees.MethodCall.<init>(receiver: phantm.cfg.Trees.SimpleValue,id: phantm.ast.Trees.Identifier,params: List[phantm.cfg.Trees.SimpleValue]): phantm.cfg.Trees.MethodCall
+309 ===> phantm.ast.ASTTraversal.<init>(root: phantm.ast.Trees.Tree,initCtx: UserDataType): phantm.ast.ASTTraversal[UserDataType]
+4801 ===> phantm.symbols.Scope.lookupVariable(n: String): Option[phantm.symbols.VariableSymbol]
+2955 ===> phantm.cfg.EdgeImp.<init>(v1: phantm.cfg.VertexImp[L],lab: L,v2: phantm.cfg.VertexImp[L]): phantm.cfg.EdgeImp[L]
+5944 ===> phantm.util.UObjRef.i: Int
+2753 ===> phantm.ast.Trees.PHPString.productArity: Int
+351 ===> phantm.ast.STToAST.non_empty_static_array_pair_list(n: phantm.parser.ParseNode): List[(Option[phantm.ast.Trees.Expression], phantm.ast.Trees.Expression, Boolean)]
+1556 ===> phantm.ast.Trees.Echo.exprs: List[phantm.ast.Trees.Expression]
+5571 ===> phantm.types.TUnion.apply(t1: phantm.types.Type,t2: phantm.types.Type): phantm.types.Type
+4448 ===> phantm.phases.CallGraphPhase.flag(osym: Option[phantm.symbols.FunctionSymbol],inline: Boolean): Unit
+3624 ===> phantm.cfg.Trees.PHPTrue.productElement(x$1: Int): Any
+4422 ===> phantm.phases.CFGGenerator.node: phantm.ast.Trees.Tree
+2469 ===> phantm.ast.Trees.Closure.productElement(x$1: Int): Any
+59 ===> phantm.Settings.copy$default$22: Boolean @scala.annotation.unchecked.uncheckedVariance
+4610 ===> phantm.phases.PhasesContext.copy$default$5: Option[phantm.symbols.Symbol] @scala.annotation.unchecked.uncheckedVariance
+3162 ===> phantm.cfg.Trees.Isset.productElement(x$1: Int): Any
+2061 ===> phantm.ast.Trees.BooleanOr.productElement(x$1: Int): Any
+2246 ===> phantm.ast.Trees.Identical.productArity: Int
+3225 ===> phantm.cfg.Trees.IsString.productElement(x$1: Int): Any
+1100 ===> phantm.ast.Trees.OAMethod.productArity: Int
+2 ===> phantm.Main.settings: phantm.Settings
+0 ===> java.io.PrintStream.close(): Unit
+1320 ===> phantm.ast.Trees.LabelDecl.<init>(name: phantm.ast.Trees.Identifier): phantm.ast.Trees.LabelDecl
+55 ===> phantm.Settings.copy$default$18: Option[String] @scala.annotation.unchecked.uncheckedVariance
+371 ===> phantm.ast.STToAST.for_statement(n: phantm.parser.ParseNode): phantm.ast.Trees.Statement
+1265 ===> phantm.ast.Trees.Catch.v: phantm.ast.Trees.SimpleVariable
+800 ===> phantm.ast.Trees.StaticClassRef.name: phantm.ast.Trees.NSIdentifier
+62 ===> phantm.Settings.productElement(x$1: Int): Any
+3216 ===> phantm.cfg.Trees.IsArray.productElement(x$1: Int): Any
+5006 ===> phantm.types.TypeLattice.leqT(x: phantm.types.Type,y: phantm.types.Type): Boolean
+2902 ===> phantm.cfg.ASTToCFG.condExpr(ex: phantm.ast.Trees.Expression,falseCont: Vertex,trueCont: Vertex): Unit
+345 ===> phantm.ast.STToAST.static_constant(n: phantm.parser.ParseNode): phantm.ast.Trees.Expression
+5841 ===> phantm.util.ErrorException.productElement(x$1: Int): Any
+339 ===> phantm.ast.STToAST.extends_from(n: phantm.parser.ParseNode): Option[phantm.ast.Trees.StaticClassRef]
+1872 ===> phantm.ast.Trees.Minus.rhs: phantm.ast.Trees.Expression
+3539 ===> phantm.cfg.Trees.VariableClassProperty.cl: phantm.cfg.Trees.ClassRef
+639 ===> phantm.ast.Trees.MFPublic.productArity: Int
+1454 ===> phantm.ast.Trees.Switch.<init>(expr: phantm.ast.Trees.Expression,cases: List[(Option[phantm.ast.Trees.Expression], phantm.ast.Trees.Statement)]): phantm.ast.Trees.Switch
+4606 ===> phantm.phases.PhasesContext.copy$default$1: List[String] @scala.annotation.unchecked.uncheckedVariance
+4107 ===> phantm.cfg.Trees.GEQ.productArity: Int
+3148 ===> phantm.cfg.Trees.Assume.productElement(x$1: Int): Any
+1477 ===> phantm.ast.Trees.Break.productElement(x$1: Int): Any
+28 ===> phantm.Settings.apis: List[String]
+698 ===> phantm.ast.Trees.NSGlobal.productElement(x$1: Int): Any
+58 ===> phantm.Settings.copy$default$21: Boolean @scala.annotation.unchecked.uncheckedVariance
+868 ===> phantm.ast.Trees.StaticFunctionRef.<init>(name: phantm.ast.Trees.NSIdentifier): phantm.ast.Trees.StaticFunctionRef
+5989 ===> phantm.util.UFalse.productArity: Int
+4644 ===> phantm.phases.PhasesRunner.<init>(reporter: phantm.util.Reporter): phantm.phases.PhasesRunner
+0 ===> scala.Any.asInstanceOf[T0]: T0
+5744 ===> phantm.util.Positional.line_$eq(x$1: Int): Unit
+2715 ===> phantm.ast.Trees.PHPInteger.<init>(value: Long): phantm.ast.Trees.PHPInteger
+2203 ===> phantm.ast.Trees.BitwiseNot.rhs: phantm.ast.Trees.Expression
+300 ===> phantm.ast.ASTTransform.trStaticClassRef(scr: phantm.ast.Trees.StaticClassRef): phantm.ast.Trees.StaticClassRef
+3705 ===> phantm.cfg.Trees.SubTypeOf.cl: phantm.cfg.Trees.ClassRef
+433 ===> phantm.ast.STToAST.productArity: Int
+5198 ===> phantm.types.ObjectIdTmp.productArity: Int
+4525 ===> phantm.phases.MethodGraphGeneration.lookupParentMethod(cs: Option[phantm.symbols.ClassSymbol],ms: phantm.symbols.MethodSymbol): Option[phantm.symbols.MethodSymbol]
+0 ===> java.lang.StringBuffer.toString(): String
+4262 ===> phantm.helpers.ASTGraph.generate(input: String,printStream: java.io.PrintStream,ctx: phantm.phases.PhasesContext): Unit
+4348 ===> phantm.phases.APIExportingPhase.name: String
+4679 ===> phantm.phases.SymbolsCollectionPhase.name: String
+4648 ===> phantm.phases.PureStatementsPhase.name: String
+1722 ===> phantm.ast.Trees.ObjectProperty.property: phantm.ast.Trees.Identifier
+5638 ===> phantm.util.DumpCollector.path: String
+4925 ===> phantm.symbols.ArgumentSymbol.<init>(name: String,byref: Boolean,optional: Boolean): phantm.symbols.ArgumentSymbol
+5804 ===> phantm.util.Reporter.error(msg: String,pos: phantm.util.Positional,tags: Set[phantm.util.ErrorTag]): Boolean
+5474 ===> phantm.types.TFalse.productArity: Int
+4603 ===> phantm.phases.PhasesContext.globalSymbols: phantm.symbols.GlobalSymbols
+2445 ===> phantm.ast.Trees.Eval.productArity: Int
+772 ===> phantm.ast.Trees.VarClassRef.productElement(x$1: Int): Any
+4144 ===> phantm.cfg.Trees.NOTEQUALS.productElement(x$1: Int): Any
+5560 ===> phantm.types.TUninitialized.toText(e: phantm.types.TypeEnvironment): String
+3521 ===> phantm.cfg.Trees.ObjectProperty.obj: phantm.cfg.Trees.SimpleValue
+5657 ===> phantm.util.DumpCollector.productArity: Int
+2570 ===> phantm.ast.Trees.ClassConstant.const: phantm.ast.Trees.Identifier
+2514 ===> phantm.ast.Trees.Include.path: phantm.ast.Trees.Expression
+307 ===> phantm.ast.ASTSimpleTraversal.visit0(t: phantm.ast.Trees.Tree,ctx: phantm.ast.DummyContext): (phantm.ast.DummyContext, Boolean)
+4557 ===> phantm.phases.PhaseException.ph: phantm.phases.Phase
+2889 ===> phantm.cfg.ASTToCFG.FreshName.count_$eq(x$1: Int): Unit
+3338 ===> phantm.cfg.Trees.Identifier.symbol: phantm.symbols.VariableSymbol
+395 ===> phantm.ast.STToAST.variable_property(n: phantm.parser.ParseNode): phantm.ast.Trees.ObjectAccess
+1112 ===> phantm.ast.Trees.Statement.<init>(): phantm.ast.Trees.Statement
+2222 ===> phantm.ast.Trees.Equal.<init>(lhs: phantm.ast.Trees.Expression,rhs: phantm.ast.Trees.Expression): phantm.ast.Trees.Equal
+2668 ===> phantm.ast.Trees.VoidExpr.<init>(): phantm.ast.Trees.VoidExpr
+4816 ===> phantm.symbols.GlobalSymbols.registerClass(cs: phantm.symbols.ClassSymbol): Unit
+266 ===> phantm.annotations.SourceAnnotations.Parser.typedef: phantm.annotations.SourceAnnotations.Parser.Parser[(String, phantm.types.Type)]
+4720 ===> phantm.phases.CollectSymbols.firstIfacePass0(id: phantm.ast.Trees.InterfaceDecl): Unit
+2053 ===> phantm.ast.Trees.BooleanOr.lhs: phantm.ast.Trees.Expression
+4848 ===> phantm.symbols.MethodSymbol.cs: phantm.symbols.ClassSymbol
+2411 ===> phantm.ast.Trees.Execute.productArity: Int
+1561 ===> phantm.ast.Trees.Echo.productArity: Int
+4367 ===> phantm.phases.CheckContext.productElement(x$1: Int): Any
+4264 ===> phantm.helpers.ASTGraph.emit(str: String): Unit
+1988 ===> phantm.ast.Trees.PostInc.productArity: Int
+4758 ===> phantm.phases.TypeFlowAnalysis.filter(name: String): Boolean
+272 ===> phantm.annotations.SourceAnnotations.Parser.strToVarType(str: String): Option[(String, phantm.types.Type)]
+5873 ===> phantm.util.UObject.entries: Map[phantm.util.UValue,phantm.util.UValue]
+1093 ===> phantm.ast.Trees.OAMethod.name: phantm.ast.Trees.ObjectAccess
+4190 ===> phantm.cfg.Trees.POSTINC.productElement(x$1: Int): Any
+1607 ===> phantm.ast.Trees.Foreach.what: phantm.ast.Trees.Expression
+4329 ===> phantm.helpers.STGraph.generateDotGraph(root: phantm.parser.ParseNode,printStream: java.io.PrintStream): Unit
+4820 ===> phantm.symbols.GlobalSymbols.lookupOrRegisterConstant(id: phantm.ast.Trees.NSIdentifier): phantm.symbols.ConstantSymbol
+3063 ===> phantm.cfg.Trees.Assign.variable: phantm.cfg.Trees.Variable
+4423 ===> phantm.phases.CFGGenerator.<init>(initCtx: phantm.phases.PhasesContext,node: phantm.ast.Trees.Tree): phantm.phases.CFGGenerator
+3756 ===> phantm.cfg.Trees.ArrayCurElement.ar: phantm.cfg.Trees.SimpleValue
+4713 ===> phantm.phases.CollectSymbols.interfacesToPass_$eq(x$1: List[phantm.ast.Trees.InterfaceDecl]): Unit
+5770 ===> phantm.util.Reporter.<init>(mainFiles: List[String]): phantm.util.Reporter
+30 ===> phantm.Settings.exportAPIPath: Option[String]
+3610 ===> phantm.cfg.Trees.PHPString.productElement(x$1: Int): Any
+153 ===> phantm.Settings.$lessinit$greater$default$20: phantm.InlineMode @scala.annotation.unchecked.uncheckedVariance
+0 ===> scala.Any.isInstanceOf[T0]: Boolean
+2629 ===> phantm.ast.Trees.MethodCall.<init>(obj: phantm.ast.Trees.Expression,name: phantm.ast.Trees.MethodRef,args: List[phantm.ast.Trees.CallArg]): phantm.ast.Trees.MethodCall
+411 ===> phantm.ast.STToAST.encaps_list(n: phantm.parser.ParseNode): phantm.ast.Trees.Expression
+2935 ===> phantm.cfg.VertexImp.out: Set[phantm.cfg.EdgeImp[L]]
+4519 ===> phantm.phases.MethodGraphGeneration.MethodGraph.symToV_$eq(x$1: scala.collection.immutable.Map[phantm.symbols.MethodSymbol,phantm.cfg.VertexImp[String]]): Unit
+311 ===> phantm.ast.ASTTraversal.addRec(el: Any,ctx: UserDataType): List[(phantm.ast.Trees.Tree, UserDataType)]
+817 ===> phantm.ast.Trees.CalledClass.<init>(): phantm.ast.Trees.CalledClass
+5682 ===> phantm.util.GlobalAnalysisResults.endGlobals_$eq(x$1: Option[phantm.types.TypeEnvironment]): Unit
+3679 ===> phantm.cfg.Trees.PHPThis.productArity: Int
+3740 ===> phantm.cfg.Trees.ArrayNext.ar: phantm.cfg.Trees.SimpleValue
+1371 ===> phantm.ast.Trees.If.then: phantm.ast.Trees.Statement
+2988 ===> phantm.cfg.LabeledDirectedGraphImp.$plus$eq(v: LabeledDirectedGraphImp.this.Vertex): Unit
+3207 ===> phantm.cfg.Trees.IsBool.productElement(x$1: Int): Any
+322 ===> phantm.ast.STToAST.use_declarations(n: phantm.parser.ParseNode): List[phantm.ast.Trees.Statement]
+327 ===> phantm.ast.STToAST.parameter_list(n: phantm.parser.ParseNode): List[phantm.ast.Trees.ArgumentDecl]
