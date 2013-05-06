@@ -334,6 +334,15 @@ trait CGUtils {
       out.println(methodToId.getOrElse(method, 0) + " ===> " + printableName(method))
     }
   }
+  
+  /**
+   * Print the mapping of the annotated methods to their source level effective owner.
+   */
+  def printMethodsOnwers(out: java.io.PrintStream) = {
+    for (method <- methodToId.keys) {
+      out.println(methodToId.getOrElse(method, 0) + " ===> " + effectiveOwnerName(method))
+    }
+  }
 
   /**
    * Return a Soot-like method signature.
