@@ -212,7 +212,9 @@ trait CGUtils {
        * as calls to that static target. If later on we can dispatch the call to a method in one of the 
        * "consideredClasses" then targets will hold the new value.
        */
-      var targets = List[Symbol](staticTarget)
+      var targets = List[Symbol]()
+      
+      
       
       def instantiateTypeParams(actual: Type, declared: Type): Type = {
         val tparams = declared.typeArgs
