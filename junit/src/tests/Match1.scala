@@ -8,7 +8,6 @@ object Match1 {
   }
 
   def handleArgs(args: List[String]): Unit = {
-    val dumpMatcher = "--dump:([a-z]+)".r
     val printMatcher = "--print:([a-z]+)".r
 
     (args.head.toLowerCase :: args.tail) match {
@@ -16,7 +15,6 @@ object Match1 {
         displayUsage = true
       case printMatcher(ph) :: xs =>
         displayUsage = false
-        handleArgs(xs)
       case Nil =>
     }
   }
