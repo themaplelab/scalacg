@@ -1,6 +1,6 @@
 package scalacg.probe;
 
-public class ContextInsensitive extends CallingContext {
+public class ContextInsensitive extends CallingContext<ContextInsensitive> {
 	
 	@Override
 	public String toString() {
@@ -9,12 +9,17 @@ public class ContextInsensitive extends CallingContext {
 
 	@Override
 	public boolean equals(Object o) {
-		return o instanceof CallSiteContext;
+		return o instanceof ContextInsensitive;
 	}
 
 	@Override
 	public int hashCode() {
 		return "".hashCode();
+	}
+
+	@Override
+	public int compareTo(ContextInsensitive o) {
+		return 0;
 	}
 
 }

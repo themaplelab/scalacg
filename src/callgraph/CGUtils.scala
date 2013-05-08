@@ -200,11 +200,20 @@ trait CGUtils {
     }
   }
 
+  /**
+   * The main method lookup for Scala.
+   */
   def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Symbol]): Set[Symbol] = {
+    // If the target method is a constructor, no need to do the lookup // NOTE: is that true, Ondrej?
     if (staticTarget.isConstructor)
       Set(staticTarget)
     else {
-      var targets = List[Symbol]()
+      /* Initialize the targets with the staticTarget. This enables us to put call edges to library methods
+       * as calls to that static target. If later on we can dispatch the call to a method in one of the 
+       * "consideredClasses" then targets will hold the new value.
+       */
+      var targets = List[Symbol](staticTarget)
+      
       def instantiateTypeParams(actual: Type, declared: Type): Type = {
         val tparams = declared.typeArgs
         val args = tparams map
@@ -334,7 +343,7 @@ trait CGUtils {
       out.println(methodToId.getOrElse(method, 0) + " ===> " + printableName(method))
     }
   }
-  
+
   /**
    * Print the mapping of the annotated methods to their source level effective owner.
    */

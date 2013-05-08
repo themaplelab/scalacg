@@ -7,10 +7,11 @@ package scalacg.probe;
  * @author karim
  * 
  */
-public abstract class CallingContext {
+public abstract class CallingContext<T extends CallingContext<T>> implements Comparable<T> {
 
 	public abstract String toString();
-	public abstract boolean equals(Object o);
+	public abstract boolean equals(Object other);
 	public abstract int hashCode();
+	public abstract int compareTo(T other);
 	
 }

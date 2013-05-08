@@ -7,6 +7,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.zip.GZIPInputStream;
 
 import probe.CallGraph;
@@ -38,6 +41,7 @@ public class CallGraphView extends Jui {
 	private CallGraph supergraph;
 	private String supergraphName;
 	private String subgraphName;
+	private SortedSet<CallEdge> sortedSuperGraphEdges;
 
 	@Override
 	public void run(String[] args) {
@@ -53,6 +57,11 @@ public class CallGraphView extends Jui {
 				if (supergraph == null) {
 					supergraph = readCallGraph(args[i]);
 					supergraphName = args[i];
+
+					// Sort the edges based on their context
+					Set<CallEdge> superGraphEdges = CallEdge.probeToScalacgEdge(supergraph.edges());
+					sortedSuperGraphEdges = new TreeSet<CallEdge>(new CallEdgeComparer());
+					sortedSuperGraphEdges.addAll(superGraphEdges);
 				} else if (subgraphReachables == null) {
 					subgraphReachables = readCallGraph(args[i]).findReachables();
 					subgraphName = args[i];
@@ -194,18 +203,18 @@ public class CallGraphView extends Jui {
 		}
 
 		// Add the other incoming nodes
-		for (probe.CallEdge edge : supergraph.edges()) {
+		for (CallEdge edge : sortedSuperGraphEdges) {
 			if (edge.dst().equals(m)) {
-				sb.append(node(edge.src(), ((CallEdge) edge).context()));
+				sb.append(node(edge.src(), edge.context()));
 			}
 		}
 		sb.append("</td>");
 
 		/* Outgoing edges */
 		sb.append("<td width=\"50%\" valign=\"top\">");
-		for (probe.CallEdge edge : supergraph.edges()) {
+		for (CallEdge edge : sortedSuperGraphEdges) {
 			if (edge.src().equals(m)) {
-				sb.append(node(edge.dst(), ((CallEdge) edge).context()));
+				sb.append(node(edge.dst(), edge.context()));
 			}
 		}
 		sb.append("</td>");
@@ -240,7 +249,7 @@ public class CallGraphView extends Jui {
 	 * @param context
 	 * @return
 	 */
-	public String node(CallingContext context) {
+	public String node(CallingContext<?> context) {
 		StringBuffer sb = new StringBuffer();
 
 		sb.append("<table>");
@@ -304,7 +313,7 @@ public class CallGraphView extends Jui {
 	 * @param context
 	 * @return
 	 */
-	public String node(ProbeMethod m, CallingContext context) {
+	public String node(ProbeMethod m, CallingContext<?> context) {
 		StringBuffer sb = new StringBuffer();
 		String nodeid = (String) methodIdMap.get(m);
 		

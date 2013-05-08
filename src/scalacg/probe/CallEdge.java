@@ -1,5 +1,8 @@
 package scalacg.probe;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import probe.ProbeMethod;
 
 /**
@@ -20,7 +23,7 @@ public class CallEdge extends probe.CallEdge {
 	 * @param context
 	 */
 	public CallEdge(ProbeMethod src, ProbeMethod dst, CallingContext context) {
-		super(src, dst);
+		super(src, dst, 0);
 		this.ctx = context;
 	}
 
@@ -44,9 +47,31 @@ public class CallEdge extends probe.CallEdge {
 			return ctx.toString() + " :: " + src().toString() + " ===> " + dst().toString() + " " + weight();
 		return ctx.toString() + " :: " + src().toString() + " ===> " + dst().toString();
 	}
-	
+
+	public int compareTo(CallEdge other) {
+		int result = ctx.compareTo(other.ctx);
+		return result == 0 ? super.compareTo(other) : result;
+	}
+
 	public CallingContext context() {
 		return ctx;
 	}
 
+	/**
+	 * Convert from probe.CallEdge to CallEdge
+	 * 
+	 * @param edges
+	 * @return
+	 */
+	public static Set<CallEdge> probeToScalacgEdge(Set<probe.CallEdge> edges) {
+		Set<CallEdge> result = new HashSet<CallEdge>();
+
+		for (probe.CallEdge edge : edges) {
+			if (edge instanceof CallEdge) {
+				result.add((CallEdge) edge);
+			}
+		}
+
+		return result;
+	}
 }
