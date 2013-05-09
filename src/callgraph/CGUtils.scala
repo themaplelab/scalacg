@@ -242,7 +242,6 @@ trait CGUtils {
       // If the target method is a Java method, or a Scala library method, the lookup won't yield anything. Just return
       // the static target.
       if (targets.isEmpty) {
-        // println(printableName(staticTarget))
         targets = List[Symbol](staticTarget)
       }
 
