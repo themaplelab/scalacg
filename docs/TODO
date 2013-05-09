@@ -4,7 +4,6 @@ call edge
     - special kind of edge to methods in libraries
     - order outgoing edges by line number
     
-- name-based resolution for scala as a straw-man
 - figure 10 with the box in grey to show THIS pointer treatment
 - compare three to each other
 - runtime-types
