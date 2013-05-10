@@ -23,7 +23,13 @@ public class CallGraphView extends Jui {
 	private Map<String, ProbeClass> idClassMap = new HashMap<String, ProbeClass>();
 	private Map<ProbeMethod, String> methodIdMap = new HashMap<ProbeMethod, String>();
 	private Map<String, ProbeMethod> idMethodMap = new HashMap<String, ProbeMethod>();
-	static int nextId = 1;
+	private Map<CallingContext<?>, String> contextIdMap = new HashMap<CallingContext<?>, String>();
+	private Map<String, CallingContext<?>> idContextMap = new HashMap<String, CallingContext<?>>();
+	private Map<CallingContext<?>, ProbeMethod> contextMethodMap = new HashMap<CallingContext<?>, ProbeMethod>();
+
+	private static int nextMethodId = 1;
+	private static int nextClassId = 1;
+	private static int nextContextId = 1;
 
 	public static void usage() {
 		System.out
@@ -70,9 +76,12 @@ public class CallGraphView extends Jui {
 				}
 			}
 		}
-		if (supergraph == null)
+		if (supergraph == null) {
 			usage();
-		for (probe.CallEdge edge : supergraph.edges()) {
+		}
+		
+		for (CallEdge edge : sortedSuperGraphEdges) {
+			addContext(edge.context(), edge.src());
 			addMethod(edge.src());
 			addMethod(edge.dst());
 		}
@@ -105,9 +114,11 @@ public class CallGraphView extends Jui {
 		if (nodeid.equalsIgnoreCase("root")) {
 			return rootNodePage();
 		} else if (nodeid.startsWith("c")) {
-			return nodePage((ProbeClass) idClassMap.get(nodeid));
+			return nodePage(idClassMap.get(nodeid));
 		} else if (nodeid.startsWith("m")) {
-			return nodePage((ProbeMethod) idMethodMap.get(nodeid));
+			return nodePage(idMethodMap.get(nodeid));
+		} else if (nodeid.startsWith("x")) {
+			return nodePage(idContextMap.get(nodeid));
 		} else {
 			throw new RuntimeException("bad node id");
 		}
@@ -136,14 +147,14 @@ public class CallGraphView extends Jui {
 		sb.append("<td width=\"50%\" valign=\"top\">");
 		sb.append(node("root"));
 		sb.append("</td>");
-		
+
 		/* Add the entry points */
 		sb.append("<td width=\"50%\" valign=\"top\">");
 		for (ProbeMethod method : supergraph.entryPoints()) {
 			sb.append(node(method));
 		}
 		sb.append("</td>");
-		
+
 		/* Close up the table */
 		sb.append("</tr>");
 		sb.append("</table>\n");
@@ -226,6 +237,52 @@ public class CallGraphView extends Jui {
 	}
 
 	/**
+	 * Create the HTML page for a calling context.
+	 * 
+	 * @param ctx
+	 * @return
+	 */
+	public String nodePage(CallingContext<?> ctx) {
+		StringBuffer sb = new StringBuffer();
+		String nodeid = (String) contextIdMap.get(ctx);
+
+		/* The search form */
+		sb.append(searchForm());
+
+		/* The calling context in the middle */
+		sb.append("<center>");
+		sb.append(node(nodeid));
+		sb.append("</center>");
+
+		/* The table header */
+		sb.append("<table width=\"100%\">");
+		sb.append("<tr>");
+		sb.append("<td><center>In Method:</center></td>");
+		sb.append("<td><center>Outgoing edges:</center></td>");
+		sb.append("</tr>");
+
+		/* The method containing that calling context */
+		sb.append("<tr>");
+		sb.append("<td width=\"50%\" valign=\"top\">");
+		sb.append(node(contextMethodMap.get(ctx)));
+		sb.append("</td>");
+
+		/* Outgoing edges */
+		sb.append("<td width=\"50%\" valign=\"top\">");
+		for (CallEdge edge : sortedSuperGraphEdges) {
+			if (edge.context().equals(ctx)) {
+				sb.append(node(edge.dst()));
+			}
+		}
+		sb.append("</td>");
+
+		/* Close up the table */
+		sb.append("</tr>");
+		sb.append("</table>\n");
+		return html(sb.toString());
+	}
+
+	/**
 	 * Get the right HTML node for the given nodeid.
 	 * 
 	 * @param nodeid
@@ -235,9 +292,11 @@ public class CallGraphView extends Jui {
 		if (nodeid.equalsIgnoreCase("root")) {
 			return rootNode();
 		} else if (nodeid.startsWith("c")) {
-			return node((ProbeClass) idClassMap.get(nodeid));
+			return node(idClassMap.get(nodeid));
 		} else if (nodeid.startsWith("m")) {
-			return node((ProbeMethod) idMethodMap.get(nodeid));
+			return node(idMethodMap.get(nodeid));
+		} else if (nodeid.startsWith("x")) {
+			return node(idContextMap.get(nodeid));
 		} else {
 			throw new RuntimeException("bad node id");
 		}
@@ -246,16 +305,17 @@ public class CallGraphView extends Jui {
 	/**
 	 * Create an HTML node for the calling context.
 	 * 
-	 * @param context
+	 * @param ctx
 	 * @return
 	 */
-	public String node(CallingContext<?> context) {
+	public String node(CallingContext<?> ctx) {
 		StringBuffer sb = new StringBuffer();
+		String nodeid = (String) contextIdMap.get(ctx);
 
 		sb.append("<table>");
 		sb.append("<tr>");
 		sb.append("<td align=\"center\" bgcolor=\"lightblue\">");
-		sb.append(context);
+		sb.append(link("node", nodeid, ctx.toString()));
 		sb.append("</td>");
 		sb.append("</tr>");
 		sb.append("</table>");
@@ -270,8 +330,8 @@ public class CallGraphView extends Jui {
 	 */
 	public String rootNode() {
 		StringBuffer sb = new StringBuffer();
-
 		String nodeid = "root";
+
 		sb.append("<table>");
 		sb.append("<tr>");
 		sb.append("<td bgcolor=\"lightgreen\">");
@@ -305,7 +365,7 @@ public class CallGraphView extends Jui {
 		sb.append("</a></td></tr></table>");
 		return sb.toString();
 	}
-	
+
 	/**
 	 * Create an HTML node for a method.
 	 * 
@@ -316,7 +376,7 @@ public class CallGraphView extends Jui {
 	public String node(ProbeMethod m, CallingContext<?> context) {
 		StringBuffer sb = new StringBuffer();
 		String nodeid = (String) methodIdMap.get(m);
-		
+
 		sb.append("<table>");
 		sb.append("<tr>");
 		if (subgraphReachables != null && subgraphReachables.contains(m)) {
@@ -324,16 +384,16 @@ public class CallGraphView extends Jui {
 		} else {
 			sb.append("<td bgcolor=\"lightblue\">");
 		}
-		
+
 		/* The class name */
 		sb.append(node(m.cls()));
-		
+
 		/* The method signature */
 		sb.append(link("node", nodeid, escape(m.name()) + "(" + escape(m.signature()) + ")"));
-		
+
 		/* The calling context */
 		sb.append(node(context));
-		
+
 		/* Close up the table */
 		sb.append("</td>");
 		sb.append("</tr>");
@@ -435,7 +495,7 @@ public class CallGraphView extends Jui {
 	private void addMethod(ProbeMethod m) {
 		if (!methodIdMap.containsKey(m)) {
 			addClass(m.cls());
-			String id = "m" + nextId++;
+			String id = "m" + nextMethodId++;
 			methodIdMap.put(m, id);
 			idMethodMap.put(id, m);
 		}
@@ -448,9 +508,24 @@ public class CallGraphView extends Jui {
 	 */
 	private void addClass(ProbeClass cls) {
 		if (!classIdMap.containsKey(cls)) {
-			String id = "c" + nextId++;
+			String id = "c" + nextClassId++;
 			classIdMap.put(cls, id);
 			idClassMap.put(id, cls);
+		}
+	}
+
+	/**
+	 * Add a context from the call graph.
+	 * 
+	 * @param ctx
+	 * @param inMethod
+	 */
+	private void addContext(CallingContext<?> ctx, ProbeMethod inMethod) {
+		if (!contextIdMap.containsKey(ctx)) {
+			String id = "x" + nextContextId++;
+			contextIdMap.put(ctx, id);
+			idContextMap.put(id, ctx);
+			contextMethodMap.put(ctx, inMethod);
 		}
 	}
 
