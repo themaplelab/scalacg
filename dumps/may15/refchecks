@@ -1,0 +1,114 @@
+[[syntax trees at end of                 refchecks]] // Match1.scala
+package tests {
+  object Match1 extends scala.AnyRef {
+    @scala.annotation.Annotation
+        with scala.annotation.ClassfileAnnotation
+        with java.lang.annotation.Annotation {
+  def value(): Int
+  def <init>(): callgraph.annotation.targetmethod
+}(value = 1) def <init>(): tests.Match1.type = {
+      Match1.super.<init>();
+      ()
+    };
+    private[this] var displayUsage: Boolean = false;
+    @scala.annotation.Annotation
+        with scala.annotation.ClassfileAnnotation
+        with java.lang.annotation.Annotation {
+  def value(): Int
+  def <init>(): callgraph.annotation.targetmethod
+}(value = 2) <accessor> def displayUsage: Boolean = Match1.this.displayUsage;
+    @scala.annotation.Annotation
+        with scala.annotation.ClassfileAnnotation
+        with java.lang.annotation.Annotation {
+  def value(): Int
+  def <init>(): callgraph.annotation.targetmethod
+}(value = 3) <accessor> def displayUsage_=(x$1: Boolean): Unit = Match1.this.displayUsage = x$1;
+    @scala.annotation.Annotation
+        with scala.annotation.ClassfileAnnotation
+        with java.lang.annotation.Annotation {
+  def value(): Int
+  def <init>(): callgraph.annotation.targetmethod
+}(value = 4) def main(args: Array[String]): Unit = Match1.this.handleArgs(scala.this.Predef.refArrayOps[String](args).toList);
+    @scala.annotation.Annotation
+        with scala.annotation.ClassfileAnnotation
+        with java.lang.annotation.Annotation {
+  def value(): Int
+  def <init>(): callgraph.annotation.targetmethod
+}(value = 5) def handleArgs(args: List[String]): Unit = {
+      val printMatcher: scala.util.matching.Regex = scala.this.Predef.augmentString("--print:([a-z]+)").r;
+      {
+        var rc10: Boolean = false;
+        var x3: scala.collection.immutable.::[String] = null.asInstanceOf[scala.collection.immutable.::[String]];
+        {
+          case <synthetic> val x1: List[String] = {
+            <synthetic> val x$1: String = args.head.toLowerCase();
+            args.tail.::[String](x$1)
+          };
+          case12(){
+            if (x1.isInstanceOf[scala.collection.immutable.::[String]])
+              {
+                rc10 = true;
+                x3 = (x1.asInstanceOf[scala.collection.immutable.::[String]]: scala.collection.immutable.::[String]);
+                if (x3.ne(null))
+                  {
+                    val p2: String = x3.hd$1;
+                    val xs: List[String] = x3.tl$1;
+                    if ("--help".==(p2))
+                      {
+                        val x7: String = p2;
+                        matchEnd11(Match1.this.displayUsage_=(true))
+                      }
+                    else
+                      case13()
+                  }
+                else
+                  case13()
+              }
+            else
+              case13()
+          };
+          case13(){
+            if (rc10)
+              if (x3.ne(null))
+                {
+                  val p4: Any = x3.hd$1;
+                  val xs: List[String] = x3.tl$1;
+                  {
+                    val o15: Option[List[String]] = printMatcher.unapplySeq(p4);
+                    if (o15.isEmpty.unary_!)
+                      if (o15.get.!=(null).&&(o15.get.lengthCompare(1).==(0)))
+                        {
+                          val ph: String = o15.get.apply(0);
+                          matchEnd11(Match1.this.displayUsage_=(false))
+                        }
+                      else
+                        case14()
+                    else
+                      case14()
+                  }
+                }
+              else
+                case14()
+            else
+              case14()
+          };
+          case14(){
+            if (immutable.this.Nil.==(x1))
+              {
+                val x8: List[String] = x1;
+                matchEnd11(())
+              }
+            else
+              case16()
+          };
+          case16(){
+            matchEnd11(throw new MatchError(x1))
+          };
+          matchEnd11(x: Unit){
+            x
+          }
+        }
+      }
+    }
+  }
+}

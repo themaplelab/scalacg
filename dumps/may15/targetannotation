@@ -1,0 +1,49 @@
+[[syntax trees at end of          targetannotation]] // Match1.scala
+package tests {
+  object Match1 extends scala.AnyRef {
+    @scala.annotation.Annotation
+        with scala.annotation.ClassfileAnnotation
+        with java.lang.annotation.Annotation {
+  def value(): Int
+  def <init>(): callgraph.annotation.targetmethod
+}(value = 1) def <init>(): tests.Match1.type = {
+      Match1.super.<init>();
+      ()
+    };
+    private[this] var displayUsage: Boolean = false;
+    @scala.annotation.Annotation
+        with scala.annotation.ClassfileAnnotation
+        with java.lang.annotation.Annotation {
+  def value(): Int
+  def <init>(): callgraph.annotation.targetmethod
+}(value = 2) <accessor> def displayUsage: Boolean = Match1.this.displayUsage;
+    @scala.annotation.Annotation
+        with scala.annotation.ClassfileAnnotation
+        with java.lang.annotation.Annotation {
+  def value(): Int
+  def <init>(): callgraph.annotation.targetmethod
+}(value = 3) <accessor> def displayUsage_=(x$1: Boolean): Unit = Match1.this.displayUsage = x$1;
+    @scala.annotation.Annotation
+        with scala.annotation.ClassfileAnnotation
+        with java.lang.annotation.Annotation {
+  def value(): Int
+  def <init>(): callgraph.annotation.targetmethod
+}(value = 4) def main(args: Array[String]): Unit = Match1.this.handleArgs(scala.this.Predef.refArrayOps[String](args).toList);
+    @scala.annotation.Annotation
+        with scala.annotation.ClassfileAnnotation
+        with java.lang.annotation.Annotation {
+  def value(): Int
+  def <init>(): callgraph.annotation.targetmethod
+}(value = 5) def handleArgs(args: List[String]): Unit = {
+      val printMatcher: scala.util.matching.Regex = scala.this.Predef.augmentString("--print:([a-z]+)").r;
+      {
+        <synthetic> val x$1: String = args.head.toLowerCase();
+        args.tail.::[String](x$1)
+      } match {
+        case (hd: String, tl: List[String])scala.collection.immutable.::[String]("--help", (xs @ _)) => Match1.this.displayUsage_=(true)
+        case (hd: String, tl: List[String])scala.collection.immutable.::[String](printMatcher.unapplySeq(<unapply-selector>) <unapply> ((ph @ _)), (xs @ _)) => Match1.this.displayUsage_=(false)
+        case immutable.this.Nil => ()
+      }
+    }
+  }
+}
