@@ -134,7 +134,7 @@ trait CGUtils {
       case AnnotationInfo(tpe, Literal(Constant(string: String)) :: _, _) if tpe == targetAnnotationType => string
     }
     assert(targets.size <= 1)
-    targets.headOption.getOrElse(UNANNOT + " " + printableName(symbol))
+    targets.headOption.getOrElse(UNANNOT + " " + probeMethod(symbol))
   }
 
   var concretization = Map[Symbol, Set[Type]]()
@@ -313,13 +313,20 @@ trait CGUtils {
       source <- reachableMethods
       callSite <- callSitesInMethod.getOrElse(source, Set())
       target <- callGraph(callSite)
-    } out.println(printableName(source) + " ==> " + printableName(target))
+    } out.println(probeMethod(source) + " ==> " + probeMethod(target))
   }
+
+  def formatPosition(pos: Position, method: Symbol) = {
+    (if (pos.isDefined) relativize(pos.source.file) + " ::: " + pos.line
+    else "unknown ::: 0") + " ::: " + probeMethod(method)
+  }
+
+  def formatPosition(pos: Position) = {
+    if (pos.isDefined) relativize(pos.source.file) + " ::: " + pos.line
+    else "unknown ::: 0"
+  }
+
   def printEclipseCallGraph(out: java.io.PrintStream) = {
-    def formatPosition(pos: Position, method: Symbol) = {
-      (if (pos.isDefined) relativize(pos.source.file) + " ::: " + pos.line
-      else "unknown ::: 0") + " ::: " + printableName(method)
-    }
     for {
       source <- reachableMethods
       callSite <- callSitesInMethod.getOrElse(source, Set())
@@ -330,11 +337,14 @@ trait CGUtils {
           formatPosition(target.pos, target))
     }
   }
-  def printableName(method: Symbol) =
+  
+  def printableName(method: Symbol) = {
     method.fullName + method.signatureString
+  }
+  
   def printReachableMethods(out: java.io.PrintStream) = {
     for (method <- reachableMethods)
-      out.println(methodToId.getOrElse(method, 0) + " ===> " + printableName(method))
+      out.println(methodToId.getOrElse(method, 0) + " ::: " + formatPosition(method.pos, method))
   }
 
   /**
@@ -342,7 +352,7 @@ trait CGUtils {
    */
   def printMethods(out: java.io.PrintStream) = {
     for (method <- methodToId.keys) {
-      out.println(methodToId.getOrElse(method, 0) + " ===> " + printableName(method))
+      out.println(methodToId.getOrElse(method, 0) + " ===> " + probeMethod(method))
     }
   }
 
@@ -374,7 +384,7 @@ trait CGUtils {
       entry <- entryPoints
     } {
       probeCallGraph.entryPoints.add(probeMethod(entry))
-      entryPointsOut.println(methodToId.getOrElse(entry, 0) + " ===> " + printableName(entry))
+      entryPointsOut.println(methodToId.getOrElse(entry, 0) + " ===> " + probeMethod(entry))
     }
 
     // Get the edges
