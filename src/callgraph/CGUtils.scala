@@ -409,7 +409,7 @@ trait CGUtils {
    */
   def probeMethod(methodSymbol: Symbol): ProbeMethod = {
     val probeClass = ObjectManager.v().getClass(effectiveOwnerName(methodSymbol))
-    val probeMethod = ObjectManager.v().getMethod(probeClass, methodSymbol.simpleName.encoded, paramsSignatureString(methodSymbol))
+    val probeMethod = ObjectManager.v().getMethod(probeClass, methodSymbol.simpleName.decode, paramsSignatureString(methodSymbol))
     probeMethod
   }
 
