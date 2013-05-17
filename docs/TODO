@@ -5,11 +5,16 @@ WALA vs Plugin
 	- Self calls. A method appears to call itself, only because it's calling another method with the same id in the
 	bytecode.
 	
+- Incosistent method names
+	- Everything should use the signature of a probe method instead of the printableName
+	
 - The way methods are resolved in WALA was not consistent with the plugin
 	- WALA is using CHA instead of RTA -> many more edges
 	- WALA is resolving calls to library methods instead of the static target
 	
 - The way the Kildall Framework is modelled to "summarize edges"
 	- This causes a lot of edges to appear the originate from call sites in the application, while in fact they might
-	be library call backs. We do not handle call backs in the plugin. 
+	be library call backs. We do not handle call backs in the plugin.
+	
+- Static initializers are not annotated
 	
