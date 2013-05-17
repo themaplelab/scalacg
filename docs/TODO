@@ -1,15 +1,15 @@
-- Karim: ProBe should display field access using different type of 
-call edge
-    - also different types of edges for constructors, implicits
-    - special kind of edge to methods in libraries
-    - order outgoing edges by line number
-    
-- figure 10 with the box in grey to show THIS pointer treatment
-- compare three to each other
-- runtime-types
-- algorithm name: Trait Call graph Analysis (TCA)
-- ondrej: define name-based resolution
-- frank: algorithm section -> formalism, name-based, TCA, example
-- ondrej: appendix with FS and our extensions
-- frank: the issue with the union operator
-- frank: assertions for constructors, super calls, implicits, colon operator
+WALA vs Plugin
+- Different methods with same ID in bytecode is causing a couple of problems
+	- Duplicate entry points in WALA. Two main methods are generated for each main method, one in the class, and another
+	in the companion class. 
+	- Self calls. A method appears to call itself, only because it's calling another method with the same id in the
+	bytecode.
+	
+- The way methods are resolved in WALA was not consistent with the plugin
+	- WALA is using CHA instead of RTA -> many more edges
+	- WALA is resolving calls to library methods instead of the static target
+	
+- The way the Kildall Framework is modelled to "summarize edges"
+	- This causes a lot of edges to appear the originate from call sites in the application, while in fact they might
+	be library call backs. We do not handle call backs in the plugin. 
+	
