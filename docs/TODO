@@ -17,4 +17,7 @@ WALA vs Plugin
 	be library call backs. We do not handle call backs in the plugin.
 	
 - Static initializers are not annotated
-	
+
+
+Code Refactor
+- Merge everything into CGUtils then break it up.

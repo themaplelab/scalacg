@@ -38,8 +38,11 @@ trait RTA { this: CGUtils =>
 
   def buildCallGraph = {
     // all objects are considered to be allocated
-    instantiatedClasses ++= classes.filter(_.isModule)
-
+    instantiatedClasses ++= classes.filter(_.isModule) 
+    // this should be the same as in CGUtils.initialize
+    // so this probably should say isModuleClass, if it breaks, then revert :D
+    
+    
     methodQueue ++= entryPoints
 
     while (!methodQueue.isEmpty) {

@@ -14,12 +14,12 @@ import scala.reflect.io.AbstractFile
 import java.io.PrintStream
 
 trait CGUtils {
-  val global: nsc.Global
+  val global: nsc.Global // same as the other global
   import global._
 
   val UNANNOT = "<unannotated>"
 
-  def trees: List[Tree]
+  def trees: List[Tree] // this is overridden by var trees in CallGraphPlugin
 
   case class CallSite(receiver: Tree, method: MethodSymbol, args: List[Tree],
     annotation: List[String], ancestors: List[Tree], pos: Position)
@@ -65,11 +65,11 @@ trait CGUtils {
       findCallSites(tree, List())
     }
 
-    // find classes
+    // find the set of instnatiated classes in the whole program
     classes = trees.flatMap { tree =>
       tree.collect {
-        case cd: ClassDef if cd.symbol.isModuleClass => cd.symbol
-        case nw: New => nw.tpt.symbol
+        case cd: ClassDef if cd.symbol.isModuleClass => cd.symbol // isModuleClass -> an object, it gets auto instantiated
+        case nw: New => nw.tpt.symbol // the set of all allocation sites
       }
     }.toSet
   }
@@ -142,9 +142,9 @@ trait CGUtils {
     // find all definitions of abstract type members ("type aliases")
     for {
       cls <- classes
-      sym <- cls.tpe.members
+      sym <- cls.tpe.members // concrete type
       superClass <- cls.baseClasses
-      absSym <- superClass.tpe.decls
+      absSym <- superClass.tpe.decls // abstract type
       if absSym.isAbstractType
       if absSym.name == sym.name
     } {
@@ -152,11 +152,12 @@ trait CGUtils {
         (absSym -> (concretization.getOrElse(absSym, Set()) + sym.tpe.dealias))
     }
 
-    // find all instantiations of generic type parameters
+    // find all instantiations of generic type parameters (generics behave the same way 
     for {
       cls <- classes
     } {
       cls.info match {
+        // class declaration and has a set of parents
         case ClassInfoType(parents, _, _) =>
           for { parent <- parents } {
             val args = parent.typeArguments
@@ -171,6 +172,7 @@ trait CGUtils {
           }
         case _ =>
         // TODO: are we missing any cases?
+        // one case missing is new List[Int]
       }
     }
 
@@ -287,6 +289,7 @@ trait CGUtils {
       filter(_.isMethod). // consider only methods, not fields or other members
       filter(!_.isDeferred). // filter out abstract methods
       filter(_.typeSignature.toString.equals("(args: Array[String])Unit")) // filter out methods accidentally named "main"
+    // global.definitions.StringArray
 
     Set() ++ mainMethods
   }
@@ -337,11 +340,11 @@ trait CGUtils {
           formatPosition(target.pos, target))
     }
   }
-  
+
   def printableName(method: Symbol) = {
     method.fullName + method.signatureString
   }
-  
+
   def printReachableMethods(out: java.io.PrintStream) = {
     for (method <- reachableMethods)
       out.println(methodToId.getOrElse(method, 0) + " ::: " + formatPosition(method.pos, method))

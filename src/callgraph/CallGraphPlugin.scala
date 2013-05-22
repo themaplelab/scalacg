@@ -25,13 +25,16 @@ class CallGraphPlugin(val global: Global) extends Plugin {
     val phaseName = CallGraphPlugin.this.name
 
     class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with CGUtils with THA {
+      // apply is called for each file, but we want to run once for all files, that's why we override run
       def apply(unit: CallGraphComponent.this.global.CompilationUnit) = assert(false)
+      
+      // The cake pattern stuff, you need to provide a "concrete" reference for Global
       val global = CallGraphComponent.this.global
-      import global._
+      import global._ // just saves you typing
       
       val methodToId = CallGraphPlugin.this.methodToId
 
-      var trees = List[Tree]()
+      var trees = List[Tree]() // global.Tree
 
       override def run = {
         trees = global.currentRun.units.map(_.body).toList
