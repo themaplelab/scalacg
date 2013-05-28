@@ -12,6 +12,7 @@ import scalacg.probe.GXLWriter
 import java.io.File
 import scala.reflect.io.AbstractFile
 import java.io.PrintStream
+import scala.reflect.api.BooleanFlag
 
 trait CGUtils {
   val global: nsc.Global // same as the other global
@@ -28,6 +29,9 @@ trait CGUtils {
   val callSitesInMethod = mutable.Map[Symbol, Set[CallSite]]()
   var classes = Set[Symbol]()
   def callGraph: CallSite => Set[Symbol]
+
+  // a set of the static targets found by the analysis mapped to their bytecode signatures
+  var staticTargets = Map[Symbol, String]()
 
   def annotationFilter: PartialFunction[Tree, String]
   abstract class TraverseWithAncestors {
@@ -245,6 +249,8 @@ trait CGUtils {
       // the static target.
       if (targets.isEmpty) {
         targets = List[Symbol](staticTarget)
+        staticTargets += (staticTarget -> bytecodeSignature(staticTarget))
+        println(bytecodeSignature(staticTarget))
       }
 
       targets.toSet
@@ -418,11 +424,40 @@ trait CGUtils {
   }
 
   /**
+   * Get the bytecode descriptor for the given symbol
+   */
+  def bytecodeSignature(methodSymbol: Symbol): String = {
+    var bf = ""
+
+    bf += methodSymbol.effectiveOwner.javaClassName
+    bf += ": " + methodSymbol.simpleName.encode
+    bf += " ("
+    for {
+      param <- methodSymbol.tpe.params
+    } {
+      bf += param.tpe.erasure.typeSymbol.javaClassName
+    }
+    bf += ")"
+    bf
+  }
+  
+  /**
+   * Get the bytecode signature of a type
+   */
+  def signature(tpe : Type): String = {
+    tpe match {
+      case tpe =:= BooleanFlag => "Z"
+        
+        
+    }
+  }
+
+  /**
    * Get a probe method for the given symbol
    */
   def probeMethod(methodSymbol: Symbol): ProbeMethod = {
-    val probeClass = ObjectManager.v().getClass(effectiveOwnerName(methodSymbol))
-    val probeMethod = ObjectManager.v().getMethod(probeClass, methodSymbol.simpleName.decode, paramsSignatureString(methodSymbol))
+    val probeClass = ObjectManager.v().getClass(if (staticTargets.contains(methodSymbol)) methodSymbol.effectiveOwner.javaClassName else effectiveOwnerName(methodSymbol))
+    val probeMethod = if (staticTargets.contains(methodSymbol)) ObjectManager.v().getMethod(probeClass, methodSymbol.simpleName.encoded, bytecodeSignature(methodSymbol)) else ObjectManager.v().getMethod(probeClass, methodSymbol.simpleName.decode, paramsSignatureString(methodSymbol))
     probeMethod
   }
 
