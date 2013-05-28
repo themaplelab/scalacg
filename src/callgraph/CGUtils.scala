@@ -444,13 +444,13 @@ trait CGUtils {
   /**
    * Get the bytecode signature of a type
    */
-  def signature(tpe : Type): String = {
-    tpe match {
-      case tpe =:= BooleanFlag => "Z"
-        
-        
-    }
-  }
+//  def signature(tpe : Type): String = {
+//    tpe match {
+//      case tpe =:= BooleanFlag => "Z"
+//        
+//        
+//    }
+//  }
 
   /**
    * Get a probe method for the given symbol
