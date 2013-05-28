@@ -16,6 +16,18 @@ public class CallEdge extends probe.CallEdge {
 	private CallingContext ctx;
 
 	/**
+	 * Create a call edge from source to destination without a calling context.
+	 * 
+	 * @param src
+	 * @param dst
+	 * @param context
+	 */
+	public CallEdge(ProbeMethod src, ProbeMethod dst) {
+		super(src, dst, 0);
+		this.ctx = new ContextInsensitive();
+	}
+	
+	/**
 	 * Create a call edge from source to destination with the given calling context.
 	 * 
 	 * @param src
