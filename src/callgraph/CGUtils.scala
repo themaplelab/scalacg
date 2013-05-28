@@ -1,18 +1,18 @@
 package callgraph
 
-import scala.tools.nsc
-import scala.collection.mutable
-import scala.collection
-import probe.CallGraph
-import probe.ProbeMethod
-import probe.ObjectManager
-import scalacg.probe.CallSiteContext
-import scalacg.probe.CallEdge
-import scalacg.probe.GXLWriter
-import java.io.File
-import scala.reflect.io.AbstractFile
 import java.io.PrintStream
-import scala.reflect.api.BooleanFlag
+
+import scala.collection.mutable
+import scala.reflect.io.AbstractFile
+import scala.tools.nsc
+
+import probe.CallGraph
+import probe.ObjectManager
+import probe.ProbeMethod
+import scala.collection
+import scalacg.probe.CallEdge
+import scalacg.probe.CallSiteContext
+import scalacg.probe.GXLWriter
 
 trait CGUtils {
   val global: nsc.Global // same as the other global
