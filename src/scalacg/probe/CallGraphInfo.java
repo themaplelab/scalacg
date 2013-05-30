@@ -102,9 +102,9 @@ public class CallGraphInfo {
 
 		if (dashG) {
 			System.out.println("Call Edges: ");
-			for (Iterator pmIt = graph.edges().iterator(); pmIt.hasNext();) {
-				final CallEdge pm = (CallEdge) pmIt.next();
-				System.out.println(pm);
+			for (Iterator edgeIt = graph.edges().iterator(); edgeIt.hasNext();) {
+				final CallEdge edge = (CallEdge) edgeIt.next();
+				System.out.println(edge);
 			}
 		}
 	}

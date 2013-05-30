@@ -55,9 +55,10 @@ public class CallEdge extends probe.CallEdge {
 
 	@Override
 	public String toString() {
+		String context = ctx instanceof ContextInsensitive ? "" : ctx.toString() + " :: ";
 		if (weight() != 0)
-			return ctx.toString() + " :: " + src().toString() + " ===> " + dst().toString() + " " + weight();
-		return ctx.toString() + " :: " + src().toString() + " ===> " + dst().toString();
+			return context + src().toString() + " ===> " + dst().toString() + " " + weight();
+		return context + src().toString() + " ===> " + dst().toString();
 	}
 
 	public int compareTo(CallEdge other) {
