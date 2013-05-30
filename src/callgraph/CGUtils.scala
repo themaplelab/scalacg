@@ -17,6 +17,7 @@ import scalacg.probe.GXLWriter
 trait CGUtils {
   val global: nsc.Global // same as the other global
   import global._
+  import global.definitions._
 
   val UNANNOT = "<unannotated>"
 
@@ -30,8 +31,8 @@ trait CGUtils {
   var classes = Set[Symbol]()
   def callGraph: CallSite => Set[Symbol]
 
-  // a set of the static targets found by the analysis mapped to their bytecode signatures
-  var staticTargets = Map[Symbol, String]()
+  // a set of the static targets found by the analysis
+  var staticTargets = Set[Symbol]()
 
   def annotationFilter: PartialFunction[Tree, String]
   abstract class TraverseWithAncestors {
@@ -247,11 +248,13 @@ trait CGUtils {
       }
       // If the target method is a Java method, or a Scala library method, the lookup won't yield anything. Just return
       // the static target.
-      if (targets.isEmpty) {
-        targets = List[Symbol](staticTarget)
-        staticTargets += (staticTarget -> bytecodeSignature(staticTarget))
-        println(bytecodeSignature(staticTarget))
-      }
+      // TODO ignore this for now for the sake of making some progress on the experiments!
+      //      if (targets.isEmpty) {
+      //        targets = List[Symbol](staticTarget)
+      //        staticTargets += staticTarget
+      //         TODO
+      //        println(bytecodeSignature(staticTarget))
+      //      }
 
       targets.toSet
     }
@@ -429,28 +432,38 @@ trait CGUtils {
   def bytecodeSignature(methodSymbol: Symbol): String = {
     var bf = ""
 
-    bf += methodSymbol.effectiveOwner.javaClassName
-    bf += ": " + methodSymbol.simpleName.encode
-    bf += " ("
+    //    bf += methodSymbol.effectiveOwner.javaClassName
+    //    bf += ": " + methodSymbol.simpleName.encode
+    //    bf += " ("
     for {
       param <- methodSymbol.tpe.params
     } {
-      bf += param.tpe.erasure.typeSymbol.javaClassName
+      bf += signature(param.tpe)
     }
-    bf += ")"
+    //    bf += ")"
     bf
   }
-  
+
   /**
    * Get the bytecode signature of a type
    */
-//  def signature(tpe : Type): String = {
-//    tpe match {
-//      case tpe =:= BooleanFlag => "Z"
-//        
-//        
-//    }
-//  }
+  def signature(tpe: Type): String = {
+    tpe.erasure match {
+      case BooleanTpe => "Z"
+      case ByteTpe => "B"
+      case CharTpe => "C"
+      case DoubleTpe => "D"
+      case FloatTpe => "F"
+      case IntTpe => "I"
+      case LongTpe => "L"
+      case ShortTpe => "S"
+      // TODO need to add multidimensional array support.
+      case TypeRef(_, ArrayClass, arg :: Nil) => ("[") + signature(arg)
+      case UnitTpe => "V"
+      case _ if tpe.erasure <:< AnyRefTpe => "L" + tpe.erasure.typeSymbol.javaBinaryName + ";"
+      case _ => assert(false, "unknown type: " + tpe.erasure); null
+    }
+  }
 
   /**
    * Get a probe method for the given symbol

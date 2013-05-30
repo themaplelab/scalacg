@@ -21,3 +21,6 @@ WALA vs Plugin
 
 Code Refactor
 - Merge everything into CGUtils then break it up.
+
+- TCA with special handling vs TCA w/o vs RA
+- Compare against wala
