@@ -111,5 +111,16 @@ class Suite {
   @Test def testInfix = runTest("Infix")
   
   @Test def testMatch1 = runTest("Match1")
-   
+  
+  @Test def testExtractor = runTest("matching/Extractor")
+  @Test def testExtractorVarargs = runTest("matching/ExtractorVarargs")
+  @Test def testExtractorWithoutArgs = runTest("matching/ExtractorWithoutArgs")
+  @Test def testCaseClass = runTest("matching/CaseClass")
+  @Test def testCaseClassOption = runTest("matching/CaseClassOption")
+  @Test def testCaseClassTuple = runTest("matching/CaseClassTuple")
+  @Test def testCaseClassWildcard = runTest("matching/CaseClassWildcard")
+  @Test def testMatchExpression = runTest("matching/MatchExpression")
+  @Test def testExtractorUnapply = runTest("matching/ExtractorUnapply")
+  @Test def testCaseClassInstanceof = runTest("matching/CaseClassInstanceof")
+  @Test def testConstantEquals = runTest("matching/ConstantEquals")
 }

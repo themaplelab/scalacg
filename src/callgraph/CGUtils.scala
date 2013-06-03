@@ -132,14 +132,22 @@ trait CGUtils {
     }
   }
 
-  def findTargetAnnotation(symbol: Symbol): String = {
-    val targetAnnotationType =
-      rootMirror.getRequiredClass("tests.target").tpe
+  def findTargetAnnotation(symbol: Symbol): String = 
+    findAnnotationTargets(symbol, "tests.target", needProbe = true).head
+    
+  def findAnnotationTargets(symbol: Symbol, annotationName: String, needProbe: Boolean): List[String] = {
+    val targetAnnotationType = rootMirror.getRequiredClass(annotationName).tpe
     val targets = symbol.annotations.collect {
-      case AnnotationInfo(tpe, Literal(Constant(string: String)) :: _, _) if tpe == targetAnnotationType => string
+      case AnnotationInfo(tpe, args, _) if tpe == targetAnnotationType => 
+        args.map((arg) =>
+          arg match {
+            case Literal(Constant(string: String)) => string
+          })
     }
     assert(targets.size <= 1)
-    targets.headOption.getOrElse(UNANNOT + " " + probeMethod(symbol))
+    targets.headOption.getOrElse(if (needProbe) 
+    							List(UNANNOT + " " + probeMethod(symbol))
+    							else Nil)
   }
 
   var concretization = Map[Symbol, Set[Type]]()
@@ -260,7 +268,12 @@ trait CGUtils {
     }
   }
 
-  def printAnnotatedCallsites = {
+  def printAnnotatedCallsites() {
+    printTargets()
+    printInvocations()
+  }
+
+  private def printTargets() {
     for {
       callSite <- callSites
       if !callSite.annotation.isEmpty
@@ -269,9 +282,32 @@ trait CGUtils {
 
       val resolved = callGraph(callSite).map(findTargetAnnotation)
       val expected = callSite.annotation.toSet
-      println("Resolved: " + resolved.toSeq.sorted.mkString(", "))
-      println("Expected: " + expected.toSeq.sorted.mkString(", "))
+      printCallGraph(resolved, isResolved = true)
+      printCallGraph(expected, isResolved = false)
       assert(callSite.annotation.isEmpty || (resolved == expected), expected.toSeq.sorted.mkString(", "))
+    }
+  }
+
+  def printCallGraph(methodNames: Set[String], isResolved: Boolean) {
+    val resolvedExpected = if (isResolved) "Resolved: " else "Expected: "
+    println(resolvedExpected + methodNames.toSeq.sorted.mkString(", "))
+  }
+
+  private def printInvocations() {
+    for {
+      method <- reachableMethods
+      if !method.annotations.isEmpty
+    } {
+      val expected: Set[String] =
+        findAnnotationTargets(method, "tests.invocations", needProbe = false).toSet
+      if (expected.isEmpty)
+        return
+      val resolved: Set[String] =
+        callSitesInMethod(method).flatMap(callGraph).map(findTargetAnnotation)
+      // todo: how to print?
+      printCallGraph(resolved, isResolved = true)
+      printCallGraph(expected, isResolved = false)
+      assert(expected.subsetOf(resolved), expected.toSeq.sorted.mkString(", "))
     }
   }
 
