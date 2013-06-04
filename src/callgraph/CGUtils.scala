@@ -6,15 +6,13 @@ import scala.collection.mutable
 import scala.reflect.io.AbstractFile
 import scala.tools.nsc
 
+import ca.uwaterloo.scalacg.util.Probe
 import probe.CallGraph
-import probe.ObjectManager
-import probe.ProbeMethod
-import scala.collection
 import scalacg.probe.CallEdge
 import scalacg.probe.CallSiteContext
 import scalacg.probe.GXLWriter
 
-trait CGUtils {
+trait CGUtils extends Probe {
   val global: nsc.Global // same as the other global
   import global._
   import global.definitions._
@@ -499,28 +497,5 @@ trait CGUtils {
       case _ if tpe.erasure <:< AnyRefTpe => "L" + tpe.erasure.typeSymbol.javaBinaryName + ";"
       case _ => assert(false, "unknown type: " + tpe.erasure); null
     }
-  }
-
-  /**
-   * Get a probe method for the given symbol
-   */
-  def probeMethod(methodSymbol: Symbol): ProbeMethod = {
-    val probeClass = ObjectManager.v().getClass(if (staticTargets.contains(methodSymbol)) methodSymbol.effectiveOwner.javaClassName else effectiveOwnerName(methodSymbol))
-    val probeMethod = if (staticTargets.contains(methodSymbol)) ObjectManager.v().getMethod(probeClass, methodSymbol.simpleName.encoded, bytecodeSignature(methodSymbol)) else ObjectManager.v().getMethod(probeClass, methodSymbol.simpleName.decode, paramsSignatureString(methodSymbol))
-    probeMethod
-  }
-
-  /**
-   * Get the full name (dot separated) of the owner of a method symbol. That acts like the method declaring class in Soot.
-   */
-  def effectiveOwnerName(methodSymbol: Symbol): String = {
-    methodSymbol.fullName.replace("." + methodSymbol.simpleName, "")
-  }
-
-  /**
-   * Get the params string of a method symbol
-   */
-  def paramsSignatureString(methodSymbol: Symbol): String = {
-    methodSymbol.signatureString.substring(0, methodSymbol.signatureString.indexOf(')') + 1).replace("(", "").replace(")", "")
   }
 }
