@@ -8,8 +8,7 @@ object ExtractorUnapply {
    /**
     * Testing extractors
     */
-   @invocations("<unannotated> tests.matching.ExtractorUnapply.Twice: apply(x: Int)", 
-                "<unannotated> tests.matching.ExtractorUnapply.Twice: unapply(z: Int)")
+   @invocations("13: apply", "15: unapply")
    def main(args: Array[String]) {
      val x = Twice(21)
      x match {
@@ -19,7 +18,9 @@ object ExtractorUnapply {
    }
 
    object Twice {
+    @target("apply")
     def apply(x:Int) = x * 2
+    @target("unapply")
     def unapply(z:Int) = if (z % 2 == 0) Some(z/2) else None
   }
  }
