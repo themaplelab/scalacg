@@ -8,7 +8,7 @@ object ConstantEquals {
    /**
     * Testing extractors
     */
-   @invocations("<unannotated> scala.collection.immutable.Nil: equals()")
+   @invocations("14: <unannotated> scala.collection.immutable.Nil: equals()")
    def main(args: Array[String]) {
     Nil match {
       case Nil => println("right")

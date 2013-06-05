@@ -16,7 +16,9 @@ class Suite {
     println(filename)
     println("==============================")
     try {
-      new (g.Run).compile(List("junit/src/tests/" + filename + ".scala", "junit/src/tests/target.scala"))
+      new (g.Run).compile(List("junit/src/tests/" + filename + ".scala", 
+                               "src/callgraph/annotation/target.scala", 
+                               "src/callgraph/annotation/invocations.scala"))
     } catch {case ex: Throwable =>
       ex.printStackTrace
       throw ex

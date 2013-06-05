@@ -131,7 +131,7 @@ trait CGUtils extends Probe {
   }
 
   def findTargetAnnotation(symbol: Symbol): String = 
-    findAnnotationTargets(symbol, "tests.target", needProbe = true).head
+    findAnnotationTargets(symbol, "callgraph.annotation.target", needProbe = true).head
     
   def findAnnotationTargets(symbol: Symbol, annotationName: String, needProbe: Boolean): List[String] = {
     val targetAnnotationType = rootMirror.getRequiredClass(annotationName).tpe
@@ -297,12 +297,15 @@ trait CGUtils extends Probe {
       if !method.annotations.isEmpty
     } {
       val expected: Set[String] =
-        findAnnotationTargets(method, "tests.invocations", needProbe = false).toSet
+        findAnnotationTargets(method, "callgraph.annotation.invocations", needProbe = false).toSet
       if (expected.isEmpty)
         return
       val resolved: Set[String] =
-        callSitesInMethod(method).flatMap(callGraph).map(findTargetAnnotation)
-      // todo: how to print?
+        callSitesInMethod(method).flatMap((cs: CallSite) => 
+          callGraph(cs).map((s: Symbol) =>
+            cs.pos.line + ": " + findTargetAnnotation(s)))
+        
+//        callSitesInMethod(method).flatMap(callGraph).map(findTargetAnnotation) // add line numbers
       printCallGraph(resolved, isResolved = true)
       printCallGraph(expected, isResolved = false)
       assert(expected.subsetOf(resolved), expected.toSeq.sorted.mkString(", "))
