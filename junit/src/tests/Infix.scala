@@ -1,17 +1,20 @@
 package tests
 
+import callgraph.annotation.target
+
+
 /**
  * A test case that represents the use of infix notation in the phantm benchmark.
  */
 object Infix {
 
   def main(args: Array[String]) = {
-    val sum = {"One.+";One} + {"Number.+";Two} + Three + Four
+    val sum = { "One.+"; One } + { "Number.+"; Two } + Three + Four
     println(sum.v)
   }
 
   object One extends Number(1) {
-    @target("One.+") override def +(n: Number) : Number = {
+    @target("One.+") override def +(n: Number): Number = {
       new Number(v + 10)
     }
   }

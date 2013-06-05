@@ -1,6 +1,6 @@
 
 
-package tests
+package callgraph.annotation
 
 import scala.annotation.StaticAnnotation
 

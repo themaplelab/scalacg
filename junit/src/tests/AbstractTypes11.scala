@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object AbstractTypes11 {
   trait A {
     type T <: X

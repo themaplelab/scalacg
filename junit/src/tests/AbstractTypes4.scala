@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object AbstractTypes4 {
   def main(args: Array[String]): Unit = {
     val e: E = new E {

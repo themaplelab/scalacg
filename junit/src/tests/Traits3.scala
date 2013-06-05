@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 /**
  * This example illustrates a situation where analyzing the bytecodes
  * produced by the Scala compiler might result in a loss of precision.

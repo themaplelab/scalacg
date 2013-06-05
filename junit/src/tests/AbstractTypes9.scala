@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object AbstractTypes9 {
   trait Shape {
     def draw(): String

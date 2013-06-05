@@ -1,4 +1,6 @@
 package tests
+
+import callgraph.annotation.target
  
 object AbstractTypes14 {
   trait HasFoo {

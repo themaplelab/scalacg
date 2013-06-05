@@ -9,8 +9,9 @@ trait Annotations {
   import global._
 
   lazy val reachableAnnotation = rootMirror.getRequiredClass("callgraph.annotation.reachable")
-  
   lazy val targetmethodAnnotation = rootMirror.getRequiredClass("callgraph.annotation.targetmethod")
+  lazy val invocationsAnnotation = rootMirror.getRequiredClass("callgraph.annotation.invocations")
+  lazy val targetAnnotation = rootMirror.getRequiredClass("callgraph.annotation.target")
 
   /**
    * Does a method have a @reachable annotation?

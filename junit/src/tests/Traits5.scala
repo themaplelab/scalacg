@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object Traits5 {
   def main(args: Array[String]) = {
 	  { "T1.f"; (new T1 with T2)}.f();

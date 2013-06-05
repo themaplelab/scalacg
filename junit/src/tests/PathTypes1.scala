@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object PathTypes1 {
   class Outer {
     class Inner {

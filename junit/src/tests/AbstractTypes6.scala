@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object AbstractTypes6 {
   abstract class A {
     type T <: C

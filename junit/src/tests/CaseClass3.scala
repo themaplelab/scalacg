@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object CaseClass3 {
   
   case class Settings(val inlineMode: InlineMode = InlineManual);

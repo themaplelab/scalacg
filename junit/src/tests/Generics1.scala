@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object Generics1 {
   class C {
     @target("C.foo") def foo() = "C"

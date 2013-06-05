@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 
 object SimpleTraits {
   def main(args: Array[String]) = {

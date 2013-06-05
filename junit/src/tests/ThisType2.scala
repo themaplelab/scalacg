@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object ThisType2 {
   trait A {
     def foo();

@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object Sealed1 {
 
   sealed abstract class Tree

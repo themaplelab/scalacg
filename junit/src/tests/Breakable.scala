@@ -2,6 +2,7 @@ package tests
 
 import scala.util.control.Breaks._
 import scala.util.Random
+import callgraph.annotation.target
 
 /**
  * Breakable is a Scala construct that allows for "break" statements. So nothing really fancy here other than the

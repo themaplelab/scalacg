@@ -1,5 +1,8 @@
 package tests
 
+import callgraph.annotation.invocations
+import callgraph.annotation.target
+
 object MultipleAnnotations {
 
   @invocations("A.apply")

@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object Generics4 {
   trait A[T] {
     def foo: String

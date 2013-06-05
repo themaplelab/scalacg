@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object Traits12 {
   
   trait A {

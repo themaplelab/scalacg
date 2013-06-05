@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object CaseClass1 {
 
    abstract class Expr

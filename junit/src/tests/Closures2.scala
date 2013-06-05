@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object Closures2 {
 
   def main(args: Array[String]): Unit = {

@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object Traits10 {
   trait A { self => // self refers to this
     def foo();

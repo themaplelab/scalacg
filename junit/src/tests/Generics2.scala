@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object Generics2 {
   trait A[T] {
     var field: T

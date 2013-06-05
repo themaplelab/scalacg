@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object Implicits2 {
   class B(n : Int){
     def get : Int = n;

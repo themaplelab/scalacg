@@ -1,7 +1,7 @@
 package tests.matching
 
-import tests.target
-import tests.invocations
+import callgraph.annotation.target
+import callgraph.annotation.invocations
 
 object CaseClassInstanceof {
 

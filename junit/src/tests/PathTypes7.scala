@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object PathTypes7 {
   class A {
     trait B {

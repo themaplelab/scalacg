@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object Operator1 {
 
   class C(x : Int) {    

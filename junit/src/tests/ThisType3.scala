@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object ThisType3 {
     class A {
       def zip(x : this.type) : Unit = { { "A.zap"; x}.zap(); } 

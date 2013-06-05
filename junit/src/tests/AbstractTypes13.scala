@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object AbstractTypes13 {
   trait HasFoo {
     def foo: String

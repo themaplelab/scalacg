@@ -1,6 +1,6 @@
 package tests.matching
 
-import tests.target
+import callgraph.annotation.target
 
 object CaseClassTuple {
 

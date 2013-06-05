@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 /**
  * This test shows if we correctly capture overloaded methods.
  */

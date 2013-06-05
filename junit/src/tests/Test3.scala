@@ -2,6 +2,8 @@
 
 package tests
 
+import callgraph.annotation.target
+
 object Test3 {
 
   def main(args: Array[String]) = {

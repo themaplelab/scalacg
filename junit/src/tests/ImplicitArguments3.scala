@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object ImplicitArguments3 {
 
   sealed case class C (

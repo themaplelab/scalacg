@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 object AbstractTypes1 {
   val b1: B = new B {
     type T = List[U]

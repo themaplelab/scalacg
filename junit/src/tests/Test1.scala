@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.target
+
 class Test1 {
   @target("Test1.callee") def callee(): Int = {
     5

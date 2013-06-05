@@ -1,6 +1,6 @@
 package p
 
-import tests.target;
+import callgraph.annotation.target;
 
 object Generics11 {
   trait A[X] {
