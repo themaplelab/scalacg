@@ -113,6 +113,7 @@ class Suite {
   @Test def testMatch1 = runTest("Match1")
   
   @Test def testReachable1 = runTest("Reachable1")
+  @Test def testMultipleAnnotations = runTest("MultipleAnnotations")
   
   @Test def testExtractor = runTest("matching/Extractor")
   @Test def testExtractorVarargs = runTest("matching/ExtractorVarargs")
