@@ -97,7 +97,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
         unit.body.foreach { node =>
           if (node.isInstanceOf[DefDef]) {
             // Add the serial number annotation 
-            val annotationInfo = AnnotationInfo(targetmethodAnnotationTpe, List(),
+            val annotationInfo = AnnotationInfo(targetmethodAnnotation.tpe, List(),
               List((valueName, LiteralAnnotArg(Constant(serialNum)))))
             node.symbol.addAnnotation(annotationInfo)
             methodToId += (node.symbol -> serialNum)
