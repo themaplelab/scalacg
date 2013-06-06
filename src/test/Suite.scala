@@ -134,4 +134,6 @@ class Suite {
   @Test def testConstantEquals = runTest("matching/ConstantEquals")
 
   @Test def testToString1 = runTest("ToString1")
+  
+  @Test def testConstructor1 = runTest("Constructor1")
 }

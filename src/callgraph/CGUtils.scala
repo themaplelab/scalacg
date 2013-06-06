@@ -47,12 +47,32 @@ trait CGUtils extends Probe {
   }
   def addCallSite(callSite: CallSite) = {
     callSites = callSite :: callSites
-    val enclosingMethod = callSite.ancestors.find({
-      node => node.isInstanceOf[DefDef] || node.isInstanceOf[ClassDef]
-    }).get.symbol
-    callSitesInMethod(enclosingMethod) =
-      callSitesInMethod.getOrElse(enclosingMethod, Set()) + callSite
+    val inMethod = enclosingMethod(callSite)
+    callSitesInMethod(inMethod) =
+      callSitesInMethod.getOrElse(inMethod, Set()) + callSite
   }
+
+  /**
+   * Find the enclosing method of a call site. For call sites in methods, that's obvious. For call sites
+   * that appear in class definition, the primary constructor of the defining class is the enclosing method.
+   */
+  def enclosingMethod(callSite: CallSite) = {
+    // Find a method that contains this call site.
+    val defdef = callSite.ancestors.find({
+      node => node.isInstanceOf[DefDef]
+    })
+
+    // If none found, then it should be in a class definition, and the enclosing method is the primary constructor
+    if (defdef.isEmpty) {
+      val classdef = callSite.ancestors.find({
+        node => node.isInstanceOf[ClassDef]
+      })
+      classdef.get.symbol.primaryConstructor
+    } else {
+      defdef.get.symbol
+    }
+  }
+
   // look for an annotation on the receiver
   def findReceiverAnnotations(receiver: Tree): (List[String], Tree) = {
     val (annotation, plainReceiver) =
@@ -79,9 +99,9 @@ trait CGUtils extends Probe {
     }
 
     // TODO
-    //    println(callSites.filter(_.method.name.decode.equals("lineNr_=")).map(_.ancestors.find({
-    //      node => node.isInstanceOf[DefDef] || node.isInstanceOf[ClassDef]
-    //    }).get.symbol))
+    //        println(callSites.filter(_.method.name.decode.equals("lineNr_=")).map(_.ancestors.find({
+    //          node => node.isInstanceOf[DefDef] || node.isInstanceOf[ClassDef]
+    //        }).get.symbol))
   }
 
   def normalizeMultipleParameters(tree: Apply): Apply = tree.fun match {
@@ -307,11 +327,11 @@ trait CGUtils extends Probe {
       if (expected.isEmpty)
         return
       val resolved: Set[String] =
-        callSitesInMethod(method).flatMap((cs: CallSite) => 
+        callSitesInMethod(method).flatMap((cs: CallSite) =>
           callGraph(cs).map((s: Symbol) =>
             cs.pos.line + ": " + findTargetAnnotation(s)))
-        
-//        callSitesInMethod(method).flatMap(callGraph).map(findTargetAnnotation) // add line numbers
+
+      //        callSitesInMethod(method).flatMap(callGraph).map(findTargetAnnotation) // add line numbers
       printCallGraph(resolved, isResolved = true)
       printCallGraph(expected, isResolved = false)
       assert(expected.subsetOf(resolved), expected.toSeq.sorted.mkString(", "))

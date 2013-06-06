@@ -1,16 +1,15 @@
 package callgraph
 
 import java.io.PrintStream
-
 import scala.collection.immutable.List
 import scala.collection.mutable
 import scala.tools.nsc.Global
 import scala.tools.nsc.Phase
 import scala.tools.nsc.plugins.Plugin
 import scala.tools.nsc.plugins.PluginComponent
-
 import ca.uwaterloo.scalacg.util.Annotations
 import ca.uwaterloo.scalacg.util.Assertions
+import ca.uwaterloo.scalacg.util.Probe
 
 class CallGraphPlugin(val global: Global) extends Plugin {
   val name = "callgraph"
@@ -29,7 +28,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
     def newPhase(prevPhase: Phase) = new CallGraphPhase(prevPhase)
     val phaseName = CallGraphPlugin.this.name
 
-    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with CGUtils with Assertions with THA {
+    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with CGUtils with Assertions with THA with Probe {
       // apply is called for each file, but we want to run once for all files, that's why we override run
       def apply(unit: CallGraphComponent.this.global.CompilationUnit) = assert(false)
 
@@ -46,6 +45,11 @@ class CallGraphPlugin(val global: Global) extends Plugin {
 
         initialize
         buildCallGraph
+        
+        // TODO
+//        val callSite = callSites.filter(_.method.name.decode.equals("lineNr_=")).head
+//        println(signature(enclosingMethod(callSite)))
+//        println(callGraph(callSite))
         
         // TODO
         appClasses = CallGraphPlugin.this.appClasses
