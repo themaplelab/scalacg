@@ -115,6 +115,7 @@ class Suite {
   @Test def testMatch1 = runTest("Match1")
   
   @Test def testReachable1 = runTest("Reachable1")
+  @Test def testReachable2 = runTest("Reachable2")
   @Test def testMultipleAnnotations = runTest("MultipleAnnotations")
   
   @Test def testExtractor = runTest("matching/Extractor")
