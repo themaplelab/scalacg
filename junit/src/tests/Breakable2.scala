@@ -32,48 +32,48 @@ object Breakable2 {
       "restore"
     }
 
-//    breakable {
-//      for (l <- content.drop(lineNr)) {
-//        if (l.startsWith("#")) break
-//        l.split(":", 2).toList match {
-//          case fmtime :: file :: Nil =>
-//            // Check timestamp against the file
-//            val f = new java.io.File(file)
-//            val t = f.lastModified / 1000
-//            if (t > fmtime.toLong) {
-//              println("File '" + file + "' modified after dumping, could result is mismatched line numbers");
-//            }
-//            files = file :: files
-//          case _ =>
-//        }
-//      }
-//    }
-//
-//    lineNr += files.size + 1
-//
-//    breakable {
-//      for (l <- content.drop(lineNr)) {
-//        if (l.startsWith("#")) break
-//        l.split(":", 3).toList match {
-//          case name :: line :: file :: Nil =>
-//            functions += name -> (file, line.toInt)
-//          case _ =>
-//        }
-//      }
-//    }
-//
-//    lineNr += functions.size + 1
-//
-//    breakable {
-//      for (l <- content.drop(lineNr)) {
-//        if (l.startsWith("#")) break
-//        l.split(":", 3).toList match {
-//          case name :: line :: file :: Nil =>
-//            classes += name -> (file, line.toInt)
-//          case _ =>
-//        }
-//      }
-//    }
+    breakable {
+      for (l <- content.drop(lineNr)) {
+        if (l.startsWith("#")) break
+        l.split(":", 2).toList match {
+          case fmtime :: file :: Nil =>
+            // Check timestamp against the file
+            val f = new java.io.File(file)
+            val t = f.lastModified / 1000
+            if (t > fmtime.toLong) {
+              println("File '" + file + "' modified after dumping, could result is mismatched line numbers");
+            }
+            files = file :: files
+          case _ =>
+        }
+      }
+    }
+
+    lineNr += files.size + 1
+
+    breakable {
+      for (l <- content.drop(lineNr)) {
+        if (l.startsWith("#")) break
+        l.split(":", 3).toList match {
+          case name :: line :: file :: Nil =>
+            functions += name -> (file, line.toInt)
+          case _ =>
+        }
+      }
+    }
+
+    lineNr += functions.size + 1
+
+    breakable {
+      for (l <- content.drop(lineNr)) {
+        if (l.startsWith("#")) break
+        l.split(":", 3).toList match {
+          case name :: line :: file :: Nil =>
+            classes += name -> (file, line.toInt)
+          case _ =>
+        }
+      }
+    }
 
     lineNr += classes.size + 1
 
