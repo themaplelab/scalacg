@@ -27,12 +27,14 @@ trait CGUtils extends Probe {
   var callSites = List[CallSite]()
   val callSitesInMethod = mutable.Map[Symbol, Set[CallSite]]()
   var classes = Set[Symbol]()
+  var appClasses = Set[Symbol]()
   def callGraph: CallSite => Set[Symbol]
 
   // a set of the static targets found by the analysis
   var staticTargets = Set[Symbol]()
 
   def annotationFilter: PartialFunction[Tree, String]
+
   abstract class TraverseWithAncestors {
     def visit(node: Tree, ancestors: List[Tree])
     def traverse(tree: Tree, ancestors: List[Tree]): Unit = {
@@ -63,18 +65,23 @@ trait CGUtils extends Probe {
     (annotation, plainReceiver)
   }
   def initialize = {
-    // find call sites
-    trees.foreach { tree =>
-      findCallSites(tree, List())
-    }
-
-    // find the set of instnatiated classes in the whole program
+    // find the set of instantiated classes in the whole program
     classes = trees.flatMap { tree =>
       tree.collect {
         case cd: ClassDef if cd.symbol.isModuleClass => cd.symbol // isModuleClass -> an object, it gets auto instantiated
         case nw: New => nw.tpt.symbol // the set of all allocation sites
       }
     }.toSet
+
+    // find call sites
+    trees.foreach { tree =>
+      findCallSites(tree, List())
+    }
+
+    // TODO
+    //    println(callSites.filter(_.method.name.decode.equals("lineNr_=")).map(_.ancestors.find({
+    //      node => node.isInstanceOf[DefDef] || node.isInstanceOf[ClassDef]
+    //    }).get.symbol))
   }
 
   def normalizeMultipleParameters(tree: Apply): Apply = tree.fun match {
@@ -130,22 +137,22 @@ trait CGUtils extends Probe {
     }
   }
 
-  def findTargetAnnotation(symbol: Symbol): String = 
+  def findTargetAnnotation(symbol: Symbol): String =
     findAnnotationTargets(symbol, "callgraph.annotation.target", needProbe = true).head
-    
+
   def findAnnotationTargets(symbol: Symbol, annotationName: String, needProbe: Boolean): List[String] = {
     val targetAnnotationType = rootMirror.getRequiredClass(annotationName).tpe
     val targets = symbol.annotations.collect {
-      case AnnotationInfo(tpe, args, _) if tpe == targetAnnotationType => 
+      case AnnotationInfo(tpe, args, _) if tpe == targetAnnotationType =>
         args.map((arg) =>
           arg match {
             case Literal(Constant(string: String)) => string
           })
     }
     assert(targets.size <= 1)
-    targets.headOption.getOrElse(if (needProbe) 
-    							List(UNANNOT + " " + probeMethod(symbol))
-    							else Nil)
+    targets.headOption.getOrElse(if (needProbe)
+      List(UNANNOT + " " + probeMethod(symbol))
+    else Nil)
   }
 
   var concretization = Map[Symbol, Set[Type]]()
@@ -258,7 +265,6 @@ trait CGUtils extends Probe {
       //      if (targets.isEmpty) {
       //        targets = List[Symbol](staticTarget)
       //        staticTargets += staticTarget
-      //         TODO
       //        println(bytecodeSignature(staticTarget))
       //      }
 
@@ -324,6 +330,24 @@ trait CGUtils extends Probe {
     Set() ++ seen
   }
 
+  /**
+   * These are methods that should be reachable due to some library call back.
+   * For now, we only consider methods that override library methods as callbacks.
+   */
+  def callbacks = {
+    var callbacks = Set[Symbol]()
+    for {
+      cls <- appClasses
+      member <- cls.tpe.decls // loop over the declared members, "members" returns defined AND inherited members
+      if member.isMethod && !member.isDeferred && member.allOverriddenSymbols.nonEmpty
+      val libraryOverriddenSymbols = member.allOverriddenSymbols.filterNot(appClasses contains _.owner)
+      overridden <- libraryOverriddenSymbols
+    } {
+      callbacks += member
+    }
+    callbacks
+  }
+
   def entryPoints = mainMethods
 
   // return all main methods that are inherited into some object
@@ -340,7 +364,7 @@ trait CGUtils extends Probe {
     Set() ++ mainMethods
   }
 
-  lazy val reachableMethods = transitiveClosure(entryPoints, { source: Symbol =>
+  lazy val reachableMethods = transitiveClosure(entryPoints ++ callbacks, { source: Symbol =>
     for {
       callSite <- callSitesInMethod.getOrElse(source, Set())
       target <- callGraph(callSite)
@@ -385,10 +409,6 @@ trait CGUtils extends Probe {
         formatPosition(callSite.pos, source) + " ==> " +
           formatPosition(target.pos, target))
     }
-  }
-
-  def printableName(method: Symbol) = {
-    method.fullName + method.signatureString
   }
 
   def printReachableMethods(out: java.io.PrintStream) = {
@@ -494,7 +514,6 @@ trait CGUtils extends Probe {
       case IntTpe => "I"
       case LongTpe => "L"
       case ShortTpe => "S"
-      // TODO need to add multidimensional array support.
       case TypeRef(_, ArrayClass, arg :: Nil) => ("[") + signature(arg)
       case UnitTpe => "V"
       case _ if tpe.erasure <:< AnyRefTpe => "L" + tpe.erasure.typeSymbol.javaBinaryName + ";"

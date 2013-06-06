@@ -18,6 +18,9 @@ class CallGraphPlugin(val global: Global) extends Plugin {
   val components = List[PluginComponent](AnnotationComponent, CallGraphComponent)
   val methodToId = mutable.Map[global.Symbol, Int]()
   var expectedReachables = Set[global.Symbol]()
+  
+  // application classes, that is classes fed to the compiler (i.e., not including Scala/Java libraries)
+  var appClasses = Set[global.Symbol]()
 
   /** Phase that resolves call sites to compute call graph */
   private object CallGraphComponent extends PluginComponent {
@@ -43,6 +46,9 @@ class CallGraphPlugin(val global: Global) extends Plugin {
 
         initialize
         buildCallGraph
+        
+        // TODO
+        appClasses = CallGraphPlugin.this.appClasses
 
         // Make sure any method annotated reachable is in fact reachable in the call graph.
         assertReachables(expectedReachables, reachableMethods)
@@ -105,6 +111,8 @@ class CallGraphPlugin(val global: Global) extends Plugin {
 
             // Compile a list of methods that have @reachable annotation
             if (hasReachableAnnotation(node.symbol)) expectedReachables += node.symbol
+          } else if(node.isInstanceOf[ClassDef]) {
+            appClasses += node.symbol
           }
         }
       }
