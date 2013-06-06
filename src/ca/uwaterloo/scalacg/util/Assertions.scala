@@ -12,8 +12,8 @@ trait Assertions extends Probe {
    */
   def assertReachables(expectedReachables: Set[Symbol], reachableMethods: Set[Symbol]) {
     if (!expectedReachables.isEmpty) {
-      println("Expected reachables: " + expectedReachables.map(probeMethod).toSeq.mkString(", "))
-      println("Reachable methods: " + reachableMethods.map(probeMethod).toSeq.mkString(", "))
+      println("Expected reachables: " + expectedReachables.map(signature).toSeq.mkString(", "))
+      println("Reachable methods: " + reachableMethods.map(signature).toSeq.mkString(", "))
       assert(expectedReachables.subsetOf(reachableMethods),
         "Some methods are annotated with @reachable, but are not reachable in the call graph.")
     }

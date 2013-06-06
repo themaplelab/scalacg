@@ -5,9 +5,16 @@ import probe.ProbeMethod
 import scala.tools.nsc.Global
 
 trait Probe {
-  
+
   val global: Global
   import global._
+
+  /**
+   * A printable name for a that uses the probe signature, surround by "<" and ">", useful when printing sets of methods.
+   */
+  def signature(method: Symbol) = {
+    "<" + probeMethod(method) + ">"
+  }
 
   /**
    * Get a probe method for the given symbol
