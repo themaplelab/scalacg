@@ -1,14 +1,16 @@
 package tests
 
 import callgraph.annotation.target
+import callgraph.annotation.invocations
 
 object Generics3 {
   trait A[T <: X] {
     var field: T
-    def foo() = { "C.bar"; field }.bar()
+    @target("A.foo") def foo() = { "C.bar"; field }.bar()
   }
 
-  def foo(ac: A[C]) = {
+  @invocations("13: field_=")
+  @target("Generics3.foo") def foo(ac: A[C]) = {
     ac.field = new C()
   }
 
@@ -26,8 +28,13 @@ object Generics3 {
   def main(args: Array[String]) = {
     val a = new A[C] {
       var field = null
+      
       def field_=(c: C) = field = c
     }
-    foo(a)
+    { "Generics3.foo"; this}.foo(a)
+    
+     { "FORCE_TEST_FAILURE"; this}.fail(); // to make sure that the test fails until the @invocations are checked
   }
+  
+  def fail(){}
 }

@@ -9,7 +9,7 @@ object Generics2 {
     @target("A.foo") def foo() = { "C.hashCode"; field }.hashCode()
   }
 
-  @invocations("27: field_=")
+  @invocations("14: field_=")
   @target("Generics2.foo") def foo(ac: A[C]) = {
     ac.field = new C();
   }
