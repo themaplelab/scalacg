@@ -5,6 +5,7 @@ import callgraph.annotation.invocations
 
 object ThisType3 {
     class A {
+      @target("A.zip")
       def zip(x : this.type) : Unit = { { "A.zap"; x}.zap(); } 
        @target("A.zap") def zap() { println("A.zap"); }
     }
@@ -13,7 +14,7 @@ object ThisType3 {
       @target("B.zap") override def zap()  { println("B.zap"); }
     }
     
-    @invocations("19: A.zip")
+    @invocations("21: A.zip")
     def main(args: Array[String]) = {
       val x : A = new B();
       val _ = new A();

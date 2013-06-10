@@ -1,18 +1,17 @@
 package callgraph
 
 import java.io.PrintStream
-
 import scala.collection.mutable
 import scala.reflect.io.AbstractFile
 import scala.tools.nsc
-
 import ca.uwaterloo.scalacg.util.Probe
 import probe.CallGraph
 import scalacg.probe.CallEdge
 import scalacg.probe.CallSiteContext
 import scalacg.probe.GXLWriter
+import ca.uwaterloo.scalacg.util.Annotations
 
-trait CGUtils extends Probe {
+trait CGUtils extends Probe with Annotations {
   val global: nsc.Global // same as the other global
   import global._
   import global.definitions._
@@ -168,11 +167,11 @@ trait CGUtils extends Probe {
           arg match {
             case Literal(Constant(string: String)) => string
           })
+
     }
-    assert(targets.size <= 1)
     targets.headOption.getOrElse(if (needProbe)
-      List(UNANNOT + " " + probeMethod(symbol))
-    else Nil)
+        List(UNANNOT + " " + probeMethod(symbol))
+      else Nil)
   }
 
   var concretization = Map[Symbol, Set[Type]]()
@@ -190,7 +189,7 @@ trait CGUtils extends Probe {
         (absSym -> (concretization.getOrElse(absSym, Set()) + sym.tpe.dealias))
     }
 
-    // find all instantiations of generic type parameters (generics behave the same way 
+    // find al`l instantiations of generic type parameters (generics behave the same way)
     for {
       cls <- classes
     } {
@@ -292,6 +291,58 @@ trait CGUtils extends Probe {
     }
   }
 
+  /**
+   * The main method lookup for Scala.
+   */
+  def nameLookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Symbol]): Set[Symbol] = {
+    // If the target method is a constructor, no need to do the lookup.
+    if (staticTarget.isConstructor) {
+      Set(staticTarget)
+    } else {
+      var targets = List[Symbol]()
+
+      def instantiateTypeParams(actual: Type, declared: Type): Type = {
+        val tparams = declared.typeArgs
+        val args = tparams map
+          { _.asSeenFrom(ThisType(actual.typeSymbol), declared.typeSymbol) }
+        declared.instantiateTypeParams(tparams map { _.typeSymbol }, args)
+      }
+
+      for {
+        cls <- consideredClasses
+        val tpe = cls.tpe
+        expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
+        if tpe <:< expandedType
+        val target = tpe.member(staticTarget.name)
+        if !target.isDeferred
+      } {
+        target match {
+          case NoSymbol =>
+            // TODO: can this ever happen? let's put in an assertion and see...
+            assert(false, "tpe is " + tpe)
+
+          case _ =>
+            // Disambiguate overloaded methods based on the types of the args
+            if (target.isOverloaded) {
+              targets = target.alternatives.filter(_.tpe.matches(staticTarget.tpe)) ::: targets
+            } else {
+              targets = target :: targets
+            }
+        }
+      }
+      // If the target method is a Java method, or a Scala library method, the lookup won't yield anything. Just return
+      // the static target.
+      // TODO ignore this for now for the sake of making some progress on the experiments!
+      //      if (targets.isEmpty) {
+      //        targets = List[Symbol](staticTarget)
+      //        staticTargets += staticTarget
+      //        println(bytecodeSignature(staticTarget))
+      //      }
+
+      targets.toSet
+    }
+  }
+
   def printAnnotatedCallsites() {
     printTargets()
     printInvocations()
@@ -320,24 +371,20 @@ trait CGUtils extends Probe {
   private def printInvocations() {
     for {
       method <- reachableMethods
-      if !method.annotations.isEmpty
+      if method.annotations.nonEmpty
+      expected = findAnnotationTargets(method, "callgraph.annotation.invocations", needProbe = false).toSet
+      if expected.nonEmpty
     } {
-      val expected: Set[String] =
-        findAnnotationTargets(method, "callgraph.annotation.invocations", needProbe = false).toSet
-      if (expected.isEmpty)
-        return
       val resolved: Set[String] =
         callSitesInMethod(method).flatMap((cs: CallSite) =>
           callGraph(cs).map((s: Symbol) =>
             cs.pos.line + ": " + findTargetAnnotation(s)))
-
-      //        callSitesInMethod(method).flatMap(callGraph).map(findTargetAnnotation) // add line numbers
       printCallGraph(resolved, isResolved = true)
       printCallGraph(expected, isResolved = false)
       assert(expected.subsetOf(resolved), expected.toSeq.sorted.mkString(", "))
     }
   }
-
+  
   def transitiveClosure[T](initial: Set[T], transition: T => Set[T]): Set[T] = {
     val seen = mutable.Set[T]() ++ initial
     val queue = mutable.Queue[T]() ++ initial

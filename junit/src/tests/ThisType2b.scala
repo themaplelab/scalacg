@@ -23,7 +23,7 @@ object ThisType2b {
     @target("C.bar") override def bar() {}
     
     @reachable
-    @invocations("27: A.bar")
+    @invocations("28: A.bar")
     @target("C.baz") def baz() {
       super[A].bar();
     }
