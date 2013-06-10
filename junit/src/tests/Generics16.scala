@@ -4,7 +4,7 @@ import callgraph.annotation.reachable
 
 object Generics16 {
 
-  def main(args: Array[String]) = {
+  def main(args: Array[String]): Unit = {
     val v = new SCC[Int]
     v.foo
   }
