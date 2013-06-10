@@ -13,10 +13,10 @@ object Traits11 {
   class D extends A with B {
     @target("D.foo") def foo() { println("D.foo") }
   }
-  def bar(e: A with B) = {
+  @target("bar") def bar(e: A with B) = {
     { "D.foo"; e }.foo()
   }
   def main(args: Array[String]) = {
-    bar(new D)
+    { "bar"; this}.bar(new D)
   }
 }

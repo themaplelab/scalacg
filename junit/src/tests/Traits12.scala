@@ -5,7 +5,7 @@ import callgraph.annotation.target
 object Traits12 {
   
   trait A {
-    @target("A.foo") def foo() : Unit = { println("B.bar"); }
+    @target("A.foo") def foo() : Unit = { println("A.foo"); }
     def bar() : Unit;
   }
   
