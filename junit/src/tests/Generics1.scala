@@ -2,6 +2,7 @@ package tests
 
 import callgraph.annotation.target
 import callgraph.annotation.reachable
+import callgraph.annotation.notreachable
 
 object Generics1 {
   class C {
@@ -9,11 +10,11 @@ object Generics1 {
   }
   
   class D extends C{
-    @target("D.foo") override def foo() = "D"
+    @notreachable @target("D.foo") override def foo() = "D"
   }
   
   class A[T <: C](var elem:T) {
-    @target("A.bar") def bar() = { "C.foo"; "D.foo"; elem }.foo
+    @target("A.bar") def bar() = { "C.foo"; elem }.foo
   }
   
   def main(args: Array[String]) : Unit = {
