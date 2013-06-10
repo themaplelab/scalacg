@@ -2,6 +2,7 @@ package tests
 
 import callgraph.annotation.target
 import callgraph.annotation.invocations
+import callgraph.annotation.notreachable
 
 object Traits9 {
   trait A {
@@ -17,14 +18,14 @@ object Traits9 {
     @target("C.foo") def foo() {}
     @target("C.bar") override def bar() {}
     
-    @invocations("22: A.bar")
-    def baz() {
+    @invocations("23: A.bar")
+    @target("C.baz") def baz() {
       super[A].bar();
     }
   }
   def main(args: Array[String]) = {
     { "A.bar"; (new B)}.bar;
-    { "C.bar"; (new C)}.bar
+    { "C.baz"; (new C)}.baz
   }
 
 } 
