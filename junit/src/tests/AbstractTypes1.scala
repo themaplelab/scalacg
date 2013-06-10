@@ -17,13 +17,13 @@ object AbstractTypes1 {
     val element = List(-1, 3, -5, 7, -9)
   }
   
-  def main(args: Array[String]) = {
+  def main(args: Array[String]) : Unit = {
     new C() { type T = List[String]; val element = List("C") }
-    new D() { type T = List[Int]; val element = List(42) }
-    new E() { type T = List[Int]; val element = List(42) }
-    { "B1.foo"; "B2.foo"; "C.foo"; "D.foo"; "E.foo"; b1 }.foo()
-
-    { "B1.foo"; "B2.foo"; "C.foo"; "D.foo"; "E.foo"; b2 }.foo()
+	  new D() { type T = List[Int]; val element = List(42) }
+	  new E() { type T = List[Int]; val element = List(42) }
+	  { "B1.foo"; "B2.foo"; "C.foo"; "D.foo"; "E.foo"; b1 }.foo()
+	  
+	  { "B1.foo"; "B2.foo"; "C.foo"; "D.foo"; "E.foo"; b2 }.foo()
   }
 
   abstract class A {

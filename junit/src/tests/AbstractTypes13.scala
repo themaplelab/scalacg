@@ -1,6 +1,7 @@
 package tests
 
 import callgraph.annotation.target
+import callgraph.annotation.notreachable
 
 object AbstractTypes13 {
   trait HasFoo {
@@ -9,7 +10,7 @@ object AbstractTypes13 {
   
   class R {
     class A extends HasFoo {
-      @target("R.A.foo") def foo = "R.A.foo"
+      @notreachable @target("R.A.foo") def foo = "R.A.foo"
     }
   }
 
@@ -28,11 +29,11 @@ object AbstractTypes13 {
   trait Z {
     type B <: HasFoo
     val o: B
-    def go = println({ "X.A.foo"; o}.foo)
+    @target("Z.go") def go = println({ "X.A.foo"; o}.foo)
   }
 
   def main(args: Array[String]) {
-    (new X with Y with Z {}).go
+    { "Z.go"; (new X with Y with Z {})}.go
   }
 
 }

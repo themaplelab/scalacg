@@ -3,7 +3,7 @@ package tests
 import callgraph.annotation.target
 import callgraph.annotation.notreachable
 
-object AbstractTypes9 {
+object AbstractTypes9b {
   trait Shape {
     def draw(): String
   }
@@ -18,12 +18,12 @@ object AbstractTypes9 {
     type U <: Shape
     type V <: U with FourSides
     type W = V
-    @target("T.bar") def bar(u: U, v: V, w: W) {
-      { "Square.draw"; "Circle.draw"; u }.draw()
+    @notreachable def bar(u: U, v: V, w: W) {
+      { "__NONE__"; u }.draw()
 
-      { "Square.draw"; v }.draw()
+      { "__NONE__"; v }.draw()
 
-      { "Square.draw"; w }.draw()
+      { "__NONE__"; w }.draw()
     }
   }
   def main(args: Array[String]): Unit = {
@@ -31,9 +31,7 @@ object AbstractTypes9 {
       type U = Shape
       type V = Shape with FourSides
     }
-    val c = new Circle {}
-    val s = new Square {}
-    
-    { "T.bar"; x}.bar(c, s, s)
+    new Circle {}
+    new Square {}
   }
 }

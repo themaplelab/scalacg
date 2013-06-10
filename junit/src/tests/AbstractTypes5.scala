@@ -7,7 +7,7 @@ object AbstractTypes5 {
     type T <: C
     var foo: T
 
-    def bar() =
+    @target("A.bar") def bar() =
       { "D.toString"; foo }.toString()
   }
 
@@ -25,6 +25,6 @@ object AbstractTypes5 {
   }
 
   def main(args: Array[String]): Unit = {
-    new B().bar()
+    { "A.bar"; new B()}.bar()
   }
 }

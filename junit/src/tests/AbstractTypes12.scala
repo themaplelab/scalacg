@@ -1,22 +1,24 @@
 package tests
 
+import callgraph.annotation.target
+
 object AbstractTypes12 {
   // trait C has the actual implementation of foo
   trait C {
     type T
-    def foo(t: T) = t.toString
+    @target("C.foo") def foo(t: T) = t.toString
   }
   // trait A2 gives the overall structure: a trait with a trait C2 inside it,
   // and with method foo in C2
   trait A2 {
     type U
     trait C2 {
-      def foo(u: U): String
+     def foo(u: U): String
     }
     val u: U
     val c: C2
-    def go = {
-      println(c.foo(u))
+    @target("A2.go") def go = {
+      println({ "C.foo"; c}.foo(u))
     }
   }
   // trait A3 instantiates U as String
@@ -43,7 +45,7 @@ object AbstractTypes12 {
     val c = new C with C2 with C6
   }
   def main(args: Array[String]) = {
-    (new A2 with A3 with A6 with A7).go
-    (new A2 with A4 with A6 with A7).go
+    { "A2.go"; (new A2 with A3 with A6 with A7)}.go;
+    { "A2.go"; (new A2 with A4 with A6 with A7)}.go
   }
 }

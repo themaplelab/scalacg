@@ -7,7 +7,7 @@ object AbstractTypes6 {
     type T <: C
     var foo: T
 
-    def bar() =
+    @target("A.bar") def bar() =
       // call a method on an abstract type
       { "C.bar"; "D.bar"; foo }.bar()
   }
@@ -27,7 +27,7 @@ object AbstractTypes6 {
   }
 
   def main(args: Array[String]): Unit = {
-    new B().bar()
+    { "A.bar"; new B()}.bar()
     new C()
     new D()
   }

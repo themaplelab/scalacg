@@ -1,13 +1,14 @@
 package tests
 
 import callgraph.annotation.target
+import callgraph.annotation.notreachable
 
 object AbstractTypes8 {
   abstract class A {
     type T <: C
     var foo: T
 
-    def bar() =
+    @target("A.bar") def bar() =
       // call a method on an abstract type
       { "D.bar"; foo }.bar()
   }
@@ -19,7 +20,7 @@ object AbstractTypes8 {
   }
 
   class C {
-    @target("C.bar") def bar() = "C"
+    @notreachable @target("C.bar") def bar() = "C"
   }
 
   class D extends C {
@@ -27,6 +28,6 @@ object AbstractTypes8 {
   }
 
   def main(args: Array[String]): Unit = {
-    new B().bar()
+    { "A.bar"; new B()}.bar()
   }
 }

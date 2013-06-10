@@ -1,12 +1,13 @@
 package tests
 
 import callgraph.annotation.target
+import callgraph.annotation.notreachable
 
 object AbstractTypes11 {
   trait A {
     type T <: X
     val field: T
-    def foo() = { "C.bar"; field }.bar()
+    @target("A.foo") def foo() = { "C.bar"; field }.bar()
   }
 
   class B extends A {
@@ -23,10 +24,10 @@ object AbstractTypes11 {
   }
 
   class D extends X {
-    @target("D.bar") override def bar() = {}
+    @notreachable @target("D.bar") override def bar() = {}
   }
   def main(args: Array[String]): Unit = {
-    new B
+    { "A.foo"; new B}.foo;
     new C
     new D
   }

@@ -1,6 +1,7 @@
 package tests
 
 import callgraph.annotation.target
+import callgraph.annotation.notreachable
 
 object AbstractTypes2 {
   def main(args: Array[String]): Unit = {
@@ -19,7 +20,7 @@ object AbstractTypes2 {
   abstract class B extends A {
     type U
     type T <: List[U]
-    @target("B.foo") def foo(): U
+    @notreachable @target("B.foo") def foo(): U
   }
 
   abstract class C extends B {
@@ -29,10 +30,10 @@ object AbstractTypes2 {
 
   abstract class D extends B {
     type U = Int
-    @target("D.foo") override def foo(): U = element.length
+    @notreachable @target("D.foo") override def foo(): U = element.length
   }
 
   abstract class E extends D {
-    @target("E.foo") override def foo(): U = element.count((u) => u > 0)
+    @notreachable @target("E.foo") override def foo(): U = element.count((u) => u > 0)
   }
 }
