@@ -55,12 +55,6 @@ class CallGraphPlugin(val global: Global) extends Plugin {
         // TODO
         appClasses = CallGraphPlugin.this.appClasses
 
-        // Make sure any method annotated @reachable is in fact reachable in the call graph.
-        assertReachables(expectedReachables, reachableMethods)
-        
-        // Make sure any method annotated @notreachable is in fact not reachable in the call graph.
-        assertNotReachables(expectedNotReachables, reachableMethods)
-
         printAnnotatedCallsites
 
         val callgraphtxt = new PrintStream("callgraph.txt")
@@ -90,6 +84,12 @@ class CallGraphPlugin(val global: Global) extends Plugin {
         val eclipsecgtxt = new PrintStream("eclipsecg.txt")
         printEclipseCallGraph(eclipsecgtxt)
         eclipsecgtxt.close()
+        
+        // Make sure any method annotated @reachable is in fact reachable in the call graph.
+        assertReachables(expectedReachables, reachableMethods)
+        
+        // Make sure any method annotated @notreachable is in fact not reachable in the call graph.
+        assertNotReachables(expectedNotReachables, reachableMethods)
       }
     }
   }
