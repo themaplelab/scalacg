@@ -1,5 +1,7 @@
 package tests
 
+import callgraph.annotation.invocations
+
 object Implicits3 {
   import ComplexImplicits._
    
@@ -20,6 +22,7 @@ object Implicits3 {
    
 }
   
+  @invocations("PLEASE_ADD_INVOCATIONS_ANNOTATIONS_FOR_ALL_CALLS_BELOW")
   def main(args: Array[String]) {
        var a : Complex = (4.0,5.0)
        var b : Complex = (2.0,3.0)
@@ -32,5 +35,9 @@ object Implicits3 {
        println(c)  // 6.0 + 3.0i
        var d = (1.0,1.0) + c 
        println(d)  // 7.0 + 4.0i
+       
+       { "FORCE_TEST_FAILURE"; this}.fail(); // to make sure that the test fails until the @invocations are checked
   }
+  
+  def fail(){}
 }
