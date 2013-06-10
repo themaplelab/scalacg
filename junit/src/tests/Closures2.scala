@@ -8,10 +8,10 @@ object Closures2 {
 
     def main(args: Array[String]): Unit = {
 
-      fun(main _); // pass main as argument
+      { "fun"; this}.fun(main _); // pass main as argument
 
-      bar(foo1);
-      bar(foo2);
+      { "bar"; this}.bar(foo1);
+      { "bar"; this}.bar(foo2);
 
     }
   }

@@ -8,11 +8,11 @@ object Closures1 {
 
     // how to specify the expected call graph result for function calls
     // using block syntax such as   { "bar"; bar }(foo1) causes syntax errors..
-    bar(foo1);
-    bar(foo2);
+    { "bar"; this}.bar(foo1);
+    { "bar"; this}.bar(foo2);
 
-    baz(zap1);
-    baz(zap2);
+    { "baz"; this}.baz(zap1);
+    { "baz"; this}.baz(zap2);
   }
 
   @target("foo1") def foo1(): Unit = { println("foo1"); }

@@ -1,0 +1,8 @@
+5 ===> tests.Foreach2.B
+8 ===> callgraph.annotation.invocations
+3 ===> tests.Foreach2.A
+2 ===> tests.Foreach2
+6 ===> tests.Foreach2.B
+4 ===> tests.Foreach2.A
+1 ===> tests.Foreach2
+7 ===> callgraph.annotation.target

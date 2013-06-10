@@ -27,7 +27,7 @@ object CaseClass2 {
    
    @target("foo") def foo(e : Expr) : String = e match {
      case UnOp("-", e) => return "-" + "(" + { "foo"; this}.foo(e) + ")";
-     case BinOp("+", e1, e2) => return foo(e1) + "+" + { "foo"; this}.foo(e2);
+     case BinOp("+", e1, e2) => return { "foo"; this}.foo(e1) + "+" + { "foo"; this}.foo(e2);
      case Var(x) => return x;
    }
   
