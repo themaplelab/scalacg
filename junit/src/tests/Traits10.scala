@@ -5,7 +5,7 @@ import callgraph.annotation.target
 object Traits10 {
   trait A { self => // self refers to this
     def foo();
-    def bar() { { "B.foo"; self }.foo(); } // can only call B.foo() because that is the only type with a def. of foo() that can have A.bar() as a member
+    @target("A.bar") def bar() { { "B.foo"; self }.foo(); } // can only call B.foo() because that is the only type with a def. of foo() that can have A.bar() as a member
   }
 
   class B extends A {
@@ -14,11 +14,11 @@ object Traits10 {
 
   class C extends A {
     @target("C.foo") def foo() {}
-    override def bar() {}
+    @target("C.bar") override def bar() {}
   }
   
   def main(args: Array[String]) = {
-    (new B).bar
-    (new C).bar
+    { "A.bar"; (new B)}.bar;
+    { "C.bar"; (new C)}.bar
   }
 } 
