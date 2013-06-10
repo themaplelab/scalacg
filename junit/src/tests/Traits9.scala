@@ -15,7 +15,7 @@ object Traits9 {
 
   class C extends A {
     @target("C.foo") def foo() {}
-    override def bar() {}
+    @target("C.bar") override def bar() {}
     
     @invocations("22: A.bar")
     def baz() {
@@ -23,8 +23,8 @@ object Traits9 {
     }
   }
   def main(args: Array[String]) = {
-    (new B).bar
-    (new C).bar
+    { "A.bar"; (new B)}.bar;
+    { "C.bar"; (new C)}.bar
   }
 
 } 
