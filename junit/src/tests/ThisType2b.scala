@@ -3,13 +3,14 @@ package tests
 import callgraph.annotation.target
 import callgraph.annotation.notreachable
 import callgraph.annotation.reachable
+import callgraph.annotation.invocations
 
-object ThisType2 {
+object ThisType2b {
   trait A {
     def foo();
     @target("A.bar") def bar() {
       var x: this.type = this;
-      { "B.foo"; x }.foo(); // can call B.foo() only --- the run-time type of this cannot be be "C" because the super-call to A.bar() is in unreachable code
+      { "B.foo"; "C.foo"; x }.foo(); // can call B.foo() or C.foo() --- the run-time type of this might be "C" because there is a super-call to A.bar()
     }
   }
 
@@ -21,14 +22,17 @@ object ThisType2 {
     @target("C.foo") def foo() {}
     @target("C.bar") override def bar() {}
     
-    @notreachable
-    def baz() {
+    @reachable
+    @invocations("27: A.bar")
+    @target("C.baz") def baz() {
       super[A].bar();
     }
   }
 
   def main(args: Array[String]) = {
     { "A.bar"; (new B)}.bar;
-    { "C.bar"; (new C)}.bar
+    { "C.bar"; (new C)}.bar;
+    { "C.baz"; (new C)}.baz
+    
   }
 } 

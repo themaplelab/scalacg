@@ -5,7 +5,7 @@ import callgraph.annotation.target
 object ThisType1 {
   trait A {
     def foo();
-    def bar() {
+    @target("A.bar") def bar() {
       var x: this.type = this;
       { "B.foo"; x }.foo(); // can only call B.foo() because that is the only type with a def. of foo() that can have A.bar() as a member
     }
@@ -17,10 +17,10 @@ object ThisType1 {
 
   class C extends A {
     @target("C.foo") def foo() {}
-    override def bar() {}
+    @target("C.bar") override def bar() {}
   }
   def main(args: Array[String]) = {
-    (new B).bar
-    (new C).bar
+    { "A.bar"; (new B)}.bar;
+    { "C.bar"; (new C)}.bar
   }
 } 
