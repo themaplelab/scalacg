@@ -94,6 +94,7 @@ class Suite {
   @Test def testGenerics11 = runTest("Generics11")
   @Test def testGenerics12 = runTest("Generics12")
   @Test def testGenerics15 = runTest("Generics15")
+  @Test def testGenerics16 = runTest("Generics16")
 
   @Test def testSuperCall = runTest("SuperCall")
 
@@ -140,4 +141,6 @@ class Suite {
   @Test def testConstructor1 = runTest("Constructor1")
   
   @Test def testLiftedMethod1 = runTest("LiftedMethod1")
+  
+  @Test def testForeach2 = runTest("Foreach2")
 }
