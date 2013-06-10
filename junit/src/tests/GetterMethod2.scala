@@ -1,23 +1,28 @@
 package tests
 
 import callgraph.annotation.target
+import callgraph.annotation.invocations
 
 object GetterMethod2 {
 
   
   class A(x : String){ 
     
-    @target("y") val y = "hi"
+    val y = "hi"
     
-    // there is a call to a getter method for y, but not for x. How to assert this?
-    def foo() = { val p = this.x; { "y"; this}.y }
+    
+    @invocations("17: ADD ASSERTION FOR CALL TO GENERATED GETTER METHOD FOR y")
+    @target("A.foo") def foo() = { 
+      val p = this.x; 
+      this.y 
+    }
     
   }
   
   def main(args: Array[String]): Unit = {
     val a = new A("hello");
      
-    a.foo();
+    {"A.foo"; a}.foo();
      
   }
 

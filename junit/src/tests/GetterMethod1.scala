@@ -1,6 +1,8 @@
 package tests
 
 import callgraph.annotation.target
+import callgraph.annotation.invocations
+import callgraph.annotation.notreachable
 
 object GetterMethod1 {
 
@@ -9,6 +11,7 @@ object GetterMethod1 {
     /**
      * Emit `any`.
      */
+    @notreachable
     def emit (any : Any) {
         print (any.toString)
     }
@@ -16,13 +19,14 @@ object GetterMethod1 {
     /**
      * Emit `any` and start a new line.
      */
-    def emitln (any : Any) {
+    @target("emitln") def emitln (any : Any) {
         println (any.toString)
     }
 
     /**
      * Emit a new line.
      */
+    @notreachable
     def emitln {
         println
     }
@@ -30,17 +34,19 @@ object GetterMethod1 {
 }
   
   trait StdoutEmitter {
-     @target("emitter") val emitter = new Emitter
+     val emitter = new Emitter
   }
   
   object Foo extends StdoutEmitter {
-    def bar() = {
-       { "emitter"; this}.emitter.emitln ("foo")
+    
+    @invocations("ADD assertion for call to the generated getter method for emitter")
+    @target("bar") def bar() = {
+       { "emitln"; this.emitter}.emitln ("foo")
     }
   }
   
   def main(args: Array[String]): Unit = {
-   Foo.bar();
+   { "bar"; Foo}.bar();
   }
 
 }
