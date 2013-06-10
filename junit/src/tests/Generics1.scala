@@ -1,6 +1,7 @@
 package tests
 
 import callgraph.annotation.target
+import callgraph.annotation.reachable
 
 object Generics1 {
   class C {
@@ -12,9 +13,10 @@ object Generics1 {
   }
   
   class A[T <: C](var elem:T) {
-    def foo() = { "C.foo"; "D.foo"; elem }.foo
+    @target("A.bar") def bar() = { "C.foo"; "D.foo"; elem }.foo
   }
   
-  // add another test with D
-  new A[C](new C).foo()
+  def main(args: Array[String]) : Unit = {
+    { "A.bar"; new A[C](new C)}.bar()
+  }
 }
