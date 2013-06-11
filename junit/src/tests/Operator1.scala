@@ -10,7 +10,7 @@ object Operator1 {
     override def toString() = x.toString;
   }
   
-  @invocations("ADD ASSERTION FOR THE CALL ON LINE 15")
+  @invocations("16: ::")
   def main(args: Array[String]): Unit = {
      val c = new C(10);
      val d = 10 :: c; // how to place an assertion here??
