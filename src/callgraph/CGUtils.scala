@@ -402,7 +402,7 @@ trait CGUtils extends Probe with Annotations {
 
   lazy val reachableMethods = transitiveClosure(entryPoints ++ callbacks, { source: Symbol =>
     for {
-      callSite <- callSitesInMethod.getOrElse(source, Set())
+      callSite <- callSitesInMethod.getOrElse(source, Set()).filter(reachableCode contains _.enclMethod)
       target <- callGraph(callSite)
     } yield target: Symbol
   })
@@ -412,7 +412,7 @@ trait CGUtils extends Probe with Annotations {
     for {
       source <- reachableMethods
       val sourceId = methodToId.getOrElse(source, 0)
-      callSite <- callSitesInMethod.getOrElse(source, Set())
+      callSite <- callSitesInMethod.getOrElse(source, Set()).filter(reachableCode contains _.enclMethod)
       target <- callGraph(callSite)
       val targetId = methodToId.getOrElse(target, 0)
     } out.println(sourceId + " " + targetId)
@@ -420,7 +420,7 @@ trait CGUtils extends Probe with Annotations {
   def printTextualCallGraph(out: java.io.PrintStream) = {
     for {
       source <- reachableMethods
-      callSite <- callSitesInMethod.getOrElse(source, Set())
+      callSite <- callSitesInMethod.getOrElse(source, Set()).filter(reachableCode contains _.enclMethod)
       target <- callGraph(callSite)
     } out.println(probeMethod(source) + " ==> " + probeMethod(target))
   }
@@ -438,7 +438,7 @@ trait CGUtils extends Probe with Annotations {
   def printEclipseCallGraph(out: java.io.PrintStream) = {
     for {
       source <- reachableMethods
-      callSite <- callSitesInMethod.getOrElse(source, Set())
+      callSite <- callSitesInMethod.getOrElse(source, Set()).filter(reachableCode contains _.enclMethod)
       target <- callGraph(callSite)
     } {
       out.println(
@@ -495,7 +495,7 @@ trait CGUtils extends Probe with Annotations {
     // Get the edges
     for {
       source <- reachableMethods
-      callSite <- callSitesInMethod.getOrElse(source, Set())
+      callSite <- callSitesInMethod.getOrElse(source, Set()).filter(reachableCode contains _.enclMethod)
       target <- callGraph(callSite)
       val sourceFile = relativize(callSite.pos.source.file)
       val line = callSite.pos.line.toString
