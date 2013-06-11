@@ -27,8 +27,8 @@ object GetterMethod1 {
      * Emit a new line.
      */
     @notreachable
-    def emitln {
-        println
+    def emitln() {
+        println()
     }
 
 }
@@ -39,14 +39,14 @@ object GetterMethod1 {
   
   object Foo extends StdoutEmitter {
     
-    @invocations("ADD assertion for call to the generated getter method for emitter")
-    @target("bar") def bar() = {
-       { "emitln"; this.emitter}.emitln ("foo")
+    @invocations("44: <unannotated> tests.GetterMethod1.StdoutEmitter: emitter()")
+    @target("bar") def bar() {
+       {"emitln"; this.emitter}.emitln("foo")
     }
   }
   
-  def main(args: Array[String]): Unit = {
-   { "bar"; Foo}.bar();
+  def main(args: Array[String]) {
+    {"bar"; Foo}.bar()
   }
 
 }

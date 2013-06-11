@@ -11,7 +11,7 @@ object GetterMethod2 {
     val y = "hi"
     
     
-    @invocations("17: ADD ASSERTION FOR CALL TO GENERATED GETTER METHOD FOR y")
+    @invocations("17: <unannotated> tests.GetterMethod2.A: y()")
     @target("A.foo") def foo() = { 
       val p = this.x; 
       this.y 
@@ -23,7 +23,6 @@ object GetterMethod2 {
     val a = new A("hello");
      
     {"A.foo"; a}.foo();
-     
   }
 
 }
