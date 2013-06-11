@@ -291,58 +291,6 @@ trait CGUtils extends Probe with Annotations {
     }
   }
 
-  /**
-   * The main method lookup for Scala.
-   */
-  def nameLookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Symbol]): Set[Symbol] = {
-    // If the target method is a constructor, no need to do the lookup.
-    if (staticTarget.isConstructor) {
-      Set(staticTarget)
-    } else {
-      var targets = List[Symbol]()
-
-      def instantiateTypeParams(actual: Type, declared: Type): Type = {
-        val tparams = declared.typeArgs
-        val args = tparams map
-          { _.asSeenFrom(ThisType(actual.typeSymbol), declared.typeSymbol) }
-        declared.instantiateTypeParams(tparams map { _.typeSymbol }, args)
-      }
-
-      for {
-        cls <- consideredClasses
-        val tpe = cls.tpe
-        expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
-        if tpe <:< expandedType
-        val target = tpe.member(staticTarget.name)
-        if !target.isDeferred
-      } {
-        target match {
-          case NoSymbol =>
-            // TODO: can this ever happen? let's put in an assertion and see...
-            assert(false, "tpe is " + tpe)
-
-          case _ =>
-            // Disambiguate overloaded methods based on the types of the args
-            if (target.isOverloaded) {
-              targets = target.alternatives.filter(_.tpe.matches(staticTarget.tpe)) ::: targets
-            } else {
-              targets = target :: targets
-            }
-        }
-      }
-      // If the target method is a Java method, or a Scala library method, the lookup won't yield anything. Just return
-      // the static target.
-      // TODO ignore this for now for the sake of making some progress on the experiments!
-      //      if (targets.isEmpty) {
-      //        targets = List[Symbol](staticTarget)
-      //        staticTargets += staticTarget
-      //        println(bytecodeSignature(staticTarget))
-      //      }
-
-      targets.toSet
-    }
-  }
-
   def printAnnotatedCallsites() {
     printTargets()
     printInvocations()

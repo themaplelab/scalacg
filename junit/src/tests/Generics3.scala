@@ -31,10 +31,6 @@ object Generics3 {
       
       def field_=(c: C) = field = c
     }
-    { "Generics3.foo"; this}.foo(a)
-    
-     { "FORCE_TEST_FAILURE"; this}.fail(); // to make sure that the test fails until the @invocations are checked
+    {"Generics3.foo"; this}.foo(a)
   }
-  
-  def fail(){}
 }

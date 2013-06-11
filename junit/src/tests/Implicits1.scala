@@ -21,9 +21,5 @@ object Implicits1 {
   def main(args: Array[String]) {
      val b = new B(7);
      { "printA"; this}.printA(b); // prints "A[49]"
-     
-     { "FORCE_TEST_FAILURE"; this}.fail(); // to make sure that the test fails until the @invocations are checked
   }
-  
-  def fail(){}
 }
