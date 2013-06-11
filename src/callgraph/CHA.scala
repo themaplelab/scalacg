@@ -11,9 +11,9 @@ trait CHA { this: CGUtils =>
   def buildCallGraph = {
     for (callSite <- callSites) {
       if (callSite.receiver == null) {
-        callGraph += (callSite -> Set(callSite.method))
+        callGraph += (callSite -> Set(callSite.staticTarget))
       } else {
-        val targets = lookup(callSite.receiver.tpe, callSite.method, classes)
+        val targets = lookup(callSite.receiver.tpe, callSite.staticTarget, classes)
         callGraph += (callSite -> targets)
       }
     }

@@ -25,6 +25,35 @@ trait THA extends CGUtils {
     addTypeConcretizations(classes)
   }
   val classToMembers = mutable.Map[Symbol, Set[Symbol]]()
+
+  var instantiatedClasses = Set[Symbol]()
+  // in Scala, code can appear in classes as well as in methods, so reachableCode generalizes reachable methods
+  var reachableCode = Set[Symbol]()
+
+  // newly reachable methods to be processed
+  val methodWorklist = mutable.Queue[Symbol]()
+
+  def addMethod(method: Symbol) = {
+    if (!reachableCode(method)) methodWorklist += method
+  }
+
+  // the set of classes instantiated in a given method
+  lazy val classesInMethod = {
+    val ret = mutable.Map[Symbol, Set[ClassSymbol]]().withDefaultValue(Set())
+    def traverse(tree: Tree, owner: Symbol): Unit = {
+      tree match {
+        case _: ClassDef | _: DefDef =>
+          tree.children.foreach(traverse(_, tree.symbol))
+        case New(tpt) =>
+          ret(owner) = ret(owner) + tpt.symbol.asClass
+        case _ =>
+          tree.children.foreach(traverse(_, owner))
+      }
+    }
+    trees.foreach(traverse(_, NoSymbol))
+    ret
+  }
+
   def buildCallGraph = {
     /* Given the ancestors of a This in the AST, determines the method that has that
      * particular This as its implicit this parameter.
@@ -35,6 +64,9 @@ trait THA extends CGUtils {
      *   val b = this.a + 6
      * }
      * In such cases, returns NoSymbol
+     * 
+     * TODO
+     * Karim: For these cases, such a method is the primary constructor of the class.
      */
     def containingMethod(ancestors: List[Tree], thisType: Symbol): Symbol = {
       (for {
@@ -46,32 +78,64 @@ trait THA extends CGUtils {
         }
       } yield instanceMethod).getOrElse(NoSymbol)
     }
-    for (callSite <- callSites) {
-      if (callSite.receiver == null) {
-        callGraph += (callSite -> Set(callSite.method))
-      } else {
-        val thisSymbol =
-          if (callSite.receiver.isInstanceOf[This]) callSite.receiver.symbol
-          else if (callSite.receiver.tpe.isInstanceOf[ThisType])
-            callSite.receiver.tpe.asInstanceOf[ThisType].sym
-          else NoSymbol
-        val filteredClasses =
-          thisSymbol match {
-            case NoSymbol => classes
-            case symbol =>
-              val method = containingMethod(callSite.ancestors, symbol)
-              if (method == NoSymbol || superMethodNames.contains(method.name)) classes
-              else
-                classes.filter { cls =>
-                  val members = classToMembers.getOrElseUpdate(cls, cls.tpe.members.sorted.toSet)
-                  members.contains(method)
-                }
-          }
-        val targets = lookup(callSite.receiver.tpe, callSite.method, filteredClasses)
-        callGraph += (callSite -> targets)
+
+    // all objects are considered to be allocated
+    instantiatedClasses ++= classes.filter(_.isModule)
+
+    // start off the worklist with the entry points
+    methodWorklist ++= entryPoints
+
+    while (methodWorklist.nonEmpty) {
+      // process new methods
+      for (method <- methodWorklist.dequeueAll(_ => true)) {
+        reachableCode += method
+        instantiatedClasses ++= classesInMethod(method)
       }
+
+      // process all call sites in reachable code
+      for {
+        callSite <- callSites
+        if reachableCode contains callSite.enclMethod
+      } {
+        var targets = Set[Symbol]()
+
+        if (callSite.receiver == null) {
+          targets = Set(callSite.staticTarget)
+        } else {
+          val thisSymbol =
+            if (callSite.receiver.isInstanceOf[This]) callSite.receiver.symbol
+            else if (callSite.receiver.tpe.isInstanceOf[ThisType])
+              callSite.receiver.tpe.asInstanceOf[ThisType].sym
+            else NoSymbol
+          val filteredClasses =
+            thisSymbol match {
+              case NoSymbol => instantiatedClasses
+              case symbol =>
+                val method = containingMethod(callSite.ancestors, symbol)
+                if (method == NoSymbol || superMethodNames.contains(method.name)) instantiatedClasses
+                else
+                  instantiatedClasses.filter { cls =>
+                    val members = classToMembers.getOrElseUpdate(cls, cls.tpe.members.sorted.toSet)
+                    members.contains(method)
+                  }
+            }
+          targets = lookup(callSite.receiver.tpe, callSite.staticTarget, filteredClasses)
+        }
+
+        callGraph += (callSite -> targets)
+        targets.foreach(addMethod(_))
+      }
+
+      // add all constructors
+      instantiatedClasses.foreach(addMethod(_))
+      for {
+        cls <- instantiatedClasses
+        constr <- cls.tpe.members
+        if constr.isConstructor
+      } addMethod(constr)
     }
   }
+
   val annotationFilter: PartialFunction[Tree, String] = {
     case Literal(Constant(string: String)) => string
     // TODO: replace _ with a more specific check for the cha case class

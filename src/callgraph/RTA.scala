@@ -54,7 +54,7 @@ trait RTA { this: CGUtils =>
 
       // process all call sites
       for (callSite <- callSites) {
-        val targets = lookup(callSite.receiver.tpe, callSite.method, instantiatedClasses)
+        val targets = lookup(callSite.receiver.tpe, callSite.staticTarget, instantiatedClasses)
         callGraph += (callSite -> targets)
         targets.foreach(addMethod(_))
       }

@@ -20,8 +20,43 @@ trait CGUtils extends Probe with Annotations {
 
   def trees: List[Tree] // this is overridden by var trees in CallGraphPlugin
 
-  case class CallSite(receiver: Tree, method: MethodSymbol, args: List[Tree],
-    annotation: List[String], ancestors: List[Tree], pos: Position)
+  def instantiatedClasses: Set[Symbol]
+  def reachableCode: Set[Symbol]
+
+  case class CallSite(receiver: Tree, staticTarget: MethodSymbol, args: List[Tree],
+    annotation: List[String], ancestors: List[Tree], pos: Position) {
+
+    /**
+     * Find the enclosing method of a call site. For call sites in methods, that's obvious. For call sites
+     * that appear in class definition, the primary constructor of the defining class is the enclosing method.
+     */
+
+    lazy val enclMethod = {
+      //    callSite.ancestors.collectFirst {
+      //      case dd: DefDef => dd.symbol
+      //      case cd: ClassDef => cd.symbol.primaryConstructor
+      //    }
+      //    
+      //    callSite.ancestors.find {
+      //      case dd: DefDef => dd.symbol
+      //      case cd: ClassDef => cd.symbol.primaryConstructor
+      //    }
+      // Find a method that contains this call site.
+      val defdef = ancestors.find({
+        node => node.isInstanceOf[DefDef]
+      })
+
+      // If none found, then it should be in a class definition, and the enclosing method is the primary constructor
+      if (defdef.isEmpty) {
+        val classdef = ancestors.find({
+          node => node.isInstanceOf[ClassDef]
+        })
+        classdef.get.symbol.primaryConstructor
+      } else {
+        defdef.get.symbol
+      }
+    }
+  }
 
   var callSites = List[CallSite]()
   val callSitesInMethod = mutable.Map[Symbol, Set[CallSite]]()
@@ -46,39 +81,8 @@ trait CGUtils extends Probe with Annotations {
   }
   def addCallSite(callSite: CallSite) = {
     callSites = callSite :: callSites
-    val inMethod = enclosingMethod(callSite)
-    callSitesInMethod(inMethod) =
-      callSitesInMethod.getOrElse(inMethod, Set()) + callSite
-  }
-
-  /**
-   * Find the enclosing method of a call site. For call sites in methods, that's obvious. For call sites
-   * that appear in class definition, the primary constructor of the defining class is the enclosing method.
-   */
-  def enclosingMethod(callSite: CallSite) = {
-    //    callSite.ancestors.collectFirst {
-    //      case dd: DefDef => dd.symbol
-    //      case cd: ClassDef => cd.symbol.primaryConstructor
-    //    }
-    //    
-    //    callSite.ancestors.find {
-    //      case dd: DefDef => dd.symbol
-    //      case cd: ClassDef => cd.symbol.primaryConstructor
-    //    }
-    // Find a method that contains this call site.
-    val defdef = callSite.ancestors.find({
-      node => node.isInstanceOf[DefDef]
-    })
-
-    // If none found, then it should be in a class definition, and the enclosing method is the primary constructor
-    if (defdef.isEmpty) {
-      val classdef = callSite.ancestors.find({
-        node => node.isInstanceOf[ClassDef]
-      })
-      classdef.get.symbol.primaryConstructor
-    } else {
-      defdef.get.symbol
-    }
+    callSitesInMethod(callSite.enclMethod) =
+      callSitesInMethod.getOrElse(callSite.enclMethod, Set()) + callSite
   }
 
   // look for an annotation on the receiver
@@ -262,15 +266,15 @@ trait CGUtils extends Probe with Annotations {
       }
 
       // TODO
-//      for {
-//        cls <- consideredClasses
-//        val tpe = cls.tpe
-//        expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
-//      } {
-//        println(tpe)
-//        println(expandedType)
-//        println(tpe <:< expandedType)
-//      }
+      //      for {
+      //        cls <- consideredClasses
+      //        val tpe = cls.tpe
+      //        expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
+      //      } {
+      //        println(tpe)
+      //        println(expandedType)
+      //        println(tpe <:< expandedType)
+      //      }
 
       for {
         cls <- consideredClasses
@@ -315,15 +319,16 @@ trait CGUtils extends Probe with Annotations {
   private def printTargets() {
     for {
       callSite <- callSites
-      if !callSite.annotation.isEmpty
+      if reachableCode contains callSite.enclMethod
+      val expected = callSite.annotation.toSet 
+      if expected.nonEmpty
     } {
-      println(callSite.method + " " + callSite.annotation)
+      println(callSite.staticTarget + " " + callSite.annotation)
 
       val resolved = callGraph(callSite).map(findTargetAnnotation)
-      val expected = callSite.annotation.toSet
       printCallGraph(resolved, isResolved = true)
       printCallGraph(expected, isResolved = false)
-      assert(callSite.annotation.isEmpty || (resolved == expected), expected.toSeq.sorted.mkString(", "))
+      assert((expected == Set(NONE) && resolved.isEmpty) || (resolved == expected), expected.toSeq.sorted.mkString(", "))
     }
   }
 
