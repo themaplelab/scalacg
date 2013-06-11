@@ -1,26 +1,94 @@
-WALA vs Plugin
-- Different methods with same ID in bytecode is causing a couple of problems
-	- Duplicate entry points in WALA. Two main methods are generated for each main method, one in the class, and another
-	in the companion class. 
-	- Self calls. A method appears to call itself, only because it's calling another method with the same id in the
-	bytecode.
-	
-- Incosistent method names
-	- Everything should use the signature of a probe method instead of the printableName
-	
-- The way methods are resolved in WALA was not consistent with the plugin
-	- WALA is using CHA instead of RTA -> many more edges
-	- WALA is resolving calls to library methods instead of the static target
-	
-- The way the Kildall Framework is modelled to "summarize edges"
-	- This causes a lot of edges to appear the originate from call sites in the application, while in fact they might
-	be library call backs. We do not handle call backs in the plugin.
-	
-- Static initializers are not annotated
+1. @invocations annotations are currently not checked
+  - already discussed with Marianna and Karim, who are working on it.
+
+2. super-calls should be ignored if they occur in unreachable methods
+
+3. The analysis does not correctly deal with call sites in unreachable 
+code. For examples, see:
+   - Simple.scala
+   - AbstractTypes9.scala / AbstractTypes9b.scala
+   - AbstractTypes10.scala
+
+4. We need to add @invocations annotations to several tests
+   - CaseClass1/CaseClass2 -- place some @invocations annotations here?
+   - Closures1/Closures2 -- place some @invocations annotations here?
+
+5. We need a mechanism to check that call sites have 0 targets
+  - using blocks of the form:  { "__NONE__"; u }.draw()
+  - see AbstractTypes9b for an example
+
+6. I don't understand test AbstractTypes10.  Judging from the assertions,
+it seems that method D.hashCode is reachable (perhaps because it
+overrides a library method?).  However, if that is the case then why isn't
+D.hashCode also a target of the call on line 11?
+
+Note that this test was problematic because main() didn't call any methods.
+I added a call to foo() to ensure that the call graph is non trivial, 
+but that
+led to the inconsistent results I'm observing now.
+
+7. AbstractTypes12 was commented out and lacked assertions. After 
+reinstating
+the test, and placing assertions on the two method calls, the test 
+fails. This
+appears to be a bug that has to do with the handling of abstract type 
+members.
+The problem seemingly has to do with the call on line 21.
+
+8. Now that the CHA algorithm has gone away, I think the cha(.) annotations
+like the ones in Overriding1.scala are now redundant. However, I think we
+should keep the _mechanism_ to handle Marianna's future RA analysis.
+
+1. I reinstated test Generics1 and added a main() method to it. The test currently
+  fails for unknown reasons.
+
+2. In tests Generics2, Generics3, SuperCall, Implicits1, Implicits2, Implicits3  I added @invocations annotations.
+Marianna: can you please check & update these tests as needed?  For now, I added
+an assertion that forces the tests to fail.
+
+3. After adding a missing assertion to Generics4, the test fails. Karim: I think this
+is the same problem once again.
+
+4. Someone added annotations to ImplicitArguments2 to force it to fail. I'm not sure if I understand why.
+
+5. In test, ImplicitArguments3, it would be nice to put @invocations annotations to check the
+presence of constructor calls. Marianna, can you look into that.
 
 
-Code Refactor
-- Merge everything into CGUtils then break it up.
+1. Test Breakable2 contains method calls that occur in initialization code.
+Currently, we cannot express @invocations assertions on calls in such code,
+because there is no surrounding method. Therefore, I'd like to allow
+@invocations on classes. For now, I added an assertion that forces the 
+test to
+fail. (note: none of this discussion has anything to do with the "breakable"
+construct).
 
-- TCA with special handling vs TCA w/o vs RA
-- Compare against wala
+2. If I place an @invocations() annotation without arguments on a method, it
+seems to always succeed. This is not the right behavior: it should only 
+succeed
+if there are no calls within that method.
+
+3. I added some @invocations annotations to tests Match1 and Match2, but
+I am not sure if I understand what kinds of calls are generated for 
+match-expressions
+in general. Marianna: can you check that this makes sense?
+
+4. In test Reachable2/Reachable3, it seems that there is an edge in the 
+call graph for a call
+  to a library method "scala.collection.mutable.ListBuffer: <init>()".
+I edited these tests to force them to fail.
+
+5. test ConstantEquals fails because the @invocations assertion is 
+failing. It is not
+ clear to me why the asserted call is not in the call graph.
+
+6. Our treatment of calls to methods in the libraries is currently 
+inconsistent: we don't
+seem to show edges to library methods that are invoked explicitly (e.g. 
+calls to println).
+On the other hand, we do show calls to methods such as apply() that are 
+generated
+for match-expressions and the like.  Not sure what to do about 
+this--ideally we'd
+eventually have all of these edges in our call graphs.
+
