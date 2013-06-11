@@ -28,9 +28,6 @@ The problem seemingly has to do with the call on line 21.
 3. After adding a missing assertion to Generics4, the test fails. Karim: I think this
 is the same problem once again.
 
-5. In test, ImplicitArguments3, it would be nice to put @invocations annotations to check the
-presence of constructor calls. Marianna, can you look into that.
-
 
 1. Test Breakable2 contains method calls that occur in initialization code.
 Currently, we cannot express @invocations assertions on calls in such code,
@@ -44,11 +41,6 @@ construct).
 seems to always succeed. This is not the right behavior: it should only 
 succeed
 if there are no calls within that method.
-
-3. I added some @invocations annotations to tests Match1 and Match2, but
-I am not sure if I understand what kinds of calls are generated for 
-match-expressions
-in general. Marianna: can you check that this makes sense?
 
 4. In test Reachable2/Reachable3, it seems that there is an edge in the 
 call graph for a call
