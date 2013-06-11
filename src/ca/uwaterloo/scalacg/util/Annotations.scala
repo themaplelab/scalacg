@@ -8,11 +8,12 @@ trait Annotations {
   val global: Global
   import global._
 
-  lazy val reachableAnnotation = rootMirror.getRequiredClass("callgraph.annotation.reachable")
-  lazy val notReachableAnnotation = rootMirror.getRequiredClass("callgraph.annotation.notreachable")
-  lazy val targetmethodAnnotation = rootMirror.getRequiredClass("callgraph.annotation.targetmethod")
-  lazy val invocationsAnnotation = rootMirror.getRequiredClass("callgraph.annotation.invocations")
-  lazy val targetAnnotation = rootMirror.getRequiredClass("callgraph.annotation.target")
+  final lazy val reachableAnnotation = rootMirror.getRequiredClass("callgraph.annotation.reachable")
+  final lazy val notReachableAnnotation = rootMirror.getRequiredClass("callgraph.annotation.notreachable")
+  final lazy val targetmethodAnnotation = rootMirror.getRequiredClass("callgraph.annotation.targetmethod")
+  final lazy val invocationsAnnotation = rootMirror.getRequiredClass("callgraph.annotation.invocations")
+  final lazy val targetAnnotation = rootMirror.getRequiredClass("callgraph.annotation.target")
+  final lazy val NONE = "__NONE__"
 
   /**
    * Does a method have a @reachable annotation?
