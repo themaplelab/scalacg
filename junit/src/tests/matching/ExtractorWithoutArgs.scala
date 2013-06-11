@@ -1,12 +1,14 @@
 package tests.matching
 
 import callgraph.annotation.target
+import callgraph.annotation.invocations
 
 object ExtractorWithoutArgs {
 
   /**
    * Testing extractors without arguments [see p. 29 of Object-Oriented Pattern Matching by Burak Emir]
    */
+  @invocations("15: <unannotated> tests.matching.ExtractorWithoutArgs.UpperCase: unapply(s: String)")
   def main(args: Array[String]) {
     val s = "A"
     s match {

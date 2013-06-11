@@ -1,9 +1,11 @@
 package tests
 
 import callgraph.annotation.reachable
+import callgraph.annotation.invocations
 
 object ToString1 {
 
+  @invocations("10: <unannotated> tests.ToString1.A: <init>()")
   def main(args: Array[String]) = {
     val a = new A
     println(a)

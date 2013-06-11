@@ -123,6 +123,7 @@ class Suite {
   @Test def testInfix = runTest("Infix")
 
   @Test def testMatch1 = runTest("Match1")
+  @Test def testMatch2 = runTest("Match2")
 
   @Test def testReachable1 = runTest("Reachable1")
   @Test def testReachable2 = runTest("Reachable2")

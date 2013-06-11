@@ -1,6 +1,7 @@
 package tests
 
 import callgraph.annotation.target
+import callgraph.annotation.invocations
 
 
 /**
@@ -14,7 +15,9 @@ object Infix {
   }
 
   object One extends Number(1) {
-    @target("One.+") override def +(n: Number): Number = {
+    @target("One.+")
+    @invocations("21: <unannotated> tests.Infix.Number: <init>(v: Int)", "21: <unannotated> tests.Infix.Number: v()")
+    override def +(n: Number): Number = {
       new Number(v + 10)
     }
   }
@@ -26,7 +29,9 @@ object Infix {
   }
 
   class Number(val v: Int) {
-    @target("Number.+") def +(n: Number): Number = {
+    @invocations("35: <unannotated> tests.Infix.Number: <init>(v: Int)", "35: <unannotated> tests.Infix.Number: v()")
+    @target("Number.+") 
+    def +(n: Number): Number = {
       new Number(v + n.v)
     }
   }

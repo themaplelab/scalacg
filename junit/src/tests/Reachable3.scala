@@ -3,9 +3,14 @@ package tests
 import callgraph.annotation.reachable
 import scala.collection.mutable.ListBuffer
 import callgraph.annotation.notreachable
+import callgraph.annotation.invocations
 
 object Reachable3 {
 
+  @invocations("16: <unannotated> tests.Reachable3.A: <init>(x: String)", 
+               "17: <unannotated> tests.Reachable3.A: <init>(x: String)"
+//               "18: <unannotated> scala.collection.mutable.ListBuffer: <init>()"
+              )
   def main(args: Array[String]): Unit = {
     
     val a1 = new A("foo")
@@ -15,7 +20,10 @@ object Reachable3 {
     x += a2
     println(x);
 
+     { "FORCE_TEST_FAILURE"; this}.fail();
   }
+  
+  def fail(){}
  
   class A(x : String) { 
     @reachable

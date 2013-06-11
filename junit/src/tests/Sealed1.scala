@@ -11,7 +11,7 @@ object Sealed1 {
 
   @target("dps") def dps(t: Tree): Unit = t match {
     case Node(left, right) =>
-      dps(left); dps(right)
+      { "dps"; this}.dps(left); { "dps"; this}.dps(right)
     case Leaf(x) => println("Leaf " + x)
     case Empty => println("Empty") // Compiler warns if this line is omitted
   }

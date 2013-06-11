@@ -1,12 +1,17 @@
 package tests.matching
 
 import callgraph.annotation.target
+import callgraph.annotation.invocations
 
 object ExtractorVarargs {
 
   /**
    * Testing extractors with variable arguments [see p. 29 of Object-Oriented Pattern Matching by Burak Emir]
    */
+  @invocations("17: <unannotated> scala.MatchError: <init>(obj: Any)", 
+               "18: <unannotated> tests.matching.ExtractorVarargs.Domain: unapplySeq(whole: String)", 
+               "20: <unannotated> tests.matching.ExtractorVarargs.Domain: unapplySeq(whole: String)", 
+               "22: <unannotated> tests.matching.ExtractorVarargs.Domain: unapplySeq(whole: String)")
   def main(args: Array[String]) {
     val dom = "a.b.c.d.net"
     dom match {

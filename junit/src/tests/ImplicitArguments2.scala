@@ -18,6 +18,7 @@ object ImplicitArguments2 {
         val c3 = new C(1, "zip", "zap");
         println(c3);
         
+        // add @invocations for the various constructor calls
         { "FORCE_TEST_FAILURE"; this}.fail();
   }
   

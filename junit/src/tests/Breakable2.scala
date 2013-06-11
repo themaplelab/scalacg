@@ -1,6 +1,7 @@
 package tests
 
 import scala.util.control.Breaks._
+import callgraph.annotation.invocations
 
 /**
  * Test case created while debugging missing edges in source-level call graph compared to bytecode-level call graph.
@@ -16,10 +17,16 @@ import scala.util.control.Breaks._
  */
 object Breakable2 {
 
+  @invocations("22: <unannotated> tests.Breakable2.DumpCollector: <init>(path: String,ctx: String)")
   def main(args: Array[String]) = {
     val dc = new DumpCollector("path", "context")
+    
+    { "FORCE_TEST_FAILURE"; this}.fail();
   }
+  
+  def fail(){}
 
+  @invocations("TODO: add @invocations on classes to make assertions on initialization code")
   case class DumpCollector(path: String, ctx: String) {
     private val content = List[String]("1", "2", "3", "4")
     var lineNr = 3

@@ -5,8 +5,8 @@ import callgraph.annotation.target
 
 object MultipleAnnotations {
 
-  @invocations("A.apply")
-  @invocations("B.apply")
+  @invocations("13: A.apply")
+  @invocations("18: B.apply")
   def main(args: Array[String]) = {
     // This calls A.apply
     for (v <- 0 to 10) {

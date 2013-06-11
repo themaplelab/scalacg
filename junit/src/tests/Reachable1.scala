@@ -1,9 +1,11 @@
 package tests
 
 import callgraph.annotation.reachable
+import callgraph.annotation.invocations
 
 object Reachable1 {
 
+  @invocations("13: <unannotated> tests.Reachable1.A: apply(x: Int)", "18: <unannotated> tests.Reachable1.B: apply(x: Int)")
   def main(args: Array[String]): Unit = {
     
     // This calls A.apply
