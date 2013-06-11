@@ -48,14 +48,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
         buildCallGraph
         
         // TODO
-//        val callSite = callSites.filter(_.method.name.decode.equals("lineNr_=")).head
-//        println(signature(enclosingMethod(callSite)))
-//        println(callGraph(callSite))
-        
-        // TODO
         appClasses = CallGraphPlugin.this.appClasses
-
-        printAnnotatedCallsites
 
         val callgraphtxt = new PrintStream("callgraph.txt")
         printCallGraph(callgraphtxt)
@@ -90,6 +83,10 @@ class CallGraphPlugin(val global: Global) extends Plugin {
         
         // Make sure any method annotated @notreachable is in fact not reachable in the call graph.
         assertNotReachables(expectedNotReachables, reachableMethods)
+        
+        // Some more assertions
+        // TODO: we should have all these assertions in the Assertions trait and just call it there (code refactoring)
+        printAnnotatedCallsites
       }
     }
   }
