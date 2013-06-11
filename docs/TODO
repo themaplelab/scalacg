@@ -1,21 +1,8 @@
-1. @invocations annotations are currently not checked
-  - already discussed with Marianna and Karim, who are working on it.
-
 2. super-calls should be ignored if they occur in unreachable methods
-
-3. The analysis does not correctly deal with call sites in unreachable 
-code. For examples, see:
-   - Simple.scala
-   - AbstractTypes9.scala / AbstractTypes9b.scala
-   - AbstractTypes10.scala
-
+   
 4. We need to add @invocations annotations to several tests
    - CaseClass1/CaseClass2 -- place some @invocations annotations here?
    - Closures1/Closures2 -- place some @invocations annotations here?
-
-5. We need a mechanism to check that call sites have 0 targets
-  - using blocks of the form:  { "__NONE__"; u }.draw()
-  - see AbstractTypes9b for an example
 
 6. I don't understand test AbstractTypes10.  Judging from the assertions,
 it seems that method D.hashCode is reachable (perhaps because it
@@ -35,21 +22,11 @@ appears to be a bug that has to do with the handling of abstract type
 members.
 The problem seemingly has to do with the call on line 21.
 
-8. Now that the CHA algorithm has gone away, I think the cha(.) annotations
-like the ones in Overriding1.scala are now redundant. However, I think we
-should keep the _mechanism_ to handle Marianna's future RA analysis.
-
 1. I reinstated test Generics1 and added a main() method to it. The test currently
   fails for unknown reasons.
 
-2. In tests Generics2, Generics3, SuperCall, Implicits1, Implicits2, Implicits3  I added @invocations annotations.
-Marianna: can you please check & update these tests as needed?  For now, I added
-an assertion that forces the tests to fail.
-
 3. After adding a missing assertion to Generics4, the test fails. Karim: I think this
 is the same problem once again.
-
-4. Someone added annotations to ImplicitArguments2 to force it to fail. I'm not sure if I understand why.
 
 5. In test, ImplicitArguments3, it would be nice to put @invocations annotations to check the
 presence of constructor calls. Marianna, can you look into that.
