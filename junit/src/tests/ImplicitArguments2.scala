@@ -1,5 +1,6 @@
 package tests
 
+import callgraph.annotation.invocations
  
 object ImplicitArguments2 {
    
@@ -10,6 +11,7 @@ object ImplicitArguments2 {
   }
   
   
+  @invocations("FOO")
   def main(args: Array[String]) {
         val c1 = new C();
         println(c1);
@@ -18,7 +20,7 @@ object ImplicitArguments2 {
         val c3 = new C(1, "zip", "zap");
         println(c3);
         
-        // add @invocations for the various constructor calls
+        // Note: the call graph doesn't seem to contain edges for calls to constructors with default arguments
         { "FORCE_TEST_FAILURE"; this}.fail();
   }
   
