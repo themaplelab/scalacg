@@ -1,15 +1,17 @@
 package callgraph
 
 import java.io.PrintStream
+
 import scala.collection.mutable
 import scala.reflect.io.AbstractFile
 import scala.tools.nsc
+
+import ca.uwaterloo.scalacg.util.Annotations
 import ca.uwaterloo.scalacg.util.Probe
 import probe.CallGraph
 import scalacg.probe.CallEdge
 import scalacg.probe.CallSiteContext
 import scalacg.probe.GXLWriter
-import ca.uwaterloo.scalacg.util.Annotations
 
 trait CGUtils extends Probe with Annotations {
   val global: nsc.Global // same as the other global
@@ -30,32 +32,11 @@ trait CGUtils extends Probe with Annotations {
      * Find the enclosing method of a call site. For call sites in methods, that's obvious. For call sites
      * that appear in class definition, the primary constructor of the defining class is the enclosing method.
      */
-
-    lazy val enclMethod = {
-      //    callSite.ancestors.collectFirst {
-      //      case dd: DefDef => dd.symbol
-      //      case cd: ClassDef => cd.symbol.primaryConstructor
-      //    }
-      //    
-      //    callSite.ancestors.find {
-      //      case dd: DefDef => dd.symbol
-      //      case cd: ClassDef => cd.symbol.primaryConstructor
-      //    }
-      // Find a method that contains this call site.
-      val defdef = ancestors.find({
-        node => node.isInstanceOf[DefDef]
-      })
-
-      // If none found, then it should be in a class definition, and the enclosing method is the primary constructor
-      if (defdef.isEmpty) {
-        val classdef = ancestors.find({
-          node => node.isInstanceOf[ClassDef]
-        })
-        classdef.get.symbol.primaryConstructor
-      } else {
-        defdef.get.symbol
-      }
-    }
+    lazy val enclMethod =
+      ancestors.collectFirst {
+        case dd: DefDef => dd.symbol
+        case cd: ClassDef => cd.symbol.primaryConstructor
+      }.get
   }
 
   var callSites = List[CallSite]()
@@ -320,7 +301,7 @@ trait CGUtils extends Probe with Annotations {
     for {
       callSite <- callSites
       if reachableCode contains callSite.enclMethod
-      val expected = callSite.annotation.toSet 
+      val expected = callSite.annotation.toSet
       if expected.nonEmpty
     } {
       println(callSite.staticTarget + " " + callSite.annotation)
