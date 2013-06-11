@@ -84,6 +84,8 @@ class Suite {
   @Test def testAbstractTypes12 = runTest("AbstractTypes12")
   @Test def testAbstractTypes13 = runTest("AbstractTypes13")
   @Test def testAbstractTypes14 = runTest("AbstractTypes14")
+  
+  @Test def testSetterOverloading = runTest("SetterOverloading")
 
   @Test def testGenerics1 = runTest("Generics1")
   @Test def testGenerics2 = runTest("Generics2")
