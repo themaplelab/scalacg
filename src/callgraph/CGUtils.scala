@@ -56,6 +56,15 @@ trait CGUtils extends Probe with Annotations {
    * that appear in class definition, the primary constructor of the defining class is the enclosing method.
    */
   def enclosingMethod(callSite: CallSite) = {
+    //    callSite.ancestors.collectFirst {
+    //      case dd: DefDef => dd.symbol
+    //      case cd: ClassDef => cd.symbol.primaryConstructor
+    //    }
+    //    
+    //    callSite.ancestors.find {
+    //      case dd: DefDef => dd.symbol
+    //      case cd: ClassDef => cd.symbol.primaryConstructor
+    //    }
     // Find a method that contains this call site.
     val defdef = callSite.ancestors.find({
       node => node.isInstanceOf[DefDef]
@@ -96,11 +105,6 @@ trait CGUtils extends Probe with Annotations {
     trees.foreach { tree =>
       findCallSites(tree, List())
     }
-
-    // TODO
-    //        println(callSites.filter(_.method.name.decode.equals("lineNr_=")).map(_.ancestors.find({
-    //          node => node.isInstanceOf[DefDef] || node.isInstanceOf[ClassDef]
-    //        }).get.symbol))
   }
 
   def normalizeMultipleParameters(tree: Apply): Apply = tree.fun match {
@@ -170,12 +174,13 @@ trait CGUtils extends Probe with Annotations {
 
     }
     targets.headOption.getOrElse(if (needProbe)
-        List(UNANNOT + " " + probeMethod(symbol))
-      else Nil)
+      List(UNANNOT + " " + probeMethod(symbol))
+    else Nil)
   }
 
   var concretization = Map[Symbol, Set[Type]]()
   def addTypeConcretizations(classes: Set[Symbol]) = {
+
     // find all definitions of abstract type members ("type aliases")
     for {
       cls <- classes
@@ -189,7 +194,7 @@ trait CGUtils extends Probe with Annotations {
         (absSym -> (concretization.getOrElse(absSym, Set()) + sym.tpe.dealias))
     }
 
-    // find al`l instantiations of generic type parameters (generics behave the same way)
+    // find all instantiations of generic type parameters (generics behave the same way)
     for {
       cls <- classes
     } {
@@ -255,6 +260,17 @@ trait CGUtils extends Probe with Annotations {
           { _.asSeenFrom(ThisType(actual.typeSymbol), declared.typeSymbol) }
         declared.instantiateTypeParams(tparams map { _.typeSymbol }, args)
       }
+
+      // TODO
+//      for {
+//        cls <- consideredClasses
+//        val tpe = cls.tpe
+//        expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
+//      } {
+//        println(tpe)
+//        println(expandedType)
+//        println(tpe <:< expandedType)
+//      }
 
       for {
         cls <- consideredClasses
@@ -332,7 +348,7 @@ trait CGUtils extends Probe with Annotations {
       assert(expected.subsetOf(resolved), expected.toSeq.sorted.mkString(", "))
     }
   }
-  
+
   def transitiveClosure[T](initial: Set[T], transition: T => Set[T]): Set[T] = {
     val seen = mutable.Set[T]() ++ initial
     val queue = mutable.Queue[T]() ++ initial
