@@ -22,7 +22,6 @@ trait THA extends CGUtils {
         case _ =>
       }
     }
-    addTypeConcretizations(classes)
   }
   val classToMembers = mutable.Map[Symbol, Set[Symbol]]()
 
@@ -148,6 +147,10 @@ trait THA extends CGUtils {
       //            } {
       //              addMethod(constr)
       //            }
+      
+      // Type concretization now should happen inside the worklist too, and only for the instantiated classes
+      // This should improve the precision of our analysis 
+      addTypeConcretizations(instantiatedClasses)
     }
   }
 
