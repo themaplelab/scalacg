@@ -1,18 +1,4 @@
-2. super-calls should be ignored if they occur in unreachable methods
-   
-4. We need to add @invocations annotations to several tests
-   - CaseClass1/CaseClass2 -- place some @invocations annotations here?
-   - Closures1/Closures2 -- place some @invocations annotations here?
-
-6. I don't understand test AbstractTypes10.  Judging from the assertions,
-it seems that method D.hashCode is reachable (perhaps because it
-overrides a library method?).  However, if that is the case then why isn't
-D.hashCode also a target of the call on line 11?
-
-Note that this test was problematic because main() didn't call any methods.
-I added a call to foo() to ensure that the call graph is non trivial, 
-but that
-led to the inconsistent results I'm observing now.
+2. super-calls should be ignored if they occur in unreachable methods (ThisType2)
 
 7. AbstractTypes12 was commented out and lacked assertions. After 
 reinstating
