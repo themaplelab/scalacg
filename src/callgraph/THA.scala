@@ -93,7 +93,7 @@ trait THA extends CGUtils {
         reachableCode += method
         instantiatedClasses ++= classesInMethod(method)
       }
-      
+
       // process all call sites in reachable code
       for {
         callSite <- callSites
@@ -129,12 +129,25 @@ trait THA extends CGUtils {
       }
 
       // add all constructors
+      // TODO Karim: I don't understand how this adds class definition to reachable code? how is this later processed?
       instantiatedClasses.foreach(addMethod(_))
       for {
         cls <- instantiatedClasses
         constr <- cls.tpe.members
         if constr.isConstructor
-      } addMethod(constr)
+      } {
+        addMethod(constr)
+      }
+
+      // add the mixin primary constructors (see AbstractTypes13)
+      //            for {
+      //              cls <- instantiatedClasses
+      //              mixin <- cls.mixinClasses
+      //              val constr = mixin.primaryConstructor
+      //              if constr != NoSymbol
+      //            } {
+      //              addMethod(constr)
+      //            }
     }
   }
 

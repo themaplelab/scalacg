@@ -81,7 +81,7 @@ trait CGUtils extends Probe with Annotations {
     // find the set of instantiated classes in the whole program
     classes = trees.flatMap { tree =>
       tree.collect {
-        case cd: ClassDef if cd.symbol.isModuleClass => cd.symbol // isModuleClass -> an object, it gets auto instantiated
+        case cd: ClassDef if cd.symbol.isModuleOrModuleClass => cd.symbol // isModuleClass -> an object, it gets auto instantiated
         case nw: New => nw.tpt.symbol // the set of all allocation sites
       }
     }.toSet
@@ -251,17 +251,16 @@ trait CGUtils extends Probe with Annotations {
       //        cls <- consideredClasses
       //        val tpe = cls.tpe
       //        expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
+      //        if staticTarget.nameString == "foo"
       //      } {
-      //        println(tpe)
-      //        println(expandedType)
-      //        println(tpe <:< expandedType)
+      //        println(tpe + " " + expandedType + " " + (tpe <:< expandedType))
       //      }
 
       for {
         cls <- consideredClasses
         val tpe = cls.tpe
         expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
-        if tpe <:< expandedType
+        if tpe <:< expandedType // TODO: looks like there's a bug here (see AbstractTypes13, and the generics issue) 
         val target = tpe.member(staticTarget.name)
         if !target.isDeferred
       } {
