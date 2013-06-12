@@ -12,7 +12,7 @@ trait RA {
 
   def buildCallGraph() {
     for (callSite <- callSites) {
-      val targets = nameLookup(callSite.method.name, classes)
+      val targets = nameLookup(callSite.staticTarget.name, classes)
       callGraph += (callSite -> targets)
     }
   }
