@@ -45,7 +45,7 @@ trait THA extends CGUtils {
         case _: ClassDef | _: DefDef =>
           tree.children.foreach(traverse(_, tree.symbol))
         case New(tpt) =>
-          ret(owner) = ret(owner) + tpt.symbol.asClass
+          ret(owner) = ret(owner) + tpt.tpe.dealias.typeSymbol.asClass // some types are aliased, see CaseClass3
         case _ =>
           tree.children.foreach(traverse(_, owner))
       }
