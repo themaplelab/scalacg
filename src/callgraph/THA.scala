@@ -80,7 +80,9 @@ trait THA extends CGUtils {
     }
 
     // all objects are considered to be allocated
-    instantiatedClasses ++= classes.filter(_.isModule)
+    // Karim: Here isModuleOrModuleClass should be used instead of just isModule, or isModuleClass. I have no idea
+    // why this works this way, but whenever I use either of them alone something crashes.
+    instantiatedClasses ++= classes.filter(_.isModuleOrModuleClass)
 
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
@@ -91,7 +93,7 @@ trait THA extends CGUtils {
         reachableCode += method
         instantiatedClasses ++= classesInMethod(method)
       }
-
+      
       // process all call sites in reachable code
       for {
         callSite <- callSites
