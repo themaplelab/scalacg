@@ -22,12 +22,17 @@ trait THA extends CGUtils {
         case _ =>
       }
     }
+
+    println(superMethodNames)
   }
   val classToMembers = mutable.Map[Symbol, Set[Symbol]]()
 
   var instantiatedClasses = Set[Symbol]()
+
   // in Scala, code can appear in classes as well as in methods, so reachableCode generalizes reachable methods
   var reachableCode = Set[Symbol]()
+
+  var callbacks = Set[Symbol]()
 
   // newly reachable methods to be processed
   val methodWorklist = mutable.Queue[Symbol]()
@@ -113,6 +118,7 @@ trait THA extends CGUtils {
               case NoSymbol => instantiatedClasses
               case symbol =>
                 val method = containingMethod(callSite.ancestors, symbol)
+                // TODO: need to change this because super might occur in unreachable code (ThisType2)
                 if (method == NoSymbol || superMethodNames.contains(method.name)) instantiatedClasses
                 else
                   instantiatedClasses.filter { cls =>
@@ -124,12 +130,12 @@ trait THA extends CGUtils {
         }
 
         callGraph += (callSite -> targets)
-        targets.foreach(addMethod(_))
+        targets.foreach(addMethod)
       }
 
       // add all constructors
       // TODO Karim: I don't understand how this adds class definition to reachable code? how is this later processed?
-      instantiatedClasses.foreach(addMethod(_))
+      instantiatedClasses.foreach(addMethod)
       for {
         cls <- instantiatedClasses
         constr <- cls.tpe.members
@@ -137,6 +143,18 @@ trait THA extends CGUtils {
       } {
         addMethod(constr)
       }
+
+      // Library call backs are also reachable
+      for {
+        cls <- instantiatedClasses
+        member <- cls.tpe.decls // loop over the declared members, "members" returns defined AND inherited members
+        if member.isMethod && !member.isDeferred && member.allOverriddenSymbols.nonEmpty
+        val libraryOverriddenSymbols = member.allOverriddenSymbols.filterNot(appClasses contains _.owner)
+        overridden <- libraryOverriddenSymbols
+      } {
+        callbacks += member
+      }
+      callbacks.foreach(addMethod)
 
       // add the mixin primary constructors (see AbstractTypes13)
       //            for {
@@ -147,7 +165,7 @@ trait THA extends CGUtils {
       //            } {
       //              addMethod(constr)
       //            }
-      
+
       // Type concretization now should happen inside the worklist too, and only for the instantiated classes
       // This should improve the precision of our analysis 
       addTypeConcretizations(instantiatedClasses)
