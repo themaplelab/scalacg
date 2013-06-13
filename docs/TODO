@@ -8,12 +8,8 @@ appears to be a bug that has to do with the handling of abstract type
 members.
 The problem seemingly has to do with the call on line 21.
 
-1. I reinstated test Generics1 and added a main() method to it. The test currently
-  fails for unknown reasons.
-
 3. After adding a missing assertion to Generics4, the test fails. Karim: I think this
 is the same problem once again.
-
 
 1. Test Breakable2 contains method calls that occur in initialization code.
 Currently, we cannot express @invocations assertions on calls in such code,
@@ -32,10 +28,6 @@ if there are no calls within that method.
 call graph for a call
   to a library method "scala.collection.mutable.ListBuffer: <init>()".
 I edited these tests to force them to fail.
-
-5. test ConstantEquals fails because the @invocations assertion is 
-failing. It is not
- clear to me why the asserted call is not in the call graph.
 
 6. Our treatment of calls to methods in the libraries is currently 
 inconsistent: we don't
