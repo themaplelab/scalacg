@@ -1,5 +1,6 @@
 package callgraph
 
+import scala.annotation.migration
 import scala.collection.mutable
 import scala.tools.nsc
 
@@ -46,8 +47,10 @@ trait THA extends CGUtils {
     val ret = mutable.Map[Symbol, Set[Type]]().withDefaultValue(Set())
     def traverse(tree: Tree, owner: Symbol): Unit = {
       tree match {
-        case _: ClassDef | _: DefDef =>
+        case _: DefDef =>
           tree.children.foreach(traverse(_, tree.symbol))
+        case _: ClassDef => // If the tree is a class definition, then "owner" should be the primary constructor (see GetterMethod1) 
+          tree.children.foreach(traverse(_, tree.symbol.primaryConstructor))
         case New(tpt) =>
           ret(owner) = ret(owner) + tpt.tpe.dealias // some types are aliased, see CaseClass3
         case _ =>
@@ -96,7 +99,7 @@ trait THA extends CGUtils {
         reachableCode += method
         instantiatedClasses ++= classesInMethod(method)
       }
-
+      
       // process all call sites in reachable code
       for {
         callSite <- callSites

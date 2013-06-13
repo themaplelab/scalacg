@@ -2,6 +2,7 @@ package callgraph
 
 import java.io.PrintStream
 
+import scala.annotation.migration
 import scala.collection.mutable
 import scala.reflect.io.AbstractFile
 import scala.tools.nsc
