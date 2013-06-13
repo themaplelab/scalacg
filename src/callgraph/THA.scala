@@ -69,7 +69,6 @@ trait THA extends CGUtils {
      * }
      * In such cases, returns NoSymbol
      * 
-     * TODO
      * Karim: For these cases, such a method is the primary constructor of the class.
      */
     def containingMethod(ancestors: List[Tree], thisType: Symbol): Symbol = {

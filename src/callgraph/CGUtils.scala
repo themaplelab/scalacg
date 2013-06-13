@@ -336,7 +336,7 @@ trait CGUtils extends Probe with Annotations {
             cs.pos.line + ": " + findTargetAnnotation(s)))
       printCallGraph(resolved, isResolved = true)
       printCallGraph(expected, isResolved = false)
-      assert(expected.subsetOf(resolved), expected.toSeq.sorted.mkString(", "))
+      assert(expected.subsetOf(resolved), (expected &~ resolved).toSeq.sorted.mkString(", "))
     }
   }
 
