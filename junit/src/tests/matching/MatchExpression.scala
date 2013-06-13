@@ -11,15 +11,15 @@ object MatchExpression {
   
   @invocations("29: <unannotated> tests.matching.MatchExpression.Lit: <init>(value: Boolean)", 
                "30: <unannotated> scala.MatchError: <init>(obj: Any)", 
-               "31: <unannotated> java.lang.Object: ne(x$1: AnyRef)", 
+               // "31: <unannotated> java.lang.Object: ne(x$1: AnyRef)", see CaseClass 
                "31: <unannotated> scala.Any: asInstanceOf()", 
                "31: <unannotated> scala.Any: isInstanceOf()", 
                "31: <unannotated> tests.matching.MatchExpression.Lit: value()", 
-               "32: <unannotated> java.lang.Object: ne(x$1: AnyRef)", 
+               // "32: <unannotated> java.lang.Object: ne(x$1: AnyRef)", 
                "32: <unannotated> scala.Any: asInstanceOf()", 
                "32: <unannotated> scala.Any: isInstanceOf()", 
                "32: <unannotated> tests.matching.MatchExpression.Var: name()", 
-               "33: <unannotated> java.lang.Object: ne(x$1: AnyRef)", 
+               // "33: <unannotated> java.lang.Object: ne(x$1: AnyRef)", 
                "33: <unannotated> scala.Any: asInstanceOf()", 
                "33: <unannotated> scala.Any: isInstanceOf()", 
                "33: <unannotated> tests.matching.MatchExpression.And: left()",
