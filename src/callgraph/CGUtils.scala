@@ -22,7 +22,7 @@ trait CGUtils extends Probe with Annotations {
 
   def trees: List[Tree] // this is overridden by var trees in CallGraphPlugin
 
-  def instantiatedClasses: Set[Symbol]
+  def instantiatedClasses: Set[Type]
   def reachableCode: Set[Symbol]
 
   case class CallSite(receiver: Tree, staticTarget: MethodSymbol, args: List[Tree],
@@ -41,7 +41,7 @@ trait CGUtils extends Probe with Annotations {
 
   var callSites = List[CallSite]()
   val callSitesInMethod = mutable.Map[Symbol, Set[CallSite]]()
-  var classes = Set[Symbol]()
+  var classes = Set[Type]()
   var appClasses = Set[Symbol]()
   def callGraph: CallSite => Set[Symbol]
 
@@ -81,8 +81,8 @@ trait CGUtils extends Probe with Annotations {
     // find the set of instantiated classes in the whole program
     classes = trees.flatMap { tree =>
       tree.collect {
-        case cd: ClassDef if cd.symbol.isModuleOrModuleClass => cd.symbol // isModuleClass -> an object, it gets auto instantiated
-        case nw: New => nw.tpt.symbol // the set of all allocation sites
+        case cd: ClassDef if cd.symbol.isModuleOrModuleClass => cd.symbol.tpe // isModuleClass -> an object, it gets auto instantiated
+        case nw: New => nw.tpt.tpe // the set of all allocation sites
       }
     }.toSet
 
@@ -164,13 +164,12 @@ trait CGUtils extends Probe with Annotations {
   }
 
   var concretization = Map[Symbol, Set[Type]]()
-  def addTypeConcretizations(classes: Set[Symbol]) = {
-
+  def addTypeConcretizations(classes: Set[Type]) = {
     // find all definitions of abstract type members ("type aliases")
     for {
-      cls <- classes
-      sym <- cls.tpe.members // concrete type
-      superClass <- cls.baseClasses
+      tpe <- classes
+      sym <- tpe.members // concrete type
+      superClass <- tpe.baseClasses
       absSym <- superClass.tpe.decls // abstract type
       if absSym.isAbstractType
       if absSym.name == sym.name
@@ -181,7 +180,8 @@ trait CGUtils extends Probe with Annotations {
 
     // find all instantiations of generic type parameters (generics behave the same way)
     for {
-      cls <- classes
+      tpe <- classes
+      val cls = tpe.typeSymbol
     } {
       cls.info match {
         // class declaration and has a set of parents
@@ -197,9 +197,16 @@ trait CGUtils extends Probe with Annotations {
                 (param -> (concretization.getOrElse(param, Set() + arg)))
             }
           }
+        case PolyType(typeParams, resultType) =>
+          // handles the case: new List[Int]
+          for {
+              (arg, param) <- (tpe.typeArguments zip typeParams)
+            } {
+              concretization +=
+                (param -> (concretization.getOrElse(param, Set() + arg)))
+            }
         case _ =>
-        // TODO: are we missing any cases?
-        // one case missing is new List[Int]
+          // TODO: are we missing any cases?
       }
     }
 
@@ -232,7 +239,7 @@ trait CGUtils extends Probe with Annotations {
   /**
    * The main method lookup for Scala.
    */
-  def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Symbol]): Set[Symbol] = {
+  def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Type]): Set[Symbol] = {
     // If the target method is a constructor, no need to do the lookup.
     if (staticTarget.isConstructor) {
       Set(staticTarget)
@@ -247,20 +254,19 @@ trait CGUtils extends Probe with Annotations {
       }
 
       // TODO
-      //      for {
-      //        cls <- consideredClasses
-      //        val tpe = cls.tpe
-      //        expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
-      //        if staticTarget.nameString == "foo"
-      //      } {
-      //        println(tpe + " " + expandedType + " " + (tpe <:< expandedType))
-      //      }
+//      for {
+//        tpe <- consideredClasses
+//        expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
+//        if staticTarget.nameString == "foo"
+//      } {
+//        println(tpe + " " + expandedType + " " + (tpe <:< expandedType))
+//        sys.exit(0)
+//      }
 
       for {
-        cls <- consideredClasses
-        val tpe = cls.tpe
+        tpe <- consideredClasses
         expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
-        if tpe <:< expandedType // TODO: looks like there's a bug here (see AbstractTypes13, and the generics issue) 
+        if tpe <:< expandedType // TODO: looks like there's a bug here (see AbstractTypes13, and Generics16) 
         val target = tpe.member(staticTarget.name)
         if !target.isDeferred
       } {
@@ -346,32 +352,32 @@ trait CGUtils extends Probe with Annotations {
     Set() ++ seen
   }
 
-//  /**
-//   * These are methods that should be reachable due to some library call back.
-//   * For now, we only consider methods that override library methods as callbacks.
-//   */
-//  def callbacks = {
-//    var callbacks = Set[Symbol]()
-//    for {
-//      cls <- appClasses
-//      member <- cls.tpe.decls // loop over the declared members, "members" returns defined AND inherited members
-//      if member.isMethod && !member.isDeferred && member.allOverriddenSymbols.nonEmpty
-//      val libraryOverriddenSymbols = member.allOverriddenSymbols.filterNot(appClasses contains _.owner)
-//      overridden <- libraryOverriddenSymbols
-//    } {
-//      callbacks += member
-//    }
-//    callbacks
-//  }
+  //  /**
+  //   * These are methods that should be reachable due to some library call back.
+  //   * For now, we only consider methods that override library methods as callbacks.
+  //   */
+  //  def callbacks = {
+  //    var callbacks = Set[Symbol]()
+  //    for {
+  //      cls <- appClasses
+  //      member <- cls.tpe.decls // loop over the declared members, "members" returns defined AND inherited members
+  //      if member.isMethod && !member.isDeferred && member.allOverriddenSymbols.nonEmpty
+  //      val libraryOverriddenSymbols = member.allOverriddenSymbols.filterNot(appClasses contains _.owner)
+  //      overridden <- libraryOverriddenSymbols
+  //    } {
+  //      callbacks += member
+  //    }
+  //    callbacks
+  //  }
 
-  def entryPoints = mainMethods
+  lazy val entryPoints = mainMethods
 
   // return all main methods that are inherited into some object
   def mainMethods = {
     val mainName = stringToTermName("main")
 
-    val mainMethods = classes.filter(_.isModuleClass). // filter classes that are objects
-      collect { case cs: ClassSymbol => cs.tpe.member(mainName) }. // collect main methods
+    val mainMethods = classes.filter(_.typeSymbol.isModuleOrModuleClass). // filter classes that are objects
+      collect { case cs: ModuleTypeRef => cs.member(mainName) }. // collect main methods
       filter(_.isMethod). // consider only methods, not fields or other members
       filter(!_.isDeferred). // filter out abstract methods
       filter(_.typeSignature.toString.equals("(args: Array[String])Unit")) // filter out methods accidentally named "main"
@@ -380,7 +386,7 @@ trait CGUtils extends Probe with Annotations {
     Set() ++ mainMethods
   }
 
-  lazy val reachableMethods = transitiveClosure(entryPoints /*++ callbacks*/, { source: Symbol =>
+  lazy val reachableMethods = transitiveClosure(entryPoints /*++ callbacks*/ , { source: Symbol =>
     for {
       callSite <- callSitesInMethod.getOrElse(source, Set()).filter(reachableCode contains _.enclMethod)
       target <- callGraph(callSite)

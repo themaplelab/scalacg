@@ -7,7 +7,7 @@ trait RTA { this: CGUtils =>
   val global: nsc.Global
   import global._
 
-  var instantiatedClasses = Set[Symbol]()
+  var instantiatedClasses = Set[Type]()
   // in Scala, code can appear in classes as well as in methods, so reachableCode generalizes reachable methods
   var reachableCode = Set[Symbol]()
 
@@ -19,13 +19,13 @@ trait RTA { this: CGUtils =>
   
   // the set of classes instantiated in a given method
   lazy val classesInMethod = {
-    val ret = mutable.Map[Symbol, Set[ClassSymbol]]().withDefaultValue(Set())
+    val ret = mutable.Map[Symbol, Set[Type]]().withDefaultValue(Set())
     def traverse(tree: Tree, owner: Symbol): Unit = {
       tree match {
         case _: ClassDef | _: DefDef =>
           tree.children.foreach(traverse(_, tree.symbol))
         case New(tpt) =>
-          ret(owner) = ret(owner) + tpt.symbol.asClass
+          ret(owner) = ret(owner) + tpt.tpe.dealias // some types are aliased, see CaseClass3
         case _ =>
           tree.children.foreach(traverse(_, owner))
       }
@@ -38,7 +38,7 @@ trait RTA { this: CGUtils =>
 
   def buildCallGraph = {
     // all objects are considered to be allocated
-    instantiatedClasses ++= classes.filter(_.isModule) 
+    instantiatedClasses ++= classes.filter(_.typeSymbol.isModuleOrModuleClass) 
     // this should be the same as in CGUtils.initialize
     // so this probably should say isModuleClass, if it breaks, then revert :D
     
@@ -56,14 +56,14 @@ trait RTA { this: CGUtils =>
       for (callSite <- callSites) {
         val targets = lookup(callSite.receiver.tpe, callSite.staticTarget, instantiatedClasses)
         callGraph += (callSite -> targets)
-        targets.foreach(addMethod(_))
+        targets.foreach(addMethod)
       }
 
       // add all constructors
-      instantiatedClasses.foreach(addMethod(_))
+      instantiatedClasses.map(_.typeSymbol).foreach(addMethod)
       for {
-        cls <- instantiatedClasses
-        constr <- cls.tpe.members
+        tpe <- instantiatedClasses
+        constr <- tpe.members
         if constr.isConstructor
       } addMethod(constr)
     }

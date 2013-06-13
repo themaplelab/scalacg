@@ -17,16 +17,16 @@ trait RA {
     }
   }
 
-  def nameLookup(methodName: Name, allClasses: Set[Symbol]): Set[Symbol] = {
+  def nameLookup(methodName: Name, allClasses: Set[Type]): Set[Symbol] = {
     allClasses.collect {
-      case cls => cls.tpe.members
+      case tpe => tpe.members
     }.flatten.filter(m => m.name == methodName && m.isMethod)
   }
 
   override def initialize() {
     classes = trees.flatMap { tree =>
       tree.collect {
-        case cd: ClassDef => cd.symbol
+        case cd: ClassDef => cd.symbol.tpe
       }
     }.toSet
 

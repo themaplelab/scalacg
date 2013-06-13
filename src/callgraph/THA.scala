@@ -1,7 +1,7 @@
 package callgraph
 
-import scala.tools.nsc
 import scala.collection.mutable
+import scala.tools.nsc
 
 trait THA extends CGUtils {
   val global: nsc.Global
@@ -13,6 +13,8 @@ trait THA extends CGUtils {
 
   override def initialize = {
     super.initialize
+
+    // Find uses of super.foo()
     for {
       tree <- trees
       node <- tree
@@ -22,12 +24,10 @@ trait THA extends CGUtils {
         case _ =>
       }
     }
-
-    println(superMethodNames)
   }
-  val classToMembers = mutable.Map[Symbol, Set[Symbol]]()
+  val classToMembers = mutable.Map[Type, Set[Symbol]]()
 
-  var instantiatedClasses = Set[Symbol]()
+  var instantiatedClasses = Set[Type]()
 
   // in Scala, code can appear in classes as well as in methods, so reachableCode generalizes reachable methods
   var reachableCode = Set[Symbol]()
@@ -43,13 +43,13 @@ trait THA extends CGUtils {
 
   // the set of classes instantiated in a given method
   lazy val classesInMethod = {
-    val ret = mutable.Map[Symbol, Set[ClassSymbol]]().withDefaultValue(Set())
+    val ret = mutable.Map[Symbol, Set[Type]]().withDefaultValue(Set())
     def traverse(tree: Tree, owner: Symbol): Unit = {
       tree match {
         case _: ClassDef | _: DefDef =>
           tree.children.foreach(traverse(_, tree.symbol))
         case New(tpt) =>
-          ret(owner) = ret(owner) + tpt.tpe.dealias.typeSymbol.asClass // some types are aliased, see CaseClass3
+          ret(owner) = ret(owner) + tpt.tpe.dealias // some types are aliased, see CaseClass3
         case _ =>
           tree.children.foreach(traverse(_, owner))
       }
@@ -86,7 +86,7 @@ trait THA extends CGUtils {
     // all objects are considered to be allocated
     // Karim: Here isModuleOrModuleClass should be used instead of just isModule, or isModuleClass. I have no idea
     // why this works this way, but whenever I use either of them alone something crashes.
-    instantiatedClasses ++= classes.filter(_.isModuleOrModuleClass)
+    instantiatedClasses ++= classes.filter(_.typeSymbol.isModuleOrModuleClass)
 
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
@@ -121,8 +121,8 @@ trait THA extends CGUtils {
                 // TODO: need to change this because super might occur in unreachable code (ThisType2)
                 if (method == NoSymbol || superMethodNames.contains(method.name)) instantiatedClasses
                 else
-                  instantiatedClasses.filter { cls =>
-                    val members = classToMembers.getOrElseUpdate(cls, cls.tpe.members.sorted.toSet)
+                  instantiatedClasses.filter { tpe =>
+                    val members = classToMembers.getOrElseUpdate(tpe, tpe.members.sorted.toSet)
                     members.contains(method)
                   }
             }
@@ -135,10 +135,10 @@ trait THA extends CGUtils {
 
       // add all constructors
       // TODO Karim: I don't understand how this adds class definition to reachable code? how is this later processed?
-      instantiatedClasses.foreach(addMethod)
+      instantiatedClasses.map(_.typeSymbol).foreach(addMethod)
       for {
         cls <- instantiatedClasses
-        constr <- cls.tpe.members
+        constr <- cls.members
         if constr.isConstructor
       } {
         addMethod(constr)
@@ -147,24 +147,25 @@ trait THA extends CGUtils {
       // Library call backs are also reachable
       for {
         cls <- instantiatedClasses
-        member <- cls.tpe.decls // loop over the declared members, "members" returns defined AND inherited members
+        member <- cls.decls // loop over the declared members, "members" returns defined AND inherited members
         if member.isMethod && !member.isDeferred && member.allOverriddenSymbols.nonEmpty
         val libraryOverriddenSymbols = member.allOverriddenSymbols.filterNot(appClasses contains _.owner)
-        overridden <- libraryOverriddenSymbols
+        if libraryOverriddenSymbols.nonEmpty
       } {
         callbacks += member
       }
       callbacks.foreach(addMethod)
 
       // add the mixin primary constructors (see AbstractTypes13)
-      //            for {
-      //              cls <- instantiatedClasses
-      //              mixin <- cls.mixinClasses
-      //              val constr = mixin.primaryConstructor
-      //              if constr != NoSymbol
-      //            } {
-      //              addMethod(constr)
-      //            }
+      // TODO: We need to add a call site to these methods in the primary constructor of the instantiated class
+      for {
+        cls <- instantiatedClasses
+        mixin <- cls.typeSymbol.mixinClasses
+        val constr = mixin.primaryConstructor
+        if constr != NoSymbol
+      } {
+        addMethod(constr)
+      }
 
       // Type concretization now should happen inside the worklist too, and only for the instantiated classes
       // This should improve the precision of our analysis 
