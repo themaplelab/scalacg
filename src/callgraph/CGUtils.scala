@@ -24,6 +24,7 @@ trait CGUtils extends Probe with Annotations {
 
   def instantiatedClasses: Set[Type]
   def reachableCode: Set[Symbol]
+  def callbacks: Set[Symbol]
 
   case class CallSite(receiver: Tree, staticTarget: MethodSymbol, args: List[Tree],
     annotation: List[String], ancestors: List[Tree], pos: Position) {
@@ -352,24 +353,6 @@ trait CGUtils extends Probe with Annotations {
     Set() ++ seen
   }
 
-  //  /**
-  //   * These are methods that should be reachable due to some library call back.
-  //   * For now, we only consider methods that override library methods as callbacks.
-  //   */
-  //  def callbacks = {
-  //    var callbacks = Set[Symbol]()
-  //    for {
-  //      cls <- appClasses
-  //      member <- cls.tpe.decls // loop over the declared members, "members" returns defined AND inherited members
-  //      if member.isMethod && !member.isDeferred && member.allOverriddenSymbols.nonEmpty
-  //      val libraryOverriddenSymbols = member.allOverriddenSymbols.filterNot(appClasses contains _.owner)
-  //      overridden <- libraryOverriddenSymbols
-  //    } {
-  //      callbacks += member
-  //    }
-  //    callbacks
-  //  }
-
   lazy val entryPoints = mainMethods
 
   // return all main methods that are inherited into some object
@@ -386,7 +369,7 @@ trait CGUtils extends Probe with Annotations {
     Set() ++ mainMethods
   }
 
-  lazy val reachableMethods = transitiveClosure(entryPoints /*++ callbacks*/ , { source: Symbol =>
+  lazy val reachableMethods = transitiveClosure(entryPoints ++ callbacks , { source: Symbol =>
     for {
       callSite <- callSitesInMethod.getOrElse(source, Set()).filter(reachableCode contains _.enclMethod)
       target <- callGraph(callSite)
