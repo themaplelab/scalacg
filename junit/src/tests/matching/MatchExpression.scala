@@ -34,11 +34,11 @@ object MatchExpression {
     }
   }
 
-  @invocations("46: <unannotated> java.lang.Object: ne(x$1: AnyRef)", 
-               "46: <unannotated> scala.Any: asInstanceOf()", 
+  @invocations(// "46: <unannotated> java.lang.Object: ne(x$1: AnyRef)", see CaseClass 
+               // "46: <unannotated> scala.Any: asInstanceOf()", see CaseClass
+               // "46: <unannotated> tests.matching.MatchExpression.Lit: value()", see CaseClass
                "46: <unannotated> scala.Any: isInstanceOf()", 
-               "46: <unannotated> tests.matching.MatchExpression.Lit: <init>(value: Boolean)", 
-               "46: <unannotated> tests.matching.MatchExpression.Lit: value()", 
+               "46: <unannotated> tests.matching.MatchExpression.Lit: <init>(value: Boolean)",  
                "47: <unannotated> tests.matching.MatchExpression.Var: <init>(name: String)")
   @target("inverse") 
   def inverse(e: Expr) = {
