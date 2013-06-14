@@ -14,18 +14,8 @@ trait THA extends CGUtils {
 
   override def initialize = {
     super.initialize
-
-    // Find uses of super.foo()
-    for {
-      tree <- trees
-      node <- tree
-    } {
-      node match {
-        case Select(Super(_, _), name) => superMethodNames += name
-        case _ =>
-      }
-    }
   }
+  
   val classToMembers = mutable.Map[Type, Set[Symbol]]()
 
   var instantiatedClasses = Set[Type]()
@@ -99,7 +89,20 @@ trait THA extends CGUtils {
         reachableCode += method
         instantiatedClasses ++= classesInMethod(method)
       }
-      
+
+      // find call sites that use super (e.g., super.foo())
+      // Now this has been moved inside the worklist (see ThisType2)
+      for {
+        callSite <- callSites
+        if reachableCode contains callSite.enclMethod
+      } {
+        callSite.receiver match {
+          case Super(_, _) =>
+            superMethodNames += callSite.staticTarget.name
+          case _ =>
+        }
+      }
+
       // process all call sites in reachable code
       for {
         callSite <- callSites
