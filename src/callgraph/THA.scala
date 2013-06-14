@@ -1,6 +1,5 @@
 package callgraph
 
-import scala.annotation.migration
 import scala.collection.mutable
 import scala.tools.nsc
 
@@ -15,7 +14,7 @@ trait THA extends CGUtils {
   override def initialize = {
     super.initialize
   }
-  
+
   val classToMembers = mutable.Map[Type, Set[Symbol]]()
 
   var instantiatedClasses = Set[Type]()
@@ -154,9 +153,10 @@ trait THA extends CGUtils {
         cls <- instantiatedClasses
         member <- cls.decls // loop over the declared members, "members" returns defined AND inherited members
         if member.isMethod && !member.isDeferred && member.allOverriddenSymbols.nonEmpty
-        val libraryOverriddenSymbols = member.allOverriddenSymbols.filterNot(appClasses contains _.owner)
+        val libraryOverriddenSymbols = member.allOverriddenSymbols.filterNot(appClasses contains _.enclClass)
         if libraryOverriddenSymbols.nonEmpty
       } {
+        //        println("encl class: " + libraryOverriddenSymbols.map(_.enclClass))
         callbacks += member
       }
       callbacks.foreach(addMethod)

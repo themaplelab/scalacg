@@ -26,6 +26,8 @@ trait CGUtils extends Probe with Annotations {
   def instantiatedClasses: Set[Type]
   def reachableCode: Set[Symbol]
   def callbacks: Set[Symbol]
+  def appClasses: Set[Symbol] // application classes fed to the compiler (i.e., not including Scala/Java libraries)
+  def callGraph: CallSite => Set[Symbol]
 
   case class CallSite(receiver: Tree, staticTarget: MethodSymbol, args: List[Tree],
     annotation: List[String], ancestors: List[Tree], pos: Position) {
@@ -44,8 +46,6 @@ trait CGUtils extends Probe with Annotations {
   var callSites = List[CallSite]()
   val callSitesInMethod = mutable.Map[Symbol, Set[CallSite]]()
   var classes = Set[Type]()
-  var appClasses = Set[Symbol]()
-  def callGraph: CallSite => Set[Symbol]
 
   // a set of the static targets found by the analysis
   var staticTargets = Set[Symbol]()
