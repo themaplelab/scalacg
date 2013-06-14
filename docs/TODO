@@ -1,5 +1,3 @@
-2. super-calls should be ignored if they occur in unreachable methods (ThisType2)
-
 7. AbstractTypes12 was commented out and lacked assertions. After 
 reinstating
 the test, and placing assertions on the two method calls, the test 
