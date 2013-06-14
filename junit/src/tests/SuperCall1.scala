@@ -3,7 +3,7 @@ package tests
 import callgraph.annotation.target
 import callgraph.annotation.invocations
 
-object SuperCall {
+object SuperCall1 {
 
    trait X {
        @target("X.bar")
@@ -26,9 +26,8 @@ object SuperCall {
     { "Y.foo"; (new Y with Z)}.foo(); // calls X.bar
 	  { "Y.foo"; (new Z with Y)}.foo(); // calls Z.bar
 	  
-	  { "fail"; this}.fail(); // to make sure that the test fails until the @invocations are checked
+	  { "FORCE_TEST_FAILURE"; this}.fail(); // to make sure that the test fails until the @invocations are checked
   }
 
-  @target("fail")
   def fail(){}
 }
