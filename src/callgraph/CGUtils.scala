@@ -13,6 +13,7 @@ import probe.CallGraph
 import scalacg.probe.CallEdge
 import scalacg.probe.CallSiteContext
 import scalacg.probe.GXLWriter
+import collection.immutable.HashSet
 
 trait CGUtils extends Probe with Annotations {
   val global: nsc.Global // same as the other global
@@ -326,16 +327,17 @@ trait CGUtils extends Probe with Annotations {
   }
 
   private def printInvocations() {
+    val symbols: Set[Symbol] = reachableMethods ++ instantiatedClasses.map(_.typeSymbol)
     for {
-      method <- reachableMethods
-      if method.annotations.nonEmpty
-      expected = findAnnotationTargets(method, "callgraph.annotation.invocations", needProbe = false).toSet
+      symbol <- symbols
+      if symbol.annotations.nonEmpty
+      expected = findAnnotationTargets(symbol, "callgraph.annotation.invocations", needProbe = false).toSet
       if expected.nonEmpty
     } {
+      val methodOrConstructor: Symbol = if (symbol.isMethod) symbol else symbol.primaryConstructor
       val resolved: Set[String] =
-        callSitesInMethod(method).flatMap((cs: CallSite) =>
-          callGraph(cs).map((s: Symbol) =>
-            cs.pos.line + ": " + findTargetAnnotation(s)))
+        callSitesInMethod(methodOrConstructor).flatMap((cs: CallSite) =>
+          callGraph(cs).map(cs.pos.line + ": " + findTargetAnnotation(_)))
       printCallGraph(resolved, isResolved = true)
       printCallGraph(expected, isResolved = false)
       assert(expected.subsetOf(resolved), (expected &~ resolved).toSeq.sorted.mkString(", "))
