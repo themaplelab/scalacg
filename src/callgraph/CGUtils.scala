@@ -2,7 +2,6 @@ package callgraph
 
 import java.io.PrintStream
 
-import scala.annotation.migration
 import scala.collection.mutable
 import scala.reflect.io.AbstractFile
 import scala.tools.nsc
@@ -13,7 +12,6 @@ import probe.CallGraph
 import scalacg.probe.CallEdge
 import scalacg.probe.CallSiteContext
 import scalacg.probe.GXLWriter
-import collection.immutable.HashSet
 
 trait CGUtils extends Probe with Annotations {
   val global: nsc.Global // same as the other global
@@ -149,10 +147,10 @@ trait CGUtils extends Probe with Annotations {
   }
 
   def findTargetAnnotation(symbol: Symbol): String =
-    findAnnotationTargets(symbol, "callgraph.annotation.target", needProbe = true).head
+    findAnnotationTargets(symbol, targetAnnotation, needProbe = true).head
 
-  def findAnnotationTargets(symbol: Symbol, annotationName: String, needProbe: Boolean): List[String] = {
-    val targetAnnotationType = rootMirror.getRequiredClass(annotationName).tpe
+  def findAnnotationTargets(symbol: Symbol, annotation: ClassSymbol, needProbe: Boolean): List[String] = {
+    val targetAnnotationType = annotation.tpe
     val targets = symbol.annotations.collect {
       case AnnotationInfo(tpe, args, _) if tpe == targetAnnotationType =>
         args.map((arg) =>
@@ -309,7 +307,7 @@ trait CGUtils extends Probe with Annotations {
     for {
       callSite <- callSites
       if reachableCode contains callSite.enclMethod
-      val expected = callSite.annotation.toSet
+      expected = callSite.annotation.toSet
       if expected.nonEmpty
     } {
       println(callSite.staticTarget + " " + callSite.annotation)
@@ -330,17 +328,24 @@ trait CGUtils extends Probe with Annotations {
     val symbols: Set[Symbol] = reachableMethods ++ instantiatedClasses.map(_.typeSymbol)
     for {
       symbol <- symbols
-      if symbol.annotations.nonEmpty
-      expected = findAnnotationTargets(symbol, "callgraph.annotation.invocations", needProbe = false).toSet
-      if expected.nonEmpty
+      noInvocations = hasNoInvocationsAnnotation(symbol)
+      if noInvocations || hasInvocationsAnnotation(symbol)
+      expected = findAnnotationTargets(symbol, invocationsAnnotation, needProbe = false).toSet
+      hasExpected = expected.nonEmpty
+      if hasExpected || noInvocations
     } {
+      assert(hasExpected != noInvocations, "@invocations should not be combined with @noInvocations for the same symbol")
       val methodOrConstructor: Symbol = if (symbol.isMethod) symbol else symbol.primaryConstructor
+      val callSitesInMethodOrConstructor = if (callSitesInMethod.contains(methodOrConstructor)) 
+        callSitesInMethod(methodOrConstructor)
+        else Set()
       val resolved: Set[String] =
-        callSitesInMethod(methodOrConstructor).flatMap((cs: CallSite) =>
+        callSitesInMethodOrConstructor.flatMap((cs: CallSite) =>
           callGraph(cs).map(cs.pos.line + ": " + findTargetAnnotation(_)))
       printCallGraph(resolved, isResolved = true)
       printCallGraph(expected, isResolved = false)
-      assert(expected.subsetOf(resolved), (expected &~ resolved).toSeq.sorted.mkString(", "))
+      assert(if (noInvocations) resolved.isEmpty else expected.subsetOf(resolved),
+        (expected &~ resolved).toSeq.sorted.mkString(", "))
     }
   }
 

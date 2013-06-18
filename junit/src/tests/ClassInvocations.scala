@@ -2,8 +2,9 @@ package tests
 
 import callgraph.annotation.target
 import callgraph.annotation.invocations
+import callgraph.annotation.noInvocations
 
-@invocations("9: foo")
+@invocations("10: foo")
 object ClassInvocations {
 
   val v = foo()
@@ -12,6 +13,12 @@ object ClassInvocations {
   def foo() {
     println("hello")
   }
+  
+  @noInvocations
+  def bar() {
+  }
 
-  def main(args: Array[String]) {}
+  def main(args: Array[String]) {
+    bar
+  }
 }
