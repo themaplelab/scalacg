@@ -15,13 +15,9 @@ object Constructor1 {
   @invocations("17: <unannotated> tests.Constructor1.DumpCollector: <init>(p: String)")
   def main(args: Array[String]) = {
     val dc = new DumpCollector("path")
-    
-    // need @invocations annotation for the initialization code
-    { "FORCE_TEST_FAILURE"; this}.fail();
   }
-  
-  def fail(){}
 
+  @invocations("21: <unannotated> java.lang.Object: <init>()")
   class DumpCollector(i: Int) {
     var lineNr = 3
     var path: String = ""

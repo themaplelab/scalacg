@@ -7,8 +7,8 @@ import callgraph.annotation.invocations
 object Reachable2 {
 
   @invocations("15: <unannotated> tests.Reachable2.A: <init>(x: String)", 
-               "16: <unannotated> tests.Reachable2.A: <init>(x: String)"
-//               "17: <unannotated> scala.collection.mutable.ListBuffer: <init>()"
+               "16: <unannotated> tests.Reachable2.A: <init>(x: String)",
+               "17: <unannotated> scala.collection.mutable.ListBuffer: <init>()"
               )
   def main(args: Array[String]): Unit = {
     
@@ -18,11 +18,7 @@ object Reachable2 {
     x += a1
     x += a2
     println(x);
-
-    { "FORCE_TEST_FAILURE"; this}.fail();
   }
-  
-  def fail(){}
  
   class A(x : String) { 
     @reachable

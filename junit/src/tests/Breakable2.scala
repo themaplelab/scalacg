@@ -20,13 +20,14 @@ object Breakable2 {
   @invocations("22: <unannotated> tests.Breakable2.DumpCollector: <init>(path: String,ctx: String)")
   def main(args: Array[String]) = {
     val dc = new DumpCollector("path", "context")
-    
-    { "FORCE_TEST_FAILURE"; this}.fail();
   }
-  
-  def fail(){}
 
-  @invocations("TODO: add @invocations on classes to make assertions on initialization code")
+  @invocations("31: <unannotated> java.lang.Object: <init>()",
+               "49: <unannotated> java.io.File: <init>(x$1: String)",
+               "67: <unannotated> scala.Tuple2: <init>(_1: T1,_2: T2)",
+               "80: <unannotated> scala.Tuple2: <init>(_1: T1,_2: T2)",
+               "88: <unannotated> tests.Breakable2.Unserializer: <init>(content: String,ctx: String)",
+               "89: <unannotated> tests.Breakable2.Unserializer: <init>(content: String,ctx: String)")
   case class DumpCollector(path: String, ctx: String) {
     private val content = List[String]("1", "2", "3", "4")
     var lineNr = 3
