@@ -78,7 +78,7 @@ trait CGUtils extends Probe with Annotations {
       }
     (annotation, plainReceiver)
   }
-  def initialize = {
+  def initialize() {
     // find the set of instantiated classes in the whole program
     classes = trees.flatMap { tree =>
       tree.collect {
@@ -118,7 +118,7 @@ trait CGUtils extends Probe with Annotations {
         // later replaced by calls to a synthetic accessor method
         !symbol.isLabel // gotos are implemented with a method-call-like syntax, but they do not call
     // actual methods, only labels
-
+        
     tree match {
       // trees that invoke methods
       case apply: Apply =>
@@ -139,10 +139,10 @@ trait CGUtils extends Probe with Annotations {
           val (annotation, plainReceiver) = findReceiverAnnotations(receiver.getOrElse(null))
           addCallSite(CallSite(plainReceiver, tree.symbol.asMethod, List(), annotation, ancestors, tree.pos))
         }
-        processChildren
+        processChildren()
 
       case _ =>
-        processChildren
+        processChildren()
     }
   }
 
@@ -268,15 +268,18 @@ trait CGUtils extends Probe with Annotations {
         tpe <- consideredClasses
         expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
         if tpe <:< expandedType // TODO: looks like there's a bug here (see AbstractTypes13, and Generics16) 
-        val target = tpe.member(staticTarget.name)
+        target = tpe.member(staticTarget.name)
         if !target.isDeferred
       } {
         target match {
           case NoSymbol =>
             // TODO: can this ever happen? let's put in an assertion and see...
-            assert(false, "tpe is " + tpe)
+            assert(assertion = false, message = "tpe is " + tpe)
 
           case _ =>
+            // If at least one resolved method (target) is a library method, we return only the static target
+            if (!appClasses.contains(target.enclClass))
+              return Set(staticTarget)
             // Disambiguate overloaded methods based on the types of the args
             if (target.isOverloaded) {
               targets = target.alternatives.filter(_.tpe.matches(staticTarget.tpe)) ::: targets
@@ -288,11 +291,11 @@ trait CGUtils extends Probe with Annotations {
       // If the target method is a Java method, or a Scala library method, the lookup won't yield anything. Just return
       // the static target.
       // TODO ignore this for now for the sake of making some progress on the experiments!
-      //      if (targets.isEmpty) {
-      //        targets = List[Symbol](staticTarget)
-      //        staticTargets += staticTarget
-      //        println(bytecodeSignature(staticTarget))
-      //      }
+            if (targets.isEmpty) {
+              targets = List[Symbol](staticTarget)
+              staticTargets += staticTarget
+//              println(signature(staticTarget))
+            }
 
       targets.toSet
     }
