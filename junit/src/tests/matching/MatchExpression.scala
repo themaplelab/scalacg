@@ -9,21 +9,18 @@ object MatchExpression {
    * Testing call in match expression
    */
   
-  @invocations("29: <unannotated> tests.matching.MatchExpression.Lit: <init>(value: Boolean)", 
-               "30: <unannotated> scala.MatchError: <init>(obj: Any)", 
-               // "31: <unannotated> java.lang.Object: ne(x$1: AnyRef)", see CaseClass 
-               "31: <unannotated> scala.Any: asInstanceOf()", 
-               "31: <unannotated> scala.Any: isInstanceOf()", 
-               "31: <unannotated> tests.matching.MatchExpression.Lit: value()", 
-               // "32: <unannotated> java.lang.Object: ne(x$1: AnyRef)", 
-               "32: <unannotated> scala.Any: asInstanceOf()", 
-               "32: <unannotated> scala.Any: isInstanceOf()", 
-               "32: <unannotated> tests.matching.MatchExpression.Var: name()", 
-               // "33: <unannotated> java.lang.Object: ne(x$1: AnyRef)", 
-               "33: <unannotated> scala.Any: asInstanceOf()", 
-               "33: <unannotated> scala.Any: isInstanceOf()", 
-               "33: <unannotated> tests.matching.MatchExpression.And: left()",
-               "33: <unannotated> tests.matching.MatchExpression.And: right()"
+  @invocations("26: <unannotated> tests.matching.MatchExpression.Lit: <init>(value: Boolean)",
+               "27: <unannotated> scala.MatchError: <init>(obj: Any)",
+               "28: <unannotated> scala.Any: asInstanceOf()",
+               "28: <unannotated> scala.Any: isInstanceOf()",
+               "28: <unannotated> tests.matching.MatchExpression.Lit: value()",
+               "29: <unannotated> scala.Any: asInstanceOf()",
+               "29: <unannotated> scala.Any: isInstanceOf()",
+               "29: <unannotated> tests.matching.MatchExpression.Var: name()",
+               "30: <unannotated> scala.Any: asInstanceOf()", 
+               "30: <unannotated> scala.Any: isInstanceOf()",
+               "30: <unannotated> tests.matching.MatchExpression.And: left()",
+               "30: <unannotated> tests.matching.MatchExpression.And: right()"
                )
   def main(args: Array[String]) {
     val e: Expr = Lit(true)
@@ -34,12 +31,9 @@ object MatchExpression {
     }
   }
 
-  @invocations(// "46: <unannotated> java.lang.Object: ne(x$1: AnyRef)", see CaseClass 
-               // "46: <unannotated> scala.Any: asInstanceOf()", see CaseClass
-               // "46: <unannotated> tests.matching.MatchExpression.Lit: value()", see CaseClass
-               "46: <unannotated> scala.Any: isInstanceOf()", 
-               "46: <unannotated> tests.matching.MatchExpression.Lit: <init>(value: Boolean)",  
-               "47: <unannotated> tests.matching.MatchExpression.Var: <init>(name: String)")
+  @invocations("40: <unannotated> scala.Any: isInstanceOf()",
+               "40: <unannotated> tests.matching.MatchExpression.Lit: <init>(value: Boolean)",
+               "41: <unannotated> tests.matching.MatchExpression.Var: <init>(name: String)")
   @target("inverse") 
   def inverse(e: Expr) = {
     e match {
