@@ -118,7 +118,7 @@ trait CGUtils extends Probe with Annotations {
         // later replaced by calls to a synthetic accessor method
         !symbol.isLabel // gotos are implemented with a method-call-like syntax, but they do not call
     // actual methods, only labels
-        
+
     tree match {
       // trees that invoke methods
       case apply: Apply =>
@@ -201,13 +201,13 @@ trait CGUtils extends Probe with Annotations {
         case PolyType(typeParams, resultType) =>
           // handles the case: new List[Int]
           for {
-              (arg, param) <- (tpe.typeArguments zip typeParams)
-            } {
-              concretization +=
-                (param -> (concretization.getOrElse(param, Set() + arg)))
-            }
+            (arg, param) <- (tpe.typeArguments zip typeParams)
+          } {
+            concretization +=
+              (param -> (concretization.getOrElse(param, Set() + arg)))
+          }
         case _ =>
-          // TODO: are we missing any cases?
+        // TODO: are we missing any cases?
       }
     }
 
@@ -255,14 +255,17 @@ trait CGUtils extends Probe with Annotations {
       }
 
       // TODO
-//      for {
-//        tpe <- consideredClasses
-//        expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
-//        if staticTarget.nameString == "foo"
-//      } {
-//        println(tpe + " " + expandedType + " " + (tpe <:< expandedType))
-//        sys.exit(0)
-//      }
+      //      for {
+      //        tpe <- consideredClasses
+      //        expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
+      //        if staticTarget.nameString == "foo"
+      //      } {
+      //        println(tpe + " " + expandedType + " " + (tpe <:< expandedType))
+      //        sys.exit(0)
+      //      }
+
+      if (!appClasses.contains(staticTarget.enclClass))
+        return Set(staticTarget)
 
       for {
         tpe <- consideredClasses
@@ -278,8 +281,8 @@ trait CGUtils extends Probe with Annotations {
 
           case _ =>
             // If at least one resolved method (target) is a library method, we return only the static target
-//            if (!appClasses.contains(target.enclClass))
-//              return Set(staticTarget)
+            //            if (!appClasses.contains(target.enclClass))
+            //              return Set(staticTarget)
             // Disambiguate overloaded methods based on the types of the args
             if (target.isOverloaded) {
               targets = target.alternatives.filter(_.tpe.matches(staticTarget.tpe)) ::: targets
@@ -291,11 +294,11 @@ trait CGUtils extends Probe with Annotations {
       // If the target method is a Java method, or a Scala library method, the lookup won't yield anything. Just return
       // the static target.
       // TODO ignore this for now for the sake of making some progress on the experiments!
-            if (targets.isEmpty) {
-              targets = List[Symbol](staticTarget)
-              staticTargets += staticTarget
-//              println(signature(staticTarget))
-            }
+//      if (targets.isEmpty) {
+//        targets = List[Symbol](staticTarget)
+//        staticTargets += staticTarget
+//        //              println(signature(staticTarget))
+//      }
 
       targets.toSet
     }
@@ -339,9 +342,9 @@ trait CGUtils extends Probe with Annotations {
     } {
       assert(hasExpected != noInvocations, "@invocations should not be combined with @noInvocations for the same symbol")
       val methodOrConstructor: Symbol = if (symbol.isMethod) symbol else symbol.primaryConstructor
-      val callSitesInMethodOrConstructor = if (callSitesInMethod.contains(methodOrConstructor)) 
+      val callSitesInMethodOrConstructor = if (callSitesInMethod.contains(methodOrConstructor))
         callSitesInMethod(methodOrConstructor)
-        else Set()
+      else Set()
       val resolved: Set[String] =
         callSitesInMethodOrConstructor.flatMap((cs: CallSite) =>
           callGraph(cs).map(cs.pos.line + ": " + findTargetAnnotation(_)))
@@ -380,7 +383,7 @@ trait CGUtils extends Probe with Annotations {
     Set() ++ mainMethods
   }
 
-  lazy val reachableMethods = transitiveClosure(entryPoints ++ callbacks , { source: Symbol =>
+  lazy val reachableMethods = transitiveClosure(entryPoints ++ callbacks, { source: Symbol =>
     for {
       callSite <- callSitesInMethod.getOrElse(source, Set()).filter(reachableCode contains _.enclMethod)
       target <- callGraph(callSite)
