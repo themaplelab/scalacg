@@ -122,7 +122,6 @@ class Suite {
 
   @Test def testBreakable = runTest("Breakable")
   @Test def testBreakable2 = runTest("Breakable2")
-  @Test def testClassInvocations = runTest("ClassInvocations")
 
   @Test def testInfix = runTest("Infix")
 

@@ -278,8 +278,8 @@ trait CGUtils extends Probe with Annotations {
 
           case _ =>
             // If at least one resolved method (target) is a library method, we return only the static target
-            if (!appClasses.contains(target.enclClass))
-              return Set(staticTarget)
+//            if (!appClasses.contains(target.enclClass))
+//              return Set(staticTarget)
             // Disambiguate overloaded methods based on the types of the args
             if (target.isOverloaded) {
               targets = target.alternatives.filter(_.tpe.matches(staticTarget.tpe)) ::: targets
