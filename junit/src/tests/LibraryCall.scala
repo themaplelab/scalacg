@@ -5,8 +5,9 @@ import scala.collection.immutable.LinearSeq
 object LibraryCall {
 
   trait A {
-    def apply(idx : Int) : String = "hello";
+    def apply(idx : Int) = "hello";
     def length() : Int = 1;
+    def size : Int;
   }
   
   def main(args: Array[String]): Unit = {
@@ -17,8 +18,8 @@ object LibraryCall {
      { "FORCE_TEST_FAILURE"; this}.fail(); // force test failure until we decide what call graph we want to compute..
   }
   
-  def foo(a : A) : String = {
-    a(0); // static target is A.apply(), but dispatches to LinearSeq.apply()
+  def foo(a : A) : Int = {
+   a.size;
   }
   
   def fail(){}
