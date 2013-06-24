@@ -19,7 +19,7 @@ object LibraryCall {
   }
   
   def foo(a : A) : Int = {
-   a.size;
+   a.size; // static target is A.size, but dispatches to LinearSeq.size
   }
   
   def fail(){}
