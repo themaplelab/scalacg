@@ -22,6 +22,6 @@ object RACallbacks {
   
   def main(args: Array[String]) {
     var x = List(new A, new A, new A);
-    println(x.toString);
+    println(x);
   }
 }
