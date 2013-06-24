@@ -28,18 +28,18 @@ trait CGUtils extends Probe with Annotations {
   def appClasses: Set[Symbol] // application classes fed to the compiler (i.e., not including Scala/Java libraries)
   def callGraph: CallSite => Set[Symbol]
 
-  case class CallSite(receiver: Tree, staticTarget: MethodSymbol, args: List[Tree],
-    annotation: List[String], ancestors: List[Tree], pos: Position) {
+  case class CallSite(receiver: Tree, staticTarget: MethodSymbol, args: List[Tree], annotation: List[String],
+    ancestors: List[Tree], pos: Position, enclMethod: Symbol)
 
-    /**
-     * Find the enclosing method of a call site. For call sites in methods, that's obvious. For call sites
-     * that appear in class definition, the primary constructor of the defining class is the enclosing method.
-     */
-    lazy val enclMethod =
-      ancestors.collectFirst {
-        case dd: DefDef => dd.symbol
-        case cd: ClassDef => cd.symbol.primaryConstructor
-      }.get
+  /**
+   * Find the enclosing method from the given list of ancestors. For call sites in methods, that's obvious. For call sites
+   * that appear in class definition, the primary constructor of the defining class is the enclosing method.
+   */
+  def enclMethod(ancestors: List[Tree]) = {
+    ancestors.collectFirst {
+      case cd: ClassDef => cd.symbol.primaryConstructor
+      case dd: DefDef => dd.symbol
+    }.get
   }
 
   var callSites = List[CallSite]()
@@ -120,6 +120,18 @@ trait CGUtils extends Probe with Annotations {
     // actual methods, only labels
 
     tree match {
+      // Add the calls from primary constructors of classes to mixin constructors (see AbstractTypes13)
+      case cls: ClassDef =>
+        for {
+          mixin <- cls.symbol.mixinClasses
+          val caller = cls.symbol.primaryConstructor
+          val callee = mixin.primaryConstructor
+          if caller != NoSymbol && callee != NoSymbol
+          val receiver = This(caller.thisSym)
+        } {
+          addCallSite(CallSite(receiver, callee.asMethod, List[Tree](), List[String](), ancestors, tree.pos, caller))
+        }
+        processChildren
       // trees that invoke methods
       case apply: Apply =>
         val a = normalizeMultipleParameters(apply)
@@ -128,16 +140,17 @@ trait CGUtils extends Probe with Annotations {
         val receiver = getReceiver(a)
         if (isMethod(callee.symbol)) {
           val (annotation, plainReceiver) = findReceiverAnnotations(receiver.getOrElse(null))
-          addCallSite(CallSite(plainReceiver, tree.symbol.asMethod, args, annotation, ancestors, tree.pos))
+          val _enclMethod = enclMethod(ancestors)
+          addCallSite(CallSite(plainReceiver, tree.symbol.asMethod, args, annotation, ancestors, tree.pos, _enclMethod))
         }
         args.foreach(findCallSites(_, tree :: ancestors))
         callee.children.foreach(findCallSites(_, tree :: ancestors))
-
       case _: Select | _: Ident =>
         if (isMethod(tree.symbol)) {
           val receiver = getReceiver(tree)
           val (annotation, plainReceiver) = findReceiverAnnotations(receiver.getOrElse(null))
-          addCallSite(CallSite(plainReceiver, tree.symbol.asMethod, List(), annotation, ancestors, tree.pos))
+          val _enclMethod = enclMethod(ancestors)
+          addCallSite(CallSite(plainReceiver, tree.symbol.asMethod, List(), annotation, ancestors, tree.pos, _enclMethod))
         }
         processChildren()
 

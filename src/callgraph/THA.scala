@@ -161,17 +161,6 @@ trait THA extends CGUtils {
       }
       callbacks.foreach(addMethod)
 
-      // add the mixin primary constructors (see AbstractTypes13)
-      // TODO: We need to add a call site to these methods in the primary constructor of the instantiated class
-      for {
-        cls <- instantiatedClasses
-        mixin <- cls.typeSymbol.mixinClasses
-        val constr = mixin.primaryConstructor
-        if constr != NoSymbol
-      } {
-        addMethod(constr)
-      }
-
       // Type concretization now should happen inside the worklist too, and only for the instantiated classes
       // This should improve the precision of our analysis 
       addTypeConcretizations(instantiatedClasses)
