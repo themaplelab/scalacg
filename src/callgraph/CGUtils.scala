@@ -241,9 +241,15 @@ trait CGUtils extends Probe with Annotations {
    * The main method lookup for Scala.
    */
   def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Type]): Set[Symbol] = {
+    // I moved this up here because we might need to collect a list of such methods later. If so we should do this
+    // before the next if-statement.
+    if (!appClasses.contains(staticTarget.enclClass)) {
+      return Set(staticTarget)
+    }
+
     // If the target method is a constructor, no need to do the lookup.
     if (staticTarget.isConstructor) {
-      Set(staticTarget)
+      return Set(staticTarget)
     } else {
       var targets = List[Symbol]()
 
@@ -264,13 +270,10 @@ trait CGUtils extends Probe with Annotations {
       //        sys.exit(0)
       //      }
 
-      if (!appClasses.contains(staticTarget.enclClass))
-        return Set(staticTarget)
-
       for {
         tpe <- consideredClasses
         expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
-        if tpe <:< expandedType // TODO: looks like there's a bug here (see AbstractTypes13, and Generics16) 
+        if tpe <:< expandedType
         target = tpe.member(staticTarget.name)
         if !target.isDeferred
       } {
@@ -294,11 +297,11 @@ trait CGUtils extends Probe with Annotations {
       // If the target method is a Java method, or a Scala library method, the lookup won't yield anything. Just return
       // the static target.
       // TODO ignore this for now for the sake of making some progress on the experiments!
-//      if (targets.isEmpty) {
-//        targets = List[Symbol](staticTarget)
-//        staticTargets += staticTarget
-//        //              println(signature(staticTarget))
-//      }
+      //      if (targets.isEmpty) {
+      //        targets = List[Symbol](staticTarget)
+      //        staticTargets += staticTarget
+      //        //              println(signature(staticTarget))
+      //      }
 
       targets.toSet
     }
