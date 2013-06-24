@@ -29,7 +29,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
     def newPhase(prevPhase: Phase) = new CallGraphPhase(prevPhase)
     val phaseName = CallGraphPlugin.this.name
 
-    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with CGUtils with Assertions with THA with Probe {
+    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with CGUtils with Assertions with RA with Probe {
       // apply is called for each file, but we want to run once for all files, that's why we override run
       def apply(unit: CallGraphComponent.this.global.CompilationUnit) = assert(false)
 

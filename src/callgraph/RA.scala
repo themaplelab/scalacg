@@ -16,11 +16,13 @@ trait RA {
       callGraph += (callSite -> targets)
     }
   }
+  
+  var instantiatedClasses = Set[Type]()
+  var reachableCode = Set[Symbol]()
+  var callbacks = Set[Symbol]() // todo (if necessary?)
 
-  def nameLookup(methodName: Name, allClasses: Set[Type]): Set[Symbol] = {
-    allClasses.collect {
-      case tpe => tpe.members
-    }.flatten.filter(m => m.name == methodName && m.isMethod)
+  private def nameLookup(methodName: Name, allClasses: Set[Type]): Set[Symbol] = {
+    allClasses.flatMap(_.members.filter(m => m.name == methodName && m.isMethod))
   }
 
   override def initialize() {
@@ -30,6 +32,9 @@ trait RA {
       }
     }.toSet
 
+    instantiatedClasses = classes
+    reachableCode = classes.flatMap(_.members.filter(_.isMethod))
+    
     trees.foreach { tree =>
       findCallSites(tree, List())
     }
