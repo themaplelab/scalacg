@@ -154,5 +154,7 @@ class Suite {
   
   @Test def testForeach2 = runTest("Foreach2")
   
-   @Test def testLibraryCall = runTest("LibraryCall")
+  @Test def testLibraryCall = runTest("LibraryCall")
+  
+  @Test def testApplyConfusion1 = runTest("ApplyConfusion1")
 }
