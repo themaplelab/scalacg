@@ -153,4 +153,6 @@ class Suite {
   @Test def testLiftedMethod1 = runTest("LiftedMethod1")
   
   @Test def testForeach2 = runTest("Foreach2")
+  
+   @Test def testLibraryCall = runTest("LibraryCall")
 }
