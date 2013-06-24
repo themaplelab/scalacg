@@ -21,4 +21,8 @@ class SuiteRA {
   @Test def testRaTest() {
     runTest("ra/RATest")
   }
+  
+  @Test def testRaCallbacks() {
+    runTest("ra/RACallbacks")
+  }
 }
