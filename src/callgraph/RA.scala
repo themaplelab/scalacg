@@ -35,8 +35,7 @@ trait RA {
 
     instantiatedClasses = classes
 
-    reachableCode = mainMethods
-    reachableCode ++= classes.map(_.typeSymbol.primaryConstructor)
+    reachableCode = entryPoints ++ classes.map(_.typeSymbol.primaryConstructor)
 
     for {
       cls <- classes
