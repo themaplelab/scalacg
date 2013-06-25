@@ -207,11 +207,12 @@ trait CGUtils extends Probe with Annotations {
             for {
               (arg, param) <- (args zip params)
             } {
+              // TODO
               concretization +=
                 (param -> (concretization.getOrElse(param, Set() + arg)))
             }
           }
-        case PolyType(typeParams, resultType) =>
+        case PolyType(typeParams, _) =>
           // handles the case: new List[Int]
           for {
             (arg, param) <- (tpe.typeArguments zip typeParams)
@@ -241,6 +242,7 @@ trait CGUtils extends Probe with Annotations {
       }
     } while (oldConcretization != concretization)
   }
+
   def expand(t: Type): Set[Type] = {
     val sym = t.typeSymbol
     if (sym.isAbstractType) {
@@ -248,6 +250,16 @@ trait CGUtils extends Probe with Annotations {
     } else {
       Set(t)
     }
+  }
+
+  def instantiateTypeParams(actual: Type, declared: Type): Type = {
+    val tparams = declared.typeArgs
+
+    // Using `actual` rather than `ThisType(actual.typeSymbol)`, the latter causes loss of generic type information
+    // see (Generics4)
+    val args = tparams map { _.asSeenFrom(actual, declared.typeSymbol) }
+
+    declared.instantiateTypeParams(tparams map { _.typeSymbol }, args)
   }
 
   /**
@@ -266,21 +278,14 @@ trait CGUtils extends Probe with Annotations {
     } else {
       var targets = List[Symbol]()
 
-      def instantiateTypeParams(actual: Type, declared: Type): Type = {
-        val tparams = declared.typeArgs
-        val args = tparams map
-          { _.asSeenFrom(ThisType(actual.typeSymbol), declared.typeSymbol) }
-        declared.instantiateTypeParams(tparams map { _.typeSymbol }, args)
-      }
-
       // TODO
       //      for {
       //        tpe <- consideredClasses
       //        expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
-      //        if staticTarget.nameString == "foo"
       //      } {
-      //        println(tpe + " " + expandedType + " " + (tpe <:< expandedType))
-      //        sys.exit(0)
+      //      println(instantiateTypeParams(tpe, receiverType.widen))
+      //      println(tpe + " " + expandedType + " " + (tpe <:< expandedType))
+      //      println(tpe + " " + tpe.typeSymbol + " " + tpe.typeSymbol.typeConstructor.typeParams + tpe.typeArguments)
       //      }
 
       for {
