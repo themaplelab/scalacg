@@ -14,27 +14,40 @@ trait RA {
     for (callSite <- callSites) {
       val targets = nameLookup(callSite.staticTarget.name, classes)
       callGraph += (callSite -> targets)
+      reachableCode ++= targets
     }
   }
   
   var instantiatedClasses = Set[Type]()
   var reachableCode = Set[Symbol]()
-  var callbacks = Set[Symbol]() // todo (if necessary?)
+  var callbacks = Set[Symbol]()
 
   private def nameLookup(methodName: Name, allClasses: Set[Type]): Set[Symbol] = {
-    allClasses.flatMap(_.members.filter(m => m.name == methodName && m.isMethod))
+    allClasses.flatMap(_.members.filter((m: Symbol) => m.name == methodName && m.isMethod))
   }
 
   override def initialize() {
-    classes = trees.flatMap { tree =>
-      tree.collect {
-        case cd: ClassDef => cd.symbol.tpe
+    classes = trees.flatMap {
+      _.collect {
+        case cd: ClassDef => cd.symbol.tpe // todo: include ModuleDef?
       }
     }.toSet
 
     instantiatedClasses = classes
-    reachableCode = classes.flatMap(_.members.filter(_.isMethod))
-    
+
+    reachableCode = mainMethods
+    reachableCode ++= classes.map(_.typeSymbol.primaryConstructor)
+
+    for {
+      cls <- classes
+      member <- cls.decls
+      if member.isMethod && !member.isDeferred && member.allOverriddenSymbols.nonEmpty
+      libraryOverriddenSymbols = member.allOverriddenSymbols.filterNot(appClasses contains _.enclClass)
+      if libraryOverriddenSymbols.nonEmpty
+    } {
+      callbacks += member
+    }
+
     trees.foreach { tree =>
       findCallSites(tree, List())
     }
@@ -42,7 +55,6 @@ trait RA {
 
   val annotationFilter: PartialFunction[Tree, String] = {
     case Literal(Constant(string: String)) => string
-    // TODO: replace _ with a more specific check for the cha case class
     case Apply(_, List(Literal(Constant(string: String)))) => string
   }
 }
