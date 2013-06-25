@@ -12,7 +12,7 @@ object SuperCall1 {
 
   trait Y extends X {
     @target("Y.foo")
-    @invocations("17: X.bar", "17: Z.bar")
+    @invocations("17: tests.SuperCall1.X: bar()", "17: tests.SuperCall1.Z: bar()")
     def foo() {
       super.bar(); // { "X.bar"; "Z.bar"; super }.bar(); is not legal Scala code
     }
@@ -25,9 +25,5 @@ object SuperCall1 {
   def main(args: Array[String]) {
     {"Y.foo"; (new Y with Z)}.foo(); // calls X.bar
     {"Y.foo"; (new Z with Y)}.foo(); // calls Z.bar
-
-    {"FORCE_TEST_FAILURE"; this}.fail(); // to make sure that the test fails until the @invocations are checked
   }
-
-  def fail() {}
 }
