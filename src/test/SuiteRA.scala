@@ -41,4 +41,76 @@ class SuiteRA {
   @Test def testAbstractTypes1() {
     runTest("ra/AbstractTypes1")
   }
+  
+  @Test def testApply1() {
+    runTest("ra/Apply1")
+  }
+  
+  @Test def testBreakable() {
+    runTest("ra/Breakable")
+  }
+  
+  @Test def testCaseClass1() {
+    runTest("ra/CaseClass1")
+  }
+  
+  @Test def testClosures1() {
+    runTest("ra/Closures1")
+  }
+  
+  @Test def testForeach1() {
+    runTest("ra/Foreach1")
+  }
+  
+  @Test def testGetterMethod1() {
+    runTest("ra/GetterMethod1")
+  }
+  
+  @Test def testImplicitArguments1() {
+    runTest("ra/ImplicitArguments1")
+  }
+  
+  @Test def testImplicits1() {
+    runTest("ra/Implicits1")
+  }
+  
+  @Test def testInfix() {
+    runTest("ra/Infix")
+  }
+  
+//  @Test def testLibraryCall() {   // todo: add when library calls are done
+//    runTest("ra/LibraryCall")
+//  }
+  
+//  @Test def testMatch1() {        // todo: add later
+//    runTest("ra/Match1")
+//  }
+  
+  @Test def testOperator1() {
+    runTest("ra/Operator1")
+  }
+  
+  @Test def testOverriding() {
+    runTest("ra/Overriding")
+  }
+  
+  @Test def testPathTypes1() {
+    runTest("ra/PathTypes1")
+  }
+  
+  @Test def testThisType1() {
+    runTest("ra/ThisType1")
+  }
+  
+//  @Test def testToString1() {		// todo: add when library calls are done
+//    runTest("ra/ToString1")
+//  }
+  
+  @Test def testTraits1() {
+    runTest("ra/Traits1")
+  }
+  
+  @Test def testValOverridesMethod() {
+    runTest("ra/ValOverridesMethod")
+  }
 }
