@@ -17,7 +17,7 @@ trait RA {
       reachableCode ++= targets
     }
   }
-  
+
   var instantiatedClasses = Set[Type]()
   var reachableCode = Set[Symbol]()
   var callbacks = Set[Symbol]()
@@ -35,7 +35,7 @@ trait RA {
 
     instantiatedClasses = classes
 
-    reachableCode = entryPoints ++ classes.map(_.typeSymbol.primaryConstructor)
+    reachableCode = mainMethods ++ classes.map(_.typeSymbol.primaryConstructor)
 
     for {
       cls <- classes

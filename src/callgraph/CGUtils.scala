@@ -330,7 +330,7 @@ trait CGUtils extends Probe with Annotations {
     printInvocations()
   }
 
-  private def printTargets() {
+  private def printTargets() {    
     for {
       callSite <- callSites
       if reachableCode contains callSite.enclMethod
@@ -396,9 +396,9 @@ trait CGUtils extends Probe with Annotations {
 
     val mainMethods = classes.filter(_.typeSymbol.isModuleOrModuleClass). // filter classes that are objects
       collect { case cs: ModuleTypeRef => cs.member(mainName) }. // collect main methods
-      filter(_.isMethod). // consider only methods, not fields or other members
-      filter(!_.isDeferred). // filter out abstract methods
-      filter(_.typeSignature.toString.equals("(args: Array[String])Unit")) // filter out methods accidentally named "main"
+      filter((m: Symbol) => m.isMethod  	// consider only methods, not fields or other members
+                         && !m.isDeferred   // filter out abstract methods
+                         && m.typeSignature.toString.equals("(args: Array[String])Unit")) // filter out methods accidentally named "main"
     // global.definitions.StringArray
 
     Set() ++ mainMethods
