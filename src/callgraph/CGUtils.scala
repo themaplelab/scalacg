@@ -46,9 +46,6 @@ trait CGUtils extends Probe with Annotations {
   val callSitesInMethod = mutable.Map[Symbol, Set[CallSite]]()
   var classes = Set[Type]()
 
-  // a set of the static targets found by the analysis
-  var staticTargets = Set[Symbol]()
-
   def annotationFilter: PartialFunction[Tree, String]
 
   abstract class TraverseWithAncestors {
@@ -207,7 +204,6 @@ trait CGUtils extends Probe with Annotations {
             for {
               (arg, param) <- (args zip params)
             } {
-              // TODO
               concretization +=
                 (param -> (concretization.getOrElse(param, Set() + arg)))
             }
@@ -243,6 +239,20 @@ trait CGUtils extends Probe with Annotations {
     } while (oldConcretization != concretization)
   }
 
+  /**
+   * Is this symbol in an application class?
+   */
+  def isApplication(symbol: Symbol) = {
+    appClasses contains symbol.enclClass
+  }
+
+  /**
+   * Is this symbol in a library class?
+   */
+  def isLibrary(symbol: Symbol) = {
+    !isApplication(symbol)
+  }
+
   def expand(t: Type): Set[Type] = {
     val sym = t.typeSymbol
     if (sym.isAbstractType) {
@@ -266,27 +276,18 @@ trait CGUtils extends Probe with Annotations {
    * The main method lookup for Scala.
    */
   def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Type]): Set[Symbol] = {
+    println(signature(staticTarget) + " " + staticTarget.enclClass + " " + isApplication(staticTarget))
     // I moved this up here because we might need to collect a list of such methods later. If so we should do this
     // before the next if-statement.
-    if (!appClasses.contains(staticTarget.enclClass)) {
-      return Set(staticTarget)
+    if (isLibrary(staticTarget)) {
+      Set(staticTarget)
     }
 
     // If the target method is a constructor, no need to do the lookup.
     if (staticTarget.isConstructor) {
-      return Set(staticTarget)
+      Set(staticTarget)
     } else {
       var targets = List[Symbol]()
-
-      // TODO
-      //      for {
-      //        tpe <- consideredClasses
-      //        expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
-      //      } {
-      //      println(instantiateTypeParams(tpe, receiverType.widen))
-      //      println(tpe + " " + expandedType + " " + (tpe <:< expandedType))
-      //      println(tpe + " " + tpe.typeSymbol + " " + tpe.typeSymbol.typeConstructor.typeParams + tpe.typeArguments)
-      //      }
 
       for {
         tpe <- consideredClasses
@@ -301,9 +302,6 @@ trait CGUtils extends Probe with Annotations {
             assert(assertion = false, message = "tpe is " + tpe)
 
           case _ =>
-            // If at least one resolved method (target) is a library method, we return only the static target
-            //            if (!appClasses.contains(target.enclClass))
-            //              return Set(staticTarget)
             // Disambiguate overloaded methods based on the types of the args
             if (target.isOverloaded) {
               targets = target.alternatives.filter(_.tpe.matches(staticTarget.tpe)) ::: targets
@@ -312,17 +310,35 @@ trait CGUtils extends Probe with Annotations {
             }
         }
       }
-      // If the target method is a Java method, or a Scala library method, the lookup won't yield anything. Just return
-      // the static target.
-      // TODO ignore this for now for the sake of making some progress on the experiments!
-      //      if (targets.isEmpty) {
-      //        targets = List[Symbol](staticTarget)
-      //        staticTargets += staticTarget
-      //        //              println(signature(staticTarget))
-      //      }
+
+      // Check if the staticTarget is in the library, add it to the list of targets. That means that the method may resolve
+      // to a method in the library.
+      if (isLibrary(staticTarget)) {
+        targets = staticTarget :: targets
+      }
+
+      /*
+       * If targets is empty, and the staticTarget is in the application, then this only means that this method should
+       * resolve to something in the library. For that, we need to get the topmost overridden library method 
+       */
+      if (targets.isEmpty && isApplication(staticTarget)) {
+
+      }
 
       targets.toSet
     }
+  }
+
+  /**
+   * Get all the library methods overridden by this method.
+   */
+  def libraryOverriddenMethods(symbol: Symbol) = {
+    var result = List[Symbol]()
+    if (symbol.isMethod && !symbol.isDeferred && symbol.allOverriddenSymbols.nonEmpty) {
+      result = symbol.allOverriddenSymbols.filter(sym => isLibrary(sym.enclClass))
+    }
+    println(result map signature)
+    result
   }
 
   def printAnnotatedCallsites() {
@@ -330,7 +346,7 @@ trait CGUtils extends Probe with Annotations {
     printInvocations()
   }
 
-  private def printTargets() {    
+  private def printTargets() {
     for {
       callSite <- callSites
       if reachableCode contains callSite.enclMethod
@@ -396,9 +412,10 @@ trait CGUtils extends Probe with Annotations {
 
     val mainMethods = classes.filter(_.typeSymbol.isModuleOrModuleClass). // filter classes that are objects
       collect { case cs: ModuleTypeRef => cs.member(mainName) }. // collect main methods
-      filter((m: Symbol) => m.isMethod  	// consider only methods, not fields or other members
-                         && !m.isDeferred   // filter out abstract methods
-                         && m.typeSignature.toString.equals("(args: Array[String])Unit")) // filter out methods accidentally named "main"
+      filter(m => m.isMethod && // consider only methods, not fields or other members
+        !m.isDeferred && // filter out abstract methods
+        m.typeSignature.toString.equals("(args: Array[String])Unit")) // filter out methods accidentally named "main"
+
     // global.definitions.StringArray
 
     Set() ++ mainMethods

@@ -152,9 +152,7 @@ trait THA extends CGUtils {
       for {
         cls <- instantiatedClasses
         member <- cls.decls // loop over the declared members, "members" returns defined AND inherited members
-        if member.isMethod && !member.isDeferred && member.allOverriddenSymbols.nonEmpty
-        val libraryOverriddenSymbols = member.allOverriddenSymbols.filterNot(appClasses contains _.enclClass)
-        if libraryOverriddenSymbols.nonEmpty
+        if libraryOverriddenMethods(member).nonEmpty
       } {
         //        println("encl class: " + libraryOverriddenSymbols.map(_.enclClass))
         callbacks += member
