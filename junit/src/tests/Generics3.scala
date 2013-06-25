@@ -9,7 +9,9 @@ object Generics3 {
     @target("A.foo") def foo() = { "C.bar"; field }.bar()
   }
 
-  @invocations("13: field_=")
+  // See my comment in the main method for Generics3.scala
+  //  @invocations("16: field_=")
+  @invocations("16: <unannotated> tests.Generics3.C: <init>()")
   @target("Generics3.foo") def foo(ac: A[C]) = {
     ac.field = new C()
   }
