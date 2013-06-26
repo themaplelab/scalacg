@@ -41,7 +41,7 @@ trait THA extends CGUtils {
         case _: ClassDef => // If the tree is a class definition, then "owner" should be the primary constructor (see GetterMethod1) 
           tree.children.foreach(traverse(_, tree.symbol.primaryConstructor))
         case New(tpt) =>
-          ret(owner) = ret(owner) + tpt.tpe.dealias // some types are aliased, see CaseClass3
+          ret(owner) += tpt.tpe.dealias // some types are aliased, see CaseClass3
         case _ =>
           tree.children.foreach(traverse(_, owner))
       }
@@ -154,7 +154,6 @@ trait THA extends CGUtils {
         member <- cls.decls // loop over the declared members, "members" returns defined AND inherited members
         if libraryOverriddenMethods(member).nonEmpty
       } {
-        //        println("encl class: " + libraryOverriddenSymbols.map(_.enclClass))
         callbacks += member
       }
       callbacks.foreach(addMethod)

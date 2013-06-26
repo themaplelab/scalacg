@@ -41,7 +41,7 @@ trait RA {
       cls <- classes
       member <- cls.decls
       if member.isMethod && !member.isDeferred && member.allOverriddenSymbols.nonEmpty
-      libraryOverriddenSymbols = member.allOverriddenSymbols.filterNot(appClasses contains _.enclClass)
+      libraryOverriddenSymbols = member.allOverriddenSymbols.filterNot(appClasses contains _.enclClass.tpe)
       if libraryOverriddenSymbols.nonEmpty
     } {
       callbacks += member
