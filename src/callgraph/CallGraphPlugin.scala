@@ -20,7 +20,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
   val methodToId = mutable.Map[global.Symbol, Int]()
   var expectedReachables = Set[global.Symbol]()
   var expectedNotReachables = Set[global.Symbol]()
-  var _appClasses = Set[global.Symbol]() // had to use another name here to make the set of appClasses shareable across the two components
+  var _appClasses = Set[global.Type]() // had to use another name here to make the set of appClasses shareable across the two components
 
   /** Phase that resolves call sites to compute call graph */
   private object CallGraphComponent extends PluginComponent {
@@ -41,11 +41,11 @@ class CallGraphPlugin(val global: Global) extends Plugin {
       
       var trees = List[Tree]() // global.Tree
       
-      var appClasses = Set[Symbol]()
+      var appClasses = Set[Type]()
       
       override def run = {
         trees = global.currentRun.units.map(_.body).toList
-        appClasses = Set[Symbol](_appClasses.toSeq : _ *) // weird Scala syntax to intialize a set with elements from another set
+        appClasses = Set[Type](_appClasses.toSeq : _ *) // weird Scala syntax to initialize a set with elements from another set
         
         initialize
         buildCallGraph
@@ -121,7 +121,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
             // Compile a list of methods that have @notreachable annotation
             if (hasNotReachableAnnotation(node.symbol)) expectedNotReachables += node.symbol
           } else if (node.isInstanceOf[ClassDef] || node.isInstanceOf[ModuleDef]) {
-            _appClasses += node.symbol
+            _appClasses += node.symbol.tpe
           }
         }
       }
