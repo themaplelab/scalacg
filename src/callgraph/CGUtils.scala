@@ -25,7 +25,7 @@ trait CGUtils extends Probe with Annotations {
   def instantiatedClasses: Set[Type]
   def reachableCode: Set[Symbol]
   def callbacks: Set[Symbol]
-  def appClasses: Set[Symbol] // application classes fed to the compiler (i.e., not including Scala/Java libraries)
+  def appClasses: Set[Type] // application classes fed to the compiler (i.e., not including Scala/Java libraries)
   def callGraph: CallSite => Set[Symbol]
 
   case class CallSite(receiver: Tree, staticTarget: MethodSymbol, args: List[Tree], annotation: List[String],
@@ -88,6 +88,8 @@ trait CGUtils extends Probe with Annotations {
     trees.foreach { tree =>
       findCallSites(tree, List())
     }
+
+    //    for (callSite <- callSites) println(signature(callSite.enclMethod) + " ===> " + signature(callSite.staticTarget))
   }
 
   def normalizeMultipleParameters(tree: Apply): Apply = tree.fun match {
@@ -243,7 +245,7 @@ trait CGUtils extends Probe with Annotations {
    * Is this symbol in an application class?
    */
   def isApplication(symbol: Symbol) = {
-    appClasses contains symbol.enclClass
+    appClasses contains symbol.enclClass.tpe
   }
 
   /**
@@ -276,13 +278,6 @@ trait CGUtils extends Probe with Annotations {
    * The main method lookup for Scala.
    */
   def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Type]): Set[Symbol] = {
-    println(signature(staticTarget) + " " + staticTarget.enclClass + " " + isApplication(staticTarget))
-    // I moved this up here because we might need to collect a list of such methods later. If so we should do this
-    // before the next if-statement.
-    if (isLibrary(staticTarget)) {
-      Set(staticTarget)
-    }
-
     // If the target method is a constructor, no need to do the lookup.
     if (staticTarget.isConstructor) {
       Set(staticTarget)
@@ -308,21 +303,30 @@ trait CGUtils extends Probe with Annotations {
             } else {
               targets = target :: targets
             }
+
+            // If we resolve to a library method, remove it and instead put its topmostLibraryOverridenMethod.
+            //            println("targets: " + (targets map signature))
+            //            println("library targets: " + (targets.filter(isLibrary) map topmostLibraryOverriddenMethod map signature))
+            val libraryTargets = targets filter isLibrary
+            val topmosts = (libraryTargets map topmostLibraryOverriddenMethod) filter (_ != NoSymbol)
+            targets = targets filter isApplication
+            targets = topmosts ::: targets
         }
       }
 
-      // Check if the staticTarget is in the library, add it to the list of targets. That means that the method may resolve
-      // to a method in the library.
-      if (isLibrary(staticTarget)) {
-        targets = staticTarget :: targets
-      }
-
       /*
-       * If targets is empty, and the staticTarget is in the application, then this only means that this method should
-       * resolve to something in the library. For that, we need to get the topmost overridden library method 
+       * If targets is empty, then check if the staticTarget is in the library, return it. That means that the method may 
+       * only resolve to a method in the library, since we didn't resolve it to any method in the application. On the
+       * other hand, if the staticTarget is in the application, then this only means that this method should resolve to 
+       * something in the library. For that, we need to get the topmost overridden library method.
        */
-      if (targets.isEmpty && isApplication(staticTarget)) {
-
+      if (targets.isEmpty) {
+        if (isLibrary(staticTarget)) {
+          targets = List[Symbol](staticTarget)
+        } else {
+          val topmost = topmostLibraryOverriddenMethod(staticTarget)
+          if (topmost != NoSymbol) targets = List[Symbol](topmost)
+        }
       }
 
       targets.toSet
@@ -330,15 +334,26 @@ trait CGUtils extends Probe with Annotations {
   }
 
   /**
-   * Get all the library methods overridden by this method.
+   * Get all the library methods overridden by this method. The methods are sorted according to the reverse
+   * linearization.
    */
   def libraryOverriddenMethods(symbol: Symbol) = {
     var result = List[Symbol]()
-    if (symbol.isMethod && !symbol.isDeferred && symbol.allOverriddenSymbols.nonEmpty) {
-      result = symbol.allOverriddenSymbols.filter(sym => isLibrary(sym.enclClass))
+    if (symbol.isMethod && symbol.allOverriddenSymbols.nonEmpty) {
+      result = symbol.allOverriddenSymbols.filter(sym => isLibrary(sym))
     }
-    println(result map signature)
     result
+  }
+
+  /**
+   * Get the topmost library method overridden by the this method. If the method is in the library and doesn't
+   * override any method, then it is its own topmostLibraryOverriddenMethod
+   */
+  def topmostLibraryOverriddenMethod(symbol: Symbol) = {
+    val methods = libraryOverriddenMethods(symbol)
+    if (methods.nonEmpty) methods.reverse.head
+    else if (isLibrary(symbol)) symbol
+    else NoSymbol
   }
 
   def printAnnotatedCallsites() {
