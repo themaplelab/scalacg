@@ -1,32 +1,32 @@
 package tests
 
 import scala.collection.immutable.LinearSeq
+import callgraph.annotation.invocations
 
 object ApplyConfusion1 {
 
   class A extends (Int => String) {
-	  def apply(m: Int) = "hello";
+    def apply(m: Int) = "hello";
   }
-  
+
   class B {
-    def foo(j : Int) = "goodbye";
-    def bar(z : (Int) => String) = z(3); // calls scala/Function1.apply:(Ljava/lang/Object;)Ljava/lang/Object;
-    def zap() = bar(foo); 
+    def foo(j: Int) = "goodbye";
+    
+    @invocations("16: tests.ApplyConfusion1.B: foo(j: Int)")
+    def bar(z: (Int => String)) = z(3); // calls scala/Function1.apply:(Ljava/lang/Object;)Ljava/lang/Object;
+    
+    def zap() = bar(foo);
   }
-  
+
+  // This gets dispatched to A.apply not Function1.apply
+  @invocations("25: <unannotated> tests.ApplyConfusion1.A: apply(m: Int)")
   def main(args: Array[String]): Unit = {
-    
-    val x : (Int => String) = new A();
-    val y = x(2); // calls scala/Function1.apply:(Ljava/lang/Object;)Ljava/lang/Object;
+    val x: (Int => String) = new A();
+    val y = x(2);
     println(y);
-    
+
     val v = new B;
     val w = v.zap();
     println(w);
-    
-     { "FORCE_TEST_FAILURE"; this}.fail(); // force test failure until we decide what call graph we want to compute..
-    
   }
-
-  def fail(){}
 }
