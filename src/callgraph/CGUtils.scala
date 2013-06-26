@@ -58,6 +58,7 @@ trait CGUtils extends Probe with Annotations {
     }
     def apply(root: Tree) = traverse(root, List())
   }
+
   def addCallSite(callSite: CallSite) = {
     callSites = callSite :: callSites
     callSitesInMethod(callSite.enclMethod) =
@@ -75,6 +76,7 @@ trait CGUtils extends Probe with Annotations {
       }
     (annotation, plainReceiver)
   }
+
   def initialize() {
     // find the set of instantiated classes in the whole program
     classes = trees.flatMap { tree =>
@@ -89,7 +91,7 @@ trait CGUtils extends Probe with Annotations {
       findCallSites(tree, List())
     }
 
-    //    for (callSite <- callSites) println(signature(callSite.enclMethod) + " ===> " + signature(callSite.staticTarget))
+    for (callSite <- callSites) println(signature(callSite.enclMethod) + " ===> " + signature(callSite.staticTarget))
   }
 
   def normalizeMultipleParameters(tree: Apply): Apply = tree.fun match {
@@ -305,8 +307,6 @@ trait CGUtils extends Probe with Annotations {
             }
 
             // If we resolve to a library method, remove it and instead put its topmostLibraryOverridenMethod.
-            //            println("targets: " + (targets map signature))
-            //            println("library targets: " + (targets.filter(isLibrary) map topmostLibraryOverriddenMethod map signature))
             val libraryTargets = targets filter isLibrary
             val topmosts = (libraryTargets map topmostLibraryOverriddenMethod) filter (_ != NoSymbol)
             targets = targets filter isApplication
