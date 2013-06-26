@@ -78,13 +78,13 @@ class SuiteRA {
     runTest("ra/Infix")
   }
   
-//  @Test def testLibraryCall() {   // todo: add when library calls are done
+//  @Test def testLibraryCall() {   // todo: fails
 //    runTest("ra/LibraryCall")
 //  }
   
-//  @Test def testMatch1() {        // todo: add later
-//    runTest("ra/Match1")
-//  }
+  @Test def testMatch1() {        // todo: fails
+    runTest("ra/Match1")
+  }
   
   @Test def testOperator1() {
     runTest("ra/Operator1")
@@ -102,7 +102,7 @@ class SuiteRA {
     runTest("ra/ThisType1")
   }
   
-//  @Test def testToString1() {		// todo: add when library calls are done
+//  @Test def testToString1() {		// todo: fails
 //    runTest("ra/ToString1")
 //  }
   

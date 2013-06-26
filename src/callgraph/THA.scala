@@ -11,8 +11,8 @@ trait THA extends CGUtils {
 
   var superMethodNames = Set[TermName]()
 
-  override def initialize = {
-    super.initialize
+  override def initialize() {
+    super.initialize()
   }
 
   val classToMembers = mutable.Map[Type, Set[Symbol]]()
@@ -34,7 +34,7 @@ trait THA extends CGUtils {
   // the set of classes instantiated in a given method
   lazy val classesInMethod = {
     val ret = mutable.Map[Symbol, Set[Type]]().withDefaultValue(Set())
-    def traverse(tree: Tree, owner: Symbol): Unit = {
+    def traverse(tree: Tree, owner: Symbol) {
       tree match {
         case _: DefDef =>
           tree.children.foreach(traverse(_, tree.symbol))
@@ -50,7 +50,14 @@ trait THA extends CGUtils {
     ret
   }
 
-  def buildCallGraph = {
+  private def isSuperCall(receiver: Tree): Boolean = {
+    receiver match {
+      case s: Super => true
+      case _ => false
+    }
+  }
+
+  def buildCallGraph() {
     /* Given the ancestors of a This in the AST, determines the method that has that
      * particular This as its implicit this parameter.
      * 
@@ -94,12 +101,9 @@ trait THA extends CGUtils {
       for {
         callSite <- callSites
         if reachableCode contains callSite.enclMethod
+        if (isSuperCall(callSite.receiver))
       } {
-        callSite.receiver match {
-          case Super(_, _) =>
-            superMethodNames += callSite.staticTarget.name
-          case _ =>
-        }
+        superMethodNames += callSite.staticTarget.name
       }
 
       // process all call sites in reachable code
@@ -109,28 +113,34 @@ trait THA extends CGUtils {
       } {
         var targets = Set[Symbol]()
 
-        if (callSite.receiver == null) {
-          targets = Set(callSite.staticTarget)
+        val receiver = callSite.receiver
+        val csStaticTarget: MethodSymbol = callSite.staticTarget
+        if (receiver == null) {
+          targets = Set(csStaticTarget)
         } else {
           val thisSymbol =
-            if (callSite.receiver.isInstanceOf[This]) callSite.receiver.symbol
-            else if (callSite.receiver.tpe.isInstanceOf[ThisType])
-              callSite.receiver.tpe.asInstanceOf[ThisType].sym
+            if (receiver.isInstanceOf[This]) receiver.symbol
+            else if (receiver.tpe.isInstanceOf[ThisType])
+              receiver.tpe.asInstanceOf[ThisType].sym
             else NoSymbol
-          val filteredClasses =
+          // todo if receiver is a super call, filteredClassed need to include super class
+          val filteredClasses: Set[Type] =
             thisSymbol match {
-              case NoSymbol => instantiatedClasses
+              case NoSymbol =>
+                if (isSuperCall(receiver)) {
+                  instantiatedClasses + receiver.symbol.enclClass.superClass.tpe
+                } else instantiatedClasses
               case symbol =>
                 val method = containingMethod(callSite.ancestors, symbol)
                 // TODO: need to change this because super might occur in unreachable code (ThisType2)
-                if (method == NoSymbol || superMethodNames.contains(method.name)) instantiatedClasses
+                if (method == NoSymbol || superMethodNames.contains(method.name)) instantiatedClasses // todo this will never happen!
                 else
                   instantiatedClasses.filter { tpe =>
                     val members = classToMembers.getOrElseUpdate(tpe, tpe.members.sorted.toSet)
                     members.contains(method)
                   }
             }
-          targets = lookup(callSite.receiver.tpe, callSite.staticTarget, filteredClasses)
+          targets = lookup(receiver.tpe, csStaticTarget, filteredClasses)
         }
 
         callGraph += (callSite -> targets)
