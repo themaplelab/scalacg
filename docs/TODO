@@ -5,35 +5,3 @@ fails. This
 appears to be a bug that has to do with the handling of abstract type 
 members.
 The problem seemingly has to do with the call on line 21.
-
-3. After adding a missing assertion to Generics4, the test fails. Karim: I think this
-is the same problem once again.
-
-1. Test Breakable2 contains method calls that occur in initialization code.
-Currently, we cannot express @invocations assertions on calls in such code,
-because there is no surrounding method. Therefore, I'd like to allow
-@invocations on classes. For now, I added an assertion that forces the 
-test to
-fail. (note: none of this discussion has anything to do with the "breakable"
-construct).
-
-2. If I place an @invocations() annotation without arguments on a method, it
-seems to always succeed. This is not the right behavior: it should only 
-succeed
-if there are no calls within that method.
-
-4. In test Reachable2/Reachable3, it seems that there is an edge in the 
-call graph for a call
-  to a library method "scala.collection.mutable.ListBuffer: <init>()".
-I edited these tests to force them to fail.
-
-6. Our treatment of calls to methods in the libraries is currently 
-inconsistent: we don't
-seem to show edges to library methods that are invoked explicitly (e.g. 
-calls to println).
-On the other hand, we do show calls to methods such as apply() that are 
-generated
-for match-expressions and the like.  Not sure what to do about 
-this--ideally we'd
-eventually have all of these edges in our call graphs.
-
