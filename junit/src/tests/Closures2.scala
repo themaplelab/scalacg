@@ -6,15 +6,15 @@ object Closures2 {
 
   def main(args: Array[String]): Unit = {
 
-    def main(args: Array[String]): Unit = {
-
       { "fun"; this}.fun(main _); // pass main as argument
 
       { "bar"; this}.bar(foo1);
       { "bar"; this}.bar(foo2);
 
-    }
+      { "FORCE_TEST_FAILURE"; this}.fail(); // force test to fail until we have an @invocations assertion on the calls in bar
   }
+  
+  def fail(){}
 
   @target("fun") def fun(z: Any): Unit = {}
 

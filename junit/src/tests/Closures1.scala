@@ -13,7 +13,11 @@ object Closures1 {
 
     { "baz"; this}.baz(zap1);
     { "baz"; this}.baz(zap2);
+    
+     { "FORCE_TEST_FAILURE"; this}.fail(); // force test to fail until we have @invocations assertions on the calls in bar and baz
   }
+  
+  def fail(){}
 
   @target("foo1") def foo1(): Unit = { println("foo1"); }
   @target("foo2") def foo2(): Unit = { println("foo2"); }
