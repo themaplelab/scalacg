@@ -289,7 +289,8 @@ trait CGUtils extends Probe with Annotations {
       for {
         tpe <- consideredClasses
         expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
-        if tpe <:< expandedType
+        val asf = expandedType.asSeenFrom(tpe, expandedType.typeSymbol)
+        if tpe <:< asf
         target = tpe.member(staticTarget.name)
         if !target.isDeferred
       } {

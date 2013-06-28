@@ -160,4 +160,6 @@ class Suite {
   @Test def testLibraryCall = runTest("LibraryCall")
   
   @Test def testApplyConfusion1 = runTest("ApplyConfusion1")
+  
+  @Test def nested1 = runTest("Nested1")
 }
