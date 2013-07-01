@@ -5,21 +5,21 @@ import callgraph.annotation.{reachable, invocations, target}
 object SuperCallTraitSimple {
 
   trait A {
-    @target("A.m")
-    def m() {
+    @target("A.k")
+    def k() {
     }
   }
 
   trait B extends A {
-    @invocations("15: A.m")
-    override def m() {
-      super.m()
+    @invocations("16: A.k")
+    def m() {
+      super.k()
     }
   }
 
   class C {}
 
   def main(args: Array[String]) {
-    (new C with B).m()
+    (new C with B).m()  
   }
 }

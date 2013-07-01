@@ -6,24 +6,24 @@ import callgraph.annotation.invocations
 object SuperCall1 {
 
   trait X {
-    @target("X.bar")
-    def bar() { println("X.bar"); }
+    @target("X.baz")
+    def baz() { println("X.baz"); }
   }
 
   trait Y extends X {
     @target("Y.foo")
-    @invocations("17: tests.SuperCall1.X: bar()", "17: tests.SuperCall1.Z: bar()")
+    @invocations("17: X.baz", "17: Z.baz")
     def foo() {
-      super.bar(); // { "X.bar"; "Z.bar"; super }.bar(); is not legal Scala code
+      super.baz(); // { "X.baz"; "Z.baz"; super }.baz(); is not legal Scala code
     }
   }
 
   trait Z extends X {
-    @target("Z.bar") override def bar() { println("Z.bar"); }
+    @target("Z.baz") override def baz() { println("Z.baz"); }
   }
 
   def main(args: Array[String]) {
-    {"Y.foo"; (new Y with Z)}.foo(); // calls X.bar
-    {"Y.foo"; (new Z with Y)}.foo(); // calls Z.bar
+    {"Y.foo"; (new Y with Z)}.foo(); // calls X.baz
+    {"Y.foo"; (new Z with Y)}.foo(); // calls Z.baz
   }
 }

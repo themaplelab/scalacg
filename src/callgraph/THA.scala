@@ -2,6 +2,8 @@ package callgraph
 
 import scala.collection.mutable
 import scala.tools.nsc
+import scala.reflect.internal.Flags._
+import scala.collection.immutable.Set
 
 trait THA extends CGUtils {
   val global: nsc.Global
@@ -50,11 +52,15 @@ trait THA extends CGUtils {
     ret
   }
 
-  private def isSuperCall(receiver: Tree): Boolean = {
+  private def isSuperReceiver(receiver: Tree): Boolean = {
     receiver match {
       case s: Super => true
       case _ => false
     }
+  }
+
+  private def isSuperCall(callSite: CallSite): Boolean = {
+    isSuperReceiver(callSite.receiver) || callSite.staticTarget.hasFlag(SUPERACCESSOR)
   }
 
   def buildCallGraph() {
@@ -81,6 +87,49 @@ trait THA extends CGUtils {
       } yield instanceMethod).getOrElse(NoSymbol)
     }
 
+    // todo: qualified super calls (C.super.m)
+    // todo: super[T].m
+    def getSuperSymbols(callSite: CallSite): Set[Symbol] = {
+
+      def overrideChain(s: Symbol) = (
+        if (s eq NoSymbol) Nil
+        else if (s.isOverridingSymbol) s :: s.allOverriddenSymbols
+        else s :: Nil)
+
+      val csStaticTarget = callSite.staticTarget
+      val receiver = callSite.receiver
+      if (isSuperReceiver(receiver))
+        return Set(csStaticTarget)
+
+      if (isSuperCall(callSite)) {
+        // looking for overridden methods
+        val csName = csStaticTarget.name
+        val csEnclClass = csStaticTarget.enclClass
+        val superPrefix = "super$"
+        val inheritedMethod = csStaticTarget.enclClass.tpe.member(
+          if (csName.startsWith(superPrefix))
+            newTermName(csName.substring(superPrefix.length))
+          else csName)
+        val overriddenMethods = overrideChain(inheritedMethod) filterNot (_.enclClass == csStaticTarget.enclClass)
+
+        // looking for methods that can be super methods if there are corresponding mixin compositions in the program
+        val classLinearizations: Set[List[Symbol]] = instantiatedClasses.map(_.baseClasses)
+        val mixinSuperCalls: Set[Symbol] = classLinearizations.collect {
+          case classLin if classLin contains csEnclClass =>
+            val startFrom = classLin indexOf csEnclClass
+            val dropped: List[Symbol] = classLin.drop(startFrom + 1)
+            // find the first class in the list of linearized base classes, starting from index 'startFrom',
+            // that contains a method with same signature as csStaticTarget
+            dropped.collectFirst {
+              case cl if superLookup(receiver.tpe, csStaticTarget, Set(cl.tpe)).nonEmpty => superLookup(receiver.tpe, csStaticTarget, Set(cl.tpe))
+            }.getOrElse(Set())
+        }.flatten
+
+        return (overriddenMethods ++ mixinSuperCalls).toSet
+      }
+      Set()
+    }
+
     // all objects are considered to be allocated
     // Karim: Here isModuleOrModuleClass should be used instead of just isModule, or isModuleClass. I have no idea
     // why this works this way, but whenever I use either of them alone something crashes.
@@ -95,13 +144,12 @@ trait THA extends CGUtils {
         reachableCode += method
         instantiatedClasses ++= classesInMethod(method)
       }
-
       // find call sites that use super (e.g., super.foo())
       // Now this has been moved inside the worklist (see ThisType2)
       for {
         callSite <- callSites
         if reachableCode contains callSite.enclMethod
-        if (isSuperCall(callSite.receiver))
+        if (isSuperCall(callSite))
       } {
         superMethodNames += callSite.staticTarget.name
       }
@@ -119,28 +167,27 @@ trait THA extends CGUtils {
           targets = Set(csStaticTarget)
         } else {
           val thisSymbol =
-            if (receiver.isInstanceOf[This]) receiver.symbol
+            if (receiver.isInstanceOf[This])
+              receiver.symbol
             else if (receiver.tpe.isInstanceOf[ThisType])
               receiver.tpe.asInstanceOf[ThisType].sym
             else NoSymbol
-          // todo if receiver is a super call, filteredClassed need to include super class
           val filteredClasses: Set[Type] =
             thisSymbol match {
-              case NoSymbol =>
-                if (isSuperCall(receiver)) {
-                  instantiatedClasses + receiver.symbol.enclClass.superClass.tpe
-                } else instantiatedClasses
+              case NoSymbol => instantiatedClasses
               case symbol =>
                 val method = containingMethod(callSite.ancestors, symbol)
                 // TODO: need to change this because super might occur in unreachable code (ThisType2)
-                if (method == NoSymbol || superMethodNames.contains(method.name)) instantiatedClasses // todo this will never happen!
+                if (method == NoSymbol || superMethodNames.contains(method.name))
+                  instantiatedClasses
                 else
                   instantiatedClasses.filter { tpe =>
                     val members = classToMembers.getOrElseUpdate(tpe, tpe.members.sorted.toSet)
                     members.contains(method)
                   }
             }
-          targets = lookup(receiver.tpe, csStaticTarget, filteredClasses)
+          val superSymbols = getSuperSymbols(callSite)
+          targets = lookup(receiver.tpe, csStaticTarget, filteredClasses) ++ superSymbols // ++ superClasses) ++ superLookup(receiver.tpe, csStaticTarget, superClasses)
         }
 
         callGraph += (callSite -> targets)
