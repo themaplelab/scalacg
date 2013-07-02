@@ -103,14 +103,14 @@ trait THA extends CGUtils {
 
       if (isSuperCall(callSite)) {
         // looking for overridden methods
-        val csName = csStaticTarget.name
+//        val csName = csStaticTarget.name
         val csEnclClass = csStaticTarget.enclClass
-        val superPrefix = "super$"
-        val inheritedMethod = csStaticTarget.enclClass.tpe.member(
-          if (csName.startsWith(superPrefix))
-            newTermName(csName.substring(superPrefix.length))
-          else csName)
-        val overriddenMethods = overrideChain(inheritedMethod) filterNot (_.enclClass == csStaticTarget.enclClass)
+//        val superPrefix = "super$"
+//        val inheritedMethod = csStaticTarget.enclClass.tpe.member(
+//          if (csName.startsWith(superPrefix))
+//            newTermName(csName.substring(superPrefix.length))
+//          else csName)
+        val overriddenMethods = Set()// overrideChain(inheritedMethod) filterNot (_.enclClass == csStaticTarget.enclClass)
 
         // looking for methods that can be super methods if there are corresponding mixin compositions in the program
         val classLinearizations: Set[List[Symbol]] = instantiatedClasses.map(_.baseClasses)

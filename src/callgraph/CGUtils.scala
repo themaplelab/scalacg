@@ -276,22 +276,29 @@ trait CGUtils extends Probe with Annotations {
     declared.instantiateTypeParams(tparams map { _.typeSymbol }, args)
   }
 
+  def superLookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Type]): Set[Symbol] =
+    lookup(receiverType, staticTarget, consideredClasses, lookForSuperClasses = true,
+      getSuperName = ((name: String) => if (name.startsWith("super$")) name.substring("super$".length) else name))
+
   /**
    * The main method lookup for Scala.
    */
-  def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Type]): Set[Symbol] = {
+  def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Type],
+    // default parameters, used only for super method lookup 
+    lookForSuperClasses: Boolean = false, getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
     // If the target method is a constructor, no need to do the lookup.
     if (staticTarget.isConstructor) {
       Set(staticTarget)
     } else {
       var targets = List[Symbol]()
-
       for {
         tpe <- consideredClasses
         expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
-        val asf = expandedType.asSeenFrom(tpe, expandedType.typeSymbol)
-        if tpe <:< asf
-        target = tpe.member(staticTarget.name)
+        asf = expandedType.asSeenFrom(tpe, expandedType.typeSymbol)
+        if tpe <:< asf || lookForSuperClasses
+        target = if (lookForSuperClasses)
+          tpe.member(staticTarget.name.newName(getSuperName(staticTarget.nameString))) // todo: bad bad bad
+        else tpe.member(staticTarget.name)
         if !target.isDeferred
       } {
         target match {
