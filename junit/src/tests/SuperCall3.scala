@@ -4,36 +4,37 @@ import callgraph.annotation.target
 import callgraph.annotation.invocations
 
 object SuperCall3 {
-  
+  //todo: replace baz back to bar
   trait X {
-    def bar() = "X.bar";
-  }
-  
-  trait Y {
-    def bar() = "Y.bar";
-  }
-  
-  trait Z extends X with Y {    
-    override def bar() = "Z.bar";
-    def zip() = super[X].bar();  
-    def zap() = super[Y].bar(); 
-  } 
-  
-  trait W extends X {
-    override def bar() = "W.bar";
-  } 
-  
-  def main(args: Array[String]) {
-    
-    val z1 = new Z(){};
-    val v1 = z1.zip();
-    println(v1); // prints "X.bar"
-    val v2 = z1.zap();
-    println(v2); // prints "Y.bar" 
-    
-    { "FORCE_TEST_FAILURE"; this}.fail(); //  make sure that the test fails until the supercalls are checked
+    @target("X.baz")
+    def baz() = "X.baz"
   }
 
-  def fail(){}
-  
+  trait Y {
+    @target("Y.baz")
+    def baz() = "Y.baz"
+  }
+
+  trait Z extends X with Y {
+    override def baz() = "Z.baz"
+
+    @invocations("22: X.baz")
+    def zip() = super[X].baz()
+
+    @invocations("25: Y.baz")
+    def zap() = super[Y].baz()
+  }
+
+  trait W extends X {
+    @target("W.baz")
+    override def baz() = "W.baz";
+  }
+
+  def main(args: Array[String]) {
+    val z1 = new Z() {};
+    val v1 = z1.zip();
+    println(v1); // prints "X.baz"
+    val v2 = z1.zap();
+    println(v2); // prints "Y.baz" 
+  }
 }
