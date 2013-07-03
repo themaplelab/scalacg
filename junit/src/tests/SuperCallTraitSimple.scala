@@ -18,8 +18,8 @@ object SuperCallTraitSimple {
   }
 
   class C {}
-
+  
   def main(args: Array[String]) {
-    (new C with B).m()  
+    (new C with B).m();
   }
 }

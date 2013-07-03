@@ -1,17 +1,16 @@
 package callgraph
 
 import java.io.PrintStream
-
 import scala.collection.mutable
 import scala.reflect.io.AbstractFile
 import scala.tools.nsc
-
 import ca.uwaterloo.scalacg.util.Annotations
 import ca.uwaterloo.scalacg.util.Probe
 import probe.CallGraph
 import scalacg.probe.CallEdge
 import scalacg.probe.CallSiteContext
 import scalacg.probe.GXLWriter
+import scala.collection.immutable.HashMap
 
 trait CGUtils extends Probe with Annotations {
   val global: nsc.Global // same as the other global
@@ -276,9 +275,26 @@ trait CGUtils extends Probe with Annotations {
     declared.instantiateTypeParams(tparams map { _.typeSymbol }, args)
   }
 
-  def superLookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Type]): Set[Symbol] =
+  def superLookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Type]): Set[Symbol] = {
+    val nameTransformations = HashMap(
+      ('+' -> "plus"), ('-' -> "minus"), (':' -> "colon"), ('/' -> "div"),
+      ('=' -> "eq"), ('<' -> "less"), ('>' -> "greater"), ('\\' -> "bslash"),
+      ('#' -> "hash"), ('*' -> "times"), ('!' -> "bang"), ('@' -> "at"),
+      ('%' -> "percent"), ('^' -> "up"), ('&' -> "amp"), ('~' -> "tilde"),
+      ('?' -> "qmark"), ('|' -> "bar"))
+
+    val super$Prefix = "super$"
+    val superPrefix = "super"
     lookup(receiverType, staticTarget, consideredClasses, lookForSuperClasses = true,
-      getSuperName = ((name: String) => if (name.startsWith("super$")) name.substring("super$".length) else name))
+      getSuperName = ((name: String) => {
+        val charAfterSuperPrefix = name.charAt(superPrefix.length)
+        if (name.startsWith(super$Prefix))
+          name.substring(super$Prefix.length)
+        else if (name.startsWith(superPrefix) && nameTransformations.keys.exists(_ == charAfterSuperPrefix))
+          nameTransformations(charAfterSuperPrefix) + name.substring(superPrefix.length + 1)
+        else name
+      }))
+  }
 
   /**
    * The main method lookup for Scala.

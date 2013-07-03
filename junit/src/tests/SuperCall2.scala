@@ -4,31 +4,30 @@ import callgraph.annotation.target
 import callgraph.annotation.invocations
 
 object SuperCall2 {
-  //todo: replace baz to bar!
   trait X {
-    @target("X.baz")
-    def baz(): String;
+    @target("X.plus")
+    def plus(): String;
   }
 
   trait Y extends X {
-    @invocations("15: Z.baz", "15: W.baz")
-    abstract override def baz() = super.baz()
+    @invocations("15: Z.plus", "15: W.plus")
+    abstract override def plus() = super.plus()
   }
 
   trait Z extends X {
-    @target("Z.baz")
-    def baz() = "Z.baz"
+    @target("Z.plus")
+    def plus() = "Z.plus"
   }
 
   trait W extends X {
-    @target("W.baz")
-    def baz() = "W.baz"
+    @target("W.plus")
+    def plus() = "W.plus"
   }
 
   def main(args: Array[String]) {
-    val v1 = (new Z with Y).baz()
-    println(v1) // prints "Z.baz"
-    val v2 = (new W with Y).baz()
-    println(v2) // prints "W.baz"
+    val v1 = (new Z with Y).plus()
+    println(v1) // prints "Z.plus"
+    val v2 = (new W with Y).plus()
+    println(v2) // prints "W.plus"
   }
 }
