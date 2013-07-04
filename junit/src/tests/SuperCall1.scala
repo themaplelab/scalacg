@@ -4,7 +4,7 @@ import callgraph.annotation.target
 import callgraph.annotation.invocations
 
 object SuperCall1 {
-//todo replace bar with bar
+//
   trait X {
     @target("X.bar")
     def bar() { println("X.bar"); }
@@ -14,7 +14,7 @@ object SuperCall1 {
     @target("Y.foo")
     @invocations("17: X.bar", "17: Z.bar")
     def foo() {
-      super.bar(); // { "X.bar"; "Z.bar"; super }.bar(); is not legal Scala code
+      super.bar()
     }
   }
 

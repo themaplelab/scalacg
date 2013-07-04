@@ -17,10 +17,10 @@ object SuperCall3 {
   trait Z extends X with Y {
     override def bar() = "Z.bar"
 
-    @invocations("22: X.bar")
+    @invocations("21: X.bar")
     def zip() = super[X].bar()
 
-    @invocations("25: Y.bar")
+    @invocations("24: Y.bar")
     def zap() = super[Y].bar()
   }
 

@@ -276,22 +276,11 @@ trait CGUtils extends Probe with Annotations {
   }
 
   def superLookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Type]): Set[Symbol] = {
-    val nameTransformations = HashMap(
-      ('+' -> "plus"), ('-' -> "minus"), (':' -> "colon"), ('/' -> "div"),
-      ('=' -> "eq"), ('<' -> "less"), ('>' -> "greater"), ('\\' -> "bslash"),
-      ('#' -> "hash"), ('*' -> "times"), ('!' -> "bang"), ('@' -> "at"),
-      ('%' -> "percent"), ('^' -> "up"), ('&' -> "amp"), ('~' -> "tilde"),
-      ('?' -> "qmark"), ('|' -> "bar"))
-
-    val super$Prefix = "super$"
-    val superPrefix = "super"
     lookup(receiverType, staticTarget, consideredClasses, lookForSuperClasses = true,
       getSuperName = ((name: String) => {
-        val charAfterSuperPrefix = name.charAt(superPrefix.length)
+        val super$Prefix = "super$"
         if (name.startsWith(super$Prefix))
           name.substring(super$Prefix.length)
-        else if (name.startsWith(superPrefix) && nameTransformations.keys.exists(_ == charAfterSuperPrefix))
-          nameTransformations(charAfterSuperPrefix) + name.substring(superPrefix.length + 1)
         else name
       }))
   }
@@ -312,9 +301,9 @@ trait CGUtils extends Probe with Annotations {
         expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
         asf = expandedType.asSeenFrom(tpe, expandedType.typeSymbol)
         if tpe <:< asf || lookForSuperClasses
-        target = if (lookForSuperClasses)
-          tpe.member(staticTarget.name.newName(getSuperName(staticTarget.nameString))) // todo: bad bad bad
-        else tpe.member(staticTarget.name)
+        target = if (lookForSuperClasses) {
+          tpe.member(staticTarget.name.newName(getSuperName(staticTarget.name.toString))) // todo: bad bad bad 
+        } else tpe.member(staticTarget.name)
         if !target.isDeferred
       } {
         target match {
