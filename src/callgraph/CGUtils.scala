@@ -90,7 +90,11 @@ trait CGUtils extends Probe with Annotations {
       findCallSites(tree, List())
     }
 
-    //    for (callfSite <- callSites) println(signature(callSite.enclMethod) + " ===> " + signature(callSite.staticTarget))
+    //    for { callSite <- callSites } {
+    //      println(signature(callSite.enclMethod) + " ===> " + signature(callSite.staticTarget))
+    //      println(callSite.receiver.tpe.isComplete)
+    //    }
+
     //    for {
     //      cls <- classes
     //      method <- cls.decls filter (_.isMethod)
