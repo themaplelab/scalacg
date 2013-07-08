@@ -1,7 +1,7 @@
 package tests
 
-import callgraph.annotation.target
 import callgraph.annotation.reachable
+import callgraph.annotation.target
 
 object Closures1 {
 
@@ -16,7 +16,6 @@ object Closures1 {
     { "baz"; this }.baz(zap2);
   }
 
-  
   /*
    * Karim: the following methods are reachable because they will appear in the apply method of the Function0/1 objects
    * that will be created after desugaring closures.
@@ -27,11 +26,11 @@ object Closures1 {
   @reachable def zap2(i: Int): Unit = println("zap2")
 
   @reachable
-  @target("bar") 
+  @target("bar")
   def bar(z: () => Unit): Unit = { z(); }
-  
+
   @reachable
-  @target("baz") 
+  @target("baz")
   def baz(z: (Int) => Unit): Unit = { z(3); }
 
 }
