@@ -3,12 +3,21 @@ package tests
 import callgraph.annotation.target
 import callgraph.annotation.reachable
 import callgraph.annotation.notreachable
+import callgraph.annotation.invocations
 
 object AbstractTypes10 {
   trait A {
     type T
     val field: T
-    @target("A.foo") def foo() = { "C.hashCode"; field }.hashCode()
+
+    @invocations("14: <unannotated> scala.Any: hashCode()", "14: C.hashCode")
+    @target("A.foo") def foo() = field.hashCode
+    //{ "C.hashCode"; field }.hashCode()
+    /*
+     * The way we handle library calls now, will make this call resolve to two methods
+     * 1) scala.Any: hashCode
+     * 2) C.hashCode.
+     */
   }
 
   class B extends A {
@@ -20,7 +29,6 @@ object AbstractTypes10 {
     @target("C.hashCode") override def hashCode() = 42
   }
 
-  
   // FT: inconsistent results? Why does our analysis consider D.hashCode a
   // reachable method, but without making it a target of the call on line 11?
   //
@@ -30,7 +38,7 @@ object AbstractTypes10 {
     @reachable @target("D.hashCode") override def hashCode() = 23
   }
   def main(args: Array[String]): Unit = {
-    { "A.foo"; new B()}.foo
+    { "A.foo"; new B() }.foo
     new C()
     new D()
   }
