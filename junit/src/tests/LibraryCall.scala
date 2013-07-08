@@ -17,7 +17,7 @@ object LibraryCall {
     println(s);
   }
 
-  @invocations("22: <unannotated> scala.collection.GenTraversableOnce: size()")
+  @invocations("22: <unannotated> scala.collection.SeqLike: size()")
   def foo(a: A): Int = {
     a.size; // static target is A.size, but dispatches to LinearSeq.size
   }
