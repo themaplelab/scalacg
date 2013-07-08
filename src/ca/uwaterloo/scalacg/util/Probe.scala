@@ -8,6 +8,11 @@ trait Probe {
 
   val global: Global
   import global._
+  
+  class StringHelper(str: String) {
+    def replaceLast(regex: String, replacement: String) = str.reverse.replaceFirst(regex, replacement.reverse).reverse
+  }
+  implicit def stringWrapper(string: String) = new StringHelper(string)
 
   /**
    * A printable name for a that uses the probe signature, surround by "<" and ">", useful when printing sets of methods.
@@ -39,4 +44,14 @@ trait Probe {
     methodSymbol.signatureString.substring(0, methodSymbol.signatureString.indexOf(')') + 1).replace("(", "").replace(")", "")
   }
 
+  /**
+   * Return zero if x is negative.
+   */
+  def getOrZero(x: Int) = {
+    x match {
+      case n if n < 0 => 0
+      case n => n
+    }
+  }
 }
+
