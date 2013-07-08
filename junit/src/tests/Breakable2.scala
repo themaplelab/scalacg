@@ -22,7 +22,7 @@ object Breakable2 {
     val dc = new DumpCollector("path", "context")
   }
 
-  /* These invocations are all on methods that can't be annotated in the test case here, even with the @reachable
+  /* Karim: These invocations are all on methods that can't be annotated in the test case here, even with the @reachable
    * annotation. That's why I've commented them out here. That's all because we now do our analysis after uncurry.
    * @invocations("31: <unannotated> java.lang.Object: <init>()",
                "49: <unannotated> java.io.File: <init>(x$1: String)",

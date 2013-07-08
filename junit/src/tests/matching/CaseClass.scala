@@ -10,14 +10,14 @@ object CaseClass {
    */
   @invocations("24: <unannotated> tests.matching.CaseClass.Lit: <init>(value: Boolean)",
     "25: <unannotated> scala.MatchError: <init>(obj: Any)",
-    "26: <unannotated> scala.Any: isInstanceOf()",
-    "26: <unannotated> scala.Any: asInstanceOf()", // These two calls are in not in the call graph because there's no
+    "26: <unannotated> scala.Any: isInstanceOf([T0])",
+    "26: <unannotated> scala.Any: asInstanceOf([T0])", // These two calls are in not in the call graph because there's no
     "26: <unannotated> tests.matching.CaseClass.Lit: value()", // call site for Lit.value in main, though there's one in the intermediate code! Weird.
-    "27: <unannotated> scala.Any: asInstanceOf()",
-    "27: <unannotated> scala.Any: isInstanceOf()",
+    "27: <unannotated> scala.Any: asInstanceOf([T0])",
+    "27: <unannotated> scala.Any: isInstanceOf([T0])",
     "27: <unannotated> tests.matching.CaseClass.Var: name()",
-    "28: <unannotated> scala.Any: asInstanceOf()",
-    "28: <unannotated> scala.Any: isInstanceOf()",
+    "28: <unannotated> scala.Any: asInstanceOf([T0])",
+    "28: <unannotated> scala.Any: isInstanceOf([T0])",
     "28: <unannotated> tests.matching.CaseClass.And: left()",
     "28: <unannotated> tests.matching.CaseClass.And: right()")
   def main(args: Array[String]) {
