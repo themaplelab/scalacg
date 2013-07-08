@@ -25,7 +25,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
   /** Phase that resolves call sites to compute call graph */
   private object CallGraphComponent extends PluginComponent {
     val global: CallGraphPlugin.this.global.type = CallGraphPlugin.this.global
-    val runsAfter = List[String]("refchecks") // TODO: is this the right place for the phase?
+    val runsAfter = List[String]("uncurry") // TODO: is this the right place for the phase?
     def newPhase(prevPhase: Phase) = new CallGraphPhase(prevPhase)
     val phaseName = CallGraphPlugin.this.name
 
