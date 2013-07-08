@@ -11,14 +11,14 @@ object MatchExpression {
   
   @invocations("26: <unannotated> tests.matching.MatchExpression.Lit: <init>(value: Boolean)",
                "27: <unannotated> scala.MatchError: <init>(obj: Any)",
-               "28: <unannotated> scala.Any: asInstanceOf()",
-               "28: <unannotated> scala.Any: isInstanceOf()",
+               "28: <unannotated> scala.Any: asInstanceOf([T0])",
+               "28: <unannotated> scala.Any: isInstanceOf([T0])",
                "28: <unannotated> tests.matching.MatchExpression.Lit: value()",
-               "29: <unannotated> scala.Any: asInstanceOf()",
-               "29: <unannotated> scala.Any: isInstanceOf()",
+               "29: <unannotated> scala.Any: asInstanceOf([T0])",
+               "29: <unannotated> scala.Any: isInstanceOf([T0])",
                "29: <unannotated> tests.matching.MatchExpression.Var: name()",
-               "30: <unannotated> scala.Any: asInstanceOf()", 
-               "30: <unannotated> scala.Any: isInstanceOf()",
+               "30: <unannotated> scala.Any: asInstanceOf([T0])", 
+               "30: <unannotated> scala.Any: isInstanceOf([T0])",
                "30: <unannotated> tests.matching.MatchExpression.And: left()",
                "30: <unannotated> tests.matching.MatchExpression.And: right()"
                )
@@ -31,7 +31,7 @@ object MatchExpression {
     }
   }
 
-  @invocations("40: <unannotated> scala.Any: isInstanceOf()",
+  @invocations("40: <unannotated> scala.Any: isInstanceOf([T0])",
                "40: <unannotated> tests.matching.MatchExpression.Lit: <init>(value: Boolean)",
                "41: <unannotated> tests.matching.MatchExpression.Var: <init>(name: String)")
   @target("inverse") 

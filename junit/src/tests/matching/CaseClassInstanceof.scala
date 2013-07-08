@@ -8,7 +8,7 @@ object CaseClassInstanceof {
    /**
     * Testing extractors
     */
-   @invocations("15: <unannotated> scala.Any: isInstanceOf()")
+   @invocations("15: <unannotated> scala.Any: isInstanceOf([T0])")
    def main(args: Array[String]) {
     val e: Expr = Lit(value = true)
     e match {
