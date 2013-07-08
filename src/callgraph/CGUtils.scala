@@ -90,7 +90,14 @@ trait CGUtils extends Probe with Annotations {
       findCallSites(tree, List())
     }
 
-    for (callSite <- callSites) println(signature(callSite.enclMethod) + " ===> " + signature(callSite.staticTarget))
+    //    for (callfSite <- callSites) println(signature(callSite.enclMethod) + " ===> " + signature(callSite.staticTarget))
+    //    for {
+    //      cls <- classes
+    //      method <- cls.decls filter (_.isMethod)
+    //    } {
+    //      print(signature(method) + " ===> ")
+    //      println(method.allOverriddenSymbols map signature)
+    //    }
   }
 
   def normalizeMultipleParameters(tree: Apply): Apply = tree.fun match {
@@ -293,8 +300,8 @@ trait CGUtils extends Probe with Annotations {
     lookForSuperClasses: Boolean = false, getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
     // If the target method is a constructor, no need to do the lookup.
     if (staticTarget.isConstructor) {
-      Set(staticTarget)
-    } else {
+      return Set(staticTarget)
+    } else { // If it's in the application, then resolve the call
       var targets = List[Symbol]()
       for {
         tpe <- consideredClasses
@@ -318,28 +325,16 @@ trait CGUtils extends Probe with Annotations {
             } else {
               targets = target :: targets
             }
-
-            // If we resolve to a library method, remove it and instead put its topmostLibraryOverridenMethod.
-            val libraryTargets = targets filter isLibrary
-            val topmosts = (libraryTargets map topmostLibraryOverriddenMethod) filter (_ != NoSymbol)
-            targets = targets filter isApplication
-            targets = topmosts ::: targets
         }
       }
 
       /*
-       * If targets is empty, then check if the staticTarget is in the library, return it. That means that the method may 
-       * only resolve to a method in the library, since we didn't resolve it to any method in the application. On the
-       * other hand, if the staticTarget is in the application, then this only means that this method should resolve to 
-       * something in the library. For that, we need to get the topmost overridden library method.
+       * If the static target is in the application, return the set of resolved targets.
+       * Else, return the set of resolved targets in addition to the static target. The static target then stands for
+       * all those edges that we couldn't compute because we do not analyze the library.
        */
-      if (targets.isEmpty) {
-        if (isLibrary(staticTarget)) {
-          targets = List[Symbol](staticTarget)
-        } else {
-          val topmost = topmostLibraryOverriddenMethod(staticTarget)
-          if (topmost != NoSymbol) targets = List[Symbol](topmost)
-        }
+      if (isLibrary(staticTarget)) {
+        targets = staticTarget :: targets
       }
 
       targets.toSet
@@ -364,7 +359,7 @@ trait CGUtils extends Probe with Annotations {
    */
   def topmostLibraryOverriddenMethod(symbol: Symbol) = {
     val methods = libraryOverriddenMethods(symbol)
-    if (methods.nonEmpty) methods.reverse.head
+    if (methods.nonEmpty) (methods filter (!_.isDeferred)).head
     else if (isLibrary(symbol)) symbol
     else NoSymbol
   }
