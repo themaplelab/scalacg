@@ -1,19 +1,23 @@
 package tests
 
-import callgraph.annotation.target
+import scala.collection.immutable.LinearSeq
+
 import callgraph.annotation.invocations
-import scala.collection.GenSet
 
 object SuperCallLibrary {
 
-  class A {}
+  trait A extends X {
+    @invocations("11: <unannotated> java.lang.Object: toString()")
+    def foo = super.toString
+  }
 
   trait X {
-    @invocations("13: <unannotated> java.lang.Object: toString()")
+    @invocations("16: <unannotated> java.lang.Object: toString()")
     def bar = super.toString
   }
 
   def main(args: Array[String]) {
     (new A with X).bar
+    (new A with X).foo
   }
 }
