@@ -167,4 +167,6 @@ class Suite {
   @Test def testApplyConfusion1 = runTest("ApplyConfusion1")
   
   @Test def nested1 = runTest("Nested1")
+  
+  @Test def testGeneratedReflection1 = runTest("GeneratedReflection1")
 }
