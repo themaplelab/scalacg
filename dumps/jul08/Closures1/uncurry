@@ -1,0 +1,82 @@
+[[syntax trees at end of                   uncurry]] // Closures1.scala
+package tests {
+  object Closures1 extends Object {
+    def <init>(): tests.Closures1.type = {
+      Closures1.super.<init>();
+      ()
+    };
+    def main(args: Array[String]): Unit = {
+      {
+  "bar";
+  this
+}.bar({
+        {
+          @SerialVersionUID(0) final <synthetic> class $anonfun extends scala.runtime.AbstractFunction0[Unit] with Serializable {
+            def <init>(): anonymous class $anonfun = {
+              $anonfun.super.<init>();
+              ()
+            };
+            final def apply(): Unit = Closures1.this.foo1()
+          };
+          (new anonymous class $anonfun(): () => Unit)
+        }
+      });
+      {
+  "bar";
+  this
+}.bar({
+        {
+          @SerialVersionUID(0) final <synthetic> class $anonfun extends scala.runtime.AbstractFunction0[Unit] with Serializable {
+            def <init>(): anonymous class $anonfun = {
+              $anonfun.super.<init>();
+              ()
+            };
+            final def apply(): Unit = Closures1.this.foo2()
+          };
+          (new anonymous class $anonfun(): () => Unit)
+        }
+      });
+      {
+  "baz";
+  this
+}.baz({
+        {
+          @SerialVersionUID(0) final <synthetic> class $anonfun extends scala.runtime.AbstractFunction1[Int,Unit] with Serializable {
+            def <init>(): anonymous class $anonfun = {
+              $anonfun.super.<init>();
+              ()
+            };
+            final def apply(i: Int): Unit = Closures1.this.zap1(i)
+          };
+          (new anonymous class $anonfun(): Int => Unit)
+        }
+      });
+      {
+  "baz";
+  this
+}.baz({
+        {
+          @SerialVersionUID(0) final <synthetic> class $anonfun extends scala.runtime.AbstractFunction1[Int,Unit] with Serializable {
+            def <init>(): anonymous class $anonfun = {
+              $anonfun.super.<init>();
+              ()
+            };
+            final def apply(i: Int): Unit = Closures1.this.zap2(i)
+          };
+          (new anonymous class $anonfun(): Int => Unit)
+        }
+      });
+      {
+  "FORCE_TEST_FAILURE";
+  this
+}.fail()
+    };
+    def fail(): Unit = ();
+    @callgraph.annotation.target("foo1") def foo1(): Unit = scala.this.Predef.println("foo1");
+    @callgraph.annotation.target("foo2") def foo2(): Unit = scala.this.Predef.println("foo2");
+    @callgraph.annotation.target("zap1") def zap1(i: Int): Unit = scala.this.Predef.println("zap1");
+    @callgraph.annotation.target("zap2") def zap2(i: Int): Unit = scala.this.Predef.println("zap2");
+    @callgraph.annotation.target("bar") def bar(z: () => Unit): Unit = z.apply();
+    @callgraph.annotation.target("baz") def baz(z: Int => Unit): Unit = z.apply(3)
+  }
+}
