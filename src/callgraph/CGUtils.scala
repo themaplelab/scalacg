@@ -609,7 +609,7 @@ trait CGUtils extends Probe with Annotations {
       probeCallGraph.edges.add(edge)
 
       // Print out library methods to be added to the WALA call graph
-      if (isLibrary(target)) libraryOut.println(edge.src + " ===> " + edge.dst + " :: " + edge.context)
+      if (isLibrary(target)) libraryOut.println(edge.src + " ===> " + edge.dst)
     }
     libraryOut.close
 
