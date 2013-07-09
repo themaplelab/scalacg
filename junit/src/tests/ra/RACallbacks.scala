@@ -11,7 +11,7 @@ object RACallbacks {
   }
   
   class B extends A {
-    @reachable
+//    @reachable
     override def toString() = "B";
   }
 

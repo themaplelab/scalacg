@@ -1,59 +1,98 @@
 package callgraph
 
+import scala.collection.mutable
 import scala.tools.nsc
+import scala.collection.immutable.Set
+import scala.Predef._
 
-trait RA {
-  this: CGUtils =>
+trait RA extends CGUtils {
   val global: nsc.Global
 
   import global._
 
   var callGraph = Map[CallSite, Set[Symbol]]()
 
-  def buildCallGraph() {
-    for (callSite <- callSites) {
-      val targets = nameLookup(callSite.staticTarget.name, classes)
-      callGraph += (callSite -> targets)
-      reachableCode ++= targets
-    }
-  }
+  var superMethodNames = Set[TermName]()
+
+  val classToMembers = mutable.Map[Type, Set[Symbol]]()
 
   var instantiatedClasses = Set[Type]()
+
+  // in Scala, code can appear in classes as well as in methods, so reachableCode generalizes reachable methods
   var reachableCode = Set[Symbol]()
+
   var callbacks = Set[Symbol]()
 
-  private def nameLookup(methodName: Name, allClasses: Set[Type]): Set[Symbol] = {
-    allClasses.flatMap(_.members.filter((m: Symbol) => m.name == methodName && m.isMethod))
+  // newly reachable methods to be processed
+  val methodWorklist = mutable.Queue[Symbol]()
+
+  def addMethod(method: Symbol) = if (!reachableCode(method)) methodWorklist += method
+
+  def nameLookup(staticTarget: Symbol, classes: Set[Type],
+    lookForSuperClasses: Boolean = false, getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
+    if (staticTarget.isConstructor)
+      Set(staticTarget)
+    val targets = classes.flatMap(_.members.filter((m: Symbol) =>
+      m.name == (if (lookForSuperClasses) staticTarget.name.newName(getSuperName(staticTarget.name.toString)) else staticTarget.name)
+        && m.isMethod))
+    if (isLibrary(staticTarget)) {
+      return targets + staticTarget
+    }
+    targets
   }
 
-  override def initialize() {
-    classes = trees.flatMap {
-      _.collect {
-        case cd: ClassDef => cd.symbol.tpe // todo: include ModuleDef?
-      }
-    }.toSet
+  def buildCallGraph() {
+    
+    classes = appClasses
 
-    instantiatedClasses = classes
+    // start off the worklist with the entry points
+    methodWorklist ++= entryPoints
 
-    reachableCode = mainMethods ++ classes.map(_.typeSymbol.primaryConstructor)
-
+    // add all constructors
+    classes.map(_.typeSymbol).foreach(addMethod)
     for {
       cls <- classes
-      member <- cls.decls
-      if member.isMethod && !member.isDeferred && member.allOverriddenSymbols.nonEmpty
-      libraryOverriddenSymbols = member.allOverriddenSymbols.filterNot(appClasses contains _.enclClass.tpe)
-      if libraryOverriddenSymbols.nonEmpty
+      constr <- cls.members
+      if constr.isConstructor
+    } {
+      addMethod(constr)
+    }
+
+    // Library call backs are also reachable
+    for {
+      cls <- classes
+      member <- cls.decls // loop over the declared members, "members" returns defined AND inherited members
+      if libraryOverriddenMethods(member).nonEmpty
     } {
       callbacks += member
     }
+    callbacks.foreach(addMethod)
 
-    trees.foreach { tree =>
-      findCallSites(tree, List())
+    while (methodWorklist.nonEmpty) {
+      // process new methods
+      for (method <- methodWorklist.dequeueAll(_ => true)) {
+        reachableCode += method
+      }
+
+      // process all call sites in reachable code
+      for {
+        callSite <- callSites
+        if reachableCode contains callSite.enclMethod
+      } {
+        val csStaticTarget = callSite.staticTarget
+        val superTargets = if (isSuperCall(callSite))
+          nameLookup(csStaticTarget, classes, lookForSuperClasses = true, getSuperName = superName)
+        else Set()
+        val targets = nameLookup(csStaticTarget, classes) ++ superTargets
+        callGraph += (callSite -> targets)
+        targets.foreach(addMethod)
+      }
     }
   }
 
   val annotationFilter: PartialFunction[Tree, String] = {
     case Literal(Constant(string: String)) => string
+    // TODO: replace _ with a more specific check for the cha case class
     case Apply(_, List(Literal(Constant(string: String)))) => string
   }
 }

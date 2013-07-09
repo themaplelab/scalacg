@@ -2,7 +2,6 @@ package callgraph
 
 import scala.collection.mutable
 import scala.tools.nsc
-import scala.reflect.internal.Flags._
 import scala.collection.immutable.Set
 
 trait THA extends CGUtils {
@@ -33,36 +32,6 @@ trait THA extends CGUtils {
     if (!reachableCode(method)) methodWorklist += method
   }
 
-  // the set of classes instantiated in a given method
-  lazy val classesInMethod = {
-    val ret = mutable.Map[Symbol, Set[Type]]().withDefaultValue(Set())
-    def traverse(tree: Tree, owner: Symbol) {
-      tree match {
-        case _: DefDef =>
-          tree.children.foreach(traverse(_, tree.symbol))
-        case _: ClassDef => // If the tree is a class definition, then "owner" should be the primary constructor (see GetterMethod1) 
-          tree.children.foreach(traverse(_, tree.symbol.primaryConstructor))
-        case New(tpt) =>
-          ret(owner) += tpt.tpe.dealias // some types are aliased, see CaseClass3
-        case _ =>
-          tree.children.foreach(traverse(_, owner))
-      }
-    }
-    trees.foreach(traverse(_, NoSymbol))
-    ret
-  }
-
-  private def superReceiverOption(receiver: Tree): Option[TermName] = {
-    receiver match {
-      case Super(_, name) => Some(name)
-      case _ => None
-    }
-  }
-
-  private def isSuperCall(callSite: CallSite): Boolean = {
-    superReceiverOption(callSite.receiver).isDefined || callSite.staticTarget.hasFlag(SUPERACCESSOR)
-  }
-
   def buildCallGraph() {
     /* Given the ancestors of a This in the AST, determines the method that has that
      * particular This as its implicit this parameter.
@@ -87,15 +56,7 @@ trait THA extends CGUtils {
       } yield instanceMethod).getOrElse(NoSymbol)
     }
 
-    // todo: qualified super calls (C.super.m)
-    // todo: super[T].m
     def getSuperSymbols(callSite: CallSite): Set[Symbol] = {
-
-      def overrideChain(s: Symbol) = (
-        if (s eq NoSymbol) Nil
-        else if (s.isOverridingSymbol) s :: s.allOverriddenSymbols
-        else s :: Nil)
-
       val csStaticTarget = callSite.staticTarget
       val receiver = callSite.receiver
       val superReceiverName = superReceiverOption(receiver)
@@ -107,7 +68,6 @@ trait THA extends CGUtils {
               return Set(csStaticTarget)
             else {
               val bcs = csEnclClass.baseClasses
-              val names = bcs.map(_.name)
               val superClass = bcs.find(_.nameString == name.toString) // todo: filter instead of find??
               if (superClass.isDefined) {
                 return lookup(receiver.tpe, csStaticTarget, Set(superClass.get.tpe))
@@ -156,32 +116,6 @@ trait THA extends CGUtils {
         if (isSuperCall(callSite))
       } {
         superMethodNames += callSite.staticTarget.name
-      }
-
-      def mySuperSymbol(s: Symbol, base: Symbol, owner: Symbol): Symbol = {
-        var bcs = base.info.baseClasses.dropWhile(owner != _).tail
-        var sym: Symbol = NoSymbol
-        while (!bcs.isEmpty && sym == NoSymbol) {
-          if (!bcs.head.isImplClass)
-            sym = s.matchingSymbol(bcs.head, base.thisType).suchThat(!_.isDeferred)
-          bcs = bcs.tail
-        }
-        sym
-      }
-
-      for {
-        cs <- callSites
-        st = cs.staticTarget
-        if st.nameString.contains("k")
-        ic <- instantiatedClasses
-        if ic.baseClasses.contains(st.enclClass)
-      } {
-        println("st = " + st)
-        println("instCl = " + ic)
-        println("bcs = " + ic.baseClasses)
-        val s = mySuperSymbol(st, ic.typeSymbol, st.enclClass)
-        val p = st.getClass()
-        println("supS = " + s)
       }
 
       // process all call sites in reachable code

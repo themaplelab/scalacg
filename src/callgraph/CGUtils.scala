@@ -12,9 +12,11 @@ import probe.CallGraph
 import scalacg.probe.CallEdge
 import scalacg.probe.CallSiteContext
 import scalacg.probe.GXLWriter
+import scala.reflect.internal.Flags._
 
 trait CGUtils extends Probe with Annotations {
   val global: nsc.Global // same as the other global
+
   import global._
   import global.definitions._
 
@@ -23,13 +25,18 @@ trait CGUtils extends Probe with Annotations {
   def trees: List[Tree] // this is overridden by var trees in CallGraphPlugin
 
   def instantiatedClasses: Set[Type]
+
   def reachableCode: Set[Symbol]
+
   def callbacks: Set[Symbol]
-  def appClasses: Set[Type] // application classes fed to the compiler (i.e., not including Scala/Java libraries)
+
+  def appClasses: Set[Type]
+
+  // application classes fed to the compiler (i.e., not including Scala/Java libraries)
   def callGraph: CallSite => Set[Symbol]
 
   case class CallSite(receiver: Tree, staticTarget: MethodSymbol, args: List[Tree], annotation: List[String],
-    ancestors: List[Tree], pos: Position, enclMethod: Symbol)
+                      ancestors: List[Tree], pos: Position, enclMethod: Symbol)
 
   /**
    * Find the enclosing method from the given list of ancestors. For call sites in methods, that's obvious. For call sites
@@ -50,12 +57,15 @@ trait CGUtils extends Probe with Annotations {
 
   abstract class TraverseWithAncestors {
     def visit(node: Tree, ancestors: List[Tree])
+
     def traverse(tree: Tree, ancestors: List[Tree]): Unit = {
       visit(tree, ancestors)
-      tree.children.foreach { child =>
-        traverse(child, tree :: ancestors)
+      tree.children.foreach {
+        child =>
+          traverse(child, tree :: ancestors)
       }
     }
+
     def apply(root: Tree) = traverse(root, List())
   }
 
@@ -63,6 +73,17 @@ trait CGUtils extends Probe with Annotations {
     callSites = callSite :: callSites
     callSitesInMethod(callSite.enclMethod) =
       callSitesInMethod.getOrElse(callSite.enclMethod, Set()) + callSite
+  }
+
+  def isSuperCall(callSite: CallSite): Boolean = {
+    superReceiverOption(callSite.receiver).isDefined || callSite.staticTarget.hasFlag(SUPERACCESSOR)
+  }
+
+  def superReceiverOption(receiver: Tree): Option[TermName] = {
+    receiver match {
+      case Super(_, name) => Some(name)
+      case _ => None
+    }
   }
 
   // look for an annotation on the receiver
@@ -77,18 +98,39 @@ trait CGUtils extends Probe with Annotations {
     (annotation, plainReceiver)
   }
 
+  // the set of classes instantiated in a given method
+  lazy val classesInMethod = {
+    val ret = mutable.Map[Symbol, Set[Type]]().withDefaultValue(Set())
+    def traverse(tree: Tree, owner: Symbol) {
+      tree match {
+        case _: DefDef =>
+          tree.children.foreach(traverse(_, tree.symbol))
+        case _: ClassDef => // If the tree is a class definition, then "owner" should be the primary constructor (see GetterMethod1) 
+          tree.children.foreach(traverse(_, tree.symbol.primaryConstructor))
+        case New(tpt) =>
+          ret(owner) += tpt.tpe.dealias // some types are aliased, see CaseClass3
+        case _ =>
+          tree.children.foreach(traverse(_, owner))
+      }
+    }
+    trees.foreach(traverse(_, NoSymbol))
+    ret
+  }
+
   def initialize() {
     // find the set of instantiated classes in the whole program
-    classes = trees.flatMap { tree =>
-      tree.collect {
-        case cd: ClassDef if cd.symbol.isModuleOrModuleClass => cd.symbol.tpe // isModuleClass -> an object, it gets auto instantiated
-        case nw: New => nw.tpt.tpe // the set of all allocation sites
-      }
+    classes = trees.flatMap {
+      tree =>
+        tree.collect {
+          case cd: ClassDef if cd.symbol.isModuleOrModuleClass => cd.symbol.tpe // isModuleClass -> an object, it gets auto instantiated
+          case nw: New => nw.tpt.tpe // the set of all allocation sites
+        }
     }.toSet
 
     // find call sites
-    trees.foreach { tree =>
-      findCallSites(tree, List())
+    trees.foreach {
+      tree =>
+        findCallSites(tree, List())
     }
 
     //    for { callSite <- callSites } {
@@ -136,10 +178,10 @@ trait CGUtils extends Probe with Annotations {
       case cls: ClassDef =>
         for {
           mixin <- cls.symbol.mixinClasses
-          val caller = cls.symbol.primaryConstructor
-          val callee = mixin.primaryConstructor
+          caller = cls.symbol.primaryConstructor
+          callee = mixin.primaryConstructor
           if caller != NoSymbol && callee != NoSymbol
-          val receiver = This(caller.thisSym)
+          receiver = This(caller.thisSym)
         } {
           addCallSite(CallSite(receiver, callee.asMethod, List[Tree](), List[String](), ancestors, tree.pos, caller))
         }
@@ -190,6 +232,7 @@ trait CGUtils extends Probe with Annotations {
   }
 
   var concretization = Map[Symbol, Set[Type]]()
+
   def addTypeConcretizations(classes: Set[Type]) = {
     // find all definitions of abstract type members ("type aliases")
     for {
@@ -207,12 +250,12 @@ trait CGUtils extends Probe with Annotations {
     // find all instantiations of generic type parameters (generics behave the same way)
     for {
       tpe <- classes
-      val cls = tpe.typeSymbol
+      cls = tpe.typeSymbol
     } {
       cls.info match {
         // class declaration and has a set of parents
         case ClassInfoType(parents, _, _) =>
-          for { parent <- parents } {
+          for {parent <- parents} {
             val args = parent.typeArguments
             val cstr = parent.typeConstructor
             val params = cstr.typeParams
@@ -282,31 +325,37 @@ trait CGUtils extends Probe with Annotations {
 
     // Using `actual` rather than `ThisType(actual.typeSymbol)`, the latter causes loss of generic type information
     // see (Generics4)
-    val args = tparams map { _.asSeenFrom(actual, declared.typeSymbol) }
+    val args = tparams map {
+      _.asSeenFrom(actual, declared.typeSymbol)
+    }
 
-    declared.instantiateTypeParams(tparams map { _.typeSymbol }, args)
+    declared.instantiateTypeParams(tparams map {
+      _.typeSymbol
+    }, args)
   }
 
+  def superName = ((name: String) => {
+    val super$Prefix = "super$"
+    if (name.startsWith(super$Prefix))
+      name.substring(super$Prefix.length)
+    else name
+  })
+
   def superLookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Type]): Set[Symbol] = {
-    lookup(receiverType, staticTarget, consideredClasses, lookForSuperClasses = true,
-      getSuperName = ((name: String) => {
-        val super$Prefix = "super$"
-        if (name.startsWith(super$Prefix))
-          name.substring(super$Prefix.length)
-        else name
-      }))
+    lookup(receiverType, staticTarget, consideredClasses, lookForSuperClasses = true, getSuperName = superName)
   }
 
   /**
    * The main method lookup for Scala.
    */
   def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Type],
-    // default parameters, used only for super method lookup 
-    lookForSuperClasses: Boolean = false, getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
+             // default parameters, used only for super method lookup
+             lookForSuperClasses: Boolean = false, getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
     // If the target method is a constructor, no need to do the lookup.
     if (staticTarget.isConstructor) {
-      return Set(staticTarget)
-    } else { // If it's in the application, then resolve the call
+      Set(staticTarget)
+    } else {
+      // If it's in the application, then resolve the call
       var targets = List[Symbol]()
       for {
         tpe <- consideredClasses
@@ -338,7 +387,7 @@ trait CGUtils extends Probe with Annotations {
        * Else, return the set of resolved targets in addition to the static target. The static target then stands for
        * all those edges that we couldn't compute because we do not analyze the library.
        */
-      if (isLibrary(staticTarget)) {
+      if (isLibrary(staticTarget)) {       // todo: what for super methods?
         targets = staticTarget :: targets
       }
 
@@ -424,7 +473,7 @@ trait CGUtils extends Probe with Annotations {
     val seen = mutable.Set[T]() ++ initial
     val queue = mutable.Queue[T]() ++ initial
     while (!queue.isEmpty) {
-      val item = queue.dequeue
+      val item = queue.dequeue()
       val image = transition(item) -- seen
       queue ++= image
       seen ++= image
@@ -439,33 +488,38 @@ trait CGUtils extends Probe with Annotations {
     val mainName = stringToTermName("main")
 
     val mainMethods = classes.filter(_.typeSymbol.isModuleOrModuleClass). // filter classes that are objects
-      collect { case cs: ModuleTypeRef => cs.member(mainName) }. // collect main methods
+      collect {
+      case cs: ModuleTypeRef => cs.member(mainName)
+    }. // collect main methods
       filter(m => m.isMethod && // consider only methods, not fields or other members
-        !m.isDeferred && // filter out abstract methods
-        m.typeSignature.toString.equals("(args: Array[String])Unit")) // filter out methods accidentally named "main"
+      !m.isDeferred && // filter out abstract methods
+      m.typeSignature.toString().equals("(args: Array[String])Unit")) // filter out methods accidentally named "main"
 
     // global.definitions.StringArray
 
     Set() ++ mainMethods
   }
 
-  lazy val reachableMethods = transitiveClosure(entryPoints ++ callbacks, { source: Symbol =>
-    for {
-      callSite <- callSitesInMethod.getOrElse(source, Set()).filter(reachableCode contains _.enclMethod)
-      target <- callGraph(callSite)
-    } yield target: Symbol
+  lazy val reachableMethods = transitiveClosure(entryPoints ++ callbacks, {
+    source: Symbol =>
+      for {
+        callSite <- callSitesInMethod.getOrElse(source, Set()).filter(reachableCode contains _.enclMethod)
+        target <- callGraph(callSite)
+      } yield target: Symbol
   })
 
   val methodToId: collection.Map[Symbol, Int]
+
   def printCallGraph(out: java.io.PrintStream) = {
     for {
       source <- reachableMethods
-      val sourceId = methodToId.getOrElse(source, 0)
+      sourceId = methodToId.getOrElse(source, 0)
       callSite <- callSitesInMethod.getOrElse(source, Set()).filter(reachableCode contains _.enclMethod)
       target <- callGraph(callSite)
-      val targetId = methodToId.getOrElse(target, 0)
+      targetId = methodToId.getOrElse(target, 0)
     } out.println(sourceId + " " + targetId)
   }
+
   def printTextualCallGraph(out: java.io.PrintStream) = {
     for {
       source <- reachableMethods
@@ -567,7 +621,7 @@ trait CGUtils extends Probe with Annotations {
    * Get the relative path for an absolute source file path.
    */
   def relativize(file: AbstractFile): String = {
-    file.toString.replaceFirst(".+/build_src/[^/]+/", "")
+    file.toString().replaceFirst(".+/build_src/[^/]+/", "")
   }
 
   /**
