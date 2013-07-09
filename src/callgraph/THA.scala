@@ -8,6 +8,8 @@ trait THA extends CGUtils {
   val global: nsc.Global
   import global._
 
+  val handleSuperCalls = true
+  
   var callGraph = Map[CallSite, Set[Symbol]]()
 
   var superMethodNames = Set[TermName]()
@@ -150,7 +152,7 @@ trait THA extends CGUtils {
                     members.contains(method)
                   }
             }
-          val superSymbols = getSuperSymbols(callSite)
+          val superSymbols = if (handleSuperCalls) getSuperSymbols(callSite) else Set()
           targets = lookup(receiver.tpe, csStaticTarget, filteredClasses) ++ superSymbols // todo: for super[T] lookup here not necessary
         }
 
