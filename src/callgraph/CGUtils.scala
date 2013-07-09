@@ -1,16 +1,17 @@
 package callgraph
 
 import java.io.PrintStream
+
 import scala.collection.mutable
 import scala.reflect.io.AbstractFile
 import scala.tools.nsc
+
 import ca.uwaterloo.scalacg.util.Annotations
 import ca.uwaterloo.scalacg.util.Probe
 import probe.CallGraph
 import scalacg.probe.CallEdge
 import scalacg.probe.CallSiteContext
 import scalacg.probe.GXLWriter
-import scala.collection.immutable.HashMap
 
 trait CGUtils extends Probe with Annotations {
   val global: nsc.Global // same as the other global
@@ -531,14 +532,16 @@ trait CGUtils extends Probe with Annotations {
   def printProbeCallGraph(out: java.io.PrintStream) = {
     val probeCallGraph = new CallGraph
     val entryPointsOut = new PrintStream("entrypoints.txt")
+    val libraryOut = new PrintStream("library.txt")
 
-    // Get the entry points
+    // Get the entry points (these include main method and callbacks)
     for {
-      entry <- entryPoints
+      entry <- entryPoints ++ callbacks
     } {
       probeCallGraph.entryPoints.add(probeMethod(entry))
       entryPointsOut.println(methodToId.getOrElse(entry, 0) + " ===> " + probeMethod(entry))
     }
+    entryPointsOut.close
 
     // Get the edges
     for {
@@ -547,7 +550,14 @@ trait CGUtils extends Probe with Annotations {
       target <- callGraph(callSite)
       val sourceFile = relativize(callSite.pos.source.file)
       val line = callSite.pos.line.toString
-    } probeCallGraph.edges.add(new CallEdge(probeMethod(source), probeMethod(target), new CallSiteContext(sourceFile + " : line " + line)))
+    } {
+      val edge = new CallEdge(probeMethod(source), probeMethod(target), new CallSiteContext(sourceFile + " : line " + line))
+      probeCallGraph.edges.add(edge)
+
+      // Print out library methods to be added to the WALA call graph
+      if (isLibrary(target)) libraryOut.println(edge.src + " ===> " + edge.dst + " :: " + edge.context)
+    }
+    libraryOut.close
 
     // Write GXL file
     new GXLWriter().write(probeCallGraph, out)
