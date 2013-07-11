@@ -361,10 +361,11 @@ trait CGUtils extends Probe with Annotations {
         tpe <- consideredClasses
         expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
         asf = expandedType.asSeenFrom(tpe, expandedType.typeSymbol)
-        if tpe <:< asf || lookForSuperClasses
+        val tpeasf = tpe.asSeenFrom(asf, tpe.typeSymbol)
+        if tpeasf <:< asf || lookForSuperClasses
         target = if (lookForSuperClasses) {
-          tpe.member(staticTarget.name.newName(getSuperName(staticTarget.name.toString))) // todo: bad bad bad 
-        } else tpe.member(staticTarget.name)
+          tpeasf.member(staticTarget.name.newName(getSuperName(staticTarget.name.toString))) // todo: bad bad bad 
+        } else tpeasf.member(staticTarget.name)
         if !target.isDeferred
       } {
         target match {

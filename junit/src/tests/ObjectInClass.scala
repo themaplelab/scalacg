@@ -8,6 +8,8 @@ object ObjectInClass {
     val a = new A
     val b = a.B
     b.foo
+    val c = a.c
+    c.bar
   }
   
   class A {
@@ -15,6 +17,11 @@ object ObjectInClass {
       @reachable
       def foo = "foo"
     }
+    class C {
+      @reachable
+      def bar = "foo"
+    }
+    val c = new C
   }
 
 }
