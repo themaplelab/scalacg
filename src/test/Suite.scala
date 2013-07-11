@@ -50,6 +50,8 @@ class Suite {
   @Test def testThisType3 = runTest("ThisType3")
 
   @Test def testObjectInClass = runTest("ObjectInClass")
+  @Test def testObjectInObject = runTest("ObjectInObject")
+  
   @Test def testOverriding1 = runTest("Overriding1")
   @Test def testOverloading = runTest("Overloading")
 

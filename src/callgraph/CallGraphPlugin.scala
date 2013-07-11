@@ -1,17 +1,16 @@
 package callgraph
 
 import java.io.PrintStream
-
 import scala.collection.immutable.List
 import scala.collection.mutable
 import scala.tools.nsc.Global
 import scala.tools.nsc.Phase
 import scala.tools.nsc.plugins.Plugin
 import scala.tools.nsc.plugins.PluginComponent
-
 import ca.uwaterloo.scalacg.util.Annotations
 import ca.uwaterloo.scalacg.util.Assertions
 import ca.uwaterloo.scalacg.util.Probe
+import ca.uwaterloo.scalacg.util.Timer
 
 class CallGraphPlugin(val global: Global) extends Plugin {
   val name = "callgraph"
@@ -38,17 +37,21 @@ class CallGraphPlugin(val global: Global) extends Plugin {
       import global._ // just saves you typing
 
       val methodToId = CallGraphPlugin.this.methodToId
-      
+
       var trees = List[Tree]() // global.Tree
-      
+
       var appClasses = Set[Type]()
-      
+
       override def run = {
         trees = global.currentRun.units.map(_.body).toList
-        appClasses = Set[Type](_appClasses.toSeq : _ *) // weird Scala syntax to initialize a set with elements from another set
-        
+        appClasses = Set[Type](_appClasses.toSeq: _*) // weird Scala syntax to initialize a set with elements from another set
+
         initialize
         buildCallGraph
+
+        // End the timer
+        Timer.end = System.currentTimeMillis()
+        println("It took: " + Timer.elapsed)
 
         val callgraphtxt = new PrintStream("callgraph.txt")
         printCallGraph(callgraphtxt)
@@ -101,10 +104,13 @@ class CallGraphPlugin(val global: Global) extends Plugin {
     class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with Annotations {
       val global = AnnotationComponent.this.global
       import global._
-      
+
       var serialNum = 1
 
       def apply(unit: AnnotationComponent.this.global.CompilationUnit) = {
+        // Start the timer
+        Timer.start = System.currentTimeMillis()
+
         val valueName = newTermName("value")
         unit.body.foreach { node =>
           if (node.isInstanceOf[DefDef]) {

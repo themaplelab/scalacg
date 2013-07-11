@@ -36,7 +36,7 @@ trait CGUtils extends Probe with Annotations {
   def callGraph: CallSite => Set[Symbol]
 
   case class CallSite(receiver: Tree, staticTarget: MethodSymbol, args: List[Tree], annotation: List[String],
-                      ancestors: List[Tree], pos: Position, enclMethod: Symbol)
+    ancestors: List[Tree], pos: Position, enclMethod: Symbol)
 
   /**
    * Find the enclosing method from the given list of ancestors. For call sites in methods, that's obvious. For call sites
@@ -133,10 +133,10 @@ trait CGUtils extends Probe with Annotations {
         findCallSites(tree, List())
     }
 
-    //    for { callSite <- callSites } {
-    //      println(signature(callSite.enclMethod) + " ===> " + signature(callSite.staticTarget))
-    //      println(callSite.receiver.tpe.isComplete)
-    //    }
+//    for { callSite <- callSites } {
+//      println(signature(callSite.enclMethod) + " ===> " + signature(callSite.staticTarget))
+//      println(callSite.receiver.tpe)
+//    }
 
     //    for {
     //      cls <- classes
@@ -255,7 +255,7 @@ trait CGUtils extends Probe with Annotations {
       cls.info match {
         // class declaration and has a set of parents
         case ClassInfoType(parents, _, _) =>
-          for {parent <- parents} {
+          for { parent <- parents } {
             val args = parent.typeArguments
             val cstr = parent.typeConstructor
             val params = cstr.typeParams
@@ -311,6 +311,14 @@ trait CGUtils extends Probe with Annotations {
     !isApplication(symbol)
   }
 
+  /**
+   * Does a symbol override a library method?
+   */
+  def isOverridingLibraryMethod(symbol: Symbol) = {
+    !symbol.isConstructor && symbol.isMethod && !symbol.isDeferred &&
+      symbol.isOverridingSymbol && symbol.allOverriddenSymbols.filter(isLibrary).nonEmpty
+  }
+
   def expand(t: Type): Set[Type] = {
     val sym = t.typeSymbol
     if (sym.isAbstractType) {
@@ -349,8 +357,8 @@ trait CGUtils extends Probe with Annotations {
    * The main method lookup for Scala.
    */
   def lookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Type],
-             // default parameters, used only for super method lookup
-             lookForSuperClasses: Boolean = false, getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
+    // default parameters, used only for super method lookup
+    lookForSuperClasses: Boolean = false, getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
     // If the target method is a constructor, no need to do the lookup.
     if (staticTarget.isConstructor) {
       Set(staticTarget)
@@ -388,7 +396,7 @@ trait CGUtils extends Probe with Annotations {
        * Else, return the set of resolved targets in addition to the static target. The static target then stands for
        * all those edges that we couldn't compute because we do not analyze the library.
        */
-      if (isLibrary(staticTarget)) {       // todo: what for super methods?
+      if (isLibrary(staticTarget)) { // todo: what for super methods?
         targets = staticTarget :: targets
       }
 
@@ -490,11 +498,11 @@ trait CGUtils extends Probe with Annotations {
 
     val mainMethods = classes.filter(_.typeSymbol.isModuleOrModuleClass). // filter classes that are objects
       collect {
-      case cs: ModuleTypeRef => cs.member(mainName)
-    }. // collect main methods
+        case cs: ModuleTypeRef => cs.member(mainName)
+      }. // collect main methods
       filter(m => m.isMethod && // consider only methods, not fields or other members
-      !m.isDeferred && // filter out abstract methods
-      m.typeSignature.toString().equals("(args: Array[String])Unit")) // filter out methods accidentally named "main"
+        !m.isDeferred && // filter out abstract methods
+        m.typeSignature.toString().equals("(args: Array[String])Unit")) // filter out methods accidentally named "main"
 
     // global.definitions.StringArray
 
@@ -603,8 +611,8 @@ trait CGUtils extends Probe with Annotations {
       source <- reachableMethods
       callSite <- callSitesInMethod.getOrElse(source, Set()).filter(reachableCode contains _.enclMethod)
       target <- callGraph(callSite)
-      val sourceFile = relativize(callSite.pos.source.file)
-      val line = callSite.pos.line.toString
+      val sourceFile = if (callSite.pos.isDefined) relativize(callSite.pos.source.file) else "unknown"
+      val line = if (callSite.pos.isDefined) callSite.pos.line.toString else "-1"
     } {
       val edge = new CallEdge(probeMethod(source), probeMethod(target), new CallSiteContext(sourceFile + " : line " + line))
       probeCallGraph.edges.add(edge)
