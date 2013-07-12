@@ -175,4 +175,6 @@ class Suite {
   @Test def testGeneratedReflection1 = runTest("GeneratedReflection1")
   
   @Test def testMultipleBounds = runTest("MultipleBounds")
+  
+  @Test def testDefInDef = runTest("DefInDef")
 }
