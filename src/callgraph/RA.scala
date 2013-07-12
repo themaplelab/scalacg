@@ -59,10 +59,16 @@ trait RA extends CGUtils {
 
     return ret
   }
-
+  
   def buildCallGraph() {
-    classes = appClasses
-
+    classes = trees.flatMap {
+      tree =>
+        tree.collect {
+          case cd: ClassDef => cd.symbol.tpe
+          case nw: New => nw.tpt.tpe // to get the library types used in the application
+        }
+    }.toSet
+    
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
 
