@@ -1,2 +1,17 @@
-Foreach2
-ApplyConfusion1
+==============================
+DefInDef
+==============================
+Items in work list: 1
+huh :: List(method typeChecking)
+Items in work list: 5
+huh :: List(method typeChecking)
+Items in work list: 3
+huh :: List(method println)
+huh :: List(method typeChecking)
+Items in work list: 1
+huh :: List(method println)
+huh :: List(method typeChecking)
+It took: 0.311
+Expected reachables: <tests.DefInDef.Types: typeChecking()>, <tests.DefInDef.Types: checkAccess()>
+Reachable methods: <scala.Predef: println(x: Any)>, <tests.DefInDef.Types: checkAccess()>, <tests.DefInDef: main(args: Array[String])>, <tests.DefInDef.Types: typeChecking()>
+

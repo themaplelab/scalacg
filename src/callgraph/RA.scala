@@ -26,7 +26,7 @@ trait RA extends CGUtils {
   // newly reachable methods to be processed
   val methodWorklist = mutable.Queue[Symbol]()
 
-  var cache = Map[Name, Set[Symbol]]()
+  var cache = Map[(Name, Boolean), Set[Symbol]]()
 
   def addMethod(method: Symbol) = if (!reachableCode(method)) methodWorklist += method
 
@@ -38,27 +38,29 @@ trait RA extends CGUtils {
       return Set(staticTarget)
     }
 
+    val key = (staticTarget.name, lookForSuperClasses)
+
     // Do we have the result cached?
-    if (!(cache contains staticTarget.name)) {
+    if (!(cache contains key)) {
       // Lookup the targets by name
       var targets = classes.flatMap(_.members.filter((m: Symbol) =>
         m.name == (if (lookForSuperClasses) staticTarget.name.newName(getSuperName(staticTarget.name.toString)) else staticTarget.name)
           && m.isMethod))
 
-      // Add the static target if it's in the library
-      if (isLibrary(staticTarget)) {
-        targets += staticTarget
-      }
-
       // Add to cache
-      cache += (staticTarget.name -> targets)
+      cache += (key -> targets)
     }
 
-    return cache(staticTarget.name)
+    var ret = cache(key)
+    // Add the static target if it's in the library
+    if (isLibrary(staticTarget)) {
+      ret += staticTarget
+    }
+
+    return ret
   }
 
   def buildCallGraph() {
-
     classes = appClasses
 
     // start off the worklist with the entry points
@@ -84,13 +86,9 @@ trait RA extends CGUtils {
     }
     callbacks.foreach(addMethod)
 
-    //    var debug = false
-
     while (methodWorklist.nonEmpty) {
       // Debugging info
       println("Items in work list: " + methodWorklist.size)
-
-      //      debug = methodWorklist.size <= 2
 
       // process new methods
       for (method <- methodWorklist.dequeueAll(_ => true)) {
@@ -102,19 +100,28 @@ trait RA extends CGUtils {
         callSite <- callSites
         if reachableCode contains callSite.enclMethod
       } {
-        //        if(debug) println(callSite.enclMethod + " ===> " + callSite.staticTarget)
         val csStaticTarget = callSite.staticTarget
-        val superTargets = if (isSuperCall(callSite))
-          nameLookup(csStaticTarget, classes, lookForSuperClasses = true, getSuperName = superName)
-        else Set()
-        val targets = nameLookup(csStaticTarget, classes) ++ superTargets
+        var targets = Set[Symbol]()
+
+        if (callSite.receiver == null) {
+          targets = Set(csStaticTarget)
+        } else {
+          val superTargets = {
+            if (isSuperCall(callSite))
+              nameLookup(csStaticTarget, classes, lookForSuperClasses = true, getSuperName = superName)
+            else
+              Set()
+          }
+          targets = nameLookup(csStaticTarget, classes) ++ superTargets
+        }
+
         callGraph += (callSite -> targets)
         targets.foreach(addMethod)
       }
     }
-    
+
     // Debugging info
-      println("Work list is empty now.")
+    println("Work list is empty now.")
   }
 
   val annotationFilter: PartialFunction[Tree, String] = {

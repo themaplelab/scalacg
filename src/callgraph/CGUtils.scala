@@ -133,10 +133,10 @@ trait CGUtils extends Probe with Annotations {
         findCallSites(tree, List())
     }
 
-//    for { callSite <- callSites } {
-//      println(signature(callSite.enclMethod) + " ===> " + signature(callSite.staticTarget))
-//      println(callSite.receiver.tpe)
-//    }
+    //    for { callSite <- callSites } {
+    //      println(signature(callSite.enclMethod) + " ===> " + signature(callSite.staticTarget))
+    //      println(callSite.receiver.tpe)
+    //    }
 
     //    for {
     //      cls <- classes
@@ -361,7 +361,7 @@ trait CGUtils extends Probe with Annotations {
     lookForSuperClasses: Boolean = false, getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
     // If the target method is a constructor, no need to do the lookup.
     if (staticTarget.isConstructor) {
-      Set(staticTarget)
+      return Set(staticTarget)
     } else {
       // If it's in the application, then resolve the call
       var targets = List[Symbol]()
@@ -400,7 +400,7 @@ trait CGUtils extends Probe with Annotations {
         targets = staticTarget :: targets
       }
 
-      targets.toSet
+      return targets.toSet
     }
   }
 

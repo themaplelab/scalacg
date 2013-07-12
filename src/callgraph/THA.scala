@@ -107,16 +107,12 @@ trait THA extends CGUtils {
     while (methodWorklist.nonEmpty) {
       // Debugging info
       println("Items in work list: " + methodWorklist.size)
-      
-      //      var previousInstantiatedClasses = instantiatedClasses
 
       // process new methods
       for (method <- methodWorklist.dequeueAll(_ => true)) {
         reachableCode += method
         instantiatedClasses ++= classesInMethod(method)
       }
-
-      //      var newInstantiatedClasses = instantiatedClasses diff previousInstantiatedClasses
 
       // find call sites that use super (e.g., super.foo())
       // Now this has been moved inside the worklist (see ThisType2)
