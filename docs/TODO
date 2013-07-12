@@ -1,7 +1,16 @@
-7. AbstractTypes12 was commented out and lacked assertions. After 
-reinstating
-the test, and placing assertions on the two method calls, the test 
-fails. This
-appears to be a bug that has to do with the handling of abstract type 
-members.
-The problem seemingly has to do with the call on line 21.
+- code refactoring
+- single command to
+	- run all experiments
+	- generate latex statistics
+- run TCA/RA without changing the code
+- fixing bug in RA
+- optimization
+	- TCA: avoid redundant work
+	- reducing loops
+- sanity check RA is superset of TCA
+- experiments with this-pointers disabled
+- phantm, kiama, other benchmarks
+- comparison with WALA, dynamic call graphs
+- more test cases for RA
+	- including notreachables
+- find real examples with generated reflection
