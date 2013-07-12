@@ -35,7 +35,7 @@ trait RA extends CGUtils {
 
     // Don't lookup a call to a constructor
     if (staticTarget.isConstructor) {
-      Set(staticTarget)
+      return Set(staticTarget)
     }
 
     // Do we have the result cached?
