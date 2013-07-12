@@ -1,8 +1,0 @@
-1 ===> tests.Foreach2
-3 ===> tests.Foreach2.A
-8 ===> callgraph.annotation.invocations
-7 ===> callgraph.annotation.target
-6 ===> tests.Foreach2.B
-4 ===> tests.Foreach2.A
-2 ===> tests.Foreach2
-5 ===> tests.Foreach2.B
