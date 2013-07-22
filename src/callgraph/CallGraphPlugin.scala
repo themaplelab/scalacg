@@ -20,6 +20,19 @@ class CallGraphPlugin(val global: Global) extends Plugin {
   var expectedReachables = Set[global.Symbol]()
   var expectedNotReachables = Set[global.Symbol]()
   var _appClasses = Set[global.Type]() // had to use another name here to make the set of appClasses shareable across the two components
+  
+  // Plugin options
+  var doTca = false
+  var doThis = false
+  
+  override def processOptions(options: List[String], error: String => Unit) {
+    options match {
+      case "tca" :: tail => doTca = true; processOptions(tail, error)
+      case "this" :: tail => doThis = true; processOptions(tail, error)
+      case option :: tail => error("Error, unknown option: " + option) 
+      case nil => // no more options to process
+    }
+  }
 
   /** Phase that resolves call sites to compute call graph */
   private object CallGraphComponent extends PluginComponent {

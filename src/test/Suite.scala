@@ -11,6 +11,7 @@ class Suite {
     settings.plugin.value = List("jar/callgraph-plugin.jar")
     settings.bootclasspath.append("junit/bin")
     settings.bootclasspath.append("bin")
+    settings.pluginOptions.value = List("callgraph:tca", "callgraph:this")
     val g = new nsc.Global(settings)
     println("==============================")
     println(filename)
