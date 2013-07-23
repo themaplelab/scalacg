@@ -7,12 +7,11 @@ import scala.tools.nsc.Global
 import scala.tools.nsc.Phase
 import scala.tools.nsc.plugins.Plugin
 import scala.tools.nsc.plugins.PluginComponent
-import ca.uwaterloo.scalacg.util.Annotations
-import ca.uwaterloo.scalacg.util.Assertions
-import ca.uwaterloo.scalacg.util.Probe
-import ca.uwaterloo.scalacg.util.Timer
+import ca.uwaterloo.scalacg.util.{CGAnnotations, Assertions, Timer}
+import util.CGPrint
 
 class CallGraphPlugin(val global: Global) extends Plugin {
+
   val name = "callgraph"
   val description = "builds a call graph"
   val components = List[PluginComponent](AnnotationComponent, CallGraphComponent)
@@ -20,6 +19,8 @@ class CallGraphPlugin(val global: Global) extends Plugin {
   var expectedReachables = Set[global.Symbol]()
   var expectedNotReachables = Set[global.Symbol]()
   var _appClasses = Set[global.Type]() // had to use another name here to make the set of appClasses shareable across the two components
+
+  def buildCallGraph()
   
   // Plugin options
   var doTca = false
@@ -41,9 +42,12 @@ class CallGraphPlugin(val global: Global) extends Plugin {
     def newPhase(prevPhase: Phase) = new CallGraphPhase(prevPhase)
     val phaseName = CallGraphPlugin.this.name
 
-    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with CGUtils with Assertions with RA with Probe {
+    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with Assertions with TCA with CGPrint {
+
       // apply is called for each file, but we want to run once for all files, that's why we override run
-      def apply(unit: CallGraphComponent.this.global.CompilationUnit) = assert(false)
+      def apply(unit: CallGraphComponent.this.global.CompilationUnit) {
+        assert(assertion = false)
+      }
 
       // The cake pattern stuff, you need to provide a "concrete" reference for Global
       val global = CallGraphComponent.this.global
@@ -55,12 +59,12 @@ class CallGraphPlugin(val global: Global) extends Plugin {
 
       var appClasses = Set[Type]()
 
-      override def run = {
+      override def run() {
         trees = global.currentRun.units.map(_.body).toList
         appClasses = Set[Type](_appClasses.toSeq: _*) // weird Scala syntax to initialize a set with elements from another set
 
-        initialize
-        buildCallGraph
+        initialize()
+        buildCallGraph()
 
         // End the timer
         Timer.end = System.currentTimeMillis()
@@ -83,7 +87,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
         methodstxt.close()
 
         val methodsOwnersTxt = new PrintStream("methodsOwners.txt")
-        printMethodsOnwers(methodsOwnersTxt)
+        printMethodsOwners(methodsOwnersTxt)
         methodsOwnersTxt.close()
 
         val callgraphgxl = new PrintStream("callgraph.gxl")
@@ -102,7 +106,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
 
         // Some more assertions
         // TODO: we should have all these assertions in the Assertions trait and just call it there (code refactoring)
-        printAnnotatedCallsites
+        printAnnotatedCallsites()
       }
     }
   }
@@ -114,13 +118,13 @@ class CallGraphPlugin(val global: Global) extends Plugin {
     def newPhase(prevPhase: Phase) = new CallGraphPhase(prevPhase)
     val phaseName = "targetannotation"
 
-    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with Annotations {
+    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with CGAnnotations {
       val global = AnnotationComponent.this.global
       import global._
 
       var serialNum = 1
 
-      def apply(unit: AnnotationComponent.this.global.CompilationUnit) = {
+      def apply(unit: AnnotationComponent.this.global.CompilationUnit) {
         // Start the timer
         Timer.start = System.currentTimeMillis()
 

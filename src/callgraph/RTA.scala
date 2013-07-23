@@ -1,13 +1,11 @@
 package callgraph
 
-import scala.tools.nsc
 import scala.collection.mutable
 
-trait RTA { this: CGUtils =>
-  val global: nsc.Global
+trait RTA { this: AbstractAnalysis =>
+
   import global._
 
-  var instantiatedClasses = Set[Type]()
   // in Scala, code can appear in classes as well as in methods, so reachableCode generalizes reachable methods
   var reachableCode = Set[Symbol]()
 
@@ -39,7 +37,7 @@ trait RTA { this: CGUtils =>
   def buildCallGraph = {
     // all objects are considered to be allocated
     instantiatedClasses ++= classes.filter(_.typeSymbol.isModuleOrModuleClass) 
-    // this should be the same as in CGUtils.initialize
+    // this should be the same as in AbstractAnalysis.initialize
     // so this probably should say isModuleClass, if it breaks, then revert :D
     
     
@@ -54,7 +52,7 @@ trait RTA { this: CGUtils =>
 
       // process all call sites
       for (callSite <- callSites) {
-        val targets = lookup(callSite.receiver.tpe, callSite.staticTarget, instantiatedClasses)
+        val targets = lookup(callSite.staticTarget, instantiatedClasses, callSite.receiver.tpe)
         callGraph += (callSite -> targets)
         targets.foreach(addMethod)
       }

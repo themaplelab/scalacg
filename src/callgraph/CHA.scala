@@ -2,18 +2,18 @@ package callgraph
 
 import scala.tools.nsc
 
-trait CHA { this: CGUtils =>
+trait CHA { this: AbstractAnalysis =>
   val global: nsc.Global
   import global._
 
   var callGraph = Map[CallSite, Set[Symbol]]()
 
-  def buildCallGraph = {
+  def buildCallGraph() {
     for (callSite <- callSites) {
       if (callSite.receiver == null) {
         callGraph += (callSite -> Set(callSite.staticTarget))
       } else {
-        val targets = lookup(callSite.receiver.tpe, callSite.staticTarget, classes)
+        val targets = lookup(callSite.staticTarget, classes, callSite.receiver.tpe)
         callGraph += (callSite -> targets)
       }
     }

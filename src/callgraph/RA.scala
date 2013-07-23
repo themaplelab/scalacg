@@ -1,37 +1,23 @@
 package callgraph
 
-import scala.collection.mutable
-import scala.tools.nsc
 import scala.collection.immutable.Set
 import scala.Predef._
+import util.SuperCalls
 
-trait RA extends CGUtils {
-  val global: nsc.Global
+trait RA extends AbstractAnalysis with SuperCalls {
 
   import global._
 
   var callGraph = Map[CallSite, Set[Symbol]]()
 
-  var superMethodNames = Set[TermName]()
+  private var cache = Map[(Name, Boolean), Set[Symbol]]()
 
-  val classToMembers = mutable.Map[Type, Set[Symbol]]()
-
-  var instantiatedClasses = Set[Type]()
-
-  // in Scala, code can appear in classes as well as in methods, so reachableCode generalizes reachable methods
-  var reachableCode = Set[Symbol]()
-
-  var callbacks = Set[Symbol]()
-
-  // newly reachable methods to be processed
-  val methodWorklist = mutable.Queue[Symbol]()
-
-  var cache = Map[(Name, Boolean), Set[Symbol]]()
-
-  def addMethod(method: Symbol) = if (!reachableCode(method)) methodWorklist += method
-
-  def nameLookup(staticTarget: Symbol, classes: Set[Type],
-    lookForSuperClasses: Boolean = false, getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
+  def lookup(staticTarget: MethodSymbol,
+             consideredClasses: Set[Type],
+             // default parameters, used only for super method lookup
+             receiverType: Type = null,
+             lookForSuperClasses: Boolean = false,
+             getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
 
     // Don't lookup a call to a constructor
     if (staticTarget.isConstructor) {
@@ -43,7 +29,7 @@ trait RA extends CGUtils {
     // Do we have the result cached?
     if (!(cache contains key)) {
       // Lookup the targets by name
-      var targets = classes.flatMap(_.members.filter((m: Symbol) =>
+      val targets = classes.flatMap(_.members.filter((m: Symbol) =>
         m.name == (if (lookForSuperClasses) staticTarget.name.newName(getSuperName(staticTarget.name.toString)) else staticTarget.name)
           && m.isMethod))
 
@@ -57,17 +43,20 @@ trait RA extends CGUtils {
       ret += staticTarget
     }
 
-    return ret
+    ret
   }
 
-  def buildCallGraph() {
-    classes = trees.flatMap {
+  def getClasses: Set[Type] = {
+    trees.flatMap {
       tree =>
         tree.collect {
           case cd: ClassDef => cd.symbol.tpe
           case nw: New => nw.tpt.tpe // to get the library types used in the application
         }
     }.toSet
+  }
+
+  def buildCallGraph() {
 
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
@@ -114,11 +103,11 @@ trait RA extends CGUtils {
         } else {
           val superTargets = {
             if (isSuperCall(callSite))
-              nameLookup(csStaticTarget, classes, lookForSuperClasses = true, getSuperName = superName)
+              lookup(csStaticTarget, classes, lookForSuperClasses = true, getSuperName = superName)
             else
               Set()
           }
-          targets = nameLookup(csStaticTarget, classes) ++ superTargets
+          targets = lookup(csStaticTarget, classes) ++ superTargets
         }
 
         callGraph += (callSite -> targets)

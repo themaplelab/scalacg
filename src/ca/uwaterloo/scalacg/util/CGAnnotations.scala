@@ -1,11 +1,10 @@
 package ca.uwaterloo.scalacg.util
 
 import scala.tools.nsc.Global
-import callgraph.CGUtils
+import callgraph.AbstractAnalysis
 
-trait Annotations {
+trait CGAnnotations extends Probe {
 
-  val global: Global
   import global._
 
   final lazy val reachableAnnotation = rootMirror.getRequiredClass("callgraph.annotation.reachable")
@@ -15,6 +14,8 @@ trait Annotations {
   final lazy val targetAnnotation = rootMirror.getRequiredClass("callgraph.annotation.target")
   final lazy val noInvocationsAnnotation = rootMirror.getRequiredClass("callgraph.annotation.noInvocations")
   final lazy val NONE = "__NONE__"
+
+  private val UNANNOT = "<unannotated>"
 
   /**
    * Does a method have a @reachable annotation?
@@ -43,5 +44,23 @@ trait Annotations {
       assert(reach.size <= 1) // There should only be a maximum of one @reachable or @notreachable annotation per method
     }
     reach.nonEmpty
+  }
+
+  def findTargetAnnotation(symbol: Symbol): String =
+    findAnnotationTargets(symbol, targetAnnotation, needProbe = true).head
+
+  def findAnnotationTargets(symbol: Symbol, annotation: ClassSymbol, needProbe: Boolean): List[String] = {
+    val targetAnnotationType = annotation.tpe
+    val targets = symbol.annotations.collect {
+      case AnnotationInfo(tpe, args, _) if tpe == targetAnnotationType =>
+        args.map((arg) =>
+          arg match {
+            case Literal(Constant(string: String)) => string
+          })
+
+    }
+    targets.headOption.getOrElse(if (needProbe)
+      List(UNANNOT + " " + probeMethod(symbol))
+    else Nil)
   }
 }
