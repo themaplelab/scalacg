@@ -1,6 +1,7 @@
-package tests.ra
+package tests.tca
 
 import scala.util.control.Breaks._
+import scala.util.Random
 import callgraph.annotation.target
 
 /**
@@ -10,12 +11,12 @@ import callgraph.annotation.target
  */
 object Breakable {
 
-  def main(args: Array[String]) {
-    var sum = 0
-    val a = new A()
+  def main(args: Array[String]) = {
+    var sum = 0;
+    val a = new A();
     breakable {
       for (i <- 0 to 1000) {
-        sum += { "A.one";  a }.one
+        sum += { "A.one";  a }.one;
         if (sum > 1000) {
           println("sum = " + sum)
           println("breaking ...")

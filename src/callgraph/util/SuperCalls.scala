@@ -69,4 +69,7 @@ trait SuperCalls extends Probe {
     }
     Set()
   }
+
+  def isReachableSuperMethodName(method: Symbol, superMethodNames: Set[TermName], reachableCode: Set[Symbol]): Boolean =
+    superMethodNames.contains(method.name) && reachableCode.contains(method)
 }

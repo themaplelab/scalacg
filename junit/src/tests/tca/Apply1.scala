@@ -1,8 +1,8 @@
-package tests.ra
+package tests.tca
 
 object Apply1 {
 
-  def main(args: Array[String]) {
+  def main(args: Array[String]) = {
     val v1 = AddFive()(1) // calls generated constructor, then calls apply()
     println(v1)
     

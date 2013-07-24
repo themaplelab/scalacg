@@ -25,7 +25,7 @@ trait TCA extends AbstractAnalysis with SuperCalls {
 
   def buildCallGraph() {
 
-    var superMethodNames = Set[TermName]()
+    var superCalls = Set[Symbol]()
     val classToMembers = mutable.Map[Type, Set[Symbol]]()
 
     /* Given the ancestors of a This in the AST, determines the method that has that
@@ -73,10 +73,10 @@ trait TCA extends AbstractAnalysis with SuperCalls {
       // Now this has been moved inside the worklist (see ThisType2)
       for {
         callSite <- callSites
+        if isSuperCall(callSite)
         if reachableCode contains callSite.enclMethod
-        if (isSuperCall(callSite))
       } {
-        superMethodNames += callSite.staticTarget.name
+        superCalls += callSite.staticTarget
       }
 
       // process all call sites in reachable code
@@ -102,7 +102,7 @@ trait TCA extends AbstractAnalysis with SuperCalls {
               case NoSymbol => instantiatedClasses
               case symbol =>
                 val method = containingMethod(callSite.ancestors, symbol)
-                if (method == NoSymbol || superMethodNames.contains(method.name)) // todo: replace with isSuperCall
+                if (method == NoSymbol || superCalls.contains(method))  // todo: don't understand why isSuperCall() doesn't work
                   instantiatedClasses
                 else
                   instantiatedClasses.filter { tpe =>

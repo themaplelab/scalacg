@@ -1,7 +1,6 @@
-package tests.ra
+package tests.tca
 
 import callgraph.annotation.target
-import tests.tca.cha
 
 object Overriding1 {
   def main(args: Array[String]) = {
