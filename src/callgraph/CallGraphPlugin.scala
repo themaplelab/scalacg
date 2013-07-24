@@ -7,7 +7,7 @@ import scala.tools.nsc.Global
 import scala.tools.nsc.Phase
 import scala.tools.nsc.plugins.Plugin
 import scala.tools.nsc.plugins.PluginComponent
-import ca.uwaterloo.scalacg.util.{CGAnnotations, Assertions, Timer}
+import ca.uwaterloo.scalacg.util.{ CGAnnotations, Assertions, Timer }
 import util.CGPrint
 
 class CallGraphPlugin(val global: Global) extends Plugin {
@@ -23,12 +23,14 @@ class CallGraphPlugin(val global: Global) extends Plugin {
   // Plugin options
   var doTca = false
   var doThis = false
-  
+
   override def processOptions(options: List[String], error: String => Unit) {
     options match {
-      case "tca" :: tail => doTca = true; processOptions(tail, error)
-      case "this" :: tail => doThis = true; processOptions(tail, error)
-      case option :: tail => error("Error, unknown option: " + option) 
+      case "tca" :: tail =>
+        doTca = true; processOptions(tail, error)
+      case "this" :: tail =>
+        doThis = true; processOptions(tail, error)
+      case option :: tail => error("Error, unknown option: " + option)
       case nil => // no more options to process
     }
   }
@@ -68,33 +70,33 @@ class CallGraphPlugin(val global: Global) extends Plugin {
         Timer.end = System.currentTimeMillis()
         println("It took: " + Timer.elapsed)
 
-        val callgraphtxt = new PrintStream("callgraph.txt")
-        printCallGraph(callgraphtxt)
-        callgraphtxt.close()
-
-        val printcgtxt = new PrintStream("printcg.txt")
-        printTextualCallGraph(printcgtxt)
-        printcgtxt.close()
-
-        val reachablestxt = new PrintStream("reachables.txt")
-        printReachableMethods(reachablestxt)
-        reachablestxt.close()
-
         val methodstxt = new PrintStream("methods.txt")
         printMethods(methodstxt)
         methodstxt.close()
-
-        val methodsOwnersTxt = new PrintStream("methodsOwners.txt")
-        printMethodsOwners(methodsOwnersTxt)
-        methodsOwnersTxt.close()
 
         val callgraphgxl = new PrintStream("callgraph.gxl")
         printProbeCallGraph(callgraphgxl)
         callgraphgxl.close()
 
-        val eclipsecgtxt = new PrintStream("eclipsecg.txt")
-        printEclipseCallGraph(eclipsecgtxt)
-        eclipsecgtxt.close()
+        //        val callgraphtxt = new PrintStream("callgraph.txt")
+        //        printCallGraph(callgraphtxt)
+        //        callgraphtxt.close()
+        //
+        //        val printcgtxt = new PrintStream("printcg.txt")
+        //        printTextualCallGraph(printcgtxt)
+        //        printcgtxt.close()
+        //
+        //        val reachablestxt = new PrintStream("reachables.txt")
+        //        printReachableMethods(reachablestxt)
+        //        reachablestxt.close()
+        //
+        //        val methodsOwnersTxt = new PrintStream("methodsOwners.txt")
+        //        printMethodsOwners(methodsOwnersTxt)
+        //        methodsOwnersTxt.close()
+        //
+        //        val eclipsecgtxt = new PrintStream("eclipsecg.txt")
+        //        printEclipseCallGraph(eclipsecgtxt)
+        //        eclipsecgtxt.close()
 
         // Make sure any method annotated @reachable is in fact reachable in the call graph.
         assertReachables(expectedReachables, reachableMethods)
