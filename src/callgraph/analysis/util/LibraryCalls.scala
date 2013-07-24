@@ -1,13 +1,15 @@
-package callgraph.util
+package callgraph.analysis.util
 
-import callgraph.{AbstractAnalysis, TreeTraversal}
 import ca.uwaterloo.scalacg.util.Probe
+import callgraph.analysis.{TreeTraversal, AbstractAnalysis}
 
 trait LibraryCalls {
 
   this: TreeTraversal with AbstractAnalysis with Probe =>
 
   import global._
+
+  var appClasses: Set[Type]
 
   /**
    * Is this symbol in an application class?
@@ -22,7 +24,7 @@ trait LibraryCalls {
   /**
    * Does a symbol override a library method?
    */
-  def isOverridingLibraryMethod(symbol: Symbol) =  // todo: optimize
+  def isOverridingLibraryMethod(symbol: Symbol) =
     !symbol.isConstructor && symbol.isMethod && !symbol.isDeferred &&
       symbol.isOverridingSymbol && symbol.allOverriddenSymbols.filter(isLibrary).nonEmpty
 

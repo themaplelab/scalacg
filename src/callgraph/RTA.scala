@@ -1,13 +1,14 @@
 package callgraph
 
+import analysis.WorklistAnalysis
 import scala.collection.mutable
-import util.WorklistAnalysis
 
 trait RTA extends WorklistAnalysis {
 
   import global._
   
   def buildCallGraph() {
+    var soFarInstantiatedClasses = Set[Type]()
     // all objects are considered to be allocated
     soFarInstantiatedClasses ++= allInstantiatedClasses.filter(_.typeSymbol.isModuleOrModuleClass)
     // this should be the same as in AbstractAnalysis.initialize

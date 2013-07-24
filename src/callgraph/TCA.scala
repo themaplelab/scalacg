@@ -1,9 +1,10 @@
 package callgraph
 
+import analysis.util.SuperCalls
+import analysis.WorklistAnalysis
 import scala.collection.mutable
 import scala.collection.immutable.Set
 import scala.Predef._
-import util.{WorklistAnalysis, SuperCalls}
 
 trait TCA extends WorklistAnalysis with SuperCalls {
 
@@ -90,13 +91,14 @@ trait TCA extends WorklistAnalysis with SuperCalls {
       targets = staticTarget :: targets
     }
 
-    return targets.toSet
+    targets.toSet
   }
 
   def buildCallGraph() {
 
     var superCalls = Set[Symbol]()
     val classToMembers = mutable.Map[Type, Set[Symbol]]()
+    var soFarInstantiatedClasses = Set[Type]()
 
     // all objects are considered to be allocated
     // Karim: Here isModuleOrModuleClass should be used instead of just isModule, or isModuleClass. I have no idea

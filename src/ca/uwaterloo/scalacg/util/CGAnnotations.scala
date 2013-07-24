@@ -1,8 +1,5 @@
 package ca.uwaterloo.scalacg.util
 
-import scala.tools.nsc.Global
-import callgraph.AbstractAnalysis
-
 trait CGAnnotations extends Probe {
 
   import global._

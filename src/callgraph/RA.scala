@@ -1,8 +1,9 @@
 package callgraph
 
+import analysis.util.SuperCalls
+import analysis.WorklistAnalysis
 import scala.collection.immutable.Set
 import scala.Predef._
-import util.{WorklistAnalysis, SuperCalls}
 
 trait RA extends WorklistAnalysis with SuperCalls {
 

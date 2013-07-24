@@ -1,25 +1,20 @@
-package callgraph
-
+package callgraph.analysis
 
 import scala.collection.mutable
 
 import ca.uwaterloo.scalacg.util.CGAnnotations
 import ca.uwaterloo.scalacg.util.Probe
-import util.{Lookup, LibraryCalls}
 import collection.immutable.Set
+import util.{LibraryCalls, Lookup}
 
 trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with CGAnnotations with Probe {
 
   import global._
 
-  var soFarInstantiatedClasses = Set[Type]()
+  var allInstantiatedClasses = Set[Type]()
   var reachableCode = Set[Symbol]()
   var callbacks = Set[Symbol]()
   var callGraph = Map[CallSite, Set[Symbol]]()
-  var allInstantiatedClasses = Set[Type]()
-
-  // application classes fed to the compiler (i.e., not including Scala/Java libraries)
-  def appClasses: Set[Type]
 
   def getAllInstantiatedClasses: Set[Type]
 

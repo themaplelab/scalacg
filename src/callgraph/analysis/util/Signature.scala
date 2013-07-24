@@ -1,4 +1,4 @@
-package callgraph.util
+package callgraph.analysis.util
 
 import ca.uwaterloo.scalacg.util.Probe
 import tools.nsc

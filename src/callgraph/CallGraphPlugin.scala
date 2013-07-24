@@ -1,5 +1,6 @@
 package callgraph
 
+import analysis.util.CGPrint
 import java.io.PrintStream
 import scala.collection.immutable.List
 import scala.collection.mutable
@@ -8,7 +9,6 @@ import scala.tools.nsc.Phase
 import scala.tools.nsc.plugins.Plugin
 import scala.tools.nsc.plugins.PluginComponent
 import ca.uwaterloo.scalacg.util.{ CGAnnotations, Assertions, Timer }
-import util.CGPrint
 
 class CallGraphPlugin(val global: Global) extends Plugin {
 

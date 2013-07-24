@@ -1,11 +1,11 @@
-package callgraph.util
+package callgraph.analysis.util
 
-import callgraph.AbstractAnalysis
 import ca.uwaterloo.scalacg.util.CGAnnotations
 import probe.CallGraph
 import java.io.PrintStream
 import scalacg.probe.{GXLWriter, CallSiteContext, CallEdge}
 import reflect.io.AbstractFile
+import callgraph.analysis.AbstractAnalysis
 
 trait CGPrint {
 
@@ -34,7 +34,7 @@ trait CGPrint {
     }
 
     def printInvocations() {
-      val symbols: Set[Symbol] = reachableMethods ++ soFarInstantiatedClasses.map(_.typeSymbol)
+      val symbols: Set[Symbol] = reachableMethods ++ allInstantiatedClasses.map(_.typeSymbol)
       for {
         symbol <- symbols
         noInvocations = hasNoInvocationsAnnotation(symbol)

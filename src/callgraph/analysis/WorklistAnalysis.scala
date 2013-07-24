@@ -1,6 +1,5 @@
-package callgraph.util
+package callgraph.analysis
 
-import callgraph.AbstractAnalysis
 import collection.mutable
 
 trait WorklistAnalysis extends AbstractAnalysis {

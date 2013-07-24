@@ -1,5 +1,6 @@
 package callgraph
 
+import analysis.AbstractAnalysis
 import scala.tools.nsc
 
 trait CHA { this: AbstractAnalysis =>

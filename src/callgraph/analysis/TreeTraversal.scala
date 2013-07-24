@@ -1,4 +1,4 @@
-package callgraph
+package callgraph.analysis
 
 import ca.uwaterloo.scalacg.util.{CGAnnotations, Probe}
 import collection.mutable
