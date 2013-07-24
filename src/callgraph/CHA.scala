@@ -6,14 +6,12 @@ trait CHA { this: AbstractAnalysis =>
   val global: nsc.Global
   import global._
 
-  var callGraph = Map[CallSite, Set[Symbol]]()
-
   def buildCallGraph() {
     for (callSite <- callSites) {
       if (callSite.receiver == null) {
         callGraph += (callSite -> Set(callSite.staticTarget))
       } else {
-        val targets = lookup(callSite.staticTarget, classes, callSite.receiver.tpe)
+        val targets = lookup(callSite.staticTarget, allInstantiatedClasses, callSite.receiver.tpe)
         callGraph += (callSite -> targets)
       }
     }

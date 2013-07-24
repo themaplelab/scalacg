@@ -6,27 +6,26 @@ import scala.collection.mutable
 import ca.uwaterloo.scalacg.util.CGAnnotations
 import ca.uwaterloo.scalacg.util.Probe
 import util.{Lookup, LibraryCalls}
+import collection.immutable.Set
 
 trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with CGAnnotations with Probe {
 
   import global._
 
-  var instantiatedClasses = Set[Type]()
+  var soFarInstantiatedClasses = Set[Type]()
   var reachableCode = Set[Symbol]()
   var callbacks = Set[Symbol]()
-
-  def appClasses: Set[Type]
+  var callGraph = Map[CallSite, Set[Symbol]]()
+  var allInstantiatedClasses = Set[Type]()
 
   // application classes fed to the compiler (i.e., not including Scala/Java libraries)
-  def callGraph: CallSite => Set[Symbol]
+  def appClasses: Set[Type]
 
-  var classes = Set[Type]()
-
-  def getClasses: Set[Type]
+  def getAllInstantiatedClasses: Set[Type]
 
   def initialize() {
     // find the set of instantiated classes in the whole program
-    classes = getClasses
+    allInstantiatedClasses = getAllInstantiatedClasses
 
     // find call sites
     trees.foreach {
@@ -34,11 +33,6 @@ trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with 
         findCallSites(tree, List())
     }
   }
-
-  // newly reachable methods to be processed
-  val methodWorklist = mutable.Queue[Symbol]()
-
-  def addMethod(method: Symbol) = if (!reachableCode(method)) methodWorklist += method
 
   private def transitiveClosure[T](initial: Set[T], transition: T => Set[T]): Set[T] = {
     val seen = mutable.Set[T]() ++ initial
@@ -58,7 +52,7 @@ trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with 
   private def mainMethods = {
     val mainName = stringToTermName("main")
 
-    val mainMethods = classes.filter(_.typeSymbol.isModuleOrModuleClass). // filter classes that are objects
+    val mainMethods = allInstantiatedClasses.filter(_.typeSymbol.isModuleOrModuleClass). // filter classes that are objects
       collect {
         case cs: ModuleTypeRef => cs.member(mainName)
       }. // collect main methods

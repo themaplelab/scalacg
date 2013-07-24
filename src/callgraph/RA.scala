@@ -2,15 +2,23 @@ package callgraph
 
 import scala.collection.immutable.Set
 import scala.Predef._
-import util.SuperCalls
+import util.{WorklistAnalysis, SuperCalls}
 
-trait RA extends AbstractAnalysis with SuperCalls {
+trait RA extends WorklistAnalysis with SuperCalls {
 
   import global._
 
-  var callGraph = Map[CallSite, Set[Symbol]]()
-
   private var cache = Map[(Name, Boolean), Set[Symbol]]()
+
+  def getAllInstantiatedClasses: Set[Type] = {
+    trees.flatMap {
+      tree =>
+        tree.collect {
+          case cd: ClassDef => cd.symbol.tpe
+          case nw: New => nw.tpt.tpe // to get the library types used in the application
+        }
+    }.toSet
+  }
 
   def lookup(staticTarget: MethodSymbol,
              consideredClasses: Set[Type],
@@ -20,16 +28,15 @@ trait RA extends AbstractAnalysis with SuperCalls {
              getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
 
     // Don't lookup a call to a constructor
-    if (staticTarget.isConstructor) {
+    if (staticTarget.isConstructor)
       return Set(staticTarget)
-    }
 
     val key = (staticTarget.name, lookForSuperClasses)
 
     // Do we have the result cached?
     if (!(cache contains key)) {
       // Lookup the targets by name
-      val targets = classes.flatMap(_.members.filter((m: Symbol) =>
+      val targets = allInstantiatedClasses.flatMap(_.members.filter((m: Symbol) =>
         m.name == (if (lookForSuperClasses) staticTarget.name.newName(getSuperName(staticTarget.name.toString)) else staticTarget.name)
           && m.isMethod))
 
@@ -46,25 +53,15 @@ trait RA extends AbstractAnalysis with SuperCalls {
     ret
   }
 
-  def getClasses: Set[Type] = {
-    trees.flatMap {
-      tree =>
-        tree.collect {
-          case cd: ClassDef => cd.symbol.tpe
-          case nw: New => nw.tpt.tpe // to get the library types used in the application
-        }
-    }.toSet
-  }
-
   def buildCallGraph() {
 
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
 
     // add all constructors
-    classes.map(_.typeSymbol).foreach(addMethod)
+    allInstantiatedClasses.map(_.typeSymbol).foreach(addMethod)
     for {
-      cls <- classes
+      cls <- allInstantiatedClasses
       constr <- cls.members
       if constr.isConstructor
     } {
@@ -73,7 +70,7 @@ trait RA extends AbstractAnalysis with SuperCalls {
 
     // Library call backs are also reachable
     for {
-      cls <- classes
+      cls <- allInstantiatedClasses
       member <- cls.decls // loop over the declared members, "members" returns defined AND inherited members
       if isApplication(member) && isOverridingLibraryMethod(member)
     } {
@@ -103,11 +100,11 @@ trait RA extends AbstractAnalysis with SuperCalls {
         } else {
           val superTargets = {
             if (isSuperCall(callSite))
-              lookup(csStaticTarget, classes, lookForSuperClasses = true, getSuperName = superName)
+              lookup(csStaticTarget, allInstantiatedClasses, lookForSuperClasses = true, getSuperName = superName)
             else
               Set()
           }
-          targets = lookup(csStaticTarget, classes) ++ superTargets
+          targets = lookup(csStaticTarget, allInstantiatedClasses) ++ superTargets
         }
 
         callGraph += (callSite -> targets)

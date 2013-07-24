@@ -34,7 +34,7 @@ trait CGPrint {
     }
 
     def printInvocations() {
-      val symbols: Set[Symbol] = reachableMethods ++ instantiatedClasses.map(_.typeSymbol)
+      val symbols: Set[Symbol] = reachableMethods ++ soFarInstantiatedClasses.map(_.typeSymbol)
       for {
         symbol <- symbols
         noInvocations = hasNoInvocationsAnnotation(symbol)

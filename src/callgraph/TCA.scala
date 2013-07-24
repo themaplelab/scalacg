@@ -3,17 +3,15 @@ package callgraph
 import scala.collection.mutable
 import scala.collection.immutable.Set
 import scala.Predef._
-import util.SuperCalls
+import util.{WorklistAnalysis, SuperCalls}
 
-trait TCA extends AbstractAnalysis with SuperCalls {
+trait TCA extends WorklistAnalysis with SuperCalls {
 
   import global._
 
-  var callGraph = Map[CallSite, Set[Symbol]]()
-
   private var concretization = Map[Symbol, Set[Type]]()
 
-  def getClasses: Set[Type] = { //todo: instantiatedTypes
+  def getAllInstantiatedClasses: Set[Type] = { //todo: instantiatedTypes
     trees.flatMap {
       tree =>
         tree.collect {
@@ -23,38 +21,87 @@ trait TCA extends AbstractAnalysis with SuperCalls {
     }.toSet
   }
 
+  def lookup(staticTarget: MethodSymbol,
+             consideredClasses: Set[Type],
+             // default parameters, used only for super method lookup
+             receiverType: Type,
+             lookForSuperClasses: Boolean = false,
+             getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
+
+    def expand(t: Type): Set[Type] = {
+      val sym = t.typeSymbol
+      if (sym.isAbstractType) {
+        concretization.getOrElse(sym, Set())
+      } else {
+        Set(t)
+      }
+    }
+
+    def instantiateTypeParams(actual: Type, declared: Type): Type = {
+      val tparams = declared.typeArgs
+      // Using `actual` rather than `ThisType(actual.typeSymbol)`, the latter causes loss of generic type information
+      // see (Generics4)
+      val args = tparams map {
+        _.asSeenFrom(actual, declared.typeSymbol)
+      }
+      declared.instantiateTypeParams(tparams map {
+        _.typeSymbol
+      }, args)
+    }
+
+    // If the target method is a constructor, no need to do the lookup.
+    if (staticTarget.isConstructor)
+      return Set(staticTarget)
+
+    // If it's in the application, then resolve the call
+    var targets = List[Symbol]()
+    for {
+      tpe <- consideredClasses
+      expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
+      asf = expandedType.asSeenFrom(tpe, expandedType.typeSymbol)
+      tpeasf = tpe.asSeenFrom(asf, tpe.typeSymbol)
+      if tpeasf <:< asf || lookForSuperClasses
+      target = if (lookForSuperClasses) {
+        tpeasf.member(staticTarget.name.newName(getSuperName(staticTarget.name.toString)))
+      } else tpeasf.member(staticTarget.name)
+      if !target.isDeferred
+    } {
+      target match {
+        case NoSymbol =>
+          // TODO: can this ever happen? let's put in an assertion and see...
+          assert(assertion = false, message = "tpe is " + tpe)
+
+        case _ =>
+          // Disambiguate overloaded methods based on the types of the args
+          if (target.isOverloaded) {
+            targets = target.alternatives.filter(_.tpe.matches(staticTarget.tpe)) ::: targets
+          } else {
+            targets = target :: targets
+          }
+      }
+    }
+
+    /*
+     * If the static target is in the application, return the set of resolved targets.
+     * Else, return the set of resolved targets in addition to the static target. The static target then stands for
+     * all those edges that we couldn't compute because we do not analyze the library.
+     */
+    if (isLibrary(staticTarget)) { // todo: what for super methods?
+      targets = staticTarget :: targets
+    }
+
+    return targets.toSet
+  }
+
   def buildCallGraph() {
 
     var superCalls = Set[Symbol]()
     val classToMembers = mutable.Map[Type, Set[Symbol]]()
 
-    /* Given the ancestors of a This in the AST, determines the method that has that
-     * particular This as its implicit this parameter.
-     * 
-     * It is possible that there is no such method. For example:
-     * class A {
-     *   val a = 5
-     *   val b = this.a + 6
-     * }
-     * In such cases, returns NoSymbol
-     * 
-     * Karim: For these cases, such a method is the primary constructor of the class.
-     */
-    def containingMethod(ancestors: List[Tree], thisType: Symbol): Symbol = {
-      (for {
-        firstContainer <- ancestors.find { node =>
-          node.isInstanceOf[DefDef] || node.isInstanceOf[ClassDef]
-        }
-        instanceMethod <- firstContainer.symbol.ownersIterator.find { sym =>
-          sym.isMethod && sym.owner == thisType
-        }
-      } yield instanceMethod).getOrElse(NoSymbol)
-    }
-
     // all objects are considered to be allocated
     // Karim: Here isModuleOrModuleClass should be used instead of just isModule, or isModuleClass. I have no idea
     // why this works this way, but whenever I use either of them alone something crashes.
-    instantiatedClasses ++= classes.filter(_.typeSymbol.isModuleOrModuleClass)
+    soFarInstantiatedClasses ++= allInstantiatedClasses.filter(_.typeSymbol.isModuleOrModuleClass)
 
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
@@ -66,7 +113,7 @@ trait TCA extends AbstractAnalysis with SuperCalls {
       // process new methods
       for (method <- methodWorklist.dequeueAll(_ => true)) {
         reachableCode += method
-        instantiatedClasses ++= classesInMethod(method)
+        soFarInstantiatedClasses ++= classesInMethod(method)
       }
 
       // find call sites that use super (e.g., super.foo())
@@ -99,18 +146,18 @@ trait TCA extends AbstractAnalysis with SuperCalls {
             else NoSymbol
           val filteredClasses: Set[Type] =
             thisSymbol match {
-              case NoSymbol => instantiatedClasses
+              case NoSymbol => soFarInstantiatedClasses
               case symbol =>
                 val method = containingMethod(callSite.ancestors, symbol)
                 if (method == NoSymbol || superCalls.contains(method))  // todo: don't understand why isSuperCall() doesn't work
-                  instantiatedClasses
+                  soFarInstantiatedClasses
                 else
-                  instantiatedClasses.filter { tpe =>
+                  soFarInstantiatedClasses.filter { tpe =>
                     val members = classToMembers.getOrElseUpdate(tpe, tpe.members.sorted.toSet)
                     members.contains(method)
                   }
             }
-          val superSymbols = getSuperSymbols(callSite, instantiatedClasses)
+          val superSymbols = getSuperSymbols(callSite, soFarInstantiatedClasses)
           targets = lookup(csStaticTarget, filteredClasses, receiver.tpe) ++ superSymbols // todo: for super[T] lookup here not necessary
         }
 
@@ -120,9 +167,9 @@ trait TCA extends AbstractAnalysis with SuperCalls {
 
       // add all constructors
       // TODO Karim: I don't understand how this adds class definition to reachable code? how is this later processed?
-      instantiatedClasses.map(_.typeSymbol).foreach(addMethod)
+      soFarInstantiatedClasses.map(_.typeSymbol).foreach(addMethod)
       for {
-        cls <- instantiatedClasses
+        cls <- soFarInstantiatedClasses
         constr <- cls.members
         if constr.isConstructor
       } {
@@ -131,7 +178,7 @@ trait TCA extends AbstractAnalysis with SuperCalls {
 
       // Library call backs are also reachable
       for {
-        cls <- instantiatedClasses
+        cls <- soFarInstantiatedClasses
         member <- cls.decls // loop over the declared members, "members" returns defined AND inherited members
         if isApplication(member) && isOverridingLibraryMethod(member)
       } {
@@ -141,7 +188,7 @@ trait TCA extends AbstractAnalysis with SuperCalls {
 
       // Type concretization now should happen inside the worklist too, and only for the instantiated classes
       // This should improve the precision of our analysis 
-      addTypeConcretizations(instantiatedClasses)
+      addTypeConcretizations(soFarInstantiatedClasses)
     }
 
     def addTypeConcretizations(classes: Set[Type]) = {
@@ -207,78 +254,29 @@ trait TCA extends AbstractAnalysis with SuperCalls {
         }
       } while (oldConcretization != concretization)
     }
-  }
 
-  def lookup(staticTarget: MethodSymbol,
-             consideredClasses: Set[Type],
-             // default parameters, used only for super method lookup
-             receiverType: Type,
-             lookForSuperClasses: Boolean = false,
-             getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
-
-    def expand(t: Type): Set[Type] = {
-      val sym = t.typeSymbol
-      if (sym.isAbstractType) {
-        concretization.getOrElse(sym, Set())
-      } else {
-        Set(t)
-      }
-    }
-
-    def instantiateTypeParams(actual: Type, declared: Type): Type = {
-      val tparams = declared.typeArgs
-      // Using `actual` rather than `ThisType(actual.typeSymbol)`, the latter causes loss of generic type information
-      // see (Generics4)
-      val args = tparams map {
-        _.asSeenFrom(actual, declared.typeSymbol)
-      }
-      declared.instantiateTypeParams(tparams map {
-        _.typeSymbol
-      }, args)
-    }
-
-    // If the target method is a constructor, no need to do the lookup.
-    if (staticTarget.isConstructor)
-      return Set(staticTarget)
-
-    // If it's in the application, then resolve the call
-    var targets = List[Symbol]()
-    for {
-      tpe <- consideredClasses
-      expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
-      asf = expandedType.asSeenFrom(tpe, expandedType.typeSymbol)
-      tpeasf = tpe.asSeenFrom(asf, tpe.typeSymbol)
-      if tpeasf <:< asf || lookForSuperClasses
-      target = if (lookForSuperClasses) {
-        tpeasf.member(staticTarget.name.newName(getSuperName(staticTarget.name.toString))) // todo: bad bad bad
-      } else tpeasf.member(staticTarget.name)
-      if !target.isDeferred
-    } {
-      target match {
-        case NoSymbol =>
-          // TODO: can this ever happen? let's put in an assertion and see...
-          assert(assertion = false, message = "tpe is " + tpe)
-
-        case _ =>
-          // Disambiguate overloaded methods based on the types of the args
-          if (target.isOverloaded) {
-            targets = target.alternatives.filter(_.tpe.matches(staticTarget.tpe)) ::: targets
-          } else {
-            targets = target :: targets
-          }
-      }
-    }
-
-    /*
-     * If the static target is in the application, return the set of resolved targets.
-     * Else, return the set of resolved targets in addition to the static target. The static target then stands for
-     * all those edges that we couldn't compute because we do not analyze the library.
+    /* Given the ancestors of a This in the AST, determines the method that has that
+     * particular This as its implicit this parameter.
+     *
+     * It is possible that there is no such method. For example:
+     * class A {
+     *   val a = 5
+     *   val b = this.a + 6
+     * }
+     * In such cases, returns NoSymbol
+     *
+     * Karim: For these cases, such a method is the primary constructor of the class.
      */
-    if (isLibrary(staticTarget)) { // todo: what for super methods?
-      targets = staticTarget :: targets
+    def containingMethod(ancestors: List[Tree], thisType: Symbol): Symbol = {
+      (for {
+        firstContainer <- ancestors.find { node =>
+          node.isInstanceOf[DefDef] || node.isInstanceOf[ClassDef]
+        }
+        instanceMethod <- firstContainer.symbol.ownersIterator.find { sym =>
+          sym.isMethod && sym.owner == thisType
+        }
+      } yield instanceMethod).getOrElse(NoSymbol)
     }
-
-      targets.toSet
   }
 
   val annotationFilter: PartialFunction[Tree, String] = {
