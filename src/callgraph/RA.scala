@@ -11,7 +11,7 @@ trait RA extends WorklistAnalysis with SuperCalls {
 
   private var cache = Map[(Name, Boolean), Set[Symbol]]()
 
-  def getAllInstantiatedClasses: Set[Type] = {
+  def getAllInstantiatedTypes: Set[Type] = {
     trees.flatMap {
       tree =>
         tree.collect {
@@ -37,7 +37,7 @@ trait RA extends WorklistAnalysis with SuperCalls {
     // Do we have the result cached?
     if (!(cache contains key)) {
       // Lookup the targets by name
-      val targets = allInstantiatedClasses.flatMap(_.members.filter((m: Symbol) =>
+      val targets = allInstantiatedTypes.flatMap(_.members.filter((m: Symbol) =>
         m.name == (if (lookForSuperClasses) staticTarget.name.newName(getSuperName(staticTarget.name.toString)) else staticTarget.name)
           && m.isMethod))
 
@@ -60,9 +60,9 @@ trait RA extends WorklistAnalysis with SuperCalls {
     methodWorklist ++= entryPoints
 
     // add all constructors
-    allInstantiatedClasses.map(_.typeSymbol).foreach(addMethod)
+    allInstantiatedTypes.map(_.typeSymbol).foreach(addMethod)
     for {
-      cls <- allInstantiatedClasses
+      cls <- allInstantiatedTypes
       constr <- cls.members
       if constr.isConstructor
     } {
@@ -71,7 +71,7 @@ trait RA extends WorklistAnalysis with SuperCalls {
 
     // Library call backs are also reachable
     for {
-      cls <- allInstantiatedClasses
+      cls <- allInstantiatedTypes
       member <- cls.decls // loop over the declared members, "members" returns defined AND inherited members
       if isApplication(member) && isOverridingLibraryMethod(member)
     } {
@@ -101,11 +101,11 @@ trait RA extends WorklistAnalysis with SuperCalls {
         } else {
           val superTargets = {
             if (isSuperCall(callSite))
-              lookup(csStaticTarget, allInstantiatedClasses, lookForSuperClasses = true, getSuperName = superName)
+              lookup(csStaticTarget, allInstantiatedTypes, lookForSuperClasses = true, getSuperName = superName)
             else
               Set()
           }
-          targets = lookup(csStaticTarget, allInstantiatedClasses) ++ superTargets
+          targets = lookup(csStaticTarget, allInstantiatedTypes) ++ superTargets
         }
 
         callGraph += (callSite -> targets)

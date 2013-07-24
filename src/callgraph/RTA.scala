@@ -10,7 +10,7 @@ trait RTA extends WorklistAnalysis {
   def buildCallGraph() {
     var soFarInstantiatedClasses = Set[Type]()
     // all objects are considered to be allocated
-    soFarInstantiatedClasses ++= allInstantiatedClasses.filter(_.typeSymbol.isModuleOrModuleClass)
+    soFarInstantiatedClasses ++= allInstantiatedTypes.filter(_.typeSymbol.isModuleOrModuleClass)
     // this should be the same as in AbstractAnalysis.initialize
     // so this probably should say isModuleClass, if it breaks, then revert :D
     

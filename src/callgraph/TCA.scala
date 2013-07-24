@@ -12,7 +12,7 @@ trait TCA extends WorklistAnalysis with SuperCalls {
 
   private var concretization = Map[Symbol, Set[Type]]()
 
-  def getAllInstantiatedClasses: Set[Type] = { //todo: instantiatedTypes
+  def getAllInstantiatedTypes: Set[Type] = {
     trees.flatMap {
       tree =>
         tree.collect {
@@ -103,7 +103,7 @@ trait TCA extends WorklistAnalysis with SuperCalls {
     // all objects are considered to be allocated
     // Karim: Here isModuleOrModuleClass should be used instead of just isModule, or isModuleClass. I have no idea
     // why this works this way, but whenever I use either of them alone something crashes.
-    soFarInstantiatedClasses ++= allInstantiatedClasses.filter(_.typeSymbol.isModuleOrModuleClass)
+    soFarInstantiatedClasses ++= allInstantiatedTypes.filter(_.typeSymbol.isModuleOrModuleClass)
 
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints

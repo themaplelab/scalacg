@@ -15,10 +15,11 @@ class CallGraphPlugin(val global: Global) extends Plugin {
   val name = "callgraph"
   val description = "builds a call graph"
   val components = List[PluginComponent](AnnotationComponent, CallGraphComponent)
-  val methodToId = mutable.Map[global.Symbol, Int]()
-  var expectedReachables = Set[global.Symbol]()
-  var expectedNotReachables = Set[global.Symbol]()
-  var _appClasses = Set[global.Type]() // had to use another name here to make the set of appClasses shareable across the two components
+
+  private val methodToId = mutable.Map[global.Symbol, Int]()
+  private var expectedReachables = Set[global.Symbol]()
+  private var expectedNotReachables = Set[global.Symbol]()
+  private var _appClasses = Set[global.Type]() // had to use another name here to make the set of appClasses shareable across the two components
 
   // Plugin options
   var doTca = false

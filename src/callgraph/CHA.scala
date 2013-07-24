@@ -12,7 +12,7 @@ trait CHA { this: AbstractAnalysis =>
       if (callSite.receiver == null) {
         callGraph += (callSite -> Set(callSite.staticTarget))
       } else {
-        val targets = lookup(callSite.staticTarget, allInstantiatedClasses, callSite.receiver.tpe)
+        val targets = lookup(callSite.staticTarget, allInstantiatedTypes, callSite.receiver.tpe)
         callGraph += (callSite -> targets)
       }
     }
