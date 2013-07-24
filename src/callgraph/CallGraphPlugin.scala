@@ -20,8 +20,6 @@ class CallGraphPlugin(val global: Global) extends Plugin {
   var expectedNotReachables = Set[global.Symbol]()
   var _appClasses = Set[global.Type]() // had to use another name here to make the set of appClasses shareable across the two components
 
-  def buildCallGraph()
-  
   // Plugin options
   var doTca = false
   var doThis = false
