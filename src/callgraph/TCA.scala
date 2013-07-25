@@ -28,27 +28,6 @@ trait TCA extends WorklistAnalysis {
              lookForSuperClasses: Boolean = false,
              getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
 
-    def expand(t: Type): Set[Type] = {
-      val sym = t.typeSymbol
-      if (sym.isAbstractType) {
-        concretization.getOrElse(sym, Set())
-      } else {
-        Set(t)
-      }
-    }
-
-    def instantiateTypeParams(actual: Type, declared: Type): Type = {
-      val tparams = declared.typeArgs
-      // Using `actual` rather than `ThisType(actual.typeSymbol)`, the latter causes loss of generic type information
-      // see (Generics4)
-      val args = tparams map {
-        _.asSeenFrom(actual, declared.typeSymbol)
-      }
-      declared.instantiateTypeParams(tparams map {
-        _.typeSymbol
-      }, args)
-    }
-
     // If the target method is a constructor, no need to do the lookup.
     if (staticTarget.isConstructor)
       return Set(staticTarget)
@@ -91,6 +70,27 @@ trait TCA extends WorklistAnalysis {
     }
 
     targets.toSet
+  }
+
+  private def expand(t: Type): Set[Type] = {
+    val sym = t.typeSymbol
+    if (sym.isAbstractType) {
+      concretization.getOrElse(sym, Set())
+    } else {
+      Set(t)
+    }
+  }
+
+  private def instantiateTypeParams(actual: Type, declared: Type): Type = {
+    val tparams = declared.typeArgs
+    // Using `actual` rather than `ThisType(actual.typeSymbol)`, the latter causes loss of generic type information
+    // see (Generics4)
+    val args = tparams map {
+      _.asSeenFrom(actual, declared.typeSymbol)
+    }
+    declared.instantiateTypeParams(tparams map {
+      _.typeSymbol
+    }, args)
   }
 
   def buildCallGraph() {
@@ -172,8 +172,8 @@ trait TCA extends WorklistAnalysis {
               for {
                 (arg, param) <- (args zip params)
               } {
-                concretization +=
-                  (param -> (concretization.getOrElse(param, Set() + arg)))
+                def paramToConcrete = param -> (concretization.getOrElse(param, Set() + arg))
+                concretization += paramToConcrete
               }
             }
           case PolyType(typeParams, _) =>
@@ -181,8 +181,7 @@ trait TCA extends WorklistAnalysis {
             for {
               (arg, param) <- (tpe.typeArguments zip typeParams)
             } {
-              concretization +=
-                (param -> (concretization.getOrElse(param, Set() + arg)))
+              concretization += (param -> (concretization.getOrElse(param, Set() + arg)))
             }
           case _ =>
           // TODO: are we missing any cases?

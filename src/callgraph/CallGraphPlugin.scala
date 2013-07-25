@@ -41,8 +41,8 @@ class CallGraphPlugin(val global: Global) extends Plugin {
     val runsAfter = List[String]("targetannotation") // TODO: is this the right place for the phase?
     def newPhase(prevPhase: Phase) = new CallGraphPhase(prevPhase)
     val phaseName = CallGraphPlugin.this.name
-    
-    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with Assertions with RA with CGPrint {
+
+    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with Assertions with TCA with CGPrint {
 
       // apply is called for each file, but we want to run once for all files, that's why we override run
       def apply(unit: CallGraphComponent.this.global.CompilationUnit) {
