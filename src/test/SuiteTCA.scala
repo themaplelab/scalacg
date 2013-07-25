@@ -1,8 +1,6 @@
 package test
 
 import org.junit.Test
-import scala.tools.nsc
-import org.junit.Assert
 
 class SuiteTCA extends Suite("junit/src/tests/tca/") {
 

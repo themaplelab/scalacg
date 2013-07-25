@@ -32,8 +32,21 @@ trait SuperCalls extends Probe {
     }
   }
 
-  def getSuperSymbols(callSite: CallSite, instantiatedClasses: Set[Type]): Set[Symbol] = {
+  def getSuperTargets(callSite: CallSite,
+                      classes: Set[Type],
+                      raStyle: Boolean = false):
+      Set[Symbol] = {
+
     val csStaticTarget = callSite.staticTarget
+
+    /* RA super targets resolution*/
+    if (raStyle) {
+      if (isSuperCall(callSite))
+        return lookup(csStaticTarget, classes, lookForSuperClasses = true, getSuperName = superName)
+      return Set()
+    }
+
+    /* TCA super targets resolution */
     val receiver = callSite.receiver
     val superReceiverName = superReceiverOption(receiver)
     val csEnclClass = csStaticTarget.enclClass
@@ -54,7 +67,7 @@ trait SuperCalls extends Probe {
     }
 
     if (isSuperCall(callSite)) {
-      val classLinearizations: Set[List[Symbol]] = instantiatedClasses.map(_.baseClasses)
+      val classLinearizations: Set[List[Symbol]] = classes.map(_.baseClasses)
       val superCalls: Set[Symbol] = classLinearizations.collect {
         case classLin if classLin contains csEnclClass =>
           val startFrom = classLin indexOf csEnclClass
@@ -72,4 +85,16 @@ trait SuperCalls extends Probe {
 
   def isReachableSuperMethodName(method: Symbol, superMethodNames: Set[TermName], reachableCode: Set[Symbol]): Boolean =
     superMethodNames.contains(method.name) && reachableCode.contains(method)
+
+  def getNewSuperCalls(reachableCode: Set[Symbol]): Set[Symbol] = {
+    var superCalls = Set[Symbol]()
+    for {
+      callSite <- callSites
+      if isSuperCall(callSite)
+      if reachableCode contains callSite.enclMethod
+    } {
+      superCalls += callSite.staticTarget
+    }
+    superCalls
+  }
 }

@@ -1,7 +1,6 @@
 package callgraph
 
 import analysis.WorklistAnalysis
-import scala.collection.mutable
 
 trait RTA extends WorklistAnalysis {
 
@@ -39,7 +38,7 @@ trait RTA extends WorklistAnalysis {
       } addMethod(constr)
     }
   }
-  val annotationFilter: PartialFunction[Tree, String] = {
+  override val annotationFilter: PartialFunction[Tree, String] = {
     case Literal(Constant(string: String)) => string
   }
 }

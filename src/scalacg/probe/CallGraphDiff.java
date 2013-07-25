@@ -1,14 +1,14 @@
 package scalacg.probe;
 
+import probe.CallGraph;
+import probe.GXLReader;
+import probe.ProbeMethod;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.zip.GZIPInputStream;
-
-import probe.CallGraph;
-import probe.GXLReader;
-import probe.ProbeMethod;
 
 public class CallGraphDiff {
 

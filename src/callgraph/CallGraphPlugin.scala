@@ -11,7 +11,6 @@ import scala.tools.nsc.plugins.PluginComponent
 import ca.uwaterloo.scalacg.util.{ CGAnnotations, Assertions, Timer }
 
 class CallGraphPlugin(val global: Global) extends Plugin {
-
   val name = "callgraph"
   val description = "builds a call graph"
   val components = List[PluginComponent](AnnotationComponent, CallGraphComponent)
@@ -20,7 +19,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
   private var expectedReachables = Set[global.Symbol]()
   private var expectedNotReachables = Set[global.Symbol]()
   private var _appClasses = Set[global.Type]() // had to use another name here to make the set of appClasses shareable across the two components
-
+  
   // Plugin options
   var doTca = false
   var doThis = false
@@ -31,7 +30,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
         doTca = true; processOptions(tail, error)
       case "this" :: tail =>
         doThis = true; processOptions(tail, error)
-      case option :: tail => error("Error, unknown option: " + option)
+      case option :: _ => error("Error, unknown option: " + option)
       case nil => // no more options to process
     }
   }
@@ -42,8 +41,8 @@ class CallGraphPlugin(val global: Global) extends Plugin {
     val runsAfter = List[String]("targetannotation") // TODO: is this the right place for the phase?
     def newPhase(prevPhase: Phase) = new CallGraphPhase(prevPhase)
     val phaseName = CallGraphPlugin.this.name
-
-    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with Assertions with TCA with CGPrint {
+    
+    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with Assertions with RA with CGPrint {
 
       // apply is called for each file, but we want to run once for all files, that's why we override run
       def apply(unit: CallGraphComponent.this.global.CompilationUnit) {

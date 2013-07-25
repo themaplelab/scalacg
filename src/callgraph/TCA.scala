@@ -1,12 +1,11 @@
 package callgraph
 
-import analysis.util.SuperCalls
 import analysis.WorklistAnalysis
 import scala.collection.mutable
 import scala.collection.immutable.Set
 import scala.Predef._
 
-trait TCA extends WorklistAnalysis with SuperCalls {
+trait TCA extends WorklistAnalysis {
 
   import global._
 
@@ -104,7 +103,6 @@ trait TCA extends WorklistAnalysis with SuperCalls {
     // Karim: Here isModuleOrModuleClass should be used instead of just isModule, or isModuleClass. I have no idea
     // why this works this way, but whenever I use either of them alone something crashes.
     soFarInstantiatedClasses ++= allInstantiatedTypes.filter(_.typeSymbol.isModuleOrModuleClass)
-
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
 
@@ -112,85 +110,37 @@ trait TCA extends WorklistAnalysis with SuperCalls {
       // Debugging info
       println("Items in work list: " + methodWorklist.size)
 
-      // process new methods
-      for (method <- methodWorklist.dequeueAll(_ => true)) {
-        reachableCode += method
-        soFarInstantiatedClasses ++= classesInMethod(method)
-      }
-
-      // find call sites that use super (e.g., super.foo())
-      // Now this has been moved inside the worklist (see ThisType2)
-      for {
-        callSite <- callSites
-        if isSuperCall(callSite)
-        if reachableCode contains callSite.enclMethod
-      } {
-        superCalls += callSite.staticTarget
-      }
-
-      // process all call sites in reachable code
-      for {
-        callSite <- callSites
-        if reachableCode contains callSite.enclMethod
-      } {
-        var targets = Set[Symbol]()
-
-        val receiver = callSite.receiver
-        val csStaticTarget: MethodSymbol = callSite.staticTarget
-        if (receiver == null) {
-          targets = Set(csStaticTarget)
-        } else {
-          val thisSymbol =
-            if (receiver.isInstanceOf[This])
-              receiver.symbol
-            else if (receiver.tpe.isInstanceOf[ThisType])
-              receiver.tpe.asInstanceOf[ThisType].sym
-            else NoSymbol
-          val filteredClasses: Set[Type] =
-            thisSymbol match {
-              case NoSymbol => soFarInstantiatedClasses
-              case symbol =>
-                val method = containingMethod(callSite.ancestors, symbol)
-                if (method == NoSymbol || superCalls.contains(method))  // todo: don't understand why isSuperCall() doesn't work
-                  soFarInstantiatedClasses
-                else
-                  soFarInstantiatedClasses.filter { tpe =>
-                    val members = classToMembers.getOrElseUpdate(tpe, tpe.members.sorted.toSet)
-                    members.contains(method)
-                  }
-            }
-          val superSymbols = getSuperSymbols(callSite, soFarInstantiatedClasses)
-          targets = lookup(csStaticTarget, filteredClasses, receiver.tpe) ++ superSymbols // todo: for super[T] lookup here not necessary
-        }
-
-        callGraph += (callSite -> targets)
-        targets.foreach(addMethod)
-      }
-
-      // add all constructors
+      soFarInstantiatedClasses ++= processNewMethods(getClassesInMethod = true)
+      superCalls ++= getNewSuperCalls(reachableCode)
+      processCallSites(soFarInstantiatedClasses, ra = false, getFilteredClasses = getFilteredClasses)
       // TODO Karim: I don't understand how this adds class definition to reachable code? how is this later processed?
-      soFarInstantiatedClasses.map(_.typeSymbol).foreach(addMethod)
-      for {
-        cls <- soFarInstantiatedClasses
-        constr <- cls.members
-        if constr.isConstructor
-      } {
-        addMethod(constr)
-      }
-
-      // Library call backs are also reachable
-      for {
-        cls <- soFarInstantiatedClasses
-        member <- cls.decls // loop over the declared members, "members" returns defined AND inherited members
-        if isApplication(member) && isOverridingLibraryMethod(member)
-      } {
-        callbacks += member
-      }
-      callbacks.foreach(addMethod)
-
+      addConstructorsToWorklist(soFarInstantiatedClasses)
+      addNewCallbacksToWorklist(soFarInstantiatedClasses)
       // Type concretization now should happen inside the worklist too, and only for the instantiated classes
       // This should improve the precision of our analysis 
       addTypeConcretizations(soFarInstantiatedClasses)
+    }
+
+    def getFilteredClasses(callSite: CallSite): Set[Type] = {
+      val receiver = callSite.receiver
+      val thisSymbol =
+        if (receiver.isInstanceOf[This])
+          receiver.symbol
+        else if (receiver.tpe.isInstanceOf[ThisType])
+          receiver.tpe.asInstanceOf[ThisType].sym
+        else NoSymbol
+      thisSymbol match {
+        case NoSymbol => soFarInstantiatedClasses
+        case symbol =>
+          val method = containingMethod(callSite.ancestors, symbol)
+          if (method == NoSymbol || superCalls.contains(method))
+            soFarInstantiatedClasses
+          else
+            soFarInstantiatedClasses.filter { tpe =>
+              val members = classToMembers.getOrElseUpdate(tpe, tpe.members.sorted.toSet)
+              members.contains(method)
+            }
+      }
     }
 
     def addTypeConcretizations(classes: Set[Type]) = {
@@ -279,11 +229,5 @@ trait TCA extends WorklistAnalysis with SuperCalls {
         }
       } yield instanceMethod).getOrElse(NoSymbol)
     }
-  }
-
-  val annotationFilter: PartialFunction[Tree, String] = {
-    case Literal(Constant(string: String)) => string
-    // TODO: replace _ with a more specific check for the cha case class
-    case Apply(_, List(Literal(Constant(string: String)))) => string
   }
 }

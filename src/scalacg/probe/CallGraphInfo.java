@@ -1,5 +1,9 @@
 package scalacg.probe;
 
+import probe.CallGraph;
+import probe.ProbeMethod;
+import probe.Util;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Collection;
@@ -7,10 +11,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.zip.GZIPInputStream;
-
-import probe.CallGraph;
-import probe.ProbeMethod;
-import probe.Util;
 
 public class CallGraphInfo {
 	public static String dashLib = null;

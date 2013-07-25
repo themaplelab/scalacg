@@ -1,11 +1,10 @@
 package callgraph
 
-import analysis.util.SuperCalls
 import analysis.WorklistAnalysis
 import scala.collection.immutable.Set
 import scala.Predef._
 
-trait RA extends WorklistAnalysis with SuperCalls {
+trait RA extends WorklistAnalysis {
 
   import global._
 
@@ -59,67 +58,16 @@ trait RA extends WorklistAnalysis with SuperCalls {
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
 
-    // add all constructors
-    allInstantiatedTypes.map(_.typeSymbol).foreach(addMethod)
-    for {
-      cls <- allInstantiatedTypes
-      constr <- cls.members
-      if constr.isConstructor
-    } {
-      addMethod(constr)
-    }
-
-    // Library call backs are also reachable
-    for {
-      cls <- allInstantiatedTypes
-      member <- cls.decls // loop over the declared members, "members" returns defined AND inherited members
-      if isApplication(member) && isOverridingLibraryMethod(member)
-    } {
-      callbacks += member
-    }
-    callbacks.foreach(addMethod)
+    addConstructorsToWorklist(allInstantiatedTypes)
+    addNewCallbacksToWorklist(allInstantiatedTypes)
 
     while (methodWorklist.nonEmpty) {
       // Debugging info
       println("Items in work list: " + methodWorklist.size)
-
-      // process new methods
-      for (method <- methodWorklist.dequeueAll(_ => true)) {
-        reachableCode += method
-      }
-
-      // process all call sites in reachable code
-      for {
-        callSite <- callSites
-        if reachableCode contains callSite.enclMethod
-      } {
-        val csStaticTarget = callSite.staticTarget
-        var targets = Set[Symbol]()
-
-        if (callSite.receiver == null) {
-          targets = Set(csStaticTarget)
-        } else {
-          val superTargets = {
-            if (isSuperCall(callSite))
-              lookup(csStaticTarget, allInstantiatedTypes, lookForSuperClasses = true, getSuperName = superName)
-            else
-              Set()
-          }
-          targets = lookup(csStaticTarget, allInstantiatedTypes) ++ superTargets
-        }
-
-        callGraph += (callSite -> targets)
-        targets.foreach(addMethod)
-      }
+      processNewMethods(getClassesInMethod = false)
+      processCallSites(allInstantiatedTypes, ra = true)
     }
-
     // Debugging info
     println("Work list is empty now.")
-  }
-
-  val annotationFilter: PartialFunction[Tree, String] = {
-    case Literal(Constant(string: String)) => string
-    // TODO: replace _ with a more specific check for the cha case class
-    case Apply(_, List(Literal(Constant(string: String)))) => string
   }
 }

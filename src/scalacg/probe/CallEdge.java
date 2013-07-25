@@ -1,9 +1,9 @@
 package scalacg.probe;
 
+import probe.ProbeMethod;
+
 import java.util.HashSet;
 import java.util.Set;
-
-import probe.ProbeMethod;
 
 /**
  * A call edge with context information.

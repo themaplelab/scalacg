@@ -1,21 +1,17 @@
 package scalacg.probe;
 
+import net.sourceforge.gxl.*;
+import probe.CallGraph;
+import probe.ProbeClass;
+import probe.ProbeMethod;
+import probe.URIs;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import net.sourceforge.gxl.GXLDocument;
-import net.sourceforge.gxl.GXLEdge;
-import net.sourceforge.gxl.GXLGraph;
-import net.sourceforge.gxl.GXLNode;
-import net.sourceforge.gxl.GXLString;
-import probe.CallGraph;
-import probe.ProbeClass;
-import probe.ProbeMethod;
-import probe.URIs;
 
 /**
  * Writes a call graph to a GXL file.
