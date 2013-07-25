@@ -14,3 +14,5 @@
 - more test cases for RA
 	- including notreachables
 - find real examples with generated reflection
+
+Java 8: interfaces are traits (Karim: look into it)
