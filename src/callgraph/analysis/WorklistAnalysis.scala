@@ -10,16 +10,36 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
   // newly reachable methods to be processed
   val methodWorklist = mutable.Queue[Symbol]()
 
-  def addMethod(method: Symbol) = if (!reachableCode(method)) methodWorklist += method
+//  def addMethod(method: Symbol) = if (!reachableCode(method)) methodWorklist += method
 
-  // todo (optimization): don't redo work for previous classes
+  // todo: uncomment
+  var cacheProcessedMethods = Set[Symbol]()
+
+  def addMethod(method: Symbol) =
+    if (!reachableCode(method) && !cacheProcessedMethods.contains(method)) {
+      methodWorklist += method
+      cacheProcessedMethods += method
+    }
+
+  var cacheClassesForProcessedConstructors = Set[Type]()
+
   def addConstructorsToWorklist(classes: Set[Type]) {
     classes.foreach((cls: Type) => {
+      if (!cacheClassesForProcessedConstructors.contains(cls)) {
         addMethod(cls.typeSymbol)
         cls.members.foreach((m: Symbol) => if (m.isConstructor) addMethod(m))
+        cacheClassesForProcessedConstructors += cls
       }
-    )
+    })
   }
+
+//  def addConstructorsToWorklist(classes: Set[Type]) {
+//    classes.foreach((cls: Type) => {
+//      addMethod(cls.typeSymbol)
+//      cls.members.foreach((m: Symbol) => if (m.isConstructor) addMethod(m))
+//    }
+//    )
+//  }
 
   def addNewCallbacksToWorklist(classes: Set[Type]) {
     for {
@@ -32,6 +52,8 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
     }
   }
 
+  /* getClassesInMethod is true for TCA and false for RA: it indicates whether we're interested
+   * in getting the instantiated classes inside of the new methods */
   def processNewMethods(getClassesInMethod: Boolean): Set[Type] = {
     var soFarInstantiatedClasses = Set[Type]()
     for (method <- methodWorklist.dequeueAll(_ => true)) {
