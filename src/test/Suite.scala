@@ -13,7 +13,9 @@ abstract class Suite(testPath: String) {
     settings.bootclasspath.append("lib/scala-2.10.1/scala-reflect.jar")
     settings.bootclasspath.append("junit/bin")
     settings.bootclasspath.append("bin")
-    settings.pluginOptions.value = List("callgraph:tca", "callgraph:this")
+    settings.pluginOptions.value = List("callgraph:this")
+    settings.nowarn.value = true
+    
     val g = new nsc.Global(settings)
     println("==============================")
     println(filename)
