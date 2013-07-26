@@ -9,6 +9,7 @@ import scala.tools.nsc.Phase
 import scala.tools.nsc.plugins.Plugin
 import scala.tools.nsc.plugins.PluginComponent
 import ca.uwaterloo.scalacg.util.{ CGAnnotations, Assertions, Timer }
+import callgraph.analysis.WorklistAnalysis
 
 class CallGraphPlugin(val global: Global) extends Plugin {
   val name = "callgraph"
@@ -19,7 +20,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
   private var expectedReachables = Set[global.Symbol]()
   private var expectedNotReachables = Set[global.Symbol]()
   private var _appClasses = Set[global.Type]() // had to use another name here to make the set of appClasses shareable across the two components
-  
+
   // Plugin options
   var doTca = false
   var doThis = false
@@ -39,10 +40,20 @@ class CallGraphPlugin(val global: Global) extends Plugin {
   private object CallGraphComponent extends PluginComponent {
     val global: CallGraphPlugin.this.global.type = CallGraphPlugin.this.global
     val runsAfter = List[String]("targetannotation") // TODO: is this the right place for the phase?
-    def newPhase(prevPhase: Phase) = new CallGraphPhase(prevPhase)
     val phaseName = CallGraphPlugin.this.name
 
-    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with Assertions with TCA with CGPrint {
+    def newPhase(prevPhase: Phase) = {
+      if (doTca) {
+        println("Running TCA")
+        new CallGraphPhase(prevPhase) with TCA
+      } else {
+        println("Running RA")
+        new CallGraphPhase(prevPhase) with RA
+      }
+    }
+
+    class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with Assertions with CGPrint {
+      this: WorklistAnalysis =>
 
       // apply is called for each file, but we want to run once for all files, that's why we override run
       def apply(unit: CallGraphComponent.this.global.CompilationUnit) {
