@@ -28,11 +28,8 @@ trait TreeTraversal {
   }
 
 
-  // todo (optimization): this method traverses the tree
-  // the set of classes instantiated in a given method
-  def classesInMethod(method: Symbol): Set[Type] = {
-    var classes = Set[Type]()
-
+  lazy val classesInMethod = {
+    val ret = mutable.Map[Symbol, Set[Type]]().withDefaultValue(Set())
     def traverse(tree: Tree, owner: Symbol) {
       tree match {
         case _: DefDef =>
@@ -40,18 +37,13 @@ trait TreeTraversal {
         case _: ClassDef => // If the tree is a class definition, then "owner" should be the primary constructor (see GetterMethod1)
           tree.children.foreach(traverse(_, tree.symbol.primaryConstructor))
         case New(tpt) =>
-          classes += tpt.tpe.dealias // some types are aliased, see CaseClass3
+          ret(owner) += tpt.tpe.dealias // some types are aliased, see CaseClass3
         case _ =>
           tree.children.foreach(traverse(_, owner))
       }
     }
-
-    if (cacheMethodToContainedInstantiations contains method)
-      return cacheMethodToContainedInstantiations(method)
-
     trees.foreach(traverse(_, NoSymbol))
-    cacheMethodToContainedInstantiations += (method -> classes)
-    classes
+    ret
   }
 
   // todo (optimization): this method traverses the tree
