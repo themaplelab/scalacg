@@ -28,6 +28,8 @@ trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with 
         findCallSites(tree, List())
     }
   }
+  
+  def buildCallGraph()
 
   private def transitiveClosure[T](initial: Set[T], transition: T => Set[T]): Set[T] = {
     val seen = mutable.Set[T]() ++ initial
