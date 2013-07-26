@@ -53,7 +53,7 @@ trait RA extends WorklistAnalysis {
     ret
   }
 
-  def buildCallGraph() {
+  override def buildCallGraph() {
 
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints

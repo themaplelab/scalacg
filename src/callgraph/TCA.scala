@@ -93,7 +93,7 @@ trait TCA extends WorklistAnalysis {
     }, args)
   }
 
-  def buildCallGraph() {
+  override def buildCallGraph() {
 
     var superCalls = Set[Symbol]()
     val classToMembers = mutable.Map[Type, Set[Symbol]]()
