@@ -38,7 +38,7 @@ trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with 
       queue ++= image
       seen ++= image
     }
-    Set() ++ seen
+    seen.toSet[T]
   }
 
   lazy val entryPoints = mainMethods
@@ -57,9 +57,10 @@ trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with 
 
     // global.definitions.StringArray
 
-    Set() ++ mainMethods
+    mainMethods
   }
 
+  // todo (Marianna): optimize? (understand what does)
   lazy val reachableMethods = transitiveClosure(entryPoints ++ callbacks, {
     source: Symbol =>
       for {

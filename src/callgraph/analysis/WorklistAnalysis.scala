@@ -12,15 +12,13 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
 
   def addMethod(method: Symbol) = if (!reachableCode(method)) methodWorklist += method
 
+  // todo (optimization): don't redo work for previous classes
   def addConstructorsToWorklist(classes: Set[Type]) {
-    classes.map(_.typeSymbol).foreach(addMethod)
-    for {
-      cls <- classes
-      constr <- cls.members
-      if constr.isConstructor
-    } {
-      addMethod(constr)
-    }
+    classes.foreach((cls: Type) => {
+        addMethod(cls.typeSymbol)
+        cls.members.foreach((m: Symbol) => if (m.isConstructor) addMethod(m))
+      }
+    )
   }
 
   def addNewCallbacksToWorklist(classes: Set[Type]) {
@@ -30,8 +28,8 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
       if isApplication(member) && isOverridingLibraryMethod(member)
     } {
       callbacks += member
+      addMethod(member)
     }
-    callbacks.foreach(addMethod)
   }
 
   def processNewMethods(getClassesInMethod: Boolean): Set[Type] = {

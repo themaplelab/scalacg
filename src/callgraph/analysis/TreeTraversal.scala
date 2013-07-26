@@ -16,7 +16,7 @@ trait TreeTraversal {
   case class CallSite(receiver: Tree, staticTarget: MethodSymbol, args: List[Tree], annotation: List[String],
                       ancestors: List[Tree], pos: Position, enclMethod: Symbol)
 
-  private val methodToContainedInstantiations = mutable.Map[Symbol, Set[Type]]()
+  private val cacheMethodToContainedInstantiations = mutable.Map[Symbol, Set[Type]]()
 
   // this is overridden by var trees in CallGraphPlugin
   def annotationFilter: PartialFunction[Tree, String]
@@ -27,6 +27,8 @@ trait TreeTraversal {
     callSitesInMethod(enclMethod) = callSitesInMethod.getOrElse(enclMethod, Set()) + callSite
   }
 
+
+  // todo (optimization): this method traverses the tree
   // the set of classes instantiated in a given method
   def classesInMethod(method: Symbol): Set[Type] = {
     var classes = Set[Type]()
@@ -44,14 +46,16 @@ trait TreeTraversal {
       }
     }
 
-    if (methodToContainedInstantiations contains method)
-      return methodToContainedInstantiations(method)
+    if (cacheMethodToContainedInstantiations contains method)
+      return cacheMethodToContainedInstantiations(method)
 
     trees.foreach(traverse(_, NoSymbol))
-    methodToContainedInstantiations += (method -> classes)
+    cacheMethodToContainedInstantiations += (method -> classes)
     classes
   }
 
+  // todo (optimization): this method traverses the tree
+  /* for every tree in the program, called only once from AbstractAnalysis.initialize */
   def findCallSites(tree: Tree, ancestors: List[Tree]) {
     tree match {
       // Add the calls from primary constructors of classes to mixin constructors (see AbstractTypes13)

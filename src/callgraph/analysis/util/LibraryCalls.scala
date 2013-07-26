@@ -11,6 +11,9 @@ trait LibraryCalls {
 
   var appClasses: Set[Type]
 
+  private var cacheFoundOverridingLibraryMethods = Set[Symbol]()
+  private var cacheMethodToLibraryOverriddenMethods = Map[Symbol, List[Symbol]]()      // todo: is that redundant?
+
   /**
    * Is this symbol in an application class?
    */
@@ -24,19 +27,29 @@ trait LibraryCalls {
   /**
    * Does a symbol override a library method?
    */
-  def isOverridingLibraryMethod(symbol: Symbol) =
-    !symbol.isConstructor && symbol.isMethod && !symbol.isDeferred &&
-      symbol.isOverridingSymbol && symbol.allOverriddenSymbols.filter(isLibrary).nonEmpty
+  def isOverridingLibraryMethod(symbol: Symbol): Boolean = {
+    if (cacheFoundOverridingLibraryMethods contains symbol)
+      return true
+    if (!symbol.isConstructor && symbol.isMethod && !symbol.isDeferred &&
+      symbol.isOverridingSymbol && symbol.allOverriddenSymbols.filter(isLibrary).nonEmpty) {
+      cacheFoundOverridingLibraryMethods += symbol
+      return true
+    }
+    false
+  }
 
   /**
    * Get all the library methods overridden by this method. The methods are sorted according to the reverse
    * linearization.
    */
-  def libraryOverriddenMethods(symbol: Symbol) = {
+  private def libraryOverriddenMethods(symbol: Symbol): List[Symbol] = {
+    if (cacheMethodToLibraryOverriddenMethods contains symbol)
+      return cacheMethodToLibraryOverriddenMethods(symbol)
     var result = List[Symbol]()
     if (symbol.isMethod && symbol.allOverriddenSymbols.nonEmpty) {
       result = symbol.allOverriddenSymbols.filter(sym => isLibrary(sym))
     }
+    cacheMethodToLibraryOverriddenMethods += (symbol -> result)
     result
   }
 
