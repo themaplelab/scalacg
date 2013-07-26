@@ -10,7 +10,7 @@ trait RA extends WorklistAnalysis {
 
   private var cache = Map[(Name, Boolean), Set[Symbol]]()
 
-  def getAllInstantiatedTypes: Set[Type] = {
+  override def getAllInstantiatedTypes: Set[Type] = {
     trees.flatMap {
       tree =>
         tree.collect {

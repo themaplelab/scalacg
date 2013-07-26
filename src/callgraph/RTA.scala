@@ -1,8 +1,8 @@
 package callgraph
 
-import analysis.WorklistAnalysis
+import analysis.{InstantiationDependentAnalysis, WorklistAnalysis}
 
-trait RTA extends WorklistAnalysis {
+trait RTA extends WorklistAnalysis with InstantiationDependentAnalysis {
 
   import global._
   

@@ -9,7 +9,7 @@ import scala.tools.nsc.Phase
 import scala.tools.nsc.plugins.Plugin
 import scala.tools.nsc.plugins.PluginComponent
 import ca.uwaterloo.scalacg.util.{ CGAnnotations, Assertions, Timer }
-import callgraph.analysis.WorklistAnalysis
+import analysis.{AbstractAnalysis, WorklistAnalysis}
 
 class CallGraphPlugin(val global: Global) extends Plugin {
   val name = "callgraph"
@@ -22,38 +22,50 @@ class CallGraphPlugin(val global: Global) extends Plugin {
   private var _appClasses = Set[global.Type]() // had to use another name here to make the set of appClasses shareable across the two components
 
   // Plugin options
-  var doTca = false
+  object AnalysisOption extends Enumeration {
+    type AnalysisOption = Value
+    val ChaOption = Value("cha")
+    val RaOption = Value("ra")
+    val RtaOption = Value("rta")
+    val TcaOption = Value("tca")
+  }
+
+  import AnalysisOption._
+
+  var analysisOpt = TcaOption
   var doThis = false
 
   override def processOptions(options: List[String], error: String => Unit) {
     options match {
-      case "tca" :: tail =>
-        doTca = true; processOptions(tail, error)
+      case analysisName :: tail if ("cha" +: "ra" +: "rta" +: "tca") contains analysisName =>
+        analysisOpt = AnalysisOption.withName(analysisName)
+        processOptions(tail, error)
       case "this" :: tail =>
-        doThis = true; processOptions(tail, error)
+        doThis = true
+        processOptions(tail, error)
       case option :: _ => error("Error, unknown option: " + option)
       case nil => // no more options to process
     }
   }
 
   /** Phase that resolves call sites to compute call graph */
-  private object CallGraphComponent extends PluginComponent {
+  object CallGraphComponent extends PluginComponent {
     val global: CallGraphPlugin.this.global.type = CallGraphPlugin.this.global
     val runsAfter = List[String]("targetannotation") // TODO: is this the right place for the phase?
     val phaseName = CallGraphPlugin.this.name
 
     def newPhase(prevPhase: Phase) = {
-      if (doTca) {
-        println("Running TCA")
-        new CallGraphPhase(prevPhase) with TCA
-      } else {
-        println("Running RA")
-        new CallGraphPhase(prevPhase) with RA
+      println("Running " + analysisOpt.toString.toUpperCase)
+      analysisOpt match {
+        case ChaOption => new CallGraphPhase(prevPhase) with CHA
+        case RaOption => new CallGraphPhase(prevPhase) with RA
+        case RtaOption => new CallGraphPhase(prevPhase) with RTA
+        case TcaOption => new CallGraphPhase(prevPhase) with TCA
       }
     }
 
     class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with Assertions with CGPrint {
-      this: WorklistAnalysis =>
+      this: AbstractAnalysis =>
 
       // apply is called for each file, but we want to run once for all files, that's why we override run
       def apply(unit: CallGraphComponent.this.global.CompilationUnit) {

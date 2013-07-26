@@ -16,7 +16,15 @@ trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with 
   var callbacks = Set[Symbol]()
   var callGraph = Map[CallSite, Set[Symbol]]()
 
-  def getAllInstantiatedTypes: Set[Type]
+  def getAllInstantiatedTypes: Set[Type] = {
+    trees.flatMap {
+      tree =>
+        tree.collect {
+          case cd: ClassDef if cd.symbol.isModuleOrModuleClass => cd.symbol.tpe // isModuleClass -> an object, it gets auto instantiated
+          case nw: New => nw.tpt.tpe // the set of all allocation sites
+        }
+    }.toSet
+  }
 
   def initialize() {
     // find the set of instantiated classes in the whole program

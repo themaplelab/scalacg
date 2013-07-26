@@ -7,19 +7,16 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
 
   import global._
 
-  // newly reachable methods to be processed
   val methodWorklist = mutable.Queue[Symbol]()
 
-//  def addMethod(method: Symbol) = if (!reachableCode(method)) methodWorklist += method
-
-  // todo: uncomment
   var cacheProcessedMethods = Set[Symbol]()
 
-  def addMethod(method: Symbol) =
+  def addMethod(method: Symbol) {
     if (!reachableCode(method) && !cacheProcessedMethods.contains(method)) {
       methodWorklist += method
       cacheProcessedMethods += method
     }
+  }
 
   var cacheClassesForProcessedConstructors = Set[Type]()
 
@@ -32,14 +29,6 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
       }
     })
   }
-
-//  def addConstructorsToWorklist(classes: Set[Type]) {
-//    classes.foreach((cls: Type) => {
-//      addMethod(cls.typeSymbol)
-//      cls.members.foreach((m: Symbol) => if (m.isConstructor) addMethod(m))
-//    }
-//    )
-//  }
 
   def addNewCallbacksToWorklist(classes: Set[Type]) {
     for {

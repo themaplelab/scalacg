@@ -1,10 +1,9 @@
 package callgraph
 
-import analysis.AbstractAnalysis
-import scala.tools.nsc
+import analysis.{InstantiationDependentAnalysis, AbstractAnalysis}
 
-trait CHA { this: AbstractAnalysis =>
-  val global: nsc.Global
+trait CHA extends AbstractAnalysis with InstantiationDependentAnalysis {
+
   import global._
 
   def buildCallGraph() {
