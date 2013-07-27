@@ -1,11 +1,11 @@
 package callgraph
 
-import analysis.{InstantiationDependentAnalysis, WorklistAnalysis}
+import analysis.{TypeCompositionAnalysis, WorklistAnalysis}
 import scala.collection.mutable
 import scala.collection.immutable.Set
 import scala.Predef._
 
-trait TCA extends WorklistAnalysis with InstantiationDependentAnalysis {
+trait TCA extends WorklistAnalysis with TypeCompositionAnalysis {
 
   import global._
 

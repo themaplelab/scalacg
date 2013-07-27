@@ -3,7 +3,7 @@ package callgraph.analysis
 import util.{LibraryCalls, Lookup}
 import scala.Predef._
 
-trait InstantiationDependentAnalysis extends Lookup {
+trait TypeCompositionAnalysis extends Lookup {
 
   this: LibraryCalls =>
 

@@ -32,7 +32,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
 
   import AnalysisOption._
 
-  var analysisOpt = TcaOption
+  var analysisOpt = RaOption
   var doThis = false
 
   override def processOptions(options: List[String], error: String => Unit) {

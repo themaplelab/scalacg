@@ -1,8 +1,8 @@
 package callgraph
 
-import analysis.{InstantiationDependentAnalysis, AbstractAnalysis}
+import analysis.{TypeCompositionAnalysis, AbstractAnalysis}
 
-trait CHA extends AbstractAnalysis with InstantiationDependentAnalysis {
+trait CHA extends AbstractAnalysis with TypeCompositionAnalysis {
 
   import global._
 
