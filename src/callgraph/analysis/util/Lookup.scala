@@ -1,9 +1,8 @@
 package callgraph.analysis.util
 
-import ca.uwaterloo.scalacg.util.Probe
 import scala.Predef.Set
 
-trait Lookup extends Probe {
+trait Lookup extends Global {
 
   import global._
 

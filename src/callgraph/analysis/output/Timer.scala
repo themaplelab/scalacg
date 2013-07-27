@@ -1,4 +1,4 @@
-package ca.uwaterloo.scalacg.util
+package callgraph.analysis.output
 
 object Timer {
   

@@ -1,9 +1,9 @@
 package callgraph.analysis.util
 
-import ca.uwaterloo.scalacg.util.Probe
 import reflect.internal.Flags._
 import collection.immutable.Set
 import callgraph.analysis.TreeTraversal
+import callgraph.analysis.output.Probe
 
 trait SuperCalls extends Probe {
 

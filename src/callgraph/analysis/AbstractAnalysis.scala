@@ -1,13 +1,12 @@
 package callgraph.analysis
 
+import output.CGAnnotations
 import scala.collection.mutable
 
-import ca.uwaterloo.scalacg.util.CGAnnotations
-import ca.uwaterloo.scalacg.util.Probe
 import collection.immutable.Set
-import util.{LibraryCalls, Lookup}
+import util.{Global, LibraryCalls, Lookup}
 
-trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with CGAnnotations with Probe {
+trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with CGAnnotations with Global {
 
   import global._
 

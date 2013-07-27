@@ -1,12 +1,11 @@
-package ca.uwaterloo.scalacg.util
+package callgraph.analysis.output
 
 import probe.ObjectManager
 import probe.ProbeMethod
-import scala.tools.nsc.Global
+import callgraph.analysis.util.Global
 
-trait Probe {
+trait Probe extends Global {
 
-  val global: Global
   import global._
   
   class StringHelper(str: String) {

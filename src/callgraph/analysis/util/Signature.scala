@@ -1,7 +1,7 @@
 package callgraph.analysis.util
 
-import ca.uwaterloo.scalacg.util.Probe
 import tools.nsc
+import callgraph.analysis.output.Probe
 
 object Signature extends Probe {
 

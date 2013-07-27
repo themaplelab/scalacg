@@ -36,7 +36,7 @@ trait RA extends WorklistAnalysis {
     // Do we have the result cached?
     if (!(cache contains key)) {
       // Lookup the targets by name
-      val targets = consideredTypes.flatMap(_.members.filter((m: Symbol) =>
+      val targets = consideredClasses.flatMap(_.members.filter((m: Symbol) =>
         m.name == (if (lookForSuperClasses) staticTarget.name.newName(getSuperName(staticTarget.name.toString)) else staticTarget.name)
           && m.isMethod))
 

@@ -1,6 +1,6 @@
 package callgraph
 
-import analysis.util.CGPrint
+import analysis.output.{Timer, CGAnnotations, Assertions, CGPrint}
 import java.io.PrintStream
 import scala.collection.immutable.List
 import scala.collection.mutable
@@ -8,7 +8,6 @@ import scala.tools.nsc.Global
 import scala.tools.nsc.Phase
 import scala.tools.nsc.plugins.Plugin
 import scala.tools.nsc.plugins.PluginComponent
-import ca.uwaterloo.scalacg.util.{ CGAnnotations, Assertions, Timer }
 import analysis.AbstractAnalysis
 
 class CallGraphPlugin(val global: Global) extends Plugin {
@@ -33,7 +32,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
 
   import AnalysisOption._
 
-  var analysisOpt = RaOption
+  var analysisOpt = TcaOption
   var doThis = false
 
   override def processOptions(options: List[String], error: String => Unit) {

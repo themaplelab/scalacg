@@ -1,11 +1,12 @@
 package callgraph.analysis
 
-import ca.uwaterloo.scalacg.util.{CGAnnotations, Probe}
 import collection.mutable
+import output.CGAnnotations
+import util.Global
 
 trait TreeTraversal {
 
-  this: Probe with CGAnnotations =>
+  this: Global with CGAnnotations =>
 
   import global._
 

@@ -1,10 +1,9 @@
-package ca.uwaterloo.scalacg.util
+package callgraph.analysis.output
 
-import scala.tools.nsc.Global
+import Predef._
 
 trait Assertions extends Probe {
 
-  val global: Global
   import global._
 
   /**
@@ -30,5 +29,4 @@ trait Assertions extends Probe {
         "Some methods are annotated with @notreachable, but are reachable in the call graph.")
     } 
   }
-
 }

@@ -1,4 +1,5 @@
-package ca.uwaterloo.scalacg.util
+package callgraph.analysis.output
+
 
 trait CGAnnotations extends Probe {
 

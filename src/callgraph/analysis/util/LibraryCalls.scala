@@ -1,7 +1,7 @@
 package callgraph.analysis.util
 
-import ca.uwaterloo.scalacg.util.Probe
 import callgraph.analysis.{TreeTraversal, AbstractAnalysis}
+import callgraph.analysis.output.Probe
 
 trait LibraryCalls {
 

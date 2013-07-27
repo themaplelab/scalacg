@@ -1,11 +1,11 @@
-package callgraph.analysis.util
+package callgraph.analysis.output
 
-import ca.uwaterloo.scalacg.util.CGAnnotations
 import probe.CallGraph
 import java.io.PrintStream
 import scalacg.probe.{GXLWriter, CallSiteContext, CallEdge}
 import reflect.io.AbstractFile
 import callgraph.analysis.AbstractAnalysis
+import callgraph.analysis.util.LibraryCalls
 
 trait CGPrint {
 
