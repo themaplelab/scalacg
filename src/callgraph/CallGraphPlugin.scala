@@ -9,7 +9,7 @@ import scala.tools.nsc.Phase
 import scala.tools.nsc.plugins.Plugin
 import scala.tools.nsc.plugins.PluginComponent
 import ca.uwaterloo.scalacg.util.{ CGAnnotations, Assertions, Timer }
-import analysis.{AbstractAnalysis, WorklistAnalysis}
+import analysis.AbstractAnalysis
 
 class CallGraphPlugin(val global: Global) extends Plugin {
   val name = "callgraph"
@@ -28,6 +28,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
     val RaOption = Value("ra")
     val RtaOption = Value("rta")
     val TcaOption = Value("tca")
+    val TdraOption = Value("tdra")
   }
 
   import AnalysisOption._
@@ -37,7 +38,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
 
   override def processOptions(options: List[String], error: String => Unit) {
     options match {
-      case analysisName :: tail if ("cha" +: "ra" +: "rta" +: "tca") contains analysisName =>
+      case analysisName :: tail if AnalysisOption.values.map(_.toString) contains analysisName =>
         analysisOpt = AnalysisOption.withName(analysisName)
         processOptions(tail, error)
       case "this" :: tail =>
@@ -61,6 +62,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
         case RaOption => new CallGraphPhase(prevPhase) with RA
         case RtaOption => new CallGraphPhase(prevPhase) with RTA
         case TcaOption => new CallGraphPhase(prevPhase) with TCA
+        case TdraOption => new CallGraphPhase(prevPhase) with TDRA
       }
     }
 

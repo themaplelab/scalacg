@@ -55,7 +55,7 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
   }
 
   def processCallSites(classes: Set[Type],
-                       ra: Boolean,
+                       filterClasses: Boolean,
                        getFilteredClasses: CallSite => Set[Type] = (_ => Set())) {
     // process all call sites in reachable code
     for {
@@ -68,8 +68,8 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
       if (callSite.receiver == null) {
         targets = Set(csStaticTarget)
       } else {
-        val classesToLookup: Set[Type] = if (ra) classes else getFilteredClasses(callSite)
-        val superTargets = getSuperTargets(callSite, classes, ra)
+        val classesToLookup: Set[Type] = if (filterClasses) getFilteredClasses(callSite) else classes
+        val superTargets = getSuperTargets(callSite, classes, filterClasses)
         targets = lookup(csStaticTarget, classesToLookup, callSite.receiver.tpe) ++ superTargets // todo: for super[T] lookup here not necessary
       }
 

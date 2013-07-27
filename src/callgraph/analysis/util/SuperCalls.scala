@@ -34,19 +34,19 @@ trait SuperCalls extends Probe {
 
   def getSuperTargets(callSite: CallSite,
                       classes: Set[Type],
-                      raStyle: Boolean = false):
+                      typeDependent: Boolean = false):
       Set[Symbol] = {
 
     val csStaticTarget = callSite.staticTarget
 
     /* RA super targets resolution*/
-    if (raStyle) {
+    if (!typeDependent) {
       if (isSuperCall(callSite))
         return lookup(csStaticTarget, classes, lookForSuperClasses = true, getSuperName = superName)
       return Set()
     }
 
-    /* TCA super targets resolution */
+    /* Type-dependent style super targets resolution */
     val receiver = callSite.receiver
     val superReceiverName = superReceiverOption(receiver)
     val csEnclClass = csStaticTarget.enclClass

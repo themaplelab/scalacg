@@ -1,8 +1,8 @@
 package callgraph
 
-import analysis.{TypeCompositionAnalysis, AbstractAnalysis}
+import analysis.{TypeDependentAnalysis, AbstractAnalysis}
 
-trait CHA extends AbstractAnalysis with TypeCompositionAnalysis {
+trait CHA extends AbstractAnalysis with TypeDependentAnalysis {
 
   import global._
 
@@ -11,7 +11,7 @@ trait CHA extends AbstractAnalysis with TypeCompositionAnalysis {
       if (callSite.receiver == null) {
         callGraph += (callSite -> Set(callSite.staticTarget))
       } else {
-        val targets = lookup(callSite.staticTarget, allInstantiatedTypes, callSite.receiver.tpe)
+        val targets = lookup(callSite.staticTarget, consideredTypes, callSite.receiver.tpe)
         callGraph += (callSite -> targets)
       }
     }

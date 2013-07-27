@@ -10,7 +10,7 @@ trait RA extends WorklistAnalysis {
 
   private var cache = Map[(Name, Boolean), Set[Symbol]]()
 
-  override def getAllInstantiatedTypes: Set[Type] = {
+  override def getConsideredTypes: Set[Type] = {
     trees.flatMap {
       tree =>
         tree.collect {
@@ -20,7 +20,7 @@ trait RA extends WorklistAnalysis {
     }.toSet
   }
 
-  def lookup(staticTarget: MethodSymbol,
+  override def lookup(staticTarget: MethodSymbol,
              consideredClasses: Set[Type],
              // default parameters, used only for super method lookup
              receiverType: Type = null,
@@ -36,7 +36,7 @@ trait RA extends WorklistAnalysis {
     // Do we have the result cached?
     if (!(cache contains key)) {
       // Lookup the targets by name
-      val targets = allInstantiatedTypes.flatMap(_.members.filter((m: Symbol) =>
+      val targets = consideredTypes.flatMap(_.members.filter((m: Symbol) =>
         m.name == (if (lookForSuperClasses) staticTarget.name.newName(getSuperName(staticTarget.name.toString)) else staticTarget.name)
           && m.isMethod))
 
@@ -54,18 +54,17 @@ trait RA extends WorklistAnalysis {
   }
 
   override def buildCallGraph() {
-
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
 
-    addConstructorsToWorklist(allInstantiatedTypes)
-    addNewCallbacksToWorklist(allInstantiatedTypes)
+    addConstructorsToWorklist(consideredTypes)
+    addNewCallbacksToWorklist(consideredTypes)
 
     while (methodWorklist.nonEmpty) {
       // Debugging info
       println("Items in work list: " + methodWorklist.size)
       processNewMethods(getClassesInMethod = false)
-      processCallSites(allInstantiatedTypes, ra = true)
+      processCallSites(consideredTypes, filterClasses = false)
     }
     // Debugging info
     println("Work list is empty now.")

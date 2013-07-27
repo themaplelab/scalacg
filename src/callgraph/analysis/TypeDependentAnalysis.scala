@@ -1,17 +1,27 @@
 package callgraph.analysis
 
-import util.{LibraryCalls, Lookup}
+import util.Lookup
 import scala.Predef._
 
-trait TypeCompositionAnalysis extends Lookup {
+trait TypeDependentAnalysis extends Lookup {
 
-  this: LibraryCalls =>
+  this: AbstractAnalysis =>
 
   import global._
 
   var concretization = Map[Symbol, Set[Type]]()
 
-  def lookup(staticTarget: MethodSymbol,
+  override def getConsideredTypes = {
+    trees.flatMap {
+      tree =>
+        tree.collect {
+          case cd: ClassDef if cd.symbol.isModuleOrModuleClass => cd.symbol.tpe // isModuleClass -> an object, it gets auto instantiated
+          case nw: New => nw.tpt.tpe // the set of all allocation sites
+        }
+    }.toSet
+  }
+
+  override def lookup(staticTarget: MethodSymbol,
              consideredClasses: Set[Type],
              // default parameters, used only for super method lookup
              receiverType: Type,

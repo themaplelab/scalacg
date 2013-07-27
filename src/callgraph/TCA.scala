@@ -1,11 +1,11 @@
 package callgraph
 
-import analysis.{TypeCompositionAnalysis, WorklistAnalysis}
+import analysis.{TypeDependentAnalysis, WorklistAnalysis}
 import scala.collection.mutable
 import scala.collection.immutable.Set
 import scala.Predef._
 
-trait TCA extends WorklistAnalysis with TypeCompositionAnalysis {
+trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
 
   import global._
 
@@ -13,12 +13,12 @@ trait TCA extends WorklistAnalysis with TypeCompositionAnalysis {
 
     var superCalls = Set[Symbol]()
     val classToMembers = mutable.Map[Type, Set[Symbol]]()
-    var soFarInstantiatedClasses = Set[Type]()
+    var processedTypes = Set[Type]()
 
     // all objects are considered to be allocated
     // Karim: Here isModuleOrModuleClass should be used instead of just isModule, or isModuleClass. I have no idea
     // why this works this way, but whenever I use either of them alone something crashes.
-    soFarInstantiatedClasses ++= allInstantiatedTypes.filter(_.typeSymbol.isModuleOrModuleClass)
+    processedTypes ++= consideredTypes.filter(_.typeSymbol.isModuleOrModuleClass)
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
 
@@ -26,15 +26,15 @@ trait TCA extends WorklistAnalysis with TypeCompositionAnalysis {
       // Debugging info
       println("Items in work list: " + methodWorklist.size)
 
-      soFarInstantiatedClasses ++= processNewMethods(getClassesInMethod = true)
+      processedTypes ++= processNewMethods(getClassesInMethod = true)
       superCalls ++= getNewSuperCalls(reachableCode)
-      processCallSites(soFarInstantiatedClasses, ra = false, getFilteredClasses = getFilteredClasses)
+      processCallSites(processedTypes, filterClasses = true, getFilteredClasses = getFilteredClasses)
       // TODO Karim: I don't understand how this adds class definition to reachable code? how is this later processed?
-      addConstructorsToWorklist(soFarInstantiatedClasses)
-      addNewCallbacksToWorklist(soFarInstantiatedClasses)
+      addConstructorsToWorklist(processedTypes)
+      addNewCallbacksToWorklist(processedTypes)
       // Type concretization now should happen inside the worklist too, and only for the instantiated classes
       // This should improve the precision of our analysis 
-      addTypeConcretizations(soFarInstantiatedClasses)
+      addTypeConcretizations(processedTypes)
     }
 
     def getFilteredClasses(callSite: CallSite): Set[Type] = {
@@ -46,13 +46,13 @@ trait TCA extends WorklistAnalysis with TypeCompositionAnalysis {
           receiver.tpe.asInstanceOf[ThisType].sym
         else NoSymbol
       thisSymbol match {
-        case NoSymbol => soFarInstantiatedClasses
+        case NoSymbol => processedTypes
         case symbol =>
           val method = containingMethod(callSite.ancestors, symbol)
           if (method == NoSymbol || superCalls.contains(method))
-            soFarInstantiatedClasses
+            processedTypes
           else
-            soFarInstantiatedClasses.filter { tpe =>
+            processedTypes.filter { tpe =>
               val members = classToMembers.getOrElseUpdate(tpe, tpe.members.sorted.toSet)
               members.contains(method)
             }

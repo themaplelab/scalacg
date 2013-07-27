@@ -1,15 +1,15 @@
 package callgraph
 
-import analysis.{TypeCompositionAnalysis, WorklistAnalysis}
+import analysis.{TypeDependentAnalysis, WorklistAnalysis}
 
-trait RTA extends WorklistAnalysis with TypeCompositionAnalysis {
+trait RTA extends WorklistAnalysis with TypeDependentAnalysis {
 
   import global._
   
   def buildCallGraph() {
     var soFarInstantiatedClasses = Set[Type]()
     // all objects are considered to be allocated
-    soFarInstantiatedClasses ++= allInstantiatedTypes.filter(_.typeSymbol.isModuleOrModuleClass)
+    soFarInstantiatedClasses ++= consideredTypes.filter(_.typeSymbol.isModuleOrModuleClass)
     // this should be the same as in AbstractAnalysis.initialize
     // so this probably should say isModuleClass, if it breaks, then revert :D
     
