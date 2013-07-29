@@ -20,18 +20,16 @@ class CallGraphPlugin(val global: Global) extends Plugin {
   private var expectedNotReachables = Set[global.Symbol]()
   private var _appClasses = Set[global.Type]() // had to use another name here to make the set of appClasses shareable across the two components
 
-  // Plugin options
   object AnalysisOption extends Enumeration {
     type AnalysisOption = Value
-    val ChaOption = Value("cha")
     val RaOption = Value("ra")
-    val RtaOption = Value("rta")
     val TcaOption = Value("tca")
     val TdraOption = Value("tdra")
   }
 
   import AnalysisOption._
 
+  // Plugin options
   var analysisOpt = TcaOption
   var doThis = false
 
@@ -57,9 +55,7 @@ class CallGraphPlugin(val global: Global) extends Plugin {
     def newPhase(prevPhase: Phase) = {
       println("Running " + analysisOpt.toString.toUpperCase)
       analysisOpt match {
-        case ChaOption => new CallGraphPhase(prevPhase) with CHA
         case RaOption => new CallGraphPhase(prevPhase) with RA
-        case RtaOption => new CallGraphPhase(prevPhase) with RTA
         case TcaOption => new CallGraphPhase(prevPhase) with TCA
         case TdraOption => new CallGraphPhase(prevPhase) with TDRA
       }
