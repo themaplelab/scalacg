@@ -17,8 +17,6 @@ trait TreeTraversal {
   case class CallSite(receiver: Tree, staticTarget: MethodSymbol, args: List[Tree], annotation: List[String],
                       ancestors: List[Tree], pos: Position, enclMethod: Symbol)
 
-  private val cacheMethodToContainedInstantiations = mutable.Map[Symbol, Set[Type]]()
-
   // this is overridden by var trees in CallGraphPlugin
   def annotationFilter: PartialFunction[Tree, String]
 

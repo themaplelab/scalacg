@@ -10,7 +10,7 @@ import scala.tools.nsc.plugins.Plugin
 import scala.tools.nsc.plugins.PluginComponent
 import analysis.AbstractAnalysis
 
-class CallGraphPlugin(val global: Global) extends Plugin {
+class CallGraphPlugin(val global: Global) extends Plugin { cgPlugin =>
   val name = "callgraph"
   val description = "builds a call graph"
   val components = List[PluginComponent](AnnotationComponent, CallGraphComponent)
@@ -47,10 +47,10 @@ class CallGraphPlugin(val global: Global) extends Plugin {
   }
 
   /** Phase that resolves call sites to compute call graph */
-  object CallGraphComponent extends PluginComponent {
-    val global: CallGraphPlugin.this.global.type = CallGraphPlugin.this.global
+  object CallGraphComponent extends PluginComponent { cgComponent =>
+    val global: cgPlugin.global.type = cgPlugin.global
     val runsAfter = List[String]("targetannotation") // TODO: is this the right place for the phase?
-    val phaseName = CallGraphPlugin.this.name
+    val phaseName = cgPlugin.name
 
     def newPhase(prevPhase: Phase) = {
       println("Running " + analysisOpt.toString.toUpperCase)
@@ -65,15 +65,15 @@ class CallGraphPlugin(val global: Global) extends Plugin {
       this: AbstractAnalysis =>
 
       // apply is called for each file, but we want to run once for all files, that's why we override run
-      def apply(unit: CallGraphComponent.this.global.CompilationUnit) {
+      def apply(unit: cgComponent.global.CompilationUnit) {
         assert(assertion = false)
       }
 
       // The cake pattern stuff, you need to provide a "concrete" reference for Global
-      val global = CallGraphComponent.this.global
+      val global = cgComponent.global
       import global._ // just saves you typing
 
-      val methodToId = CallGraphPlugin.this.methodToId
+      val methodToId = cgPlugin.methodToId
 
       var trees = List[Tree]() // global.Tree
 
@@ -132,19 +132,19 @@ class CallGraphPlugin(val global: Global) extends Plugin {
   }
 
   /** Phase that annotates each method with @callgraph.annotation.targetmethod(serial number) */
-  private object AnnotationComponent extends PluginComponent {
-    val global: CallGraphPlugin.this.global.type = CallGraphPlugin.this.global
+  private object AnnotationComponent extends PluginComponent { annotComponent =>
+    val global: cgPlugin.global.type = cgPlugin.global
     val runsAfter = List[String]("uncurry")
     def newPhase(prevPhase: Phase) = new CallGraphPhase(prevPhase)
     val phaseName = "targetannotation"
 
     class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with CGAnnotations {
-      val global = AnnotationComponent.this.global
+      val global = annotComponent.global
       import global._
 
       var serialNum = 1
 
-      def apply(unit: AnnotationComponent.this.global.CompilationUnit) {
+      def apply(unit: annotComponent.global.CompilationUnit) {
         // Start the timer
         Timer.start = System.currentTimeMillis()
 

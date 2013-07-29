@@ -61,7 +61,6 @@ trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with 
     mainMethods
   }
 
-  // todo (Marianna): optimize? (understand what does)
   lazy val reachableMethods = transitiveClosure(entryPoints ++ callbacks, {
     source: Symbol =>
       for {
