@@ -1,4 +1,5 @@
-package callgraph
+package callgraph.analysis
+
 
 trait TDRA extends RA with TCA {
 

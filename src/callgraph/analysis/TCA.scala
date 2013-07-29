@@ -1,6 +1,5 @@
-package callgraph
+package callgraph.analysis
 
-import analysis.{TypeDependentAnalysis, WorklistAnalysis}
 import scala.collection.mutable
 import scala.collection.immutable.Set
 import scala.Predef._

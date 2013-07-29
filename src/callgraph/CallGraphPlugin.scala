@@ -8,7 +8,7 @@ import scala.tools.nsc.Global
 import scala.tools.nsc.Phase
 import scala.tools.nsc.plugins.Plugin
 import scala.tools.nsc.plugins.PluginComponent
-import analysis.AbstractAnalysis
+import analysis.{TDRA, TCA, RA, AbstractAnalysis}
 
 class CallGraphPlugin(val global: Global) extends Plugin { cgPlugin =>
   val name = "callgraph"
