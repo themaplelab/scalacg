@@ -10,16 +10,16 @@ trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with 
 
   import global._
 
-  var consideredTypes = Set[Type]()
+  var types = Set[Type]()
   var reachableCode = Set[Symbol]()
   var callbacks = Set[Symbol]()
   var callGraph = Map[CallSite, Set[Symbol]]()
 
-  def getConsideredTypes: Set[Type]
+  def getTypes: Set[Type]
 
   def initialize() {
     // find the set of instantiated classes in the whole program
-    consideredTypes = getConsideredTypes
+    types = getTypes
 
     // find call sites
     trees.foreach {
@@ -48,7 +48,7 @@ trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with 
   private def mainMethods = {
     val mainName = stringToTermName("main")
 
-    val mainMethods = consideredTypes.filter(_.typeSymbol.isModuleOrModuleClass). // filter classes that are objects
+    val mainMethods = types.filter(_.typeSymbol.isModuleOrModuleClass). // filter classes that are objects
       collect {
         case cs: ModuleTypeRef => cs.member(mainName)
       }. // collect main methods

@@ -9,7 +9,7 @@ trait RA extends WorklistAnalysis {
 
   private var cache = Map[(Name, Boolean), Set[Symbol]]()
 
-  override def getConsideredTypes: Set[Type] = {
+  override def getTypes: Set[Type] = {
     trees.flatMap {
       tree =>
         tree.collect {
@@ -56,14 +56,14 @@ trait RA extends WorklistAnalysis {
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
 
-    addConstructorsToWorklist(consideredTypes)
-    addNewCallbacksToWorklist(consideredTypes)
+    addConstructorsToWorklist(types)
+    addNewCallbacksToWorklist(types)
 
     while (methodWorklist.nonEmpty) {
       // Debugging info
       println("Items in work list: " + methodWorklist.size)
       processNewMethods(getClassesInMethod = false)
-      processCallSites(consideredTypes, filterClasses = false)
+      processCallSites(types, filterClasses = false)
     }
     // Debugging info
     println("Work list is empty now.")

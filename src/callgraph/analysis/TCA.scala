@@ -12,12 +12,12 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
 
     var superCalls = Set[Symbol]()
     val classToMembers = mutable.Map[Type, Set[Symbol]]()
-    var processedTypes = Set[Type]()
+    var instantiatedTypes = Set[Type]()
 
     // all objects are considered to be allocated
     // Karim: Here isModuleOrModuleClass should be used instead of just isModule, or isModuleClass. I have no idea
     // why this works this way, but whenever I use either of them alone something crashes.
-    processedTypes ++= consideredTypes.filter(_.typeSymbol.isModuleOrModuleClass)
+    instantiatedTypes ++= types.filter(_.typeSymbol.isModuleOrModuleClass)
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
 
@@ -25,15 +25,15 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
       // Debugging info
       println("Items in work list: " + methodWorklist.size)
 
-      processedTypes ++= processNewMethods(getClassesInMethod = true)
+      instantiatedTypes ++= processNewMethods(getClassesInMethod = true)
       superCalls ++= getNewSuperCalls(reachableCode)
-      processCallSites(processedTypes, filterClasses = true, getFilteredClasses = getFilteredClasses)
+      processCallSites(instantiatedTypes, filterClasses = true, getFilteredClasses = getFilteredClasses)
       // TODO Karim: I don't understand how this adds class definition to reachable code? how is this later processed?
-      addConstructorsToWorklist(processedTypes)
-      addNewCallbacksToWorklist(processedTypes)
+      addConstructorsToWorklist(instantiatedTypes)
+      addNewCallbacksToWorklist(instantiatedTypes)
       // Type concretization now should happen inside the worklist too, and only for the instantiated classes
       // This should improve the precision of our analysis 
-      addTypeConcretizations(processedTypes)
+      addTypeConcretizations(instantiatedTypes)
     }
 
     def getFilteredClasses(callSite: CallSite): Set[Type] = {
@@ -45,13 +45,13 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
           receiver.tpe.asInstanceOf[ThisType].sym
         else NoSymbol
       thisSymbol match {
-        case NoSymbol => processedTypes
+        case NoSymbol => instantiatedTypes
         case symbol =>
           val method = containingMethod(callSite.ancestors, symbol)
           if (method == NoSymbol || superCalls.contains(method))
-            processedTypes
+            instantiatedTypes
           else
-            processedTypes.filter { tpe =>
+            instantiatedTypes.filter { tpe =>
               val members = classToMembers.getOrElseUpdate(tpe, tpe.members.sorted.toSet)
               members.contains(method)
             }

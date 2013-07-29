@@ -11,7 +11,7 @@ trait TypeDependentAnalysis extends Lookup {
 
   var concretization = Map[Symbol, Set[Type]]()
 
-  override def getConsideredTypes = {
+  override def getTypes = {
     trees.flatMap {
       tree =>
         tree.collect {
