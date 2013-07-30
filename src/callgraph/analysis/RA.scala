@@ -23,21 +23,21 @@ trait RA extends WorklistAnalysis {
              consideredClasses: Set[Type],
              // default parameters, used only for super method lookup
              receiverType: Type = null,
-             lookForSuperClasses: Boolean = false,
-             getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
+             lookForSuperClasses: Boolean = false): Set[Symbol] = {
 
     // Don't lookup a call to a constructor
     if (staticTarget.isConstructor)
       return Set(staticTarget)
 
-    val key = (staticTarget.name, lookForSuperClasses)
+    val targetName = staticTarget.name
+    val key = (targetName, lookForSuperClasses)
 
     // Do we have the result cached?
     if (!(cache contains key)) {
       // Lookup the targets by name
       val targets = consideredClasses.flatMap(_.members.filter((m: Symbol) =>
-        m.name == (if (lookForSuperClasses) staticTarget.name.newName(getSuperName(staticTarget.name.toString)) else staticTarget.name)
-          && m.isMethod))
+        m.name == (if (lookForSuperClasses) targetName.newName(superName(targetName.toString)) else targetName)
+        && m.isMethod))
 
       // Add to cache
       cache += (key -> targets)

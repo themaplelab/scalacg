@@ -9,7 +9,6 @@ trait TDRA extends RA with TCA {
                       consideredClasses: Set[Type],
                       // default parameters, used only for super method lookup
                       receiverType: Type = null,
-                      lookForSuperClasses: Boolean = false,
-                      getSuperName: (String => String) = (n: String) => n) =
+                      lookForSuperClasses: Boolean = false) =
     super[RA].lookup(staticTarget, consideredClasses)
 }

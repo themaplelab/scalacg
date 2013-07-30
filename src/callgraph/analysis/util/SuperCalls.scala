@@ -12,7 +12,7 @@ trait SuperCalls extends Probe {
   import global._
 
   def superLookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Type]): Set[Symbol] = {
-    lookup(staticTarget, consideredClasses, receiverType, lookForSuperClasses = true, getSuperName = superName)
+    lookup(staticTarget, consideredClasses, receiverType, lookForSuperClasses = true)
   }
 
   def superName = ((name: String) => {
@@ -43,7 +43,7 @@ trait SuperCalls extends Probe {
     /* RA super targets resolution*/
     if (!typeDependent) {
       if (isSuperCall(callSite))
-        return (lookup(csStaticTarget, classes, lookForSuperClasses = true, getSuperName = superName), false)
+        return (lookup(csStaticTarget, classes, lookForSuperClasses = true), false)
       return (Set(), false)
     }
 

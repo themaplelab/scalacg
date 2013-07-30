@@ -1,15 +1,21 @@
 package callgraph.analysis
 
-import util.Lookup
+import util.{SuperCalls, Lookup}
 import scala.Predef._
 
 trait TypeDependentAnalysis extends Lookup {
 
-  this: AbstractAnalysis =>
+  this: AbstractAnalysis with SuperCalls =>
 
   import global._
 
   var concretization = Map[Symbol, Set[Type]]()
+
+  /*
+   * For a given pair (m, r, c), where m is a callsite's static target, r is its receiver type,
+   * and c is the class in which m alredy has been looked up, cache the resolved symbols for m in c
+   */
+  var cacheTargetClassToSymbols = Map[(MethodSymbol, Type, Type), Set[Symbol]]()
 
   override def getTypes = {
     trees.flatMap {
@@ -21,35 +27,33 @@ trait TypeDependentAnalysis extends Lookup {
     }.toSet
   }
 
-  override def lookup(staticTarget: MethodSymbol,
-             consideredClasses: Set[Type],
-             // default parameters, used only for super method lookup
-             receiverType: Type,
-             lookForSuperClasses: Boolean = false,
-             getSuperName: (String => String) = (n: String) => n): Set[Symbol] = {
+  private def lookupInClass(staticTarget: MethodSymbol,
+                    tpe: Type,
+                    // default parameters, used only for super method lookup
+                    receiverType: Type,
+                    lookForSuperClasses: Boolean): Set[Symbol] = {
 
-    // If the target method is a constructor, no need to do the lookup.
-    if (staticTarget.isConstructor)
-      return Set(staticTarget)
+    val tuple = (staticTarget, receiverType, tpe)
+    if (cacheTargetClassToSymbols contains tuple)
+      return cacheTargetClassToSymbols(tuple)
 
-    // If it's in the application, then resolve the call
     var targets = List[Symbol]()
     for {
-      tpe <- consideredClasses
       expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
       asf = expandedType.asSeenFrom(tpe, expandedType.typeSymbol)
       tpeasf = tpe.asSeenFrom(asf, tpe.typeSymbol)
       if tpeasf <:< asf || lookForSuperClasses
+      targetName = staticTarget.name
       target = if (lookForSuperClasses) {
-        tpeasf.member(staticTarget.name.newName(getSuperName(staticTarget.name.toString)))
-      } else tpeasf.member(staticTarget.name)
+        val targetString = targetName.toString
+        val newName = if (lookForSuperClasses) superName(targetString) else targetString
+        tpeasf.member(targetName.newName(newName))
+      } else tpeasf.member(targetName)
       if !target.isDeferred
     } {
       target match {
         case NoSymbol =>
-          // TODO: can this ever happen? let's put in an assertion and see...
           assert(assertion = false, message = "tpe is " + tpe)
-
         case _ =>
           // Disambiguate overloaded methods based on the types of the args
           if (target.isOverloaded) {
@@ -59,17 +63,30 @@ trait TypeDependentAnalysis extends Lookup {
           }
       }
     }
+    val result = targets.toSet
+    cacheTargetClassToSymbols += (tuple -> result)
+    result
+  }
+
+  override def lookup(staticTarget: MethodSymbol,
+             consideredClasses: Set[Type],
+             // default parameters, used only for super method lookup
+             receiverType: Type,
+             lookForSuperClasses: Boolean = false): Set[Symbol] = {
+
+    // If the target method is a constructor, no need to do the lookup.
+    if (staticTarget.isConstructor)
+      return Set(staticTarget)
+
+    // If it's in the application, then resolve the call
+    val targets = consideredClasses.flatMap(lookupInClass(staticTarget, _, receiverType, lookForSuperClasses))
 
     /*
      * If the static target is in the application, return the set of resolved targets.
      * Else, return the set of resolved targets in addition to the static target. The static target then stands for
      * all those edges that we couldn't compute because we do not analyze the library.
      */
-    if (isLibrary(staticTarget)) { // todo: what for super methods?
-      targets = staticTarget :: targets
-    }
-
-    targets.toSet
+    (if (isLibrary(staticTarget)) targets + staticTarget else targets).toSet
   }
 
   private def expand(t: Type): Set[Type] = {

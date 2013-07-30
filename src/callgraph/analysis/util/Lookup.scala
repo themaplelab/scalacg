@@ -13,6 +13,5 @@ trait Lookup extends Global {
              consideredClasses: Set[Type],
              // default parameters, used only for super method lookup
              receiverType: Type = null,
-             lookForSuperClasses: Boolean = false,
-             getSuperName: (String => String) = (n: String) => n): Set[Symbol]
+             lookForSuperClasses: Boolean = false): Set[Symbol]
 }
