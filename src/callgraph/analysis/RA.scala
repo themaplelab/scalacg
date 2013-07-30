@@ -19,11 +19,11 @@ trait RA extends WorklistAnalysis {
     }.toSet
   }
 
-  override def lookup(staticTarget: MethodSymbol,
+  override def lookup(callSite: CallSite,
              consideredClasses: Set[Type],
              // default parameters, used only for super method lookup
-             receiverType: Type = null,
              lookForSuperClasses: Boolean = false): Set[Symbol] = {
+    val staticTarget = callSite.staticTarget
 
     // Don't lookup a call to a constructor
     if (staticTarget.isConstructor)

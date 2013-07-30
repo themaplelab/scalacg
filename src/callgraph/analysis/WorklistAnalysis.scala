@@ -74,7 +74,7 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
         if (isConcreteSuper && isTypeDependent)
           targets = superTargets
         else
-          targets = lookup(csStaticTarget, classesToLookup, receiver.tpe) ++ superTargets
+          targets = lookup(callSite, classesToLookup) ++ superTargets
       }
 
       callGraph += (callSite -> targets)

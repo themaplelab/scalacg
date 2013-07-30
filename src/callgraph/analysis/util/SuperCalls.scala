@@ -11,8 +11,8 @@ trait SuperCalls extends Probe {
 
   import global._
 
-  def superLookup(receiverType: Type, staticTarget: MethodSymbol, consideredClasses: Set[Type]): Set[Symbol] = {
-    lookup(staticTarget, consideredClasses, receiverType, lookForSuperClasses = true)
+  def superLookup(callSite: CallSite, consideredClasses: Set[Type]): Set[Symbol] = {
+    lookup(callSite, consideredClasses, lookForSuperClasses = true)
   }
 
   def superName = ((name: String) => {
@@ -43,7 +43,7 @@ trait SuperCalls extends Probe {
     /* RA super targets resolution*/
     if (!typeDependent) {
       if (isSuperCall(callSite))
-        return (lookup(csStaticTarget, classes, lookForSuperClasses = true), false)
+        return (lookup(callSite, classes, lookForSuperClasses = true), false)
       return (Set(), false)
     }
 
@@ -60,7 +60,7 @@ trait SuperCalls extends Probe {
             val bcs = csEnclClass.baseClasses
             val superClass = bcs.find(_.nameString == name.toString) // todo: filter instead of find??
             if (superClass.isDefined) {
-              return (lookup(csStaticTarget, Set(superClass.get.tpe), receiver.tpe), true)
+              return (lookup(callSite, Set(superClass.get.tpe)), true)
             }
           }
         case _ =>
@@ -76,7 +76,7 @@ trait SuperCalls extends Probe {
           // find the first class in the list of linearized base classes, starting from index 'startFrom',
           // that contains a method with same signature as csStaticTarget
           dropped.collectFirst {
-            case cl if superLookup(receiver.tpe, csStaticTarget, Set(cl.tpe)).nonEmpty => superLookup(receiver.tpe, csStaticTarget, Set(cl.tpe))
+            case cl if superLookup(callSite, Set(cl.tpe)).nonEmpty => superLookup(callSite, Set(cl.tpe))
           }.getOrElse(Set())
       }.flatten
       return (superCalls.toSet, false)
