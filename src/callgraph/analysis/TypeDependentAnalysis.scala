@@ -12,10 +12,11 @@ trait TypeDependentAnalysis extends Lookup {
   var concretization = Map[Symbol, Set[Type]]()
 
   /*
-   * For a given pair (m, r, c), where m is a callsite's static target, r is its receiver type,
-   * and c is the class in which m alredy has been looked up, cache the resolved symbols for m in c
+   * For a given pair (m, r, c, b), where m is a callsite's static target, r is its receiver type,
+   * c is the class in which m alredy has been looked up, and b determines if this is a super class lookup
+   * or not, -- cache the resolved symbols for m in c
    */
-  var cacheTargetClassToSymbols = Map[(MethodSymbol, Type, Type), Set[Symbol]]()
+  var cacheTargetClassToSymbols = Map[(MethodSymbol, Type, Type, Boolean), Set[Symbol]]()
 
   override def getTypes = {
     trees.flatMap {
@@ -34,7 +35,7 @@ trait TypeDependentAnalysis extends Lookup {
 
     val staticTarget = callSite.staticTarget
     val receiverType = callSite.receiver.tpe
-    val tuple = (staticTarget, receiverType, tpe)
+    val tuple = (staticTarget, receiverType, tpe, lookForSuperClasses)
 
     def lookupNonCached = {
       var targets = List[Symbol]()
