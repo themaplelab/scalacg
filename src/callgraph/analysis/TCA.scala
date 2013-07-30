@@ -25,11 +25,12 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
       // Debugging info
       println("Items in work list: " + methodWorklist.size)
 
-      instantiatedTypes ++= processNewMethods(getClassesInMethod = true)
+      val newInstantiatedTypes = processNewMethods(isTypeDependent = true)
+      instantiatedTypes ++= newInstantiatedTypes
       superCalls ++= getNewSuperCalls(reachableCode)
-      processCallSites(instantiatedTypes, filterClasses = true, getFilteredClasses = getFilteredClasses)
+      processCallSites(instantiatedTypes, newInstantiatedTypes, isTypeDependent = true, getFilteredClasses = getFilteredClasses)
       // TODO Karim: I don't understand how this adds class definition to reachable code? how is this later processed?
-      addConstructorsToWorklist(instantiatedTypes)
+      addConstructorsToWorklist(instantiatedTypes)    // todo: change method impl and pass newInstTypes?
       addNewCallbacksToWorklist(instantiatedTypes)
       // Type concretization now should happen inside the worklist too, and only for the instantiated classes
       // This should improve the precision of our analysis 

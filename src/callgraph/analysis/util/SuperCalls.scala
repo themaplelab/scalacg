@@ -32,21 +32,22 @@ trait SuperCalls extends Probe {
     }
   }
 
+  /* returns pair of set of super targets and boolean indicating whether the super call is of form super[T] */
   def getSuperTargets(callSite: CallSite,
                       classes: Set[Type],
                       typeDependent: Boolean = false):
-      Set[Symbol] = {
+      (Set[Symbol], Boolean) = {
 
     val csStaticTarget = callSite.staticTarget
 
     /* RA super targets resolution*/
     if (!typeDependent) {
       if (isSuperCall(callSite))
-        return lookup(csStaticTarget, classes, lookForSuperClasses = true, getSuperName = superName)
-      return Set()
+        return (lookup(csStaticTarget, classes, lookForSuperClasses = true, getSuperName = superName), false)
+      return (Set(), false)
     }
 
-    /* Type-dependent style super targets resolution */
+    /* TCA-style super targets resolution */
     val receiver = callSite.receiver
     val superReceiverName = superReceiverOption(receiver)
     val csEnclClass = csStaticTarget.enclClass
@@ -54,12 +55,12 @@ trait SuperCalls extends Probe {
       superReceiverName match {
         case Some(name) =>
           if (name.isEmpty)
-            return Set(csStaticTarget)
+            return (Set(csStaticTarget), false)
           else {
             val bcs = csEnclClass.baseClasses
             val superClass = bcs.find(_.nameString == name.toString) // todo: filter instead of find??
             if (superClass.isDefined) {
-              return lookup(csStaticTarget, Set(superClass.get.tpe), receiver.tpe)
+              return (lookup(csStaticTarget, Set(superClass.get.tpe), receiver.tpe), true)
             }
           }
         case _ =>
@@ -78,9 +79,9 @@ trait SuperCalls extends Probe {
             case cl if superLookup(receiver.tpe, csStaticTarget, Set(cl.tpe)).nonEmpty => superLookup(receiver.tpe, csStaticTarget, Set(cl.tpe))
           }.getOrElse(Set())
       }.flatten
-      return superCalls.toSet
+      return (superCalls.toSet, false)
     }
-    Set()
+    (Set(), false)
   }
 
   def isReachableSuperMethodName(method: Symbol, superMethodNames: Set[TermName], reachableCode: Set[Symbol]): Boolean =

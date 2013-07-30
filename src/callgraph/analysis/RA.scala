@@ -62,8 +62,8 @@ trait RA extends WorklistAnalysis {
     while (methodWorklist.nonEmpty) {
       // Debugging info
       println("Items in work list: " + methodWorklist.size)
-      processNewMethods(getClassesInMethod = false)
-      processCallSites(types, filterClasses = false)
+      processNewMethods(isTypeDependent = false)
+      processCallSites(types, types, isTypeDependent = false) // todo: change types to newTypes
     }
     // Debugging info
     println("Work list is empty now.")

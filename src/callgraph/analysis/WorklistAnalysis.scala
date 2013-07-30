@@ -41,36 +41,40 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
     }
   }
 
-  /* getClassesInMethod is true for TCA and false for RA: it indicates whether we're interested
+  /* isTypeDependent is true for TCA and false for RA: it indicates whether we're interested
    * in getting the instantiated classes inside of the new methods */
-  def processNewMethods(getClassesInMethod: Boolean): Set[Type] = {
-    var soFarInstantiatedClasses = Set[Type]()
+  def processNewMethods(isTypeDependent: Boolean): Set[Type] = {
+    var newInstantiatedTypes = Set[Type]()
     for (method <- methodWorklist.dequeueAll(_ => true)) {
       reachableCode += method
-      if (getClassesInMethod) {
-        soFarInstantiatedClasses ++= classesInMethod(method)
+      if (isTypeDependent) {
+        newInstantiatedTypes ++= classesInMethod(method)
       }
     }
-    soFarInstantiatedClasses
+    newInstantiatedTypes
   }
 
-  def processCallSites(classes: Set[Type],
-                       filterClasses: Boolean,
+  def processCallSites(types: Set[Type],
+                       newTypes: Set[Type],
+                       isTypeDependent: Boolean,
                        getFilteredClasses: CallSite => Set[Type] = (_ => Set())) {
-    // process all call sites in reachable code
     for {
       callSite <- callSites
       if reachableCode contains callSite.enclMethod
     } {
       val csStaticTarget = callSite.staticTarget
+      val receiver = callSite.receiver
       var targets = Set[Symbol]()
 
-      if (callSite.receiver == null) {
+      if (receiver == null) {
         targets = Set(csStaticTarget)
       } else {
-        val classesToLookup: Set[Type] = if (filterClasses) getFilteredClasses(callSite) else classes
-        val superTargets = getSuperTargets(callSite, classes, filterClasses)
-        targets = lookup(csStaticTarget, classesToLookup, callSite.receiver.tpe) ++ superTargets // todo: for super[T] lookup here not necessary
+        val classesToLookup: Set[Type] = if (isTypeDependent) getFilteredClasses(callSite) else newTypes
+        val (superTargets, isConcreteSuper) = getSuperTargets(callSite, types, isTypeDependent)
+        if (isConcreteSuper && isTypeDependent)
+          targets = superTargets
+        else
+          targets = lookup(csStaticTarget, classesToLookup, receiver.tpe) ++ superTargets
       }
 
       callGraph += (callSite -> targets)
