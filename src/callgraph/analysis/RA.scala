@@ -7,17 +7,7 @@ trait RA extends WorklistAnalysis {
 
   import global._
 
-  private var cache = Map[(Name, Boolean), Set[Symbol]]()
-
-  override def getTypes: Set[Type] = {
-    trees.flatMap {
-      tree =>
-        tree.collect {
-          case cd: ClassDef => cd.symbol.tpe
-          case nw: New => nw.tpt.tpe // to get the library types used in the application
-        }
-    }.toSet
-  }
+  private var cacheCallsiteToTargets = Map[(Name, Boolean), Set[Symbol]]()
 
   override def lookup(callSite: CallSite,
              consideredClasses: Set[Type],
@@ -33,22 +23,21 @@ trait RA extends WorklistAnalysis {
     val key = (targetName, lookForSuperClasses)
 
     // Do we have the result cached?
-    if (!(cache contains key)) {
+    if (!(cacheCallsiteToTargets contains key)) {
       // Lookup the targets by name
       val targets = consideredClasses.flatMap(_.members.filter((m: Symbol) =>
         m.name == (if (lookForSuperClasses) targetName.newName(superName(targetName.toString)) else targetName)
         && m.isMethod))
 
       // Add to cache
-      cache += (key -> targets)
+      cacheCallsiteToTargets += (key -> targets)
     }
 
-    var ret = cache(key)
+    var ret = cacheCallsiteToTargets(key)
     // Add the static target if it's in the library
     if (isLibrary(staticTarget)) {
       ret += staticTarget
     }
-
     ret
   }
 

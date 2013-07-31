@@ -1,7 +1,8 @@
 package callgraph.analysis
 
 
-trait TDRA extends RA with TCA {
+/* Type Composition Reachability Analysis */
+trait TCRA extends RA with TCA {
 
   import global._
 

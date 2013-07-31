@@ -18,15 +18,10 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
     }
   }
 
-  var cacheClassesForProcessedConstructors = Set[Type]()
-
   def addConstructorsToWorklist(classes: Set[Type]) {
     classes.foreach((cls: Type) => {
-      if (!cacheClassesForProcessedConstructors.contains(cls)) {
-        addMethod(cls.typeSymbol)
-        cls.members.foreach((m: Symbol) => if (m.isConstructor) addMethod(m))
-        cacheClassesForProcessedConstructors += cls
-      }
+      addMethod(cls.typeSymbol)
+      cls.members.foreach((m: Symbol) => if (m.isConstructor) addMethod(m))
     })
   }
 
@@ -77,7 +72,7 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
           targets = lookup(callSite, classesToLookup) ++ superTargets
       }
 
-      callGraph += (callSite -> targets)
+      callGraph += (callSite -> (callGraph.getOrElse(callSite, Set()) ++ targets))
       targets.foreach(addMethod)
     }
   }

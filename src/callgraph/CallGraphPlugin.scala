@@ -8,7 +8,7 @@ import scala.tools.nsc.Global
 import scala.tools.nsc.Phase
 import scala.tools.nsc.plugins.Plugin
 import scala.tools.nsc.plugins.PluginComponent
-import analysis.{TDRA, TCA, RA, AbstractAnalysis}
+import analysis.{TCRA, TCA, RA, AbstractAnalysis}
 
 class CallGraphPlugin(val global: Global) extends Plugin { cgPlugin =>
   val name = "callgraph"
@@ -57,7 +57,7 @@ class CallGraphPlugin(val global: Global) extends Plugin { cgPlugin =>
       analysisOpt match {
         case RaOption => new CallGraphPhase(prevPhase) with RA
         case TcaOption => new CallGraphPhase(prevPhase) with TCA
-        case TdraOption => new CallGraphPhase(prevPhase) with TDRA
+        case TdraOption => new CallGraphPhase(prevPhase) with TCRA
       }
     }
 

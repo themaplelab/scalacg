@@ -18,16 +18,6 @@ trait TypeDependentAnalysis extends Lookup {
    */
   var cacheTargetClassToSymbols = Map[(MethodSymbol, Type, Type, Boolean), Set[Symbol]]()
 
-  override def getTypes = {
-    trees.flatMap {
-      tree =>
-        tree.collect {
-          case cd: ClassDef if cd.symbol.isModuleOrModuleClass => cd.symbol.tpe // isModuleClass -> an object, it gets auto instantiated
-          case nw: New => nw.tpt.tpe // the set of all allocation sites
-        }
-    }.toSet
-  }
-
   private def lookupInClass(callSite: CallSite,
                     tpe: Type,
                     // default parameters, used only for super method lookup
@@ -53,7 +43,7 @@ trait TypeDependentAnalysis extends Lookup {
         if !target.isDeferred
       } {
         target match {
-          case NoSymbol =>
+          case NoSymbol =>   // todo: can this ever happen? (anser: yes, check kiama)
             assert(assertion = false, message = "tpe is " + tpe)
           case _ =>
             // Disambiguate overloaded methods based on the types of the args
@@ -65,7 +55,8 @@ trait TypeDependentAnalysis extends Lookup {
         }
       }
       val result = targets.toSet
-      cacheTargetClassToSymbols += (tuple -> result)
+      if(callSite.enclMethod.nameString == "main" && callSite.staticTarget.nameString == "m") println("targets: " + targets)
+      cacheTargetClassToSymbols += (tuple -> (cacheTargetClassToSymbols.getOrElse(tuple, Set()) ++ result))
       result
     }
 

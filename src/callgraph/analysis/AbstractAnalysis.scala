@@ -15,7 +15,15 @@ trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with 
   var callbacks = Set[Symbol]()
   var callGraph = Map[CallSite, Set[Symbol]]()
 
-  def getTypes: Set[Type]
+  def getTypes: Set[Type] = {
+    trees.flatMap {
+      tree =>
+        tree.collect {
+          case cd: ClassDef => cd.symbol.tpe
+          case nw: New => nw.tpt.tpe // to get the library types used in the application
+        }
+    }.toSet
+  }
 
   def initialize() {
     // find the set of instantiated classes in the whole program

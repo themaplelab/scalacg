@@ -18,6 +18,9 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
     // Karim: Here isModuleOrModuleClass should be used instead of just isModule, or isModuleClass. I have no idea
     // why this works this way, but whenever I use either of them alone something crashes.
     instantiatedTypes ++= types.filter(_.typeSymbol.isModuleOrModuleClass)
+
+    var newInstantiatedTypes = instantiatedTypes
+
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
 
@@ -25,16 +28,18 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
       // Debugging info
       println("Items in work list: " + methodWorklist.size)
 
-      val newInstantiatedTypes = processNewMethods(isTypeDependent = true)
+      addConstructorsToWorklist(newInstantiatedTypes)
+      addNewCallbacksToWorklist(newInstantiatedTypes)
+      addTypeConcretizations(newInstantiatedTypes)
+
+      newInstantiatedTypes = processNewMethods(isTypeDependent = true)
       instantiatedTypes ++= newInstantiatedTypes
+
       superCalls ++= getNewSuperCalls(reachableCode)
       processCallSites(instantiatedTypes, newInstantiatedTypes, isTypeDependent = true, getFilteredClasses = getFilteredClasses)
-      // TODO Karim: I don't understand how this adds class definition to reachable code? how is this later processed?
-      addConstructorsToWorklist(instantiatedTypes)    // todo: change method impl and pass newInstTypes?
-      addNewCallbacksToWorklist(instantiatedTypes)
+
       // Type concretization now should happen inside the worklist too, and only for the instantiated classes
-      // This should improve the precision of our analysis 
-      addTypeConcretizations(instantiatedTypes)
+      // This should improve the precision of our analysis
     }
 
     def getFilteredClasses(callSite: CallSite): Set[Type] = {
