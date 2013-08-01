@@ -43,7 +43,7 @@ trait TypeDependentAnalysis extends Lookup {
         if !target.isDeferred
       } {
         target match {
-          case NoSymbol =>   // todo: can this ever happen? (anser: yes, check kiama)
+          case NoSymbol =>   // todo: can this ever happen? (answer: yes, check kiama)
             assert(assertion = false, message = "tpe is " + tpe)
           case _ =>
             // Disambiguate overloaded methods based on the types of the args

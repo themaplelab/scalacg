@@ -13,6 +13,7 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
     var superCalls = Set[Symbol]()
     val classToMembers = mutable.Map[Type, Set[Symbol]]()
     var instantiatedTypes = Set[Type]()
+    var cacheThisToContainingMethod = Map[Symbol, Symbol]()
 
     // all objects are considered to be allocated
     // Karim: Here isModuleOrModuleClass should be used instead of just isModule, or isModuleClass. I have no idea
@@ -57,9 +58,9 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
           if (method == NoSymbol || superCalls.contains(method))
             instantiatedTypes
           else
-            instantiatedTypes.filter { tpe =>
-              val members = classToMembers.getOrElseUpdate(tpe, tpe.members.sorted.toSet)
-              members.contains(method)
+            instantiatedTypes.filter {
+              tpe =>
+                classToMembers.getOrElseUpdate(tpe, tpe.members.sorted.toSet).contains(method) // todo: optimize
             }
       }
     }
@@ -86,7 +87,7 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
         cls.info match {
           // class declaration and has a set of parents
           case ClassInfoType(parents, _, _) =>
-            for { parent <- parents } {
+            for {parent <- parents} {
               val args = parent.typeArguments
               val cstr = parent.typeConstructor
               val params = cstr.typeParams
@@ -140,14 +141,21 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
      * Karim: For these cases, such a method is the primary constructor of the class.
      */
     def containingMethod(ancestors: List[Tree], thisType: Symbol): Symbol = {
-      (for {
-        firstContainer <- ancestors.find { node =>
-          node.isInstanceOf[DefDef] || node.isInstanceOf[ClassDef]
-        }
-        instanceMethod <- firstContainer.symbol.ownersIterator.find { sym =>
-          sym.isMethod && sym.owner == thisType
-        }
-      } yield instanceMethod).getOrElse(NoSymbol)
+      cacheThisToContainingMethod.getOrElse(thisType, {
+        val containingMethod = (for {
+          firstContainer <- ancestors.find {
+            node =>
+              node.isInstanceOf[DefDef] || node.isInstanceOf[ClassDef]
+          }
+          instanceMethod <- firstContainer.symbol.ownersIterator.find {
+            sym =>
+              sym.isMethod && sym.owner == thisType
+          }
+        } yield instanceMethod).getOrElse(NoSymbol)
+        cacheThisToContainingMethod += (thisType -> containingMethod)
+        containingMethod
+      }
+      )
     }
   }
 }
