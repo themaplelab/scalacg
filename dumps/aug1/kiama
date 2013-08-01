@@ -1,0 +1,7 @@
+Target is NoSymbol for the following case:
+==========================================
+enclMethod: <org.kiama.example.oberon0.base.Driver: process(ast: org.kiama.example.oberon0.base.source.ModuleDecl,console: org.kiama.util.Console,emitter: org.kiama.util.Emitter)>
+static target: <org.kiama.example.oberon0.base.Driver: super$process(ast: org.kiama.example.oberon0.base.source.ModuleDecl,console: org.kiama.util.Console,emitter: org.kiama.util.Emitter)> 
+expanded type: org.kiama.example.oberon0.base.Driver with scala.util.parsing.combinator.RegexParsers with org.kiama.example.oberon0.base.source.SourcePrettyPrinter with org.kiama.example.oberon0.base.SymbolTable with org.kiama.example.oberon0.base.Analyser 
+asf: org.kiama.example.oberon0.base.Driver with scala.util.parsing.combinator.RegexParsers with org.kiama.example.oberon0.base.source.SourcePrettyPrinter with org.kiama.example.oberon0.base.SymbolTable with org.kiama.example.oberon0.base.Analyser 
+tpeasf: org.kiama.output.PrettyPrinter
