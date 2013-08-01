@@ -10,6 +10,7 @@ trait TreeTraversal {
 
   import global._
 
+  var types = Set[Type]()
   var callSites = List[CallSite]()
   val callSitesInMethod = mutable.Map[Symbol, Set[CallSite]]()
   var trees: List[Tree]
@@ -20,13 +21,7 @@ trait TreeTraversal {
   // this is overridden by var trees in CallGraphPlugin
   def annotationFilter: PartialFunction[Tree, String]
 
-  def addCallSite(callSite: CallSite) {
-    callSites ::= callSite
-    val enclMethod = callSite.enclMethod
-    callSitesInMethod(enclMethod) = callSitesInMethod.getOrElse(enclMethod, Set()) + callSite
-  }
-
-
+  // todo (optimization): this method traverses the tree
   lazy val classesInMethod = {
     val ret = mutable.Map[Symbol, Set[Type]]().withDefaultValue(Set())
     def traverse(tree: Tree, owner: Symbol) {
@@ -47,11 +42,16 @@ trait TreeTraversal {
 
   // todo (optimization): this method traverses the tree
   /* for every tree in the program, called only once from AbstractAnalysis.initialize */
-  def findCallSites(tree: Tree, ancestors: List[Tree]) {
+  def findCallSitesAndTypes(tree: Tree, ancestors: List[Tree]) {
+
     tree match {
-      // Add the calls from primary constructors of classes to mixin constructors (see AbstractTypes13)
       case cls: ClassDef =>
+        addType(cls.symbol.tpe)
+        // Add the calls from primary constructors of classes to mixin constructors (see AbstractTypes13)
         findCallSitesClassDef(cls)
+      case nw: New =>
+        addType(nw.tpt.tpe)
+        processChildren()
       // trees that invoke methods
       case apply: Apply =>
         findCallSitesApply(apply)
@@ -59,6 +59,16 @@ trait TreeTraversal {
         findCallSitesSelectOrIdent()
       case _ =>
         processChildren()
+    }
+
+    def addType(tpe: Type) {
+      types += tpe
+    }
+
+    def addCallSite(callSite: CallSite) {
+      callSites ::= callSite
+      val enclMethod = callSite.enclMethod
+      callSitesInMethod(enclMethod) = callSitesInMethod.getOrElse(enclMethod, Set()) + callSite
     }
 
     def findCallSitesClassDef(cls: ClassDef) {
@@ -84,8 +94,8 @@ trait TreeTraversal {
         val _enclMethod = enclMethod(ancestors)
         addCallSite(CallSite(plainReceiver, tree.symbol.asMethod, args, annotation, ancestors, tree.pos, _enclMethod))
       }
-      args.foreach(findCallSites(_, tree :: ancestors))
-      callee.children.foreach(findCallSites(_, tree :: ancestors))
+      args.foreach(findCallSitesAndTypes(_, tree :: ancestors))
+      callee.children.foreach(findCallSitesAndTypes(_, tree :: ancestors))
     }
 
     def findCallSitesSelectOrIdent() {
@@ -99,7 +109,7 @@ trait TreeTraversal {
     }
 
     def processChildren() {
-      tree.children.foreach(findCallSites(_, tree :: ancestors))
+      tree.children.foreach(findCallSitesAndTypes(_, tree :: ancestors))
     }
   }
 
@@ -115,6 +125,7 @@ trait TreeTraversal {
       !symbol.isLabel // gotos are implemented with a method-call-like syntax, but they do not call
   // actual methods, only labels
 
+  // todo (optimization): this method traverses the tree
   /** Returns the receiver of an apply or unapply. Some don't have a receiver. */
   private def getReceiver(tree: Tree): Option[Tree] = tree match {
     case a: Apply => getReceiver(a.fun)
