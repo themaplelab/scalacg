@@ -63,13 +63,11 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
 
       if (receiver == null) {
         targets = Set(csStaticTarget)
+      } else if (isSuperCall(callSite)) {
+        targets = getSuperTargets(callSite, types, isTypeDependent)
       } else {
         val classesToLookup: Set[Type] = if (isTypeDependent) getFilteredClasses(callSite) else newTypes
-        val (superTargets, isConcreteSuper) = getSuperTargets(callSite, types, isTypeDependent)
-        if (isConcreteSuper && isTypeDependent)
-          targets = superTargets
-        else
-          targets = lookup(callSite, classesToLookup) ++ superTargets
+        targets = lookup(callSite, classesToLookup)
       }
 
       callGraph += (callSite -> (callGraph.getOrElse(callSite, Set()) ++ targets))

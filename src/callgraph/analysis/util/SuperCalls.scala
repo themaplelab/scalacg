@@ -36,15 +36,15 @@ trait SuperCalls extends Probe {
   def getSuperTargets(callSite: CallSite,
                       classes: Set[Type],
                       typeDependent: Boolean = false):
-      (Set[Symbol], Boolean) = {
+      Set[Symbol] = {
 
     val csStaticTarget = callSite.staticTarget
 
     /* RA super targets resolution*/
     if (!typeDependent) {
       if (isSuperCall(callSite))
-        return (lookup(callSite, classes, lookForSuperClasses = true), false)
-      return (Set(), false)
+        return lookup(callSite, classes, lookForSuperClasses = true)
+      return Set()
     }
 
     /* TCA-style super targets resolution */
@@ -55,12 +55,12 @@ trait SuperCalls extends Probe {
       superReceiverName match {
         case Some(name) =>
           if (name.isEmpty)
-            return (Set(csStaticTarget), false)
+            return Set(csStaticTarget)
           else {
             val bcs = csEnclClass.baseClasses
             val superClass = bcs.find(_.nameString == name.toString) // todo: filter instead of find??
             if (superClass.isDefined) {
-              return (lookup(callSite, Set(superClass.get.tpe)), true)
+              return lookup(callSite, Set(superClass.get.tpe))
             }
           }
         case _ =>
@@ -79,9 +79,9 @@ trait SuperCalls extends Probe {
             case cl if superLookup(callSite, Set(cl.tpe)).nonEmpty => superLookup(callSite, Set(cl.tpe))
           }.getOrElse(Set())
       }.flatten
-      return (superCalls.toSet, false)
+      return superCalls.toSet
     }
-    (Set(), false)
+    Set()
   }
 
   def isReachableSuperMethodName(method: Symbol, superMethodNames: Set[TermName], reachableCode: Set[Symbol]): Boolean =
