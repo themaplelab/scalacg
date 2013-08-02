@@ -13,7 +13,7 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
     var superCalls = Set[Symbol]()
     val classToMembers = mutable.Map[Type, Set[Symbol]]()
     var instantiatedTypes = Set[Type]()
-    var cacheThisToContainingMethod = Map[Symbol, Symbol]()
+    var cacheThisSymbolToContainingMethod = mutable.Map[Symbol, Symbol]()
 
     // all objects are considered to be allocated
     // Karim: Here isModuleOrModuleClass should be used instead of just isModule, or isModuleClass. I have no idea
@@ -60,7 +60,7 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
           else
             instantiatedTypes.filter {
               tpe =>
-                classToMembers.getOrElseUpdate(tpe, tpe.members.sorted.toSet).contains(method) // todo: optimize
+                classToMembers.getOrElseUpdate(tpe, tpe.members.sorted.toSet).contains(method)
             }
       }
     }
@@ -141,8 +141,8 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
      * Karim: For these cases, such a method is the primary constructor of the class.
      */
     def containingMethod(ancestors: List[Tree], thisType: Symbol): Symbol = {
-      cacheThisToContainingMethod.getOrElse(thisType, {
-        val containingMethod = (for {
+      cacheThisSymbolToContainingMethod.getOrElseUpdate(thisType, {
+        (for {
           firstContainer <- ancestors.find {
             node =>
               node.isInstanceOf[DefDef] || node.isInstanceOf[ClassDef]
@@ -151,11 +151,7 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
             sym =>
               sym.isMethod && sym.owner == thisType
           }
-        } yield instanceMethod).getOrElse(NoSymbol)
-        cacheThisToContainingMethod += (thisType -> containingMethod)
-        containingMethod
-      }
-      )
+        } yield instanceMethod).getOrElse(NoSymbol)})
     }
   }
 }

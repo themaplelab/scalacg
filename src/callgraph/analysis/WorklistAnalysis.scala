@@ -10,6 +10,7 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
   val methodWorklist = mutable.Queue[Symbol]()
 
   var cacheProcessedMethods = Set[Symbol]()
+  var cacheSuperCalls = mutable.Map[(MethodSymbol, Type), Set[Symbol]]()
 
   def addMethod(method: Symbol) {
     if (!reachableCode(method) && !cacheProcessedMethods.contains(method)) {
@@ -64,7 +65,7 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
       if (receiver == null) {
         targets = Set(csStaticTarget)
       } else if (isSuperCall(callSite)) {
-        targets = getSuperTargets(callSite, types, isTypeDependent)
+        targets = cacheSuperCalls.getOrElseUpdate((callSite.staticTarget, callSite.receiver.tpe), getSuperTargets(callSite, types, isTypeDependent))
       } else {
         val classesToLookup: Set[Type] = if (isTypeDependent) getFilteredClasses(callSite) else newTypes
         targets = lookup(callSite, classesToLookup)
