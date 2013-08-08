@@ -18,10 +18,12 @@ trait TypeDependentAnalysis extends Lookup {
    */
   var cacheTargetClassToSymbols = Map[(MethodSymbol, Type, Type, Boolean), Set[Symbol]]()
 
+  var cacheInstantiateTypeParams = Map[(Type, Type), Type]()
+
   private def lookupInClass(callSite: CallSite,
-                    tpe: Type,
-                    // default parameters, used only for super method lookup
-                    lookForSuperClasses: Boolean): Set[Symbol] = {
+                            tpe: Type,
+                            // default parameters, used only for super method lookup
+                            lookForSuperClasses: Boolean): Set[Symbol] = {
 
     val staticTarget = callSite.staticTarget
     val receiverType = callSite.receiver.tpe
@@ -35,16 +37,14 @@ trait TypeDependentAnalysis extends Lookup {
         tpeasf = tpe.asSeenFrom(asf, tpe.typeSymbol)
         if tpeasf <:< asf || lookForSuperClasses
         targetName = staticTarget.name
-        target = if (lookForSuperClasses) {
+        target: Symbol = if (lookForSuperClasses) {
           val targetString = targetName.toString
           val newName = if (lookForSuperClasses) superName(targetString) else targetString
           tpeasf.member(targetName.newName(newName))
         } else tpeasf.member(targetName)
-        if !target.isDeferred
+        if target != NoSymbol && !target.isDeferred
       } {
         target match {
-          case NoSymbol =>   // todo: can this ever happen? (answer: yes, check kiama)
-            assert(assertion = false, message = "tpe is " + tpe)
           case _ =>
             // Disambiguate overloaded methods based on the types of the args
             if (target.isOverloaded) {
@@ -55,7 +55,7 @@ trait TypeDependentAnalysis extends Lookup {
         }
       }
       val result = targets.toSet
-      if(callSite.enclMethod.nameString == "main" && callSite.staticTarget.nameString == "m") println("targets: " + targets)
+      if (callSite.enclMethod.nameString == "main" && callSite.staticTarget.nameString == "m") println("targets: " + targets)
       cacheTargetClassToSymbols += (tuple -> (cacheTargetClassToSymbols.getOrElse(tuple, Set()) ++ result))
       result
     }
@@ -64,10 +64,9 @@ trait TypeDependentAnalysis extends Lookup {
   }
 
   override def lookup(callSite: CallSite,
-             consideredClasses: Set[Type],
-             // default parameters, used only for super method lookup
-             lookForSuperClasses: Boolean = false): Set[Symbol] = {
-
+                      consideredClasses: Set[Type],
+                      // default parameters, used only for super method lookup
+                      lookForSuperClasses: Boolean = false): Set[Symbol] = {
     // If the target method is a constructor, no need to do the lookup.
     val staticTarget = callSite.staticTarget
     if (staticTarget.isConstructor)
@@ -94,14 +93,16 @@ trait TypeDependentAnalysis extends Lookup {
   }
 
   private def instantiateTypeParams(actual: Type, declared: Type): Type = {
-    val tparams = declared.typeArgs
-    // Using `actual` rather than `ThisType(actual.typeSymbol)`, the latter causes loss of generic type information
-    // see (Generics4)
-    val args = tparams map {
-      _.asSeenFrom(actual, declared.typeSymbol)
-    }
-    declared.instantiateTypeParams(tparams map {
-      _.typeSymbol
-    }, args)
+    cacheInstantiateTypeParams.getOrElse((actual, declared), {
+      val tparams = declared.typeArgs
+      // Using `actual` rather than `ThisType(actual.typeSymbol)`, the latter causes loss of generic type information
+      // see (Generics4)
+      val args = tparams map {
+        _.asSeenFrom(actual, declared.typeSymbol)
+      }
+      declared.instantiateTypeParams(tparams map {
+        _.typeSymbol
+      }, args)
+    })
   }
 }

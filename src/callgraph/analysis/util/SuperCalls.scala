@@ -75,7 +75,7 @@ trait SuperCalls extends Probe {
           val dropped: List[Symbol] = classLin.drop(startFrom).tail
           // find the first class in the list of linearized base classes, starting from index 'startFrom',
           // that contains a method with same signature as csStaticTarget
-          dropped.collectFirst {
+          dropped.collectFirst {  // todo: returns none?
             case cl if superLookup(callSite, Set(cl.tpe)).nonEmpty => superLookup(callSite, Set(cl.tpe))
           }.getOrElse(Set())
       }.flatten
