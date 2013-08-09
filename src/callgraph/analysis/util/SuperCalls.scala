@@ -11,7 +11,7 @@ trait SuperCalls extends Probe {
 
   import global._
 
-  def superLookup(callSite: CallSite, consideredClasses: Set[Type]): Set[Symbol] = {
+  def superLookup(callSite: CallSite, consideredClasses: Set[Type]): collection.Set[Symbol] = {
     lookup(callSite, consideredClasses, lookForSuperClasses = true)
   }
 
@@ -36,7 +36,7 @@ trait SuperCalls extends Probe {
   def getSuperTargets(callSite: CallSite,
                       classes: Set[Type],
                       typeDependent: Boolean = false):
-      Set[Symbol] = {
+      collection.Set[Symbol] = {
 
     val csStaticTarget = callSite.staticTarget
 
@@ -69,7 +69,7 @@ trait SuperCalls extends Probe {
 
     if (isSuperCall(callSite)) {
       val classLinearizations: Set[List[Symbol]] = classes.map(_.baseClasses)
-      val superCalls: Set[Symbol] = classLinearizations.collect {
+      return classLinearizations.collect {
         case classLin if classLin contains csEnclClass =>
           val startFrom = classLin indexOf csEnclClass
           val dropped: List[Symbol] = classLin.drop(startFrom).tail
@@ -79,9 +79,7 @@ trait SuperCalls extends Probe {
             case cl if superLookup(callSite, Set(cl.tpe)).nonEmpty => superLookup(callSite, Set(cl.tpe))
           }.getOrElse(Set())
       }.flatten
-      return superCalls.toSet
-    }
-    Set()
+    } else Set()
   }
 
   def isReachableSuperMethodName(method: Symbol, superMethodNames: Set[TermName], reachableCode: Set[Symbol]): Boolean =

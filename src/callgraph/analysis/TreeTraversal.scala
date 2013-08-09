@@ -10,11 +10,11 @@ trait TreeTraversal {
 
   import global._
 
-  var types = Set[Type]()
-  var callSites = List[CallSite]()
+  val types = mutable.Set[Type]()
+  val callSites = mutable.MutableList[CallSite]()
   val callSitesInMethod = mutable.Map[Symbol, Set[CallSite]]()
   val classToContainedInLinearizationOf = mutable.Map[Type, Set[Type]]()
-  var trees: List[Tree]
+  val trees: List[Tree]
 
   case class CallSite(receiver: Tree, staticTarget: MethodSymbol, args: List[Tree], annotation: List[String],
                       ancestors: List[Tree], pos: Position, enclMethod: Symbol)
@@ -68,7 +68,7 @@ trait TreeTraversal {
     }
 
     def addCallSite(callSite: CallSite) {
-      callSites ::= callSite
+      callSites += callSite
       val enclMethod = callSite.enclMethod
       callSitesInMethod(enclMethod) = callSitesInMethod.getOrElse(enclMethod, Set()) + callSite
     }

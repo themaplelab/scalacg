@@ -2,7 +2,6 @@ package callgraph.analysis
 
 import scala.collection.mutable
 import scala.collection.immutable.Set
-import scala.Predef._
 
 trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
 
@@ -10,18 +9,17 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
 
   override def buildCallGraph() {
 
-    var superCalls = Set[Symbol]()
+    val superCalls = mutable.Set[Symbol]()
     val classToMembers = mutable.Map[Type, Set[Symbol]]()
-    var instantiatedTypes = Set[Type]()
-    var cacheThisSymbolToContainingMethod = mutable.Map[Symbol, Symbol]()
+    val instantiatedTypes = mutable.Set[Type]()
+    val cacheThisSymbolToContainingMethod = mutable.Map[Symbol, Symbol]()
 
     // all objects are considered to be allocated
     // Karim: Here isModuleOrModuleClass should be used instead of just isModule, or isModuleClass. I have no idea
     // why this works this way, but whenever I use either of them alone something crashes.
     instantiatedTypes ++= types.filter(_.typeSymbol.isModuleOrModuleClass)
 
-    var newInstantiatedTypes = instantiatedTypes
-    var newCallSites = callSites
+    var newInstantiatedTypes: collection.Set[Type] = instantiatedTypes
 
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
@@ -37,14 +35,14 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
       newInstantiatedTypes = processNewMethods(isTypeDependent = true)
       instantiatedTypes ++= newInstantiatedTypes
 
-      superCalls ++= getNewSuperCalls(reachableCode)
+      superCalls ++= getNewSuperCalls(reachableCode.toSet)
       processCallSites(newInstantiatedTypes, isTypeDependent = true, getFilteredClasses = getFilteredClasses)
 
       // Type concretization now should happen inside the worklist too, and only for the instantiated classes
       // This should improve the precision of our analysis
     }
 
-    def getFilteredClasses(callSite: CallSite): Set[Type] = {
+    def getFilteredClasses(callSite: CallSite): collection.Set[Type] = {
       val receiver = callSite.receiver
       val thisSymbol =
         if (receiver.isInstanceOf[This])
@@ -66,7 +64,7 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
       }
     }
 
-    def addTypeConcretizations(classes: Set[Type]) = {
+    def addTypeConcretizations(classes: collection.Set[Type]) = {
       // find all definitions of abstract type members ("type aliases")
       for {
         tpe <- classes

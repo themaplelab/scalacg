@@ -2,17 +2,18 @@ package callgraph.analysis
 
 import scala.collection.immutable.Set
 import scala.Predef._
+import collection.mutable
 
 trait RA extends WorklistAnalysis {
 
   import global._
 
-  private var cacheCallsiteToTargets = Map[(Name, Boolean), Set[Symbol]]()
+  private val cacheCallsiteToTargets = mutable.Map[(Name, Boolean), collection.Set[Symbol]]()
 
   override def lookup(callSite: CallSite,
-             consideredClasses: Set[Type],
+             consideredClasses: collection.Set[Type],
              // default parameters, used only for super method lookup
-             lookForSuperClasses: Boolean = false): Set[Symbol] = {
+             lookForSuperClasses: Boolean = false): collection.Set[Symbol] = {
     val staticTarget = callSite.staticTarget
 
     // Don't lookup a call to a constructor

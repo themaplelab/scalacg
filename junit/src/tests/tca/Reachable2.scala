@@ -11,16 +11,16 @@ object Reachable2 {
                "17: <unannotated> scala.collection.mutable.ListBuffer: <init>()"
               )
   def main(args: Array[String]) {
-    
+
     val a1 = new A("foo")
-    val a2 = new A("bar") 
+    val a2 = new A("bar")
     val x = new ListBuffer[A]()
     x += a1
     x += a2
     println(x)
   }
- 
-  class A(x : String) { 
+
+  class A(x : String) {
     @reachable
     override def toString = { x + x; }
   }

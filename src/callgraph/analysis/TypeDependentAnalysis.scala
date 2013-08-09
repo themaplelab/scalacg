@@ -2,6 +2,7 @@ package callgraph.analysis
 
 import util.{SuperCalls, Lookup}
 import scala.Predef._
+import collection.mutable
 
 trait TypeDependentAnalysis extends Lookup {
 
@@ -9,7 +10,7 @@ trait TypeDependentAnalysis extends Lookup {
 
   import global._
 
-  var concretization = Map[Symbol, Set[Type]]()
+  val concretization = mutable.Map[Symbol, Set[Type]]()
 
   /*
    * For a given pair (m, r, c, b), where m is a callsite's static target, r is its receiver type,
@@ -64,9 +65,8 @@ trait TypeDependentAnalysis extends Lookup {
   }
 
   override def lookup(callSite: CallSite,
-                      consideredClasses: Set[Type],
-                      // default parameters, used only for super method lookup
-                      lookForSuperClasses: Boolean = false): Set[Symbol] = {
+                      consideredClasses: collection.Set[Type],
+                      lookForSuperClasses: Boolean = false): collection.Set[Symbol] = {
     // If the target method is a constructor, no need to do the lookup.
     val staticTarget = callSite.staticTarget
     if (staticTarget.isConstructor)

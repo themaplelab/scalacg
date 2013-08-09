@@ -2,6 +2,7 @@ package callgraph.analysis.util
 
 import callgraph.analysis.{TreeTraversal, AbstractAnalysis}
 import callgraph.analysis.output.Probe
+import collection.mutable
 
 trait LibraryCalls {
 
@@ -9,10 +10,10 @@ trait LibraryCalls {
 
   import global._
 
-  var appClasses: Set[Type]
+  val appClasses: Set[Type]
 
-  private var cacheFoundOverridingLibraryMethods = Set[Symbol]()
-  private var cacheMethodToLibraryOverriddenMethods = Map[Symbol, List[Symbol]]()      // todo: is that redundant?
+  private val cacheFoundOverridingLibraryMethods = mutable.Set[Symbol]()
+  private val cacheMethodToLibraryOverriddenMethods = mutable.Map[Symbol, List[Symbol]]()      // todo: is that redundant?
 
   /**
    * Is this symbol in an application class?

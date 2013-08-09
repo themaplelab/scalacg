@@ -16,8 +16,8 @@ class CallGraphPlugin(val global: Global) extends Plugin { cgPlugin =>
   val components = List[PluginComponent](AnnotationComponent, CallGraphComponent)
 
   private val methodToId = mutable.Map[global.Symbol, Int]()
-  private var expectedReachables = Set[global.Symbol]()
-  private var expectedNotReachables = Set[global.Symbol]()
+  private val expectedReachables = mutable.Set[global.Symbol]()
+  private val expectedNotReachables = mutable.Set[global.Symbol]()
   private var _appClasses = Set[global.Type]() // had to use another name here to make the set of appClasses shareable across the two components
 
   object AnalysisOption extends Enumeration {
@@ -75,14 +75,10 @@ class CallGraphPlugin(val global: Global) extends Plugin { cgPlugin =>
 
       val methodToId = cgPlugin.methodToId
 
-      var trees = List[Tree]() // global.Tree
-
-      var appClasses = Set[Type]()
+      lazy val trees = global.currentRun.units.map(_.body).toList
+      lazy val appClasses = Set[Type](_appClasses.toSeq: _*) // initializing a set with elements from another set
 
       override def run() {
-        trees = global.currentRun.units.map(_.body).toList
-        appClasses = Set[Type](_appClasses.toSeq: _*) // weird Scala syntax to initialize a set with elements from another set
-
         initialize()
         buildCallGraph()
 

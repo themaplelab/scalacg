@@ -59,7 +59,7 @@ trait CGPrint {
     }
   }
 
-  def printCallGraph(methodNames: Set[String], isResolved: Boolean) {
+  def printCallGraph(methodNames: collection.Set[String], isResolved: Boolean) {
     val resolvedExpected = if (isResolved) "Resolved: " else "Expected: "
     println(resolvedExpected + methodNames.toSeq.sorted.mkString(", "))
   }

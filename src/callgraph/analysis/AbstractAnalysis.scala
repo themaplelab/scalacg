@@ -10,9 +10,9 @@ trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with 
 
   import global._
 
-  var reachableCode = Set[Symbol]()
-  var callbacks = Set[Symbol]()
-  var callGraph = Map[CallSite, Set[Symbol]]()
+  val reachableCode = mutable.Set[Symbol]()
+  val callbacks = mutable.Set[Symbol]()
+  val callGraph = mutable.Map[CallSite, Set[Symbol]]()
 
   def initialize() {
     // find call sites and types
@@ -24,7 +24,7 @@ trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with 
   
   def buildCallGraph()
 
-  private def transitiveClosure[T](initial: Set[T], transition: T => Set[T]): Set[T] = {
+  private def transitiveClosure[T](initial: collection.Set[T], transition: T => Set[T]): Set[T] = {
     val seen = mutable.Set[T]() ++ initial
     val queue = mutable.Queue[T]() ++ initial
     while (!queue.isEmpty) {
