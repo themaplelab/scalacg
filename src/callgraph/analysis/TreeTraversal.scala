@@ -13,6 +13,7 @@ trait TreeTraversal {
   var types = Set[Type]()
   var callSites = List[CallSite]()
   val callSitesInMethod = mutable.Map[Symbol, Set[CallSite]]()
+  val classToContainedInLinearizationOf = mutable.Map[Type, Set[Type]]()
   var trees: List[Tree]
 
   case class CallSite(receiver: Tree, staticTarget: MethodSymbol, args: List[Tree], annotation: List[String],
@@ -63,6 +64,7 @@ trait TreeTraversal {
 
     def addType(tpe: Type) {
       types += tpe
+      tpe.baseClasses.map(_.tpe).foreach(cls => classToContainedInLinearizationOf += (cls -> (classToContainedInLinearizationOf.getOrElse(cls, Set()) + tpe)))
     }
 
     def addCallSite(callSite: CallSite) {

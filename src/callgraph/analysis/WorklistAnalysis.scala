@@ -50,7 +50,7 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
     newInstantiatedTypes
   }
 
-  def processCallSites(types: Set[Type],
+  def processCallSites(types: Set[Type], //todo: types not necessary
                        newTypes: Set[Type],
                        isTypeDependent: Boolean,
                        getFilteredClasses: CallSite => Set[Type] = (_ => Set())) {
@@ -65,7 +65,7 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
       if (receiver == null) {
         targets = Set(csStaticTarget)
       } else if (isSuperCall(callSite)) {
-        targets = cacheSuperCalls.getOrElseUpdate((callSite.staticTarget, callSite.receiver.tpe), getSuperTargets(callSite, types, isTypeDependent))
+        targets = cacheSuperCalls.getOrElseUpdate((callSite.staticTarget, callSite.receiver.tpe), getSuperTargets(callSite, classToContainedInLinearizationOf(callSite.enclMethod.enclClass.tpe), isTypeDependent))
       } else {
         val classesToLookup: Set[Type] = if (isTypeDependent) getFilteredClasses(callSite) else newTypes
         targets = lookup(callSite, classesToLookup)
