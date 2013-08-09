@@ -50,8 +50,7 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
     newInstantiatedTypes
   }
 
-  def processCallSites(types: Set[Type], //todo: types not necessary
-                       newTypes: Set[Type],
+  def processCallSites(newTypes: Set[Type],
                        isTypeDependent: Boolean,
                        getFilteredClasses: CallSite => Set[Type] = (_ => Set())) {
     for {

@@ -21,6 +21,7 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
     instantiatedTypes ++= types.filter(_.typeSymbol.isModuleOrModuleClass)
 
     var newInstantiatedTypes = instantiatedTypes
+    var newCallSites = callSites
 
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
@@ -37,7 +38,7 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
       instantiatedTypes ++= newInstantiatedTypes
 
       superCalls ++= getNewSuperCalls(reachableCode)
-      processCallSites(instantiatedTypes, newInstantiatedTypes, isTypeDependent = true, getFilteredClasses = getFilteredClasses)
+      processCallSites(newInstantiatedTypes, isTypeDependent = true, getFilteredClasses = getFilteredClasses)
 
       // Type concretization now should happen inside the worklist too, and only for the instantiated classes
       // This should improve the precision of our analysis
