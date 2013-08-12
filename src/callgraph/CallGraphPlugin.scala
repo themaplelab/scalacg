@@ -54,6 +54,7 @@ class CallGraphPlugin(val global: Global) extends Plugin { cgPlugin =>
 
     def newPhase(prevPhase: Phase) = {
       println("Running " + analysisOpt.toString.toUpperCase)
+      Timer.start = System.currentTimeMillis()
       analysisOpt match {
         case RaOption => new CallGraphPhase(prevPhase) with RA
         case TcaOption => new CallGraphPhase(prevPhase) with TCA
@@ -141,9 +142,6 @@ class CallGraphPlugin(val global: Global) extends Plugin { cgPlugin =>
       var serialNum = 1
 
       def apply(unit: annotComponent.global.CompilationUnit) {
-        // Start the timer
-        Timer.start = System.currentTimeMillis()
-
         val valueName = newTermName("value")
         unit.body.foreach { node =>
           if (node.isInstanceOf[DefDef]) {
