@@ -82,9 +82,6 @@ class SuiteTCA extends Suite("junit/src/tests/tca/") {
   @Test def testGenerics15() { runTest("Generics15") }
   @Test def testGenerics16() { runTest("Generics16") }
 
-  @Test def testWeirdName1() { runTest("WeirdName1") }
-  @Test def testWeirdName2() { runTest("WeirdName2") }
-
   @Test def testSuperCallSimple() { runTest("SuperCallSimple") }
   @Test def testSuperCallLibrary() { runTest("SuperCallLibrary") }
   @Test def testSuperCallTraitSimple() { runTest("SuperCallTraitSimple") }
