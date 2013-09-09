@@ -11,35 +11,53 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
 
     val superCalls = mutable.Set[Symbol]()
     val classToMembers = mutable.Map[Type, Set[Symbol]]()
-    val instantiatedTypes = mutable.Set[Type]()
     val cacheThisSymbolToContainingMethod = mutable.Map[Symbol, Symbol]()
 
-    // all objects are considered to be allocated
+    // All Scala objects are considered to be initially instantiated
     // Karim: Here isModuleOrModuleClass should be used instead of just isModule, or isModuleClass. I have no idea
     // why this works this way, but whenever I use either of them alone something crashes.
-    instantiatedTypes ++= types.filter(_.typeSymbol.isModuleOrModuleClass)
-
+    val instantiatedTypes: mutable.Set[Type] = types.filter(_.typeSymbol.isModuleOrModuleClass)
     var newInstantiatedTypes: collection.Set[Type] = instantiatedTypes
+
+    val reachableCallSites = mutable.Set[CallSite]()
+    var newCallSites = collection.Set[CallSite]()
+    var newReachableCode = mutable.Set[Symbol]()
 
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
 
     while (methodWorklist.nonEmpty) {
       // Debugging info
-      println("Items in work list: " + methodWorklist.size)
+      println(s"Items in work list: ${methodWorklist.size}")
 
+      // Process new types
       addConstructorsToWorklist(newInstantiatedTypes)
       addNewCallbacksToWorklist(newInstantiatedTypes)
       addTypeConcretizations(newInstantiatedTypes)
 
-      newInstantiatedTypes = processNewMethods(isTypeDependent = true)
+      // New reachable methods (this also updates reachableCode)
+      newReachableCode = findNewReachableCode
+
+      // New call sites
+      newCallSites = findCallSites(newReachableCode)
+      reachableCallSites ++= newCallSites
+
+      // New instantiated types
+      newInstantiatedTypes = findNewInstantiatedTypes(instantiatedTypes, newReachableCode)
       instantiatedTypes ++= newInstantiatedTypes
 
-      superCalls ++= getNewSuperCalls(reachableCode.toSet)
-      processCallSites(newInstantiatedTypes, isTypeDependent = true, getFilteredClasses = getFilteredClasses)
+      // New super calls
+      superCalls ++= findSuperCalls(newCallSites)
 
-      // Type concretization now should happen inside the worklist too, and only for the instantiated classes
-      // This should improve the precision of our analysis
+      // Process new call sites with all types, and use new types to process all call sites
+      if (newCallSites.nonEmpty) {
+        println(s"\tFound ${newCallSites.size} new call sites")
+        processCallSites(newCallSites, instantiatedTypes, isTypeDependent = true, getFilteredClasses = getFilteredClasses)
+      }
+      if (newInstantiatedTypes.nonEmpty) {
+        println(s"\tFound ${newInstantiatedTypes.size} new instantiated types")
+        processCallSites(reachableCallSites, newInstantiatedTypes, isTypeDependent = true, getFilteredClasses = getFilteredClasses)
+      }
     }
 
     def getFilteredClasses(callSite: CallSite): collection.Set[Type] = {
@@ -64,10 +82,10 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
       }
     }
 
-    def addTypeConcretizations(classes: collection.Set[Type]) = {
+    def addTypeConcretizations(types: collection.Set[Type]) = {
       // find all definitions of abstract type members ("type aliases")
       for {
-        tpe <- classes
+        tpe <- types
         sym <- tpe.members // concrete type
         superClass <- tpe.baseClasses
         absSym <- superClass.tpe.decls // abstract type
@@ -80,13 +98,13 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
 
       // find all instantiations of generic type parameters (generics behave the same way)
       for {
-        tpe <- classes
+        tpe <- types
         cls = tpe.typeSymbol
       } {
         cls.info match {
           // class declaration and has a set of parents
           case ClassInfoType(parents, _, _) =>
-            for {parent <- parents} {
+            for { parent <- parents } {
               val args = parent.typeArguments
               val cstr = parent.typeConstructor
               val params = cstr.typeParams
@@ -150,7 +168,8 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
             sym =>
               sym.isMethod && sym.owner == thisType
           }
-        } yield instanceMethod).getOrElse(NoSymbol)})
+        } yield instanceMethod).getOrElse(NoSymbol)
+      })
     }
   }
 }

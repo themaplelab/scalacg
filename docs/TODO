@@ -1,15 +1,15 @@
-- code refactoring
+- code refactoring (DONE)
 - single command to
-	- run all experiments
+	- run all experiments (DONE)
 	- generate latex statistics
-- run TCA/RA without changing the code
+- run TCA/RA without changing the code (DONE)
 - fixing bug in RA
 - optimization
 	- TCA: avoid redundant work
 	- reducing loops
 - sanity check RA is superset of TCA
 - experiments with this-pointers disabled
-- phantm, kiama, other benchmarks
+- phantm, kiama, other benchmarks (DONE)
 - comparison with WALA, dynamic call graphs
 - more test cases for RA
 	- including notreachables

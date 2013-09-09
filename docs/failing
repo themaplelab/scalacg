@@ -1,85 +1,22 @@
 ==============================
-DefInDef
+ToString1
 ==============================
-Items in work list: 11
-Work list is empty now.
-It took: 0.091
-Expected reachables: <tests.DefInDef.Types: typeChecking()>, <tests.DefInDef.Types: checkAccess()>
-Reachable methods: <tests.DefInDef: main(args: Array[String])>
-error: uncaught exception during compilation: java.lang.AssertionError
-java.lang.AssertionError: assertion failed: 
-     while compiling: src/callgraph/annotation/invocations.scala
-        during phase: callgraph
-     library version: version 2.10.1-RC1
-    compiler version: version 2.10.1
-  reconstructed args: -Xplugin:jar/callgraph-plugin.jar -d junit/bin
+Running TCA
+Items in work list: 1
+new types: Set(tests.tca.ToString1.type)
+unprocessed types: Set(tests.tca.ToString1.type)
+instantiated types: Set(tests.tca.ToString1.type)
+Items in work list: 3
+new types: Set(tests.tca.ToString1.A)
+unprocessed types: Set(tests.tca.ToString1.A)
+instantiated types: Set(tests.tca.ToString1.type, tests.tca.ToString1.A)
+Items in work list: 2
+new types: Set()
+unprocessed types: Set()
+instantiated types: Set(tests.tca.ToString1.type, tests.tca.ToString1.A)
+It took: 1.182
+Expected reachables: <tests.tca.ToString1.A: toString()>, <tests.tca.ToString1.A: name()>
+Reachable methods: <tests.tca.ToString1.A: <init>()>, <tests.tca.ToString1.B: <init>()>, <scala.Predef: println(x: Any)>, <tests.tca.ToString1: main(args: Array[String])>, <java.lang.Object: <init>()>, <tests.tca.ToString1.A: name()>, <tests.tca.ToString1.A: toString()>
+Resolved: 10: <unannotated> tests.tca.ToString1.A: <init>(), 11: <unannotated> scala.Predef: println(x: Any)
+Expected: 10: <unannotated> tests.tca.ToString1.A: <init>()
 
-  last tree to typer: Literal(Constant(()))
-              symbol: null
-   symbol definition: null
-                 tpe: Unit
-       symbol owners: 
-      context owners: value names -> constructor invocations -> class invocations -> package annotation
-
-== Enclosing template or block ==
-
-DefDef( // def <init>(names: Seq[String]): callgraph.annotation.invocations in class invocations
-  <method> @{ callgraph.annotation.targetmethodvalue = 7 }
-  "<init>"
-  []
-  // 1 parameter list
-  ValDef( // names: Seq[String]
-    <param> <paramaccessor>
-    "names"
-    <tpt> // tree.tpe=Seq[String]
-    <empty>
-  )
-  <tpt> // tree.tpe=callgraph.annotation.invocations
-  Block( // tree.tpe=Unit
-    Apply( // def <init>(): scala.annotation.Annotation in class Annotation, tree.tpe=scala.annotation.Annotation
-      invocations.super."<init>" // def <init>(): scala.annotation.Annotation in class Annotation, tree.tpe=()scala.annotation.Annotation
-      Nil
-    )
-    ()
-  )
-)
-
-== Expanded type of tree ==
-
-TypeRef(TypeSymbol(final abstract class Unit extends AnyVal))
-
-Some methods are annotated with @reachable, but are not reachable in the call graph.
-	at scala.Predef$.assert(Predef.scala:179)
-	at scala.tools.nsc.Global.assert(Global.scala:238)
-	at ca.uwaterloo.scalacg.util.Assertions$class.assertReachables(Assertions.scala:17)
-	at callgraph.CallGraphPlugin$CallGraphComponent$CallGraphPhase.assertReachables(CallGraphPlugin.scala:31)
-	at callgraph.CallGraphPlugin$CallGraphComponent$CallGraphPhase.run(CallGraphPlugin.scala:85)
-	at scala.tools.nsc.Global$Run.compileUnitsInternal(Global.scala:1582)
-	at scala.tools.nsc.Global$Run.compileUnits(Global.scala:1556)
-	at scala.tools.nsc.Global$Run.compileSources(Global.scala:1552)
-	at scala.tools.nsc.Global$Run.compile(Global.scala:1661)
-	at test.Suite.runTest(Suite.scala:19)
-	at test.Suite.testDefInDef(Suite.scala:179)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
-	at java.lang.reflect.Method.invoke(Method.java:597)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
-	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
-	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)

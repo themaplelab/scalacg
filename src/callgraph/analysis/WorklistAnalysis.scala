@@ -19,16 +19,16 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
     }
   }
 
-  def addConstructorsToWorklist(classes: collection.Set[Type]) {
-    classes.foreach((cls: Type) => {
-      addMethod(cls.typeSymbol)
+  def addConstructorsToWorklist(types: collection.Set[Type]) {
+    types.foreach((cls: Type) => {
+      addMethod(cls.typeSymbol) // TODO: is that related to primary-constructor issues? i.e., code in ClassDef?
       cls.members.foreach((m: Symbol) => if (m.isConstructor) addMethod(m))
     })
   }
 
-  def addNewCallbacksToWorklist(classes: collection.Set[Type]) {
+  def addNewCallbacksToWorklist(types: collection.Set[Type]) {
     for {
-      cls <- classes
+      cls <- types
       member <- cls.decls // loop over the declared members, "members" returns defined AND inherited members
       if isApplication(member) && isOverridingLibraryMethod(member)
     } {
@@ -39,24 +39,47 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
 
   /* isTypeDependent is true for TCA and false for RA: it indicates whether we're interested
    * in getting the instantiated classes inside of the new methods */
-  def processNewMethods(isTypeDependent: Boolean): collection.Set[Type] = {
+  def processNewMethods(isTypeDependent: Boolean) = {
     var newInstantiatedTypes = Set[Type]()
+    var newReachableCode = Set[Symbol]()
     for (method <- methodWorklist.dequeueAll(_ => true)) {
       reachableCode += method
+      newReachableCode += method
       if (isTypeDependent) {
         newInstantiatedTypes ++= classesInMethod(method)
       }
     }
-    newInstantiatedTypes
+    (newInstantiatedTypes, newReachableCode)
   }
 
-  def processCallSites(newTypes: collection.Set[Type],
-                       isTypeDependent: Boolean,
-                       getFilteredClasses: CallSite => collection.Set[Type] = (_ => Set())) {
-    for {
-      callSite <- callSites
-      if reachableCode contains callSite.enclMethod
-    } {
+  def findNewReachableCode = {
+    var newReachableCode = mutable.Set[Symbol]()
+    for (method <- methodWorklist.dequeueAll(_ => true)) {
+      reachableCode += method
+      newReachableCode += method
+    }
+    newReachableCode
+  }
+  
+  def findNewInstantiatedTypes(instantiatedTypes: collection.Set[Type], methods: collection.Set[Symbol]) = {
+    var newInstantiatedTypes = Set[Type]()
+    
+    for(method <- methods) {
+      val typesInMethod = classesInMethod(method)
+      newInstantiatedTypes ++= (typesInMethod -- instantiatedTypes) // remove types that were previously instantiated
+    }
+    
+    newInstantiatedTypes
+  }
+  
+  def findCallSites(code: collection.Set[Symbol]) = {
+    callSites.filter(code contains _.enclMethod).toSet
+  }
+
+  def processCallSites(callSites: collection.Set[CallSite], types: collection.Set[Type],
+    isTypeDependent: Boolean,
+    getFilteredClasses: CallSite => collection.Set[Type] = (_ => Set())) {
+    for(callSite <- callSites) {
       val csStaticTarget = callSite.staticTarget
       val receiver = callSite.receiver
       var targets = collection.Set[Symbol]()
@@ -66,7 +89,7 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
       } else if (isSuperCall(callSite)) {
         targets = cacheSuperCalls.getOrElseUpdate((callSite.staticTarget, callSite.receiver.tpe), getSuperTargets(callSite, classToContainedInLinearizationOf(callSite.enclMethod.enclClass.tpe), isTypeDependent))
       } else {
-        val classesToLookup: collection.Set[Type] = if (isTypeDependent) getFilteredClasses(callSite) else newTypes
+        val classesToLookup: collection.Set[Type] = if (isTypeDependent) getFilteredClasses(callSite) else types
         targets = lookup(callSite, classesToLookup)
       }
 

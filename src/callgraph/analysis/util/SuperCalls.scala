@@ -96,4 +96,15 @@ trait SuperCalls extends Probe {
     }
     superCalls
   }
+  
+  def findSuperCalls(callSites: collection.Set[CallSite]) = {
+    var superCalls = Set[Symbol]()
+    for {
+      callSite <- callSites
+      if isSuperCall(callSite)
+    } {
+      superCalls += callSite.staticTarget
+    }
+    superCalls
+  }
 }
