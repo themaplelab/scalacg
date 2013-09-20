@@ -1,22 +1,2 @@
-==============================
-ToString1
-==============================
-Running TCA
-Items in work list: 1
-new types: Set(tests.tca.ToString1.type)
-unprocessed types: Set(tests.tca.ToString1.type)
-instantiated types: Set(tests.tca.ToString1.type)
-Items in work list: 3
-new types: Set(tests.tca.ToString1.A)
-unprocessed types: Set(tests.tca.ToString1.A)
-instantiated types: Set(tests.tca.ToString1.type, tests.tca.ToString1.A)
-Items in work list: 2
-new types: Set()
-unprocessed types: Set()
-instantiated types: Set(tests.tca.ToString1.type, tests.tca.ToString1.A)
-It took: 1.182
-Expected reachables: <tests.tca.ToString1.A: toString()>, <tests.tca.ToString1.A: name()>
-Reachable methods: <tests.tca.ToString1.A: <init>()>, <tests.tca.ToString1.B: <init>()>, <scala.Predef: println(x: Any)>, <tests.tca.ToString1: main(args: Array[String])>, <java.lang.Object: <init>()>, <tests.tca.ToString1.A: name()>, <tests.tca.ToString1.A: toString()>
-Resolved: 10: <unannotated> tests.tca.ToString1.A: <init>(), 11: <unannotated> scala.Predef: println(x: Any)
-Expected: 10: <unannotated> tests.tca.ToString1.A: <init>()
-
+testReachable1
+testMultipleAnnotations
