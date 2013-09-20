@@ -11,7 +11,6 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
 
     val superCalls = mutable.Set[Symbol]()
     val classToMembers = mutable.Map[Type, Set[Symbol]]()
-    val cacheThisSymbolToContainingMethod = mutable.Map[Symbol, Symbol]()
 
     // All Scala objects are considered to be initially instantiated
     // Karim: Here isModuleOrModuleClass should be used instead of just isModule, or isModuleClass. I have no idea
@@ -60,25 +59,12 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
       }
     }
 
-    def getFilteredClasses(callSite: CallSite): collection.Set[Type] = {
-      val receiver = callSite.receiver
-      val thisSymbol =
-        if (receiver.isInstanceOf[This])
-          receiver.symbol
-        else if (receiver.tpe.isInstanceOf[ThisType])
-          receiver.tpe.asInstanceOf[ThisType].sym
-        else NoSymbol
-      thisSymbol match {
-        case NoSymbol => instantiatedTypes
-        case symbol =>
-          val method = containingMethod(callSite.ancestors, symbol)
-          if (method == NoSymbol || superCalls.contains(method))
-            instantiatedTypes
-          else
-            instantiatedTypes.filter {
+    def getFilteredClasses(callSite: CallSite, classes: collection.Set[Type]): collection.Set[Type] = {
+      val thisEnclMethod = callSite.thisEnclMethod
+      if(thisEnclMethod == NoSymbol || superCalls.contains(thisEnclMethod)) classes
+      else classes.filter{
               tpe =>
-                classToMembers.getOrElseUpdate(tpe, tpe.members.sorted.toSet).contains(method)
-            }
+                classToMembers.getOrElseUpdate(tpe, tpe.members.sorted.toSet).contains(thisEnclMethod)
       }
     }
 
@@ -143,33 +129,6 @@ trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
           }
         }
       } while (oldConcretization != concretization)
-    }
-
-    /* Given the ancestors of a This in the AST, determines the method that has that
-     * particular This as its implicit this parameter.
-     *
-     * It is possible that there is no such method. For example:
-     * class A {
-     *   val a = 5
-     *   val b = this.a + 6
-     * }
-     * In such cases, returns NoSymbol
-     *
-     * Karim: For these cases, such a method is the primary constructor of the class.
-     */
-    def containingMethod(ancestors: List[Tree], thisType: Symbol): Symbol = {
-      cacheThisSymbolToContainingMethod.getOrElseUpdate(thisType, {
-        (for {
-          firstContainer <- ancestors.find {
-            node =>
-              node.isInstanceOf[DefDef] || node.isInstanceOf[ClassDef]
-          }
-          instanceMethod <- firstContainer.symbol.ownersIterator.find {
-            sym =>
-              sym.isMethod && sym.owner == thisType
-          }
-        } yield instanceMethod).getOrElse(NoSymbol)
-      })
     }
   }
 }

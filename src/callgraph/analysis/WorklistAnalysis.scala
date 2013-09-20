@@ -60,26 +60,26 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
     }
     newReachableCode
   }
-  
+
   def findNewInstantiatedTypes(instantiatedTypes: collection.Set[Type], methods: collection.Set[Symbol]) = {
     var newInstantiatedTypes = Set[Type]()
-    
-    for(method <- methods) {
+
+    for (method <- methods) {
       val typesInMethod = classesInMethod(method)
       newInstantiatedTypes ++= (typesInMethod -- instantiatedTypes) // remove types that were previously instantiated
     }
-    
+
     newInstantiatedTypes
   }
-  
+
   def findCallSites(code: collection.Set[Symbol]) = {
     callSites.filter(code contains _.enclMethod).toSet
   }
 
   def processCallSites(callSites: collection.Set[CallSite], types: collection.Set[Type],
     isTypeDependent: Boolean,
-    getFilteredClasses: CallSite => collection.Set[Type] = (_ => Set())) {
-    for(callSite <- callSites) {
+    getFilteredClasses: (CallSite, collection.Set[Type]) => collection.Set[Type] = (_, _) => Set()) {
+    for (callSite <- callSites) {
       val csStaticTarget = callSite.staticTarget
       val receiver = callSite.receiver
       var targets = collection.Set[Symbol]()
@@ -89,7 +89,7 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
       } else if (isSuperCall(callSite)) {
         targets = cacheSuperCalls.getOrElseUpdate((callSite.staticTarget, callSite.receiver.tpe), getSuperTargets(callSite, classToContainedInLinearizationOf(callSite.enclMethod.enclClass.tpe), isTypeDependent))
       } else {
-        val classesToLookup: collection.Set[Type] = if (isTypeDependent) getFilteredClasses(callSite) else types
+        val classesToLookup: collection.Set[Type] = if (isTypeDependent) getFilteredClasses(callSite, types) else types
         targets = lookup(callSite, classesToLookup)
       }
 

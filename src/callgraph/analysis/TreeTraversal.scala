@@ -17,7 +17,47 @@ trait TreeTraversal {
   val trees: List[Tree]
 
   case class CallSite(receiver: Tree, staticTarget: MethodSymbol, args: List[Tree], annotation: List[String],
-                      ancestors: List[Tree], pos: Position, enclMethod: Symbol)
+    ancestors: List[Tree], pos: Position, enclMethod: Symbol) {
+    // If the receiver is a This, then thisEnclMethod is the method whose implicit
+    // this parameter is of the same class as the receiver This. Otherwise, thisEnclMethod
+    // is NoSymbol.
+    lazy val thisEnclMethod = {
+      val thisSymbol =
+        if (receiver.isInstanceOf[This])
+          receiver.symbol
+        else if (receiver.tpe.isInstanceOf[ThisType])
+          receiver.tpe.asInstanceOf[ThisType].sym
+        else NoSymbol
+      thisSymbol match {
+        case NoSymbol => NoSymbol
+        case symbol => containingMethod(ancestors, symbol)
+      }
+    }
+    /* Given the ancestors of a This in the AST, determines the method that has that
+     * particular This as its implicit this parameter.
+     *
+     * It is possible that there is no such method. For example:
+     * class A {
+     *   val a = 5
+     *   val b = this.a + 6
+     * }
+     * In such cases, returns NoSymbol
+     *
+     * Karim: For these cases, such a method is the primary constructor of the class.
+     */
+    private def containingMethod(ancestors: List[Tree], thisType: Symbol): Symbol = {
+      (for {
+        firstContainer <- ancestors.find {
+          node =>
+            node.isInstanceOf[DefDef] || node.isInstanceOf[ClassDef]
+        }
+        instanceMethod <- firstContainer.symbol.ownersIterator.find {
+          sym =>
+            sym.isMethod && sym.owner == thisType
+        }
+      } yield instanceMethod).getOrElse(NoSymbol)
+    }
+  }
 
   // this is overridden by var trees in CallGraphPlugin
   def annotationFilter: PartialFunction[Tree, String]

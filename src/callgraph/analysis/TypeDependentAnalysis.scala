@@ -1,6 +1,6 @@
 package callgraph.analysis
 
-import util.{SuperCalls, Lookup}
+import util.{ SuperCalls, Lookup }
 import scala.Predef._
 import collection.mutable
 
@@ -12,61 +12,48 @@ trait TypeDependentAnalysis extends Lookup {
 
   val concretization = mutable.Map[Symbol, Set[Type]]()
 
-  /*
-   * For a given pair (m, r, c, b), where m is a callsite's static target, r is its receiver type,
-   * c is the class in which m alredy has been looked up, and b determines if this is a super class lookup
-   * or not, -- cache the resolved symbols for m in c
-   */
-  var cacheTargetClassToSymbols = Map[(MethodSymbol, Type, Type, Boolean), Set[Symbol]]()
-
   var cacheInstantiateTypeParams = Map[(Type, Type), Type]()
 
   private def lookupInClass(callSite: CallSite,
-                            tpe: Type,
-                            // default parameters, used only for super method lookup
-                            lookForSuperClasses: Boolean): Set[Symbol] = {
+    tpe: Type,
+    // default parameters, used only for super method lookup
+    lookForSuperClasses: Boolean): Set[Symbol] = {
 
     val staticTarget = callSite.staticTarget
     val receiverType = callSite.receiver.tpe
     val tuple = (staticTarget, receiverType, tpe, lookForSuperClasses)
-
-    def lookupNonCached = {
-      var targets = List[Symbol]()
-      for {
-        expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
-        asf = expandedType.asSeenFrom(tpe, expandedType.typeSymbol)
-        tpeasf = tpe.asSeenFrom(asf, tpe.typeSymbol)
-        if tpeasf <:< asf || lookForSuperClasses
-        targetName = staticTarget.name
-        target: Symbol = if (lookForSuperClasses) {
-          val targetString = targetName.toString
-          val newName = if (lookForSuperClasses) superName(targetString) else targetString
-          tpeasf.member(targetName.newName(newName))
-        } else tpeasf.member(targetName)
-        if target != NoSymbol && !target.isDeferred
-      } {
-        target match {
-          case _ =>
-            // Disambiguate overloaded methods based on the types of the args
-            if (target.isOverloaded) {
-              targets = target.alternatives.filter(_.tpe.matches(staticTarget.tpe)) ::: targets
-            } else {
-              targets = target :: targets
-            }
-        }
+    var targets = List[Symbol]()
+    for {
+      expandedType <- expand(instantiateTypeParams(tpe, receiverType.widen))
+      asf = expandedType.asSeenFrom(tpe, expandedType.typeSymbol)
+      tpeasf = tpe.asSeenFrom(asf, tpe.typeSymbol)
+      if tpeasf <:< asf || lookForSuperClasses
+      targetName = staticTarget.name
+      target: Symbol = if (lookForSuperClasses) {
+        val targetString = targetName.toString
+        val newName = if (lookForSuperClasses) superName(targetString) else targetString
+        tpeasf.member(targetName.newName(newName))
+      } else tpeasf.member(targetName)
+      if target != NoSymbol && !target.isDeferred
+    } {
+      target match {
+        case _ =>
+          // Disambiguate overloaded methods based on the types of the args
+          if (target.isOverloaded) {
+            targets = target.alternatives.filter(_.tpe.matches(staticTarget.tpe)) ::: targets
+          } else {
+            targets = target :: targets
+          }
       }
-      val result = targets.toSet
-      if (callSite.enclMethod.nameString == "main" && callSite.staticTarget.nameString == "m") println("targets: " + targets)
-      cacheTargetClassToSymbols += (tuple -> (cacheTargetClassToSymbols.getOrElse(tuple, Set()) ++ result))
-      result
     }
-
-    cacheTargetClassToSymbols.getOrElse(tuple, lookupNonCached)
+    val result = targets.toSet
+    if (callSite.enclMethod.nameString == "main" && callSite.staticTarget.nameString == "m") println("targets: " + targets)
+    result
   }
 
   override def lookup(callSite: CallSite,
-                      consideredClasses: collection.Set[Type],
-                      lookForSuperClasses: Boolean = false): collection.Set[Symbol] = {
+    consideredClasses: collection.Set[Type],
+    lookForSuperClasses: Boolean = false): collection.Set[Symbol] = {
     // If the target method is a constructor, no need to do the lookup.
     val staticTarget = callSite.staticTarget
     if (staticTarget.isConstructor)
