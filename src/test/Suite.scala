@@ -2,7 +2,7 @@ package test
 
 import scala.tools.nsc
 
-abstract class Suite(testPath: String) {
+abstract class Suite(testPath: String, options: List[String] = Nil) {
 
   def runTest(filename: String) {
     val settings = new nsc.Settings
@@ -13,7 +13,7 @@ abstract class Suite(testPath: String) {
     settings.bootclasspath.append("lib/scala-2.10.1/scala-reflect.jar")
     settings.bootclasspath.append("junit/bin")
     settings.bootclasspath.append("bin")
-    settings.pluginOptions.value = List("callgraph:this")
+    settings.pluginOptions.value = options
     settings.nowarn.value = true
     
     val g = new nsc.Global(settings)

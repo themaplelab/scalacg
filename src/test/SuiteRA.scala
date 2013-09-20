@@ -13,7 +13,7 @@ import org.junit.Test
 *   class CallGraphPhase(prevPhase: Phase) extends StdPhase(prevPhase) with AbstractAnalysis with Assertions with RA with Probe { ... }
 * */
 
-class SuiteRA extends Suite("junit/src/tests/ra/") {
+class SuiteRA extends Suite("junit/src/tests/ra/", List("callgraph:this", "callgraph:ra")) {
   
   @Test def testRaTest() { runTest("RATest") }
   

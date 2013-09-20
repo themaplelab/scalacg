@@ -2,7 +2,7 @@ package test
 
 import org.junit.Test
 
-class SuiteTCA extends Suite("junit/src/tests/tca/") {
+class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this")) {
 
   @Test def testTest1() { runTest("Test1") }
   @Test def testTest2() { runTest("Test2") }
