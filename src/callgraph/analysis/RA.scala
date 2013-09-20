@@ -43,6 +43,7 @@ trait RA extends WorklistAnalysis {
   }
 
   override def buildCallGraph() {
+    val callSitesSet = callSites.toSet
     // start off the worklist with the entry points
     methodWorklist ++= entryPoints
 
@@ -53,7 +54,7 @@ trait RA extends WorklistAnalysis {
       // Debugging info
       println("Items in work list: " + methodWorklist.size)
       processNewMethods(isTypeDependent = false)
-      // processCallSites(callSites, types, isTypeDependent = false) // TODO: change types to newTypes
+      processCallSites(callSitesSet, types, isTypeDependent = false) // TODO: change types to newTypes
     }
     // Debugging info
     println("Work list is empty now.")
