@@ -114,6 +114,7 @@ class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this")) {
   @Test def testMatch2() { runTest("Match2") }
 
   @Test def testReachable1() { runTest("Reachable1") }
+  @Test def testReachable1b() { runTest("Reachable1b") }
   @Test def testReachable2() { runTest("Reachable2") }
   @Test def testReachable3() { runTest("Reachable3") }
   

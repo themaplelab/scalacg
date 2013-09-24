@@ -14,7 +14,8 @@ trait Assertions extends Probe {
       println("Expected reachables: " + expectedReachables.map(signature).toSeq.mkString(", "))
       println("Reachable methods: " + reachableMethods.map(signature).toSeq.mkString(", "))
       assert(expectedReachables.subsetOf(reachableMethods),
-        "Some methods are annotated with @reachable, but are not reachable in the call graph.")
+        "Some methods are annotated with @reachable, but are not reachable in the call graph.\n" + 
+        (expectedReachables -- reachableMethods).map(signature).toSeq.mkString(", "))
     }
   }
   

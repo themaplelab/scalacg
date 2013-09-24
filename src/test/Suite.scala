@@ -14,8 +14,11 @@ abstract class Suite(testPath: String, options: List[String] = Nil) {
     settings.bootclasspath.append("junit/bin")
     settings.bootclasspath.append("bin")
     settings.pluginOptions.value = options
+    //    settings.YmacrodebugVerbose.value = true
+    //    settings.debug.value = true
+    //    settings.Xprint.value = List("callgraph")
     settings.nowarn.value = true
-    
+
     val g = new nsc.Global(settings)
     println("==============================")
     println(filename)

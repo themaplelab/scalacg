@@ -1,6 +1,7 @@
 package callgraph.analysis
 
-import collection.mutable
+import scala.collection.mutable
+
 import util.SuperCalls
 
 trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
@@ -69,7 +70,52 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
       newInstantiatedTypes ++= (typesInMethod -- instantiatedTypes) // remove types that were previously instantiated
     }
 
+    //    println("***************************************")
+    //    println(newInstantiatedTypes)
+    //    newInstantiatedTypes = findDuplicates(newInstantiatedTypes)
+    //    println(newInstantiatedTypes)
+    //    println("***************************************")
+
     newInstantiatedTypes
+  }
+
+  def getApply(tpe: Type) = {
+    assert(tpe.typeSymbol.isAnonymousFunction, "Finding an apply method for non-anonymous function: " + tpe)
+    tpe.members.filter(_.nameString == "apply").head
+  }
+
+  def findDuplicates(types: Set[Type]): Set[Type] = {
+    var filtered = Set[Type]()
+
+    // Helper class to provide a containsType method for Set[Type]
+    class SetHelper(types: Set[Type]) {
+      def containsType(that: Type): Boolean = {
+        for (tpe <- types) {
+          if (tpe.typeSymbol.isAnonymousFunction && that.typeSymbol.isAnonymousFunction) {
+            val a1 = getApply(tpe)
+            val a2 = getApply(that)
+            val body1 = methodToBody(a1)
+            val body2 = methodToBody(a2)
+            if (body1 equalsStructure body2) {
+              //              println(s"Found that ${tpe} is equivalent to ${that}")
+              //              println(signature(a1) + " ::: " + show(body1))
+              //              println(signature(a2) + " ::: " + show(body2))
+              return true
+            }
+          }
+        }
+        return false
+      }
+    }
+    implicit def setWrapper(types: Set[Type]) = new SetHelper(types)
+
+    for (tpe <- types) {
+      if (!filtered.containsType(tpe)) {
+        filtered += tpe
+      }
+    }
+
+    return filtered
   }
 
   def findCallSites(code: collection.Set[Symbol]) = {

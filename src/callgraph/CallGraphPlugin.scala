@@ -1,24 +1,37 @@
 package callgraph
 
-import analysis.output.{Timer, CGAnnotations, Assertions, CGPrint}
 import java.io.PrintStream
+
+import scala.annotation.elidable
+import scala.annotation.elidable.ASSERTION
 import scala.collection.immutable.List
 import scala.collection.mutable
+import scala.tools.{ nsc => cgPlugin }
 import scala.tools.nsc.Global
 import scala.tools.nsc.Phase
 import scala.tools.nsc.plugins.Plugin
 import scala.tools.nsc.plugins.PluginComponent
-import analysis.{TCRA, TCA, RA, AbstractAnalysis}
+
+import analysis.RA
+import analysis.TCA
+import analysis.TCRA
+import analysis.output.Assertions
+import analysis.output.CGAnnotations
+import analysis.output.CGPrint
+import analysis.output.Timer
+import callgraph.analysis.AbstractAnalysis
 
 class CallGraphPlugin(val global: Global) extends Plugin { cgPlugin =>
   val name = "callgraph"
   val description = "builds a call graph"
   val components = List[PluginComponent](AnnotationComponent, CallGraphComponent)
+  final val RunAfterPhase = "uncurry" // TODO: is this the right place for the phase?
 
   private val methodToId = mutable.Map[global.Symbol, Int]()
   private val expectedReachables = mutable.Set[global.Symbol]()
   private val expectedNotReachables = mutable.Set[global.Symbol]()
   private var _appClasses = Set[global.Type]() // had to use another name here to make the set of appClasses shareable across the two components
+  private var _methodToBody = mutable.Map[global.Symbol, global.Tree]()
 
   object AnalysisOption extends Enumeration {
     type AnalysisOption = Value
@@ -49,7 +62,8 @@ class CallGraphPlugin(val global: Global) extends Plugin { cgPlugin =>
   /** Phase that resolves call sites to compute call graph */
   object CallGraphComponent extends PluginComponent { cgComponent =>
     val global: cgPlugin.global.type = cgPlugin.global
-    val runsAfter = List[String]("targetannotation") // TODO: is this the right place for the phase?
+    override val runsRightAfter = Some[String]("targetannotation")
+    val runsAfter = List[String]("targetannotation")
     val phaseName = cgPlugin.name
 
     def newPhase(prevPhase: Phase) = {
@@ -78,6 +92,12 @@ class CallGraphPlugin(val global: Global) extends Plugin { cgPlugin =>
 
       lazy val trees = global.currentRun.units.map(_.body).toList
       lazy val appClasses = Set[Type](_appClasses.toSeq: _*) // initializing a set with elements from another set
+      
+      // default value here to avoid an exception when methodToBody is called on Scala apply methods (have "null" bodies)
+      // e.g. chessmaster had an exception when trying to retireve the boduy for scala.AbstractFunction1.apply
+      // Karim TODO: this shouldn't happen though since those apply methods are abstract and shouldn't be involved
+      // in the method resolution process at all!
+      lazy val methodToBody = mutable.Map[Symbol, Tree](_methodToBody.toSeq: _*).withDefaultValue(EmptyTree)
 
       override def run() {
         initialize()
@@ -131,7 +151,8 @@ class CallGraphPlugin(val global: Global) extends Plugin { cgPlugin =>
   /** Phase that annotates each method with @callgraph.annotation.targetmethod(serial number) */
   private object AnnotationComponent extends PluginComponent { annotComponent =>
     val global: cgPlugin.global.type = cgPlugin.global
-    val runsAfter = List[String]("uncurry")
+    override val runsRightAfter = Some[String](RunAfterPhase)
+    val runsAfter = List[String](RunAfterPhase)
     def newPhase(prevPhase: Phase) = new CallGraphPhase(prevPhase)
     val phaseName = "targetannotation"
 
@@ -151,6 +172,11 @@ class CallGraphPlugin(val global: Global) extends Plugin { cgPlugin =>
             node.symbol.addAnnotation(annotationInfo)
             methodToId += (node.symbol -> serialNum)
             serialNum += 1
+
+            // If this is an apply method
+            if (node.symbol.nameString == "apply") {
+              _methodToBody += (node.symbol -> node.asInstanceOf[DefDef].rhs)
+            }
 
             // Compile a list of methods that have @reachable annotation
             if (hasReachableAnnotation(node.symbol)) expectedReachables += node.symbol

@@ -4,7 +4,7 @@ import output.CGAnnotations
 import scala.collection.mutable
 
 import collection.immutable.Set
-import util.{Global, LibraryCalls, Lookup}
+import util.{ Global, LibraryCalls, Lookup }
 
 trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with CGAnnotations with Global {
 
@@ -13,6 +13,7 @@ trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with 
   val reachableCode = mutable.Set[Symbol]()
   val callbacks = mutable.Set[Symbol]()
   val callGraph = mutable.Map[CallSite, Set[Symbol]]()
+  val methodToBody: mutable.Map[Symbol, Tree]
 
   def initialize() {
     // find call sites and types
@@ -21,7 +22,7 @@ trait AbstractAnalysis extends TreeTraversal with Lookup with LibraryCalls with 
         findCallSitesAndTypes(tree, List())
     }
   }
-  
+
   def buildCallGraph()
 
   private def transitiveClosure[T](initial: collection.Set[T], transition: T => Set[T]): Set[T] = {
