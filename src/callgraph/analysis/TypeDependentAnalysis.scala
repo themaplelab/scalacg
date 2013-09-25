@@ -56,7 +56,6 @@ trait TypeDependentAnalysis extends Lookup {
         }
       }
       val result = targets.toSet
-      if (callSite.enclMethod.nameString == "main" && callSite.staticTarget.nameString == "m") println("targets: " + targets)
       cacheTargetClassToSymbols += (tuple -> (cacheTargetClassToSymbols.getOrElse(tuple, Set()) ++ result))
       result
     }
