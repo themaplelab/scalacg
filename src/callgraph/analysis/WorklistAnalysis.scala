@@ -70,12 +70,7 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
       newInstantiatedTypes ++= (typesInMethod -- instantiatedTypes) // remove types that were previously instantiated
     }
 
-    //    println("***************************************")
-    //    println(newInstantiatedTypes)
-    //    newInstantiatedTypes = findDuplicates(newInstantiatedTypes)
-    //    println(newInstantiatedTypes)
-    //    println("***************************************")
-
+    newInstantiatedTypes = findDuplicates(newInstantiatedTypes)
     newInstantiatedTypes
   }
 
@@ -97,9 +92,6 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
             val body1 = methodToBody(a1)
             val body2 = methodToBody(a2)
             if (body1 equalsStructure body2) {
-              //              println(s"Found that ${tpe} is equivalent to ${that}")
-              //              println(signature(a1) + " ::: " + show(body1))
-              //              println(signature(a2) + " ::: " + show(body2))
               return true
             }
           }
