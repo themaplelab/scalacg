@@ -118,12 +118,10 @@ trait WorklistAnalysis extends AbstractAnalysis with SuperCalls {
     isTypeDependent: Boolean,
     getFilteredClasses: (CallSite, collection.Set[Type]) => collection.Set[Type] = (_, _) => Set()) {
     for (callSite <- callSites) {
-      val csStaticTarget = callSite.staticTarget
-      val receiver = callSite.receiver
       var targets = collection.Set[Symbol]()
 
-      if (receiver == null) {
-        targets = Set(csStaticTarget)
+      if (callSite.receiver == null) {
+        targets = Set(callSite.staticTarget)
       } else if (isSuperCall(callSite)) {
         targets = cacheSuperCalls.getOrElseUpdate((callSite.staticTarget, callSite.receiver.tpe), getSuperTargets(callSite, classToContainedInLinearizationOf(callSite.enclMethod.enclClass.tpe), isTypeDependent))
       } else {
