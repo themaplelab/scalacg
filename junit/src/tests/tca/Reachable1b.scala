@@ -18,7 +18,7 @@ object Reachable1b {
     // This calls A.apply
     for (v <- 0 to 10) {
       A(v)
-    }
+    } 
 
   }
 
