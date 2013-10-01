@@ -1,10 +1,12 @@
 package callgraph.analysis.output
 
+import scala.compat.Platform
+
 object Timer {
   
-  var start : Long = 0L
-  var end : Long = 0L
+  private var _start : Long = 0L
   
-  def elapsed = (end - start) / 1000.0
+  def elapsed = (Platform.currentTime - _start) / 1000.0
+  def start = _start = Platform.currentTime
 
 }
