@@ -5,12 +5,13 @@ import scala.tools.nsc.Global
 import scala.tools.nsc.plugins.Plugin
 import scala.tools.nsc.plugins.PluginComponent
 import callgraph.config.AnalysisOption
-import callgraph.config.Properties
+import callgraph.config.Phases
 import callgraph.config.Globals
 import callgraph.annotation.Annotations
 
 class CallGraphPlugin(val global: Global) extends Plugin {
   import global._
+  import Phases._
   
   val methodToId = Map[Symbol, Int]()
   // default value here to avoid an exception when methodToBody is called on Scala apply methods (have "null" bodies)
@@ -24,8 +25,8 @@ class CallGraphPlugin(val global: Global) extends Plugin {
 
   val appClasses = Set[Type]()
 
-  val name = Properties.CallGraphPluginName
-  val description = Properties.CallGraphPluginDescription
+  val name = CallGraphPluginName
+  val description = CallGraphPluginDescription
   val components = List[PluginComponent](annotator)//, callgraphgen)
 
   // Plugin options
@@ -64,9 +65,9 @@ class CallGraphPlugin(val global: Global) extends Plugin {
      * things, especially when constructs like anonymous classes is translated to something completely different
      * in those phases (namely: tailcalls, specialize).
      */
-    override val runsRightAfter = Some[String](Properties.RunsAfterPhase)
-    val runsAfter = List[String](Properties.RunsAfterPhase)
-    val phaseName = Properties.AnnotationPhaseName
+    override val runsRightAfter = Some[String](RunsAfterPhase)
+    val runsAfter = List[String](RunsAfterPhase)
+    val phaseName = AnnotationPhaseName
   } with MethodAnnotation with Annotations with Globals
 
   /** Generate the call graph */

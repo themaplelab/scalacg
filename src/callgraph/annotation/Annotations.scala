@@ -34,33 +34,33 @@ trait Annotations extends Global {
     symbol.addAnnotation(mkAnnotationInfo(serialNumber))
   }
 
-//  /**
-//   * Does a method have a @reachable annotation?
-//   */
-//  def hasReachableAnnotation(symbol: Symbol) = hasAnnotation(symbol, reachableAnnotation)
-//
-//  /**
-//   * Does a method have a @notreachable annotation?
-//   */
-//  def hasNotReachableAnnotation(symbol: Symbol) = hasAnnotation(symbol, notReachableAnnotation)
-//
-//  def hasTargetMethodAnnotation(symbol: Symbol) = hasAnnotation(symbol, methodUIDAnnotation)
-//
-//  def hasInvocationsAnnotation(symbol: Symbol) = hasAnnotation(symbol, invocationsAnnotation)
-//
-//  def hasTargetAnnotation(symbol: Symbol) = hasAnnotation(symbol, targetAnnotation)
-//
-//  def hasNoInvocationsAnnotation(symbol: Symbol) = hasAnnotation(symbol, noInvocationsAnnotation)
-//
-//  private def hasAnnotation(symbol: Symbol, annotation: ClassSymbol) = {
-//    val annotType = annotation.tpe
-//    val reach = symbol.annotations.collect {
-//      case AnnotationInfo(tpe, _, _) if tpe == annotType => tpe
-//    }
-//    if (annotType == reachableAnnotation || annotType == notReachableAnnotation) {
-//      assert(reach.size <= 1) // There should only be a maximum of one @reachable or @notreachable annotation per method
-//    }
-//    reach.nonEmpty
-//  }
+  /**
+   * Does a method have a @reachable annotation?
+   */
+  def hasReachableAnnotation(symbol: Symbol) = hasAnnotation(symbol, reachableAnnotation)
+
+  /**
+   * Does a method have a @notreachable annotation?
+   */
+  def hasNotReachableAnnotation(symbol: Symbol) = hasAnnotation(symbol, notReachableAnnotation)
+
+  def hasTargetMethodAnnotation(symbol: Symbol) = hasAnnotation(symbol, methodUIDAnnotation)
+
+  def hasInvocationsAnnotation(symbol: Symbol) = hasAnnotation(symbol, invocationsAnnotation)
+
+  def hasTargetAnnotation(symbol: Symbol) = hasAnnotation(symbol, targetAnnotation)
+
+  def hasNoInvocationsAnnotation(symbol: Symbol) = hasAnnotation(symbol, noInvocationsAnnotation)
+
+  private def hasAnnotation(symbol: Symbol, annotation: ClassSymbol) = {
+    val annotType = annotation.tpe
+    val reach = symbol.annotations.collect {
+      case AnnotationInfo(tpe, _, _) if tpe == annotType => tpe
+    }
+    if (annotType == reachableAnnotation || annotType == notReachableAnnotation) {
+      assert(reach.size <= 1) // There should only be a maximum of one @reachable or @notreachable annotation per method
+    }
+    reach.nonEmpty
+  }
 
 }

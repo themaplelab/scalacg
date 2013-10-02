@@ -5,7 +5,7 @@ import scala.collection.mutable
 /**
  * This is where all the global properties/finals shared across our code-base are found.
  */
-object Properties {
+object Phases {
   final val CallGraphPluginName = "callgraph"
   final val CallGraphPluginDescription = "builds a call graph"
 

@@ -10,7 +10,7 @@ import callgraph.annotation.Annotations
 /** Phase that annotates each method with @callgraph.annotation.MethodUID(serial number) */
 abstract class MethodAnnotation extends PluginComponent {
   self: Annotations with Globals =>
-  
+
   def newPhase(prevPhase: Phase) = new AnnotationPhase(prevPhase)
 
   class AnnotationPhase(prevPhase: Phase) extends StdPhase(prevPhase) {
@@ -24,11 +24,24 @@ abstract class MethodAnnotation extends PluginComponent {
           // Add the serial number annotation
           addMethodUID(node.symbol, serialNumber)
           methodToId += (node.symbol -> serialNumber)
-
           serialNumber += 1
 
-        } else if (node.isInstanceOf[ClassDef] || node.isInstanceOf[ModuleDef]) {
+          // If this is an apply method
+          if (node.symbol.nameString == "apply") {
+            methodToBody += (node.symbol -> node.asInstanceOf[DefDef].rhs)
+          }
 
+          // Compile a list of methods that have @reachable annotation
+          if (hasReachableAnnotation(node.symbol)) {
+            expectedReachables += node.symbol
+          }
+
+          // Compile a list of methods that have @notreachable annotation
+          if (hasNotReachableAnnotation(node.symbol)) {
+            expectedNotReachables += node.symbol
+          }
+        } else if (node.isInstanceOf[ClassDef] || node.isInstanceOf[ModuleDef]) {
+          appClasses += node.symbol.tpe
         }
       }
     }
