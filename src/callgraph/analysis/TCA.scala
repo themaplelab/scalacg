@@ -2,6 +2,7 @@ package callgraph.analysis
 
 import scala.collection.mutable
 import scala.collection.immutable.Set
+import scala.tools.nsc.backend.WorklistAlgorithm
 
 trait TCA extends WorklistAnalysis with TypeDependentAnalysis {
 
