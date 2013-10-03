@@ -1,16 +1,13 @@
 package callgraph.analysis.output
 
-/**
- * Handles any annotation-related operations, and holds any annotation constants (e.g., annotations
- * class names, etc).
- */
+
 trait CGAnnotations extends Probe {
 
   import global._
 
   final lazy val reachableAnnotation = rootMirror.getRequiredClass("callgraph.annotation.reachable")
   final lazy val notReachableAnnotation = rootMirror.getRequiredClass("callgraph.annotation.notreachable")
-  final lazy val methodUIDAnnotation = rootMirror.getRequiredClass("callgraph.annotation.MethodUID")
+  final lazy val targetmethodAnnotation = rootMirror.getRequiredClass("callgraph.annotation.targetmethod")
   final lazy val invocationsAnnotation = rootMirror.getRequiredClass("callgraph.annotation.invocations")
   final lazy val targetAnnotation = rootMirror.getRequiredClass("callgraph.annotation.target")
   final lazy val noInvocationsAnnotation = rootMirror.getRequiredClass("callgraph.annotation.noInvocations")
@@ -28,7 +25,7 @@ trait CGAnnotations extends Probe {
    */
   def hasNotReachableAnnotation(symbol: Symbol) = hasAnnotation(symbol, notReachableAnnotation)
 
-  def hasTargetMethodAnnotation(symbol: Symbol) = hasAnnotation(symbol, methodUIDAnnotation)
+  def hasTargetMethodAnnotation(symbol: Symbol) = hasAnnotation(symbol, targetmethodAnnotation)
 
   def hasInvocationsAnnotation(symbol: Symbol) = hasAnnotation(symbol, invocationsAnnotation)
 

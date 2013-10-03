@@ -10,7 +10,7 @@ trait LibraryCalls {
 
   import global._
 
-  val appClasses: mutable.Set[Type]
+  val appClasses: Set[Type]
 
   private val cacheFoundOverridingLibraryMethods = mutable.Set[Symbol]()
   private val cacheMethodToLibraryOverriddenMethods = mutable.Map[Symbol, List[Symbol]]()      // todo: is that redundant?
