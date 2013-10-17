@@ -1,0 +1,4 @@
+<plugin>
+	<name>CallGraph</name>
+	<classname>ca.uwaterloo.scalacg.plugin.CallGraphPlugin</classname>
+</plugin>

@@ -1,0 +1,16 @@
+==============================
+ObjectInObject1b
+==============================
+Starting phase methodannotation ...
+Starting phase callgraph ...
+Finished methodannotation in 0.86 seconds.
+
+=====================
+tests.tca.ObjectInObject1b.type :: Set(tests.tca.ObjectInObject1b.A.type, tests.tca.ObjectInObject1b.D.type)
+
+method bar :: Set(B.type, C.type)
+object B :: Set(B.type)
+constructor D :: Set(tests.tca.ObjectInObject1b.D.E)
+object C :: Set(C.type)
+=====================
+

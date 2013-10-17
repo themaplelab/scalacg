@@ -1,0 +1,53 @@
+package tests.tca {
+  object SuperCall1 extends Object {
+    def <init>(): tests.tca.SuperCall1.type = {
+      SuperCall1.super.<init>();
+      ()
+    };
+    abstract trait X extends Object {
+      def /*X*/$init$(): Unit = {
+        ()
+      };
+      @ca.uwaterloo.scalacg.annotation.target("X.bar") def bar(): Unit = scala.this.Predef.println("X.bar")
+    };
+    abstract trait Y extends Object with tests.tca.SuperCall1.X {
+      <superaccessor> private def super|(): Unit;
+      def /*Y*/$init$(): Unit = {
+        ()
+      };
+      @ca.uwaterloo.scalacg.annotation.target("Y.foo") @ca.uwaterloo.scalacg.annotation.invocations("17: X.bar", "17: Z.bar") def foo(): Unit = Y.this.super|()
+    };
+    abstract trait Z extends Object with tests.tca.SuperCall1.X {
+      def /*Z*/$init$(): Unit = {
+        ()
+      };
+      @ca.uwaterloo.scalacg.annotation.target("Z.bar") override def bar(): Unit = scala.this.Predef.println("Z.bar")
+    };
+    def main(args: Array[String]): Unit = {
+      {
+  "Y.foo";
+  {
+    final class $anon extends Object with tests.tca.SuperCall1.Y with tests.tca.SuperCall1.Z {
+      def <init>(): anonymous class $anon = {
+        $anon.super.<init>();
+        ()
+      }
+    };
+    new anonymous class $anon()
+  }
+}.foo();
+      {
+  "Y.foo";
+  {
+    final class $anon extends Object with tests.tca.SuperCall1.Z with tests.tca.SuperCall1.Y {
+      def <init>(): anonymous class $anon = {
+        $anon.super.<init>();
+        ()
+      }
+    };
+    new anonymous class $anon()
+  }
+}.foo()
+    }
+  }
+}
