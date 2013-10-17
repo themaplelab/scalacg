@@ -4,6 +4,11 @@ import org.junit.Test
 
 class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "callgraph:super", "callgraph:assert")) {
 
+  /** 
+   *  Argot
+   */
+  @Test def testTraitTypeParam() { runTest("TraitTypeParam") }
+  @Test def testMethodTypeParam() { runTest("MethodTypeParam") }
   @Test def testPrintln() { runTest("Println") }
   
   @Test def testExperiment() { runTest("Experiment") }
