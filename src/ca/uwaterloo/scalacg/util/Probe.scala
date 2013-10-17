@@ -1,10 +1,8 @@
 package ca.uwaterloo.scalacg.util
 
 import java.io.PrintStream
-
 import scala.collection.mutable.StringBuilder
 import scala.reflect.io.AbstractFile
-
 import ca.uwaterloo.scalacg.analysis.CallGraphAnalysis
 import ca.uwaterloo.scalacg.config.Global
 import ca.uwaterloo.scalacg.probe.CallEdge
@@ -13,6 +11,7 @@ import ca.uwaterloo.scalacg.probe.GXLWriter
 import probe.CallGraph
 import probe.ObjectManager
 import probe.ProbeMethod
+import java.util.zip.GZIPOutputStream
 
 trait Probe extends Global {
 
@@ -102,8 +101,8 @@ trait CallGraphPrinter {
     }
     libraryOut.close
 
-    // Write GXL file
-    new GXLWriter().write(probeCallGraph, out)
+    // Write GXL file in gzip format to save space.
+    new GXLWriter().write(probeCallGraph, new GZIPOutputStream(out))
   }
   
   /**
