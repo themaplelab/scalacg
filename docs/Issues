@@ -1,6 +1,0 @@
-- In RA, static targets should be added after getting the result from cache to allow for later calculations of library
-calls.
-- In RA, return Set(staticTarget). For some reason not using the "return" keyword didn't make the function actually 
-return.
-- In RA, cache should also depend on lookForSuperClasses. Adjusted the map to be from (name, flag) => targets
-- In RA, some methods are not captured. Weird. (see joos.Types.typeChecking -> joos.Types.checkAccess)
