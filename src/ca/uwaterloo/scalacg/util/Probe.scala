@@ -70,11 +70,11 @@ trait CallGraphPrinter {
    * Return a probe call graph in GXL format.
    */
   def printProbeCallGraph = {
-    println(s"Call graph is available at ${prefix}callgraph.gxl.gzip")
-    val out = new PrintStream(s"${prefix}callgraph.gxl.gzip")
+    println("Call graph is available at callgraph.gxl.gzip")
+    val out = new PrintStream("callgraph.gxl.gzip")
     val probeCallGraph = new CallGraph
-    val entryPointsOut = new PrintStream(s"${prefix}entrypoints.txt")
-    val libraryOut = new PrintStream(s"${prefix}library.txt")
+    val entryPointsOut = new PrintStream("entrypoints.txt")
+    val libraryOut = new PrintStream("library.txt")
 
     // Get the entry points (these include main methods and call-backs)
     for {
@@ -109,7 +109,7 @@ trait CallGraphPrinter {
    * Print the mapping of all annotated methods to their source level signature.
    */
   def printMethods = {
-    val out = new PrintStream(s"${prefix}methods.txt")
+    val out = new PrintStream("methods.txt")
     for (method <- methodToId.keys) {
       out.println(methodToId.getOrElse(method, 0) + " ===> " + probeMethod(method))
     }
