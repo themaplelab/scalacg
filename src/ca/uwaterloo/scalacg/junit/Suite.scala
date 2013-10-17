@@ -13,14 +13,14 @@ abstract class Suite(testPath: String, options: List[String] = Nil) extends Glob
 
     settings.plugin.value = List("jar/callgraph-plugin.jar")
 
-    settings.bootclasspath.append("lib/scala-2.10.1/scala-compiler.jar")
-    settings.bootclasspath.append("lib/scala-2.10.1/scala-library.jar")
-    settings.bootclasspath.append("lib/scala-2.10.1/scala-reflect.jar")
+    //    settings.bootclasspath.append("lib/scala-2.10.1/scala-compiler.jar")
+    //    settings.bootclasspath.append("lib/scala-2.10.1/scala-library.jar")
+    //    settings.bootclasspath.append("lib/scala-2.10.1/scala-reflect.jar")
     settings.bootclasspath.append("junit/bin")
     settings.bootclasspath.append("bin")
 
     settings.pluginOptions.value = options
-    
+
     //    settings.YmacrodebugVerbose.value = true
     //    settings.debug.value = true
     //    settings.Xprint.value = List("callgraph")
