@@ -70,8 +70,8 @@ trait CallGraphPrinter {
    * Return a probe call graph in GXL format.
    */
   def printProbeCallGraph = {
-    println(s"Call graph is available at ${prefix}callgraph.gxl")
-    val out = new PrintStream(s"${prefix}callgraph.gxl")
+    println(s"Call graph is available at ${prefix}callgraph.gxl.gzip")
+    val out = new PrintStream(s"${prefix}callgraph.gxl.gzip")
     val probeCallGraph = new CallGraph
     val entryPointsOut = new PrintStream(s"${prefix}entrypoints.txt")
     val libraryOut = new PrintStream(s"${prefix}library.txt")
