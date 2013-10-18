@@ -1,0 +1,6 @@
+0.0 stasiak.karol.fimpp.Main: main(args: Array[String]) ===> stasiak.karol.fimpp.Main: main(args: Array[String])
+0.5 stasiak.karol.fimpp.Main: main(args: Array[String]) ===> scala.util.parsing.combinator.Parsers$ParseResult: successful()
+0.75 stasiak.karol.fimpp.Main: main(args: Array[String]) ===> scala.collection.Iterator: mkString(Ljava/lang/String;)
+0.875 stasiak.karol.fimpp.Main: main(args: Array[String]) ===> scala.util.parsing.combinator.RegexParsers: parseAll(Lscala/util/parsing/combinator/Parsers$Parser;Ljava/lang/CharSequence;)
+23.600160760054948 stasiak.karol.fimpp.Main: main(args: Array[String]) ===> stasiak.karol.fimpp.FimppParser: module()
+102.9246971531233 stasiak.karol.fimpp.Main: main(args: Array[String]) ===> stasiak.karol.fimpp.Module: run()

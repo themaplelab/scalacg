@@ -7,6 +7,7 @@ class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "cal
   /** 
    *  Argot
    */
+  @Test def testClassTypeParam() { runTest("ClassTypeParam") }
   @Test def testTraitTypeParam() { runTest("TraitTypeParam") }
   @Test def testMethodTypeParam() { runTest("MethodTypeParam") }
   @Test def testPrintln() { runTest("Println") }
