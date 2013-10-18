@@ -1,0 +1,7 @@
+===========================================================================
+Missing call edges in local/dist/tca-this-super/tictactoe/wala-callgraph.gxl.gzip:
+===========================================================================
+0.0 TicTacToeBoard.$anonfun.$anonfun: apply(x$1: Int) ===> TicTacToeBoard: columnCount()
+===========================================================================
+Number of reachable methods missing in local/dist/tca-this-super/tictactoe/wala-callgraph.gxl.gzip: 0
+===========================================================================

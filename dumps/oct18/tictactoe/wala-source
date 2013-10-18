@@ -1,0 +1,21 @@
+===========================================================================
+Missing call edges in local/dist/tca-this-super/tictactoe/callgraph.gxl.gzip:
+===========================================================================
+0.0 X: hashCode() ===> X: hashCode()
+0.1249809480262155 TicTacToeBoard: diagonalsLTR() ===> scala.LowPriorityImplicits: intWrapper(I)
+0.142822265625 TicTacToeBoard: getPlayersFromString(row: String) ===> scala.collection.TraversableLike: map(Lscala/Function1;Lscala/collection/generic/CanBuildFrom;)
+0.16659725114535615 TicTacToeBoard: rows() ===> scala.collection.immutable.IndexedSeq$: canBuildFrom()
+0.1998456790123457 TicTacToeBoard: numToAlpha(number: Int) ===> scala.collection.mutable.StringBuilder: <init>()
+0.24992 O: productElement(x$1: Int) ===> scala.runtime.BoxesRunTime: boxToInteger(I)
+0.25 TicTacToeBoard.$anonfun: apply(x$1: String,x$2: Int) ===> scala.LowPriorityImplicits: genericWrapArray(Ljava/lang/Object;)
+0.3330078125 TicTacToe: readNextMove(board: TicTacToeBoard) ===> scala.MatchError: <init>(Ljava/lang/Object;)
+0.3333333333333333 X: productIterator() ===> scala.runtime.ScalaRunTime$: typedProductIterator(Lscala/Product;)
+0.4993141289437586 TicTacToeBoard.$anonfun: apply(x$1: Array[Player]) ===> scala.collection.mutable.ArrayOps: contains(Ljava/lang/Object;)
+0.49977137631458624 TicTacToeBoard: nInARow(n: Int,array: Array[Player]) ===> scala.collection.immutable.Range: foreach$mVc$sp(Lscala/Function1;)
+0.5 TicTacToeBoard: determineWinner() ===> scala.collection.mutable.ArrayOps: map(Lscala/Function1;Lscala/collection/generic/CanBuildFrom;)
+0.99609375 TicTacToeBoard.$anonfun.$anonfun: apply(x$1: Int) ===> TicTacToeBoard$$anonfun$columns$1: TicTacToeBoard$$anonfun$$$outer()
+0.998046875 TicTacToeBoard: determineWinner() ===> scala.reflect.ClassTag$: Boolean()
+0.9990234375 TicTacToeBoard: toString() ===> TicTacToeBoard$$anonfun$toString$1$$anonfun$apply$mcVI$sp$1: apply(Ljava/lang/Object;)
+===========================================================================
+Number of reachable methods missing in local/dist/tca-this-super/tictactoe/callgraph.gxl.gzip: 89
+===========================================================================
