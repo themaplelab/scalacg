@@ -4,9 +4,10 @@ import org.junit.Test
 
 class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "callgraph:super", "callgraph:assert")) {
 
-  /** 
-   *  Argot
-   */
+  // joos
+  @Test def testObjectReceiver() { runTest("ObjectReceiver") }
+  
+  // argot
   @Test def testClassTypeParam() { runTest("ClassTypeParam") }
   @Test def testTraitTypeParam() { runTest("TraitTypeParam") }
   @Test def testMethodTypeParam() { runTest("MethodTypeParam") }

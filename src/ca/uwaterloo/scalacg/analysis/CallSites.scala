@@ -1,5 +1,8 @@
 package ca.uwaterloo.scalacg.analysis
 
+import scala.collection.immutable.{ Set => ImmutableSet }
+import scala.collection.mutable.Set
+
 import ca.uwaterloo.scalacg.config.Global
 
 trait CallSites extends Global {
@@ -46,6 +49,9 @@ trait CallSites extends Global {
     // Does this call site has a "super" accessor (e.g., super$bar)?
     lazy val hasSuperAccessor = staticTarget.isSuperAccessor
 
+    // Is the receiver of the call site a module class?
+    lazy val hasModuleReceiver = receiver != null && receiver != NoType && receiver.typeSymbol.isModuleOrModuleClass
+
     // Get the name of the static target method.
     lazy val targetName = {
       if (hasSuperAccessor) staticTarget.name drop nme.SUPER_PREFIX_STRING.length
@@ -54,7 +60,7 @@ trait CallSites extends Global {
   }
 
   class CallSite(receiverTree: Tree, override val staticTarget: Symbol,
-    val enclMethod: Symbol, val position: Position, val annotations: Set[String])
+    val enclMethod: Symbol, val position: Position, val annotations: ImmutableSet[String])
     extends AbstractCallSite(receiverTree, staticTarget) {
 
     // Get the named super (the Z in super[Z]) of this call site, if any
@@ -81,7 +87,13 @@ trait CallSites extends Global {
     def apply(receiverTree: Tree, staticTarget: Symbol) =
       new AbstractCallSite(receiverTree, staticTarget)
     def apply(receiverTree: Tree, staticTarget: Symbol,
-      enclMethod: Symbol, position: Position, annotations: Set[String]) =
+      enclMethod: Symbol, position: Position, annotations: ImmutableSet[String]) =
       new CallSite(receiverTree, staticTarget, enclMethod, position, annotations)
+  }
+
+  def modulesInCallSites(callSites: Set[AbstractCallSite]) = {
+    val modules = Set.empty[Type]
+    callSites.foreach(cs => if (cs.hasModuleReceiver) modules += cs.receiver)
+    modules
   }
 }

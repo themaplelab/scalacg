@@ -1,0 +1,36 @@
+===========================================================================
+Missing call edges in local/dist/tca-this-super/joos/wala-callgraph.gxl.gzip:
+===========================================================================
+0.0 CodeGen.$anonfun.$anonfun.$anonfun.$anonfun.$anonfun: apply(x$1: Ast.ClassDecl) ===> scala.collection.immutable.List: foreach([B]f: A => B)
+0.008196179522770821 Ast: ast_ForInit(tree: Parser.Tree) ===> scala.collection.LinearSeqOptimized: apply(n: Int)
+0.008263907551733398 Types: typeCheck(e: Ast.Expr) ===> scala.None: get()
+0.008402777777777787 Ast: ast_ReturnStatement(tree: Parser.Tree) ===> scala.collection.LinearSeqOptimized: lengthCompare(len: Int)
+0.06291230672625747 StaticAnal.$anonfun: apply(x$1: Ast.AstNode) ===> Ast.ShortSpec: typ()
+0.06292203824085588 Types: checkInit(ts: Ast.TypeSpec,init: Option[Ast.Expr]) ===> Ast.VoidSpec: typ()
+0.06651740096763453 Types: typeCheckStmt(s: Ast.Stmt) ===> Ast.ByteSpec: typ()
+0.06653895379120577 StaticAnal.$anonfun: apply(x$1: Ast.AstNode) ===> Ast.BooleanSpec: typ()
+0.06655604567780805 Types: typeCheckStmt(s: Ast.Stmt) ===> Ast.CharSpec: typ()
+0.06656642725450948 Names.ConstrSig.$anonfun: apply(x$1: Ast.TypeSpec, String) ===> Ast.IntSpec: typ()
+0.07140740740740742 Names.$anonfun.$anonfun.$anonfun: apply(x$1: Ast.Name) ===> scala.collection.immutable.Nil: head()
+0.07998968183153599 CodeGen.subtypeTests.$anonfun: apply(x$1: Ast.AstNode) ===> Ast.ArraySpec: typ()
+0.1111111111111111 Names.$anonfun: apply(x$1: Ast.Name) ===> scala.collection.immutable.Nil: tail()
+0.125 Types: disMethod(name: Ast.Name,env: Names.Env) ===> scala.collection.immutable.Nil: isEmpty()
+0.18056086384095713 Ast: ast_Literal(tree: Parser.Tree) ===> Parser.Node: asLeaf()
+0.19424360421823408 Names.$anonfun.$anonfun.$anonfun: apply(x$1: Ast.MethodDecl, Ast.MethodDecl) ===> Ast.RefSpec: typ()
+0.4024208791378808 Names.$anonfun.$anonfun.$anonfun: apply(x$1: Ast.MethodDecl) ===> Ast.ByteType: spec()
+0.4160817121169045 Names.$anonfun.$anonfun.$anonfun: apply(x$1: Ast.MethodDecl) ===> Ast.CharType: spec()
+0.42709065738767826 Names.$anonfun.$anonfun.$anonfun.$anonfun: apply(x$1: Ast.TypeSpec, String) ===> Ast.VoidType: spec()
+0.43295256401668586 Names.$anonfun.$anonfun.$anonfun: apply(x$1: Ast.MethodDecl) ===> Ast.IntType: spec()
+0.4704163069573051 Names.$anonfun.$anonfun.$anonfun: apply(x$1: Ast.MethodDecl) ===> Ast.ShortType: spec()
+0.4894047565148686 Names.$anonfun.$anonfun.$anonfun.$anonfun: apply(x$1: Ast.TypeSpec, String) ===> Ast.NullType: spec()
+0.49073946680022756 Names.$anonfun.$anonfun.$anonfun: apply(x$1: Ast.MethodDecl) ===> Ast.RefType: spec()
+0.49089440361791015 Names.$anonfun.$anonfun.$anonfun.$anonfun: apply(x$1: Ast.TypeSpec, String) ===> Ast.BooleanType: spec()
+0.5 Ast.MethodDecl: frame() ===> CodeGen: methodFrame(md: Ast.MethodDecl)
+0.6863993507293117 Ast: check(s: String) ===> Parser.Leaf: asNode()
+0.75 Util: error(s: String) ===> java.lang.System: exit(x$1: Int)
+0.8774489236726591 Names.$anonfun.$anonfun.$anonfun: apply(x$1: Ast.MethodDecl) ===> Ast.ArrayType: spec()
+0.9989850407731019 CodeGen: arrayFrame() ===> Util.Memoize: <init>(f: Key => Value)
+0.9990234375 Util: slurp(file: String) ===> java.io.FileReader: <init>(x$1: String)
+===========================================================================
+Number of reachable methods missing in local/dist/tca-this-super/joos/wala-callgraph.gxl.gzip: 42
+===========================================================================

@@ -78,6 +78,16 @@ trait CallGraphAnalysis extends CallGraphWorklists
       // Process super calls
       collectSuperCalled
 
+      // TODO
+      //      println("======================================")
+      //      println("Instantiated types")
+      //      instantiatedTypes.newItems.foreach(println)
+      //      println("Concretization")
+      //      concretization.foreach(println)
+      //      println("Call sites")
+      //      callSites.newItems.foreach(cs => println(cs.receiver + " :: " + cs.staticTarget))
+      //      println("======================================")
+
       // Process new call sites with all types, and use new types to process all call sites
       if (callSites.nonEmpty) {
         println(s"\tFound ${callSites.size} new call sites")
@@ -123,17 +133,18 @@ trait CallGraphAnalysis extends CallGraphWorklists
       // Find new instantiated types
       instantiatedTypes ++= instantiatedTypesInMethod(method)
       instantiatedTypes ++= modulesInTypes(instantiatedTypes.newItems)
+      instantiatedTypes ++= modulesInCallSites(callSites.newItems)
     }
 
     reachableMethods.clear
   }
-  
+
   /**
    * Collect all methods that are called via "super".
    */
   private def collectSuperCalled = {
-    for(callSite <- callSites.newItems) {
-      if(callSite.isSuperCall) {
+    for (callSite <- callSites.newItems) {
+      if (callSite.isSuperCall) {
         superCalled += callSite.staticTarget
       }
     }
