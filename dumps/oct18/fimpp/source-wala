@@ -1,0 +1,19 @@
+===========================================================================
+Missing entry points in local/dist/tca-this-super/fimpp/wala-callgraph.gxl.gzip:
+===========================================================================
+0.998046875 stasiak.karol.fimpp.RuntimeFunction.$anon: actionPerformed(p1: java.awt.event.ActionEvent)
+===========================================================================
+Missing call edges in local/dist/tca-this-super/fimpp/wala-callgraph.gxl.gzip:
+===========================================================================
+0.0 stasiak.karol.fimpp.FimppParser.$anonfun: applyOrElse([A1 <: String, B1 >: String]x$1: A1,default: A1 => B1) ===> stasiak.karol.fimpp.JavaInterop.$anonfun: apply(x$1: String)
+0.07140740740740742 stasiak.karol.fimpp.Relational: eval(context: stasiak.karol.fimpp.Context) ===> stasiak.karol.fimpp.StringValue: eval(context: stasiak.karol.fimpp.Context)
+0.14259113820053176 stasiak.karol.fimpp.ConstructorCall.$anonfun: apply(x$1: stasiak.karol.fimpp.Expr) ===> stasiak.karol.fimpp.Concatenation: eval(context: stasiak.karol.fimpp.Context)
+0.2138682723723617 stasiak.karol.fimpp.ExprStat: interpret(context: stasiak.karol.fimpp.Context) ===> stasiak.karol.fimpp.ListExpression: eval(context: stasiak.karol.fimpp.Context)
+0.25 stasiak.karol.fimpp.JavaInterop.$anonfun: apply(x$1: stasiak.karol.fimpp.RuntimeValue, Class[_]) ===> stasiak.karol.fimpp.RuntimeList: convertTo(context: stasiak.karol.fimpp.Context,clazz: Class[_])
+0.3330078125 stasiak.karol.fimpp.JavaInterop: setField(context: stasiak.karol.fimpp.Context,objClass: scala.util.Either[Class[_],Any],field: scala.util.Either[Int,String],v: stasiak.karol.fimpp.RuntimeValue) ===> stasiak.karol.fimpp.RuntimeBuiltin: convertTo(context: stasiak.karol.fimpp.Context,clazz: Class[_])
+0.4993141289437586 stasiak.karol.fimpp.JavaInterop.$anonfun.$anonfun: apply(x$1: stasiak.karol.fimpp.RuntimeValue, Class[_]) ===> stasiak.karol.fimpp.RuntimeGlobalReference: matches(clazz: Class[_])
+0.6657414808128124 stasiak.karol.fimpp.JavaInterop.$anonfun: apply(x$1: stasiak.karol.fimpp.RuntimeValue, Class[_]) ===> stasiak.karol.fimpp.RuntimeBoolean: convertTo(context: stasiak.karol.fimpp.Context,clazz: Class[_])
+0.998046875 stasiak.karol.fimpp.MethodCall: interpret(context: stasiak.karol.fimpp.Context) ===> stasiak.karol.fimpp.RuntimeGlobalReference: toJava()
+===========================================================================
+Number of reachable methods missing in local/dist/tca-this-super/fimpp/wala-callgraph.gxl.gzip: 19
+===========================================================================
