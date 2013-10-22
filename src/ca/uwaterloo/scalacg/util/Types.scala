@@ -47,12 +47,16 @@ trait TypeOps extends TypesCollections {
    * Replace formal type parameter symbols with actual type arguments.
    */
   def instantiateTypeParams(actual: Type, declared: Type): Type = {
-    println("actual: " + actual)
-    println("declared: " + declared)
+    //println("actual: " + actual)
+    //println("declared: " + declared)
     val params = declared.typeArgs.map(_.typeSymbol)
     val args = actual.typeArgs
-    val ret = declared.instantiateTypeParams(params, args)
-    if(ret.isError) declared else ret
+    //println("params: " + params)
+    //println("args: " + args)
+    if (params.length != args.length) declared else {
+      val ret = declared.instantiateTypeParams(params, args)
+      if (ret.isError) declared else ret
+    }
   }
 
   /**
