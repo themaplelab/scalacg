@@ -218,7 +218,6 @@ trait CallGraphAnalysis extends CallGraphWorklists
    * Process a normal lookup for the given call site using the given types.
    */
   private def processLookup(callSite: AbstractCallSite, types: Set[Type]) = {
-
     val targets = lookup_<:<(callSite, types)
     addTargets(callSite, targets)
     targets
