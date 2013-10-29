@@ -1,0 +1,19 @@
+===========
+THIS-NOTHIS
+===========
+                                argot		fimpp		joos		kiama		phantm		scalisp		see		tictactoe
+                                -----		-----		----		-----		------		-------		---		---------
+Reachable methods
+=================
+THIS                            257		941		1343		2329		3537		394		1662		153
+NOTHIS                          257		941		1343		2412		3537		394		1662		153
+THIS - NOTHIS                   0		0		0		0		0		0		0		0
+NOTHIS - THIS                   0		0		0		83		0		0		0		0
+
+Call Edges
+==========
+THIS                            554		2862		6852		6772		11399		848		6935		291
+NOTHIS                          557		2862		6852		7063		11419		848		6991		291
+THIS - NOTHIS                   0		0		0		0		0		0		0		0
+NOTHIS - THIS                   3		0		0		291		20		0		56		0
+
