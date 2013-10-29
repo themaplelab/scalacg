@@ -12,6 +12,7 @@ import probe.ProbeMethod
 
 object Experiments {
   final lazy val benchmarks = List("argot", "fimpp", "joos", "kiama", "phantm", "scalisp", "see", "tictactoe")
+  //  final lazy val benchmarks = List("argot", "tictactoe")
 
   def main(args: Array[String]) = {
     var prefix = ""
@@ -21,7 +22,7 @@ object Experiments {
     args.length match {
       case 0 =>
         prefix = "../scalabench/local/dist/"
-        experiment = "tca-wala"
+        experiment = "this-nothis"
       case 2 =>
         prefix = args(0)
         experiment = args(1)
@@ -70,6 +71,10 @@ object Experiments {
       val reachA: Set[ProbeMethod] = supergraph.findReachables
       val reachB: Set[ProbeMethod] = subgraph.findReachables
 
+      //      (reachA -- reachB).foreach(println)
+      //      println("==============")
+      //      (reachB -- reachA).foreach(println)
+
       reachables.a(benchmark) = reachA.size
       reachables.b(benchmark) = reachB.size
       reachables.a_b(benchmark) = (reachA -- reachB).size
@@ -91,9 +96,10 @@ object Experiments {
 
     def print = {
       val reach = "Reachable methods"
-      val reach_t = " " * 32
+      lazy val format = ("%16s" * benchmarks.size) + "%n"
+
+      val reach_t = " " * 16
       val eds = "Call Edges"
-      val sep = "\t\t"
 
       val sup = name.split("-").head.toUpperCase
       val sub = name.split("-").reverse.head.toUpperCase
@@ -109,26 +115,26 @@ object Experiments {
       println("=" * name.length)
 
       // Benchmarks table header
-      println(reach_t + benchmarks.mkString(sep))
-      println(reach_t + benchmarks.map(b => "-" * b.length).mkString(sep))
+      printf(reach_t + format, benchmarks: _*)
+      printf(reach_t + format, benchmarks.map(b => "-" * b.length): _*)
 
       // Reachable methods
       println(reach)
       println("=" * reach.length)
-      println(sup + sup_t + reachables.a.toSeq.sorted.map(_._2).mkString(sep))
-      println(sub + sub_t + reachables.b.toSeq.sorted.map(_._2).mkString(sep))
-      println(sup_sub + sup_sub_t + reachables.a_b.toSeq.sorted.map(_._2).mkString(sep))
-      println(sub_sup + sup_sub_t + reachables.b_a.toSeq.sorted.map(_._2).mkString(sep))
+      printf(sup + sup_t + format, reachables.a.toSeq.sorted.map(_._2): _*)
+      printf(sub + sub_t + format, reachables.b.toSeq.sorted.map(_._2): _*)
+      printf(sup_sub + sup_sub_t + format, reachables.a_b.toSeq.sorted.map(_._2): _*)
+      printf(sub_sup + sup_sub_t + format, reachables.b_a.toSeq.sorted.map(_._2): _*)
 
       println("")
 
       // Edges
       println(eds)
       println("=" * eds.length)
-      println(sup + sup_t + edges.a.toSeq.sorted.map(_._2).mkString(sep))
-      println(sub + sub_t + edges.b.toSeq.sorted.map(_._2).mkString(sep))
-      println(sup_sub + sup_sub_t + edges.a_b.toSeq.sorted.map(_._2).mkString(sep))
-      println(sub_sup + sup_sub_t + edges.b_a.toSeq.sorted.map(_._2).mkString(sep))
+      printf(sup + sup_t + format, edges.a.toSeq.sorted.map(_._2): _*)
+      printf(sub + sub_t + format, edges.b.toSeq.sorted.map(_._2): _*)
+      printf(sup_sub + sup_sub_t + format, edges.a_b.toSeq.sorted.map(_._2): _*)
+      printf(sub_sup + sup_sub_t + format, edges.b_a.toSeq.sorted.map(_._2): _*)
 
       println("\n\n")
     }
@@ -142,12 +148,5 @@ object Experiments {
     // Comparisons
     val a_b = Map[String, Int]().withDefaultValue(0)
     val b_a = Map[String, Int]().withDefaultValue(0)
-
-    // Do the comparison
-    //    def compare = {
-    //      a_b("") = a("") -- b("")
-    //      a.keys.foreach(bench => a_b(bench) = (a(bench) -- b(bench)).size)
-    //      b.keys.foreach(bench => b_a(bench) = (b(bench) -- a(bench)).size)
-    //    }
   }
 }
