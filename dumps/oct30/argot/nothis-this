@@ -1,0 +1,4 @@
+org.clapper.argot.Parameter: $init$() ===> org.clapper.argot.SingleValueParameter: valueName()
+org.clapper.argot.Parameter: $init$() ===> org.clapper.argot.MultiValueParameter: valueName()
+org.clapper.argot.CommandLineOption: name() ===> org.clapper.argot.FlagOption: names()
+

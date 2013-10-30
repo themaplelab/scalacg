@@ -1,26 +1,279 @@
-==============================
-SuperCallQualified
-==============================
-Running TCA
-
-Trallala.super.type :: constructor Object :: class Trallala
-null :: method $init$ :: object SuperCallQualified
-tests.tca.SuperCallQualified.type :: constructor Trallala :: object SuperCallQualified
-B.super.type :: constructor Object :: class B
-tests.tca.SuperCallQualified.type :: method bam :: class B
-tests.tca.SuperCallQualified.B :: method m :: object SuperCallQualified
-tests.tca.SuperCallQualified.B :: constructor B :: object SuperCallQualified
-target.super.type :: constructor Annotation :: class target
-invocations.super.type :: constructor Annotation :: class invocations
-
-==============================
-SuperCallQualified
-==============================
-Running TCA
-tests.tca.Lalala :: List(trait Lalala, class Object, class Any)
-callgraph.annotation.invocations :: List(class invocations, trait StaticAnnotation, class Annotation, class Object, class Any)
-tests.tca.Trallala :: List(class Trallala, class Object, class Any)
-tests.tca.SuperCallQualified.B :: List(class B, class Object, class Any)
-callgraph.annotation.target :: List(class target, trait StaticAnnotation, class Annotation, class Object, class Any)
-tests.tca.SuperCallQualified.type :: List(object SuperCallQualified, trait Lalala, class Trallala, class Object, class Any)
-
+[scalac.plugin] hooooooooola
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Unit] with Serializable
+[scalac.plugin] type
+[scalac.plugin] org.clapper.argot.ArgotParser
+[scalac.plugin] scala.collection.mutable.Map.type
+[scalac.plugin] scala.runtime.AbstractFunction2[String,org.clapper.argot.Parameter[java.io.File],java.io.File] with Serializable
+[scalac.plugin] Some[String]
+[scalac.plugin] scala.runtime.AbstractFunction1[String,ArgotParser.this.shortNameMap.type] with Serializable
+[scalac.plugin] scala.collection.Seq.type
+[scalac.plugin] Some[Throwable]
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotTest.type
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.CommandLineOption[_],List[Int]] with Serializable
+[scalac.plugin] org.clapper.argot.Conversions.type
+[scalac.plugin] org.clapper.argot.FlagOption[T]
+[scalac.plugin] org.clapper.argot.Conversions.type
+[scalac.plugin] org.clapper.argot.MultiValueOption[T]
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotParser.type
+[scalac.plugin] org.clapper.argot.SingleValueOption[T]
+[scalac.plugin] scala.collection.immutable.Nil.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotConverters.type
+[scalac.plugin] grizzled.string.WordWrapper
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Unit] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotUsageException
+[scalac.plugin] org.clapper.argot.SingleValueParameter[T]
+[scalac.plugin] org.clapper.argot.Conversions.type
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],Int] with Serializable
+[scalac.plugin] java.io.File
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] grizzled.string.WordWrapper.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] MatchError
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] None.type
+[scalac.plugin] scala.runtime.AbstractFunction1[Seq[Int],Int] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[Boolean,org.clapper.argot.FlagOption[Int],Int] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotSpecificationError
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] scala.Predef.type
+[scalac.plugin] math.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,ArgotParser.this.longNameMap.type] with Serializable
+[scalac.plugin] scala.collection.mutable.LinkedHashSet.type
+[scalac.plugin] scala.runtime.AbstractFunction2[String,org.clapper.argot.CommandLineArgument[String],String] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[String,org.clapper.argot.MultiValueOption[String],String] with Serializable
+[scalac.plugin] org.clapper.argot.MultiValueParameter[T]
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],StringBuilder] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotTest.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[String,org.clapper.argot.CommandLineArgument[Int],Int] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[String,String,Boolean] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotTest.type
+[scalac.plugin] scala.collection.mutable.LinkedHashMap[String,org.clapper.argot.CommandLineOption[_]]
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotParser.type
+[scalac.plugin] scala.collection.mutable.LinkedHashSet[org.clapper.argot.FlagOption[_]]
+[scalac.plugin] StringBuilder
+[scalac.plugin] scala.runtime.AbstractFunction0[Int] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[Boolean,org.clapper.argot.FlagOption[Boolean],Boolean] with Serializable
+[scalac.plugin] scala.collection.mutable.LinkedHashSet[org.clapper.argot.Parameter[_]]
+[scalac.plugin] scala.collection.Iterable.type
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],StringBuilder] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Unit] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotConverters.type
+[scalac.plugin] scala.collection.immutable.List.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Unit] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[String,org.clapper.argot.CommandLineArgument[String],String] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction0[Int] with Serializable
+[scalac.plugin] scala.collection.mutable.LinkedHashSet[org.clapper.argot.HasValue[_]]
+[scalac.plugin] ============
+[scalac.plugin] hooooooooola
+[scalac.plugin] hooooooooola
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Unit] with Serializable
+[scalac.plugin] type
+[scalac.plugin] org.clapper.argot.ArgotParser
+[scalac.plugin] scala.collection.mutable.Map.type
+[scalac.plugin] scala.runtime.AbstractFunction2[String,org.clapper.argot.Parameter[java.io.File],java.io.File] with Serializable
+[scalac.plugin] Some[String]
+[scalac.plugin] scala.runtime.AbstractFunction1[String,ArgotParser.this.shortNameMap.type] with Serializable
+[scalac.plugin] scala.collection.Seq.type
+[scalac.plugin] Some[Throwable]
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotTest.type
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.CommandLineOption[_],List[Int]] with Serializable
+[scalac.plugin] org.clapper.argot.Conversions.type
+[scalac.plugin] org.clapper.argot.FlagOption[T]
+[scalac.plugin] org.clapper.argot.Conversions.type
+[scalac.plugin] org.clapper.argot.MultiValueOption[T]
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotParser.type
+[scalac.plugin] org.clapper.argot.SingleValueOption[T]
+[scalac.plugin] scala.collection.immutable.Nil.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotConverters.type
+[scalac.plugin] grizzled.string.WordWrapper
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Unit] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotUsageException
+[scalac.plugin] org.clapper.argot.SingleValueParameter[T]
+[scalac.plugin] org.clapper.argot.Conversions.type
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],Int] with Serializable
+[scalac.plugin] java.io.File
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] grizzled.string.WordWrapper.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] MatchError
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] None.type
+[scalac.plugin] scala.runtime.AbstractFunction1[Seq[Int],Int] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[Boolean,org.clapper.argot.FlagOption[Int],Int] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotSpecificationError
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] scala.Predef.type
+[scalac.plugin] math.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,ArgotParser.this.longNameMap.type] with Serializable
+[scalac.plugin] scala.collection.mutable.LinkedHashSet.type
+[scalac.plugin] scala.runtime.AbstractFunction2[String,org.clapper.argot.CommandLineArgument[String],String] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[String,org.clapper.argot.MultiValueOption[String],String] with Serializable
+[scalac.plugin] org.clapper.argot.MultiValueParameter[T]
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],StringBuilder] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotTest.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[String,org.clapper.argot.CommandLineArgument[Int],Int] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[String,String,Boolean] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotTest.type
+[scalac.plugin] scala.collection.mutable.LinkedHashMap[String,org.clapper.argot.CommandLineOption[_]]
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotParser.type
+[scalac.plugin] scala.collection.mutable.LinkedHashSet[org.clapper.argot.FlagOption[_]]
+[scalac.plugin] StringBuilder
+[scalac.plugin] scala.runtime.AbstractFunction0[Int] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[Boolean,org.clapper.argot.FlagOption[Boolean],Boolean] with Serializable
+[scalac.plugin] scala.collection.mutable.LinkedHashSet[org.clapper.argot.Parameter[_]]
+[scalac.plugin] scala.collection.Iterable.type
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],StringBuilder] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Unit] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotConverters.type
+[scalac.plugin] scala.collection.immutable.List.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Unit] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[String,org.clapper.argot.CommandLineArgument[String],String] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction0[Int] with Serializable
+[scalac.plugin] scala.collection.mutable.LinkedHashSet[org.clapper.argot.HasValue[_]]
+[scalac.plugin] ============
+[scalac.plugin] org.clapper.argot.SingleValueParameter[T]
+[scalac.plugin] org.clapper.argot.MultiValueParameter[T]
+[scalac.plugin] hooooooooola
+[scalac.plugin] 	Found 22 new instantiated types
+[scalac.plugin] hooooooooola
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[Seq[Int],Int] with Serializable
+[scalac.plugin] scala.collection.immutable.Nil.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] StringBuilder
+[scalac.plugin] scala.runtime.AbstractFunction0[Int] with Serializable
+[scalac.plugin] scala.collection.mutable.LinkedHashSet.type
+[scalac.plugin] Some[Throwable]
+[scalac.plugin] scala.collection.Iterable.type
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],StringBuilder] with Serializable
+[scalac.plugin] grizzled.string.WordWrapper
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],StringBuilder] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.CommandLineOption[_],List[Int]] with Serializable
+[scalac.plugin] org.clapper.argot.Conversions.type
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],Int] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[String,String,Boolean] with Serializable
+[scalac.plugin] org.clapper.argot.Conversions.type
+[scalac.plugin] grizzled.string.WordWrapper.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] ============
+[scalac.plugin] hooooooooola
+[scalac.plugin] hooooooooola
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[Seq[Int],Int] with Serializable
+[scalac.plugin] scala.collection.immutable.Nil.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] StringBuilder
+[scalac.plugin] scala.runtime.AbstractFunction0[Int] with Serializable
+[scalac.plugin] scala.collection.mutable.LinkedHashSet.type
+[scalac.plugin] Some[Throwable]
+[scalac.plugin] scala.collection.Iterable.type
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],StringBuilder] with Serializable
+[scalac.plugin] grizzled.string.WordWrapper
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],StringBuilder] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.CommandLineOption[_],List[Int]] with Serializable
+[scalac.plugin] org.clapper.argot.Conversions.type
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],Int] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[String,String,Boolean] with Serializable
+[scalac.plugin] org.clapper.argot.Conversions.type
+[scalac.plugin] grizzled.string.WordWrapper.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] ============
+[scalac.plugin] hooooooooola
+[scalac.plugin] Items in work list: 78
+[scalac.plugin] 	Found 101 new call sites
+[scalac.plugin] 	Found 5 new instantiated types
+[scalac.plugin] hooooooooola
+[scalac.plugin] scala.runtime.AbstractFunction0[Nothing] with Serializable
+[scalac.plugin] grizzled.math.util.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Int] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotConversionException
+[scalac.plugin] org.clapper.argot.ArgotException
+[scalac.plugin] ============
+[scalac.plugin] hooooooooola
+[scalac.plugin] hooooooooola
+[scalac.plugin] scala.runtime.AbstractFunction0[Nothing] with Serializable
+[scalac.plugin] grizzled.math.util.type
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Int] with Serializable
+[scalac.plugin] org.clapper.argot.ArgotConversionException
+[scalac.plugin] org.clapper.argot.ArgotException
+[scalac.plugin] ============
+[scalac.plugin] hooooooooola
+[scalac.plugin] Items in work list: 28
+[scalac.plugin] 	Found 213 new call sites
+[scalac.plugin] 	Found 9 new instantiated types
+[scalac.plugin] hooooooooola
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] (String, String)
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[String,String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[String,String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction0[Nothing] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Unit] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction0[Nothing] with Serializable
+[scalac.plugin] ============
+[scalac.plugin] hooooooooola
+[scalac.plugin] hooooooooola
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] (String, String)
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[String,String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction2[String,String,Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction0[Nothing] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[String,Unit] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction0[Nothing] with Serializable
+[scalac.plugin] ============
+[scalac.plugin] hooooooooola
+[scalac.plugin] Items in work list: 40
+[scalac.plugin] 	Found 50 new call sites
+[scalac.plugin] 	Found 3 new instantiated types
+[scalac.plugin] hooooooooola
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],String] with Serializable
+[scalac.plugin] ============
+[scalac.plugin] hooooooooola
+[scalac.plugin] hooooooooola
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],Boolean] with Serializable
+[scalac.plugin] scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],String] with Serializable
+[scalac.plugin] ============
+[scalac.plugin] hooooooooola
+[scalac.plugin] Items in work list: 13
+[scalac.plugin] 	Found 25 new call sites
+[scalac.plugin] 	Found 1 new instantiated types
+[scalac.plugin] hooooooooola
+[scalac.plugin] Some[T]
+[scalac.plugin] ============
+[scalac.plugin] hooooooooola
+[scalac.plugin] hooooooooola
+[scalac.plugin] Some[T]
+[scalac.plugin] ============
+[scalac.plugin] hooooooooola

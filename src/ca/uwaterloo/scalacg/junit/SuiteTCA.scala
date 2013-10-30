@@ -4,21 +4,24 @@ import org.junit.Test
 
 class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "callgraph:super", "callgraph:assert")) {
 
+  // argot
+  @Test def testArgot1() { runTest("Argot1") }
+
   // kiama
-  @Test def testThis() { runTest("This") }
-  
+  //  @Test def testThis() { runTest("This") }
+
   // joos
   @Test def testObjectReceiver() { runTest("ObjectReceiver") }
-  
+
   // argot
   @Test def testClassTypeParam2() { runTest("ClassTypeParam2") }
   @Test def testClassTypeParam() { runTest("ClassTypeParam") }
   @Test def testTraitTypeParam() { runTest("TraitTypeParam") }
   @Test def testMethodTypeParam() { runTest("MethodTypeParam") }
   @Test def testPrintln() { runTest("Println") }
-  
+
   @Test def testExperiment() { runTest("Experiment") }
-  
+
   @Test def testTest1() { runTest("Test1") }
   @Test def testTest2() { runTest("Test2") }
   @Test def testTest3() { runTest("Test3") }
@@ -44,7 +47,7 @@ class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "cal
   @Test def testObjectInClass() { runTest("ObjectInClass") }
   @Test def testObjectInObject() { runTest("ObjectInObject") }
   @Test def testObjectInObject1b() { runTest("ObjectInObject1b") }
-  
+
   @Test def testOverriding1() { runTest("Overriding1") }
   @Test def testOverloading() { runTest("Overloading") }
 
@@ -80,7 +83,7 @@ class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "cal
   @Test def testAbstractTypes12() { runTest("AbstractTypes12") }
   @Test def testAbstractTypes13() { runTest("AbstractTypes13") }
   @Test def testAbstractTypes14() { runTest("AbstractTypes14") }
-  
+
   @Test def testSetterOverloading() { runTest("SetterOverloading") }
 
   @Test def testGenerics1() { runTest("Generics1") }
@@ -133,7 +136,7 @@ class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "cal
   @Test def testReachable1b() { runTest("Reachable1b") }
   @Test def testReachable2() { runTest("Reachable2") }
   @Test def testReachable3() { runTest("Reachable3") }
-  
+
   @Test def testMultipleAnnotations() { runTest("MultipleAnnotations") }
 
   @Test def testExtractor() { runTest("matching/Extractor") }
@@ -149,23 +152,23 @@ class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "cal
   @Test def testConstantEquals() { runTest("matching/ConstantEquals") }
 
   @Test def testToString1() { runTest("ToString1") }
-  
+
   @Test def testConstructor1() { runTest("Constructor1") }
-  
+
   @Test def testLiftedMethod1() { runTest("LiftedMethod1") }
-  
+
   @Test def testForeach2() { runTest("Foreach2") }
-  
+
   @Test def testLibraryCall() { runTest("LibraryCall") }
   @Test def testLibraryCall2() { runTest("LibraryCall2") }
-  
+
   @Test def testApplyConfusion1() { runTest("ApplyConfusion1") }
-  
+
   @Test def nested1() { runTest("Nested1") }
-  
+
   @Test def testGeneratedReflection1() { runTest("GeneratedReflection1") }
-  
+
   @Test def testMultipleBounds() { runTest("MultipleBounds") }
-  
+
   @Test def testDefInDef() { runTest("DefInDef") }
 }

@@ -207,6 +207,20 @@ trait CallGraphAnalysis extends CallGraphWorklists
     abstractToCallSites(callSite).foreach { cs =>
       val lookupTypes = filterForThis(cs, types)
       val targets = lookup_<:<(cs, lookupTypes)
+      //      if (cs.staticTarget.nameString == "valueName" && cs.enclMethod.nameString.contains("init")) {
+      //        println("************************************")
+      //        println(lookupTypes)
+      //        println(cs.receiver + " :: " + cs.enclMethod + " :: " + cs.thisEnclMethod)
+      //        println(cs.thisEnclMethod.ownerChain)
+      //        println(targets)
+      //        println("************************************\n")
+
+      //        println("************************************")
+      //        types foreach println
+      //        println("====================================")
+      //        lookupTypes foreach println
+      //        println("************************************")
+      //      }
       addTargets(cs, targets)
       allTargets ++= targets
     }

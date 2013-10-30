@@ -71,6 +71,10 @@ trait Lookup {
       targets ++= getTargets(target, callSite.staticTarget)
     }
 
+    //    if(callSite.staticTarget.nameString == "valueName" && targets.nonEmpty) {
+    //      println("Found targets: " + callSite.receiver + " :: " + tpe)
+    //    }
+
     targets
   }
 
@@ -99,8 +103,8 @@ trait Lookup {
     }
     targets
   }
-  
+
   def lookupThis(callSite: CallSite, types: Set[Type]) = {
-    
+
   }
 }
