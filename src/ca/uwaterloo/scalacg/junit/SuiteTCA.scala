@@ -2,8 +2,11 @@ package ca.uwaterloo.scalacg.junit
 
 import org.junit.Test
 
-class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "callgraph:super", "callgraph:assert")) {
+class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:super", "callgraph:assert")) {
 
+  // kiama
+  @Test def testThis() { runTest("This") }
+  
   // joos
   @Test def testObjectReceiver() { runTest("ObjectReceiver") }
   

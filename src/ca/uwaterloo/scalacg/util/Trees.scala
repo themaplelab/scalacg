@@ -97,7 +97,7 @@ trait TreeTraversal extends Trees with TraversalCollections {
         // If in a method, add to the instantiated types in that method.
         if (cls.isModuleOrModuleClass) {
           val parent = enclMethodOrClass(ancestors)
-          
+
           // If the module is not a top-level module (i.e., it is defined in some method or class/module.
           if (parent.isDefined) {
             val symbol = parent.get.symbol
@@ -190,19 +190,21 @@ trait TreeTraversal extends Trees with TraversalCollections {
     // Find call sites in a class definition.
     // Adds the calls from primary constructors of classes to mixin constructors (see AbstractTypes13).
     def findCallSitesInClassDef(cls: ClassDef) = {
-      for {
-        mixin <- cls.symbol.mixinClasses
-        caller = cls.symbol.primaryConstructor
-        callee = mixin.primaryConstructor
-        if caller != NoSymbol && callee != NoSymbol
-        receiver = This(caller.thisSym)
-      } {
-        /*
+      if (!cls.symbol.isTrait) {
+        for {
+          mixin <- cls.symbol.mixinClasses
+          caller = cls.symbol.primaryConstructor
+          callee = mixin.primaryConstructor
+          if caller != NoSymbol && callee != NoSymbol
+          receiver = This(caller.thisSym)
+        } {
+          /*
          * TODO: receiver.tpe can be null here (see SuperCall1), this is not problematic for method
          * resolution as we just get the static target. However, for checks like isSuper we need to add another
          * check that receiver != null
          */
-        addCallSite(receiver, callee, caller, cls.pos, ImmutableSet.empty[String])
+          addCallSite(receiver, callee, caller, cls.pos, ImmutableSet.empty[String])
+        }
       }
 
       findType(cls)

@@ -1,0 +1,16 @@
+org.clapper.argot.MultiValueArg: $init$() ===> org.clapper.argot.HasValue: $init$()
+org.clapper.argot.CommandLineOption: $init$() ===> org.clapper.argot.CommandLineArgument: $init$()
+org.clapper.argot.HasValue: $init$() ===> org.clapper.argot.CommandLineArgument: $init$()
+org.clapper.argot.SingleValueArg: $init$() ===> org.clapper.argot.HasValue: $init$()
+org.clapper.argot.MultiValueArg: $init$() ===> org.clapper.argot.CommandLineArgument: $init$()
+org.clapper.argot.Parameter: $init$() ===> org.clapper.argot.HasValue: $init$()
+org.clapper.argot.SingleValueArg: $init$() ===> org.clapper.argot.CommandLineArgument: $init$()
+org.clapper.argot.Parameter: $init$() ===> org.clapper.argot.CommandLineArgument: $init$()
+
+org.clapper.argot.ArgotException: <init>(message: String,cause: Option[Throwable]) ===> org.clapper.argot.ArgotException: cause()
+org.clapper.argot.SingleValueOption: <init>(parent: org.clapper.argot.ArgotParser,names: List[String],valueName: String,description: String,convert: String, org.clapper.argot.SingleValueOption[T]) ===> org.clapper.argot.SingleValueOption: names()
+org.clapper.argot.ArgotException: <init>(msg: String,cause: Throwable) ===> org.clapper.argot.ArgotException: <init>(message: String,cause: Option[Throwable])
+org.clapper.argot.MultiValueOption: <init>(parent: org.clapper.argot.ArgotParser,names: List[String],valueName: String,description: String,convert: String, org.clapper.argot.MultiValueOption[T]) ===> org.clapper.argot.MultiValueOption: names()
+
+org.clapper.argot.ArgotParser: parseArgList(a: List[String]) ===> org.clapper.argot.ArgotParser: parseArgList(a: List[String])
+org.clapper.argot.Conversions: parseNum([T]s: String,parse: ) ===> org.clapper.argot.ArgotParser.$anonfun: apply()
