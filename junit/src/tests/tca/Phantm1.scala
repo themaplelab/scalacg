@@ -4,6 +4,7 @@ object Phantm1 {
 
   def main(args: Array[String]): Unit = {
     var t: Type = TNull
+    t = TFoo
     t.toText
   }
 
@@ -16,6 +17,10 @@ object Phantm1 {
   sealed abstract class ConcreteType extends Type
 
   case object TNull extends ConcreteType {
-//    override def toText = "null"
+    //    override def toText = "null"
+  }
+
+  case object TFoo extends ConcreteType {
+    //    override def toText = "foo"
   }
 }

@@ -63,6 +63,15 @@ trait CallGraphAnalysis extends CallGraphWorklists
     reachableMethods ++= mainMethods
     instantiatedTypes ++= mainModules
     instantiatedTypes ++= modulesInTypes(mainModules)
+
+    modulesInCallSites(abstractCallSites).foreach(m => println(m + " :: " + types(m)))
+    //    modulesInTypes(mainModules).foreach(m => println(m + " :: " + types(m)))
+    //    mainModules.foreach(m => println(m + " :: " + types(m)))
+    //    types.foreach { t =>
+    //      println(t + " :: " + t.members)
+    //    }
+    //    abstractToCallSites.values.flatten.foreach(cs => println(cs.receiver + " :: " + cs.staticTarget + " :: " + cs.enclMethod + " :: " + cs.hasModuleReceiver))
+
   }
 
   def buildCallGraph = {
@@ -89,7 +98,7 @@ trait CallGraphAnalysis extends CallGraphWorklists
         processCallSites(callSites.reachableItems, instantiatedTypes.newItems)
       }
 
-      //      println("new types: " + instantiatedTypes.newItems) // TODO
+      println("new types: " + instantiatedTypes.newItems) // TODO
 
       // Clear call sites and instantiated types to prepare for the next iteration.
       callSites.clear
