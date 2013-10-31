@@ -88,7 +88,7 @@ trait TreeTraversal extends Trees with TraversalCollections {
         if (cls.isModuleOrModuleClass) {
           val parent = enclMethodOrClass(ancestors)
 
-          // If the module is not a top-level module (i.e., it is defined in some method or class/module.
+          // If the module is not a top-level module (i.e., it is defined in some method or class/module.)
           if (parent.isDefined) {
             val symbol = parent.get.symbol
             parent.get match {
@@ -96,8 +96,7 @@ trait TreeTraversal extends Trees with TraversalCollections {
               case _: DefDef => instantiatedTypesInMethod(symbol) += tpe
               case _ =>
             }
-          } else {
-            // Look for main methods in this module.
+          } else { // Look for main methods in top-level modules.
             val main = tpe.members.filter { m =>
               m.isMethod && // consider only methods, not fields or other members
                 !m.isDeferred && // filter out abstract methods
