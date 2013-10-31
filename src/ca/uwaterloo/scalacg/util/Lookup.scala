@@ -8,7 +8,7 @@ import ca.uwaterloo.scalacg.config.Global
 /**
  * All method resolution related operations go in here.
  */
-trait Lookup {
+trait Lookup extends Probe {
   self: CallSites with Global with TypeConcretization with TypeOps =>
 
   import global._
@@ -69,11 +69,11 @@ trait Lookup {
       if target != NoSymbol && !target.isDeferred // a concrete member found.
     } {
       targets ++= getTargets(target, callSite.staticTarget)
+      
+//      if (callSite.staticTarget.nameString == "toString") { // TODO
+//        println("Found targets: " + callSite.receiver + " :: " + tpe + " :: " + expanded + " :: " + (targets map signature))
+//      }
     }
-
-    //    if(callSite.staticTarget.nameString == "valueName" && targets.nonEmpty) {
-    //      println("Found targets: " + callSite.receiver + " :: " + tpe)
-    //    }
 
     targets
   }

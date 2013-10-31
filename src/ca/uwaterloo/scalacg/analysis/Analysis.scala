@@ -42,6 +42,7 @@ trait CallGraphAnalysis extends CallGraphWorklists
   // Initial params
   val entryPoints = Set[Symbol]()
   val callBacks = Set[Symbol]()
+  val moduleConstructors = Set[Symbol]()
   val trees = Set[Tree]()
 
   // Plugin options
@@ -59,7 +60,7 @@ trait CallGraphAnalysis extends CallGraphWorklists
     entryPoints ++= mainModulesPrimaryConstructors
 
     // Entry points are initially reachable, main modules are initially instantiated.
-    reachableMethods ++= entryPoints
+    reachableMethods ++= mainMethods
     instantiatedTypes ++= mainModules
     instantiatedTypes ++= modulesInTypes(mainModules)
   }
@@ -78,16 +79,6 @@ trait CallGraphAnalysis extends CallGraphWorklists
       // Process super calls
       collectSuperCalled
 
-      // TODO
-      //      println("======================================")
-      //      println("Instantiated types")
-      //      instantiatedTypes.newItems.foreach(println)
-      //      println("Concretization")
-      //      concretization.foreach(println)
-      //      println("Call sites")
-      //      callSites.newItems.foreach(cs => println(cs.receiver + " :: " + cs.staticTarget))
-      //      println("======================================")
-
       // Process new call sites with all types, and use new types to process all call sites
       if (callSites.nonEmpty) {
         println(s"\tFound ${callSites.size} new call sites")
@@ -97,6 +88,8 @@ trait CallGraphAnalysis extends CallGraphWorklists
         println(s"\tFound ${instantiatedTypes.size} new instantiated types")
         processCallSites(callSites.reachableItems, instantiatedTypes.newItems)
       }
+
+      //      println("new types: " + instantiatedTypes.newItems) // TODO
 
       // Clear call sites and instantiated types to prepare for the next iteration.
       callSites.clear
@@ -183,8 +176,6 @@ trait CallGraphAnalysis extends CallGraphWorklists
   /**
    * If it's a super call, call lookupSuper with types that contain the enclosing class of the call site
    * in their linearization (i.e., tpe.baseClasses).
-   *
-   * TODO: possible optimization in types.filter
    */
   private def processSuperCall(callSite: AbstractCallSite, types: Set[Type]) = {
     val allTargets = Set[Symbol]()
@@ -206,21 +197,23 @@ trait CallGraphAnalysis extends CallGraphWorklists
 
     abstractToCallSites(callSite).foreach { cs =>
       val lookupTypes = filterForThis(cs, types)
-      val targets = lookup_<:<(cs, lookupTypes)
-      //      if (cs.staticTarget.nameString == "valueName" && cs.enclMethod.nameString.contains("init")) {
+      // TODO
+      //      if (cs.staticTarget.nameString == "toString") {
       //        println("************************************")
+      //        println(types)
       //        println(lookupTypes)
-      //        println(cs.receiver + " :: " + cs.enclMethod + " :: " + cs.thisEnclMethod)
-      //        println(cs.thisEnclMethod.ownerChain)
-      //        println(targets)
+      //        println(cs.receiver + " :: " + signature(cs.enclMethod) + " :: " + signature(cs.thisEnclMethod))
+      //        //        println(targets map signature)
       //        println("************************************\n")
-
-      //        println("************************************")
-      //        types foreach println
-      //        println("====================================")
-      //        lookupTypes foreach println
-      //        println("************************************")
+      //
+      //        //        println("************************************")
+      //        //        types foreach println
+      //        //        println("====================================")
+      //        //        lookupTypes foreach println
+      //        //        println("************************************")
       //      }
+      val targets = lookup_<:<(cs, lookupTypes)
+
       addTargets(cs, targets)
       allTargets ++= targets
     }

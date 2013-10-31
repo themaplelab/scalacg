@@ -8,7 +8,6 @@ import ca.uwaterloo.scalacg.config.Global
 trait MethodsCollections extends Global {
   import global._
 
-  val methodToBody: Map[Symbol, Tree]
   val mainMethods: Set[Symbol]
   val mainModulesPrimaryConstructors: Set[Symbol]
 }

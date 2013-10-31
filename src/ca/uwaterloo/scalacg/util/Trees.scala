@@ -46,15 +46,6 @@ trait TreeTraversal extends Trees with TraversalCollections {
   val mainMethods = Set[Symbol]()
   val mainModulesPrimaryConstructors = Set[Symbol]()
 
-  /* 
-   * default value here to avoid an exception when methodToBody is called on Scala apply methods (have "null" bodies)
-   * e.g. chessmaster had an exception when trying to retrieve the body for scala.AbstractFunction1.apply
-   * Karim TODO: this shouldn't happen though since those apply methods are abstract and shouldn't be involved
-   * in the method resolution process at all!
-   * 
-   */
-  val methodToBody = Map[Symbol, Tree]().withDefaultValue(EmptyTree)
-
   // Find receiver annotations
   private val annotationFilter: PartialFunction[Tree, String] = {
     case Literal(Constant(string: String)) => string
@@ -77,7 +68,6 @@ trait TreeTraversal extends Trees with TraversalCollections {
       case cls: ClassDef => findCallSitesInClassDef(cls)
       case module: ModuleDef => findType(module)
       case nw: New => findInstantiatedTypes(nw)
-      case defdef: DefDef => findMainMethods(defdef)
       case apply: Apply => findCallSitesInApply(apply)
       case _: Select | _: Ident => findCallSitesSelectOrIdent // TODO: This causes duplicate call sites (see foreach in Reachable1b) 
       case _ => processChildren
@@ -106,6 +96,19 @@ trait TreeTraversal extends Trees with TraversalCollections {
               case _: DefDef => instantiatedTypesInMethod(symbol) += tpe
               case _ =>
             }
+          } else {
+            // Look for main methods in this module.
+            val main = tpe.members.filter { m =>
+              m.isMethod && // consider only methods, not fields or other members
+                !m.isDeferred && // filter out abstract methods
+                definitions.isJavaMainMethod(m) // checks signature and name of method
+            }.toList
+
+            if (main.nonEmpty) {
+              mainMethods += main.head
+              mainModulesPrimaryConstructors += cls.primaryConstructor
+              mainModules += tpe
+            }
           }
         }
       }
@@ -118,7 +121,7 @@ trait TreeTraversal extends Trees with TraversalCollections {
       tree.children.foreach(traverse(_, tree :: ancestors))
     }
 
-    // TODO Karim: I think this method normalizes multiple parameter lists?
+    // Karim: I think this method normalizes multiple parameter lists?
     def normalizeMultipleParameters(tree: Apply): Apply = tree.fun match {
       case a: Apply => normalizeMultipleParameters(a)
       case _ => tree
@@ -133,7 +136,8 @@ trait TreeTraversal extends Trees with TraversalCollections {
       case _ => assert(assertion = false, message = "getReceiver on unexpected tree " + tree + " of type " + tree.getClass); null
     }
 
-    // TODO Karim: Do we really need this? Why not use symbol.isMethod?
+    // Filters out unwanted "method symbols" (e.g., labels)
+    // Karim: we might not need all these checks now that we do the analysis after uncurry. 
     def isMethod(symbol: Symbol) = {
       symbol.isMethod
       symbol.isInstanceOf[MethodSymbol] &&
@@ -244,28 +248,6 @@ trait TreeTraversal extends Trees with TraversalCollections {
     // Find types and process children.
     def findType(tree: Tree) = {
       addType(tree)
-      processChildren
-    }
-
-    // Find main methods
-    def findMainMethods(dd: DefDef) = {
-      val defdef = dd.symbol // NSC marks this as OPT, so just call it once
-
-      // If this is an apply method
-      if (defdef.nameString == "apply") {
-        methodToBody += (defdef -> dd.asInstanceOf[DefDef].rhs)
-      }
-
-      if (defdef.isMethod && // consider only methods, not fields or other members
-        !defdef.isDeferred && // filter out abstract methods
-        defdef.owner.isModuleOrModuleClass && // filter classes that are objects
-        definitions.isJavaMainMethod(defdef) // checks signature and name of method
-        ) {
-        mainMethods += defdef
-        mainModulesPrimaryConstructors += defdef.owner.primaryConstructor
-        mainModules += defdef.owner.tpe
-      }
-
       processChildren
     }
   }

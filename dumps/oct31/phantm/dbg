@@ -1,0 +1,53 @@
+[[syntax trees at end of                   uncurry]] // Phantm1.scala
+package tests.tca {
+  object Phantm1 extends Object {
+    def <init>(): tests.tca.Phantm1.type = {
+      Phantm1.super.<init>();
+      ()
+    };
+    def main(args: Array[String]): Unit = {
+      var t: tests.tca.Phantm1.Type = Phantm1.this.TNull;
+      {
+        t.toText();
+        ()
+      }
+    };
+    sealed abstract class Type extends Object { self: tests.tca.Phantm1.Type => 
+      def <init>(): tests.tca.Phantm1.Type = {
+        Type.super.<init>();
+        ()
+      };
+      def equals(t: tests.tca.Phantm1.Type): Boolean = t.==(Type.this);
+      def toText(): String = Type.this.toString()
+    };
+    sealed abstract class ConcreteType extends tests.tca.Phantm1.Type {
+      def <init>(): tests.tca.Phantm1.ConcreteType = {
+        ConcreteType.super.<init>();
+        ()
+      }
+    };
+    case object TNull extends tests.tca.Phantm1.ConcreteType with Product with Serializable {
+      def <init>(): tests.tca.Phantm1.TNull.type = {
+        TNull.super.<init>();
+        ()
+      };
+      override def toText(): String = "null";
+      override <synthetic> def productPrefix(): String = "TNull";
+      <synthetic> def productArity(): Int = 0;
+      <synthetic> def productElement(x$1: Int): Any = {
+        case <synthetic> val x1: Int = x$1;
+        case4(){
+          matchEnd3(throw new IndexOutOfBoundsException(x$1.toString()))
+        };
+        matchEnd3(x: Any){
+          x
+        }
+      };
+      override <synthetic> def productIterator(): Iterator[Any] = runtime.this.ScalaRunTime.typedProductIterator[Any](TNull.this);
+      <synthetic> def canEqual(x$1: Any): Boolean = x$1.$isInstanceOf[tests.tca.Phantm1.TNull.type]();
+      override <synthetic> def hashCode(): Int = 80015355;
+      override <synthetic> def toString(): String = "TNull";
+      <synthetic> private def readResolve(): Object = Phantm1.this.TNull
+    }
+  }
+}

@@ -1,40 +1,52 @@
+[scalac.plugin] Found targets: Type.this.type :: phantm.types.TNull.type :: Set(<java.lang.Object: toString()>)
 [scalac.plugin] ************************************
-[scalac.plugin] Set(scala.Predef.type, scala.collection.mutable.Map.type, org.clapper.argot.ArgotParser.type, org.clapper.argot.FlagOption[T], scala.runtime.AbstractFunction1[Seq[Int],Int] with Serializable, scala.runtime.AbstractFunction1[String,Boolean] with Serializable, scala.collection.mutable.LinkedHashSet[org.clapper.argot.Parameter[_]], java.io.File, scala.runtime.AbstractFunction2[String,org.clapper.argot.CommandLineArgument[String],String] with Serializable, scala.runtime.AbstractFunction2[String,org.clapper.argot.CommandLineArgument[String],String] with Serializable, scala.runtime.AbstractFunction2[Boolean,org.clapper.argot.FlagOption[Boolean],Boolean] with Serializable, org.clapper.argot.Conversions.type, scala.runtime.AbstractFunction1[String,Boolean] with Serializable, scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable, scala.runtime.AbstractFunction1[String,Unit] with Serializable, scala.runtime.AbstractFunction1[String,Unit] with Serializable, scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],Int] with Serializable, grizzled.string.WordWrapper.type, scala.runtime.AbstractFunction2[String,org.clapper.argot.Parameter[java.io.File],java.io.File] with Serializable, scala.collection.mutable.LinkedHashSet[org.clapper.argot.FlagOption[_]], scala.runtime.AbstractFunction1[String,Boolean] with Serializable, scala.runtime.AbstractFunction2[String,org.clapper.argot.MultiValueOption[String],String] with Serializable, scala.runtime.AbstractFunction2[String,String,Boolean] with Serializable, math.type, scala.collection.mutable.LinkedHashMap[String,org.clapper.argot.CommandLineOption[_]], MatchError, StringBuilder, scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable, Some[Throwable], scala.runtime.AbstractFunction1[String,Boolean] with Serializable, scala.runtime.AbstractFunction1[String,Boolean] with Serializable, scala.runtime.AbstractFunction1[String,Boolean] with Serializable, scala.runtime.AbstractFunction1[String,Boolean] with Serializable, scala.collection.Iterable.type, scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable, org.clapper.argot.MultiValueParameter[T], org.clapper.argot.SingleValueParameter[T], scala.collection.mutable.LinkedHashSet.type, scala.runtime.AbstractFunction1[String,Boolean] with Serializable, type, org.clapper.argot.MultiValueOption[T], scala.runtime.AbstractFunction1[String,Unit] with Serializable, scala.collection.Seq.type, scala.collection.immutable.List.type, org.clapper.argot.SingleValueOption[T], scala.collection.mutable.LinkedHashSet[org.clapper.argot.HasValue[_]], org.clapper.argot.ArgotTest.type, org.clapper.argot.ArgotUsageException, scala.runtime.AbstractFunction1[String,ArgotParser.this.longNameMap.type] with Serializable, scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],StringBuilder] with Serializable, org.clapper.argot.Conversions.type, org.clapper.argot.ArgotConverters.type, scala.runtime.AbstractFunction0[Int] with Serializable, org.clapper.argot.ArgotTest.type, scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],StringBuilder] with Serializable, org.clapper.argot.ArgotParser, org.clapper.argot.ArgotParser.type, scala.collection.immutable.Nil.type, org.clapper.argot.ArgotTest.type, scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable, scala.runtime.AbstractFunction2[Boolean,org.clapper.argot.FlagOption[Int],Int] with Serializable, scala.runtime.AbstractFunction1[String,Boolean] with Serializable, org.clapper.argot.ArgotSpecificationError, None.type, scala.runtime.AbstractFunction1[String,ArgotParser.this.shortNameMap.type] with Serializable, Some[String], scala.runtime.AbstractFunction0[Int] with Serializable, scala.runtime.AbstractFunction1[org.clapper.argot.CommandLineOption[_],List[Int]] with Serializable, grizzled.string.WordWrapper, scala.runtime.AbstractFunction1[String,Boolean] with Serializable, scala.runtime.AbstractFunction2[String,org.clapper.argot.CommandLineArgument[Int],Int] with Serializable, org.clapper.argot.Conversions.type, scala.runtime.AbstractFunction1[String,Unit] with Serializable, org.clapper.argot.ArgotConverters.type)
-[scalac.plugin] Parameter.this.type :: method $init$ :: method $init$
-[scalac.plugin] List(method $init$, trait Parameter, package argot, package clapper, package org, package <root>)
-[scalac.plugin] ************************************
-
-
-[scalac.plugin] ************************************
-[scalac.plugin] Set(StringBuilder, scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable, scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable, Some[Throwable], scala.runtime.AbstractFunction1[Seq[Int],Int] with Serializable, scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],StringBuilder] with Serializable, org.clapper.argot.Conversions.type, scala.collection.Iterable.type, org.clapper.argot.Conversions.type, scala.runtime.AbstractFunction0[Int] with Serializable, scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable, scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable, scala.runtime.AbstractFunction1[org.clapper.argot.CommandLineOption[_],List[Int]] with Serializable, grizzled.string.WordWrapper, scala.runtime.AbstractFunction1[String,Boolean] with Serializable, scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],StringBuilder] with Serializable, scala.collection.mutable.LinkedHashSet.type, scala.runtime.AbstractFunction1[String,Boolean] with Serializable, scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],Int] with Serializable, grizzled.string.WordWrapper.type, scala.collection.immutable.Nil.type, scala.runtime.AbstractFunction2[String,String,Boolean] with Serializable)
-[scalac.plugin] Parameter.this.type :: method $init$ :: method $init$
-[scalac.plugin] List(method $init$, trait Parameter, package argot, package clapper, package org, package <root>)
+[scalac.plugin] Set(phantm.types.TNull.type)
+[scalac.plugin] Type.this.type :: method toText :: method toText
+[scalac.plugin] List(method toText, class Type, package types, package phantm, package <root>)
+[scalac.plugin] Set(<java.lang.Object: toString()>)
 [scalac.plugin] ************************************
 
 
 [scalac.plugin] ************************************
-[scalac.plugin] Set(org.clapper.argot.ArgotException, org.clapper.argot.ArgotConversionException, scala.runtime.AbstractFunction1[String,Int] with Serializable, grizzled.math.util.type, scala.runtime.AbstractFunction0[Nothing] with Serializable)
-[scalac.plugin] Parameter.this.type :: method $init$ :: method $init$
-[scalac.plugin] List(method $init$, trait Parameter, package argot, package clapper, package org, package <root>)
+[scalac.plugin] Set()
+[scalac.plugin] Type.this.type :: method toText :: method toText
+[scalac.plugin] List(method toText, class Type, package types, package phantm, package <root>)
+[scalac.plugin] Set(<java.lang.Object: toString()>)
 [scalac.plugin] ************************************
 
 
 [scalac.plugin] ************************************
-[scalac.plugin] Set(scala.runtime.AbstractFunction0[Nothing] with Serializable, scala.runtime.AbstractFunction1[String,Boolean] with Serializable, scala.runtime.AbstractFunction0[Nothing] with Serializable, scala.runtime.AbstractFunction2[String,String,Boolean] with Serializable, scala.runtime.AbstractFunction1[String,Unit] with Serializable, scala.runtime.AbstractFunction1[String,StringBuilder] with Serializable, scala.runtime.AbstractFunction2[String,String,Boolean] with Serializable, scala.runtime.AbstractFunction1[String,Boolean] with Serializable, (String, String))
-[scalac.plugin] Parameter.this.type :: method $init$ :: method $init$
-[scalac.plugin] List(method $init$, trait Parameter, package argot, package clapper, package org, package <root>)
+[scalac.plugin] Set()
+[scalac.plugin] Type.this.type :: method toText :: method toText
+[scalac.plugin] List(method toText, class Type, package types, package phantm, package <root>)
+[scalac.plugin] Set(<java.lang.Object: toString()>)
 [scalac.plugin] ************************************
 
 
+[scalac.plugin] Found targets: Type.this.type :: phantm.types.TAnyObject.type :: Set(<java.lang.Object: toString()>)
+[scalac.plugin] Found targets: Type.this.type :: phantm.types.TString.type :: Set(<java.lang.Object: toString()>)
+[scalac.plugin] Found targets: Type.this.type :: phantm.types.TBoolean.type :: Set(<java.lang.Object: toString()>)
+[scalac.plugin] Found targets: Type.this.type :: phantm.types.TNumeric.type :: Set(<java.lang.Object: toString()>)
+[scalac.plugin] Found targets: Type.this.type :: phantm.types.TFloat.type :: Set(<java.lang.Object: toString()>)
+[scalac.plugin] Found targets: Type.this.type :: phantm.types.TUninitialized.type :: Set(<java.lang.Object: toString()>)
+[scalac.plugin] Found targets: Type.this.type :: phantm.types.TBottom.type :: Set(<java.lang.Object: toString()>)
+[scalac.plugin] Found targets: Type.this.type :: phantm.types.TInt.type :: Set(<java.lang.Object: toString()>)
+[scalac.plugin] Found targets: Type.this.type :: phantm.types.TTrue.type :: Set(<java.lang.Object: toString()>)
+[scalac.plugin] Found targets: Type.this.type :: phantm.types.TTop.type :: Set(<java.lang.Object: toString()>)
+[scalac.plugin] Found targets: Type.this.type :: phantm.types.TFalse.type :: Set(<java.lang.Object: toString()>)
+[scalac.plugin] Found targets: Type.this.type :: phantm.types.TAny.type :: Set(<java.lang.Object: toString()>)
 [scalac.plugin] ************************************
-[scalac.plugin] Set(scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],String] with Serializable, scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],Boolean] with Serializable, scala.runtime.AbstractFunction1[org.clapper.argot.Parameter[_],Boolean] with Serializable)
-[scalac.plugin] Parameter.this.type :: method $init$ :: method $init$
-[scalac.plugin] List(method $init$, trait Parameter, package argot, package clapper, package org, package <root>)
+[scalac.plugin] Set(phantm.types.TAnyObject.type, phantm.types.TString.type, phantm.types.TBoolean.type, phantm.types.TNumeric.type, phantm.types.TFloat.type, phantm.types.TUninitialized.type, phantm.types.TBottom.type, phantm.types.TInt.type, phantm.types.TTrue.type, phantm.types.TTop.type, phantm.types.TFalse.type, phantm.types.TAny.type)
+[scalac.plugin] Type.this.type :: method toText :: method toText
+[scalac.plugin] List(method toText, class Type, package types, package phantm, package <root>)
+[scalac.plugin] Set(<java.lang.Object: toString()>)
 [scalac.plugin] ************************************
 
 
+[scalac.plugin] Found targets: TRealObject.this.type :: phantm.types.TRealObject :: Set(<phantm.types.TRealObject: toString()>)
 [scalac.plugin] ************************************
-[scalac.plugin] Set(Some[T])
-[scalac.plugin] Parameter.this.type :: method $init$ :: method $init$
-[scalac.plugin] List(method $init$, trait Parameter, package argot, package clapper, package org, package <root>)
+[scalac.plugin] Set(phantm.types.TRealObject)
+[scalac.plugin] TRealObject.this.type :: method toText :: method toText
+[scalac.plugin] List(method toText, class TRealObject, package types, package phantm, package <root>)
+[scalac.plugin] Set(<phantm.types.TRealObject: toString()>)
 [scalac.plugin] ************************************
