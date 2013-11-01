@@ -11,6 +11,7 @@ trait CallSites extends Global {
   class AbstractCallSite(receiverTree: Tree, val staticTarget: Symbol) {
     // The type of the receiver.
     lazy val receiver = receiverTree.tpe
+    lazy val receiverSymbol = receiverTree.symbol
 
     // Is this a constructor call?
     lazy val isConstructorCall = staticTarget.isConstructor

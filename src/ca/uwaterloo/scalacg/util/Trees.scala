@@ -91,6 +91,7 @@ trait TreeTraversal extends Trees with TraversalCollections {
           // If the module is not a top-level module (i.e., it is defined in some method or class/module.)
           if (parent.isDefined) {
             val symbol = parent.get.symbol
+            //            val parentTpe = parent.get.tpe
             parent.get match {
               case _: ClassDef | _: ModuleDef => modulesInType(symbol.tpe) += tpe
               case _: DefDef => instantiatedTypesInMethod(symbol) += tpe

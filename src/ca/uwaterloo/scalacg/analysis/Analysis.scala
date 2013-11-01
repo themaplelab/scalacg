@@ -64,7 +64,7 @@ trait CallGraphAnalysis extends CallGraphWorklists
     instantiatedTypes ++= mainModules
     instantiatedTypes ++= modulesInTypes(mainModules)
 
-    modulesInCallSites(abstractCallSites).foreach(m => println(m + " :: " + types(m)))
+    //    modulesInCallSites(abstractCallSites).foreach(m => println(m + " :: " + types(m)))
     //    modulesInTypes(mainModules).foreach(m => println(m + " :: " + types(m)))
     //    mainModules.foreach(m => println(m + " :: " + types(m)))
     //    types.foreach { t =>
@@ -98,7 +98,7 @@ trait CallGraphAnalysis extends CallGraphWorklists
         processCallSites(callSites.reachableItems, instantiatedTypes.newItems)
       }
 
-      println("new types: " + instantiatedTypes.newItems) // TODO
+      //      println("new types: " + instantiatedTypes.newItems) // TODO
 
       // Clear call sites and instantiated types to prepare for the next iteration.
       callSites.clear
@@ -135,7 +135,7 @@ trait CallGraphAnalysis extends CallGraphWorklists
       // Find new instantiated types
       instantiatedTypes ++= instantiatedTypesInMethod(method)
       instantiatedTypes ++= modulesInTypes(instantiatedTypes.newItems)
-      instantiatedTypes ++= modulesInCallSites(callSites.newItems)
+      instantiatedTypes ++= modulesInCallSites(callSites.newItems) // TODO
     }
 
     reachableMethods.clear
@@ -207,20 +207,23 @@ trait CallGraphAnalysis extends CallGraphWorklists
     abstractToCallSites(callSite).foreach { cs =>
       val lookupTypes = filterForThis(cs, types)
       // TODO
-      //      if (cs.staticTarget.nameString == "toString") {
-      //        println("************************************")
-      //        println(types)
-      //        println(lookupTypes)
-      //        println(cs.receiver + " :: " + signature(cs.enclMethod) + " :: " + signature(cs.thisEnclMethod))
-      //        //        println(targets map signature)
-      //        println("************************************\n")
-      //
-      //        //        println("************************************")
-      //        //        types foreach println
-      //        //        println("====================================")
-      //        //        lookupTypes foreach println
-      //        //        println("************************************")
-      //      }
+      if (cs.staticTarget.nameString == "toString" && cs.enclMethod.nameString == "toText") {
+        println("************************************")
+        println(cs.receiver + " :: " + signature(cs.enclMethod) + " :: " + signature(cs.thisEnclMethod))
+        //        println(types)
+        types.foreach { tpe =>
+          println(tpe + " :: " + (tpe.members.toSet contains cs.thisEnclMethod))
+        }
+        println(lookupTypes)
+        //        println(targets map signature)
+        println("************************************\n")
+        //
+        //        //        println("************************************")
+        //        //        types foreach println
+        //        //        println("====================================")
+        //        //        lookupTypes foreach println
+        //        //        println("************************************")
+      }
       val targets = lookup_<:<(cs, lookupTypes)
 
       addTargets(cs, targets)

@@ -11,6 +11,7 @@ import probe.ProbeMethod;
  * @author karim
  * 
  */
+@SuppressWarnings("rawtypes")
 public class CallEdge extends probe.CallEdge {
 
 	private CallingContext ctx;
@@ -26,7 +27,7 @@ public class CallEdge extends probe.CallEdge {
 		super(src, dst, 0);
 		this.ctx = new ContextInsensitive();
 	}
-	
+
 	/**
 	 * Create a call edge from source to destination with the given calling context.
 	 * 
@@ -61,6 +62,7 @@ public class CallEdge extends probe.CallEdge {
 		return context + src().toString() + " ===> " + dst().toString();
 	}
 
+	@SuppressWarnings("unchecked")
 	public int compareTo(CallEdge other) {
 		int result = ctx.compareTo(other.ctx);
 		return result == 0 ? super.compareTo(other) : result;

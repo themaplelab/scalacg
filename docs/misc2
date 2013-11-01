@@ -1,16 +1,37 @@
-Type.super.type :: constructor Object :: constructor Type :: false
-t.type :: method == :: method equals :: false
-null :: method $init$ :: constructor TNull :: false
-ConcreteType.super.type :: constructor Type :: constructor ConcreteType :: false
-Type.this.type :: method toString :: method toText :: false
-x$1.type :: method $isInstanceOf :: method canEqual :: false
-Int :: method toString :: method productElement :: false
-invocations.super.type :: constructor Annotation :: constructor invocations :: false
-IndexOutOfBoundsException :: constructor IndexOutOfBoundsException :: method productElement :: false
-scala.runtime.ScalaRunTime.type :: method typedProductIterator :: method productIterator :: true
-tests.tca.Phantm1.type :: constructor Object :: constructor Phantm1 :: true
-x$1.type :: method $isInstanceOf :: method canEqual :: false
-tests.tca.Phantm1.TNull.type :: constructor ConcreteType :: constructor TNull :: true
-target.super.type :: constructor Annotation :: constructor target :: false
-scala.runtime.ScalaRunTime.type :: method typedProductIterator :: method productIterator :: true
-tests.tca.Phantm1.Type :: method toText :: method main :: false
+Those types appear but do not resolve to any methods. Hmm, weird.
+===========================================================================
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TTop: toString()
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TBottom: toString()
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TInt: toString()
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TFloat: toString()
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TAnyObject: toString()
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TAny: toString()
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TString: toString()
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TUninitialized: toString()
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TBoolean: toString()
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TTrue: toString()
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TNumeric: toString()
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TFalse: toString()
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TNull: toString()
+
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TAnyArray: toString() // top-level module
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TUnion: toString() // top-level module
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TFloatLit: toString() // appears without .type 
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TStringLit: toString() // appears without .type
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TArray: toString() // appears without .type
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TObjectTmp: toString() // appears without .type
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment) ===> phantm.types.TIntLit: toString() // appears without .type
+
+phantm.types.TTop.type
+phantm.types.TBottom.type
+phantm.types.TInt.type
+phantm.types.TFloat.type
+phantm.types.TAnyObject.type
+phantm.types.TAny.type
+phantm.types.TString.type
+phantm.types.TUninitialized.type
+phantm.types.TBoolean.type
+phantm.types.TTrue.type
+phantm.types.TNumeric.type
+phantm.types.TFalse.type
+
