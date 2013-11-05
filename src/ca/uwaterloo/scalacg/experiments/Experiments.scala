@@ -11,8 +11,8 @@ import probe.GXLReader
 import probe.ProbeMethod
 
 object Experiments {
-//  final lazy val benchmarks = List("argot", "fimpp", "joos", "kiama", "phantm", "scalisp", "see", "tictactoe")
-    final lazy val benchmarks = List("phantm")
+  final lazy val benchmarks = List("argot", "fimpp", "joos", "kiama", "phantm", "scalisp", "see", "tictactoe")
+  //    final lazy val benchmarks = List("phantm")
 
   def main(args: Array[String]) = {
     var prefix = ""
@@ -30,7 +30,7 @@ object Experiments {
         throw new IllegalArgumentException("Wrong number of arguments.")
     }
 
-    lazy val tca_wala = new Experiment("tca-wala", prefix)("tca-this-super", "callgraph.gxl.gzip")("tca-this-super", "wala-callgraph.gxl.gzip")
+    lazy val tca_wala = new Experiment("tca-wala", prefix)("tca-this-super", "callgraph.gxl.gzip")("wala", "wala-callgraph.gxl.gzip")
     lazy val this_nothis = new Experiment("this-nothis", prefix)("tca-this-super", "callgraph.gxl.gzip")("tca-super", "callgraph.gxl.gzip")
     lazy val tca_ra = new Experiment("tca-ra", prefix)("tca-this-super", "callgraph.gxl.gzip")("ra", "callgraph.gxl.gzip")
     lazy val tca_dyn = new Experiment("tca-dyn", prefix)("tca-this-super", "callgraph.gxl.gzip")("dyn", "callgraph.gxl.gzip")
@@ -80,10 +80,10 @@ object Experiments {
       val edgesA: Set[CallEdge] = supergraph.edges
       val edgesB: Set[CallEdge] = subgraph.edges
 
-      (reachB -- reachA).toSeq.sortWith((a, b) => a.name <= b.name).foreach(println)
-      println("===========================================================================")
-      (edgesB -- edgesA).toSeq.sortWith((a, b) => a.src.name <= b.src.name).foreach(println)
-      println("\n")
+      //      (reachB -- reachA).toSeq.sortWith((a, b) => a.name <= b.name).foreach(println)
+      //      println("===========================================================================")
+      //      (edgesB -- edgesA).toSeq.sortWith((a, b) => a.src.name <= b.src.name).foreach(println)
+      //      println("\n")
 
       edges.a(benchmark) = edgesA.size
       edges.b(benchmark) = edgesB.size

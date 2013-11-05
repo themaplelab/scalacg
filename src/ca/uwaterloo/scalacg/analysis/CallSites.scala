@@ -94,7 +94,7 @@ trait CallSites extends Global {
 
   def modulesInCallSites(callSites: Set[AbstractCallSite]) = {
     val modules = Set.empty[Type]
-    callSites.foreach(cs => if (cs.hasModuleReceiver) modules += cs.receiver)
+    callSites.foreach(cs => if (cs.hasModuleReceiver) modules += cs.receiverSymbol.tpe)
     modules
   }
 }

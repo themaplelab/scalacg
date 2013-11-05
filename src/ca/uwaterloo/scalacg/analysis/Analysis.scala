@@ -64,11 +64,15 @@ trait CallGraphAnalysis extends CallGraphWorklists
     instantiatedTypes ++= mainModules
     instantiatedTypes ++= modulesInTypes(mainModules)
 
-    //    modulesInCallSites(abstractCallSites).foreach(m => println(m + " :: " + types(m)))
+    //    modulesInCallSites(abstractCallSites).foreach { m =>
+    //      println(m + " :: " + types(m) + " :: " + m.getClass + " :: " + m.typeSymbol.companionSymbol.tpe + " :: " + types(m.typeSymbol.companionSymbol.tpe))
+    //    }
+    //    println
+    //    println
     //    modulesInTypes(mainModules).foreach(m => println(m + " :: " + types(m)))
     //    mainModules.foreach(m => println(m + " :: " + types(m)))
     //    types.foreach { t =>
-    //      println(t + " :: " + t.members)
+    //      println(t + " :: " + t.getClass)
     //    }
     //    abstractToCallSites.values.flatten.foreach(cs => println(cs.receiver + " :: " + cs.staticTarget + " :: " + cs.enclMethod + " :: " + cs.hasModuleReceiver))
 
@@ -207,23 +211,23 @@ trait CallGraphAnalysis extends CallGraphWorklists
     abstractToCallSites(callSite).foreach { cs =>
       val lookupTypes = filterForThis(cs, types)
       // TODO
-      if (cs.staticTarget.nameString == "toString" && cs.enclMethod.nameString == "toText") {
-        println("************************************")
-        println(cs.receiver + " :: " + signature(cs.enclMethod) + " :: " + signature(cs.thisEnclMethod))
-        //        println(types)
-        types.foreach { tpe =>
-          println(tpe + " :: " + (tpe.members.toSet contains cs.thisEnclMethod))
-        }
-        println(lookupTypes)
-        //        println(targets map signature)
-        println("************************************\n")
-        //
-        //        //        println("************************************")
-        //        //        types foreach println
-        //        //        println("====================================")
-        //        //        lookupTypes foreach println
-        //        //        println("************************************")
-      }
+      //      if (cs.staticTarget.nameString == "toString" && cs.enclMethod.nameString == "toText") {
+      //        println("************************************")
+      //        println(cs.receiver + " :: " + signature(cs.enclMethod) + " :: " + signature(cs.thisEnclMethod))
+      //        //        println(types)
+      //        types.foreach { tpe =>
+      //          println(tpe + " :: " + (tpe.members.toSet contains cs.thisEnclMethod) + " :: " + (tpe.typeSymbol.companionSymbol.tpe.members.toSet contains cs.thisEnclMethod))
+      //        }
+      //        println(lookupTypes)
+      //        //        println(targets map signature)
+      //        println("************************************\n")
+      //        //
+      //        //        //        println("************************************")
+      //        //        //        types foreach println
+      //        //        //        println("====================================")
+      //        //        //        lookupTypes foreach println
+      //        //        //        println("************************************")
+      //      }
       val targets = lookup_<:<(cs, lookupTypes)
 
       addTargets(cs, targets)
@@ -263,6 +267,8 @@ trait CallGraphAnalysis extends CallGraphWorklists
    */
   private def filterForThis(callSite: CallSite, types: Set[Type]) = {
     if (callSite.thisEnclMethod == NoSymbol || superCalled.reachableItems.contains(callSite.thisEnclMethod)) types
-    else types.filter { tpe => tpe.members.toSet contains callSite.thisEnclMethod }
+    else types.filter { tpe =>
+      (tpe.members.toSet contains callSite.thisEnclMethod) //|| (tpe.typeSymbol.companionSymbol.tpe.members.toSet contains callSite.thisEnclMethod)
+    }
   }
 }
