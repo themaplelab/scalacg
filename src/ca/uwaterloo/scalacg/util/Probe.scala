@@ -18,7 +18,12 @@ trait Probe extends Global {
   import global._
 
   class StringHelper(str: String) {
-    def replaceLast(regex: String, replacement: String) = str.reverse.replaceFirst(regex, replacement.reverse).reverse
+    def replaceLast(regex: String, replacement: String) = str.reverse.replace(regex.reverse, replacement.reverse).reverse
+    def replaceLastLiterally(literal: String, replacement: String) = {
+      val arg1 = java.util.regex.Pattern.quote(literal)
+      val arg2 = java.util.regex.Matcher.quoteReplacement(replacement)
+      replaceLast(literal, replacement)
+    }
   }
   implicit def stringWrapper(string: String) = new StringHelper(string)
 
@@ -42,7 +47,11 @@ trait Probe extends Global {
    * Get the full name (dot separated) of the owner of a method symbol. That acts like the method declaring class in Soot.
    */
   def effectiveOwnerName(methodSymbol: Symbol): String = {
-    methodSymbol.fullName.replace("." + methodSymbol.simpleName, "")
+    //    println(methodSymbol.fullName)
+    //    println(methodSymbol.fullName.replaceLastLiterally("." + methodSymbol.simpleName, ""))
+    //    println
+    //    println
+    methodSymbol.fullName.replaceLastLiterally("." + methodSymbol.simpleName, "")
   }
 
   /**
@@ -104,7 +113,7 @@ trait CallGraphPrinter {
     // Write GXL file in gzip format to save space.
     new GXLWriter().write(probeCallGraph, new GZIPOutputStream(out))
   }
-  
+
   /**
    * Print the mapping of all annotated methods to their source level signature.
    */

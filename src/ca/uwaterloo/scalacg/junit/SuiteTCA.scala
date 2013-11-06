@@ -4,6 +4,9 @@ import org.junit.Test
 
 class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "callgraph:super", "callgraph:assert")) {
 
+  // see
+  @Test def testSee1() { runTest("See1") }
+  
   // phantm
   @Test def testPhantm1() { runTest("Phantm1") }
   
