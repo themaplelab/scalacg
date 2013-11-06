@@ -63,19 +63,6 @@ trait CallGraphAnalysis extends CallGraphWorklists
     reachableMethods ++= mainMethods
     instantiatedTypes ++= mainModules
     instantiatedTypes ++= modulesInTypes(mainModules)
-
-    //    modulesInCallSites(abstractCallSites).foreach { m =>
-    //      println(m + " :: " + types(m) + " :: " + m.getClass + " :: " + m.typeSymbol.companionSymbol.tpe + " :: " + types(m.typeSymbol.companionSymbol.tpe))
-    //    }
-    //    println
-    //    println
-    //    modulesInTypes(mainModules).foreach(m => println(m + " :: " + types(m)))
-    //    mainModules.foreach(m => println(m + " :: " + types(m)))
-    //    types.foreach { t =>
-    //      println(t + " :: " + t.getClass)
-    //    }
-    //    abstractToCallSites.values.flatten.foreach(cs => println(cs.receiver + " :: " + cs.staticTarget + " :: " + cs.enclMethod + " :: " + cs.hasModuleReceiver))
-
   }
 
   def buildCallGraph = {
@@ -102,8 +89,6 @@ trait CallGraphAnalysis extends CallGraphWorklists
         processCallSites(callSites.reachableItems, instantiatedTypes.newItems)
       }
 
-      //      println("new types: " + instantiatedTypes.newItems) // TODO
-
       // Clear call sites and instantiated types to prepare for the next iteration.
       callSites.clear
       instantiatedTypes.clear
@@ -116,7 +101,9 @@ trait CallGraphAnalysis extends CallGraphWorklists
   private def processTypes = {
     for (tpe <- instantiatedTypes.newItems) {
       // Add constructors
-      reachableMethods ++= constructorsOf(tpe)
+      val constrs = constructorsOf(tpe)
+      if (tpe.typeSymbol.isModuleOrModuleClass) moduleConstructors ++= constrs
+      reachableMethods ++= constrs
 
       // Add callbacks
       val cbs = callBacksOf(tpe)
@@ -138,8 +125,8 @@ trait CallGraphAnalysis extends CallGraphWorklists
 
       // Find new instantiated types
       instantiatedTypes ++= instantiatedTypesInMethod(method)
-      instantiatedTypes ++= modulesInTypes(instantiatedTypes.newItems)
-      instantiatedTypes ++= modulesInCallSites(callSites.newItems) // TODO
+      instantiatedTypes ++= modulesInTypes(instantiatedTypes.newItems) // TODO: bug -> this also returns some case classes! need to also double check when we consider case classes to be instantiated 
+      instantiatedTypes ++= modulesInCallSites(callSites.newItems)
     }
 
     reachableMethods.clear
@@ -263,7 +250,7 @@ trait CallGraphAnalysis extends CallGraphWorklists
   /**
    * Filter the types that will be used later to lookup for methods if the receiver of the call site is "this".
    * TODO: 1) filter needs OPT?
-   * TODO: 2) Karim: I think we should be using tpe.decls not tpe.members to get the correct result. 
+   * TODO: 2) Karim: I think we should be using tpe.decls not tpe.members to get the correct result.
    */
   private def filterForThis(callSite: CallSite, types: Set[Type]) = {
     if (callSite.thisEnclMethod == NoSymbol || superCalled.reachableItems.contains(callSite.thisEnclMethod)) types

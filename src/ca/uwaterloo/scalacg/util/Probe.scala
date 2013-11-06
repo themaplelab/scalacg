@@ -95,9 +95,9 @@ trait CallGraphPrinter {
     val entryPointsOut = new PrintStream("entrypoints.txt")
     val libraryOut = new PrintStream("library.txt")
 
-    // Get the entry points (these include main methods and call-backs)
+    // Get the entry points (these include main methods, call-backs, and module constructors)
     for {
-      entry <- entryPoints ++ callBacks
+      entry <- entryPoints ++ callBacks ++ moduleConstructors
     } {
       probeCallGraph.entryPoints.add(probeMethod(entry))
       entryPointsOut.println(methodToId.getOrElse(entry, 0) + " ===> " + probeMethod(entry))

@@ -21,6 +21,7 @@ trait CallGraphCollections extends CallSites with Global {
   val callGraph: Map[CallSite, ImmutableSet[Symbol]]
   val entryPoints: Set[Symbol]
   val callBacks: Set[Symbol]
+  val moduleConstructors: Set[Symbol]
 }
 
 trait CallGraphWorklists extends CallGraphCollections {
