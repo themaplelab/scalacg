@@ -9,7 +9,7 @@ object See2 {
     println(s.toString)
     s = Str("foo")
     println(s.toString)
-    println(Real(1).toString)
+    println(Real.toString)
   }
 
   trait IResult
