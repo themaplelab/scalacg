@@ -63,6 +63,13 @@ trait CallGraphAnalysis extends CallGraphWorklists
     reachableMethods ++= mainMethods
     instantiatedTypes ++= mainModules
     instantiatedTypes ++= modulesInTypes(mainModules)
+
+    //    types foreach { tpe =>
+    //      println("*" * 20)
+    //      println(tpe)
+    //      tpe.decls.foreach(println)
+    //      println("*" * 20)
+    //    }
   }
 
   def buildCallGraph = {
@@ -249,13 +256,34 @@ trait CallGraphAnalysis extends CallGraphWorklists
 
   /**
    * Filter the types that will be used later to lookup for methods if the receiver of the call site is "this".
-   * TODO: 1) filter needs OPT?
-   * TODO: 2) Karim: I think we should be using tpe.decls not tpe.members to get the correct result.
+   * If tpe.members contains callSite.thisEnclMethod, that means that tpe doesn't override callSite.thisEnclMethod,
+   * and it is possible to call one of tpe's methods at this call site.
+   *
+   * TODO: filter needs OPT?
    */
   private def filterForThis(callSite: CallSite, types: Set[Type]) = {
     if (callSite.thisEnclMethod == NoSymbol || superCalled.reachableItems.contains(callSite.thisEnclMethod)) types
-    else types.filter { tpe =>
-      (tpe.members.toSet contains callSite.thisEnclMethod) //|| (tpe.typeSymbol.companionSymbol.tpe.members.toSet contains callSite.thisEnclMethod)
-    }
+    else types.filter { tpe => tpe.members.toSet contains callSite.thisEnclMethod }
+    //      println("*" * 20)
+    //      println(tpe)
+    //      println(tpe.members map signature)
+    //      println(tpe.typeSymbol.companionSymbol.tpe.members map signature)
+    //      val decls = tpe.decls.toSet
+    //      val compDecls = tpe.typeSymbol.companionSymbol.tpe.decls.toSet
+    //      val decF = decls.filter { _.overriddenSymbol(callSite.thisEnclMethod.owner) == callSite.thisEnclMethod }.toSet
+    //      decF.isEmpty
+    //      val compDecF = compDecls.filter { _.overriddenSymbol(callSite.thisEnclMethod.owner) == callSite.thisEnclMethod }.toSet
+    //      println(decls map signature)
+    //      println(compDecls map signature)
+    //      println(decF map signature)
+    //      println(compDecF map signature)
+    //
+    //      println(callSite.receiver + " :: " + signature(callSite.enclMethod) + " :: " + signature(callSite.thisEnclMethod))
+    //      val flag =
+    //        (tpe.decls.toSet contains callSite.thisEnclMethod) || (tpe.typeSymbol.companionSymbol.tpe.decls.toSet contains callSite.thisEnclMethod)
+    //      println(flag)
+    //      println("*" * 20)
+    //      flag
+    //    }
   }
 }
