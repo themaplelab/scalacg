@@ -262,8 +262,8 @@ trait CallGraphAnalysis extends CallGraphWorklists
 
   /**
    * Filter the types that will be used later to lookup for methods if the receiver of the call site is "this".
-   * TODO: 1) should we make the check vs superCalled.reachableItems or newItems?
-   * TODO: 2) filter needs OPT?
+   * TODO: 1) filter needs OPT?
+   * TODO: 2) Karim: I think we should be using tpe.decls not tpe.members to get the correct result. 
    */
   private def filterForThis(callSite: CallSite, types: Set[Type]) = {
     if (callSite.thisEnclMethod == NoSymbol || superCalled.reachableItems.contains(callSite.thisEnclMethod)) types
