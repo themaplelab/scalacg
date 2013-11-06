@@ -11,8 +11,9 @@ import probe.GXLReader
 import probe.ProbeMethod
 
 object Experiments {
-  //  final lazy val benchmarks = List("argot", "fimpp", "joos", "kiama", "phantm", "scalisp", "see", "tictactoe")
-  final lazy val benchmarks = List("see")
+  final lazy val benchmarks = List("argot", "fimpp", "joos", "kiama", "phantm", "scalisp", "see", "tictactoe")
+  //  final lazy val benchmarks = List("argot", "fimpp", "joos", "scalisp", "see", "tictactoe")
+  //  final lazy val benchmarks = List("see")
 
   def main(args: Array[String]) = {
     var prefix = ""
@@ -80,10 +81,10 @@ object Experiments {
       val edgesA: Set[CallEdge] = supergraph.edges
       val edgesB: Set[CallEdge] = subgraph.edges
 
-      (reachB -- reachA).toSeq.sortWith((a, b) => a.name <= b.name).foreach(println)
-      println("===========================================================================")
-      (edgesB -- edgesA).toSeq.sortWith((a, b) => a.src.name <= b.src.name).foreach(println)
-      println("\n")
+      //      (reachB -- reachA).toSeq.sortWith((a, b) => a.name <= b.name).foreach(println)
+      //      println("===========================================================================")
+      //      (edgesB -- edgesA).toSeq.sortWith((a, b) => a.src.name <= b.src.name).foreach(println)
+      //      println("\n")
 
       edges.a(benchmark) = edgesA.size
       edges.b(benchmark) = edgesB.size

@@ -4,21 +4,22 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>300</x>
-      <y>30</y>
+      <x>210</x>
+      <y>40</y>
       <w>190</w>
-      <h>40</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>abstract class see.values.Scalar
 --
-def toString { v }</panel_attributes>
+def toStr { toString }
+def toString {...}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>370</x>
-      <y>160</y>
+      <x>210</x>
+      <y>130</y>
       <w>220</w>
       <h>20</h>
     </coordinates>
@@ -28,44 +29,44 @@ def toString { v }</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>360</x>
-      <y>40</y>
+      <x>270</x>
+      <y>70</y>
       <w>50</w>
-      <h>140</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;30;120</additional_attributes>
+    <additional_attributes>30;30;30;60</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>10</x>
-      <y>140</y>
+      <x>210</x>
+      <y>180</y>
       <w>170</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>case class see.values.Rexp
 --
-def toString {...}
-def v {...}</panel_attributes>
+def toStr { ... }
+def toString {...}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>150</x>
-      <y>140</y>
-      <w>240</w>
-      <h>50</h>
+      <x>270</x>
+      <y>120</y>
+      <w>50</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>220;30;30;30</additional_attributes>
+    <additional_attributes>30;30;30;60</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>280</x>
-      <y>240</y>
+      <x>210</x>
+      <y>280</y>
       <w>200</w>
       <h>20</h>
     </coordinates>
@@ -75,176 +76,33 @@ def v {...}</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>350</x>
-      <y>150</y>
+      <x>360</x>
+      <y>120</y>
       <w>50</w>
-      <h>110</h>
+      <h>180</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;30;90</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>20</x>
-      <y>230</y>
-      <w>170</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>case class see.values.BigR
---
-def toString {...}
-def v {...}</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>160</x>
-      <y>220</y>
-      <w>140</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>120;30;30;30</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>40</x>
-      <y>330</y>
-      <w>140</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>object see.values.BigR</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>40</x>
-      <y>260</y>
-      <w>118</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=&gt;.
-instantiate</panel_attributes>
-    <additional_attributes>60;70;60;30</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>810</x>
-      <y>140</y>
-      <w>150</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>case class see.values.Str
---
-def toString {...}
-def v {...}</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>820</x>
-      <y>270</y>
-      <w>130</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>object see.values.Str</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>830</x>
-      <y>170</y>
-      <w>118</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>lt=&gt;.
-instantiate</panel_attributes>
-    <additional_attributes>60;100;60;30</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>560</x>
-      <y>140</y>
-      <w>270</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;250;30</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>540</x>
-      <y>240</y>
-      <w>200</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>abstract class see.values.IntLike</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>450</x>
-      <y>220</y>
-      <w>110</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;90;30</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>640</x>
-      <y>310</y>
-      <w>170</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>case class see.values.BigI
---
-def toString {...}
-def v {...}</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>690</x>
-      <y>230</y>
-      <w>50</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;30;80</additional_attributes>
+    <additional_attributes>30;30;30;160</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>210</x>
-      <y>300</y>
+      <y>340</y>
       <w>170</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>case class see.values.Real
+    <panel_attributes>case class see.values.BigR
 --
-def v {...}
+def toString {...}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>330</x>
-      <y>230</y>
+      <x>260</x>
+      <y>270</y>
       <w>50</w>
       <h>90</h>
     </coordinates>
@@ -254,93 +112,137 @@ bg=green</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>460</x>
-      <y>310</y>
-      <w>170</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>case class see.values.Lint
---
-def v {...}
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>580</x>
-      <y>230</y>
-      <w>50</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;30;80</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>550</x>
-      <y>30</y>
-      <w>170</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>case class see.values.Bool
---
-def v {...}
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>820</x>
-      <y>40</y>
+      <x>220</x>
+      <y>440</y>
       <w>140</w>
       <h>20</h>
     </coordinates>
-    <panel_attributes>object see.values.Bool</panel_attributes>
+    <panel_attributes>object see.values.BigR</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>690</x>
-      <y>0</y>
-      <w>150</w>
-      <h>70</h>
+      <x>230</x>
+      <y>350</y>
+      <w>118</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&gt;.
 instantiate</panel_attributes>
-    <additional_attributes>130;50;30;50</additional_attributes>
+    <additional_attributes>60;90;60;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>430</x>
+      <y>180</y>
+      <w>150</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>case class see.values.Str
+--
+def toStr { ... }
+def toString {...}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>440</x>
+      <y>280</y>
+      <w>130</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>object see.values.Str</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>450</x>
+      <y>210</y>
+      <w>118</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&gt;.
+instantiate</panel_attributes>
+    <additional_attributes>60;70;60;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>400</x>
+      <y>120</y>
+      <w>90</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;30;70;60</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>390</x>
+      <y>340</y>
+      <w>200</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>abstract class see.values.IntLike</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>370</x>
+      <y>270</y>
+      <w>50</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;30;30;70</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>410</x>
+      <y>440</y>
+      <w>170</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>case class see.values.BigI
+--
+def toString {...}
+bg=green</panel_attributes>
+    <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>460</x>
-      <y>30</y>
-      <w>110</w>
-      <h>50</h>
+      <y>330</y>
+      <w>50</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;90;30</additional_attributes>
+    <additional_attributes>30;30;30;110</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>850</x>
-      <y>400</y>
+      <x>610</x>
+      <y>220</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>Library Call
-bg=magenta</panel_attributes>
+    <panel_attributes>Standard</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>740</x>
-      <y>400</y>
+      <x>720</x>
+      <y>220</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -351,19 +253,20 @@ bg=green</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>630</x>
-      <y>400</y>
+      <x>830</x>
+      <y>220</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>Standard</panel_attributes>
+    <panel_attributes>Library Call
+bg=magenta</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>690</x>
-      <y>440</y>
+      <x>680</x>
+      <y>260</y>
       <w>210</w>
       <h>50</h>
     </coordinates>

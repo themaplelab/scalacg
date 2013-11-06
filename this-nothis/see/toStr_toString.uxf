@@ -742,4 +742,18 @@ bg=green</panel_attributes>
 bg=magenta</panel_attributes>
     <additional_attributes/>
   </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>740</x>
+      <y>640</y>
+      <w>210</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>The Scala compiler generates 
+a toString method for each
+case class in a companion object.
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>
