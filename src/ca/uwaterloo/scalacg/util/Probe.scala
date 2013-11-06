@@ -12,13 +12,19 @@ import probe.CallGraph
 import probe.ObjectManager
 import probe.ProbeMethod
 import java.util.zip.GZIPOutputStream
+import probe.soot.Escape
 
 trait Probe extends Global {
 
   import global._
 
   class StringHelper(str: String) {
-    def replaceLast(regex: String, replacement: String) = str.reverse.replace(regex.reverse, replacement.reverse).reverse
+    def replaceLast(regex: String, replacement: String) = {
+      val arg1 = regex.reverse.replace("$", "\\$").replace(".", "\\.")
+      val arg2 = replacement.reverse.replace("$", "\\$").replace(".", "\\.")
+      str.reverse.replaceFirst(arg1, arg2).reverse
+    }
+
     def replaceLastLiterally(literal: String, replacement: String) = {
       val arg1 = java.util.regex.Pattern.quote(literal)
       val arg2 = java.util.regex.Matcher.quoteReplacement(replacement)
@@ -47,11 +53,15 @@ trait Probe extends Global {
    * Get the full name (dot separated) of the owner of a method symbol. That acts like the method declaring class in Soot.
    */
   def effectiveOwnerName(methodSymbol: Symbol): String = {
-    //    println(methodSymbol.fullName)
-    //    println(methodSymbol.fullName.replaceLastLiterally("." + methodSymbol.simpleName, ""))
+    //    val fullName = methodSymbol.fullName
+    //    val replace = "." + methodSymbol.name
+    //    
+    //    println(fullName)
+    //    println(replace)
+    //    println(fullName.replaceLastLiterally(replace, ""))
     //    println
     //    println
-    methodSymbol.fullName.replaceLastLiterally("." + methodSymbol.simpleName, "")
+    methodSymbol.fullName.replaceLastLiterally("." + methodSymbol.name, "")
   }
 
   /**
