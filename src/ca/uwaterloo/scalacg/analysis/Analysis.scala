@@ -263,7 +263,17 @@ trait CallGraphAnalysis extends CallGraphWorklists
    */
   private def filterForThis(callSite: CallSite, types: Set[Type]) = {
     if (callSite.thisEnclMethod == NoSymbol || superCalled.reachableItems.contains(callSite.thisEnclMethod)) types
-    else types.filter { tpe => tpe.members.toSet contains callSite.thisEnclMethod }
+    else {
+      println("resolving " + signature(callSite.staticTarget) + " inside " + signature(callSite.enclMethod))
+      types.filter { tpe =>
+        val flag = tpe.members.toSet contains callSite.thisEnclMethod
+        if (flag == false &&
+          tpe.member(callSite.thisEnclMethod.name) != NoSymbol &&
+          tpe.member(callSite.staticTarget.name) != NoSymbol)
+          println(s"\texcluding ${tpe} because it contains a definition for ${callSite.thisEnclMethod}.")
+        flag
+      }
+    }
     //      println("*" * 20)
     //      println(tpe)
     //      println(tpe.members map signature)

@@ -133,6 +133,16 @@ trait CallGraphPrinter {
       out.println(methodToId.getOrElse(method, 0) + " ===> " + probeMethod(method))
     }
   }
+  
+  /**
+   * Print the set of instantiated types 
+   */
+  def printInstantiatedTypes = {
+    val out = new PrintStream("instantiated.txt")
+    for(tpe <- instantiatedTypes.reachableItems) {
+      out.println(tpe)
+    }
+  }
 
   /**
    * Get the prefix of the output files based on the plugin options.

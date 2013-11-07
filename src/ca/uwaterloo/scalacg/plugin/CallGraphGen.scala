@@ -58,6 +58,7 @@ abstract class CallGraphGen extends PluginComponent {
       println("Printing call graph to disk...")
       printProbeCallGraph
       printMethods
+      printInstantiatedTypes // TODO
     }
   }
 }
