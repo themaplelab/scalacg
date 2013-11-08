@@ -132,11 +132,21 @@ trait CallGraphAnalysis extends CallGraphWorklists
 
       // Find new instantiated types
       instantiatedTypes ++= instantiatedTypesInMethod(method)
+      if(containsLeftAssoc) println("found LeftAssoc in method: " + signature(method) + "\n\n")
       instantiatedTypes ++= modulesInTypes(instantiatedTypes.newItems) // TODO: this also returns companion objects for case classes!
+      if(containsLeftAssoc) println("found LeftAssoc in types: " + (instantiatedTypes.newItems.filter(_.toString contains "LeftAssoc"))  + "\n\n")
       instantiatedTypes ++= modulesInCallSites(callSites.newItems)
+      if(containsLeftAssoc) {
+        val css = callSites.newItems.map(abstractToCallSites).flatten
+        println("found LeftAssoc in call sites: " + css.filter(cs => cs.receiver != null && (cs.receiver.toString contains "LeftAssoc"))  + "\n\n")
+      }
     }
 
     reachableMethods.clear
+    
+    def containsLeftAssoc = {
+      instantiatedTypes.newItems.filter(tpe => tpe.toString contains "LeftAssoc").nonEmpty
+    }
   }
 
   /**
@@ -263,17 +273,16 @@ trait CallGraphAnalysis extends CallGraphWorklists
    */
   private def filterForThis(callSite: CallSite, types: Set[Type]) = {
     if (callSite.thisEnclMethod == NoSymbol || superCalled.reachableItems.contains(callSite.thisEnclMethod)) types
-    else {
-      println("resolving " + signature(callSite.staticTarget) + " inside " + signature(callSite.enclMethod))
-      types.filter { tpe =>
-        val flag = tpe.members.toSet contains callSite.thisEnclMethod
-        if (flag == false &&
-          tpe.member(callSite.thisEnclMethod.name) != NoSymbol &&
-          tpe.member(callSite.staticTarget.name) != NoSymbol)
-          println(s"\texcluding ${tpe} because it contains a definition for ${callSite.thisEnclMethod}.")
-        flag
-      }
-    }
+    else types.filter { tpe => tpe.members.toSet contains callSite.thisEnclMethod }
+    //    println("resolving " + signature(callSite.staticTarget) + " inside " + signature(callSite.enclMethod))
+    //      types.filter { tpe =>
+    //        val flag = tpe.members.toSet contains callSite.thisEnclMethod
+    //        if (flag == false &&
+    //          tpe.member(callSite.thisEnclMethod.name) != NoSymbol &&
+    //          tpe.member(callSite.staticTarget.name) != NoSymbol)
+    //          println(s"\texcluding ${tpe} because it contains a definition for ${callSite.thisEnclMethod}.")
+    //        flag
+    //      }
     //      println("*" * 20)
     //      println(tpe)
     //      println(tpe.members map signature)

@@ -2,10 +2,10 @@ package ca.uwaterloo.scalacg.analysis
 
 import scala.collection.immutable.{ Set => ImmutableSet }
 import scala.collection.mutable.Set
-
 import ca.uwaterloo.scalacg.config.Global
+import ca.uwaterloo.scalacg.util.Probe
 
-trait CallSites extends Global {
+trait CallSites extends Global with Probe {
   import global._
 
   class AbstractCallSite(receiverTree: Tree, val staticTarget: Symbol) {
@@ -58,6 +58,8 @@ trait CallSites extends Global {
       if (hasSuperAccessor) staticTarget.name drop nme.SUPER_PREFIX_STRING.length
       else staticTarget.name
     }
+    
+    override def toString = "<" + receiver + " :: " + signature(staticTarget) + ">"
   }
 
   class CallSite(receiverTree: Tree, override val staticTarget: Symbol,
@@ -82,6 +84,8 @@ trait CallSites extends Global {
         NoSymbol
       }
     }
+    
+    override def toString = "<" + receiver + " :: " + signature(staticTarget) + " :: " + signature(enclMethod) + ">"
   }
 
   object CallSite {

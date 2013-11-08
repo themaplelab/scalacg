@@ -1,0 +1,57 @@
+(TypeAnalyser.this.Type, TypeAnalyser.this.Type)
+(org.kiama.output.Fixity, org.kiama.output.Side)
+SECD.this.PrimValue
+SECD.this.RefValue
+StringBuilder
+org.kiama.example.iswim.secd.IOOps.Read
+org.kiama.example.iswim.secd.IOOps.Write
+org.kiama.example.oberon0.L0.c.CAddExp
+org.kiama.example.oberon0.L0.c.CAndExp
+org.kiama.example.oberon0.L0.c.CAssignment
+org.kiama.example.oberon0.L0.c.CDivExp
+org.kiama.example.oberon0.L0.c.CEqExp
+org.kiama.example.oberon0.L0.c.CGeExp
+org.kiama.example.oberon0.L0.c.CGtExp
+org.kiama.example.oberon0.L0.c.CIdnExp
+org.kiama.example.oberon0.L0.c.CInitDecl
+org.kiama.example.oberon0.L0.c.CLeExp
+org.kiama.example.oberon0.L0.c.CLtExp
+org.kiama.example.oberon0.L0.c.CModExp
+org.kiama.example.oberon0.L0.c.CMulExp
+org.kiama.example.oberon0.L0.c.CNeExp
+org.kiama.example.oberon0.L0.c.CNegExp
+org.kiama.example.oberon0.L0.c.CNotExp
+org.kiama.example.oberon0.L0.c.COrExp
+org.kiama.example.oberon0.L0.c.CSubExp
+org.kiama.example.oberon0.L0.c.CTypeDef
+org.kiama.example.oberon0.L1.c.CIfElseStatement
+org.kiama.example.oberon0.L1.c.CIfStatement
+org.kiama.example.oberon0.L1.c.CWhileStatement
+org.kiama.example.oberon0.L3.c.CAddrExp
+org.kiama.example.oberon0.L3.c.CAddrType
+org.kiama.example.oberon0.L3.c.CCall
+org.kiama.example.oberon0.L3.c.CDerefExp
+org.kiama.example.oberon0.L3.c.CStrExp
+org.kiama.example.oberon0.L3.c.CVoidType
+org.kiama.example.oberon0.L4.c.CFieldExp
+org.kiama.example.oberon0.L4.c.CIndexExp
+org.kiama.example.oberon0.L4.c.CRecordType
+org.kiama.example.oberon0.base.c.CEmptyStmt
+org.kiama.output.LeftAssoc.type
+org.kiama.output.NonAssoc.type
+org.kiama.output.Postfix.type
+org.kiama.output.Prefix.type
+org.kiama.output.RightAssoc.type
+scala.collection.immutable.IndexedSeq.type
+scala.runtime.AbstractFunction0[Parser.this.PackratParser[(org.kiama.example.oberon0.L0.source.Expression, org.kiama.example.oberon0.base.source.Block)]] with Serializable
+scala.runtime.AbstractFunction0[Parser.this.Parser[List[(org.kiama.example.oberon0.L0.source.Expression, org.kiama.example.oberon0.base.source.Block)]]] with Serializable
+scala.runtime.AbstractFunction0[org.kiama.example.oberon0.L1.c.CIfStatement] with Serializable
+scala.runtime.AbstractFunction1[(org.kiama.example.oberon0.L0.source.Expression, org.kiama.example.oberon0.base.source.Block),Boolean] with Serializable
+scala.runtime.AbstractFunction1[(org.kiama.example.oberon0.L0.source.Expression, org.kiama.example.oberon0.base.source.Block),PrettyPrinter.this.Doc] with Serializable
+scala.runtime.AbstractFunction1[(org.kiama.example.oberon0.L0.source.Expression, org.kiama.example.oberon0.base.source.Block),Unit] with Serializable
+scala.runtime.AbstractFunction1[CCodeGenerator.this.Field,org.kiama.example.oberon0.base.c.CVarDecl] with Serializable
+scala.runtime.AbstractFunction1[CCodeGenerator.this.ParamInfo,org.kiama.example.oberon0.base.c.CDeclaration] with Serializable
+scala.runtime.AbstractFunction1[Char,Any] with Serializable
+scala.runtime.AbstractFunction1[Int,org.kiama.example.oberon0.base.c.CExpression] with Serializable
+scala.runtime.AbstractFunction1[org.kiama.example.oberon0.base.source.Block,org.kiama.example.oberon0.L1.c.CIfElseStatement] with Serializable
+scala.runtime.AbstractFunction1[org.kiama.example.oberon0.base.source.IdnDef,org.kiama.example.oberon0.base.c.CVarDecl] with Serializable

@@ -1,0 +1,5 @@
+<org.kiama.output.LeftAssoc.type :: <java.lang.Object: ==(x$1: Object)> :: <org.kiama.output.ParenPrettyPrinter: noparens(inner: org.kiama.output.PrettyOperatorExpression,outer: org.kiama.output.PrettyOperatorExpression,side: org.kiama.output.Side)>
+
+<org.kiama.output.LeftAssoc.type :: <java.lang.Object: ==(x$1: Object)> :: <org.kiama.output.ParenPrettyPrinter: noparens(inner: org.kiama.output.PrettyOperatorExpression,outer: org.kiama.output.PrettyOperatorExpression,side: org.kiama.output.Side)>
+
+<org.kiama.output.LeftAssoc.type :: <java.lang.Object: ==(x$1: Object)> :: <org.kiama.output.ParenPrettyPrinter: noparens(inner: org.kiama.output.PrettyOperatorExpression,outer: org.kiama.output.PrettyOperatorExpression,side: org.kiama.output.Side)>
