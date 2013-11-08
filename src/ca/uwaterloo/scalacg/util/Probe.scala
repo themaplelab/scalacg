@@ -140,7 +140,7 @@ trait CallGraphPrinter {
   def printInstantiatedTypes = {
     val out = new PrintStream("instantiated.txt")
     for(tpe <- instantiatedTypes.reachableItems) {
-      out.println(tpe)
+      out.println(tpe.baseClasses.map(_.fullName).mkString("\t"))
     }
   }
 

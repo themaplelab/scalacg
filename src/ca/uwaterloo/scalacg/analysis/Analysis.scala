@@ -132,7 +132,7 @@ trait CallGraphAnalysis extends CallGraphWorklists
 
       // Find new instantiated types
       instantiatedTypes ++= instantiatedTypesInMethod(method)
-      instantiatedTypes ++= modulesInTypes(instantiatedTypes.newItems) // TODO: bug -> this also returns some case classes! need to also double check when we consider case classes to be instantiated 
+      instantiatedTypes ++= modulesInTypes(instantiatedTypes.newItems) // TODO: this also returns companion objects for case classes!
       instantiatedTypes ++= modulesInCallSites(callSites.newItems)
     }
 

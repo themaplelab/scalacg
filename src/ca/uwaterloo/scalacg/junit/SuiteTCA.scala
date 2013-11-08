@@ -15,6 +15,7 @@ class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "cal
   @Test def testArgot1() { runTest("Argot1") }
 
   // kiama
+  @Test def testKiama1() { runTest("Kiama1") }
   //  @Test def testThis() { runTest("This") }
 
   // joos
