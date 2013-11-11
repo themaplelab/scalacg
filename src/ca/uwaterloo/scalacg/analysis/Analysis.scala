@@ -62,13 +62,18 @@ trait CallGraphAnalysis extends CallGraphWorklists
     // Entry points are initially reachable, main modules are initially instantiated.
     reachableMethods ++= mainMethods
     instantiatedTypes ++= mainModules
-    instantiatedTypes ++= modulesInTypes(mainModules)
+    //    instantiatedTypes ++= modulesInTypes(mainModules)
 
     //    types foreach { tpe =>
     //      println("*" * 20)
     //      println(tpe)
     //      tpe.decls.foreach(println)
     //      println("*" * 20)
+    //    }
+
+    //    abstractToCallSites.values.flatten foreach println
+    //    instantiatedTypesInMethod.foreach { e =>
+    //      println(signature(e._1) + " :: " + e._2)
     //    }
   }
 
@@ -132,21 +137,22 @@ trait CallGraphAnalysis extends CallGraphWorklists
 
       // Find new instantiated types
       instantiatedTypes ++= instantiatedTypesInMethod(method)
-      if(containsLeftAssoc) println("found LeftAssoc in method: " + signature(method) + "\n\n")
-      instantiatedTypes ++= modulesInTypes(instantiatedTypes.newItems) // TODO: this also returns companion objects for case classes!
-      if(containsLeftAssoc) println("found LeftAssoc in types: " + (instantiatedTypes.newItems.filter(_.toString contains "LeftAssoc"))  + "\n\n")
-      instantiatedTypes ++= modulesInCallSites(callSites.newItems)
-      if(containsLeftAssoc) {
-        val css = callSites.newItems.map(abstractToCallSites).flatten
-        println("found LeftAssoc in call sites: " + css.filter(cs => cs.receiver != null && (cs.receiver.toString contains "LeftAssoc"))  + "\n\n")
-      }
+      //      instantiatedTypes ++= modulesInCallSites(callSites.newItems)
+
+      //      if(containsLeftAssoc) println("found LeftAssoc in method: " + signature(method) + "\n\n")
+      //      instantiatedTypes ++= modulesInTypes(instantiatedTypes.newItems) // TODO: this also returns companion objects for case classes!
+      //      if(containsLeftAssoc) println("found LeftAssoc in types: " + (instantiatedTypes.newItems.filter(_.toString contains "LeftAssoc"))  + "\n\n")
+      //      if(containsLeftAssoc) {
+      //        val css = callSites.newItems.map(abstractToCallSites).flatten
+      //        println("found LeftAssoc in call sites: " + css.filter(cs => cs.receiver != null && (cs.receiver.toString contains "LeftAssoc"))  + "\n\n")
+      //      }
     }
 
     reachableMethods.clear
-    
-    def containsLeftAssoc = {
-      instantiatedTypes.newItems.filter(tpe => tpe.toString contains "LeftAssoc").nonEmpty
-    }
+
+    //    def containsLeftAssoc = {
+    //      instantiatedTypes.newItems.filter(tpe => tpe.toString contains "LeftAssoc").nonEmpty
+    //    }
   }
 
   /**

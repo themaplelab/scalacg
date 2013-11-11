@@ -4,6 +4,8 @@ import org.junit.Test
 
 class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "callgraph:super", "callgraph:assert")) {
 
+  @Test def testModule1() { runTest("Module1") }
+  
   // see
   @Test def testSee1() { runTest("See1") }
   @Test def testSee2() { runTest("See2") }
@@ -27,7 +29,7 @@ class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "cal
   @Test def testTraitTypeParam() { runTest("TraitTypeParam") }
   @Test def testMethodTypeParam() { runTest("MethodTypeParam") }
   @Test def testPrintln() { runTest("Println") }
-
+  
   @Test def testExperiment() { runTest("Experiment") }
 
   @Test def testTest1() { runTest("Test1") }

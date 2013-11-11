@@ -11,7 +11,7 @@ trait CallSites extends Global with Probe {
   class AbstractCallSite(receiverTree: Tree, val staticTarget: Symbol) {
     // The type of the receiver.
     lazy val receiver = receiverTree.tpe
-    lazy val receiverSymbol = receiverTree.symbol
+    //    protected lazy val receiverSymbol = receiverTree.symbol
 
     // Is this a constructor call?
     lazy val isConstructorCall = staticTarget.isConstructor
@@ -52,13 +52,14 @@ trait CallSites extends Global with Probe {
 
     // Is the receiver of the call site a module class?
     lazy val hasModuleReceiver = receiver != null && receiver != NoType && receiver.typeSymbol.isModuleOrModuleClass
+    //    lazy val hasModuleReceiver = receiverSymbol != null && receiverSymbol.isModuleOrModuleClass
 
     // Get the name of the static target method.
     lazy val targetName = {
       if (hasSuperAccessor) staticTarget.name drop nme.SUPER_PREFIX_STRING.length
       else staticTarget.name
     }
-    
+
     override def toString = "<" + receiver + " :: " + signature(staticTarget) + ">"
   }
 
@@ -84,8 +85,8 @@ trait CallSites extends Global with Probe {
         NoSymbol
       }
     }
-    
-    override def toString = "<" + receiver + " :: " + signature(staticTarget) + " :: " + signature(enclMethod) + ">"
+
+    override def toString = "<" + receiver + " :: " + signature(staticTarget) + " :: " + signature(enclMethod) + ">" //receiverTree.getClass + ">"
   }
 
   object CallSite {
@@ -96,9 +97,9 @@ trait CallSites extends Global with Probe {
       new CallSite(receiverTree, staticTarget, enclMethod, position, annotations)
   }
 
-  def modulesInCallSites(callSites: Set[AbstractCallSite]) = {
-    val modules = Set.empty[Type]
-    callSites.foreach(cs => if (cs.hasModuleReceiver) modules += cs.receiverSymbol.tpe)
-    modules
-  }
+  //  def modulesInCallSites(callSites: Set[AbstractCallSite]) = {
+  //    val modules = Set.empty[Type]
+  //    callSites.foreach(cs => if (cs.hasModuleReceiver) modules += cs.receiverSymbol.tpe)
+  //    modules
+  //  }
 }

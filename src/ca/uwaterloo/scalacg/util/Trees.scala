@@ -24,7 +24,7 @@ trait TraversalCollections extends Global with CallSites with TypesCollections w
   val abstractToCallSites: Map[AbstractCallSite, ImmutableSet[CallSite]]
   val callSitesInMethod: Map[Symbol, ImmutableSet[AbstractCallSite]]
   val instantiatedTypesInMethod: Map[Symbol, ImmutableSet[Type]]
-  val modulesInType: Map[Type, ImmutableSet[Type]]
+  //  val modulesInType: Map[Type, ImmutableSet[Type]]
 }
 
 trait TreeTraversal extends Trees with TraversalCollections {
@@ -35,7 +35,7 @@ trait TreeTraversal extends Trees with TraversalCollections {
   val abstractToCallSites = Map[AbstractCallSite, ImmutableSet[CallSite]]().withDefaultValue(ImmutableSet.empty[CallSite])
   val callSitesInMethod = Map[Symbol, ImmutableSet[AbstractCallSite]]().withDefaultValue(ImmutableSet.empty[AbstractCallSite])
   val instantiatedTypesInMethod = Map[Symbol, ImmutableSet[Type]]().withDefaultValue(ImmutableSet.empty[Type])
-  val modulesInType = Map[Type, ImmutableSet[Type]]().withDefaultValue(ImmutableSet.empty[Type])
+  //  val modulesInType = Map[Type, ImmutableSet[Type]]().withDefaultValue(ImmutableSet.empty[Type])
 
   // Types
   val applicationTypes = Set[Type]()
@@ -53,14 +53,14 @@ trait TreeTraversal extends Trees with TraversalCollections {
     case Apply(_, List(Literal(Constant(string: String)))) => string
   }
 
-  /**
-   * Find all the modules defined in the given set of types (not recursive).
-   */
-  def modulesInTypes(types: Set[Type]) = {
-    val ret = Set[Type]()
-    types.foreach(cls => ret ++= modulesInType(cls))
-    ret
-  }
+  //  /**
+  //   * Find all the modules defined in the given set of types (not recursive).
+  //   */
+  //  def modulesInTypes(types: Set[Type]) = {
+  //    val ret = Set[Type]()
+  //    types.foreach(cls => ret ++= modulesInType(cls))
+  //    ret
+  //  }
 
   // Traverse the ASTs and collect information
   def traverse(tree: Tree, ancestors: List[Tree]): Unit = {
@@ -88,16 +88,17 @@ trait TreeTraversal extends Trees with TraversalCollections {
         if (cls.isModuleOrModuleClass) {
           val parent = enclMethodOrClass(ancestors)
 
-          // If the module is not a top-level module (i.e., it is defined in some method or class/module.)
-          if (parent.isDefined) {
-            val symbol = parent.get.symbol
-            //            val parentTpe = parent.get.tpe
-            parent.get match {
-              case _: ClassDef | _: ModuleDef => modulesInType(symbol.tpe) += tpe
-              case _: DefDef => instantiatedTypesInMethod(symbol) += tpe
-              case _ =>
-            }
-          } else { // Look for main methods in top-level modules.
+          //           If the module is not a top-level module (i.e., it is defined in some method or class/module.)
+          // Look for main methods in top-level modules.
+          if (parent.isEmpty) {
+            //            val symbol = parent.get.symbol
+            //            //            val parentTpe = parent.get.tpe
+            //            parent.get match {
+            //              case _: ClassDef | _: ModuleDef => modulesInType(symbol.tpe) += tpe
+            //              case _: DefDef => instantiatedTypesInMethod(symbol) += tpe
+            //              case _ =>
+            //            }
+            //          } else { 
             val main = tpe.members.filter { m =>
               m.isMethod && // consider only methods, not fields or other members
                 !m.isDeferred && // filter out abstract methods
@@ -116,8 +117,33 @@ trait TreeTraversal extends Trees with TraversalCollections {
       case _ => // don't care
     }
 
-    // Traverse the children too
+    /**
+     * Traverse the children too, and look for modules in methods.
+     * Modules can appear as one of the following trees:
+     * - Select: e.g. val v = p(C.this.A) (so A is defined in Class/Module C)
+     * - Ident: e.g. val v = p(A) (A is a top-level module)
+     */
     def processChildren = {
+      tree match {
+        // case s: Select if s.symbol.isModuleOrModuleClass => println("found a module: " + s.symbol.tpe + " :: " + signature(enclMethod(ancestors)) + " :: " + s.symbol + s.getClass)
+        // case i: Ident if i.symbol.isModuleOrModuleClass => println("found a module: " + i.symbol.tpe + " :: " + signature(enclMethod(ancestors)) + " :: " + i.symbol + i.getClass)
+        case _: Select | _: Ident if tree.symbol.isModuleOrModuleClass => {
+          val encl = enclMethod(ancestors)
+          if (encl != NoSymbol) {
+            instantiatedTypesInMethod(encl) += tree.tpe
+            //            println("found a module: " + tree.symbol.tpe + " :: " + signature(encl) + " :: " + tree.symbol + tree.getClass)
+          }
+        }
+        //        case New(tpt) if tpt.symbol.isModuleOrModuleClass => {
+        //          val encl = enclMethod(ancestors)
+        //          if (encl != NoSymbol) {
+        //            val tpe = tpt.symbol.tpe.dealias
+        //            instantiatedTypesInMethod(encl) += tpe
+        //            println("found a module: " + tpe + " :: " + signature(encl) + " :: " + tpt.symbol + tree.getClass)
+        //          }
+        //        }
+        case _ => //println(tree.tpe + " :: " + " :: " + signature(enclMethod(ancestors)) + " :: " + tree.getClass)
+      }
       tree.children.foreach(traverse(_, tree :: ancestors))
     }
 
@@ -166,6 +192,8 @@ trait TreeTraversal extends Trees with TraversalCollections {
       abstractCallSites += abstractCallSite
       callSitesInMethod(callSite.enclMethod) += abstractCallSite
       abstractToCallSites(abstractCallSite) += callSite
+
+      if (abstractCallSite.hasModuleReceiver) instantiatedTypesInMethod(enclMethod) += abstractCallSite.receiver
     }
 
     /**
@@ -176,7 +204,7 @@ trait TreeTraversal extends Trees with TraversalCollections {
       ancestors.collectFirst {
         case cd: ClassDef => cd.symbol.primaryConstructor
         case dd: DefDef => dd.symbol
-      }.get
+      }.getOrElse(NoSymbol)
     }
 
     /**
@@ -223,7 +251,9 @@ trait TreeTraversal extends Trees with TraversalCollections {
       if (isMethod(callee.symbol)) {
         val (annotations, plainReceiver) = findReceiverAnnotations(receiver.get)
         addCallSite(plainReceiver, apply.symbol, enclMethod(ancestors), apply.pos, annotations)
+//        println(callee + " :: " + receiver + " :: " + receiver.get.symbol.tpe + " :: " + receiver.get.getClass)
       }
+
       args.foreach(traverse(_, apply :: ancestors))
       callee.children.foreach(traverse(_, apply :: ancestors)) // TODO: This causes duplicate call sites (see foreach in Reachable1b)
     }
