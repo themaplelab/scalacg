@@ -127,9 +127,10 @@ trait TreeTraversal extends Trees with TraversalCollections {
       tree match {
         // case s: Select if s.symbol.isModuleOrModuleClass => println("found a module: " + s.symbol.tpe + " :: " + signature(enclMethod(ancestors)) + " :: " + s.symbol + s.getClass)
         // case i: Ident if i.symbol.isModuleOrModuleClass => println("found a module: " + i.symbol.tpe + " :: " + signature(enclMethod(ancestors)) + " :: " + i.symbol + i.getClass)
-        case _: Select | _: Ident if tree.symbol.isModuleOrModuleClass => {
+        case _: Select | _: Ident if tree.symbol.isModuleOrModuleClass && !tree.symbol.isPackage => { //ObjectOrClass && !tree.symbol.isPackage => {
           val encl = enclMethod(ancestors)
           if (encl != NoSymbol) {
+            //            println("instantiating type <t> inside method <m>: " + tree.tpe + " :: " + signature(encl))
             instantiatedTypesInMethod(encl) += tree.tpe
             //            println("found a module: " + tree.symbol.tpe + " :: " + signature(encl) + " :: " + tree.symbol + tree.getClass)
           }
@@ -250,12 +251,18 @@ trait TreeTraversal extends Trees with TraversalCollections {
       val receiver = getReceiver(a)
       if (isMethod(callee.symbol)) {
         val (annotations, plainReceiver) = findReceiverAnnotations(receiver.get)
-        addCallSite(plainReceiver, apply.symbol, enclMethod(ancestors), apply.pos, annotations)
-//        println(callee + " :: " + receiver + " :: " + receiver.get.symbol.tpe + " :: " + receiver.get.getClass)
+        val encl = enclMethod(ancestors)
+        addCallSite(plainReceiver, apply.symbol, encl, apply.pos, annotations)
+        //        println(callee + " :: " + receiver + " :: " + receiver.get.symbol.tpe + " :: " + receiver.get.getClass)
+
+        // If this is a call to asInstanceOf, add the type to the set of instantiateTypesInMethod
+        if (definitions.isCastSymbol(apply.symbol)) instantiatedTypesInMethod(encl) += apply.tpe
+        //          println("found asInstanceOf inside : " + signature(enclMethod(ancestors)) + " :: " + apply.tpe)
+        //        }
       }
 
-      args.foreach(traverse(_, apply :: ancestors))
-      callee.children.foreach(traverse(_, apply :: ancestors)) // TODO: This causes duplicate call sites (see foreach in Reachable1b)
+      args foreach (traverse(_, apply :: ancestors))
+      callee.children foreach (traverse(_, apply :: ancestors)) // TODO: This causes duplicate call sites (see foreach in Reachable1b)
     }
 
     // Find call sites resulting from Select(qual, name) or Ident(qual, name)
