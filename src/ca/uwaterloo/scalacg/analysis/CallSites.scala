@@ -11,7 +11,6 @@ trait CallSites extends Global with Probe {
   class AbstractCallSite(receiverTree: Tree, val staticTarget: Symbol) {
     // The type of the receiver.
     lazy val receiver = receiverTree.tpe
-    //    protected lazy val receiverSymbol = receiverTree.symbol
 
     // Is this a constructor call?
     lazy val isConstructorCall = staticTarget.isConstructor
@@ -86,7 +85,7 @@ trait CallSites extends Global with Probe {
       }
     }
 
-    override def toString = "<" + receiver + " :: " + signature(staticTarget) + " :: " + signature(enclMethod) + ">" //receiverTree.getClass + ">"
+    override def toString = "<" + receiver + " :: " + signature(staticTarget) + " :: " + signature(enclMethod) + ">"
   }
 
   object CallSite {
@@ -96,10 +95,4 @@ trait CallSites extends Global with Probe {
       enclMethod: Symbol, position: Position, annotations: ImmutableSet[String]) =
       new CallSite(receiverTree, staticTarget, enclMethod, position, annotations)
   }
-
-  //  def modulesInCallSites(callSites: Set[AbstractCallSite]) = {
-  //    val modules = Set.empty[Type]
-  //    callSites.foreach(cs => if (cs.hasModuleReceiver) modules += cs.receiverSymbol.tpe)
-  //    modules
-  //  }
 }

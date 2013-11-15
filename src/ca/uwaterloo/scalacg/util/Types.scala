@@ -1,5 +1,6 @@
 package ca.uwaterloo.scalacg.util
 
+import scala.collection.immutable.{Set => ImmutableSet}
 import scala.collection.mutable.Map
 import scala.collection.mutable.Set
 
@@ -11,6 +12,7 @@ trait TypesCollections extends Global {
   val applicationTypes: Set[Type]
   val types: Set[Type]
   val mainModules: Set[Type]
+  val thisEnclMethodToTypes: Map[Symbol, ImmutableSet[Type]]
 }
 
 trait TypeOps extends TypesCollections {

@@ -1,0 +1,12 @@
+org.kiama.example.picojava.Main
+org.kiama.example.picojava.Parser
+org.kiama.util.PositionedParserUtilities
+org.kiama.util.ParserUtilities
+scala.util.parsing.combinator.PackratParsers
+org.kiama.util.Compiler
+org.kiama.util.RegexCompiler
+scala.util.parsing.combinator.RegexParsers
+scala.util.parsing.combinator.Parsers
+org.kiama.util.CompilerBase
+java.lang.Object
+scala.Any

@@ -41,6 +41,8 @@ trait TreeTraversal extends Trees with TraversalCollections {
   val applicationTypes = Set[Type]()
   val types = Set[Type]()
   val mainModules = Set[Type]()
+  val instantiated = Set[Type]() // a local set so that we do not process instantiated types more than once
+  val thisEnclMethodToTypes = Map[Symbol, ImmutableSet[Type]]().withDefaultValue(ImmutableSet.empty[Type])
 
   // Methods
   val mainMethods = Set[Symbol]()
@@ -53,15 +55,6 @@ trait TreeTraversal extends Trees with TraversalCollections {
     case Apply(_, List(Literal(Constant(string: String)))) => string
   }
 
-  //  /**
-  //   * Find all the modules defined in the given set of types (not recursive).
-  //   */
-  //  def modulesInTypes(types: Set[Type]) = {
-  //    val ret = Set[Type]()
-  //    types.foreach(cls => ret ++= modulesInType(cls))
-  //    ret
-  //  }
-
   // Traverse the ASTs and collect information
   def traverse(tree: Tree, ancestors: List[Tree]): Unit = {
     tree match {
@@ -73,47 +66,57 @@ trait TreeTraversal extends Trees with TraversalCollections {
       case _ => processChildren
     }
 
+    /**
+     * Adds an instantiated type to its enclMethod.
+     */
+    def addInstantiatedType(tpe: Type) = {
+      instantiatedTypesInMethod(enclMethod) += tpe
+      if (!instantiated(tpe)) tpe.members filter (_.isMethod) foreach { method => thisEnclMethodToTypes(method) += tpe }
+    }
+
     // Add a type encountered traversing the tree (this could be an instantiated or a defined type).
     def addType(tree: Tree) = tree match {
       case _: ClassDef | _: ModuleDef => {
         val cls = tree.symbol // NSC marks this as OPT, so just call it once
         val tpe = cls.tpe
 
-        applicationTypes += tpe
-        types += tpe
+        // Do not process a class/module definition multiple times
+        if (!applicationTypes(tpe)) {
+          applicationTypes += tpe
+          types += tpe
+          
+          // Update the map thisEnclMethodToTypes 
+          tpe.members filter (_.isMethod) foreach { method => thisEnclMethodToTypes(method) += tpe }
 
-        // Which class/method is that module defined in?
-        // If it's defined in a class, add it to modulesInClass.
-        // If in a method, add to the instantiated types in that method.
-        if (cls.isModuleOrModuleClass) {
-          val parent = enclMethodOrClass(ancestors)
+          // Which class/method is that module defined in?
+          // If it's defined in a class, add it to modulesInClass.
+          // If in a method, add to the instantiated types in that method.
+          if (cls.isModuleOrModuleClass) {
+            // Look for main methods in top-level modules.
+            if (enclMethodOrClass.isEmpty) {
+              val main = tpe.members.filter { m =>
+                m.isMethod && // consider only methods, not fields or other members
+                  !m.isDeferred && // filter out abstract methods
+                  definitions.isJavaMainMethod(m) // checks signature and name of method
+              }.toList
 
-          //           If the module is not a top-level module (i.e., it is defined in some method or class/module.)
-          // Look for main methods in top-level modules.
-          if (parent.isEmpty) {
-            //            val symbol = parent.get.symbol
-            //            //            val parentTpe = parent.get.tpe
-            //            parent.get match {
-            //              case _: ClassDef | _: ModuleDef => modulesInType(symbol.tpe) += tpe
-            //              case _: DefDef => instantiatedTypesInMethod(symbol) += tpe
-            //              case _ =>
-            //            }
-            //          } else { 
-            val main = tpe.members.filter { m =>
-              m.isMethod && // consider only methods, not fields or other members
-                !m.isDeferred && // filter out abstract methods
-                definitions.isJavaMainMethod(m) // checks signature and name of method
-            }.toList
-
-            if (main.nonEmpty) {
-              mainMethods += main.head
-              mainModulesPrimaryConstructors += cls.primaryConstructor
-              mainModules += tpe
+              if (main.nonEmpty) {
+                mainMethods += main.head
+                mainModulesPrimaryConstructors += cls.primaryConstructor
+                mainModules += tpe
+              }
             }
           }
         }
       }
-      case New(tpt) => types += tpt.tpe.dealias // Some types are aliased (see CaseClass3)
+      case New(tpt) => {
+        val tpe = tpt.tpe.dealias // Some types are aliased (see CaseClass3)
+
+        // Do not process a type multiple times 
+        if (!types(tpe)) {
+          types += tpe
+        }
+      }
       case _ => // don't care
     }
 
@@ -125,25 +128,9 @@ trait TreeTraversal extends Trees with TraversalCollections {
      */
     def processChildren = {
       tree match {
-        // case s: Select if s.symbol.isModuleOrModuleClass => println("found a module: " + s.symbol.tpe + " :: " + signature(enclMethod(ancestors)) + " :: " + s.symbol + s.getClass)
-        // case i: Ident if i.symbol.isModuleOrModuleClass => println("found a module: " + i.symbol.tpe + " :: " + signature(enclMethod(ancestors)) + " :: " + i.symbol + i.getClass)
-        case _: Select | _: Ident if tree.symbol.isModuleOrModuleClass && !tree.symbol.isPackage => { //ObjectOrClass && !tree.symbol.isPackage => {
-          val encl = enclMethod(ancestors)
-          if (encl != NoSymbol) {
-            //            println("instantiating type <t> inside method <m>: " + tree.tpe + " :: " + signature(encl))
-            instantiatedTypesInMethod(encl) += tree.tpe
-            //            println("found a module: " + tree.symbol.tpe + " :: " + signature(encl) + " :: " + tree.symbol + tree.getClass)
-          }
-        }
-        //        case New(tpt) if tpt.symbol.isModuleOrModuleClass => {
-        //          val encl = enclMethod(ancestors)
-        //          if (encl != NoSymbol) {
-        //            val tpe = tpt.symbol.tpe.dealias
-        //            instantiatedTypesInMethod(encl) += tpe
-        //            println("found a module: " + tpe + " :: " + signature(encl) + " :: " + tpt.symbol + tree.getClass)
-        //          }
-        //        }
-        case _ => //println(tree.tpe + " :: " + " :: " + signature(enclMethod(ancestors)) + " :: " + tree.getClass)
+        case _: Select | _: Ident if tree.symbol.isModuleOrModuleClass && !tree.symbol.isPackage =>
+          if (enclMethod != NoSymbol) addInstantiatedType(tree.tpe)
+        case _ =>
       }
       tree.children.foreach(traverse(_, tree :: ancestors))
     }
@@ -194,14 +181,14 @@ trait TreeTraversal extends Trees with TraversalCollections {
       callSitesInMethod(callSite.enclMethod) += abstractCallSite
       abstractToCallSites(abstractCallSite) += callSite
 
-      if (abstractCallSite.hasModuleReceiver) instantiatedTypesInMethod(enclMethod) += abstractCallSite.receiver
+      if (abstractCallSite.hasModuleReceiver) addInstantiatedType(abstractCallSite.receiver)
     }
 
     /**
      * Find the enclosing method from the given list of ancestors. For call sites in methods, that's obvious. For call sites
      * that appear in class definition, the primary constructor of the defining class is the enclosing method.
      */
-    def enclMethod(ancestors: List[Tree]) = {
+    lazy val enclMethod = {
       ancestors.collectFirst {
         case cd: ClassDef => cd.symbol.primaryConstructor
         case dd: DefDef => dd.symbol
@@ -211,7 +198,7 @@ trait TreeTraversal extends Trees with TraversalCollections {
     /**
      * Return the first enclosing class (or object) or method.
      */
-    def enclMethodOrClass(ancestors: List[Tree]) = {
+    lazy val enclMethodOrClass = {
       ancestors.find { parent =>
         parent match {
           case _: ClassDef | _: ModuleDef | _: DefDef => true
@@ -251,14 +238,12 @@ trait TreeTraversal extends Trees with TraversalCollections {
       val receiver = getReceiver(a)
       if (isMethod(callee.symbol)) {
         val (annotations, plainReceiver) = findReceiverAnnotations(receiver.get)
-        val encl = enclMethod(ancestors)
-        addCallSite(plainReceiver, apply.symbol, encl, apply.pos, annotations)
-        //        println(callee + " :: " + receiver + " :: " + receiver.get.symbol.tpe + " :: " + receiver.get.getClass)
+        addCallSite(plainReceiver, apply.symbol, enclMethod, apply.pos, annotations)
 
         // If this is a call to asInstanceOf, add the type to the set of instantiateTypesInMethod
-        if (definitions.isCastSymbol(apply.symbol)) instantiatedTypesInMethod(encl) += apply.tpe
-        //          println("found asInstanceOf inside : " + signature(enclMethod(ancestors)) + " :: " + apply.tpe)
-        //        }
+        if (definitions.isCastSymbol(apply.symbol) && apply.tpe.typeSymbol.isCaseClass) {
+          addInstantiatedType(apply.tpe)
+        }
       }
 
       args foreach (traverse(_, apply :: ancestors))
@@ -270,7 +255,7 @@ trait TreeTraversal extends Trees with TraversalCollections {
       if (isMethod(tree.symbol)) {
         val receiver = getReceiver(tree)
         val (annotations, plainReceiver) = findReceiverAnnotations(receiver.get)
-        addCallSite(plainReceiver, tree.symbol, enclMethod(ancestors), tree.pos, annotations)
+        addCallSite(plainReceiver, tree.symbol, enclMethod, tree.pos, annotations)
       }
 
       processChildren
@@ -278,7 +263,7 @@ trait TreeTraversal extends Trees with TraversalCollections {
 
     // Find instantiated types.
     def findInstantiatedTypes(nw: New) = {
-      instantiatedTypesInMethod(enclMethod(ancestors)) += nw.tpt.tpe.dealias // Some types are aliased (see CaseClass3)
+      addInstantiatedType(nw.tpt.tpe.dealias) // Some types are aliased (see CaseClass3)
       findType(nw)
     }
 

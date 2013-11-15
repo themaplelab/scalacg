@@ -42,7 +42,7 @@ trait Lookup extends Probe {
    * Look for targets at the given call site using the given types. This is the normal method resolution that obeys
    * sub-typing relationships.
    */
-  def lookup_<:<(callSite: AbstractCallSite, types: Set[Type]): Set[Symbol] = {
+  def lookup_<:<(callSite: AbstractCallSite, types: collection.Set[Type]): Set[Symbol] = {
     val targets = Set[Symbol]()
 
     for (tpe <- types) {

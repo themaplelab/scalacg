@@ -1,0 +1,13 @@
+org.kiama.example.json.Main
+org.kiama.example.json.Driver
+org.kiama.util.Compiler
+org.kiama.util.RegexCompiler
+org.kiama.util.CompilerBase
+org.kiama.example.json.SyntaxAnalysis
+org.kiama.util.PositionedParserUtilities
+org.kiama.util.ParserUtilities
+scala.util.parsing.combinator.PackratParsers
+scala.util.parsing.combinator.RegexParsers
+scala.util.parsing.combinator.Parsers
+java.lang.Object
+scala.Any

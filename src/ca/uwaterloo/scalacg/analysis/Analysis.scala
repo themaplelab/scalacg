@@ -62,19 +62,6 @@ trait CallGraphAnalysis extends CallGraphWorklists
     // Entry points are initially reachable, main modules are initially instantiated.
     reachableMethods ++= mainMethods
     instantiatedTypes ++= mainModules
-    //    instantiatedTypes ++= modulesInTypes(mainModules)
-
-    //    types foreach { tpe =>
-    //      println("*" * 20)
-    //      println(tpe)
-    //      tpe.decls.foreach(println)
-    //      println("*" * 20)
-    //    }
-
-    //    abstractToCallSites.values.flatten foreach println
-    //    instantiatedTypesInMethod.foreach { e =>
-    //      println(signature(e._1) + " :: " + e._2)
-    //    }
   }
 
   def buildCallGraph = {
@@ -137,22 +124,9 @@ trait CallGraphAnalysis extends CallGraphWorklists
 
       // Find new instantiated types
       instantiatedTypes ++= instantiatedTypesInMethod(method)
-      //      instantiatedTypes ++= modulesInCallSites(callSites.newItems)
-
-      //      if(containsLeftAssoc) println("found LeftAssoc in method: " + signature(method) + "\n\n")
-      //      instantiatedTypes ++= modulesInTypes(instantiatedTypes.newItems) // TODO: this also returns companion objects for case classes!
-      //      if(containsLeftAssoc) println("found LeftAssoc in types: " + (instantiatedTypes.newItems.filter(_.toString contains "LeftAssoc"))  + "\n\n")
-      //      if(containsLeftAssoc) {
-      //        val css = callSites.newItems.map(abstractToCallSites).flatten
-      //        println("found LeftAssoc in call sites: " + css.filter(cs => cs.receiver != null && (cs.receiver.toString contains "LeftAssoc"))  + "\n\n")
-      //      }
     }
 
     reachableMethods.clear
-
-    //    def containsLeftAssoc = {
-    //      instantiatedTypes.newItems.filter(tpe => tpe.toString contains "LeftAssoc").nonEmpty
-    //    }
   }
 
   /**
@@ -219,25 +193,9 @@ trait CallGraphAnalysis extends CallGraphWorklists
     val allTargets = Set[Symbol]()
 
     abstractToCallSites(callSite).foreach { cs =>
+      //      println("resolving call site: " + cs)
       val lookupTypes = filterForThis(cs, types)
-      // TODO
-      //      if (cs.staticTarget.nameString == "toString" && cs.enclMethod.nameString == "toText") {
-      //        println("************************************")
-      //        println(cs.receiver + " :: " + signature(cs.enclMethod) + " :: " + signature(cs.thisEnclMethod))
-      //        //        println(types)
-      //        types.foreach { tpe =>
-      //          println(tpe + " :: " + (tpe.members.toSet contains cs.thisEnclMethod) + " :: " + (tpe.typeSymbol.companionSymbol.tpe.members.toSet contains cs.thisEnclMethod))
-      //        }
-      //        println(lookupTypes)
-      //        //        println(targets map signature)
-      //        println("************************************\n")
-      //        //
-      //        //        //        println("************************************")
-      //        //        //        types foreach println
-      //        //        //        println("====================================")
-      //        //        //        lookupTypes foreach println
-      //        //        //        println("************************************")
-      //      }
+      //      (types diff lookupTypes).foreach { tpe => println("\t excluding type " + tpe + " because it contains a definition for " + signature(cs.thisEnclMethod)) }
       val targets = lookup_<:<(cs, lookupTypes)
 
       addTargets(cs, targets)
@@ -279,36 +237,7 @@ trait CallGraphAnalysis extends CallGraphWorklists
    */
   private def filterForThis(callSite: CallSite, types: Set[Type]) = {
     if (callSite.thisEnclMethod == NoSymbol || superCalled.reachableItems.contains(callSite.thisEnclMethod)) types
-    else types.filter { tpe => tpe.members.toSet contains callSite.thisEnclMethod }
-    //    println("resolving " + signature(callSite.staticTarget) + " inside " + signature(callSite.enclMethod))
-    //      types.filter { tpe =>
-    //        val flag = tpe.members.toSet contains callSite.thisEnclMethod
-    //        if (flag == false &&
-    //          tpe.member(callSite.thisEnclMethod.name) != NoSymbol &&
-    //          tpe.member(callSite.staticTarget.name) != NoSymbol)
-    //          println(s"\texcluding ${tpe} because it contains a definition for ${callSite.thisEnclMethod}.")
-    //        flag
-    //      }
-    //      println("*" * 20)
-    //      println(tpe)
-    //      println(tpe.members map signature)
-    //      println(tpe.typeSymbol.companionSymbol.tpe.members map signature)
-    //      val decls = tpe.decls.toSet
-    //      val compDecls = tpe.typeSymbol.companionSymbol.tpe.decls.toSet
-    //      val decF = decls.filter { _.overriddenSymbol(callSite.thisEnclMethod.owner) == callSite.thisEnclMethod }.toSet
-    //      decF.isEmpty
-    //      val compDecF = compDecls.filter { _.overriddenSymbol(callSite.thisEnclMethod.owner) == callSite.thisEnclMethod }.toSet
-    //      println(decls map signature)
-    //      println(compDecls map signature)
-    //      println(decF map signature)
-    //      println(compDecF map signature)
-    //
-    //      println(callSite.receiver + " :: " + signature(callSite.enclMethod) + " :: " + signature(callSite.thisEnclMethod))
-    //      val flag =
-    //        (tpe.decls.toSet contains callSite.thisEnclMethod) || (tpe.typeSymbol.companionSymbol.tpe.decls.toSet contains callSite.thisEnclMethod)
-    //      println(flag)
-    //      println("*" * 20)
-    //      flag
-    //    }
+    //    else types.filter { tpe => tpe.members.toSet contains callSite.thisEnclMethod }
+    else types intersect thisEnclMethodToTypes(callSite.thisEnclMethod)
   }
 }
