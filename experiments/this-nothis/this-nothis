@@ -1,0 +1,27 @@
+===========
+THIS-NOTHIS
+===========
+                           argot           fimpp            joos           kiama          phantm         scalisp             see       tictactoe
+                           -----           -----            ----           -----          ------         -------             ---       ---------
+Reachable Methods
+=================
+THIS                         276            1011            1385            7702            4975             442            2040             180
+NOTHIS                       276            1011            1385            8109            4975             442            2040             180
+THIS - NOTHIS                  0               0               0               0               0               0               0               0
+NOTHIS - THIS                  0               0               0             407               0               0               0               0
+
+Call Edges
+==========
+THIS                         556            2939            6836           29936           16304             857            8393             297
+NOTHIS                       557            2939            6836           31764           16331             857            8439             297
+THIS - NOTHIS                  0               0               0               0               0               0               0               0
+NOTHIS - THIS                  1               0               0            1828              27               0              46               0
+
+Instantiated Types
+==================
+THIS                          45             122             194            1093             600              82             359              27
+NOTHIS                        45             122             194            1136             600              82             359              27
+THIS - NOTHIS                  0               0               0               0               0               0               0               0
+NOTHIS - THIS                  0               0               0              43               0               0               0               0
+
+

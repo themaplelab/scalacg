@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+
+ant dist.plugin -Dthis=false > standard
+ant dist.plugin > this
+ant dist.walacg > wala
+

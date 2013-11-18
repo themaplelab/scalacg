@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+
+ant bm-plugin.jar -Dbm=kiama -Dthis=false > kiama-standard
+ant bm-plugin.jar -Dbm=kiama > kiama-this
+

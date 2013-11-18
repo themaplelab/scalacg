@@ -12,9 +12,9 @@ import probe.GXLReader
 import probe.ProbeMethod
 
 object Experiments {
-  //  final lazy val benchmarks = List("argot", "fimpp", "joos", "kiama", "phantm", "scalisp", "see", "tictactoe")
+  final lazy val benchmarks = List("argot", "fimpp", "joos", "kiama", "phantm", "scalisp", "see", "tictactoe")
   //  final lazy val benchmarks = List("argot", "fimpp", "joos", "scalisp", "see", "tictactoe")
-  final lazy val benchmarks = List("kiama")
+  //  final lazy val benchmarks = List("kiama")
 
   def main(args: Array[String]) = {
     var prefix = ""
@@ -57,9 +57,9 @@ object Experiments {
   }
 
   class Experiment(name: String, prefix: String)(dirA: String, cgA: String)(dirB: String, cgB: String) {
-    val reachables = new Stat
-    val edges = new Stat
-    val types = new Stat
+    lazy val reachables = new Stat
+    lazy val edges = new Stat
+    lazy val types = new Stat
 
     benchmarks.foreach { benchmark =>
       // Get the call graphs
@@ -74,10 +74,12 @@ object Experiments {
       lazy val typesA = getTypes(prefix + dirA + File.separator + benchmark + File.separator + "instantiated.txt")
       lazy val typesB = getTypes(prefix + dirB + File.separator + benchmark + File.separator + "instantiated.txt")
 
-      types.a(benchmark) = typesA.size
-      types.b(benchmark) = typesB.size
-      types.a_b(benchmark) = (typesA -- typesB).size
-      types.b_a(benchmark) = (typesB -- typesA).size
+      if (name != "tca-wala") {
+        types.a(benchmark) = typesA.size
+        types.b(benchmark) = typesB.size
+        types.a_b(benchmark) = (typesA -- typesB).size
+        types.b_a(benchmark) = (typesB -- typesA).size
+      }
 
       // Reachable methods
       val reachA: Set[ProbeMethod] = supergraph.findReachables
@@ -92,12 +94,12 @@ object Experiments {
       val edgesA: Set[CallEdge] = supergraph.edges
       val edgesB: Set[CallEdge] = subgraph.edges
 
-      (reachB -- reachA).toSeq.sortWith((a, b) => a.name <= b.name).foreach(println)
-      println("===========================================================================")
-      (edgesB -- edgesA).toSeq.sortWith((a, b) => a.src.name <= b.src.name).foreach(println)
-      println("===========================================================================")
-      (typesB -- typesA).toSeq.sorted.foreach(println)
-      println("\n")
+      //      (reachB -- reachA).toSeq.sortWith((a, b) => a.name <= b.name).foreach(println)
+      //      println("===========================================================================")
+      //      (edgesB -- edgesA).toSeq.sortWith((a, b) => a.src.name <= b.src.name).foreach(println)
+      //      println("===========================================================================")
+      //      (typesB -- typesA).toSeq.sorted.foreach(println)
+      //      println("\n")
 
       edges.a(benchmark) = edgesA.size
       edges.b(benchmark) = edgesB.size
@@ -150,15 +152,18 @@ object Experiments {
       printf(sup_sub + sup_sub_t + format, edges.a_b.toSeq.sorted.map(_._2): _*)
       printf(sub_sup + sup_sub_t + format, edges.b_a.toSeq.sorted.map(_._2): _*)
       println
-      
+
       // Types
-      println(tps)
-      println("=" * tps.length)
-      printf(sup + sup_t + format, types.a.toSeq.sorted.map(_._2): _*)
-      printf(sub + sub_t + format, types.b.toSeq.sorted.map(_._2): _*)
-      printf(sup_sub + sup_sub_t + format, types.a_b.toSeq.sorted.map(_._2): _*)
-      printf(sub_sup + sup_sub_t + format, types.b_a.toSeq.sorted.map(_._2): _*)
-      println
+      if (name != "tca-wala") {
+        println(tps)
+        println("=" * tps.length)
+        printf(sup + sup_t + format, types.a.toSeq.sorted.map(_._2): _*)
+        printf(sub + sub_t + format, types.b.toSeq.sorted.map(_._2): _*)
+        printf(sup_sub + sup_sub_t + format, types.a_b.toSeq.sorted.map(_._2): _*)
+        printf(sub_sup + sup_sub_t + format, types.b_a.toSeq.sorted.map(_._2): _*)
+        println
+      }
+      
       println
     }
 

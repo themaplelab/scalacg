@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+set -e
+
+./stats this-nothis > this-nothis
+./stats tca-wala > tca-wala
