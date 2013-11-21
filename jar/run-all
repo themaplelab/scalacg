@@ -3,5 +3,5 @@
 
 ant dist.plugin -Dthis=false > standard
 ant dist.plugin > this
-ant dist.walacg > wala
+ant dist.walacg > bytecode
 
