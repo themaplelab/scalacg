@@ -24,8 +24,8 @@ trait TypeOps extends TypesCollections {
    * Karim: we should be using decls here not members.
    */
   def constructorsOf(tpe: Type) = {
-    tpe.members.filter(_.isConstructor).toSet
-    // tpe.decls.filter(_.isConstructor).toSet
+    //    tpe.members.filter(_.isConstructor).toSet
+    tpe.decls.filter(_.isConstructor).toSet
   }
 
   /**

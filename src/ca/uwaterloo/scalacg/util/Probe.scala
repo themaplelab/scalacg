@@ -183,6 +183,16 @@ trait CallGraphPrinter {
   }
 
   /**
+   * Print the names of application packages to be used later by WALA.
+   */
+  def printPackageNames = {
+    val out = new PrintStream("packages.txt")
+    for (pkg <- packageNames) {
+      out.println(pkg)
+    }
+  }
+
+  /**
    * Get the prefix of the output files based on the plugin options.
    */
   lazy val prefix = {

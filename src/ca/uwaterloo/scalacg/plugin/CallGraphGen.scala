@@ -48,10 +48,11 @@ abstract class CallGraphGen extends PluginComponent {
       println(s"Finished $phaseName in ${Timer.elapsed} seconds.")
 
       // Print out the probe call graph
-      println("Printing call graph to disk...")
+      println("Printing call graph to disk ...")
       printProbeCallGraph
       printMethods
-      printInstantiatedTypes // TODO
+      printInstantiatedTypes
+      printPackageNames
 
       if (pluginOptions.doAssertions) {
         println("Performing assertions...")
