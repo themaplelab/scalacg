@@ -17,6 +17,8 @@ trait CallSites extends Global with Probe {
 
     // Is this a super call?
     lazy val isSuperCall = hasSuperReceiver || hasSuperAccessor
+    
+    lazy val isFunctionCall = receiver.isInstanceOf[MethodType]
 
     // The super receiver, if any.
     protected lazy val superReceiver = {

@@ -1,0 +1,20 @@
+========
+TCA-WALA
+========
+                           argot
+                           -----
+Reachable Methods
+=================
+TCA                          276
+WALA                        1788
+TCA - WALA                    16
+WALA - TCA                  1528
+
+Call Edges
+==========
+TCA                          556
+WALA                       11894
+TCA - WALA                    14
+WALA - TCA                 11352
+
+

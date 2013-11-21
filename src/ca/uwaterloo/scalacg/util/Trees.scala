@@ -24,10 +24,9 @@ trait TraversalCollections extends Global with CallSites with TypesCollections w
   val abstractToCallSites: Map[AbstractCallSite, ImmutableSet[CallSite]]
   val callSitesInMethod: Map[Symbol, ImmutableSet[AbstractCallSite]]
   val instantiatedTypesInMethod: Map[Symbol, ImmutableSet[Type]]
-  //  val modulesInType: Map[Type, ImmutableSet[Type]]
 }
 
-trait TreeTraversal extends Trees with TraversalCollections {
+trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
   import global._
 
   // Traversal
@@ -35,7 +34,6 @@ trait TreeTraversal extends Trees with TraversalCollections {
   val abstractToCallSites = Map[AbstractCallSite, ImmutableSet[CallSite]]().withDefaultValue(ImmutableSet.empty[CallSite])
   val callSitesInMethod = Map[Symbol, ImmutableSet[AbstractCallSite]]().withDefaultValue(ImmutableSet.empty[AbstractCallSite])
   val instantiatedTypesInMethod = Map[Symbol, ImmutableSet[Type]]().withDefaultValue(ImmutableSet.empty[Type])
-  //  val modulesInType = Map[Type, ImmutableSet[Type]]().withDefaultValue(ImmutableSet.empty[Type])
 
   // Types
   val applicationTypes = Set[Type]()
@@ -43,6 +41,7 @@ trait TreeTraversal extends Trees with TraversalCollections {
   val mainModules = Set[Type]()
   val instantiated = Set[Type]() // a local set so that we do not process instantiated types more than once
   val thisEnclMethodToTypes = Map[Symbol, ImmutableSet[Type]]().withDefaultValue(ImmutableSet.empty[Type])
+  val packageNames = Set[String]()
 
   // Methods
   val mainMethods = Set[Symbol]()
@@ -84,9 +83,12 @@ trait TreeTraversal extends Trees with TraversalCollections {
         if (!applicationTypes(tpe)) {
           applicationTypes += tpe
           types += tpe
-          
+
           // Update the map thisEnclMethodToTypes 
           tpe.members filter (_.isMethod) foreach { method => thisEnclMethodToTypes(method) += tpe }
+
+          // Get the package name
+          packageNames += getPackageName(cls)
 
           // Which class/method is that module defined in?
           // If it's defined in a class, add it to modulesInClass.

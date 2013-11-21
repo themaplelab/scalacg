@@ -12,9 +12,9 @@ import probe.GXLReader
 import probe.ProbeMethod
 
 object Experiments {
-  final lazy val benchmarks = List("argot", "fimpp", "joos", "kiama", "phantm", "scalisp", "see", "tictactoe")
+  //  final lazy val benchmarks = List("argot", "fimpp", "joos", "kiama", "phantm", "scalisp", "see", "tictactoe")
   //  final lazy val benchmarks = List("argot", "fimpp", "joos", "scalisp", "see", "tictactoe")
-  //  final lazy val benchmarks = List("kiama")
+  final lazy val benchmarks = List("argot")
 
   def main(args: Array[String]) = {
     var prefix = ""
@@ -24,7 +24,7 @@ object Experiments {
     args.length match {
       case 0 =>
         prefix = "../scalabench/local/dist/"
-        experiment = "this-nothis"
+        experiment = "tca-wala"
       case 2 =>
         prefix = args(0)
         experiment = args(1)
@@ -94,12 +94,14 @@ object Experiments {
       val edgesA: Set[CallEdge] = supergraph.edges
       val edgesB: Set[CallEdge] = subgraph.edges
 
-      //      (reachB -- reachA).toSeq.sortWith((a, b) => a.name <= b.name).foreach(println)
-      //      println("===========================================================================")
-      //      (edgesB -- edgesA).toSeq.sortWith((a, b) => a.src.name <= b.src.name).foreach(println)
-      //      println("===========================================================================")
-      //      (typesB -- typesA).toSeq.sorted.foreach(println)
-      //      println("\n")
+      (reachA -- reachB).toSeq.sortWith((a, b) => a.name < b.name).foreach(println)
+      println("===========================================================================")
+      (edgesA -- edgesB).toSeq.sortWith((a, b) => a.src.name < b.src.name).foreach(println)
+      if (name != "tca-wala") {
+        println("===========================================================================")
+        (typesB -- typesA).toSeq.sorted.foreach(println)
+      }
+      println("\n")
 
       edges.a(benchmark) = edgesA.size
       edges.b(benchmark) = edgesB.size
@@ -163,7 +165,7 @@ object Experiments {
         printf(sub_sup + sup_sub_t + format, types.b_a.toSeq.sorted.map(_._2): _*)
         println
       }
-      
+
       println
     }
 

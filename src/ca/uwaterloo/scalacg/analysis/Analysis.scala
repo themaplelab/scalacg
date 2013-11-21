@@ -62,6 +62,11 @@ trait CallGraphAnalysis extends CallGraphWorklists
     // Entry points are initially reachable, main modules are initially instantiated.
     reachableMethods ++= mainMethods
     instantiatedTypes ++= mainModules
+
+    //    println("=" * 50)
+    //    packageNames.foreach(println)
+    //    println("=" * 50)
+    //    abstractCallSites.foreach(a => println(a + " :: " + a.receiver.getClass))
   }
 
   def buildCallGraph = {
@@ -149,6 +154,8 @@ trait CallGraphAnalysis extends CallGraphWorklists
 
       if (callSite.isConstructorCall) {
         targets += processConstructorCall(callSite)
+      } else if (callSite.isFunctionCall) {
+        targets += processFunctionCall(callSite)
       } else if (pluginOptions.doSuperCalls && callSite.isSuperCall) {
         targets ++= processSuperCall(callSite, types)
       } else if (pluginOptions.doThis && callSite.hasThisReceiver) {
@@ -166,6 +173,21 @@ trait CallGraphAnalysis extends CallGraphWorklists
    * If the target method is a constructor, no need to do the lookup.
    */
   private def processConstructorCall(callSite: AbstractCallSite) = {
+    useStaticTarget(callSite)
+  }
+
+  /**
+   * If the receiver of the call is a function, no need to do the lookup.
+   */
+  private def processFunctionCall(callSite: AbstractCallSite) = {
+    useStaticTarget(callSite)
+  }
+
+  /**
+   * Use the static target as the only target for this call site
+   * for those cases where no lookup is needed.
+   */
+  private def useStaticTarget(callSite: AbstractCallSite) = {
     addTargets(callSite, Set(callSite.staticTarget))
     callSite.staticTarget
   }

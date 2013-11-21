@@ -1,8 +1,11 @@
 package ca.uwaterloo.scalacg.util
 
 import java.io.PrintStream
+import java.util.zip.GZIPOutputStream
+
 import scala.collection.mutable.StringBuilder
 import scala.reflect.io.AbstractFile
+
 import ca.uwaterloo.scalacg.analysis.CallGraphAnalysis
 import ca.uwaterloo.scalacg.config.Global
 import ca.uwaterloo.scalacg.probe.CallEdge
@@ -11,27 +14,10 @@ import ca.uwaterloo.scalacg.probe.GXLWriter
 import probe.CallGraph
 import probe.ObjectManager
 import probe.ProbeMethod
-import java.util.zip.GZIPOutputStream
-import probe.soot.Escape
 
 trait Probe extends Global {
 
   import global._
-
-  class StringHelper(str: String) {
-    def replaceLast(regex: String, replacement: String) = {
-      val arg1 = regex.reverse.replace("$", "\\$").replace(".", "\\.")
-      val arg2 = replacement.reverse.replace("$", "\\$").replace(".", "\\.")
-      str.reverse.replaceFirst(arg1, arg2).reverse
-    }
-
-    def replaceLastLiterally(literal: String, replacement: String) = {
-      val arg1 = java.util.regex.Pattern.quote(literal)
-      val arg2 = java.util.regex.Matcher.quoteReplacement(replacement)
-      replaceLast(literal, replacement)
-    }
-  }
-  implicit def stringWrapper(string: String) = new StringHelper(string)
 
   /**
    * A printable name for a that uses the probe signature, surround by "<" and ">", useful when printing sets of methods.
@@ -47,6 +33,11 @@ trait Probe extends Global {
     val probeClass = ObjectManager.v().getClass(effectiveOwnerName(methodSymbol))
     val probeMethod = ObjectManager.v().getMethod(probeClass, methodSymbol.simpleName.decode, paramsSignatureString(methodSymbol))
     probeMethod
+  }
+
+  lazy val libraryBlob = {
+    val cls = ObjectManager.v().getClass("ca.uwaterloo.scalacg.Library")
+    ObjectManager.v().getMethod(cls, "blob", "")
   }
 
   /**
@@ -89,20 +80,38 @@ trait CallGraphPrinter {
    * Return a probe call graph in GXL format.
    */
   def printProbeCallGraph = {
-    println("Call graph is available at callgraph.gxl.gzip")
+    println("Call graph is available at callgraph.gxl.gzip and its summary at callgraph-summary.gxl.gzip")
     val out = new PrintStream("callgraph.gxl.gzip")
     val probeCallGraph = new CallGraph
+
+    val summary = new PrintStream("callgraph-summary.gxl.gzip")
+    val probeSummary = new CallGraph
+
     val entryPointsOut = new PrintStream("entrypoints.txt")
     val libraryOut = new PrintStream("library.txt")
+    val callbacksOut = new PrintStream("callbacks.txt")
 
-    // Get the entry points (these include main methods, call-backs, and module constructors)
+    // Get the entry points (these include main methods, and module constructors)
     for {
-      entry <- entryPoints ++ callBacks ++ moduleConstructors
+      entry <- entryPoints ++ moduleConstructors
     } {
       probeCallGraph.entryPoints.add(probeMethod(entry))
+      if (isApplication(entry)) probeSummary.entryPoints.add(probeMethod(entry))
       entryPointsOut.println(methodToId.getOrElse(entry, 0) + " ===> " + probeMethod(entry))
     }
-    entryPointsOut.close
+
+    // Call backs originate from the library blob in the summary call graph but entry points in the regular one
+    for {
+      callback <- callBacks
+    } {
+      val callbackMethod = probeMethod(callback)
+      probeCallGraph.entryPoints.add(callbackMethod)
+      if (isApplication(callback)) probeSummary.edges.add(new CallEdge(libraryBlob, callbackMethod, unknownContext))
+
+      val e = methodToId.getOrElse(callback, 0) + " ===> " + callbackMethod
+      callbacksOut.println(e)
+      entryPointsOut.println(e)
+    }
 
     // Get the edges
     for {
@@ -111,18 +120,47 @@ trait CallGraphPrinter {
       target <- callGraph(callSite)
       sourceFile = if (callSite.position.isDefined) relativize(callSite.position.source.file) else "unknown"
       line = if (callSite.position.isDefined) callSite.position.line.toString else "-1"
+      sourceMethod = probeMethod(source)
+      targetMethod = probeMethod(target)
+      context = new CallSiteContext(sourceFile + " : line " + line)
     } {
-      val edge = new CallEdge(probeMethod(source), probeMethod(target), new CallSiteContext(sourceFile + " : line " + line))
+      val edge = new CallEdge(sourceMethod, targetMethod, context)
       probeCallGraph.edges.add(edge)
 
+      val isSourceApp = isApplication(source)
+      val isTargetApp = isApplication(target)
+
+      //      if (sourceMethod.name == "apply" && targetMethod.name == "paramString") {
+      //        println(sourceMethod + " :: " + isSourceApp + " :: " + getPackageName(source) + " :: " + packageNames.contains(getPackageName(source)))
+      //        println(targetMethod + " :: " + isTargetApp + " :: " + getPackageName(target) + " :: " + packageNames.contains(getPackageName(target)))
+      //      }
+
       // Print out library methods to be added to the WALA call graph
-      if (isLibrary(target)) libraryOut.println(edge.src + " ===> " + edge.dst)
+      if (!isTargetApp) libraryOut.println(edge.src + " ===> " + edge.dst)
+
+      // Now put the edge in the summary call graph
+      if (isSourceApp && isTargetApp) {
+        val edge = new CallEdge(sourceMethod, targetMethod, context)
+        probeSummary.edges.add(edge)
+      } else if (isSourceApp && !isTargetApp) {
+        val edge = new CallEdge(sourceMethod, libraryBlob, context)
+        probeSummary.edges.add(edge)
+      } else {
+        throw new UnsupportedOperationException("source method cannot be in the library: " + sourceMethod)
+      }
     }
+
+    // Close the streams
+    callbacksOut.close
+    entryPointsOut.close
     libraryOut.close
 
     // Write GXL file in gzip format to save space.
     new GXLWriter().write(probeCallGraph, new GZIPOutputStream(out))
+    new GXLWriter().write(probeSummary, new GZIPOutputStream(summary))
   }
+
+  lazy val unknownContext = new CallSiteContext("unknown : -1")
 
   /**
    * Print the mapping of all annotated methods to their source level signature.
@@ -133,13 +171,13 @@ trait CallGraphPrinter {
       out.println(methodToId.getOrElse(method, 0) + " ===> " + probeMethod(method))
     }
   }
-  
+
   /**
-   * Print the set of instantiated types 
+   * Print the set of instantiated types
    */
   def printInstantiatedTypes = {
     val out = new PrintStream("instantiated.txt")
-    for(tpe <- instantiatedTypes.reachableItems) {
+    for (tpe <- instantiatedTypes.reachableItems) {
       out.println(tpe.baseClasses.map(_.fullName).mkString("\t"))
     }
   }

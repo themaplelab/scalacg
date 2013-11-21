@@ -1,6 +1,6 @@
 package ca.uwaterloo.scalacg.util
 
-import scala.collection.immutable.{Set => ImmutableSet}
+import scala.collection.immutable.{ Set => ImmutableSet }
 import scala.collection.mutable.Map
 import scala.collection.mutable.Set
 
@@ -13,6 +13,7 @@ trait TypesCollections extends Global {
   val types: Set[Type]
   val mainModules: Set[Type]
   val thisEnclMethodToTypes: Map[Symbol, ImmutableSet[Type]]
+  val packageNames: Set[String]
 }
 
 trait TypeOps extends TypesCollections {
@@ -20,16 +21,19 @@ trait TypeOps extends TypesCollections {
 
   /**
    * Get the constructors of a type.
-   * TODO Karim: do we use members or decls here?
+   * Karim: we should be using decls here not members.
    */
   def constructorsOf(tpe: Type) = {
     tpe.members.filter(_.isConstructor).toSet
+    // tpe.decls.filter(_.isConstructor).toSet
   }
 
   /**
    * Is this symbol in an application class?
    */
-  def isApplication(symbol: Symbol) = applicationTypes contains symbol.owner.tpe
+  def isApplication(symbol: Symbol) = packageNames contains getPackageName(symbol)
+  //    applicationTypes contains symbol.owner.tpe
+  //  (methodToId.get(symbol).isDefined) || (applicationTypes contains symbol.owner.tpe)
 
   /**
    * Is this symbol in a library class?
@@ -49,12 +53,8 @@ trait TypeOps extends TypesCollections {
    * Replace formal type parameter symbols with actual type arguments.
    */
   def instantiateTypeParams(actual: Type, declared: Type): Type = {
-    //println("actual: " + actual)
-    //println("declared: " + declared)
     val params = declared.typeArgs.map(_.typeSymbol)
     val args = actual.typeArgs
-    //println("params: " + params)
-    //println("args: " + args)
     if (params.length != args.length) declared else {
       val ret = declared.instantiateTypeParams(params, args)
       if (ret.isError) declared else ret
@@ -69,6 +69,14 @@ trait TypeOps extends TypesCollections {
     val trimmed = Set[List[Symbol]]()
     types.foreach { tpe => if (tpe.baseClasses contains cls) trimmed += (tpe.baseClasses dropWhile (_ != cls)).tail }
     trimmed
+  }
+
+  /**
+   * Get the package name of a symbol by getting the ownerChain of the enclosing package, reverse, then drop the
+   * root package, empty package, and any NoSymbol.
+   */
+  def getPackageName(symbol: Symbol) = {
+    symbol.enclosingPackage.ownerChain.reverse.dropWhile(o => o.isRoot || o.isEmptyPackage).map(_.nameString).mkString(".")
   }
 }
 

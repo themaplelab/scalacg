@@ -27,6 +27,8 @@ trait MethodOps extends TypeOps {
    * Get the potential callback methods of a type.
    */
   def callBacksOf(tpe: Type) = {
-    tpe.decls.filter(d => isApplication(d) && isOverridingLibraryMethod(d)).toSet
+    //    println("====> callbacks of " + tpe + " :: " + tpe.decls.filter(d => isApplication(d) && isOverridingLibraryMethod(d)).toSet)
+    //    tpe.decls.filter(d => isApplication(d) && isOverridingLibraryMethod(d)).toSet
+    tpe.members.filter(d => isApplication(d) && isOverridingLibraryMethod(d)).toSet
   }
 }
