@@ -4,16 +4,19 @@ import org.junit.Test
 
 class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "callgraph:super", "callgraph:assert")) {
 
-  @Test def testDefault() { runTest("default") }
+  //tictactoe
+  @Test def testTicTacToe() { testPath = "junit/src/"; runTest("tictactoe") }
+
+  @Test def testDefault() { testPath = "junit/src/"; runTest("default") }
   @Test def testModule1() { runTest("Module1") }
-  
+
   // see
   @Test def testSee1() { runTest("See1") }
   @Test def testSee2() { runTest("See2") }
-  
+
   // phantm
   @Test def testPhantm1() { runTest("Phantm1") }
-  
+
   // argot
   @Test def testArgot1() { runTest("Argot1") }
 
@@ -30,7 +33,7 @@ class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "cal
   @Test def testTraitTypeParam() { runTest("TraitTypeParam") }
   @Test def testMethodTypeParam() { runTest("MethodTypeParam") }
   @Test def testPrintln() { runTest("Println") }
-  
+
   @Test def testExperiment() { runTest("Experiment") }
 
   @Test def testTest1() { runTest("Test1") }

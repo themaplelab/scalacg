@@ -23,43 +23,23 @@ trait Probe extends Global {
    * A printable name for a that uses the probe signature, surround by "<" and ">", useful when printing sets of methods.
    */
   def signature(method: Symbol) = {
-    "<" + probeMethod(method) + ">"
+    "<" + probeMethod(method).correctToString + ">"
   }
 
   /**
    * Get a probe method for the given symbol
    */
   def probeMethod(methodSymbol: Symbol): ProbeMethod = {
-    val probeClass = ObjectManager.v().getClass(effectiveOwnerName(methodSymbol))
-    val probeMethod = ObjectManager.v().getMethod(probeClass, methodSymbol.simpleName.decode, paramsSignatureString(methodSymbol))
+    //    println(methodSymbol.fullName + " ::" + methodSymbol.pkg + "::" + methodSymbol.cls + "::" + methodSymbol.nme)
+    val probeClass = ObjectManager.v().getClass(methodSymbol.pkg, methodSymbol.cls)
+    val probeMethod = ObjectManager.v().getMethod(probeClass, methodSymbol.nme, methodSymbol.paramsSig)
+    println(probeMethod.correctToString)
     probeMethod
   }
 
   lazy val libraryBlob = {
     val cls = ObjectManager.v().getClass("ca.uwaterloo.scalacg.Library")
     ObjectManager.v().getMethod(cls, "blob", "")
-  }
-
-  /**
-   * Get the full name (dot separated) of the owner of a method symbol. That acts like the method declaring class in Soot.
-   */
-  def effectiveOwnerName(methodSymbol: Symbol): String = {
-    //    val fullName = methodSymbol.fullName
-    //    val replace = "." + methodSymbol.name
-    //    
-    //    println(fullName)
-    //    println(replace)
-    //    println(fullName.replaceLastLiterally(replace, ""))
-    //    println
-    //    println
-    methodSymbol.fullName.replaceLastLiterally("." + methodSymbol.name, "")
-  }
-
-  /**
-   * Get the params string of a method symbol
-   */
-  def paramsSignatureString(methodSymbol: Symbol): String = {
-    methodSymbol.signatureString.substring(0, methodSymbol.signatureString.indexOf(')') + 1).replace("(", "").replace(")", "")
   }
 
   /**
@@ -95,9 +75,10 @@ trait CallGraphPrinter {
     for {
       entry <- entryPoints ++ moduleConstructors
     } {
-      probeCallGraph.entryPoints.add(probeMethod(entry))
-      if (isApplication(entry)) probeSummary.entryPoints.add(probeMethod(entry))
-      entryPointsOut.println(methodToId.getOrElse(entry, 0) + " ===> " + probeMethod(entry))
+      val method = probeMethod(entry)
+      probeCallGraph.entryPoints.add(method)
+      if (isApplication(entry)) probeSummary.entryPoints.add(method)
+      entryPointsOut.println(methodToId.getOrElse(entry, 0) + " ===> " + method.correctToString)
     }
 
     // Call backs originate from the library blob in the summary call graph but entry points in the regular one
@@ -108,7 +89,7 @@ trait CallGraphPrinter {
       probeCallGraph.entryPoints.add(callbackMethod)
       if (isApplication(callback)) probeSummary.edges.add(new CallEdge(libraryBlob, callbackMethod, unknownContext))
 
-      val e = methodToId.getOrElse(callback, 0) + " ===> " + callbackMethod
+      val e = methodToId.getOrElse(callback, 0) + " ===> " + callbackMethod.correctToString
       callbacksOut.println(e)
       entryPointsOut.println(e)
     }
@@ -136,7 +117,7 @@ trait CallGraphPrinter {
       //      }
 
       // Print out library methods to be added to the WALA call graph
-      if (!isTargetApp) libraryOut.println(edge.src + " ===> " + edge.dst)
+      if (!isTargetApp) libraryOut.println(sourceMethod.correctToString + " ===> " + targetMethod.correctToString)
 
       // Now put the edge in the summary call graph
       if (isSourceApp && isTargetApp) {
@@ -168,7 +149,7 @@ trait CallGraphPrinter {
   def printMethods = {
     val out = new PrintStream("methods.txt")
     for (method <- methodToId.keys) {
-      out.println(methodToId.getOrElse(method, 0) + " ===> " + probeMethod(method))
+      out.println(methodToId.getOrElse(method, 0) + " ===> " + probeMethod(method).correctToString)
     }
   }
 

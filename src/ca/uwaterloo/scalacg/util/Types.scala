@@ -31,7 +31,7 @@ trait TypeOps extends TypesCollections {
   /**
    * Is this symbol in an application class?
    */
-  def isApplication(symbol: Symbol) = packageNames contains getPackageName(symbol)
+  def isApplication(symbol: Symbol) = packageNames contains symbol.pkg
   //    applicationTypes contains symbol.owner.tpe
   //  (methodToId.get(symbol).isDefined) || (applicationTypes contains symbol.owner.tpe)
 
@@ -69,14 +69,6 @@ trait TypeOps extends TypesCollections {
     val trimmed = Set[List[Symbol]]()
     types.foreach { tpe => if (tpe.baseClasses contains cls) trimmed += (tpe.baseClasses dropWhile (_ != cls)).tail }
     trimmed
-  }
-
-  /**
-   * Get the package name of a symbol by getting the ownerChain of the enclosing package, reverse, then drop the
-   * root package, empty package, and any NoSymbol.
-   */
-  def getPackageName(symbol: Symbol) = {
-    symbol.enclosingPackage.ownerChain.reverse.dropWhile(o => o.isRoot || o.isEmptyPackage).map(_.nameString).mkString(".")
   }
 }
 

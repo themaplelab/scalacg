@@ -1,0 +1,116 @@
+TicTacToeBoard.$anonfun.$anonfun: <init>()
+TicTacToeBoard.$anonfun: <init>()
+TicTacToeBoard.$anonfun: apply(str: String)
+TicTacToeBoard.$anonfun: apply(acc: String,c: Int)
+TicTacToeBoard.$anonfun: apply(offset: Int)
+TicTacToeBoard.$anonfun: apply(acc: String,n: Int)
+TicTacToeBoard.$anonfun: apply(array: Array[Player])
+TicTacToeBoard.$anonfun: apply(row: String)
+TicTacToeBoard.$anonfun: apply(row: Array[Player])
+TicTacToeBoard.$anonfun: apply(char: Char)
+TicTacToeBoard.$anonfun.$anonfun: apply(c: Int)
+TicTacToeBoard.$anonfun: apply(i: Int)
+TicTacToeBoard.$anonfun: apply(c: Int)
+TicTacToeBoard.$anonfun: apply()
+TicTacToeBoard.$anonfun: apply(n: Int)
+TicTacToeBoard.$anonfun.$anonfun: apply(row: Int)
+TicTacToeBoard.$anonfun.$anonfun: apply(col: Int)
+TicTacToeBoard.$anonfun: apply(r: Int)
+TicTacToeBoard.$anonfun.$anonfun: apply(r: Int)
+TicTacToeBoard.$anonfun.$anonfun: apply(j: Int)
+===========================================================================
+TicTacToeBoard.$anonfun: <init>() ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard: <init>(board: Array[Array[Player]]) ===> TicTacToeBoard.$anonfun: <init>()
+TicTacToeBoard: <init>(stringBoard: Array[String]) ===> TicTacToeBoard.$anonfun: <init>()
+TicTacToeBoard.$anonfun.$anonfun: <init>() ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard: <init>(stringBoard: Array[String]) ===> TicTacToeBoard: <init>(board: Array[Array[Player]])
+TicTacToeBoard: <init>(rows: Int,cols: Int) ===> TicTacToeBoard.$anonfun: <init>()
+TicTacToeBoard.$anonfun: apply(i: Int) ===> TicTacToeBoard.$anonfun.$anonfun: <init>()
+TicTacToeBoard.$anonfun: apply(n: Int) ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard.$anonfun.$anonfun: apply(r: Int) ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard.$anonfun.$anonfun: apply(row: Int) ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard.$anonfun: apply(r: Int) ===> TicTacToeBoard: columnCount()
+TicTacToeBoard.$anonfun: apply(offset: Int) ===> TicTacToeBoard: columnCount()
+TicTacToeBoard.$anonfun: apply(array: Array[Player]) ===> TicTacToeBoard: numInARowNeeded()
+TicTacToeBoard.$anonfun: apply(r: Int) ===> TicTacToeBoard.$anonfun: apply(str: String)
+TicTacToeBoard.$anonfun: apply(r: Int) ===> TicTacToeBoard.$anonfun.$anonfun: <init>()
+TicTacToeBoard.$anonfun: apply(acc: String,c: Int) ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard.$anonfun: apply(r: Int) ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard.$anonfun.$anonfun: apply(col: Int) ===> TicTacToeBoard: rowCount()
+TicTacToeBoard.$anonfun: apply(c: Int) ===> TicTacToeBoard.$anonfun.$anonfun: <init>()
+TicTacToeBoard.$anonfun: apply(offset: Int) ===> TicTacToeBoard.$anonfun.$anonfun: <init>()
+TicTacToeBoard.$anonfun: apply(n: Int) ===> TicTacToeBoard: numToAlpha(number: Int)
+TicTacToeBoard.$anonfun: apply(offset: Int) ===> TicTacToeBoard: rowCount()
+TicTacToeBoard.$anonfun: apply(array: Array[Player]) ===> TicTacToeBoard: nInARow(n: Int,array: Array[Player])
+TicTacToeBoard.$anonfun.$anonfun: apply(row: Int) ===> TicTacToeBoard: columnCount()
+TicTacToeBoard.$anonfun: apply(array: Array[Player]) ===> GameResult: O()
+TicTacToeBoard.$anonfun: apply(acc: String,n: Int) ===> TicTacToeBoard: numToAlpha(number: Int)
+TicTacToeBoard.$anonfun: apply(row: String) ===> TicTacToeBoard: getPlayersFromString(row: String)
+TicTacToeBoard.$anonfun: apply(str: String) ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard.$anonfun: apply(array: Array[Player]) ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard.$anonfun.$anonfun: apply(j: Int) ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard.$anonfun: apply(offset: Int) ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard.$anonfun.$anonfun: apply(c: Int) ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard.$anonfun: apply(row: Array[Player]) ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard.$anonfun: apply(r: Int) ===> TicTacToeBoard: p()
+TicTacToeBoard.$anonfun: apply(c: Int) ===> TicTacToeBoard: rowCount()
+TicTacToeBoard.$anonfun: apply(i: Int) ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard.$anonfun: apply(char: Char) ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard.$anonfun: apply(array: Array[Player]) ===> GameResult: X()
+TicTacToeBoard.$anonfun: apply(c: Int) ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard.$anonfun.$anonfun: apply(col: Int) ===> ca.uwaterloo.scalacg.Library: blob()
+TicTacToeBoard.$anonfun: apply(r: Int) ===> TicTacToeBoard: rowCount()
+TicTacToeBoard.$anonfun: apply(acc: String,n: Int) ===> ca.uwaterloo.scalacg.Library: blob()
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun: apply(n: Int)
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun.$anonfun: apply(r: Int)
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun.$anonfun: apply(row: Int)
+ca.uwaterloo.scalacg.Library: blob() ===> Blank: canEqual(x$1: Any)
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun: apply(row: String)
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun: apply(acc: String,c: Int)
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun: apply(r: Int)
+ca.uwaterloo.scalacg.Library: blob() ===> O: canEqual(x$1: Any)
+ca.uwaterloo.scalacg.Library: blob() ===> X: canEqual(x$1: Any)
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun: apply(str: String)
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun: apply(array: Array[Player])
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun.$anonfun: apply(j: Int)
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun: apply(offset: Int)
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun.$anonfun: apply(c: Int)
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun: apply(row: Array[Player])
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun: apply()
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun: apply(i: Int)
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun: apply(char: Char)
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun: apply(c: Int)
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun.$anonfun: apply(col: Int)
+ca.uwaterloo.scalacg.Library: blob() ===> TicTacToeBoard.$anonfun: apply(acc: String,n: Int)
+TicTacToeBoard: columns() ===> TicTacToeBoard.$anonfun: <init>()
+TicTacToeBoard: determineWinner() ===> TicTacToeBoard.$anonfun: <init>()
+TicTacToeBoard: diagonalsLTR() ===> TicTacToeBoard.$anonfun: <init>()
+TicTacToeBoard: diagonalsRTL() ===> TicTacToeBoard.$anonfun: <init>()
+TicTacToeBoard: getPlayersFromString(row: String) ===> TicTacToeBoard.$anonfun: <init>()
+TicTacToeBoard: nInARow(n: Int,array: Array[Player]) ===> TicTacToeBoard.$anonfun: <init>()
+TicTacToeBoard: p() ===> TicTacToeBoard.$anonfun: <init>()
+TicTacToeBoard: rows() ===> TicTacToeBoard.$anonfun: <init>()
+TicTacToeBoard: toString() ===> TicTacToeBoard.$anonfun: apply(str: String)
+TicTacToeBoard: toString() ===> TicTacToeBoard.$anonfun: <init>()
+
+
+========
+TCA-WALA
+========
+                       tictactoe
+                       ---------
+Reachable Methods
+=================
+TCA                           78
+WALA                          93
+TCA - WALA                    20
+WALA - TCA                    35
+
+Call Edges
+==========
+TCA                          163
+WALA                         247
+TCA - WALA                    73
+WALA - TCA                   157
+
+

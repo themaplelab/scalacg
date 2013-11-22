@@ -83,7 +83,7 @@ trait Annotations extends Global with GlobalConstants with CallSites with Probe 
    */
   def findTargetAnnotations(symbol: Symbol) = {
     val targets = findStringAnnotations(symbol, targetAnnotation)
-    targets.headOption.getOrElse(List(UNANNOT + " " + probeMethod(symbol))).head
+    targets.headOption.getOrElse(List(UNANNOT + " " + probeMethod(symbol).correctToString)).head
   }
 
   /**

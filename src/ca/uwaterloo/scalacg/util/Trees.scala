@@ -88,7 +88,7 @@ trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
           tpe.members filter (_.isMethod) foreach { method => thisEnclMethodToTypes(method) += tpe }
 
           // Get the package name
-          packageNames += getPackageName(cls)
+          packageNames += cls.pkg
 
           // Which class/method is that module defined in?
           // If it's defined in a class, add it to modulesInClass.
