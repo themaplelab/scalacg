@@ -33,7 +33,7 @@ trait Probe extends Global {
     //    println(methodSymbol.fullName + " ::" + methodSymbol.pkg + "::" + methodSymbol.cls + "::" + methodSymbol.nme)
     val probeClass = ObjectManager.v().getClass(methodSymbol.pkg, methodSymbol.cls)
     val probeMethod = ObjectManager.v().getMethod(probeClass, methodSymbol.nme, methodSymbol.paramsSig)
-    println(probeMethod.correctToString)
+    //    println(probeMethod.correctToString)
     probeMethod
   }
 
