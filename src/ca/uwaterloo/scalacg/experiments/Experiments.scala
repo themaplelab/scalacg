@@ -12,9 +12,9 @@ import probe.GXLReader
 import probe.ProbeMethod
 
 object Experiments {
-  final lazy val benchmarks = List("argot", "fimpp", "joos", "kiama", "phantm", "scalisp", "see", "tictactoe")
+  //  final lazy val benchmarks = List("argot", "fimpp", "joos", "kiama", "phantm", "scalisp", "see", "tictactoe")
   //  final lazy val benchmarks = List("argot", "fimpp", "joos", "scalisp", "see", "tictactoe")
-  //  final lazy val benchmarks = List("tictactoe")
+  final lazy val benchmarks = List("tictactoe")
 
   def main(args: Array[String]) = {
     var prefix = ""
@@ -94,14 +94,14 @@ object Experiments {
       val edgesA: Set[CallEdge] = supergraph.edges
       val edgesB: Set[CallEdge] = subgraph.edges
 
-      //      (reachA -- reachB).toSeq.sortWith((a, b) => a.name < b.name).foreach(println)
-      //      println("===========================================================================")
-      //      (edgesA -- edgesB).toSeq.sortWith((a, b) => a.src.name < b.src.name).foreach(println)
-      //      if (name != "tca-wala") {
-      //        println("===========================================================================")
-      //        (typesB -- typesA).toSeq.sorted.foreach(println)
-      //      }
-      //      println("\n")
+      (reachA -- reachB).toSeq.sortWith((a, b) => a.name < b.name).foreach(println)
+      println("===========================================================================")
+      (edgesA -- edgesB).toSeq.sortWith((a, b) => a.src.name < b.src.name).foreach(println)
+      if (name != "tca-wala") {
+        println("===========================================================================")
+        (typesA -- typesB).toSeq.sorted.foreach(println)
+      }
+      println("\n")
 
       edges.a(benchmark) = edgesA.size
       edges.b(benchmark) = edgesB.size
