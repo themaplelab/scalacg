@@ -78,7 +78,7 @@ trait CallGraphPrinter {
       val method = probeMethod(entry)
       probeCallGraph.entryPoints.add(method)
       if (isApplication(entry)) probeSummary.entryPoints.add(method)
-      entryPointsOut.println(methodToId.getOrElse(entry, 0) + " ===> " + method.correctToString)
+      entryPointsOut.println(methodToId.getOrElse(entry, 0) + " ===> " + method.show)
     }
 
     // Call backs originate from the library blob in the summary call graph but entry points in the regular one
@@ -89,7 +89,7 @@ trait CallGraphPrinter {
       probeCallGraph.entryPoints.add(callbackMethod)
       if (isApplication(callback)) probeSummary.edges.add(new CallEdge(libraryBlob, callbackMethod, unknownContext))
 
-      val e = methodToId.getOrElse(callback, 0) + " ===> " + callbackMethod.correctToString
+      val e = methodToId.getOrElse(callback, 0) + " ===> " + callbackMethod.show
       callbacksOut.println(e)
       entryPointsOut.println(e)
     }
@@ -117,7 +117,7 @@ trait CallGraphPrinter {
       //      }
 
       // Print out library methods to be added to the WALA call graph
-      if (!isTargetApp) libraryOut.println(sourceMethod.correctToString + " ===> " + targetMethod.correctToString)
+      if (!isTargetApp) libraryOut.println(sourceMethod.show + " ===> " + targetMethod.show)
 
       // Now put the edge in the summary call graph
       if (isSourceApp && isTargetApp) {
@@ -149,7 +149,7 @@ trait CallGraphPrinter {
   def printMethods = {
     val out = new PrintStream("methods.txt")
     for (method <- methodToId.keys) {
-      out.println(methodToId.getOrElse(method, 0) + " ===> " + probeMethod(method).correctToString)
+      out.println(methodToId.getOrElse(method, 0) + " ===> " + probeMethod(method).show)
     }
   }
 

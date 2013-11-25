@@ -56,12 +56,14 @@ trait Global {
 
   // This implicit helper to fix a bug in the toString for ProbeClass
   class ProbeClassHelper(cls: ProbeClass) {
+    lazy val show = cls.pkg + "\t" + cls.name
     lazy val correctToString = if (cls.pkg == "") cls.name else cls.pkg + "." + cls.name
   }
   implicit def probeClassWrapper(cls: ProbeClass) = new ProbeClassHelper(cls)
-  
+
   class ProbeMethodHelper(method: ProbeMethod) {
-    lazy val correctToString = method.cls.correctToString + ": " + method.name + "("+ method.signature +")";
+    lazy val show = method.cls.show + "\t" + method.name + "\t" + method.signature;
+    lazy val correctToString = method.cls.correctToString + ": " + method.name + "(" + method.signature + ")";
   }
   implicit def probeMethodWrapper(method: ProbeMethod) = new ProbeMethodHelper(method)
 
