@@ -258,7 +258,7 @@ trait CallGraphAnalysis extends CallGraphWorklists
    * TODO: filter needs OPT?
    */
   private def filterForThis(callSite: CallSite, types: Set[Type]) = {
-    if (callSite.thisEnclMethod == NoSymbol || superCalled.reachableItems.contains(callSite.thisEnclMethod)) types
+    if (callSite.enclMethod.isConstructor || callSite.thisEnclMethod == NoSymbol || superCalled.reachableItems.contains(callSite.thisEnclMethod)) types
     //    else types.filter { tpe => tpe.members.toSet contains callSite.thisEnclMethod }
     else types intersect thisEnclMethodToTypes(callSite.thisEnclMethod)
   }
