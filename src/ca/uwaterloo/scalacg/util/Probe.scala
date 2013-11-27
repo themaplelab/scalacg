@@ -3,6 +3,7 @@ package ca.uwaterloo.scalacg.util
 import java.io.PrintStream
 import java.util.zip.GZIPOutputStream
 
+import scala.annotation.migration
 import scala.collection.mutable.StringBuilder
 import scala.reflect.io.AbstractFile
 
@@ -159,7 +160,9 @@ trait CallGraphPrinter {
   def printInstantiatedTypes = {
     val out = new PrintStream("instantiated.txt")
     for (tpe <- instantiatedTypes.reachableItems) {
-      out.println(tpe.baseClasses.map(_.fullName).mkString("\t"))
+      var linearization = tpe.baseClasses
+      if (linearization.head.tpe != tpe) linearization = tpe.typeSymbol :: linearization
+      out.println(linearization.map(_.fullName).mkString("\t"))
     }
   }
 

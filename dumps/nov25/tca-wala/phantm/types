@@ -1,0 +1,41 @@
+phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+
+phantm.types.ObjectType				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+
+phantm.types.TAny				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TAnyArray				phantm.types.TArray				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TAnyArray				phantm.types.TArray				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TAnyObject				phantm.types.ObjectType				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TArray				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TArray				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TBoolean				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TBottom				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TFalse				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TFloat				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TFloatLit				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.TNumericLit				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TInt				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TIntLit				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.TNumericLit				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TNull				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TNumeric				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TObjectRef				phantm.types.TPreciseObject				phantm.types.ObjectType				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TObjectTmp				phantm.types.TPreciseObject				phantm.types.ObjectType				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TResource				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TString				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TStringLit				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TTop				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TTrue				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.ConcreteType				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TUninitialized				scala.Serializable				java.io.Serializable				scala.Product				scala.Equals				phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.TUnion				phantm.types.Type				java.lang.Object				scala.Any
+
+phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.Type				java.lang.Object				scala.Any
+phantm.types.Type				java.lang.Object				scala.Any

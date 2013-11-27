@@ -14,6 +14,17 @@ trait TypesCollections extends Global {
   val mainModules: Set[Type]
   val thisEnclMethodToTypes: Map[Symbol, ImmutableSet[Type]]
   val packageNames: Set[String]
+
+  class TypeWorklist[A <: Type] extends Worklist[A] {
+    override def +=(elem: A) = {
+      // No new types are accepted if they equivalent to types that have been reachable before
+      if (!reachableItems.exists(e => e =:= elem)) {
+        newItems += elem
+        reachableItems += elem
+        //      if(elem.toString contains "ConcreteType") println("adding ConcreteType to set of reachables :: " + elem.getClass)
+      }
+    }
+  }
 }
 
 trait TypeOps extends TypesCollections {
@@ -70,6 +81,14 @@ trait TypeOps extends TypesCollections {
     types.foreach { tpe => if (tpe.baseClasses contains cls) trimmed += (tpe.baseClasses dropWhile (_ != cls)).tail }
     trimmed
   }
+
+  /**
+   * Get a string representation for the linearization of tpe.
+   */
+  def lineariztionStringOf(tpe: Type, sep: String = "\t") = {
+    tpe.baseClasses.map(_.fullName).mkString(sep)
+  }
+
 }
 
 trait TypeConcretization extends Global {

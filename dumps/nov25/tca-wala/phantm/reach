@@ -1,0 +1,23 @@
+phantm.parser.CUPParser: <init>()
+phantm.parser.CUPParser: <init>(s: java_cup.runtime.Scanner)
+phantm.parser.CUPParser: action_table()
+phantm.parser.CUPParser: do_action(act_num: Int,parser: java_cup.runtime.lr_parser,stack: java.util.Stack,top: Int)
+phantm.parser.CUPParser: EOF_sym()
+phantm.parser.CUPParser: error_sym()
+phantm.parser.CUPParser: init_actions()
+phantm.parser.CUPParser: production_table()
+phantm.parser.CUPParser: reduce_table()
+phantm.parser.CUPParser: report_error(message: String,info: Any)
+phantm.parser.CUPParser: report_fatal_error(message: String,info: Any)
+phantm.parser.CUPParser: start_production()
+phantm.parser.CUPParser: start_state()
+phantm.parser.CUPParser: user_init()
+
+phantm.parser.Lexer: <init>()
+phantm.parser.Lexer: <init>(in: java.io.Reader)
+phantm.parser.Lexer: next_token()
+phantm.parser.Lexer: setFileName(fileName: String)
+
+== The above methods are in .java classes
+
+phantm.types.Type: toText(e: phantm.types.TypeEnvironment)

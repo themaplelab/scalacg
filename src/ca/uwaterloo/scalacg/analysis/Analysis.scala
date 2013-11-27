@@ -63,14 +63,32 @@ trait CallGraphAnalysis extends CallGraphWorklists
     reachableMethods ++= mainMethods
     instantiatedTypes ++= mainModules
 
+    //    println("\n\ninitialiiiiiiiiiize")
+    //    types.foreach { tpe =>
+    //      println(tpe.baseClasses.map(_.fullName).mkString("\t"))
+    //      println(tpe.toString + " :: " + tpe.typeSymbol.isAbstractClass)
+    //      println("\n")
+    //    }
+    //    println("\n\n")
+    //    types.filter(_.typeSymbol.name containsName "ConcreteType").foreach(println)
+
     //    println("=" * 50)
     //    packageNames.foreach(println)
     //    println("=" * 50)
-    //    abstractCallSites.foreach(a => println(a + " :: " + a.receiver.getClass))
+    //    abstractToCallSites.values.flatten.foreach { cs =>
+    //      println(cs)
+    //      println(cs.receiver.baseClasses.map(_.fullName).mkString("\t"))
+    //      println(cs.receiver.toString + " :: " + cs.receiver.typeSymbol.isAbstractClass)
+    //      println(cs.receiver.getClass)
+    //      println("\n")
+    //    }
+    //    println("\n\n")
   }
 
+  var counter = 0
   def buildCallGraph = {
     while (reachableMethods.nonEmpty) {
+      counter += 1
       // Debugging info
       println(s"Items in work list: ${reachableMethods.size}")
 
@@ -82,6 +100,20 @@ trait CallGraphAnalysis extends CallGraphWorklists
 
       // Process super calls
       collectSuperCalled
+
+      //      println("=" * 50)
+      //      println(instantiatedTypes.reachableItems.map(_.typeSymbol.fullName contains "ConcreteType"))
+      //      println("iteration " + counter)
+      //      instantiatedTypes.reachableItems.foreach { tpe =>
+      //        if (!(tpe.baseClasses.head.tpe =:= tpe)) {
+      //          println(lineariztionStringOf(tpe))
+      //          println(tpe.toString + " :: " + tpe.typeSymbol.isAbstractClass)
+      //          println(tpe.members)
+      //          println("\n")
+      //        }
+      //      }
+      //      println("=" * 50)
+      //      println("\n\n")
 
       // Process new call sites with all types, and use new types to process all call sites
       if (callSites.nonEmpty) {
@@ -128,6 +160,8 @@ trait CallGraphAnalysis extends CallGraphWorklists
       callSites ++= callSitesInMethod(method)
 
       // Find new instantiated types
+      val t = instantiatedTypesInMethod(method).filter(_.typeSymbol.name containsName "ConcreteType")
+      if (t.nonEmpty) println("found ConcreteType in method " + signature(method))
       instantiatedTypes ++= instantiatedTypesInMethod(method)
     }
 

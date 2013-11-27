@@ -69,7 +69,15 @@ trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
      * Adds an instantiated type to its enclMethod.
      */
     def addInstantiatedType(tpe: Type) = {
-      instantiatedTypesInMethod(enclMethod) += tpe
+      //      if (tpe.typeSymbol.isAbstractClass || tpe.typeSymbol.isAbstractType) println("abstract : " + tpe)
+      //      println(tpe + " :: " + (tpe.typeSymbol.name containsName "ConcreteType"))
+      //      if (tpe.typeSymbol.name containsName "TString") {
+      //        println("adding a new instance of TString from tree: " + tpe.getClass)
+      //        println(tpe.typeSymbol.isModuleOrModuleClass)
+      //        println(tpe.typeSymbol + " :: " + tpe.typeSymbol.tpe.getClass)
+      //      }
+      val typeToAdd = if (tpe.typeSymbol.isModuleOrModuleClass) tpe.typeSymbol.tpe else tpe
+      instantiatedTypesInMethod(enclMethod) += typeToAdd
       if (!instantiated(tpe)) tpe.members filter (_.isMethod) foreach { method => thisEnclMethodToTypes(method) += tpe }
     }
 
@@ -131,7 +139,10 @@ trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
     def processChildren = {
       tree match {
         case _: Select | _: Ident if tree.symbol.isModuleOrModuleClass && !tree.symbol.isPackage =>
-          if (enclMethod != NoSymbol) addInstantiatedType(tree.tpe)
+          if (enclMethod != NoSymbol) {
+            //            if (tree.tpe.toString contains "TString") println("found in " + tree.getClass + " :: " + tree.tpe.getClass)
+            addInstantiatedType(tree.tpe)
+          }
         case _ =>
       }
       tree.children.foreach(traverse(_, tree :: ancestors))
@@ -183,7 +194,10 @@ trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
       callSitesInMethod(callSite.enclMethod) += abstractCallSite
       abstractToCallSites(abstractCallSite) += callSite
 
-      if (abstractCallSite.hasModuleReceiver) addInstantiatedType(abstractCallSite.receiver)
+      if (abstractCallSite.hasModuleReceiver) {
+        //        if (abstractCallSite.receiver.toString contains "TString") println("found in callSite " + abstractCallSite + " :: " + abstractCallSite.hasStaticSuperReference)
+        addInstantiatedType(abstractCallSite.receiver)
+      }
     }
 
     /**
@@ -244,6 +258,7 @@ trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
 
         // If this is a call to asInstanceOf, add the type to the set of instantiateTypesInMethod
         if (definitions.isCastSymbol(apply.symbol) && apply.tpe.typeSymbol.isCaseClass) {
+          //          if (apply.tpe.toString contains "TString") println("found in a cast expression :: " + apply.tpe.getClass)
           addInstantiatedType(apply.tpe)
         }
       }
@@ -265,6 +280,7 @@ trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
 
     // Find instantiated types.
     def findInstantiatedTypes(nw: New) = {
+      //      if (nw.tpt.tpe.dealias.toString contains "TString") println("found in a new expression :: " + nw.tpt.tpe.dealias.getClass)
       addInstantiatedType(nw.tpt.tpe.dealias) // Some types are aliased (see CaseClass3)
       findType(nw)
     }

@@ -69,10 +69,20 @@ trait Lookup extends Probe {
       if target != NoSymbol && !target.isDeferred // a concrete member found.
     } {
       targets ++= getTargets(target, callSite.staticTarget)
-      
-//      if (callSite.staticTarget.nameString == "toString") { // TODO
-//        println("Found targets: " + callSite.receiver + " :: " + tpe + " :: " + expanded + " :: " + (targets map signature))
-//      }
+
+      //      if (callSite.targetName containsName "toText") {
+      //      if (targets.exists(signature(_) == "<tests.tca.AbstractClassObject.Type: toText()>")) {
+      //        println(callSite)
+      //        println(tpe + " :: " + expanded)
+      //        println(targets map signature)
+      //        println(tpe.getClass)
+      //        println(tpe.members)
+      //        throw new IllegalStateException("adding edge to Type.toText")
+      //      }
+
+      //      if (callSite.staticTarget.nameString == "toString") { // TODO
+      //        println("Found targets: " + callSite.receiver + " :: " + tpe + " :: " + expanded + " :: " + (targets map signature))
+      //      }
     }
 
     targets
@@ -83,6 +93,14 @@ trait Lookup extends Probe {
    */
   def member_<:<(expanded: Type, tpe: Type, targetName: Name) = {
     val (expandedAsSeenFromTpe, tpeAsSeenFromExpanded) = asSeenFrom(expanded, tpe)
+    //    if (expanded.toString == "tests.tca.AbstractClassObject.Type"
+    //      && tpe.toString == "tests.tca.AbstractClassObject.TString.type" && targetName.containsName("toText")) {
+    //      println(tpe + " :: " + tpeAsSeenFromExpanded)
+    //      println(expanded + " :: " + expandedAsSeenFromTpe)
+    //      println(targetName)
+    //      println(signature(tpeAsSeenFromExpanded.member(targetName)))
+    //      throw new IllegalStateException("adding edge to Type.toText")
+    //    }
     if (tpeAsSeenFromExpanded <:< expandedAsSeenFromTpe) tpeAsSeenFromExpanded.member(targetName)
     else NoSymbol
   }
@@ -92,6 +110,10 @@ trait Lookup extends Probe {
    */
   def getTargets(target: Symbol, staticTarget: Symbol) = {
     val targets = Set[Symbol]()
+    //    if (target.name containsName "toText") {
+    //      println(target + " :: " + target.isOverloaded)
+    //      throw new IllegalStateException("adding edge to Type.toText")
+    //    }
     target match {
       case _ =>
         // Disambiguate overloaded methods based on the types of the args

@@ -17,7 +17,7 @@ class Worklist[A] {
   /**
    * Add new items to the worklist. It also adds the items to the reachable set.
    */
-  def ++=[S <: scala.collection.Set[A]](xs: S): this.type = { xs.seq foreach += ; this }
+  def ++=[S <: scala.collection.Set[A]](xs: S): this.type = { xs.seq foreach +=; this }
 
   /**
    * Clear the new items
@@ -32,7 +32,7 @@ class Worklist[A] {
   def nonEmpty = {
     newItems.nonEmpty
   }
-  
+
   /**
    * How many new items do we have?
    */
