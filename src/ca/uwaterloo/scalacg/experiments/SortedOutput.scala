@@ -4,7 +4,7 @@ import scala.collection.mutable.Map
 
 object SortedOutput {
   def main(args: Array[String]): Unit = {
-    val path = "dumps/nov28/tca-wala/phantm/edges"
+    val path = "dumps/nov28/tca-wala/kiama/edges"
     val methodToEdges = Map[String, Set[String]]().withDefaultValue(Set.empty[String])
 
     for (line <- io.Source.fromFile(path).getLines) {

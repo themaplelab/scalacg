@@ -1,0 +1,1261 @@
+equals :: 2348
+toString :: 2309
+apply :: 1565
+simplifyIn :: 580
+evalIn :: 352
+<init> :: 190
+blob :: 116
+isDefinedIn :: 45
+finish :: 41
+toJava :: 38
+map :: 38
+selType :: 19
+apply$mcDD$sp :: 18
+v :: 16
+coerce :: 14
+toBool :: 13
+apply$mcVI$sp :: 12
+fits :: 11
+opd :: 11
+regex :: 9
+addRight :: 8
+Parser :: 8
+inner :: 8
+convertTo :: 8
+addLeft :: 8
+getConst :: 7
+stable :: 7
+sub_ :: 6
+propagate :: 6
+see$parser$Program$$anonfun$$$outer :: 6
+add_ :: 6
+isStableCheck :: 6
+mul_ :: 6
+getVar :: 6
+name :: 5
+and_ :: 4
+productElement :: 4
+see$Parent$_setter_$stableCheck_$eq :: 4
+parser :: 4
+pwr_ :: 4
+rsh_ :: 4
+lsh_ :: 4
+productArity :: 4
+compare :: 4
+canEqual :: 4
+see$nodes$ArgInterceptor$Detector$$$outer :: 4
+abs :: 4
+isWc :: 4
+content :: 4
+contains :: 4
+productIterator :: 4
+gcd_ :: 4
+or_ :: 4
+rhs :: 4
+productPrefix :: 4
+xor_ :: 4
+lhs :: 4
+hashCode :: 4
+outer :: 3
+stableCheck :: 3
+checkStability :: 3
+size :: 3
+operator :: 3
+argsUsed :: 3
+createStableCheck :: 3
+$less :: 3
+parse :: 3
+handleWhiteSpace :: 3
+parent :: 3
+matches :: 2
+set :: 2
+diff :: 2
+isFunction :: 2
+see$parser$Program$$anonfun$$anonfun$$$outer :: 2
+nodes :: 2
+NoSuccess :: 2
+rep1 :: 2
+CONSTNAME :: 2
+opt :: 2
+negate :: 2
+intersect :: 2
+code :: 2
+simplify :: 2
+rep1sep :: 2
+~ :: 2
+parseAll :: 2
+rep :: 2
+union :: 2
+$tilde :: 2
+createFunction :: 2
+evalAsDouble :: 2
+params :: 2
+see$Binary$$anonfun$$$outer :: 2
+numeric :: 1
+eatws :: 1
+cBin :: 1
+cString :: 1
+willBeStable :: 1
+see$parser$Literals$$anonfun$$$outer :: 1
+dflt :: 1
+constant :: 1
+scala$util$parsing$combinator$RegexParsers$$super$phrase :: 1
+log :: 1
+literal :: 1
+ifFalse :: 1
+repsep :: 1
+insert :: 1
+stripComments :: 1
+cHex :: 1
+willBeStable_= :: 1
+values :: 1
+ifTrue :: 1
+see$nodes$Block$Eval$$$outer :: 1
+atom :: 1
+super@om :: 1
+footer :: 1
+whiteSpace :: 1
+immediate :: 1
+see$parser$Expressions$$anonfun$$$outer :: 1
+success :: 1
+fieldName :: 1
+fname :: 1
+enclosing :: 1
+phrase :: 1
+ARGP :: 1
+convertName :: 1
+prec :: 1
+scala$util$parsing$combinator$Parsers$$lastNoSuccessVar :: 1
+precedence :: 1
+main :: 1
+body :: 1
+methName :: 1
+compareTo :: 1
+$greater :: 1
+scala$util$parsing$combinator$RegexParsers$_setter_$whiteSpace_$eq :: 1
+scala$util$parsing$combinator$Parsers$$lastNoSuccessVar$lzycompute :: 1
+parent_= :: 1
+NoSuccess$lzycompute :: 1
+argsUsed_= :: 1
+proc :: 1
+$greater$eq :: 1
+isStable :: 1
+skipWhitespace :: 1
+cRexp :: 1
+isEmpty :: 1
+exec :: 1
+args :: 1
+createInner :: 1
+newName :: 1
+see$nodes$CatchBlock$Catcher$$$outer :: 1
+isConst :: 1
+super$operator :: 1
+iset :: 1
+cDecimal :: 1
+==================================================
+ca.uwaterloo.scalacg.Library: blob() :: 116
+see.values.Bool: equals(x$1: Any) :: 81
+see.nodes.Vnode: equals(x$1: Any) :: 81
+see.values.Native: equals(x$1: Any) :: 81
+see.ParamError: equals(x$1: Any) :: 81
+see.nodes.CatchBlock: equals(x$1: Any) :: 81
+see.Illegal: equals(x$1: Any) :: 81
+see.nodes.Block: equals(x$1: Any) :: 81
+see.RangeOverflow: equals(x$1: Any) :: 81
+see.nodes.Constant: equals(x$1: Any) :: 81
+see.values.BigR: equals(x$1: Any) :: 81
+see.values.Table: equals(x$1: Any) :: 81
+see.values.Rexp: equals(other: Any) :: 81
+see.values.Lint: equals(x$1: Any) :: 81
+see.nodes.Nodes: equals(x$1: Any) :: 81
+see.DivisionByZero: equals(x$1: Any) :: 81
+see.values.Assoc: equals(x$1: Any) :: 81
+see.values.ValMap: equals(x$1: Any) :: 81
+see.nodes.Variable: equals(x$1: Any) :: 81
+see.values.Anonym: equals(x$1: Any) :: 81
+see.Unknown: equals(x$1: Any) :: 81
+see.ResultException: equals(x$1: Any) :: 81
+see.values.BigI: equals(x$1: Any) :: 81
+see.Unsupported: equals(x$1: Any) :: 81
+see.values.SymVal: equals(x$1: Any) :: 81
+see.values.Str: equals(x$1: Any) :: 81
+see.values.Real: equals(x$1: Any) :: 81
+see.Unresolved: equals(x$1: Any) :: 81
+see.values.Vector: equals(x$1: Any) :: 81
+see.values.AnyVal: equals(x$1: Any) :: 80
+see.nodes.StableDef: toString() :: 47
+see.NoParent: toString() :: 47
+see.StableScope: toString() :: 47
+see.nodes.StableFnode: toString() :: 47
+see.OuterScope: toString() :: 46
+see.values.VoidVal: toString() :: 46
+see.Scope: toString() :: 46
+see.values.NullVal: toString() :: 46
+see.nodes.Alternative: toString() :: 46
+see.StableParent: toString() :: 46
+see.values.Str: toString() :: 46
+see.values.TP: toString() :: 46
+see.values.Rexp: toString() :: 46
+see.values.Assoc: toString() :: 45
+see.values.Scalar: toString() :: 45
+see.values.BigI: toString() :: 45
+see.values.ValMap: toString() :: 45
+see.values.Vector.Empty: toString() :: 45
+see.values.Table: toString() :: 45
+see.values.Vector: toString() :: 45
+see.values.Table.Empty: toString() :: 45
+see.values.ValMap.Empty: toString() :: 45
+see.values.SymVal: toString() :: 45
+see.values.BigR: toString() :: 45
+see.nodes.Fnode: toString() :: 45
+see.values.Anonym: toString() :: 44
+see.values.Functional: toString() :: 44
+see.values.AnyVal: toString() :: 44
+see.nodes.Nodes: toString() :: 44
+see.nodes.EmptyNode: toString() :: 44
+see.values.Native: toString() :: 44
+see.nodes.Vnode: toString() :: 43
+see.nodes.Constant: toString() :: 43
+see.nodes.ReAssign: toString() :: 43
+see.nodes.Fcall: toString() :: 43
+see.nodes.Assertion: toString() :: 43
+see.nodes.Operation: toString() :: 43
+see.nodes.Defined: toString() :: 43
+see.nodes.Assign: toString() :: 43
+see.nodes.Local: toString() :: 43
+see.nodes.Condition: toString() :: 43
+see.nodes.MethReflector: toString() :: 43
+see.nodes.FieldReflector: toString() :: 43
+see.nodes.Variable: toString() :: 43
+see.nodes.Loop: toString() :: 43
+see.nodes.CatchBlock: toString() :: 43
+see.nodes.Return: toString() :: 43
+see.nodes.Indirection: toString() :: 43
+see.nodes.Matcher: toString() :: 43
+see.nodes.Block: toString() :: 43
+see.nodes.Association: toString() :: 43
+see.nodes.Prefix: toString() :: 43
+see.nodes.Vnode: evalIn(Lsee/Scope;) :: 28
+see.nodes.StableFnode: evalIn(Lsee/Scope;) :: 28
+see.nodes.CatchBlock: evalIn(Lsee/Scope;) :: 28
+see.nodes.StableDef: evalIn(Lsee/Scope;) :: 28
+see.nodes.Defined: evalIn(Lsee/Scope;) :: 28
+see.nodes.Block: evalIn(Lsee/Scope;) :: 28
+see.nodes.Fundef: evalIn(Lsee/Scope;) :: 28
+see.nodes.Association: evalIn(Lsee/Scope;) :: 28
+see.nodes.EmptyNode$: evalIn(Lsee/Scope;) :: 28
+see.nodes.Local: evalIn(Lsee/Scope;) :: 28
+see.nodes.Fnode: evalIn(Lsee/Scope;) :: 28
+see.nodes.EmptyNodes$: evalIn(Lsee/Scope;) :: 28
+see.nodes.Fnode: simplifyIn(s: see.Scope) :: 24
+see.nodes.Node: simplifyIn(s: see.Scope) :: 24
+see.nodes.Matcher: simplifyIn(s: see.Scope) :: 23
+see.nodes.Defined: simplifyIn(s: see.Scope) :: 23
+see.nodes.Nodes: simplifyIn(s: see.Scope) :: 23
+see.nodes.Return: simplifyIn(Lsee/Scope;) :: 23
+see.nodes.Vnode: simplifyIn(s: see.Scope) :: 23
+see.nodes.EmptyNodes$: simplifyIn(Lsee/Scope;) :: 23
+see.nodes.Fcall: simplifyIn(s: see.Scope) :: 23
+see.nodes.ReAssign: simplifyIn(s: see.Scope) :: 23
+see.nodes.Operation: simplifyIn(s: see.Scope) :: 23
+see.nodes.Assertion: simplifyIn(Lsee/Scope;) :: 23
+see.nodes.Condition: simplifyIn(s: see.Scope) :: 23
+see.nodes.Association: simplifyIn(s: see.Scope) :: 23
+see.nodes.Prefix: simplifyIn(s: see.Scope) :: 23
+see.nodes.Assign: simplifyIn(s: see.Scope) :: 23
+see.nodes.Local: simplifyIn(s: see.Scope) :: 23
+see.nodes.Fundef: simplifyIn(s: see.Scope) :: 23
+see.nodes.Indirection: simplifyIn(s: see.Scope) :: 23
+see.nodes.FieldReflector: simplifyIn(s: see.Scope) :: 23
+see.nodes.Loop: simplifyIn(s: see.Scope) :: 23
+see.nodes.CatchBlock: simplifyIn(s: see.Scope) :: 23
+see.nodes.Variable: simplifyIn(s: see.Scope) :: 23
+see.nodes.Block: simplifyIn(s: see.Scope) :: 23
+see.nodes.MethReflector: simplifyIn(s: see.Scope) :: 23
+see.nodes.StableDef: isDefinedIn(s: see.Scope) :: 22
+see.nodes.StableFnode: isDefinedIn(s: see.Scope) :: 22
+see.parser.Program.$anonfun: apply() :: 16
+see.nodes.Atom: opd() :: 11
+see.parser.Expressions: regex(Lscala/util/matching/Regex;) :: 9
+see.operations.ExactEqual$: apply(Lsee/values/Val;Lsee/values/Val;) :: 8
+see.parser.Literals.$anon: apply(in: scala.util.parsing.input.Reader[Char]) :: 8
+see.parser.Expressions: Parser(Lscala/Function1;) :: 8
+see.operations.Equal$: apply(Lsee/values/Val;Lsee/values/Val;) :: 8
+see.parser.Expressions$$anonfun$see$parser$Expressions$$operator$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.Matcher$$anonfun$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Expressions.$anon: apply(in: scala.util.parsing.input.Reader[Char]) :: 7
+see.values.Vector$$anonfun$toStr$1: apply(Ljava/lang/Object;) :: 7
+see.values.Container$$anonfun$call$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$lc_rhs$3: apply(Ljava/lang/Object;) :: 7
+see.nodes.MethReflector$$anonfun$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.Nodes$$anonfun$evalIn$3: apply(Ljava/lang/Object;) :: 7
+see.Main$$anonfun$profile$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.Fnode$$anonfun$toString$1: apply(Ljava/lang/Object;) :: 7
+see.operations.GetValues$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 7
+see.Binary$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 7
+see.parser.Expressions$$anonfun$insert$2: apply(Ljava/lang/Object;) :: 7
+see.values.Rexp$$anonfun$3: apply(Ljava/lang/Object;) :: 7
+see.nodes.Nodes$$anonfun$simplifyIn$2: apply(Ljava/lang/Object;) :: 7
+see.operations.ScalProd$$anonfun$apply$4: apply(Ljava/lang/Object;) :: 7
+see.nodes.Vnode$$anonfun$isDefinedIn$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.Fnode$$anonfun$simplifyIn$1: apply(Ljava/lang/Object;) :: 7
+see.values.Container$$anonfun$isDefinedIn$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Expressions$$anonfun$see$parser$Expressions$$prefixed$1: apply(Ljava/lang/Object;) :: 7
+see.Binary$$anonfun$apply$8: apply(Ljava/lang/Object;) :: 7
+see.values.ValMap$$anonfun$containsWeak$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.Matcher$$anonfun$selectIn$1$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 7
+see.values.ValMap$$anonfun$see$values$ValMap$$assoc$2: apply(Ljava/lang/Object;) :: 7
+see.operations.Sin$$anonfun$$init$$4: apply(Ljava/lang/Object;) :: 7
+see.operations.ToAssoc$$anonfun$assoc$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.MethReflector$$anonfun$7: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$derefarg$2: apply(Ljava/lang/Object;) :: 7
+see.values.Str$$anonfun$1: apply(Ljava/lang/Object;) :: 7
+see.Binary$$anonfun$apply$5: apply(Ljava/lang/Object;) :: 7
+see.operations.ACos$$anonfun$$init$$8: apply(Ljava/lang/Object;) :: 7
+see.nodes.Matcher$$anonfun$selectIn$1: apply(Ljava/lang/Object;) :: 7
+see.operations.Zip$$anonfun$apply$4: apply(Ljava/lang/Object;) :: 7
+see.values.Vector$$anonfun$diff$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Expressions$$anonfun$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.MethReflector$$anonfun$4: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$4$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 7
+see.values.Native$$anonfun$1: apply(Ljava/lang/Object;) :: 7
+see.operations.ASin$$anonfun$$init$$7: apply(Ljava/lang/Object;) :: 7
+see.values.Vector$$anonfun$toString$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$stmtOpd$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.Vnode$$anonfun$simplifyIn$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$statements$2: apply(Ljava/lang/Object;) :: 7
+see.values.Table$$anonfun$deepCmp$2: apply(Ljava/lang/Object;) :: 7
+see.values.ValMap$$anonfun$diff$2: apply(Ljava/lang/Object;) :: 7
+see.values.Vector$$anonfun$deepCmp$2: apply(Ljava/lang/Object;) :: 7
+see.nodes.Fnode$$anonfun$call$2: apply(Ljava/lang/Object;) :: 7
+see.parser.Expressions$$anonfun$oneOperand$1$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$cond$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$2: apply(Ljava/lang/Object;) :: 7
+see.parser.Expressions$$anonfun$call$1: apply(Ljava/lang/Object;) :: 7
+see.operations.Unique$$anonfun$unify$1: apply(Ljava/lang/Object;) :: 7
+see.values.Table$$anonfun$see$values$Table$$verify$1: apply(Ljava/lang/Object;) :: 7
+see.operations.Log$$anonfun$$init$$2: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$3$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 7
+see.operations.GetKeys$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 7
+see.Main$$anonfun$profile$2: apply(Ljava/lang/Object;) :: 7
+see.values.Rexp$$anonfun$4: apply(Ljava/lang/Object;) :: 7
+see.nodes.Matcher$$anonfun$isDefinedIn$1: apply(Ljava/lang/Object;) :: 7
+see.values.Container$$anonfun$isFlat$1: apply(Ljava/lang/Object;) :: 7
+see.operations.Slice$$anonfun$4: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$alternative$4$$anonfun$apply$6: apply(Ljava/lang/Object;) :: 7
+see.operations.Zip$$anonfun$2$$anonfun$apply$5: apply(Ljava/lang/Object;) :: 7
+see.operations.ScalProd$$anonfun$apply$5: apply(Ljava/lang/Object;) :: 7
+see.values.Vector$$anonfun$containsStrong$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$statement$1: apply(Ljava/lang/Object;) :: 7
+see.values.Table$$anonfun$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Literals$$anon$3: apply(Ljava/lang/Object;) :: 7
+see.values.ValMap$$anonfun$see$values$ValMap$$assoc$3: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$alternative$3: apply(Ljava/lang/Object;) :: 7
+see.operations.Unique$$anonfun$unify$1$$anonfun$apply$7: apply(Ljava/lang/Object;) :: 7
+see.parser.Literals$$anonfun$cBin$1: apply(Ljava/lang/Object;) :: 7
+see.values.Table$$anonfun$map$1: apply(Ljava/lang/Object;) :: 7
+see.operations.ScalProd$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 7
+see.parser.Expressions$$anonfun$name$1: apply(Ljava/lang/Object;) :: 7
+see.operations.ToAssoc$$anonfun$assoc$2: apply(Ljava/lang/Object;) :: 7
+see.parser.Literals$$anonfun$cDecimal$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.Vnode$$anonfun$evalIn$2: apply(Ljava/lang/Object;) :: 7
+see.Binary$$anonfun$apply$6: apply(Ljava/lang/Object;) :: 7
+see.parser.Literals$$anonfun$log$1: apply(Ljava/lang/Object;) :: 7
+see.values.Container$$anonfun$toBool$1: apply(Ljava/lang/Object;) :: 7
+see.operations.Sqrt$$anonfun$$init$$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Literals$$anonfun$cString$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.MethReflector$$anonfun$5: apply(Ljava/lang/Object;) :: 7
+see.operations.Log10$$anonfun$$init$$3: apply(Ljava/lang/Object;) :: 7
+see.parser.Literals$$anonfun$cHex$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.Fnode$$anonfun$isDefinedIn$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Expressions$$anonfun$oneOperand$1: apply(Ljava/lang/Object;) :: 7
+see.Binary$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 7
+see.nodes.Constant: <init>(v: see.values.Val) :: 7
+see.values.Vector$$anonfun$1: apply(Ljava/lang/Object;) :: 7
+see.operations.Slice$$anonfun$apply$8: apply(Ljava/lang/Object;) :: 7
+see.values.Native$$anonfun$convertArgs$1: apply(Ljava/lang/Object;) :: 7
+see.values.Vector$$anonfun$convertTo$1: apply(Ljava/lang/Object;) :: 7
+see.values.Native$$anonfun$2: apply(Ljava/lang/Object;) :: 7
+see.nodes.MethReflector$$anonfun$2: apply(Ljava/lang/Object;) :: 7
+see.operations.Sort$$anonfun$apply$6: apply(Ljava/lang/Object;) :: 7
+see.operations.Tan$$anonfun$$init$$6: apply(Ljava/lang/Object;) :: 7
+see.values.Table$$anonfun$interpolate$1: apply(Ljava/lang/Object;) :: 7
+see.values.Str$$anonfun$propagate$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Expressions$$anonfun$operand$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$3: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$block$4: apply(Ljava/lang/Object;) :: 7
+see.parser.Literals.$anonfun: apply() :: 7
+see.operations.Zip$$anonfun$2: apply(Ljava/lang/Object;) :: 7
+see.parser.Expressions$$anonfun$vector$3: apply(Ljava/lang/Object;) :: 7
+see.Main$$anonfun$profile$3: apply(Ljava/lang/Object;) :: 7
+see.nodes.Vnode$$anonfun$isParamList$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.Local$$anonfun$evalIn$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.Nodes$$anonfun$isDefinedIn$2: apply(Ljava/lang/Object;) :: 7
+see.operations.ScalProd$$anonfun$apply$6: apply(Ljava/lang/Object;) :: 7
+see.values.Native$$anonfun$bestMatch$1: apply(Ljava/lang/Object;) :: 7
+see.Binary$$anonfun$apply$8$$anonfun$apply$9: apply(Ljava/lang/Object;) :: 7
+see.parser.Expressions$$anonfun$insert$1: apply(Ljava/lang/Object;) :: 7
+see.values.Rexp$$anonfun$2: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$patternmatch$3: apply(Ljava/lang/Object;) :: 7
+see.operations.ScalProd$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 7
+see.values.Container$$anonfun$isStable$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.Vnode$$anonfun$1: apply(Ljava/lang/Object;) :: 7
+see.Binary$$anonfun$apply$6$$anonfun$apply$7: apply(Ljava/lang/Object;) :: 7
+see.operations.ToAssoc$$anonfun$assoc$3: apply(Ljava/lang/Object;) :: 7
+see.values.Vector$$anonfun$toJava$1: apply(Ljava/lang/Object;) :: 7
+see.operations.Fold$$anonfun$fold$1$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Literals$$anon$1: apply(Ljava/lang/Object;) :: 7
+see.Unary$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 7
+see.values.Table$$anonfun$forall$1: apply(Ljava/lang/Object;) :: 7
+see.values.ValMap$$anonfun$intersect$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.MethReflector$$anonfun$6: apply(Ljava/lang/Object;) :: 7
+see.values.ValMap$$anonfun$see$values$ValMap$$assoc$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$stms1$2: apply(Ljava/lang/Object;) :: 7
+see.values.Native$$anonfun$3: apply(Ljava/lang/Object;) :: 7
+see.nodes.MethReflector$$anonfun$3: apply(Ljava/lang/Object;) :: 7
+see.parser.Expressions$$anon$1: apply(Ljava/lang/Object;) :: 7
+see.values.Str$$anonfun$unescape$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.ArgInterceptor$$anonfun$1: apply(Ljava/lang/Object;) :: 7
+see.values.ValMap$$anonfun$containsStrong$1: apply(Ljava/lang/Object;) :: 7
+see.Binary$$anonfun$apply$4: apply(Ljava/lang/Object;) :: 7
+see.values.ValMap$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 7
+see.operations.Cos$$anonfun$$init$$5: apply(Ljava/lang/Object;) :: 7
+see.operations.Pad$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 7
+see.values.ValMap$$anonfun$deepCmp$1: apply(Ljava/lang/Object;) :: 7
+see.values.Vector$$anonfun$containsWeak$1: apply(Ljava/lang/Object;) :: 7
+see.values.ValMap$$anonfun$diff$1: apply(Ljava/lang/Object;) :: 7
+see.operations.ScalProd$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 7
+see.nodes.Fnode$$anonfun$call$1: apply(Ljava/lang/Object;) :: 7
+see.values.Table$$anonfun$deepCmp$1: apply(Ljava/lang/Object;) :: 7
+see.parser.Program$$anonfun$4: apply(Ljava/lang/Object;) :: 7
+see.values.Container$$anonfun$coerce$1: apply(Ljava/lang/Object;) :: 7
+see.operations.Symbolize$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 7
+see.operations.ATan$$anonfun$$init$$9: apply(Ljava/lang/Object;) :: 7
+see.parser.Literals$$anonfun$cRexp$1: apply(Ljava/lang/Object;) :: 7
+see.values.Vector$$anonfun$deepCmp$1: apply(Ljava/lang/Object;) :: 7
+see.operations.Version$: apply(Lsee/Scope;Lsee/values/Val;) :: 6
+see.operations.VarType$: apply(Lsee/Scope;Lsee/values/Val;) :: 6
+see.operations.ToRexp$: apply(Lsee/Scope;Lsee/values/Val;) :: 6
+see.operations.Length$: apply(Lsee/Scope;Lsee/values/Val;) :: 6
+see.operations.ToVect$: apply(Lsee/Scope;Lsee/values/Val;) :: 6
+see.parser.Expressions.$anonfun: apply(in: scala.util.parsing.input.Reader[Char]) :: 6
+see.operations.ToTable$: apply(Lsee/Scope;Lsee/values/Val;) :: 6
+see.operations.ToMap$: apply(Lsee/Scope;Lsee/values/Val;) :: 6
+see.Scope: isStableCheck() :: 6
+see.operations.ToStr$: apply(Lsee/Scope;Lsee/values/Val;) :: 6
+see.values.ValMap$Empty$: map(Lscala/Function1;) :: 5
+see.values.Table$Empty$: map(Lscala/Function1;) :: 5
+see.EvalError: <init>(msg: String) :: 5
+see.values.Vector$Empty$: map(Lscala/Function1;) :: 5
+see.values.Rexp: propagate(Lsee/values/Comparable;) :: 5
+see.nodes.LoopP: finish(Lsee/nodes/Node;) :: 4
+see.nodes.Assertion$: apply(Lsee/nodes/Node;) :: 4
+see.operations.Mod$$anonfun$$init$$3: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.Scope.$anonfun: apply() :: 4
+see.values.ValMap: map(Lscala/Function1;) :: 4
+see.values.Table: map(Lscala/Function1;) :: 4
+see.nodes.ArgInterceptor$Detector: see$nodes$ArgInterceptor$Detector$$$outer() :: 4
+see.nodes.Constant: v() :: 4
+see.operations.BitLshift$$anonfun$$init$$5: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.Scope: <init>(parser: see.Parser,parent: see.Parent) :: 4
+see.nodes.AssertionP: finish(Lsee/nodes/Node;) :: 4
+see.operations.BitAnd$$anonfun$$init$$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.nodes.MatcherP: finish(Lsee/nodes/Node;) :: 4
+see.nodes.Return$: apply(Lsee/nodes/Node;) :: 4
+see.operations.Exp$$anonfun$$init$$4: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.Scope: parser() :: 4
+see.operations.Sum$$anonfun$$init$$3: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.nodes.Branch: rhs() :: 4
+see.values.Vector: map(Lscala/Function1;) :: 4
+see.operations.Div$$anonfun$$init$$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.operations.BitRshift$$anonfun$$init$$4: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.nodes.ReturnP: finish(Lsee/nodes/Node;) :: 4
+see.nodes.Relation$$anon$2: apply(Lsee/nodes/Node;) :: 4
+see.parser.Literals.$anonfun: apply(s: String) :: 4
+see.nodes.Association$: apply(Lsee/nodes/Node;) :: 4
+see.nodes.ReflectP: finish(Lsee/nodes/Node;) :: 4
+see.nodes.Operation$$anon$1: apply(Lsee/nodes/Node;) :: 4
+see.nodes.Assign$: apply(Lsee/nodes/Node;) :: 4
+see.operations.Min$$anonfun$$init$$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.operations.Sort$$anonfun$3: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.nodes.Branch: lhs() :: 4
+see.operations.Gcd$$anonfun$$init$$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.operations.Prod$$anonfun$$init$$4: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.nodes.ReflectFieldP: finish(Lsee/nodes/Node;) :: 4
+see.nodes.ConditionP: finish(Lsee/nodes/Node;) :: 4
+see.operations.BitOr$$anonfun$$init$$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.parser.Program.$anonfun.$anonfun: apply() :: 4
+see.operations.ReduceOp$$anonfun$apply$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.nodes.ArgInterceptor: isWc(name: String) :: 4
+see.operations.Minus$$anonfun$$init$$5: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.values.Assoc: map(Lscala/Function1;) :: 4
+see.operations.Times$$anonfun$$init$$7: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.nodes.DefinedP: finish(Lsee/nodes/Node;) :: 4
+see.operations.Zip$$anonfun$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.operations.Mean$$anonfun$$init$$5: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.operations.Plus$$anonfun$$init$$6: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.nodes.ReAssign$$anon$3: apply(Lsee/nodes/Node;) :: 4
+see.operations.BitXor$$anonfun$$init$$3: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.operations.Max$$anonfun$$init$$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+see.values.BigI: selType() :: 3
+see.nodes.Matcher.$anonfun: apply(a: see.nodes.Alternative) :: 3
+see.nodes.StableDef: evalIn(s: see.Scope) :: 3
+see.values.Container.$anonfun: apply(v: see.values.Val) :: 3
+see.Scope: checkStability(node: see.INode) :: 3
+see.nodes.Block: content() :: 3
+see.values.Comparable: $less(Ljava/lang/Object;) :: 3
+see.values.Rexp.$anonfun: apply(n: Int) :: 3
+see.Scope: parent() :: 3
+see.nodes.Fnode: name() :: 3
+see.values.Container: coerce() :: 3
+see.parser.Expressions.$anonfun: apply() :: 3
+see.Scope: createStableCheck() :: 3
+see.nodes.Vnode.$anonfun: apply(node: see.nodes.Node) :: 3
+see.values.BigR: selType() :: 3
+see.values.Assoc: coerce() :: 3
+see.OuterScope: outer() :: 3
+see.Main.$anonfun: apply(n: Int) :: 3
+see.values.NullVal: selType() :: 3
+see.values.Real: selType() :: 3
+see.parser.Expressions: handleWhiteSpace(Ljava/lang/CharSequence;I) :: 3
+see.values.Lint: selType() :: 3
+see.nodes.ArgInterceptor: argsUsed() :: 3
+see.values.ValMap$$anonfun$at$1: apply() :: 2
+see.parser.Program$$anonfun$block$2: see$parser$Program$$anonfun$$$outer() :: 2
+see.nodes.Nodes.$anonfun: apply(node: see.nodes.Node) :: 2
+see.Scope$$anonfun$getVar$1: apply() :: 2
+see.parser.Program$$anonfun$stms$1: apply() :: 2
+see.parser.Expressions: opt(Lscala/Function0;) :: 2
+see.nodes.Fnode: params() :: 2
+see.operations.Rep$$anonfun$apply$2: apply() :: 2
+see.values.NullVal: coerce() :: 2
+see.values.BigR: toJava() :: 2
+see.nodes.ArgInterceptor: simplify(n: see.nodes.Node) :: 2
+see.parser.Program$$anonfun$alternative$2: apply() :: 2
+see.nodes.ArgInterceptor.Detector: inner(s: see.Scope) :: 2
+see.values.NullVal$: toJava() :: 2
+see.parser.Expressions$$anonfun$vector$2: apply() :: 2
+see.values.Rexp: toJava() :: 2
+see.parser.Expressions: rep1sep(Lscala/Function0;Lscala/Function0;) :: 2
+see.Unresolved: <init>(name: String) :: 2
+see.parser.Program$$anonfun$atom$1: apply() :: 2
+see.operations.Sqrt$$anonfun$$init$$1: apply$mcDD$sp(D) :: 2
+see.nodes.StableFnode: evalIn(s: see.Scope) :: 2
+see.parser.Program$$anonfun$block$1: apply() :: 2
+see.parser.Expressions.$anonfun.$anonfun: apply() :: 2
+see.Parent: inner(s: see.Scope) :: 2
+see.Regex: matches(tgt: String) :: 2
+see.values.UserFunc: <init>(s: see.Scope,fdef: see.nodes.Fnode) :: 2
+see.Scope: CONSTNAME() :: 2
+see.values.Native$$anonfun$convertArgs$1: apply$mcVI$sp(I) :: 2
+see.values.Vector$Empty$: toJava() :: 2
+see.values.Val: coerce() :: 2
+see.nodes.Variable: <init>(name: String) :: 2
+see.values.Vector: toJava() :: 2
+see.values.ValMap: toJava() :: 2
+see.operations.ATan$$anonfun$$init$$9: apply$mcDD$sp(D) :: 2
+see.operations.Cos$$anonfun$$init$$5: apply$mcDD$sp(D) :: 2
+see.parser.Expressions$$anonfun$vector$1: apply() :: 2
+see.parser.Program$$anonfun$alternative$1: apply() :: 2
+see.values.VoidVal$: toJava() :: 2
+see.values.Bool: v() :: 2
+see.parser.Expressions.$anon: apply() :: 2
+see.values.VoidVal$: convertTo(Ljava/lang/Class;) :: 2
+see.values.Vector.Empty: toJava() :: 2
+see.Main$$anonfun$profile$2: apply$mcVI$sp(I) :: 2
+see.nodes.StableFnode: <init>(n: String,p: Seq[see.nodes.Variable],c: see.nodes.Node) :: 2
+see.values.BigR: v() :: 2
+see.values.Vector$$anonfun$toJava$1: apply$mcVI$sp(I) :: 2
+see.parser.Expressions$$anonfun$vector$1$$anonfun$apply$3: apply() :: 2
+see.parser.Program$$anonfun$statements$1: apply() :: 2
+see.operations.ASin$$anonfun$$init$$7: apply$mcDD$sp(D) :: 2
+see.parser.Program$$anonfun$derefarg$1: apply() :: 2
+see.parser.Program$$anonfun$stms1$1$$anonfun$apply$4$$anonfun$apply$5: apply() :: 2
+see.operations.ScalProd.$anonfun: apply(ai: see.values.Val) :: 2
+see.nodes.Variable: name() :: 2
+see.values.BigI: toJava() :: 2
+see.parser.Expressions.$anonfun: apply(n: see.nodes.Node) :: 2
+see.values.Str: toJava() :: 2
+see.values.Native$$anonfun$bestMatch$1: apply$mcVI$sp(I) :: 2
+see.parser.Program$$anonfun$lc_rhs$2: apply() :: 2
+see.parser.Program$$anonfun$stms1$1: apply() :: 2
+see.values.Str: v() :: 2
+see.values.Lint: toJava() :: 2
+see.parser.Program.$anonfun.$anonfun.$anonfun: apply() :: 2
+see.parser.Literals$$anonfun$numeric$3: apply() :: 2
+see.parser.Program$$anonfun$block$2$$anonfun$apply$8: apply() :: 2
+see.Main$$anonfun$profile$1: apply$mcVI$sp(I) :: 2
+see.operations.Log10$$anonfun$$init$$3: apply$mcDD$sp(D) :: 2
+see.values.VoidVal: coerce() :: 2
+see.parser.Expressions$$anonfun$vector$1$$anonfun$apply$2: apply() :: 2
+see.parser.Expressions: rep(Lscala/Function0;) :: 2
+see.values.Real: toJava() :: 2
+see.parser.Program$$anonfun$statements$1$$anonfun$apply$3: apply() :: 2
+see.nodes.ArgInterceptor: <init>(enclosing: see.Scope) :: 2
+see.nodes.Fundef: evalIn(s: see.Scope) :: 2
+see.parser.Expressions$$anonfun$atom$1: apply() :: 2
+see.parser.Expressions: NoSuccess() :: 2
+see.nodes.ArgInterceptor: isFunction() :: 2
+see.nodes.Fnode: code() :: 2
+see.parser.Program$$anonfun$lc_rhs$1: apply() :: 2
+see.nodes.ArgInterceptor: createFunction(code: see.nodes.Node) :: 2
+see.nodes.Condition$: apply(Lsee/nodes/Node;Lsee/nodes/Node;) :: 2
+see.operations.ACos$$anonfun$$init$$8: apply$mcDD$sp(D) :: 2
+see.nodes.Fnode: <init>(name: String,params: Seq[see.nodes.Variable],code: see.nodes.Node) :: 2
+see.parser.Program$$anonfun$patternmatch$1: apply() :: 2
+see.parser.Literals$$anonfun$numeric$2: apply() :: 2
+see.parser.Literals$$anonfun$numeric$2$$anonfun$apply$1: apply() :: 2
+see.values.Anonym: coerce() :: 2
+see.parser.Literals$$anonfun$numeric$1: apply() :: 2
+see.values.BigI: v() :: 2
+see.parser.Program$$anonfun$patternmatch$2: apply() :: 2
+see.parser.Literals$$anonfun$convertName$2: apply() :: 2
+see.parser.Literals$$anonfun$constant$2: apply() :: 2
+see.values.Bool: toJava() :: 2
+see.values.Assoc: toJava() :: 2
+see.StableCheck: inner(s: see.Scope) :: 2
+see.parser.Program$$anonfun$block$3: apply() :: 2
+see.operations.Tan$$anonfun$$init$$6: apply$mcDD$sp(D) :: 2
+see.parser.Program$$anonfun$operator$1: apply() :: 2
+see.Binary.$anonfun: apply(x: see.values.Val) :: 2
+see.Scope$$anonfun$getResult$1: apply() :: 2
+see.parser.Literals$$anonfun$convertName$1: apply() :: 2
+see.Scope$$anonfun$getResult$2: apply() :: 2
+see.StableCheck: <init>(outer: see.Scope) :: 2
+see.nodes.Variable$$anonfun$evalIn$1: apply() :: 2
+see.values.Rexp: v() :: 2
+see.values.SymVal: toJava() :: 2
+see.parser.Program$$anonfun$alternative$4: apply() :: 2
+see.values.Table: toJava() :: 2
+see.Scope$$anonfun$getConst$1: apply() :: 2
+see.parser.Literals$$anonfun$constant$1: apply() :: 2
+see.Main$$anonfun$profile$3: apply$mcVI$sp(I) :: 2
+see.nodes.Loop$: apply(Lsee/nodes/Node;Lsee/nodes/Node;) :: 2
+see.parser.Program$$anonfun$stms1$1$$anonfun$apply$4: apply() :: 2
+see.Binary.$anonfun: apply(y: see.values.Val) :: 2
+see.nodes.Fnode.$anonfun: apply(p: see.nodes.Variable) :: 2
+see.values.Str$$anonfun$propagate$2: apply() :: 2
+see.parser.Expressions: parseAll(Lscala/util/parsing/combinator/Parsers$Parser;Ljava/io/Reader;) :: 2
+see.operations.ScalProd.$anonfun: apply(bi: see.values.Val) :: 2
+see.parser.Program$$anonfun$block$2$$anonfun$apply$8$$anonfun$apply$9: apply() :: 2
+see.parser.Program$$anonfun$block$2: apply() :: 2
+see.parser.Program$$anonfun$derefarg$1$$anonfun$apply$7: apply() :: 2
+see.operations.Sin$$anonfun$$init$$4: apply$mcDD$sp(D) :: 2
+see.operations.Log$$anonfun$$init$$2: apply$mcDD$sp(D) :: 2
+see.parser.Program$$anonfun$stms1$1: see$parser$Program$$anonfun$$$outer() :: 2
+see.operations.ToTable: <init>() :: 1
+see.values.Assoc: addRight(v: see.values.Val) :: 1
+see.parser.Literals$$anonfun$numeric$2: see$parser$Literals$$anonfun$$$outer() :: 1
+see.Binary.$anonfun.$anonfun: apply(y: see.values.Val) :: 1
+see.values.NullVal: <init>() :: 1
+see.parser.Program$$anonfun$block$2$$anonfun$apply$8: see$parser$Program$$anonfun$$anonfun$$$outer() :: 1
+see.parser.Expressions: rep1(Lscala/Function0;) :: 1
+see.nodes.Operation.$anon: apply(operand: see.nodes.Node) :: 1
+see.Parser: stripComments(r: java.io.Reader) :: 1
+see.values.Table: intersect(Lsee/values/Val;) :: 1
+see.nodes.StableDef: stable() :: 1
+see.values.Vector.$anonfun: apply(x$3: see.values.Val) :: 1
+see.operations.Greater: <init>() :: 1
+see.operations.Sin.$anonfun: apply(x: Double) :: 1
+see.nodes.LoopP: finish(n: see.nodes.Node) :: 1
+see.values.NullVal: productElement(x$1: Int) :: 1
+see.values.Comparable$: compare(Ljava/lang/Object;Ljava/lang/Object;) :: 1
+see.operations.StrongContainment: <init>() :: 1
+see.operations.ReduceOp.$anonfun: apply(accu: see.values.Number,xi: see.values.Val) :: 1
+see.operations.Unique: <init>() :: 1
+see.values.Assoc: addLeft(v: see.values.Val) :: 1
+see.values.Rexp: propagate(other: see.values.Comparable) :: 1
+see.values.Lint: pwr_(Lsee/values/Number;) :: 1
+see.parser.Literals: convertName(name: String) :: 1
+see.operations.Fold: <init>() :: 1
+see.operations.ToAssoc.$anonfun: apply(k: see.values.Val) :: 1
+see.values.Container.$anonfun: apply(x$4: see.values.Val) :: 1
+see.nodes.Defined: evalIn(s: see.Scope) :: 1
+see.nodes.Fnode: evalIn(s: see.Scope) :: 1
+see.nodes.ArgInterceptor.Detector: stable() :: 1
+see.nodes.Fundef: <init>(f: see.nodes.Fnode) :: 1
+see.values.NullVal: convertTo(destType: Class[_]) :: 1
+see.operations.FindFirstPos: <init>() :: 1
+see.values.BigI: lsh_(Lsee/values/IntLike;) :: 1
+see.values.Lint: sub_(Lsee/values/Number;) :: 1
+see.parser.Program: super$operator(name: String) :: 1
+see.values.Vector.Empty: size() :: 1
+see.values.BigI: rsh_(rhs: see.values.IntLike) :: 1
+see.nodes.MethReflector: <init>(ref: see.nodes.Node,methName: String,args: see.nodes.Node) :: 1
+see.operations.Gcd: <init>() :: 1
+see.nodes.Loop: <init>() :: 1
+see.operations.Symbolize.$anonfun: apply(k: see.values.Val) :: 1
+see.values.BigR: add_(Lsee/values/Number;) :: 1
+see.values.ValMap.$anonfun: apply(x$4: see.values.Val) :: 1
+see.values.Real: pwr_(Lsee/values/Number;) :: 1
+see.values.Native.$anonfun: apply(mIndex: Int) :: 1
+see.values.Native.$anonfun: apply(n: Int) :: 1
+see.parser.Literals: immediate(r: scala.util.matching.Regex) :: 1
+see.NoParent: <init>() :: 1
+see.values.Real: v() :: 1
+see.operations.UnaryMinus: <init>() :: 1
+see.operations.BitXor.$anonfun: apply(x$5: see.values.IntLike,x$6: see.values.IntLike) :: 1
+see.values.Lint: and_(rhs: see.values.IntLike) :: 1
+see.parser.Literals: cHex() :: 1
+see.operations.Div.$anonfun: apply(x$3: see.values.Number,x$4: see.values.Number) :: 1
+see.operations.Log: <init>() :: 1
+see.operations.SetDifference: <init>() :: 1
+see.nodes.Condition: <init>(c: see.nodes.Node,ifTrue: see.nodes.Node,ifFalse: see.nodes.Node) :: 1
+see.values.Str: <init>() :: 1
+see.operations.BitXor: <init>() :: 1
+see.values.ValMap.$anonfun: apply(x$6: see.values.Val, see.values.Val) :: 1
+see.parser.Expressions$PrefixGen: apply() :: 1
+see.values.Val: fits(destType: Class[_]) :: 1
+see.parser.Program.$anonfun: apply(x$7: see.parser.Program) :: 1
+see.values.Native.$anonfun: apply(x$3: java.lang.reflect.Method) :: 1
+see.values.Rexp: toBool() :: 1
+see.operations.ToRexp: <init>() :: 1
+see.nodes.ReflectP: finish(n: see.nodes.Node) :: 1
+see.nodes.Assertion: apply(res: see.nodes.Node) :: 1
+see.operations.ToBig: <init>() :: 1
+see.values.BigR: sub_(rhs: see.values.Number) :: 1
+see.operations.ToTable: apply(s: see.Scope,v: see.values.Val) :: 1
+see.values.BigI: lsh_(rhs: see.values.IntLike) :: 1
+see.operations.Mean: <init>() :: 1
+see.operations.ToRexp: apply(s: see.Scope,v: see.values.Val) :: 1
+see.parser.Program.$anonfun: apply(x$10: see.nodes.Node) :: 1
+see.values.Val: <init>() :: 1
+see.operations.ToStr: apply(s: see.Scope,v: see.values.Val) :: 1
+see.operations.FindAll: <init>() :: 1
+see.values.Lint: or_(Lsee/values/IntLike;) :: 1
+see.values.BigR: toBool() :: 1
+see.values.ValMap.$anonfun: apply(x$5: see.values.Val) :: 1
+see.StableScope: <init>() :: 1
+see.values.Vector.$anonfun: apply(check$ifrefutable$1: see.values.Val, see.values.Val) :: 1
+see.nodes.Vnode.$anonfun: apply(x$2: see.nodes.Node) :: 1
+see.operations.Fold.$anonfun: apply(vn: see.values.Val) :: 1
+see.parser.Expressions: success(Ljava/lang/Object;) :: 1
+see.nodes.EmptyNode: canEqual(x$1: Any) :: 1
+see.operations.BitAnd: <init>() :: 1
+see.values.Vector.$anonfun: apply(e: Object) :: 1
+see.values.Table.$anonfun: apply(p: see.values.TP) :: 1
+see.operations.UnaryPlus: <init>() :: 1
+see.values.Table: addRight(v: see.values.Val) :: 1
+see.OuterScope: stable() :: 1
+see.nodes.Node: isDefinedIn(s: see.Scope) :: 1
+see.values.Lint: <init>() :: 1
+see.values.Table.$anonfun: apply(p1: see.values.TP) :: 1
+see.operations.Zip.$anonfun: apply(i: Int) :: 1
+see.nodes.Local: evalIn(s: see.Scope) :: 1
+see.parser.Program.$anonfun: apply(x$4: see.parser.Program) :: 1
+see.nodes.CatchBlock: footer() :: 1
+see.operations.Max.$anonfun: apply(m: see.values.Number,xi: see.values.Number) :: 1
+see.nodes.MethReflector.$anonfun: apply(x$4: java.lang.reflect.Constructor[?0], Array[Class[_]]) :: 1
+see.nodes.StableFnode: stable() :: 1
+see.operations.BitRshift: <init>() :: 1
+see.values.Lint: ~() :: 1
+see.values.Vector: convertTo(destType: Class[_]) :: 1
+see.operations.VarType: <init>() :: 1
+see.operations.Unique.$anonfun.$anonfun: apply(other: see.values.Val) :: 1
+see.values.Real: fits(destType: Class[_]) :: 1
+see.operations.FindFirst: <init>() :: 1
+see.values.Str.$anonfun: apply(x$1: see.values.Number) :: 1
+see.values.Table.Empty: toBool() :: 1
+see.operations.Log10.$anonfun: apply(x: Double) :: 1
+see.operations.Zip: <init>() :: 1
+see.nodes.Loop: body() :: 1
+see.OuterScope: see$Parent$_setter_$stableCheck_$eq(Z) :: 1
+see.nodes.ReAssign: <init>() :: 1
+see.values.BigI: rsh_(Lsee/values/IntLike;) :: 1
+see.values.Lint: xor_(Lsee/values/IntLike;) :: 1
+see.nodes.ReAssign: <init>(proc: see.Binary,l: see.nodes.LvNode,r: see.nodes.Node) :: 1
+see.nodes.EmptyNode: productArity() :: 1
+see.nodes.Condition: ifFalse() :: 1
+see.operations.BoolXor: <init>() :: 1
+see.operations.Exp: <init>() :: 1
+see.nodes.ArgInterceptor: ARGP() :: 1
+see.values.Lint: gcd_(rhs: see.values.IntLike) :: 1
+see.Scope: isStable() :: 1
+see.nodes.MethReflector.$anonfun: apply(x$1: java.lang.reflect.Method, Array[Class[_]]) :: 1
+see.values.BigI: sub_(rhs: see.values.Number) :: 1
+see.values.ValMap.$anonfun: apply(k: see.values.Val) :: 1
+see.OuterScope: contains(name: String) :: 1
+see.nodes.Assertion: simplifyIn(s: see.Scope) :: 1
+see.parser.Literals: <init>() :: 1
+see.values.NullVal: productArity() :: 1
+see.operations.Less: <init>() :: 1
+see.values.Vector.$anonfun: apply(n: Int) :: 1
+see.operations.Equal: apply(lhs: see.values.Val,rhs: see.values.Val) :: 1
+see.nodes.Assign: apply(operand: see.nodes.Node) :: 1
+see.operations.BitLshift.$anonfun: apply(x$9: see.values.IntLike,x$10: see.values.IntLike) :: 1
+see.nodes.Fnode.$anonfun: apply(x$1: see.nodes.Variable) :: 1
+see.operations.Exp.$anonfun: apply(x$7: see.values.Number,x$8: see.values.Number) :: 1
+see.operations.Rnd: <init>() :: 1
+see.nodes.Assertion: <init>(c: see.nodes.Node,fail: see.nodes.Node) :: 1
+see.parser.Program$$anonfun$statements$1: see$parser$Program$$anonfun$$$outer() :: 1
+see.nodes.CatchBlock: content() :: 1
+see.parser.Expressions: rep1(Lscala/Function0;Lscala/Function0;) :: 1
+see.operations.Unique.$anonfun: apply(v: see.values.Val) :: 1
+see.operations.Zip.$anonfun: apply(x$10: Int,x$11: see.values.Vector) :: 1
+see.values.BigR: add_(rhs: see.values.Number) :: 1
+see.values.Assoc: selType() :: 1
+see.values.Table.$anonfun: apply(check$ifrefutable$1: see.values.TP, see.values.TP) :: 1
+see.values.BigI: gcd_(Lsee/values/IntLike;) :: 1
+see.nodes.MethReflector: methName() :: 1
+see.nodes.Prefix: operator() :: 1
+see.values.Lint: add_(Lsee/values/Number;) :: 1
+see.parser.Expressions: scala$util$parsing$combinator$RegexParsers$_setter_$whiteSpace_$eq(Lscala/util/matching/Regex;) :: 1
+see.values.Assoc: addRight(Lsee/values/Val;) :: 1
+see.values.ValMap: addRight(v: see.values.Val) :: 1
+see.nodes.Assign: <init>() :: 1
+see.operations.BoolAnd: <init>() :: 1
+see.operations.ATan.$anonfun: apply(x: Double) :: 1
+see.operations.Selection: <init>() :: 1
+see.operations.Sqrt.$anonfun: apply(x: Double) :: 1
+see.nodes.Vnode: evalIn(s: see.Scope) :: 1
+see.nodes.Vnode.$anonfun: <init>() :: 1
+see.nodes.ArgInterceptor.Detector: <init>(delegate: see.Scope) :: 1
+see.NoParent$: getVar(Ljava/lang/String;) :: 1
+see.values.AnyVal: toJava() :: 1
+see.Main: main(args: Array[String]) :: 1
+see.nodes.Node: isEmpty() :: 1
+see.values.BigI: fits(destType: Class[_]) :: 1
+see.values.Lint: mul_(rhs: see.values.Number) :: 1
+see.values.VoidVal: productPrefix() :: 1
+see.values.Closure: toJava() :: 1
+see.nodes.ArgInterceptor: willBeStable() :: 1
+see.nodes.MethReflector: args() :: 1
+see.nodes.ArgInterceptor.Detector: stableCheck() :: 1
+see.operations.BoolMatch: <init>() :: 1
+see.values.Table: union(Lsee/values/Val;) :: 1
+see.StableCheck: stableCheck() :: 1
+see.values.Lint: $tilde() :: 1
+see.OuterScope: <init>(outer: see.Scope) :: 1
+see.nodes.ReAssign: proc() :: 1
+see.values.Str.$anonfun: apply(x$2: see.values.Number) :: 1
+see.nodes.Association: <init>() :: 1
+see.values.Vector.$anonfun: apply(x$4: see.values.Val, see.values.Val) :: 1
+see.operations.TypeCheck: <init>() :: 1
+see.values.BigR: mul_(Lsee/values/Number;) :: 1
+see.values.BigI: add_(rhs: see.values.Number) :: 1
+see.nodes.Nodes: productArity() :: 1
+see.parser.Literals: cDecimal() :: 1
+see.operations.UnaryInv: <init>() :: 1
+see.values.Lint: pwr_(rhs: see.values.Number) :: 1
+see.values.BigI: mul_(Lsee/values/Number;) :: 1
+see.nodes.Association: apply(operand: see.nodes.Node) :: 1
+see.values.BigR: fits(destType: Class[_]) :: 1
+see.values.Comparable: compare(Ljava/lang/Object;) :: 1
+see.Scope: getConst(name: String) :: 1
+see.operations.ASin.$anonfun: apply(x: Double) :: 1
+see.NoParent$: see$Parent$_setter_$stableCheck_$eq(Z) :: 1
+see.operations.Version: apply(s: see.Scope,v: see.values.Val) :: 1
+see.values.Container.$anonfun: apply(x$1: see.values.Val) :: 1
+see.values.Lint: lsh_(Lsee/values/IntLike;) :: 1
+see.values.Table.$anonfun: apply(v: see.values.TP) :: 1
+see.nodes.ReAssign.$anon: apply(operand: see.nodes.Node) :: 1
+see.operations.ToVect: <init>() :: 1
+see.values.Table.$anonfun: apply(v: see.values.Val) :: 1
+see.operations.Symbolize: <init>() :: 1
+see.values.BigI: xor_(rhs: see.values.IntLike) :: 1
+see.operations.SetIntersection: <init>() :: 1
+see.parser.Expressions: NoSuccess$lzycompute() :: 1
+see.values.Vector.$anonfun: apply(x$5: see.values.Val) :: 1
+see.Parser: parse(e: String,scope: see.Scope) :: 1
+see.values.VoidVal: productIterator() :: 1
+see.values.ValMap: map(mapf: see.values.Val => see.values.Val) :: 1
+see.nodes.MethReflector.$anonfun: apply(x$3: java.lang.reflect.Constructor[?0], Array[Class[_]]) :: 1
+see.operations.Prod.$anonfun: apply(x$4: see.values.Number,x$5: see.values.Number) :: 1
+see.values.Vector.Empty: map(mapf: see.values.Val => see.values.Val) :: 1
+see.parser.Expressions: scala$util$parsing$combinator$RegexParsers$$super$phrase(Lscala/util/parsing/combinator/Parsers$Parser;) :: 1
+see.values.Str.$anonfun: apply(ch: Char) :: 1
+see.values.Closure: toBool() :: 1
+see.values.ValMap.$anonfun: apply(x$1: see.values.Val) :: 1
+see.operations.Minus: <init>() :: 1
+see.operations.Slice.$anonfun: apply(v: see.values.Val) :: 1
+see.See: evalAsDouble(expr: String) :: 1
+see.operations.ExactEqual: <init>() :: 1
+see.operations.Minus.$anonfun: apply(x$9: see.values.Number,x$10: see.values.Number) :: 1
+see.values.Vector.Empty: toBool() :: 1
+see.parser.Program$$anonfun$stms1$1$$anonfun$apply$4: see$parser$Program$$anonfun$$anonfun$$$outer() :: 1
+see.values.Lint: rsh_(rhs: see.values.IntLike) :: 1
+see.nodes.Nodes: productPrefix() :: 1
+see.operations.ToVect: apply(s: see.Scope,v: see.values.Val) :: 1
+see.values.NullVal: toJava() :: 1
+see.nodes.CatchBlock: evalIn(s: see.Scope) :: 1
+see.values.BigI: $tilde() :: 1
+see.nodes.Fcall: fname() :: 1
+see.parser.Program.$anonfun: apply(x$1: see.parser.Program) :: 1
+see.nodes.Relation: <init>() :: 1
+see.values.Vector: addLeft(Lsee/values/Val;) :: 1
+see.operations.ACos.$anonfun: apply(x: Double) :: 1
+see.operations.Concat: <init>() :: 1
+see.operations.Times: <init>() :: 1
+see.nodes.ReflectFieldP: finish(n: see.nodes.Node) :: 1
+see.operations.Round: <init>() :: 1
+see.nodes.Return: simplifyIn(s: see.Scope) :: 1
+see.parser.Expressions: operator(name: String) :: 1
+see.nodes.EmptyNode: productIterator() :: 1
+see.builtins: <init>() :: 1
+see.StableScope$: getVar(Ljava/lang/String;) :: 1
+see.values.Lint: sub_(rhs: see.values.Number) :: 1
+see.NoParent: stable() :: 1
+see.parser.Literals: log([T]p: ) :: 1
+see.values.BigR: abs() :: 1
+see.parser.Literals: constant() :: 1
+see.values.SymVal: fits(destType: Class[_]) :: 1
+see.nodes.ConditionP: finish(n: see.nodes.Node) :: 1
+see.operations.WeakContainment: <init>() :: 1
+see.StableScope$: getConst(Ljava/lang/String;) :: 1
+see.nodes.Nodes: productElement(x$1: Int) :: 1
+see.values.Real: toBool() :: 1
+see.operations.Div: <init>() :: 1
+see.nodes.Nodes.$anonfun: <init>() :: 1
+see.nodes.Operation: <init>() :: 1
+see.operations.Le: <init>() :: 1
+see.values.VoidVal: <init>() :: 1
+see.nodes.Return: apply(res: see.nodes.Node) :: 1
+see.StableScope: stable() :: 1
+see.parser.Expressions$$anonfun$vector$1: see$parser$Expressions$$anonfun$$$outer() :: 1
+see.operations.GetValues.$anonfun: apply(p: see.values.TP) :: 1
+see.values.ValMap.$anonfun: apply() :: 1
+see.nodes.Block: <init>(content: see.nodes.Node) :: 1
+see.values.Comparable: compare(l: see.values.Comparable,r: see.values.Comparable) :: 1
+see.parser.Program.$anonfun.$anonfun: apply(x$6: see.nodes.Leaf with Product with Serializable) :: 1
+see.operations.GetValues: <init>() :: 1
+see.nodes.ArgInterceptor.Detector: getVar(name: String) :: 1
+see.nodes.ArgInterceptor.$anonfun: apply(n: Int) :: 1
+see.values.BigI: toBool() :: 1
+see.Main: <init>() :: 1
+see.nodes.EmptyNode: hashCode() :: 1
+see.values.BigI: abs() :: 1
+see.parser.Expressions.$anonfun: apply(x$2: List[see.nodes.Node]) :: 1
+see.values.Lint: gcd_(Lsee/values/IntLike;) :: 1
+see.parser.Program: super@om() :: 1
+see.parser.Expressions.PrefixGen: apply() :: 1
+see.OuterScope: getVar(name: String) :: 1
+see.operations.Ge: <init>() :: 1
+see.values.Native.$anonfun: apply(x$1: java.lang.reflect.Method) :: 1
+see.values.Str: toBool() :: 1
+see.nodes.Fcall: <init>(fname: String,args: see.nodes.Node) :: 1
+see.operations.ToBigI: <init>() :: 1
+see.values.ValMap: addLeft(v: see.values.Val) :: 1
+see.values.Lint: rsh_(Lsee/values/IntLike;) :: 1
+see.Binary$$anonfun$apply$6: see$Binary$$anonfun$$$outer() :: 1
+see.operations.Mod: <init>() :: 1
+see.operations.Plus.$anonfun: apply(x$11: see.values.Number,x$12: see.values.Number) :: 1
+see.parser.Program.$anonfun: apply(x0$1: Program.this.~[see.nodes.Node,Option[see.nodes.Node]]) :: 1
+see.nodes.EmptyNode: productPrefix() :: 1
+see.nodes.Variable.$anonfun: apply() :: 1
+see.operations.Min.$anonfun: apply(m: see.values.Number,xi: see.values.Number) :: 1
+see.nodes.EmptyNode: <init>() :: 1
+see.nodes.Prefix: <init>(o: see.nodes.Node,operator: see.Unary) :: 1
+see.values.VoidVal: canEqual(x$1: Any) :: 1
+see.nodes.PREC: <init>() :: 1
+see.operations.Prod: <init>() :: 1
+see.nodes.Association: evalIn(s: see.Scope) :: 1
+see.StableParent: <init>(outer: see.Scope) :: 1
+see.values.Vector: addRight(v: see.values.Val) :: 1
+see.values.NullVal: productIterator() :: 1
+see.values.Val: toBool() :: 1
+see.values.Vector: addLeft(v: see.values.Val) :: 1
+see.operations.Pad.$anonfun: apply(c: Int) :: 1
+see.parser.Program.$anonfun: apply(x$5: see.parser.Program) :: 1
+see.operations.At: <init>() :: 1
+see.nodes.Indirection: <init>(o: see.nodes.Node) :: 1
+see.nodes.Nodes: nodes() :: 1
+see.OuterScope: set(name: String,v: see.values.Val) :: 1
+see.nodes.Loop: <init>(c: see.nodes.Node,body: see.nodes.Node,dflt: see.nodes.Node) :: 1
+see.values.BigI: or_(rhs: see.values.IntLike) :: 1
+see.operations.ScalProd.$anonfun: apply(check$ifrefutable$1: see.values.Val, Int) :: 1
+see.operations.ToMap: <init>() :: 1
+see.nodes.ArgInterceptor.Detector: set(name: String,v: see.values.Val) :: 1
+see.values.Lint: toBool() :: 1
+see.values.Table.Empty: size() :: 1
+see.nodes.Fnode: apply(params: Seq[see.nodes.Variable],code: see.nodes.Node) :: 1
+see.nodes.Variable: isConst() :: 1
+see.values.BigR: negate() :: 1
+see.operations.VarType: apply(s: see.Scope,v: see.values.Val) :: 1
+see.nodes.Assign: <init>(l: see.nodes.LvNode,r: see.nodes.Node) :: 1
+see.StableParent: stable() :: 1
+see.values.Real: pwr_(rhs: see.values.Number) :: 1
+see.parser.Program.$anonfun: apply(x0$6: Program.this.~[String,Object]) :: 1
+see.parser.Literals.$anonfun: apply(re: String) :: 1
+see.nodes.Operation: <init>(operator: see.Binary,l: see.nodes.Node,r: see.nodes.Node,p: Int) :: 1
+see.values.ValMap: selType() :: 1
+see.values.ValMap.Empty: <init>() :: 1
+see.values.Native: <init>() :: 1
+see.Scope: iset(name: String,v: see.values.Val) :: 1
+see.values.Vector.$anonfun: apply(x$1: see.values.Val) :: 1
+see.parser.Program.$anonfun: apply(x0$4: Program.this.~[Program.this.~[see.nodes.Node,String],see.nodes.Node]) :: 1
+see.builtins: contains(opCode: String) :: 1
+see.nodes.AssertionP: finish(n: see.nodes.Node) :: 1
+see.values.Lint: lsh_(rhs: see.values.IntLike) :: 1
+see.values.ValMap.$anonfun: apply(x$2: see.values.Val) :: 1
+see.Unary.$anonfun: apply(v: see.values.Val) :: 1
+see.operations.Zip.$anonfun: apply(x$8: see.values.Val) :: 1
+see.parser.Expressions: whiteSpace() :: 1
+see.values.ValMap.$anonfun: apply(v: see.values.Val) :: 1
+see.operations.ACos: <init>() :: 1
+see.nodes.Return: <init>(c: see.nodes.Node,result: see.nodes.Node) :: 1
+see.parser.Program.$anonfun: apply(x$2: see.parser.Program) :: 1
+see.operations.ToReal: <init>() :: 1
+see.parser.Expressions: repsep(Lscala/Function0;Lscala/Function0;) :: 1
+see.nodes.StableDef: <init>(f: see.nodes.StableFnode) :: 1
+see.values.Comparable: compareTo(Ljava/lang/Object;) :: 1
+see.nodes.ArgInterceptor: argsUsed_=(x$1: Int) :: 1
+see.nodes.EmptyNode: productElement(x$1: Int) :: 1
+see.operations.Ne: <init>() :: 1
+see.operations.Slice.$anonfun: apply(x$13: see.values.Val) :: 1
+see.values.Lint: abs() :: 1
+see.values.Container.$anonfun: apply(x$2: see.values.Val) :: 1
+see.nodes.EmptyNodes: evalIn(s: see.Scope) :: 1
+see.values.Vector.$anonfun: apply(x$6: see.values.Val) :: 1
+see.nodes.Block$Eval: see$nodes$Block$Eval$$$outer() :: 1
+see.nodes.ArgInterceptor.Detector: getConst(name: String) :: 1
+see.values.Bool: <init>(v: Boolean) :: 1
+see.nodes.EmptyNodes: simplifyIn(s: see.Scope) :: 1
+see.NoParent: getConst(name: String) :: 1
+see.values.NullVal: canEqual(x$1: Any) :: 1
+see.values.Table: <init>() :: 1
+see.operations.Plus: <init>() :: 1
+see.nodes.Block: evalIn(s: see.Scope) :: 1
+see.values.Val: convertTo(destType: Class[_]) :: 1
+see.nodes.Operation: operator() :: 1
+see.parser.Program.$anonfun: apply(x0$3: Program.this.~[see.nodes.Node,List[see.nodes.Node]]) :: 1
+see.values.Rexp: fits(destType: Class[_]) :: 1
+see.Binary.$anonfun: apply(x$1: see.values.Val, see.values.Val) :: 1
+see.nodes.Final: finish(n: see.nodes.Node) :: 1
+see.operations.Cos: <init>() :: 1
+see.values.Lint: add_(rhs: see.values.Number) :: 1
+see.operations.ToStr: <init>() :: 1
+see.Scope: exec(node: see.INode) :: 1
+see.operations.ScalProd.$anonfun: apply(x$15: see.values.Val, Int) :: 1
+see.values.Table: addLeft(v: see.values.Val) :: 1
+see.nodes.Factory2: apply(operand: see.nodes.Node) :: 1
+see.operations.BitAnd.$anonfun: apply(x$1: see.values.IntLike,x$2: see.values.IntLike) :: 1
+see.nodes.MatcherP: finish(n: see.nodes.Node) :: 1
+see.nodes.Leaf: insert(parent: see.nodes.Branch,proto: see.nodes.Proto) :: 1
+see.NoParent$: getConst(Ljava/lang/String;) :: 1
+see.nodes.Leaf: precedence() :: 1
+see.values.Assoc: addLeft(Lsee/values/Val;) :: 1
+see.operations.Max: <init>() :: 1
+see.nodes.DefinedP: finish(n: see.nodes.Node) :: 1
+see.values.Lint: mul_(Lsee/values/Number;) :: 1
+see.values.ValMap.Empty: size() :: 1
+see.operations.Times.$anonfun: apply(x$13: see.values.Number,x$14: see.values.Number) :: 1
+see.values.Vector: fits(destType: Class[_]) :: 1
+see.values.Assoc: map(mapf: see.values.Val => see.values.Val) :: 1
+see.Scope: contains(name: String) :: 1
+see.operations.Zip.$anonfun.$anonfun: apply(vect: see.values.Vector) :: 1
+see.operations.Pad: <init>() :: 1
+see.nodes.MethReflector.$anonfun: apply(x$5: java.lang.reflect.Constructor[_]) :: 1
+see.SeeException: <init>(msg: String) :: 1
+see.nodes.Vnode: <init>(nodes: Seq[see.nodes.Node]) :: 1
+see.values.VoidVal: hashCode() :: 1
+see.values.Bool: <init>() :: 1
+see.See: <init>() :: 1
+see.nodes.CatchBlock$Catcher: see$nodes$CatchBlock$Catcher$$$outer() :: 1
+see.operations.Gcd.$anonfun: apply(x$1: see.values.IntLike,x$2: see.values.IntLike) :: 1
+see.parser.Program.$anonfun.$anonfun: apply(x$8: see.nodes.Leaf with Product with Serializable) :: 1
+see.values.VoidVal: productElement(x$1: Int) :: 1
+see.values.ValMap.$anonfun: apply(kv: see.values.Val, see.values.Val) :: 1
+see.nodes.ArgInterceptor: willBeStable_=(x$1: Boolean) :: 1
+see.operations.Sort.$anonfun: apply(x$12: see.values.Val) :: 1
+see.operations.Length: apply(s: see.Scope,v: see.values.Val) :: 1
+see.operations.Ceil: <init>() :: 1
+see.parser.Program: <init>() :: 1
+see.operations.Vectorize: <init>() :: 1
+see.parser.Expressions$$anon$4: apply() :: 1
+see.parser.Expressions: skipWhitespace() :: 1
+see.StableScope$: see$Parent$_setter_$stableCheck_$eq(Z) :: 1
+see.values.Container: toBool() :: 1
+see.values.ValMap: addRight(Lsee/values/Val;) :: 1
+see.nodes.Branch: prec() :: 1
+see.values.VoidVal: convertTo(destType: Class[_]) :: 1
+see.StableScope: inner(s: see.Scope) :: 1
+see.nodes.CatchBlock: <init>(content: see.nodes.Node,footer: see.nodes.Node) :: 1
+see.operations.UnaryNot: <init>() :: 1
+see.Binary.$anonfun: apply(check$ifrefutable$1: see.values.Val, see.values.Val) :: 1
+see.values.Table: selType() :: 1
+see.StableParent: inner(s: see.Scope) :: 1
+see.parser.Program.$anonfun: apply(node: see.nodes.Node) :: 1
+see.nodes.Association: <init>(key: see.nodes.Node,value: see.nodes.Node) :: 1
+see.operations.Log.$anonfun: apply(x: Double) :: 1
+see.values.ValMap.Empty: map(mapf: see.values.Val => see.values.Val) :: 1
+see.values.BigI: and_(Lsee/values/IntLike;) :: 1
+see.operations.Min: <init>() :: 1
+see.values.Str.$anonfun: apply() :: 1
+see.values.NullVal: hashCode() :: 1
+see.nodes.Loop: apply(body: see.nodes.Node,dflt: see.nodes.Node) :: 1
+see.values.BigI: sub_(Lsee/values/Number;) :: 1
+see.values.Lint: fits(destType: Class[_]) :: 1
+see.operations.Distinct: <init>() :: 1
+see.values.Table.Empty: map(mapf: see.values.Val => see.values.Val) :: 1
+see.operations.ToInt: <init>() :: 1
+see.values.Vector: selType() :: 1
+see.nodes.Relation.$anon: apply(operand: see.nodes.Node) :: 1
+see.Scope: parent_=(x$1: see.Parent) :: 1
+see.operations.GetKeys: <init>() :: 1
+see.nodes.Local.$anonfun: apply(v: see.nodes.Variable) :: 1
+see.values.Vector.$anonfun: apply(i: Int) :: 1
+see.Parent: stableCheck() :: 1
+see.operations.ATan: <init>() :: 1
+see.values.Comparable: <init>() :: 1
+see.values.VoidVal: productArity() :: 1
+see.operations.ToAssoc.$anonfun: apply(x$2: see.values.Val, see.values.Val) :: 1
+see.values.Table: diff(rhs: see.values.Val) :: 1
+see.parser.Literals: eatws(in: scala.util.parsing.input.Reader[Char]) :: 1
+see.values.Assoc: <init>(key: see.values.Val,value: see.values.Val) :: 1
+see.values.Vector: addRight(Lsee/values/Val;) :: 1
+see.values.Lint: v() :: 1
+see.parser.Literals.$anonfun.$anonfun: apply() :: 1
+see.parser.Expressions: scala$util$parsing$combinator$Parsers$$lastNoSuccessVar() :: 1
+see.operations.ScalProd: <init>() :: 1
+see.nodes.Condition: <init>() :: 1
+see.values.BigI: or_(Lsee/values/IntLike;) :: 1
+see.operations.ExactEqual: apply(lhs: see.values.Val,rhs: see.values.Val) :: 1
+see.values.Native.$anonfun: apply(x$2: java.lang.reflect.Method) :: 1
+see.parser.Expressions.$anonfun.$anonfun: apply(x$1: see.nodes.Leaf) :: 1
+see.nodes.Fnode.$anonfun: apply(x$2: see.nodes.Variable, see.values.Val) :: 1
+see.operations.Version: <init>() :: 1
+see.values.Table: map(mapf: see.values.Val => see.values.Val) :: 1
+see.parser.Literals: cBin() :: 1
+see.operations.Sum.$anonfun: apply(x$2: see.values.Number,x$3: see.values.Number) :: 1
+see.values.Real: abs() :: 1
+see.nodes.MethReflector.$anonfun: apply(x$2: java.lang.reflect.Method, Array[Class[_]]) :: 1
+see.operations.SetUnion: <init>() :: 1
+see.nodes.Fnode: newName() :: 1
+see.operations.Sin: <init>() :: 1
+see.values.BigR: <init>() :: 1
+see.parser.Literals.$anonfun: apply(in: scala.util.parsing.input.Reader[Char]) :: 1
+see.values.ValMap: addLeft(Lsee/values/Val;) :: 1
+see.values.VoidVal: toJava() :: 1
+see.values.Lint: xor_(rhs: see.values.IntLike) :: 1
+see.operations.Sqrt: <init>() :: 1
+see.operations.BitOr: <init>() :: 1
+see.nodes.Vnode: nodes() :: 1
+see.Binary.$anonfun.$anonfun: apply(x: see.values.Val) :: 1
+see.nodes.Matcher.$anonfun: <init>() :: 1
+see.values.Table: addLeft(Lsee/values/Val;) :: 1
+see.Scope: <init>() :: 1
+see.StableScope: getConst(name: String) :: 1
+see.nodes.EmptyNode: evalIn(ev: see.Scope) :: 1
+see.values.Vector.$anonfun: apply(x$2: see.values.Val) :: 1
+see.operations.BitLshift: <init>() :: 1
+see.values.NullVal: productPrefix() :: 1
+see.NoParent: getVar(name: String) :: 1
+see.values.BigI: ~() :: 1
+see.parser.Literals: numeric() :: 1
+see.nodes.Loop: dflt() :: 1
+see.values.Comparable: $greater$eq(Ljava/lang/Object;) :: 1
+see.values.ValMap.$anonfun: apply(check$ifrefutable$1: see.values.Val, see.values.Val) :: 1
+see.parser.Literals: cRexp() :: 1
+see.nodes.Fnode: <init>() :: 1
+see.operations.Equal: <init>() :: 1
+see.values.BigR: mul_(rhs: see.values.Number) :: 1
+see.operations.ToAssoc.$anonfun: apply(check$ifrefutable$1: see.values.Val, see.values.Val) :: 1
+see.values.Table.Empty: <init>() :: 1
+see.nodes.Condition: apply(tc: see.nodes.Node,fc: see.nodes.Node) :: 1
+see.operations.Slice: <init>() :: 1
+see.operations.Tan: <init>() :: 1
+see.values.ValMap.$anonfun: apply(x$3: see.values.Val) :: 1
+see.values.Table: union(rhs: see.values.Val) :: 1
+see.nodes.ReturnP: finish(n: see.nodes.Node) :: 1
+see.nodes.Nodes: hashCode() :: 1
+see.values.Vector: <init>(init: Seq[see.values.Val]) :: 1
+see.nodes.MethReflector.$anonfun: apply(m: java.lang.reflect.Method) :: 1
+see.values.Table.$anonfun: apply(vv: see.values.TP) :: 1
+see.nodes.Fnode.$anonfun: apply(check$ifrefutable$1: see.nodes.Variable, see.values.Val) :: 1
+see.values.Bool: toBool() :: 1
+see.parser.Program.$anonfun.$anonfun: apply(x0$5: see.nodes.Node) :: 1
+see.values.Comparable: compare(rhs: see.values.Comparable) :: 1
+see.nodes.Nodes: canEqual(x$1: Any) :: 1
+see.nodes.StableDef: <init>(n: String,p: Seq[see.nodes.Variable],c: see.nodes.Node) :: 1
+see.parser.Literals: cString() :: 1
+see.See: evalAsDouble(node: see.INode) :: 1
+see.nodes.FieldReflector: <init>(ref: see.nodes.Node,fieldName: String) :: 1
+see.operations.Rep: <init>() :: 1
+see.values.AnyVal: convertTo(destType: Class[_]) :: 1
+see.parser.Expressions: scala$util$parsing$combinator$Parsers$$lastNoSuccessVar$lzycompute() :: 1
+see.values.Native: toJava() :: 1
+see.operations.ToBool: <init>() :: 1
+see.Scope: apply(parent: see.OuterScope) :: 1
+see.parser.Program.$anonfun: apply(x$11: List[see.nodes.Alternative]) :: 1
+see.parser.Expressions: atom() :: 1
+see.parser.Expressions.$anonfun: apply(e: see.parser.Expressions) :: 1
+see.values.Vector: map(mapf: see.values.Val => see.values.Val) :: 1
+see.operations.Log10: <init>() :: 1
+see.values.AnyVal: fits(destType: Class[_]) :: 1
+see.values.BigI: and_(rhs: see.values.IntLike) :: 1
+see.operations.Mean.$anonfun: apply(x$6: see.values.Number,x$7: see.values.Number) :: 1
+see.operations.Sort: <init>() :: 1
+see.values.Vector: <init>() :: 1
+see.values.Comparable: $greater(Ljava/lang/Object;) :: 1
+see.nodes.Nodes.$anonfun: apply(x$3: see.nodes.Node) :: 1
+see.values.Table: addRight(Lsee/values/Val;) :: 1
+see.nodes.Nodes: productIterator() :: 1
+see.nodes.Matcher.$anonfun.$anonfun: apply(r: see.nodes.Node) :: 1
+see.Binary$$anonfun$apply$8: see$Binary$$anonfun$$$outer() :: 1
+see.nodes.FieldReflector: fieldName() :: 1
+see.values.Table: diff(Lsee/values/Val;) :: 1
+see.operations.ASin: <init>() :: 1
+see.operations.Abs: <init>() :: 1
+see.values.Lint: or_(rhs: see.values.IntLike) :: 1
+see.OuterScope: getConst(name: String) :: 1
+see.values.BigI: mul_(rhs: see.values.Number) :: 1
+see.operations.Mod.$anonfun: apply(x$5: see.values.Number,x$6: see.values.Number) :: 1
+see.parser.Expressions$$anon$3: apply() :: 1
+see.operations.ToAssoc: <init>() :: 1
+see.operations.Sort.$anonfun: apply(a: see.values.Comparable,b: see.values.Comparable) :: 1
+see.values.Bool: fits(destType: Class[_]) :: 1
+see.nodes.Vnode.$anonfun: apply(x$1: see.nodes.Node) :: 1
+see.operations.BitRshift.$anonfun: apply(x$7: see.values.IntLike,x$8: see.values.IntLike) :: 1
+see.operations.Length: <init>() :: 1
+see.parser.Expressions: phrase(Lscala/util/parsing/combinator/Parsers$Parser;) :: 1
+see.nodes.ArgInterceptor.Detector: contains(name: String) :: 1
+see.Scope: createInner() :: 1
+see.operations.Floor: <init>() :: 1
+see.values.BigR: sub_(Lsee/values/Number;) :: 1
+see.values.ValMap.Empty: toBool() :: 1
+see.nodes.Return: <init>() :: 1
+see.values.BigI: add_(Lsee/values/Number;) :: 1
+see.operations.ExactNe: <init>() :: 1
+see.values.Table: intersect(rhs: see.values.Val) :: 1
+see.values.Table.$anonfun: apply(x$6: see.values.TP, see.values.TP) :: 1
+see.operations.Cos.$anonfun: apply(x: Double) :: 1
+see.values.Anonym: toJava() :: 1
+see.parser.Expressions: <init>() :: 1
+see.values.Lint: negate() :: 1
+see.operations.BitOr.$anonfun: apply(x$3: see.values.IntLike,x$4: see.values.IntLike) :: 1
+see.operations.Power: <init>() :: 1
+see.nodes.Matcher: <init>(sel: see.nodes.Node,alternatives: Seq[see.nodes.Alternative]) :: 1
+see.operations.BoolOr: <init>() :: 1
+see.values.ValMap: <init>() :: 1
+see.StableParent: see$Parent$_setter_$stableCheck_$eq(Z) :: 1
+see.nodes.Fundef: <init>(n: String,ps: Seq[see.nodes.Variable],c: see.nodes.Node) :: 1
+see.operations.Tan.$anonfun: apply(x: Double) :: 1
+see.nodes.ArgInterceptor: enclosing() :: 1
+see.parser.Program$$anonfun$derefarg$1: see$parser$Program$$anonfun$$$outer() :: 1
+see.operations.Rep.$anonfun: apply() :: 1
+see.parser.Literals: literal(s: String) :: 1
+see.nodes.Nodes: <init>(nodes: Seq[see.nodes.Node]) :: 1
+see.values.Str: fits(destType: Class[_]) :: 1
+see.nodes.ArgInterceptor.$anonfun: <init>() :: 1
+see.values.BigI: gcd_(rhs: see.values.IntLike) :: 1
+see.nodes.Condition: ifTrue() :: 1
+see.nodes.Alternative: <init>(pattern: Any,result: see.nodes.Node) :: 1
+see.values.BigI: xor_(Lsee/values/IntLike;) :: 1
+see.Scope: parse(expression: String) :: 1
+see.nodes.Fnode.$anonfun: <init>() :: 1
+see.parser.Expressions: parse(Lscala/util/parsing/combinator/Parsers$Parser;Ljava/io/Reader;) :: 1
+see.parser.Program.$anonfun: apply(x$3: see.parser.Program) :: 1
+see.parser.Program.$anonfun: apply(x0$2: Option[List[see.nodes.Node]]) :: 1
+see.operations.GetKeys.$anonfun: apply(p: see.values.TP) :: 1
+see.StableScope: getVar(name: String) :: 1
+see.values.Rexp: convertTo(destType: Class[_]) :: 1
+see.nodes.Assertion: <init>() :: 1
+see.values.Vector: values() :: 1
+see.nodes.EmptyNodes: <init>() :: 1
+see.operations.Sum: <init>() :: 1
+see.operations.ToMap: apply(s: see.Scope,v: see.values.Val) :: 1
+see.values.Vector.Empty: <init>() :: 1
+see.values.Lint: and_(Lsee/values/IntLike;) :: 1
+see.nodes.Defined: <init>(o: see.nodes.Node) :: 1
+see.nodes.MethReflector.$anonfun: apply(c: java.lang.reflect.Constructor[_]) :: 1

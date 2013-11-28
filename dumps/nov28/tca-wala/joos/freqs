@@ -1,0 +1,721 @@
+equals :: 2509
+apply :: 1995
+toString :: 1253
+typ :: 144
+blob :: 82
+<init> :: 37
+spec :: 36
+asLeaf :: 10
+main :: 8
+CodeGen$$anonfun$$anonfun$$$outer :: 7
+CodeGen$$anonfun$$anonfun$generators$$$outer :: 5
+node :: 4
+subtypeTests :: 4
+env :: 4
+parent :: 4
+CodeGen$$anonfun$$anonfun$$anonfun$$$outer :: 3
+asNode :: 3
+interfaceInvoke :: 3
+CodeGen$$anonfun$$anonfun$$anonfun$$anonfun$$anonfun$$$outer :: 2
+frame$lzycompute :: 2
+CodeGen$$anonfun$$anonfun$$anonfun$$anonfun$$$outer :: 2
+Names$$anonfun$$anonfun$$$outer :: 2
+Types$$anonfun$$anonfun$$$outer :: 2
+apply$mcZI$sp :: 2
+constrs :: 1
+fields$lzycompute :: 1
+classFrame$lzycompute$1 :: 1
+constrs$lzycompute :: 1
+classes :: 1
+objFrame$lzycompute :: 1
+methods :: 1
+CodeGen$$anonfun$$anonfun$$anonfun$$anonfun$$anonfun$$anonfun$$$outer :: 1
+arrayFrame$lzycompute$1 :: 1
+Names$MethodCheck$$anonfun$$anonfun$$anonfun$$$outer :: 1
+CodeGen$interfaceInvoke$$anonfun$$$outer :: 1
+CodeGen$interfaceInvoke$$anonfun$$anonfun$$$outer :: 1
+CodeGen$$interfaceInvoke$1$lzycompute :: 1
+objectFrame :: 1
+fields :: 1
+env_= :: 1
+constFrame :: 1
+CodeGen$$subtypeTests$1$lzycompute :: 1
+classes$lzycompute :: 1
+parent_= :: 1
+linkParents :: 1
+arrayLengthDecl$lzycompute :: 1
+Names$MethodCheck$$anonfun$$anonfun$$$outer :: 1
+methodFrame :: 1
+methods$lzycompute :: 1
+==================================================
+Parser.Node: equals(x$1: Any) :: 193
+Ast.ImportClass: equals(x$1: Any) :: 193
+Parser.Production: equals(x$1: Any) :: 193
+Names.MethodSig: equals(x$1: Any) :: 193
+Ast.ArrayType: equals(x$1: Any) :: 193
+Parser.Leaf: equals(x$1: Any) :: 193
+Parser.Reduce: equals(x$1: Any) :: 193
+Scanner.Token: equals(x$1: Any) :: 193
+Parser.Shift: equals(x$1: Any) :: 193
+Names.ConstrSig: equals(x$1: Any) :: 193
+Ast.ImportStar: equals(x$1: Any) :: 193
+Ast.RefType: equals(x$1: Any) :: 193
+Ast.Name: equals(x$1: Any) :: 193
+ca.uwaterloo.scalacg.Library: blob() :: 82
+Util$Memoize: toString() :: 32
+Ast.VoidType: toString() :: 31
+Ast.WhileStmt: toString() :: 31
+Parser.Shift: toString() :: 31
+Ast.ImportStar: toString() :: 31
+Parser.Production: toString() :: 31
+Ast.CharType: toString() :: 31
+Ast.RefType: toString() :: 31
+Ast.ForStmt: toString() :: 31
+Ast.ExprStmt: toString() :: 31
+Ast.ReturnStmt: toString() :: 31
+Ast.NullType: toString() :: 31
+Ast.ArrayType: toString() :: 31
+Ast.IfStmt: toString() :: 31
+Names.MethodSig: toString() :: 31
+Scanner.Token: toString() :: 31
+Ast.ClassDecl: toString() :: 31
+Parser.Node: toString() :: 31
+Ast.BooleanType: toString() :: 31
+Names.ConstrSig: toString() :: 31
+Names.Env: toString() :: 31
+Ast.ImportClass: toString() :: 31
+Ast.ShortType: toString() :: 31
+Ast.VarDeclStmt: toString() :: 31
+Ast.IntType: toString() :: 31
+Ast.ByteType: toString() :: 31
+Ast.Modifier: toString() :: 31
+Ast.Name: toString() :: 31
+Parser.Reduce: toString() :: 31
+Ast.MethodDecl: toString() :: 31
+Ast.FieldDecl: toString() :: 31
+Ast.RefSpec: toString() :: 30
+Ast.NewExpr: toString() :: 29
+Ast.BinExpr: toString() :: 29
+Ast.VarExpr: toString() :: 29
+Ast.TypeExpr: toString() :: 29
+Ast.InstanceOfExpr: toString() :: 29
+Parser.Leaf: toString() :: 29
+Ast.ThisLiteral: toString() :: 29
+Ast.InvokeExpr: toString() :: 29
+Ast.FieldExpr: toString() :: 29
+Ast$BooleanSpec: typ() :: 17
+Ast$RefSpec: typ() :: 17
+Ast$ByteSpec: typ() :: 17
+Ast$ShortSpec: typ() :: 17
+Ast$IntSpec: typ() :: 17
+Ast$VoidSpec: typ() :: 17
+Ast$ArraySpec: typ() :: 17
+Ast$CharSpec: typ() :: 17
+Names.$anonfun.$anonfun: apply(cls: Ast.ClassDecl) :: 15
+Names.$anonfun: apply(cu: Ast.CompUnit) :: 13
+Names.$anonfun.$anonfun.$anonfun.$anonfun: apply(mp: Ast.MethodDecl) :: 10
+Parser$Node: asLeaf() :: 9
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5: CodeGen$$anonfun$$anonfun$$$outer() :: 7
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$generators$1$$anonfun$genStmt$3: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$1$$anonfun$apply$33$$anonfun$apply$35$$anonfun$apply$36: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$replaceM$1$$anonfun$apply$52: apply(Ljava/lang/Object;) :: 6
+Names$Env$$anonfun$5: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disLval$1$1$$anonfun$apply$11: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$Names$$addMembers$1$1$$anonfun$apply$6: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$allabs$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$checkConstructorNames$1$1$$anonfun$apply$20: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$hierarchy$1$$anonfun$apply$62$$anonfun$apply$65: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkPrefixesOfReferences$1$1: apply(Ljava/lang/Object;) :: 6
+Parser$$anon$1$$anonfun$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$Types$$disMethod$1$6: apply(Ljava/lang/Object;) :: 6
+StaticAnal$$anonfun$1$$anonfun$apply$4: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disLval$1$1$$anonfun$apply$9: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$formalConf$1$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$2: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkInterfaceFields$1$1$$anonfun$apply$28: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$1$$anonfun$apply$33: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkSingleTypeImports$1$1$$anonfun$apply$15$$anonfun$apply$16: apply(Ljava/lang/Object;) :: 6
+Ast$$anonfun$assertAllLinks$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$2$$anonfun$apply$40: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$CodeGen$$classFrameImpl$1$5: apply(Ljava/lang/Object;) :: 6
+Names$ConstrSig$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 6
+Scanner$$anonfun$2: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$6: apply(Ljava/lang/Object;) :: 6
+Ast$$anonfun$ast_CastExpression$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$isSubtype$1: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$nodecl$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$subtypeTests$2$$anonfun$code$2: apply(Ljava/lang/Object;) :: 6
+CodeGen$interfaceInvoke$2$$anonfun$code$3$$anonfun$5: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$makeFrame$2: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkPackageClashWithType$1$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$14: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$methodFrame$2: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$resolveTypes$1$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$CodeGen$$classFrameImpl$1$2: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$hierarchy$1$$anonfun$apply$62$$anonfun$apply$72$$anonfun$apply$75: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$7: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$3: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$demImp$1$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$generators$1$$anonfun$genExpr$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$interfaces$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$hierarchy$1: apply(Ljava/lang/Object;) :: 6
+Ast$MethodDecl$$anonfun$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$objectFrame$3: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disLval$1$1$$anonfun$apply$14: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$Types$$disMethod$1$4: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkHierarchyCycles$1$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$9: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disField$1$4: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anon$4$$anonfun$code$5: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$7$$anonfun$apply$8: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$Names$$addMembers$1$1$$anonfun$apply$8$$anonfun$apply$9: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$1$$anonfun$apply$33$$anonfun$apply$35: apply(Ljava/lang/Object;) :: 6
+Parser$$anonfun$parse$1$$anonfun$go$1$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$hierarchy$1$$anonfun$apply$62$$anonfun$apply$65$$anonfun$apply$67: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$classFrame$lzycompute$1$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$7$$anonfun$apply$8$$anonfun$apply$9$$anonfun$apply$11$$anonfun$apply$12: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$replace$2$$anonfun$apply$54$$anonfun$apply$55$$anonfun$apply$60: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$canonicalNames$1$1$$anonfun$apply$4: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$declare$2: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anon$3$$anonfun$code$4: apply(Ljava/lang/Object;) :: 6
+Ast$$anonfun$ast_ClassDeclaration$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$Names$$addMembers$1$1$$anonfun$apply$10: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkDemandPackageIsClass$1$1$$anonfun$apply$20$$anonfun$apply$21: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$Types$$disMethod$1$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disField$1$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkSingleTypeImports$1$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$6$$anonfun$apply$24: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$generators$1$$anonfun$genExpr$4: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addClasses$1$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$6: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$demImp$1$2$$anonfun$apply$23: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$inherit$1$$anonfun$apply$51: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$checkConstructorNames$1$1$$anonfun$apply$20$$anonfun$apply$21: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$Names$$addMembers$1$1$$anonfun$apply$12$$anonfun$apply$13: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$checkForwardReferences$1$1: apply(Ljava/lang/Object;) :: 6
+Ast$$anonfun$assertLinks$2: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$Names$$dfs$1$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$canonicalNames$1$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disField$1$4$$anonfun$apply$3$$anonfun$apply$4: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$checkConstructorSuperInvokes$1$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$checkForwardReferences$1$1$$anonfun$apply$23: apply(Ljava/lang/Object;) :: 6
+Parser$$anonfun$Parser$$nlines$1$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$subtypeTests$2$$anonfun$2: apply(Ljava/lang/Object;) :: 6
+Ast$$anonfun$main$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$interfaceInvoke$2$$anonfun$3$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$inherit$1$$anonfun$apply$49: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disLval$1$1$$anonfun$apply$12: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$7$$anonfun$apply$8$$anonfun$apply$9$$anonfun$apply$10: apply(Ljava/lang/Object;) :: 6
+Parser$Node$$anonfun$toString$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$7: apply(Ljava/lang/Object;) :: 6
+Names$MethodSig$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$environments$1$$anonfun$apply$14: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disambiguation$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$generators$1$$anonfun$genStmt$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$hierarchy$1$$anonfun$apply$62$$anonfun$apply$63: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$12$$anonfun$apply$76: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$18: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkInterfaceFields$1$1$$anonfun$apply$29$$anonfun$apply$30: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addClasses$1$1$$anonfun$apply$5: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkDemandPackageIsClass$1$1: apply(Ljava/lang/Object;) :: 6
+Parser$$anonfun$parse$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$arrayFrame$lzycompute$1$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disInvoke$1$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$mainClass$1$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$hierarchy$1$$anonfun$apply$62$$anonfun$apply$71: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$2$$anonfun$apply$41: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$Types$$disMethod$1$4$$anonfun$apply$7: apply(Ljava/lang/Object;) :: 6
+Names$FieldCheck$$anonfun$inherit$2: apply(Ljava/lang/Object;) :: 6
+Scanner$$anonfun$maximalmunch$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkInterfaceFields$1$1$$anonfun$apply$29: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkNonExistingPackage$1$1$$anonfun$apply$17: apply(Ljava/lang/Object;) :: 6
+StaticAnal$$anonfun$reachability$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkNonExistingPackage$1$1$$anonfun$apply$17$$anonfun$apply$18: apply(Ljava/lang/Object;) :: 6
+Names$FieldCheck$$anonfun$declare$4: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$4: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$typeLinking$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$checkConstructorSuperInvokes$1$1$$anonfun$apply$16$$anonfun$apply$18: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$demImp$1$2: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$replace$2$$anonfun$apply$54: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$hierarchy$1$$anonfun$apply$62$$anonfun$apply$69: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$replace$2$$anonfun$apply$54$$anonfun$apply$55$$anonfun$apply$58: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$constFrame$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkDemandPackageIsClass$1$1$$anonfun$apply$20$$anonfun$apply$21$$anonfun$apply$22: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disField$1$3$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$12: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$9$$anonfun$apply$21: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$2$$anonfun$apply$39: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$checkConstructorSuperInvokes$1$1$$anonfun$apply$15: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$7$$anonfun$apply$8$$anonfun$apply$9: apply(Ljava/lang/Object;) :: 6
+StaticAnal$$anonfun$main$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkNonExistingPackage$1$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkPackageClashWithType$1$1$$anonfun$apply$25: apply(Ljava/lang/Object;) :: 6
+StaticAnal$$anonfun$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$Types$$disMethod$1$2$$anonfun$apply$5: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$CodeGen$$classFrameImpl$1$3: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$demandImports$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$2$$anonfun$apply$41$$anonfun$apply$42$$anonfun$apply$45: apply(Ljava/lang/Object;) :: 6
+CodeGen$interfaceInvoke$2$$anonfun$code$3$$anonfun$6: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$main$1: apply(Ljava/lang/Object;) :: 6
+MakeAst$$anonfun$main$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkHierarchyCycles$1$1$$anonfun$apply$31: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anon$2$$anonfun$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$objectFrame$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$hierarchy$1$$anonfun$apply$62$$anonfun$apply$72$$anonfun$apply$73: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$hierarchy$1$$anonfun$apply$62$$anonfun$apply$65$$anonfun$apply$68: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$Types$$disMethod$1$5: apply(Ljava/lang/Object;) :: 6
+Scanner$$anonfun$main$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$1$$anonfun$apply$33$$anonfun$apply$35$$anonfun$apply$37: apply(Ljava/lang/Object;) :: 6
+Ast$$anonfun$dfs$1: apply(Ljava/lang/Object;) :: 6
+Parser$$anon$1$$anonfun$2: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$14$$anonfun$apply$17: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$enclosingBlock$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$checkTypes$1$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$Names$$addMembers$1$1$$anonfun$apply$7: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$Types$$disMethod$1$3$$anonfun$apply$6: apply(Ljava/lang/Object;) :: 6
+Ast$$anonfun$expandEscapes$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$2$$anonfun$apply$41$$anonfun$apply$42: apply(Ljava/lang/Object;) :: 6
+Names$FieldCheck$$anonfun$inherit$2$$anonfun$apply$61: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disField$1$4$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disField$1$5: apply(Ljava/lang/Object;) :: 6
+CodeGen$interfaceInvoke$2$$anonfun$3$$anonfun$apply$2$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disField$1$2: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$main$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$checkConstructorNames$1$1$$anonfun$apply$20$$anonfun$apply$22: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$demImp$1$2$$anonfun$apply$24: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkPrefixesOfReferences$1$1$$anonfun$apply$26: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$makeEnvs$1: apply(Ljava/lang/Object;) :: 6
+Names$Env$$anonfun$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disField$1$2$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$Types$$disMethod$1$2: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$enclosingClass$1: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$replace$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$1$$anonfun$apply$32: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$Names$$addMembers$1$1$$anonfun$apply$11: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$6$$anonfun$apply$25: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$7$$anonfun$apply$13: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkDemandPackageIsClass$1$1$$anonfun$apply$20: apply(Ljava/lang/Object;) :: 6
+Names$Env$$anonfun$Names$Env$$tryName$1$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$generators$1$$anonfun$genExpr$2: apply(Ljava/lang/Object;) :: 6
+CodeGen$interfaceInvoke$2$$anonfun$3: apply(Ljava/lang/Object;) :: 6
+Ast$$anonfun$main$2: apply(Ljava/lang/Object;) :: 6
+MakeAst$$anonfun$main$1$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disLval$1$1: apply(Ljava/lang/Object;) :: 6
+Ast$AstNode$$anonfun$linkParents$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$methodFrame$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anon$3$$anonfun$8: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$resolveTypes$1$1$$anonfun$7: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$7$$anonfun$apply$8$$anonfun$apply$9$$anonfun$apply$11: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$replace$2$$anonfun$apply$54$$anonfun$apply$55$$anonfun$apply$56: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$2$$anonfun$apply$41$$anonfun$apply$42$$anonfun$apply$43: apply(Ljava/lang/Object;) :: 6
+Names$Env$$anonfun$lookupClass$1: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$inherit$1: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$allabs$1$$anonfun$apply$47: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$replace$1$$anonfun$apply$53: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$generators$1$$anonfun$genStmt$2: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$hierarchy$1$$anonfun$apply$62$$anonfun$apply$64: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$hierarchy$1$$anonfun$apply$62$$anonfun$apply$72: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$12$$anonfun$apply$77: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$singleImports$1: apply(Ljava/lang/Object;) :: 6
+StaticAnal$$anonfun$1$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 6
+Scanner$$anonfun$maximalmunch$2: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disLval$1$1$$anonfun$apply$10: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$replaceM$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkInterfaceFields$1$1: apply(Ljava/lang/Object;) :: 6
+Ast$$anonfun$assertAllLinks$1$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$methodSig$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$subtypeTests$2$$anonfun$code$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$constFrame$2: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$checkConstructorSuperInvokes$1$1$$anonfun$apply$16: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$2$$anonfun$apply$41$$anonfun$apply$42$$anonfun$11: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$CodeGen$$classFrameImpl$1$4: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$9: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$replace$2$$anonfun$apply$54$$anonfun$apply$55$$anonfun$apply$59: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$2$$anonfun$apply$41$$anonfun$apply$42$$anonfun$apply$46: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$checkConstructorSuperInvokes$1$1$$anonfun$apply$16$$anonfun$apply$19: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$9$$anonfun$apply$22: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$hierarchy$1$$anonfun$apply$62: apply(Ljava/lang/Object;) :: 6
+Parser$$anonfun$main$1: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$replace$2$$anonfun$apply$54$$anonfun$apply$55: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$14$$anonfun$apply$15$$anonfun$apply$16: apply(Ljava/lang/Object;) :: 6
+StaticAnal$$anonfun$definiteAssignment$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$1$$anonfun$apply$33$$anonfun$apply$35$$anonfun$apply$38: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$checkConstructorNames$1$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$interfaceInvoke$2$$anonfun$3$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disField$1$6: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$makeFrame$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$Names$$addMembers$1$1: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disLval$1$1$$anonfun$apply$13: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$objectFrame$2: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$CodeGen$$classFrameImpl$1$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$interfaceInvoke$2$$anonfun$code$3$$anonfun$4: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$10: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$2: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$Names$$addMembers$1$1$$anonfun$apply$8: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$checkAccess$1$1: apply(Ljava/lang/Object;) :: 6
+Util$$anonfun$closure$1: apply(Ljava/lang/Object;) :: 6
+Ast$ConstructorDecl$$anonfun$2: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$main$1: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$hierarchy$1$$anonfun$apply$62$$anonfun$apply$72$$anonfun$apply$74: apply(Ljava/lang/Object;) :: 6
+Names$Env$$anonfun$4$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$Names$$addMembers$1$1$$anonfun$apply$12: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$Types$$disMethod$1$3: apply(Ljava/lang/Object;) :: 6
+CodeGen$interfaceInvoke$2$$anonfun$code$3: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$disField$1$3: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$hierarchy$1$$anonfun$apply$62$$anonfun$apply$70: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$14$$anonfun$apply$15: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$replace$2: apply(Ljava/lang/Object;) :: 6
+StaticAnal$$anonfun$definiteAssignment$1$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$8: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$Types$$disMethod$1$4$$anonfun$apply$7$$anonfun$apply$8: apply(Ljava/lang/Object;) :: 6
+Names$Env$$anonfun$2: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$declare$1: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$2: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkPrefixesOfReferences$1$1$$anonfun$apply$27: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$hierarchy$1$$anonfun$apply$62$$anonfun$apply$65$$anonfun$apply$66: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$19$$anonfun$apply$20: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$19: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$1$$anonfun$apply$33$$anonfun$apply$34: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkNonExistingPackage$1$1$$anonfun$apply$17$$anonfun$apply$18$$anonfun$apply$19: apply(Ljava/lang/Object;) :: 6
+Names$Env$$anonfun$resolveClass$1: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$replace$2$$anonfun$apply$54$$anonfun$apply$55$$anonfun$apply$57: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$constrSig$1: apply(Ljava/lang/Object;) :: 6
+MakeAst$$anonfun$main$1$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 6
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$generators$1$$anonfun$genExpr$3: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$addAbstractObjectMethods$1$2$$anonfun$apply$41$$anonfun$apply$42$$anonfun$apply$44: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$checkSingleTypeImports$1$1$$anonfun$apply$15: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$allabs$1$$anonfun$apply$48: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$checkConstructorSuperInvokes$1$1$$anonfun$apply$16$$anonfun$apply$17: apply(Ljava/lang/Object;) :: 6
+Ast$$anonfun$assertLinks$1: apply(Ljava/lang/Object;) :: 6
+Names$FieldCheck$$anonfun$declare$3: apply(Ljava/lang/Object;) :: 6
+Names$$anonfun$environments$1: apply(Ljava/lang/Object;) :: 6
+Names$MethodCheck$$anonfun$inherit$1$$anonfun$apply$50: apply(Ljava/lang/Object;) :: 6
+Types$$anonfun$5: apply(Ljava/lang/Object;) :: 6
+StaticAnal$$anonfun$reachability$1$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 6
+Names.MethodCheck.$anonfun.$anonfun.$anonfun.$anonfun: apply(mp: Ast.MethodDecl) :: 5
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$generators$1: CodeGen$$anonfun$$anonfun$generators$$$outer() :: 5
+CodeGen.$anonfun: apply(field: Ast.FieldDecl) :: 4
+Names.$anonfun.$anonfun.$anonfun: apply(m: Ast.MethodDecl) :: 4
+Types.$anonfun.$anonfun: apply(n: String) :: 4
+Ast.AstNode: env() :: 4
+Ast.AstNode: parent() :: 4
+Types.$anonfun.$anonfun: apply(cls: Ast.ClassDecl) :: 4
+Names.Env: node() :: 4
+Util.Memoize: apply(k: Key) :: 4
+Types.$anonfun: apply(i: Int) :: 4
+Names.MethodCheck.$anonfun.$anonfun: apply(mp: Ast.MethodDecl) :: 4
+CodeGen: subtypeTests() :: 4
+Ast$ByteType$: spec() :: 3
+Names.$anonfun.$anonfun: apply(prefix: List[String]) :: 3
+Names.Env.$anonfun: apply() :: 3
+Ast$NullType$: spec() :: 3
+CodeGen.$anonfun.$anonfun.generators.$anonfun: apply(p: Ast.Expr) :: 3
+Names.$anonfun.$anonfun.$anonfun.$anonfun: apply(m: Ast.MethodDecl) :: 3
+Types.$anonfun.$anonfun.$anonfun: apply(constr: Ast.ConstructorDecl) :: 3
+Ast$ArrayType: spec() :: 3
+Ast$CharType$: spec() :: 3
+Ast$ShortType$: spec() :: 3
+Ast.$anonfun: apply(ch: Ast.AstNode) :: 3
+Names.MethodCheck.$anonfun.$anonfun: apply(m: Ast.MethodDecl) :: 3
+Ast$RefType: spec() :: 3
+CodeGen$$anon$4: apply(LAst$AstNode;) :: 3
+CodeGen.interfaceInvoke.$anonfun.$anonfun: apply(method: Ast.MethodDecl) :: 3
+CodeGen: interfaceInvoke() :: 3
+Ast$VoidType$: spec() :: 3
+Ast$BooleanType$: spec() :: 3
+Ast$IntType$: spec() :: 3
+Names.MethodCheck.$anonfun: apply(s: Ast.ClassDecl) :: 3
+Scanner$$anonfun$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 2
+Parser.$anon.$anonfun: apply(line: String) :: 2
+Types.$anonfun: apply(cu: Ast.CompUnit) :: 2
+Names.$anonfun.$anonfun: apply(imp: Ast.Name) :: 2
+CodeGen.$anonfun: <init>() :: 2
+Types.$anonfun.$anonfun.$anonfun: apply(n: String) :: 2
+Types.$anonfun: apply(fd: Ast.FieldDecl) :: 2
+CodeGen.interfaceInvoke.$anonfun.$anonfun: apply(cls: Ast.ClassDecl) :: 2
+Parser$Leaf: asNode() :: 2
+Types.$anonfun: apply(n: Ast.AstNode) :: 2
+CodeGen.$anonfun.$anonfun: apply(cls: Ast.ClassDecl) :: 2
+Types.$anonfun: apply(ts: Ast.TypeSpec) :: 2
+Util.Memoize: <init>(f: Key => Value) :: 2
+CodeGen.$anonfun.$anonfun.$anonfun.$anonfun.$anonfun.$anonfun: apply(f: Ast.FieldDecl) :: 2
+CodeGen.$anonfun: apply(n: Ast.AstNode) :: 2
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$7$$anonfun$apply$8$$anonfun$apply$9: CodeGen$$anonfun$$anonfun$$anonfun$$anonfun$$anonfun$$$outer() :: 2
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$14: CodeGen$$anonfun$$anonfun$$anonfun$$$outer() :: 2
+CodeGen.$anonfun: apply(ts: Ast.TypeSpec) :: 2
+Ast.$anonfun: apply() :: 2
+CodeGen.$anonfun: apply() :: 2
+Names.$anonfun.$anonfun.$anonfun: apply(mp: Ast.MethodDecl) :: 2
+Types.$anonfun: apply(md: Ast.MethodDecl) :: 2
+CodeGen.$anon.$anonfun: apply(n: Ast.AstNode) :: 2
+CodeGen.$anonfun: apply(method: Ast.MethodDecl) :: 2
+CodeGen.$anonfun.$anonfun.$anonfun.$anonfun: apply(bl: Ast.Block) :: 2
+MakeAst.$anonfun.$anonfun: apply(prod: Parser.Production) :: 2
+CodeGen.$anonfun.$anonfun.$anonfun: apply(method: Ast.MethodDecl) :: 2
+Names.$anonfun.$anonfun: apply(body: Ast.Block) :: 2
+Types.$anonfun.$anonfun: apply(cd: Ast.ClassDecl) :: 2
+CodeGen.$anonfun.$anonfun.generators.$anonfun: apply(e: Ast.Expr) :: 2
+StaticAnal.$anonfun: apply(x$1: Ast.AstNode) :: 1
+Types.$anonfun.$anonfun.$anonfun: apply(x$16: Ast.ConstructorDecl, Ast.ClassDecl) :: 1
+Names.$anonfun.$anonfun.$anonfun: apply(x$20: Ast.CompUnit) :: 1
+Names.$anonfun.$anonfun.$anonfun: apply(x$37: Ast.MethodDecl, Ast.MethodDecl) :: 1
+Names.$anonfun: apply(x$17: Ast.Import) :: 1
+Names.Env.$anonfun.$anonfun: apply(pkg: Ast.Name) :: 1
+CodeGen.$anonfun.$anonfun.$anonfun.$anonfun: apply(memb: Ast.MemberDecl) :: 1
+Types.$anonfun: apply(x0$7: Ast.AstNode) :: 1
+Ast.CharSpec: typ() :: 1
+Names.$anonfun.$anonfun.$anonfun: apply(cu: Ast.CompUnit) :: 1
+Ast.ByteType: spec() :: 1
+Parser.Leaf: asNode() :: 1
+CodeGen: main(args: Array[String]) :: 1
+Ast.VoidType: spec() :: 1
+Names.Env: fields() :: 1
+Types: <init>() :: 1
+Names.$anonfun.$anonfun.$anonfun: apply(x$36: Ast.TypeSpec) :: 1
+Types.$anonfun: apply(x0$4: Ast.Type, Ast.Expr) :: 1
+Names.MethodSig.$anonfun: apply(x0$2: Ast.TypeSpec, String) :: 1
+Ast.ArraySpec: typ() :: 1
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$14$$anonfun$apply$15: CodeGen$$anonfun$$anonfun$$anonfun$$anonfun$$$outer() :: 1
+Ast.IntType: spec() :: 1
+CodeGen.$anonfun: apply(x0$4: Ast.TypeSpec, String) :: 1
+CodeGen$$anonfun$CodeGen$$classFrameImpl$1$1$$anonfun$apply$4: apply() :: 1
+Types.$anonfun: apply(x0$1: Ast.AstNode) :: 1
+Names.Env.$anonfun: apply(x$4: Ast.Name) :: 1
+CodeGen: objectFrame(cd: Ast.ClassDecl) :: 1
+StaticAnal.$anonfun.$anonfun: apply(x0$2: Ast.AstNode) :: 1
+CodeGen$: CodeGen$$subtypeTests$1$lzycompute(LAst$Root;Lscala/runtime/VolatileObjectRef;) :: 1
+Names.$anonfun: apply(x$38: Ast.AstNode) :: 1
+CodeGen.$anonfun: apply(x$1: Ast.TypeSpec, String) :: 1
+CodeGen$: CodeGen$$interfaceInvoke$1$lzycompute(LAst$Root;Lscala/runtime/VolatileObjectRef;) :: 1
+Ast.AstNode: env_=(x$1: Names.Env) :: 1
+Scanner.States: <init>() :: 1
+Ast.$anonfun: apply(c: Char) :: 1
+Types$$anonfun$Types$$disMethod$1$1: apply$mcZI$sp(I) :: 1
+Names$Env: methods$lzycompute() :: 1
+Names.Env: classes() :: 1
+Ast.$anonfun: apply(ch: Ast.CompUnit) :: 1
+CodeGen.$anonfun.$anonfun.$anonfun.$anonfun.$anonfun.$anonfun.$anonfun: apply(e: Ast.Expr) :: 1
+Names.MethodCheck.$anonfun: apply(m: Ast.MethodDecl) :: 1
+StaticAnal.$anonfun: apply(file: String) :: 1
+Ast.RefSpec: <init>() :: 1
+Ast.AstNode: linkParents() :: 1
+CodeGen$$anonfun$CodeGen$$stringClass$1$1: apply() :: 1
+Parser.$anonfun: apply(a: Scanner.Token) :: 1
+CodeGen.$anon.$anonfun: apply(x0$8: Ast.AstNode, Int) :: 1
+MakeAst: main(args: Array[String]) :: 1
+Ast$ConstructorDecl: frame$lzycompute() :: 1
+Types.$anonfun: apply(x$17: Ast.AstNode) :: 1
+Ast.$anonfun.$anonfun: apply(x$1: Ast.AstNode) :: 1
+Names.$anonfun: apply(member: Ast.MemberDecl) :: 1
+CodeGen$: arrayFrame$lzycompute$1(LAst$Root;Lscala/runtime/ObjectRef;Lscala/runtime/ObjectRef;Lscala/runtime/VolatileObjectRef;Lscala/runtime/VolatileObjectRef;Lscala/runtime/VolatileByteRef;) :: 1
+Ast.AstNode.$anonfun: apply(c: Ast.AstNode) :: 1
+Parser.Node: asLeaf() :: 1
+Ast.$anonfun: apply(token: Scanner.Token) :: 1
+Names.Env.$anonfun: apply(prefix: List[String]) :: 1
+Ast.ShortType: <init>() :: 1
+Names.Env: constrs() :: 1
+Names.FieldCheck: <init>() :: 1
+Names$Env: classes$lzycompute() :: 1
+Types.$anonfun.$anonfun: apply(x$10: Ast.Expr) :: 1
+CodeGen.$anonfun: apply(x$5: Ast.Type) :: 1
+Scanner.$anonfun: apply(q: Scanner.States.Value,sym: Char) :: 1
+Names$$anonfun$checkSingleTypeImports$1$1$$anonfun$apply$15: Names$$anonfun$$anonfun$$$outer() :: 1
+Ast.VoidType: <init>() :: 1
+Scanner.$anonfun: apply(q: Scanner.States.Value) :: 1
+CodeGen.$anonfun: apply(x0$3: Ast.AstNode) :: 1
+Util.$anonfun: apply(as: scala.collection.immutable.Set[A]) :: 1
+CodeGen.$anonfun.$anonfun: apply() :: 1
+CodeGen.$anonfun: apply(x0$2: Ast.TypeSpec, String) :: 1
+Parser.Node.$anonfun: apply(x$1: Parser.Tree) :: 1
+Ast.Abstract: <init>() :: 1
+Names.$anonfun: apply(a: Ast.AstNode) :: 1
+Names.$anonfun.$anonfun.$anonfun: apply(check$ifrefutable$3: Ast.MethodDecl, Ast.MethodDecl) :: 1
+CodeGen.$anonfun.$anonfun.$anonfun.$anonfun.$anonfun: apply(fcls: Ast.ClassDecl) :: 1
+Ast.Native: <init>() :: 1
+Scanner.$anonfun: apply(token: Scanner.Token) :: 1
+Names$$anonfun$addAbstractObjectMethods$1$1$$anonfun$apply$33: Names$$anonfun$$anonfun$$$outer() :: 1
+Names.MethodCheck.$anonfun.$anonfun.$anonfun: apply(m: Ast.MethodDecl) :: 1
+Types.$anonfun: apply(x$2: Ast.AstNode) :: 1
+Names.$anonfun: apply(i: Ast.ClassDecl) :: 1
+CodeGen.subtypeTests: <init>() :: 1
+CodeGen.$anonfun.$anonfun.$anonfun.$anonfun.$anonfun: apply(init: Ast.Expr) :: 1
+Types.$anonfun.$anonfun: apply(x$12: Ast.Expr) :: 1
+Types.$anonfun: apply(x0$3: Ast.AstNode) :: 1
+Names.$anonfun: apply(x$25: Ast.AstNode) :: 1
+Ast.Protected: <init>() :: 1
+Types$: arrayLengthDecl$lzycompute() :: 1
+Names.$anonfun: apply(file: String) :: 1
+Ast.IntType: <init>() :: 1
+Names.MethodCheck.$anonfun.$anonfun: apply(sp: Ast.ClassDecl) :: 1
+Names.Env.$anonfun: apply(x$3: Ast.AstNode) :: 1
+Names$Env$$anonfun$4: apply() :: 1
+Types.$anonfun: apply(x$5: Ast.AstNode) :: 1
+StaticAnal: main(args: Array[String]) :: 1
+CodeGen.interfaceInvoke: <init>() :: 1
+Types.$anonfun.$anonfun: apply(token: Scanner.Token) :: 1
+CodeGen.$anonfun: apply(cu: Ast.CompUnit) :: 1
+Names: <init>() :: 1
+Names.$anonfun.$anonfun.$anonfun.$anonfun: apply(cls: Ast.ClassDecl) :: 1
+Types.$anonfun.$anonfun.$anonfun: apply(x$15: Ast.ConstructorDecl, Ast.ClassDecl) :: 1
+CodeGen.$anonfun.$anonfun.generators.$anonfun: apply(in: Ast.Expr) :: 1
+Ast.ShortSpec: typ() :: 1
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$7$$anonfun$apply$8: CodeGen$$anonfun$$anonfun$$anonfun$$anonfun$$$outer() :: 1
+Names$$anonfun$Names$$jlo$1$1: apply() :: 1
+Types.$anonfun.$anonfun: apply(x$8: Ast.Expr) :: 1
+Types.$anonfun: apply(x$14: Ast.Expr) :: 1
+Names.FieldCheck.$anonfun: apply(x$34: Ast.MemberDecl) :: 1
+Ast.BooleanSpec: typ() :: 1
+Names$MethodCheck$$anonfun$replace$2$$anonfun$apply$54$$anonfun$apply$55: Names$MethodCheck$$anonfun$$anonfun$$anonfun$$$outer() :: 1
+Ast.BooleanType: spec() :: 1
+Parser: <init>() :: 1
+Names: main(args: Array[String]) :: 1
+Types.$anonfun: apply(x0$6: Ast.AstNode) :: 1
+CodeGen$$anon$4: apply(LNames$MethodSig;) :: 1
+CodeGen.subtypeTests.$anonfun: apply(w: Int) :: 1
+Names.$anonfun: apply(name: Ast.Name) :: 1
+CodeGen.$anonfun: apply(typ: Product with Serializable with Ast.Type) :: 1
+Names.$anonfun: apply() :: 1
+StaticAnal.$anonfun: apply(x0$1: Ast.AstNode) :: 1
+Names.$anonfun.$anonfun.$anonfun: apply(x$16: Ast.AstNode) :: 1
+CodeGen.$anonfun: apply(x$4: Ast.ClassDecl) :: 1
+Names.$anonfun: apply(x$30: Ast.ClassDecl) :: 1
+Names.$anonfun.$anonfun: apply(x$15: Ast.TypeSpec, String) :: 1
+CodeGen.$anonfun.$anonfun.generators.$anonfun: apply(s: Ast.Stmt) :: 1
+Ast.FieldDecl: <init>(modifiers: scala.collection.immutable.Set[Ast.Modifier],ts: Ast.TypeSpec,name: String,init: Option[Ast.Expr]) :: 1
+Names.FieldCheck.$anonfun: apply(f: Ast.FieldDecl) :: 1
+Ast.ByteType: <init>() :: 1
+CodeGen.$anonfun.$anonfun.$anonfun.$anonfun: apply(cu: Ast.CompUnit) :: 1
+Ast.MethodDecl.$anonfun: apply(x$4: Ast.TypeSpec, String) :: 1
+Names.MethodCheck.$anonfun: apply(x$33: Ast.ClassDecl) :: 1
+Ast.ByteSpec: typ() :: 1
+Names.$anonfun: apply(ch: Ast.AstNode) :: 1
+Names.$anonfun.$anonfun.$anonfun: apply(i: Ast.ClassDecl) :: 1
+Names.$anonfun.$anonfun: apply(check$ifrefutable$1: Ast.TypeSpec, String) :: 1
+CodeGen: constFrame(cd: Ast.ConstructorDecl) :: 1
+CodeGen.$anonfun: apply(file: String) :: 1
+Names$Env$$anonfun$3: apply() :: 1
+Names$Env: fields$lzycompute() :: 1
+CodeGen.$anonfun.$anonfun.$anonfun.$anonfun: apply(c: Char) :: 1
+Ast.CharType: spec() :: 1
+StaticAnal: <init>() :: 1
+Parser.$anonfun: apply(x$2: String) :: 1
+Names.$anonfun.$anonfun: apply(x$12: Ast.AstNode) :: 1
+Ast$$anonfun$3: apply() :: 1
+CodeGen.interfaceInvoke.$anonfun: apply(sig: Names.MethodSig) :: 1
+Ast$$anonfun$4: apply() :: 1
+Ast.Static: <init>() :: 1
+Types.$anonfun: apply() :: 1
+StaticAnal.$anonfun.$anonfun: apply(x0$4: Ast.AstNode) :: 1
+CodeGen$interfaceInvoke$2$$anonfun$3: CodeGen$interfaceInvoke$$anonfun$$$outer() :: 1
+CodeGen.$anonfun: apply(x$3: Ast.CompUnit) :: 1
+Names.Env.$anonfun: apply(x$8: Ast.FieldDecl) :: 1
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$7: CodeGen$$anonfun$$anonfun$$anonfun$$$outer() :: 1
+Ast: <init>() :: 1
+CodeGen.$anonfun.$anonfun.$anonfun: apply(x$6: String, String) :: 1
+CodeGen.$anonfun: apply(x$2: Ast.TypeSpec, String) :: 1
+Names.$anonfun.$anonfun.$anonfun: apply(memb: Ast.MemberDecl) :: 1
+Types$$anonfun$stringClass$1$1: apply() :: 1
+Ast: main(args: Array[String]) :: 1
+Parser.$anonfun.$anonfun: apply(x$3: String) :: 1
+Names.$anonfun: apply(x$27: Ast.AstNode) :: 1
+Types$$anonfun$disField$1$1: apply$mcZI$sp(I) :: 1
+Ast.TriState: <init>() :: 1
+Names$MethodCheck$$anonfun$replace$2$$anonfun$apply$54: Names$MethodCheck$$anonfun$$anonfun$$$outer() :: 1
+Names.FieldCheck.$anonfun: apply(x$35: Ast.MemberDecl) :: 1
+Scanner.$anonfun: apply(x$2: Char) :: 1
+Names.$anonfun.$anonfun: apply(x$13: Ast.TypeSpec, String) :: 1
+MakeAst.$anonfun: apply(nt: String) :: 1
+Names.$anonfun: apply(x$22: Ast.CompUnit) :: 1
+Ast.ArrayType: spec() :: 1
+Ast.VoidSpec: typ() :: 1
+Names.$anonfun.$anonfun: apply(x$21: Ast.CompUnit) :: 1
+Names.$anonfun.$anonfun.$anonfun.$anonfun: apply(x0$1: Ast.TypeSpec, String) :: 1
+CodeGen.$anonfun.$anonfun.$anonfun: apply(check$ifrefutable$1: String, String) :: 1
+CodeGen.subtypeTests.$anonfun: apply(sup: Ast.Type) :: 1
+CodeGen: <init>() :: 1
+Ast.CharType: <init>() :: 1
+Ast.NullType: spec() :: 1
+Names.MethodSig: <init>() :: 1
+Names.ConstrSig: <init>() :: 1
+Types.$anonfun: apply(x0$2: Ast.AstNode) :: 1
+Ast.RefSpec.$anonfun: apply() :: 1
+Names.MethodCheck.$anonfun: apply(mp: Ast.MethodDecl) :: 1
+CodeGen.interfaceInvoke.$anonfun.$anonfun.$anonfun: apply(m: Ast.MethodDecl) :: 1
+CodeGen: methodFrame(md: Ast.MethodDecl) :: 1
+Types$$anonfun$Types$$disMethod$1$4$$anonfun$apply$7: Types$$anonfun$$anonfun$$$outer() :: 1
+Parser.$anonfun: apply(token: Scanner.Token) :: 1
+Ast.RefSpec: typ() :: 1
+StaticAnal.$anonfun.$anonfun: apply(cls: Ast.ClassDecl) :: 1
+Ast.ConstructorDecl.$anonfun: apply(x$7: Ast.TypeSpec, String) :: 1
+Ast.Final: <init>() :: 1
+Names.Env.$anonfun: apply(full: Ast.Name) :: 1
+CodeGen.$anon: apply(ms: Names.MethodSig) :: 1
+Names.$anonfun: apply(impName: Ast.Name) :: 1
+Types: main(args: Array[String]) :: 1
+Names.ConstrSig.$anonfun: apply(x0$3: Ast.TypeSpec, String) :: 1
+Names$Env: constrs$lzycompute() :: 1
+Ast.$anonfun: apply(cls: Ast.ClassDecl) :: 1
+CodeGen.$anonfun.$anonfun: apply(token: Scanner.Token) :: 1
+Names.$anonfun.$anonfun: apply(check$ifrefutable$2: Ast.TypeSpec, String) :: 1
+Ast$RefSpec$$anonfun$typ$1: apply() :: 1
+Ast.BooleanType: <init>() :: 1
+Types.$anonfun.$anonfun: apply(x$11: Ast.Expr) :: 1
+Scanner: main(args: Array[String]) :: 1
+CodeGen.$anonfun: apply(x0$7: Ast.MethodDecl, Ast.MethodDecl) :: 1
+CodeGen.subtypeTests.$anonfun: apply(x0$6: Ast.AstNode) :: 1
+Ast.$anonfun: apply(x$22: String) :: 1
+Names.$anonfun.$anonfun.$anonfun.$anonfun: apply(x$19: List[String]) :: 1
+Types.$anonfun: apply(x0$5: Ast.AstNode) :: 1
+Names$Env$$anonfun$lookupVar$1: apply() :: 1
+Names.$anonfun: apply(n: Ast.Name) :: 1
+Types.$anonfun.$anonfun: apply(x$7: Ast.Expr) :: 1
+Ast.AstNode: parent_=(x$1: Ast.AstNode) :: 1
+StaticAnal.$anonfun: apply(x0$3: Ast.AstNode) :: 1
+Names.MethodCheck.$anonfun: apply(x$31: Ast.MemberDecl) :: 1
+Util: <init>() :: 1
+Names.$anonfun: apply(x$18: Ast.Import) :: 1
+Scanner.$anonfun: apply(x$1: Char) :: 1
+CodeGen.$anonfun: apply(x$7: Ast.AstNode) :: 1
+Ast$ClassDecl: objFrame$lzycompute() :: 1
+CodeGen$: classFrame$lzycompute$1(LAst$Root;Lscala/runtime/ObjectRef;Lscala/runtime/VolatileObjectRef;Lscala/runtime/VolatileObjectRef;Lscala/runtime/VolatileByteRef;) :: 1
+Names.$anonfun.$anonfun.$anonfun: apply(name: Ast.Name) :: 1
+CodeGen.$anonfun: apply(x0$1: Ast.AstNode) :: 1
+Ast.IntSpec: <init>() :: 1
+Names.$anonfun: apply(i: Ast.TypeSpec) :: 1
+Ast.ShortType: spec() :: 1
+Names.FieldCheck.$anonfun.$anonfun: apply(fp: Ast.FieldDecl) :: 1
+Names.Env: methods() :: 1
+Names.MethodCheck.$anonfun: apply(x$32: Ast.MemberDecl) :: 1
+CodeGen.$anon.$anonfun: apply(x0$5: Ast.AstNode, Int) :: 1
+CodeGen$interfaceInvoke$2$$anonfun$3$$anonfun$apply$2: CodeGen$interfaceInvoke$$anonfun$$anonfun$$$outer() :: 1
+Parser: main(args: Array[String]) :: 1
+Types$$anonfun$disField$1$4$$anonfun$apply$3: Types$$anonfun$$anonfun$$$outer() :: 1
+Ast.NullType: <init>() :: 1
+Types.$anonfun: apply(file: String) :: 1
+Ast.IntSpec: typ() :: 1
+Names.MethodCheck: <init>() :: 1
+Ast.RefType: spec() :: 1
+StaticAnal.$anonfun.$anonfun: apply(token: Scanner.Token) :: 1
+Names.$anonfun.$anonfun: apply(token: Scanner.Token) :: 1
+Ast$MethodDecl: frame$lzycompute() :: 1
+Types.$anonfun: apply(x$3: Ast.AstNode) :: 1
+Scanner: <init>() :: 1
+MakeAst: <init>() :: 1
+Ast.Public: <init>() :: 1
+Names.$anonfun: apply(x$9: Ast.AstNode) :: 1
+Ast.$anonfun: apply(x$12: Ast.MemberDecl) :: 1
+Types.$anonfun: apply(x$6: Ast.AstNode) :: 1
+CodeGen.interfaceInvoke.$anonfun: apply(cu: Ast.CompUnit) :: 1
+CodeGen.$anonfun.$anonfun.$anonfun: apply(constr: Ast.ConstructorDecl) :: 1
+Names.$anonfun.$anonfun.$anonfun: apply(x$14: Ast.AstNode) :: 1
+CodeGen$$anonfun$codeGen$1$$anonfun$apply$5$$anonfun$apply$7$$anonfun$apply$8$$anonfun$apply$9$$anonfun$apply$11: CodeGen$$anonfun$$anonfun$$anonfun$$anonfun$$anonfun$$anonfun$$$outer() :: 1
+Types.$anonfun.$anonfun: apply(x$9: Ast.Expr) :: 1
+CodeGen.$anon: apply(ts: Ast.AstNode) :: 1
+Types.$anonfun.$anonfun: apply(x0$8: Ast.AstNode) :: 1
+CodeGen$$anonfun$CodeGen$$objectClass$1$1: apply() :: 1
+Names.Env.$anonfun: apply(x$2: Ast.Name) :: 1
+Names.$anonfun: apply(x$11: Ast.AstNode) :: 1

@@ -1,0 +1,229 @@
+apply :: 207
+equals :: 68
+blob :: 55
+toString :: 36
+<init> :: 13
+apply$mcZDD$sp :: 8
+regex :: 5
+literal :: 4
+apply$mcJJJ$sp :: 4
+apply$mcDDD$sp :: 4
+eval :: 3
+toDouble :: 2
+applyOrElse :: 2
+rep1 :: 2
+isDefinedAt :: 2
+rep :: 2
+wholeNumber :: 1
+scala$util$parsing$combinator$RegexParsers$$super$phrase :: 1
+Parser :: 1
+whiteSpace :: 1
+success :: 1
+phrase :: 1
+opt :: 1
+scala$util$parsing$combinator$Parsers$$lastNoSuccessVar :: 1
+main :: 1
+allLong :: 1
+scala$util$parsing$combinator$RegexParsers$_setter_$whiteSpace_$eq :: 1
+scala$util$parsing$combinator$Parsers$$lastNoSuccessVar$lzycompute :: 1
+toLong :: 1
+parse :: 1
+skipWhitespace :: 1
+parseAll :: 1
+handleWhiteSpace :: 1
+stringLiteral :: 1
+==================================================
+ca.uwaterloo.scalacg.Library: blob() :: 55
+Scalisp.Literal: equals(x$1: Any) :: 17
+Scalisp.ScalispCompiler.UsedIn: equals(x$1: Any) :: 17
+Scalisp.Replace: equals(x$1: Any) :: 17
+Scalisp.Function: equals(x$1: Any) :: 17
+Scalisp.LispParser.$anonfun: apply() :: 13
+Scalisp.ScalispCompiler.$anonfun: apply(e: Any) :: 12
+Scalisp.ScalispCompiler.UsedIn: toString() :: 6
+Scalisp.Function: toString() :: 6
+Scalisp.Replace: toString() :: 6
+Scalisp.Literal: toString() :: 6
+Scalisp.Env: toString() :: 6
+Scalisp.FunctionTable: toString() :: 6
+Scalisp.LispParser$: regex(Lscala/util/matching/Regex;) :: 5
+Scalisp.LispParser$: literal(Ljava/lang/String;) :: 4
+Scalisp.MySeq.$anonfun: <init>() :: 4
+Scalisp.LispParser.$anonfun: apply(n: String) :: 3
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$9: apply$mcZDD$sp(DD) :: 2
+Scalisp.LispParser$$anonfun$real$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$5: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$usedInFunction$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.Scalisp$$anonfun$main$3$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 2
+Scalisp.MySeq: toDouble() :: 2
+Scalisp.ScalispCompiler$$anonfun$stringify$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$11$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 2
+Scalisp.Preprocessor$$anonfun$process$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$process$2: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$11: apply(Ljava/lang/Object;) :: 2
+Scalisp.Preprocessor$$anonfun$2: apply(Ljava/lang/Object;) :: 2
+Scalisp.Scalisp$$anonfun$main$3: apply(Ljava/lang/Object;) :: 2
+Scalisp.LispParser$$anonfun$hexInteger$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.Interpreter$$anonfun$2: apply(Ljava/lang/Object;) :: 2
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$13: apply(Ljava/lang/Object;) :: 2
+Scalisp.TypeError: <init>(s: String) :: 2
+Scalisp.LispParser$$anonfun$integer$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.MySeq$$anonfun$toDouble$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.Interpreter$$anonfun$eval$3: apply(Ljava/lang/Object;) :: 2
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$10: apply$mcZDD$sp(DD) :: 2
+Scalisp.ScalispCompiler$$anonfun$6: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$process$5: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$usedInFunction$2: apply(Ljava/lang/Object;) :: 2
+Scalisp.LispParser$$anonfun$token$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$11: apply$mcZDD$sp(DD) :: 2
+Scalisp.ScalispCompiler$$anonfun$3: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$9: apply(Ljava/lang/Object;) :: 2
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$12: apply$mcZDD$sp(DD) :: 2
+Scalisp.ScalispCompiler$$anonfun$process$3: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.Scalisp$$anonfun$main$4: apply(Ljava/lang/Object;) :: 2
+Scalisp.StringsCompleter$$anonfun$complete$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.MySeq$$anonfun$allLong$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.LispParser$$anonfun$literal$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$7: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$process$6: apply(Ljava/lang/Object;) :: 2
+Scalisp.LispParser$: rep(Lscala/Function0;) :: 2
+Scalisp.Scalisp$$anonfun$main$3$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$4: apply(Ljava/lang/Object;) :: 2
+Scalisp.LispParser$$anonfun$real$2$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 2
+Scalisp.LispParser$$anonfun$replacement$2: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$isFunction$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.MySeq: eval(env: Scalisp.Env) :: 2
+Scalisp.ScalispCompiler$$anonfun$11$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$process$4: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$2: apply(Ljava/lang/Object;) :: 2
+Scalisp.Preprocessor$$anonfun$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.MySeq$$anonfun$toLong$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$process$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$10: apply(Ljava/lang/Object;) :: 2
+Scalisp.MySeq.$anonfun: apply(e: T) :: 2
+Scalisp.LispParser$$anonfun$quote$2: apply(Ljava/lang/Object;) :: 2
+Scalisp.Scalisp$$anonfun$main$2: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$8: apply(Ljava/lang/Object;) :: 2
+Scalisp.ScalispCompiler$$anonfun$process$7: apply(Ljava/lang/Object;) :: 2
+Scalisp.Interpreter$$anonfun$eval$2: apply(Ljava/lang/Object;) :: 2
+Scalisp.Interpreter$$anonfun$1: apply(Ljava/lang/Object;) :: 2
+Scalisp.LispParser$: scala$util$parsing$combinator$RegexParsers$_setter_$whiteSpace_$eq(Lscala/util/matching/Regex;) :: 1
+Scalisp.Builtins.$anonfun.$anonfun: apply(x$11: Double,x$12: Double) :: 1
+Scalisp.Builtins: <init>() :: 1
+Scalisp.LispParser: <init>() :: 1
+Scalisp.LispParser$: scala$util$parsing$combinator$RegexParsers$$super$phrase(Lscala/util/parsing/combinator/Parsers$Parser;) :: 1
+Scalisp.ScalispCompiler.$anonfun.$anonfun: apply(x$6: Int) :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$6: apply$mcDDD$sp(DD) :: 1
+Scalisp.Interpreter: eval(expression: Any,environment: Scalisp.Env) :: 1
+Scalisp.Builtins.$anonfun.$anonfun: apply(x$5: Long,x$6: Long) :: 1
+Scalisp.ScalispCompiler.$anonfun: apply(x0$1: Any) :: 1
+Scalisp.LispParser.$anonfun.$anonfun: apply(d: String) :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$9: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 1
+Scalisp.Preprocessor.$anonfun: apply(x0$3: String, Any) :: 1
+Scalisp.Builtins.$anonfun: applyOrElse([A1 <: String, B1 >: Any]x1: A1,default: A1 => B1) :: 1
+Scalisp.ScalispCompiler.$anonfun: apply(x$1: String) :: 1
+Scalisp.LispParser$: parse(Lscala/util/parsing/combinator/Parsers$Parser;Ljava/lang/CharSequence;) :: 1
+Scalisp.Helper: <init>() :: 1
+Scalisp.LispParser$$anonfun$exp$6: apply() :: 1
+Scalisp.MySeq: toLong() :: 1
+Scalisp.Scalisp.$anonfun: apply() :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$5: apply$mcJJJ$sp(JJ) :: 1
+Scalisp.Builtins.$anonfun.$anonfun: apply(x$19: Double,x$20: Double) :: 1
+Scalisp.MySeq.$anonfun: apply(x0$1: T) :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$10: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 1
+Scalisp.Builtins.$anonfun.$anonfun: apply(x$1: Long,x$2: Long) :: 1
+Scalisp.Preprocessor: <init>() :: 1
+Scalisp.LispParser.$anonfun: apply(d: String) :: 1
+Scalisp.LispParser$: skipWhitespace() :: 1
+Scalisp.LispParser$$anonfun$real$2: apply() :: 1
+Scalisp.Interpreter.$anonfun: apply(x0$3: String, Any) :: 1
+Scalisp.Scalisp$$anonfun$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 1
+Scalisp.ScalispCompiler.$anonfun: apply(n: String) :: 1
+Scalisp.Builtins.$anonfun.$anonfun: apply(x$15: Double,x$16: Double) :: 1
+Scalisp.Preprocessor.$anonfun: apply(x0$1: Any) :: 1
+Scalisp.Interpreter.$anonfun: apply(x0$1: Any) :: 1
+Scalisp.LispParser$$anonfun$program$1: apply() :: 1
+Scalisp.ScalispCompiler.$anonfun: apply(x0$3: Any) :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$7: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 1
+Scalisp.Scalisp: main(args: Array[String]) :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$5: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 1
+Scalisp.Builtins.$anonfun.$anonfun: apply(x$23: Double,x$24: Double) :: 1
+Scalisp.Builtins.$anonfun.$anonfun: apply(x$9: Long,x$10: Long) :: 1
+Scalisp.LispParser$: scala$util$parsing$combinator$Parsers$$lastNoSuccessVar() :: 1
+Scalisp.LispParser$$anonfun$exp$5: apply() :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$8: apply$mcDDD$sp(DD) :: 1
+Scalisp.Scalisp.$anonfun: apply(x$1: String) :: 1
+Scalisp.ScalispCompiler.$anonfun: apply(x0$2: String, Any) :: 1
+Scalisp.LispParser.$anonfun.$anonfun: apply() :: 1
+Scalisp.LispParser$: Parser(Lscala/Function1;) :: 1
+Scalisp.LispParser$$anonfun$quote$1: apply() :: 1
+Scalisp.ScalispCompiler.$anonfun.$anonfun: apply(x$5: Int) :: 1
+Scalisp.LispParser$: stringLiteral() :: 1
+Scalisp.Scalisp: <init>() :: 1
+Scalisp.LispParser$: opt(Lscala/Function0;) :: 1
+Scalisp.Builtins.$anonfun.$anonfun: apply(x$7: Double,x$8: Double) :: 1
+Scalisp.LispParser$$anonfun$replacement$1: apply() :: 1
+Scalisp.LispParser$: scala$util$parsing$combinator$Parsers$$lastNoSuccessVar$lzycompute() :: 1
+Scalisp.Scalisp.$anonfun: apply(x0$3: String) :: 1
+Scalisp.Scalisp.$anonfun.$anonfun: apply(x$3: Char) :: 1
+Scalisp.MySeq.$anonfun: apply(x0$2: T) :: 1
+Scalisp.ScalispCompiler.$anonfun: apply(xo: Option[Scalisp.ScalispCompiler.UsedIn]) :: 1
+Scalisp.Builtins.$anonfun: isDefinedAt(x1: String) :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$3: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 1
+Scalisp.Scalisp.$anonfun: apply(x0$1: String,x1$1: org.clapper.argot.Parameter[String]) :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$7: apply$mcJJJ$sp(JJ) :: 1
+Scalisp.LispParser$$anonfun$exp$4: apply() :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$1: apply$mcJJJ$sp(JJ) :: 1
+Scalisp.Scalisp.$anonfun: apply(onOff: Boolean,opt: org.clapper.argot.FlagOption[Boolean]) :: 1
+Scalisp.LispParser$: rep1(Lscala/Function0;Lscala/Function0;) :: 1
+Scalisp.Interpreter: <init>() :: 1
+Scalisp.Scalisp$$anonfun$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 1
+Scalisp.LispParser$: parseAll(Lscala/util/parsing/combinator/Parsers$Parser;Ljava/lang/CharSequence;) :: 1
+Scalisp.StringsCompleter.$anonfun: apply(m: String) :: 1
+Scalisp.MySeq.$anonfun: apply(x0$3: T) :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$8: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 1
+Scalisp.LispParser$: rep1(Lscala/Function0;) :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$2: apply$mcDDD$sp(DD) :: 1
+Scalisp.ScalispCompiler: <init>() :: 1
+Scalisp.LispParser.$anonfun: apply(t: String) :: 1
+Scalisp.Builtins$$anonfun$builtins$1: applyOrElse(Ljava/lang/Object;Lscala/Function1;) :: 1
+Scalisp.LispParser.$anonfun: apply(e: Any) :: 1
+Scalisp.Builtins.$anonfun.$anonfun: apply(x$13: Long,x$14: Long) :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$11: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 1
+Scalisp.Scalisp.$anonfun.$anonfun: apply(x$2: Char) :: 1
+Scalisp.LispParser$$anonfun$list$1$$anonfun$apply$1: apply() :: 1
+Scalisp.Builtins.$anonfun.$anonfun: apply(x0$5: Any) :: 1
+Scalisp.Builtins.$anonfun.$anonfun: apply(x$21: Double,x$22: Double) :: 1
+Scalisp.LispParser$: whiteSpace() :: 1
+Scalisp.Scalisp.$anonfun: apply(x0$2: String) :: 1
+Scalisp.LispParser$: handleWhiteSpace(Ljava/lang/CharSequence;I) :: 1
+Scalisp.ScalispCompiler.$anonfun: apply(x$4: String) :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$4: apply$mcDDD$sp(DD) :: 1
+Scalisp.LispParser$$anonfun$exp$3: apply() :: 1
+Scalisp.MySeq: allLong() :: 1
+Scalisp.ScalispCompiler.$anonfun: apply(x0$4: Int, String) :: 1
+Scalisp.LispParser$: wholeNumber() :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$6: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 1
+Scalisp.LispParser$$anonfun$list$2: apply() :: 1
+Scalisp.Interpreter.$anonfun: apply(x0$4: String, Any) :: 1
+Scalisp.LispParser$: phrase(Lscala/util/parsing/combinator/Parsers$Parser;) :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$3: apply$mcJJJ$sp(JJ) :: 1
+Scalisp.Builtins.$anonfun.$anonfun: apply(x$3: Double,x$4: Double) :: 1
+Scalisp.LispParser.$anonfun: apply(l: String) :: 1
+Scalisp.LispParser$$anonfun$exp$1: apply() :: 1
+Scalisp.Interpreter.$anonfun: apply(x0$2: Any) :: 1
+Scalisp.Scalisp$$anonfun$main$1: apply() :: 1
+Scalisp.Preprocessor.$anonfun: apply(x0$2: Any) :: 1
+Scalisp.ScalispCompiler.$anonfun: apply(x$2: String) :: 1
+Scalisp.ScalispCompiler.$anonfun: apply(x$3: String) :: 1
+Scalisp.Builtins.$anonfun.$anonfun: apply(x$17: Double,x$18: Double) :: 1
+Scalisp.LispParser$$anonfun$exp$2: apply() :: 1
+Scalisp.Builtins$$anonfun$builtins$1: isDefinedAt(Ljava/lang/Object;) :: 1
+Scalisp.LispParser$: success(Ljava/lang/Object;) :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$12: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 1
+Scalisp.LispParser$$anonfun$list$1: apply() :: 1
+Scalisp.Builtins$$anonfun$builtins$1$$anonfun$applyOrElse$4: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 1
+Scalisp.LispParser$$anonfun$exp$7: apply() :: 1

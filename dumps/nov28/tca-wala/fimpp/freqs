@@ -1,0 +1,919 @@
+equals :: 2052
+toString :: 1998
+apply :: 1796
+eval :: 102
+blob :: 59
+convertTo :: 42
+apply$mcV$sp :: 24
+<init> :: 15
+toJava :: 12
+opt :: 10
+regex :: 9
+applyOrElse :: 8
+isDefinedAt :: 8
+literal :: 7
+rep1 :: 7
+apply$mcI$sp :: 6
+rep :: 5
+matches :: 4
+productElement :: 4
+productArity :: 4
+canEqual :: 4
+productIterator :: 4
+productPrefix :: 4
+hashCode :: 4
+parseAll :: 3
+failure :: 2
+Parser :: 2
+scala$util$parsing$combinator$RegexParsers$$super$phrase :: 2
+whiteSpace :: 2
+success :: 2
+apply$mcJ$sp :: 2
+phrase :: 2
+apply$mcVJ$sp :: 2
+scala$util$parsing$combinator$Parsers$$lastNoSuccessVar :: 2
+body :: 2
+scala$util$parsing$combinator$RegexParsers$_setter_$whiteSpace_$eq :: 2
+scala$util$parsing$combinator$Parsers$$lastNoSuccessVar$lzycompute :: 2
+parse :: 2
+skipWhitespace :: 2
+handleWhiteSpace :: 2
+main :: 1
+==================================================
+stasiak.karol.fimpp.FimppParser.$anonfun: apply() :: 203
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply() :: 135
+ca.uwaterloo.scalacg.Library: blob() :: 59
+stasiak.karol.fimpp.Relational: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.RuntimeJavaObject: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.Conjunction: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.RuntimeList: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.WhileStat: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.MethodCall: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.VariableValue: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.FieldAssignment: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.ExprStat: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.Module: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.ClassImportStat: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.Concatenation: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.FunctionCallEach: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.RuntimeBuiltin: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.RepeatStat: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.ConstructorCall: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.FieldRetrieval: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.ArrayInit: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.Increment: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.ListExpression: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.NumberValue: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.Function: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.ArrayRetrieval: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.GlobalDeclStat: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.RuntimeClass: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.ArrayAssignment: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.StringValue: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.FunctionCall: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.RuntimeBoolean: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.RuntimeArray: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.Alternative: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.BooleanValue: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.RuntimeNumber: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.Assignment: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.RuntimeString: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.PrintStat: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.IfStat: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.RuntimeFunction: equals(x$1: Any) :: 54
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun.$anonfun: apply() :: 50
+stasiak.karol.fimpp.NopStat: toString() :: 49
+stasiak.karol.fimpp.NullValue: toString() :: 49
+stasiak.karol.fimpp.ConstructorCall: toString() :: 48
+stasiak.karol.fimpp.NumberValue: toString() :: 48
+stasiak.karol.fimpp.BooleanValue: toString() :: 48
+stasiak.karol.fimpp.GlobalDeclStat: toString() :: 48
+stasiak.karol.fimpp.Concatenation: toString() :: 48
+stasiak.karol.fimpp.WhileStat: toString() :: 48
+stasiak.karol.fimpp.ClassImportStat: toString() :: 48
+stasiak.karol.fimpp.ArrayInit: toString() :: 48
+stasiak.karol.fimpp.ExprStat: toString() :: 48
+stasiak.karol.fimpp.IfStat: toString() :: 48
+stasiak.karol.fimpp.RepeatStat: toString() :: 48
+stasiak.karol.fimpp.Alternative: toString() :: 48
+stasiak.karol.fimpp.FieldAssignment: toString() :: 48
+stasiak.karol.fimpp.ArrayAssignment: toString() :: 48
+stasiak.karol.fimpp.ListExpression: toString() :: 48
+stasiak.karol.fimpp.Function: toString() :: 48
+stasiak.karol.fimpp.PrintStat: toString() :: 48
+stasiak.karol.fimpp.Conjunction: toString() :: 48
+stasiak.karol.fimpp.VariableValue: toString() :: 48
+stasiak.karol.fimpp.ArrayRetrieval: toString() :: 48
+stasiak.karol.fimpp.Relational: toString() :: 48
+stasiak.karol.fimpp.FunctionCall: toString() :: 48
+stasiak.karol.fimpp.StringValue: toString() :: 48
+stasiak.karol.fimpp.Assignment: toString() :: 48
+stasiak.karol.fimpp.Increment: toString() :: 48
+stasiak.karol.fimpp.FieldRetrieval: toString() :: 48
+stasiak.karol.fimpp.FunctionCallEach: toString() :: 48
+stasiak.karol.fimpp.Module: toString() :: 48
+stasiak.karol.fimpp.MethodCall: toString() :: 48
+stasiak.karol.fimpp.RuntimeNull: toString() :: 47
+stasiak.karol.fimpp.RuntimeGlobalReference: toString() :: 47
+stasiak.karol.fimpp.RuntimeFunction: toString() :: 46
+stasiak.karol.fimpp.RuntimeList: toString() :: 46
+stasiak.karol.fimpp.RuntimeBuiltin: toString() :: 46
+stasiak.karol.fimpp.RuntimeArray: toString() :: 46
+stasiak.karol.fimpp.RuntimeString: toString() :: 46
+stasiak.karol.fimpp.RuntimeNumber: toString() :: 46
+stasiak.karol.fimpp.RuntimeBoolean: toString() :: 46
+stasiak.karol.fimpp.RuntimeClass: toString() :: 46
+stasiak.karol.fimpp.RuntimeJavaObject: toString() :: 46
+stasiak.karol.fimpp.NumberValue: eval(Lstasiak/karol/fimpp/Context;) :: 16
+stasiak.karol.fimpp.StringValue: eval(Lstasiak/karol/fimpp/Context;) :: 16
+stasiak.karol.fimpp.NullValue$: eval(Lstasiak/karol/fimpp/Context;) :: 16
+stasiak.karol.fimpp.ListExpression: eval(Lstasiak/karol/fimpp/Context;) :: 16
+stasiak.karol.fimpp.Concatenation: eval(Lstasiak/karol/fimpp/Context;) :: 16
+stasiak.karol.fimpp.BooleanValue: eval(Lstasiak/karol/fimpp/Context;) :: 16
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun.$anonfun.$anonfun: apply() :: 12
+stasiak.karol.fimpp.FimppParser$: opt(Lscala/Function0;) :: 9
+stasiak.karol.fimpp.BuiltInFunctions.$anonfun: apply(args: List[stasiak.karol.fimpp.RuntimeValue]) :: 9
+stasiak.karol.fimpp.StringInnardsParser$$anonfun$stringInnards$1$$anonfun$apply$223: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$callFunctionStat$5: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$setField$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.ConstructorCall$$anonfun$interpret$5: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$listExpression$4: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.MethodCall$$anonfun$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.BuiltInFunctions$$anonfun$apply$5: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$ordinalLiteral$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayRetrieval$5: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$6$$anonfun$apply$170: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$word$2: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.WhileStat$$anonfun$interpret$9: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FunctionCall$$anonfun$eval$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldGetStat$6: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$listOfIdentifiers$5$$anonfun$apply$22: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.RepeatStat$$anonfun$interpret$1$$anonfun$apply$mcVJ$sp$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$9: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.RepeatStat$$anonfun$interpret$2: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.BuiltInFunctions$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.Relational$$anonfun$helper$4: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$callFunctionEachStat$6: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$arglist$6$$anonfun$apply$36: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$wrappedModule$7: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$number$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldSetStat$6: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$6: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$mainFunction$5: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$constructorCall$5: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.Relational$$anonfun$helper$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.Conjunction$$anonfun$eval$5: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$6$$anonfun$apply$59: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.BuiltInFunctions$$anonfun$apply$8: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.BuiltInFunctions$$anonfun$letters$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$literal$1$$anonfun$apply$27: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$stasiak$karol$fimpp$JavaInterop$$allPossibleShortClassNames$1$2: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$identifier$2: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallEachAssign$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$identifier$2$$anonfun$apply$18: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$8: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.RepeatStat$$anonfun$interpret$13: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$setField$2: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$function$7: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$listExpression$5$$anonfun$apply$31: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$5$$anonfun$apply$161: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$simpleExpression$1$$anonfun$apply$39: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCall$5: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$arglist$5$$anonfun$apply$35: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.MethodCall$$anonfun$2: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.BuiltInFunctions$$anonfun$apply$6: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FunctionCall$$anonfun$eval$4: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$getField$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.ListExpression$$anonfun$eval$2: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.Concatenation$$anonfun$eval$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$c_likeModule$6: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$printStat$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$4$$anonfun$apply$154: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.RuntimeArray$: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.WhileStat$$anonfun$interpret$11: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$globalDeclStat$6: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.BuiltInFunctions$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$expression$1$$anonfun$apply$38: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$callMethod$1$$anonfun$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$eitherLessOrCondition$4$$anonfun$apply$46: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayAssignment$5: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.IfStat$$anonfun$interpret$6: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$callConstructor$1$$anonfun$4: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.BuiltInFunctions$$anonfun$apply$9: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$arglist$4: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$4$$anonfun$apply$51: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.Relational$$anonfun$helper$2: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$eitherLessOrCondition$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$7: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.MethodCall$$anonfun$interpret$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$ordinalExpression$2: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$5$$anonfun$apply$56: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$andCondition$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$10: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.RepeatStat$$anonfun$interpret$14: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$ifStat$7: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.RepeatStat$$anonfun$interpret$2$$anonfun$apply$mcVJ$sp$2: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$9$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$5: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$andCondition$4$$anonfun$apply$43: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$classImportStat$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.Alternative$$anonfun$eval$6: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.WhileStat$$anonfun$interpret$12: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.StringInnardsParser$$anonfun$stringInnards$2: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayInit$5: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$7$$anonfun$apply$62: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.ConstructorCall$$anonfun$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$rawIdentifier$2: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$2: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$assignment$5: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.WhileStat$$anonfun$interpret$8: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.BuiltInFunctions$$anonfun$apply$4: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$listOfIdentifiers$4: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.BuiltInFunctions$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.IfStat$$anonfun$interpret$7: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.MethodCall$$anonfun$interpret$4: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.StringInnardsParser$$anonfun$expression$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.Context$$anonfun$$init$$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.RepeatStat$$anonfun$interpret$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.Relational$$anonfun$helper$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$8: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.Function$$anonfun$call$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$7$$anonfun$8: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$stringLiteral$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$getField$2: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.WhileStat$$anonfun$interpret$10: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.BuiltInFunctions$$anonfun$apply$7: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$callConstructor$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.RepeatStat$$anonfun$interpret$15: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$callMethod$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$increment$5: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.JavaInterop$$anonfun$stasiak$karol$fimpp$JavaInterop$$allPossibleShortClassNames$1$1: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$listOfIdentifiers$6$$anonfun$apply$23: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$1$$anonfun$apply$109: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallAssign$3: apply(Ljava/lang/Object;) :: 7
+stasiak.karol.fimpp.FimppParser$: regex(Lscala/util/matching/Regex;) :: 6
+stasiak.karol.fimpp.RuntimeNull$: convertTo(Lstasiak/karol/fimpp/Context;Ljava/lang/Class;) :: 5
+stasiak.karol.fimpp.RuntimeBuiltin: convertTo(Lstasiak/karol/fimpp/Context;Ljava/lang/Class;) :: 5
+stasiak.karol.fimpp.RuntimeGlobalReference$: convertTo(Lstasiak/karol/fimpp/Context;Ljava/lang/Class;) :: 5
+stasiak.karol.fimpp.RuntimeList: convertTo(Lstasiak/karol/fimpp/Context;Ljava/lang/Class;) :: 5
+stasiak.karol.fimpp.RuntimeArray: convertTo(Lstasiak/karol/fimpp/Context;Ljava/lang/Class;) :: 5
+stasiak.karol.fimpp.RuntimeBoolean: convertTo(Lstasiak/karol/fimpp/Context;Ljava/lang/Class;) :: 5
+stasiak.karol.fimpp.RuntimeClass: convertTo(Lstasiak/karol/fimpp/Context;Ljava/lang/Class;) :: 5
+stasiak.karol.fimpp.FimppParser$: literal(Ljava/lang/String;) :: 5
+stasiak.karol.fimpp.FimppParser$: rep1(Lscala/Function0;) :: 4
+stasiak.karol.fimpp.FimppParser$: rep(Lscala/Function0;) :: 4
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(e: stasiak.karol.fimpp.Expr) :: 4
+stasiak.karol.fimpp.JavaInterop.$anonfun: apply(f: java.lang.reflect.Field) :: 4
+stasiak.karol.fimpp.Relational.$anonfun: apply(x: stasiak.karol.fimpp.RuntimeValue) :: 4
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun.$anonfun: apply(a: Option[String],b: Option[String]) :: 3
+stasiak.karol.fimpp.StringInnardsParser$: regex(Lscala/util/matching/Regex;) :: 3
+stasiak.karol.fimpp.RuntimeGlobalReference$: matches(Ljava/lang/Class;) :: 3
+stasiak.karol.fimpp.FimppParser$$anonfun$questionEnd$1: apply$mcV$sp() :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$altkw$1: apply$mcV$sp() :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$sentenceEnd$1: apply$mcV$sp() :: 2
+stasiak.karol.fimpp.RepeatStat: body() :: 2
+stasiak.karol.fimpp.StringInnardsParser$: literal(Ljava/lang/String;) :: 2
+stasiak.karol.fimpp.RepeatStat.$anonfun.$anonfun: <init>() :: 2
+stasiak.karol.fimpp.BuiltInFunctions.$anonfun: apply(acc: Long,value: stasiak.karol.fimpp.RuntimeValue) :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$altkw$2: apply$mcV$sp() :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$comma$1: apply$mcV$sp() :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$5$$anonfun$apply$161$$anonfun$apply$162: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$increment$3$$anonfun$apply$3: apply$mcI$sp() :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$3$$anonfun$apply$150: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$kw$4: apply$mcV$sp() :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$kw$1: apply$mcV$sp() :: 2
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(s: String) :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$kw$5: apply$mcV$sp() :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$kw$2: apply$mcV$sp() :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$kw$3: apply$mcV$sp() :: 2
+stasiak.karol.fimpp.FimppParser$: parseAll(Lscala/util/parsing/combinator/Parsers$Parser;Ljava/lang/CharSequence;) :: 2
+stasiak.karol.fimpp.FimppParser$: failure(Ljava/lang/String;) :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$increment$3$$anonfun$apply$82$$anonfun$apply$4: apply$mcI$sp() :: 2
+stasiak.karol.fimpp.StringInnardsParser.$anonfun.$anonfun.$anonfun: apply() :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$headerEnd$1: apply$mcV$sp() :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$6$$anonfun$apply$170$$anonfun$apply$171: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 2
+stasiak.karol.fimpp.RepeatStat.$anonfun: apply(_: Long) :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$increment$3$$anonfun$apply$83$$anonfun$apply$5: apply$mcI$sp() :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$4$$anonfun$apply$154$$anonfun$apply$155: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 2
+stasiak.karol.fimpp.BuiltInFunctions$$anonfun$product$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 2
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(l: List[String]) :: 2
+stasiak.karol.fimpp.FimppParser$$anonfun$commentContent$1: apply$mcV$sp() :: 2
+stasiak.karol.fimpp.BuiltInFunctions$$anonfun$sum$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 2
+stasiak.karol.fimpp.StringInnardsParser$: success(Ljava/lang/Object;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$5$$anonfun$apply$117$$anonfun$apply$120: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$4$$anonfun$apply$47: apply() :: 1
+stasiak.karol.fimpp.Context$$anonfun$getGlobal$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$9$$anonfun$apply$78$$anonfun$apply$79: apply() :: 1
+stasiak.karol.fimpp.JavaInterop.$anonfun: apply(x$4: String) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$4$$anonfun$apply$151: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ordinalLiteral$4: apply() :: 1
+stasiak.karol.fimpp.RuntimeBoolean: toJava() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCall$2$$anonfun$apply$174$$anonfun$apply$175: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ifStat$4$$anonfun$apply$85$$anonfun$apply$86: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayInit$1$$anonfun$apply$197: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(x: String) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ifStat$4$$anonfun$apply$85$$anonfun$apply$87: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$5$$anonfun$apply$54: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$4$$anonfun$apply$48: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$module$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: isDefinedAt(x3: String) :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$1: String) :: 1
+stasiak.karol.fimpp.RuntimeGlobalReference: toJava() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$wrappedModule$6$$anonfun$apply$218: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayAssignment$3$$anonfun$apply$194: apply() :: 1
+stasiak.karol.fimpp.RuntimeBuiltin: toJava() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$3$$anonfun$apply$63: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$5$$anonfun$apply$55: apply() :: 1
+stasiak.karol.fimpp.FimppParser$: scala$util$parsing$combinator$Parsers$$lastNoSuccessVar() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$6$$anonfun$apply$164: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$headerEnd$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$: phrase(Lscala/util/parsing/combinator/Parsers$Parser;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$6$$anonfun$apply$164$$anonfun$apply$165$$anonfun$apply$166: apply() :: 1
+stasiak.karol.fimpp.WhileStat.$anonfun: apply(x$14: stasiak.karol.fimpp.Statement) :: 1
+stasiak.karol.fimpp.RuntimeBoolean: convertTo(context: stasiak.karol.fimpp.Context,clazz: Class[_]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallAssign$2: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser$: parseAll(Lscala/util/parsing/combinator/Parsers$Parser;Ljava/lang/CharSequence;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$constructorCall$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$mainFunction$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ifStat$1: apply() :: 1
+stasiak.karol.fimpp.JavaInterop: <init>() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$number$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$andCondition$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$1$$anonfun$apply$106$$anonfun$apply$108$$anonfun$apply$6: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$constructorCall$3$$anonfun$apply$144$$anonfun$apply$145: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$12: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Expr,String],stasiak.karol.fimpp.Expr]) :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(x0$9: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Condition,Unit],stasiak.karol.fimpp.Conjunction]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$listExpression$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$simpleExpression$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$listExpression$5$$anonfun$apply$29: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$5$$anonfun$apply$159$$anonfun$apply$160: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser$$anonfun$stringInnards$1$$anonfun$apply$224$$anonfun$apply$225: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$1: applyOrElse(Ljava/lang/Object;Lscala/Function1;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$c_likeModule$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$39: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[String,List[stasiak.karol.fimpp.Function]],stasiak.karol.fimpp.Function]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$mainFunction$4$$anonfun$apply$212: apply() :: 1
+stasiak.karol.fimpp.JavaInterop.$anonfun: apply(packageLength: Int) :: 1
+stasiak.karol.fimpp.JavaInterop.$anonfun.$anonfun: apply(x0$1: stasiak.karol.fimpp.RuntimeValue, Class[_]) :: 1
+stasiak.karol.fimpp.FimppParser$: scala$util$parsing$combinator$RegexParsers$$super$phrase(Lscala/util/parsing/combinator/Parsers$Parser;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$6$$anonfun$apply$207: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayRetrieval$1: apply() :: 1
+stasiak.karol.fimpp.RuntimeGlobalReference: productArity() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arglist$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$printStat$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldGetStat$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$printStat$2$$anonfun$apply$188: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$6: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Expr,Option[Unit]],Unit],stasiak.karol.fimpp.Expr]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$headerEnd$2$$anonfun$apply$10: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayInit$3$$anonfun$apply$199: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$5$$anonfun$apply$67: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$listOfIdentifiers$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$listOfIdentifiers$5$$anonfun$apply$21: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallEachAssign$1$$anonfun$apply$135$$anonfun$apply$136: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$11: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$increment$3$$anonfun$apply$83: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$number$4$$anonfun$apply$1: applyOrElse(Ljava/lang/Object;Lscala/Function1;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$kw$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(id: String) :: 1
+stasiak.karol.fimpp.BuiltInConstants: <init>() :: 1
+stasiak.karol.fimpp.RuntimeString: toJava() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$number$4$$anonfun$apply$1: isDefinedAt(Ljava/lang/Object;) :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$33: stasiak.karol.fimpp.FimppParser.~[Option[Unit],stasiak.karol.fimpp.Expr]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$6$$anonfun$apply$204$$anonfun$apply$205$$anonfun$apply$206: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$6: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser$$anonfun$stringInnards$1: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser$: scala$util$parsing$combinator$Parsers$$lastNoSuccessVar$lzycompute() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$constructorCall$3$$anonfun$apply$144: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$38: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[String,String],List[stasiak.karol.fimpp.Function]],String]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$wrappedModule$6: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$24: stasiak.karol.fimpp.FimppParser.~[String,List[String]]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ifStat$4$$anonfun$apply$85: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$wrappedModule$4$$anonfun$apply$215: apply() :: 1
+stasiak.karol.fimpp.JavaInterop.$anonfun: apply(x0$2: stasiak.karol.fimpp.RuntimeValue, Class[_]) :: 1
+stasiak.karol.fimpp.MethodCall.$anonfun: apply(x$4: stasiak.karol.fimpp.Expr) :: 1
+stasiak.karol.fimpp.StringInnardsParser: <init>() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$1$$anonfun$applyOrElse$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$mainFunction$1$$anonfun$apply$208: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$3$$anonfun$apply$92: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$c_likeModule$4$$anonfun$apply$222: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallEachAssign$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condition$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ordinalLiteral$4$$anonfun$apply$2: isDefinedAt(Ljava/lang/Object;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$4$$anonfun$apply$65: apply() :: 1
+stasiak.karol.fimpp.RuntimeNull: productIterator() :: 1
+stasiak.karol.fimpp.NullValue: hashCode() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$4$$anonfun$apply$111$$anonfun$apply$114: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldSetStat$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$16: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[String,Unit],stasiak.karol.fimpp.Expr]) :: 1
+stasiak.karol.fimpp.NullValue: productArity() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$andCondition$4$$anonfun$apply$41: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$: handleWhiteSpace(Ljava/lang/CharSequence;I) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCall$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$callFunctionEachStat$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$andCondition$4$$anonfun$apply$42: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$commentStat$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$4: apply() :: 1
+stasiak.karol.fimpp.RuntimeNull$: toJava() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayAssignment$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$17: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$kw$9: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$callFunctionStat$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$wrappedModule$4$$anonfun$apply$216: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser$: handleWhiteSpace(Ljava/lang/CharSequence;I) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$9: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$6$$anonfun$apply$204$$anonfun$apply$205: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: isDefinedAt(x1: String) :: 1
+stasiak.karol.fimpp.IfStat.$anonfun: apply(x$8: stasiak.karol.fimpp.Statement) :: 1
+stasiak.karol.fimpp.RuntimeNull: canEqual(x$1: Any) :: 1
+stasiak.karol.fimpp.StringInnardsParser$: Parser(Lscala/Function1;) :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(a: Option[String],b: Option[String]) :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(ot: Option[Long]) :: 1
+stasiak.karol.fimpp.NopStat: productIterator() :: 1
+stasiak.karol.fimpp.FimppParser$: parse(Lscala/util/parsing/combinator/Parsers$Parser;Ljava/lang/CharSequence;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$5$$anonfun$apply$53: apply() :: 1
+stasiak.karol.fimpp.RuntimeNull: productPrefix() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$mainFunction$3$$anonfun$apply$209: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$printStat$2$$anonfun$apply$183$$anonfun$apply$184$$anonfun$apply$186: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallAssign$1: apply() :: 1
+stasiak.karol.fimpp.RepeatStat.$anonfun.$anonfun: apply(x$18: stasiak.karol.fimpp.Statement) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallEachAssign$1$$anonfun$apply$137: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(v: Long) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$constructorCall$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$headerEnd$3$$anonfun$apply$12: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$4$$anonfun$apply$93$$anonfun$apply$97: apply() :: 1
+stasiak.karol.fimpp.FimppParser$: Parser(Lscala/Function1;) :: 1
+stasiak.karol.fimpp.StringInnardsParser$: rep1(Lscala/Function0;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$headerEnd$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ordinalLiteral$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$: scala$util$parsing$combinator$Parsers$$lastNoSuccessVar$lzycompute() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$6$$anonfun$apply$69: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(id: String) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$5$$anonfun$apply$202: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser.$anonfun: apply(e: String) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$mainFunction$1: apply() :: 1
+stasiak.karol.fimpp.RuntimeFunction: toJava() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$listOfIdentifiers$1$$anonfun$apply$19: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$7: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$5$$anonfun$apply$117: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$questionEnd$3: apply() :: 1
+stasiak.karol.fimpp.NopStat: hashCode() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$constructorCall$5$$anonfun$apply$146: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$10: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Condition,Unit],stasiak.karol.fimpp.Condition]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$increment$3$$anonfun$apply$83$$anonfun$apply$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$5$$anonfun$apply$157$$anonfun$apply$158: apply() :: 1
+stasiak.karol.fimpp.RuntimeNull: productElement(x$1: Int) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$2$$anonfun$apply$147$$anonfun$apply$148: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$37: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[Option[String],List[stasiak.karol.fimpp.Statement]],String]) :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(x0$13: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Expr,String],stasiak.karol.fimpp.Expr]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$6$$anonfun$apply$163: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: isDefinedAt(x2: String) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$orCondition$1: apply() :: 1
+stasiak.karol.fimpp.RuntimeArray: convertTo(context: stasiak.karol.fimpp.Context,clazz: Class[_]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$printStat$1: apply() :: 1
+stasiak.karol.fimpp.RuntimeGlobalReference: matches(clazz: Class[_]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ordinalExpression$3$$anonfun$apply$40: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser$: parse(Lscala/util/parsing/combinator/Parsers$Parser;Ljava/lang/CharSequence;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldSetStat$3$$anonfun$apply$176: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$wrappedModule$6$$anonfun$apply$220$$anonfun$apply$221: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$kw$2: apply() :: 1
+stasiak.karol.fimpp.RuntimeNull: convertTo(context: stasiak.karol.fimpp.Context,clazz: Class[_]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$listOfIdentifiers$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$listOfIdentifiers$5$$anonfun$apply$20: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ifStat$6: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$10: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser.$anonfun.$anonfun: apply(s: String) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$4$$anonfun$apply$93: apply() :: 1
+stasiak.karol.fimpp.JavaInterop.$anonfun.$anonfun: apply(x$6: String) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$eitherLessOrCondition$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$23: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[String,String],stasiak.karol.fimpp.Expr]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$1$$anonfun$apply$109$$anonfun$apply$7: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayAssignment$3$$anonfun$apply$191$$anonfun$apply$192: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$c_likeModule$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallAssign$1$$anonfun$apply$130: apply() :: 1
+stasiak.karol.fimpp.RepeatStat.$anonfun: apply(x$16: stasiak.karol.fimpp.Statement) :: 1
+stasiak.karol.fimpp.NullValue: <init>() :: 1
+stasiak.karol.fimpp.WhileStat.$anonfun: apply(x$10: stasiak.karol.fimpp.Statement) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$classImportStat$2$$anonfun$apply$140: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$3$$anonfun$apply$200$$anonfun$apply$201: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$mainFunction$4$$anonfun$apply$211: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayInit$1$$anonfun$apply$197$$anonfun$apply$198: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$assignment$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$printStat$2$$anonfun$apply$187: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$increment$3$$anonfun$apply$82: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$c_likeModule$3: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser$: phrase(Lscala/util/parsing/combinator/Parsers$Parser;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$7: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$sentenceEnd$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$: scala$util$parsing$combinator$RegexParsers$_setter_$whiteSpace_$eq(Lscala/util/matching/Regex;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$kw$8: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$mainFunction$4$$anonfun$apply$212$$anonfun$apply$213: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser$: opt(Lscala/Function0;) :: 1
+stasiak.karol.fimpp.FimppParser$: success(Ljava/lang/Object;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$questionEnd$2$$anonfun$apply$16: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$commentStat$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$altkw$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$9: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$8: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$4$$anonfun$apply$111$$anonfun$apply$113: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$16: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldSetStat$3: apply() :: 1
+stasiak.karol.fimpp.RuntimeGlobalReference: canEqual(x$1: Any) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$callFunctionStat$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$3$$anonfun$apply$200: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$2$$anonfun$apply$149: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arglist$6: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$wrappedModule$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$4$$anonfun$apply$111: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCall$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallEachAssign$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$questionEnd$2$$anonfun$apply$17: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$commentStat$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$callFunctionStat$3$$anonfun$apply$125: apply() :: 1
+stasiak.karol.fimpp.NullValue: canEqual(x$1: Any) :: 1
+stasiak.karol.fimpp.JavaInterop.$anonfun: apply(constructor: java.lang.reflect.Constructor[_]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ifStat$4$$anonfun$apply$85$$anonfun$apply$89$$anonfun$apply$90: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$4$$anonfun$apply$111$$anonfun$apply$112: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$increment$3$$anonfun$apply$82$$anonfun$apply$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayRetrieval$2$$anonfun$apply$195: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$4$$anonfun$apply$111$$anonfun$apply$115$$anonfun$apply$116: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$callFunctionEachStat$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallAssign$2$$anonfun$apply$133: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arglist$1$$anonfun$apply$32: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldGetStat$4$$anonfun$apply$181: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condition$1: apply() :: 1
+stasiak.karol.fimpp.NullValue: productIterator() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$6: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldGetStat$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$printStat$1$$anonfun$apply$182: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$35: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Expr,String],String]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$andCondition$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$constructorCall$2: apply() :: 1
+stasiak.karol.fimpp.ConstructorCall.$anonfun: apply(x$7: String) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$globalDeclStat$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$6$$anonfun$apply$164$$anonfun$apply$165: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: isDefinedAt(x4: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[String,Option[List[String]]],List[stasiak.karol.fimpp.Statement]],stasiak.karol.fimpp.FimppParser.~[String,Option[String]]]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$callFunctionStat$5$$anonfun$apply$127: apply() :: 1
+stasiak.karol.fimpp.MethodCall.$anonfun: apply(x$5: String) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallEachAssign$1$$anonfun$apply$135: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$25: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[String,String],Option[List[stasiak.karol.fimpp.Expr]]]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$andCondition$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$increment$3$$anonfun$apply$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arglist$5$$anonfun$apply$34: apply() :: 1
+stasiak.karol.fimpp.JavaInterop.$anonfun: apply(x$2: String) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$classImportStat$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ordinalExpression$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$printStat$2$$anonfun$apply$183$$anonfun$apply$184: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$printStat$2$$anonfun$apply$183$$anonfun$apply$184$$anonfun$apply$185: apply() :: 1
+stasiak.karol.fimpp.JavaInterop.$anonfun.$anonfun: apply(x0$4: stasiak.karol.fimpp.RuntimeValue, Class[_]) :: 1
+stasiak.karol.fimpp.NullValue: productElement(x$1: Int) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$5$$anonfun$apply$99$$anonfun$apply$103$$anonfun$apply$104: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$6: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$classImportStat$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ordinalLiteral$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$questionEnd$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$5$$anonfun$apply$52: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$callFunctionStat$3$$anonfun$apply$125$$anonfun$apply$126: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser$: rep1(Lscala/Function0;Lscala/Function0;) :: 1
+stasiak.karol.fimpp.IfStat.$anonfun: apply(x$9: stasiak.karol.fimpp.Statement) :: 1
+stasiak.karol.fimpp.RuntimeGlobalReference: productIterator() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$4$$anonfun$apply$93$$anonfun$apply$96: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$c_likeModule$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ifStat$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$5$$anonfun$apply$99$$anonfun$apply$103: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallEachAssign$2$$anonfun$apply$139: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$kw$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$4$$anonfun$apply$50: apply() :: 1
+stasiak.karol.fimpp.FunctionCall.$anonfun: apply(x$3: stasiak.karol.fimpp.Expr) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCall$1$$anonfun$apply$173: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$listExpression$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$assignment$3: apply() :: 1
+stasiak.karol.fimpp.RepeatStat.$anonfun: apply(x$17: stasiak.karol.fimpp.Statement) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$increment$4: apply() :: 1
+stasiak.karol.fimpp.WhileStat.$anonfun: apply(x$11: stasiak.karol.fimpp.Statement) :: 1
+stasiak.karol.fimpp.JavaInterop.$anonfun: apply(x0$3: stasiak.karol.fimpp.RuntimeValue, Class[_]) :: 1
+stasiak.karol.fimpp.NumberValue: eval(context: stasiak.karol.fimpp.Context) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldGetStat$3$$anonfun$apply$178: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$mainFunction$4$$anonfun$apply$210: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$9$$anonfun$apply$78: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$wrappedModule$6$$anonfun$apply$220: apply() :: 1
+stasiak.karol.fimpp.JavaInterop.$anonfun: apply(x0$5: stasiak.karol.fimpp.RuntimeValue, Class[_]) :: 1
+stasiak.karol.fimpp.RuntimeClass: convertTo(context: stasiak.karol.fimpp.Context,clazz2: Class[_]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$4: apply() :: 1
+stasiak.karol.fimpp.NopStat: <init>() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$number$4: apply() :: 1
+stasiak.karol.fimpp.RuntimeValue: <init>() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$listOfIdentifiers$6: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$8: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCall$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(v: Long) :: 1
+stasiak.karol.fimpp.StringInnardsParser$: scala$util$parsing$combinator$RegexParsers$$super$phrase(Lscala/util/parsing/combinator/Parsers$Parser;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$15: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$1$$anonfun$apply$106$$anonfun$apply$108: apply() :: 1
+stasiak.karol.fimpp.MethodCall.$anonfun: apply(x$2: stasiak.karol.fimpp.Expr) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$callFunctionStat$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$sentenceEnd$2$$anonfun$apply$14: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(x0$3: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[String,Unit],List[String]]) :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(x0$27: stasiak.karol.fimpp.FimppParser.~[String,String]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayAssignment$2$$anonfun$apply$189: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$7$$anonfun$apply$60: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$8$$anonfun$apply$76: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$7: apply() :: 1
+stasiak.karol.fimpp.Main: <init>() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$kw$6: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallAssign$1$$anonfun$apply$128$$anonfun$apply$129: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$sentenceEnd$2$$anonfun$apply$13: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldGetStat$4$$anonfun$apply$180: apply() :: 1
+stasiak.karol.fimpp.RuntimeNull: hashCode() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldSetStat$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldGetStat$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$mainFunction$5$$anonfun$apply$214: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$sentenceEnd$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$8$$anonfun$apply$73$$anonfun$apply$74: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$6: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$5$$anonfun$apply$159: apply() :: 1
+stasiak.karol.fimpp.RuntimeGlobalReference: productElement(x$1: Int) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$sentenceEnd$2: apply() :: 1
+stasiak.karol.fimpp.ListExpression.$anonfun: apply(x$2: stasiak.karol.fimpp.Expr) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$kw$7: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$wrappedModule$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$18: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Condition,List[stasiak.karol.fimpp.Statement]],Option[List[stasiak.karol.fimpp.Statement]]],Option[List[stasiak.karol.fimpp.Statement]]]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$eitherLessOrCondition$4$$anonfun$apply$45: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$listOfIdentifiers$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arglist$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayInit$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$altkw$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$expression$2: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser.$anonfun: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser$: scala$util$parsing$combinator$RegexParsers$_setter_$whiteSpace_$eq(Lscala/util/matching/Regex;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$1$$anonfun$apply$109$$anonfun$apply$7: apply$mcJ$sp() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$wrappedModule$4: apply() :: 1
+stasiak.karol.fimpp.Main: main(args: Array[String]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$word$1: applyOrElse(Ljava/lang/Object;Lscala/Function1;) :: 1
+stasiak.karol.fimpp.RuntimeGlobalReference: hashCode() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$6: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$22: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[String,String],Option[List[stasiak.karol.fimpp.Expr]]]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$7: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayAssignment$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$constructorCall$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$identifier$1: apply() :: 1
+stasiak.karol.fimpp.NopStat: productPrefix() :: 1
+stasiak.karol.fimpp.RuntimeNull: <init>() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$rawIdentifier$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(x0$29: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[String,Option[List[stasiak.karol.fimpp.Expr]]],String]) :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(sl: String) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$questionEnd$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$1$$anonfun$apply$106: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$32: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Expr,String],String]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$globalDeclStat$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$5$$anonfun$apply$117$$anonfun$apply$121$$anonfun$apply$122: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$5$$anonfun$apply$117$$anonfun$apply$118: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arglist$5$$anonfun$apply$33: apply() :: 1
+stasiak.karol.fimpp.JavaInterop.$anonfun: apply(x$1: String) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayAssignment$3$$anonfun$apply$191: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$expression$1$$anonfun$apply$37: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser.$anonfun.$anonfun: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$4$$anonfun$apply$152$$anonfun$apply$153: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$31: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Expr,stasiak.karol.fimpp.Expr],String]) :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$15: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[String,Unit],Long],Int]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$4$$anonfun$apply$93$$anonfun$apply$95: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$word$1: isDefinedAt(Ljava/lang/Object;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$wrappedModule$5$$anonfun$apply$217: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$5$$anonfun$apply$117$$anonfun$apply$119: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$6$$anonfun$apply$167: apply() :: 1
+stasiak.karol.fimpp.RuntimeList: convertTo(context: stasiak.karol.fimpp.Context,clazz: Class[_]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ordinalLiteral$4$$anonfun$apply$26: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$increment$2: apply() :: 1
+stasiak.karol.fimpp.BooleanValue: eval(context: stasiak.karol.fimpp.Context) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$4$$anonfun$apply$93$$anonfun$apply$97$$anonfun$apply$98: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$30: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[Option[String],Option[String]],Option[String], Option[String]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$increment$3: apply() :: 1
+stasiak.karol.fimpp.RuntimeList: toJava() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: applyOrElse([A1 <: String, B1 >: Long]x2: A1,default: A1 => B1) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$sentenceEnd$3$$anonfun$apply$15: apply() :: 1
+stasiak.karol.fimpp.Conjunction.$anonfun: apply(x$5: stasiak.karol.fimpp.Condition) :: 1
+stasiak.karol.fimpp.RepeatStat.$anonfun.$anonfun: apply(x$15: stasiak.karol.fimpp.Statement) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$assignment$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$listExpression$1: apply() :: 1
+stasiak.karol.fimpp.Context.$anonfun: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$9$$anonfun$apply$77: apply() :: 1
+stasiak.karol.fimpp.JavaInterop.$anonfun: apply(method: java.lang.reflect.Method) :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(x0$7: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Expr,Unit],List[stasiak.karol.fimpp.Expr]]) :: 1
+stasiak.karol.fimpp.FimppParser$: rep1(Lscala/Function0;Lscala/Function0;) :: 1
+stasiak.karol.fimpp.RuntimeGlobalReference: convertTo(context: stasiak.karol.fimpp.Context,clazz: Class[_]) :: 1
+stasiak.karol.fimpp.Concatenation.$anonfun: apply(x$1: stasiak.karol.fimpp.Expr) :: 1
+stasiak.karol.fimpp.BuiltInFunctions.$anonfun: apply(x: Char) :: 1
+stasiak.karol.fimpp.StringInnardsParser$: rep(Lscala/Function0;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$listExpression$2: apply() :: 1
+stasiak.karol.fimpp.RepeatStat$$anonfun$interpret$2: apply$mcVJ$sp(J) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$mainFunction$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ifStat$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ifStat$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$eitherLessOrCondition$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallEachAssign$2$$anonfun$apply$138: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$36: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[String,Option[List[String]]],List[stasiak.karol.fimpp.Statement]],stasiak.karol.fimpp.FimppParser.~[String,Option[String]]]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$6$$anonfun$apply$204: apply() :: 1
+stasiak.karol.fimpp.WhileStat.$anonfun: apply(x$12: stasiak.karol.fimpp.Statement) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ifStat$4$$anonfun$apply$85$$anonfun$apply$89: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$5$$anonfun$apply$99$$anonfun$apply$102: apply() :: 1
+stasiak.karol.fimpp.Concatenation: eval(context: stasiak.karol.fimpp.Context) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$6$$anonfun$apply$70: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$5$$anonfun$apply$99: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$constructorCall$2$$anonfun$apply$143: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$9$$anonfun$apply$81: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldSetStat$4$$anonfun$apply$177: apply() :: 1
+stasiak.karol.fimpp.RuntimeClass: toJava() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$14: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldSetStat$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$1$$anonfun$apply$106$$anonfun$apply$107: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$classImportStat$2$$anonfun$apply$140$$anonfun$apply$141: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$17: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Condition,List[stasiak.karol.fimpp.Statement]],Option[List[stasiak.karol.fimpp.Statement]]]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayInit$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$8$$anonfun$apply$75: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$altkw$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$5: apply() :: 1
+stasiak.karol.fimpp.NullValue: eval(context: stasiak.karol.fimpp.Context) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$wrappedModule$2: apply() :: 1
+stasiak.karol.fimpp.RuntimeGlobalReference: <init>() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayRetrieval$3: apply() :: 1
+stasiak.karol.fimpp.Alternative.$anonfun: apply(x$6: stasiak.karol.fimpp.Condition) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCall$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$21: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[String,Unit],stasiak.karol.fimpp.Expr]) :: 1
+stasiak.karol.fimpp.RuntimeArray: <init>() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldGetStat$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(x0$5: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Expr,Unit],stasiak.karol.fimpp.ListExpression]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$5$$anonfun$apply$157: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallAssign$2$$anonfun$apply$131: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$kw$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$6$$anonfun$apply$167$$anonfun$apply$169: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayRetrieval$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$eitherLessOrCondition$4$$anonfun$apply$44: apply() :: 1
+stasiak.karol.fimpp.RuntimeNumber: toJava() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$6: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$listExpression$5$$anonfun$apply$30: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$2$$anonfun$apply$147: apply() :: 1
+stasiak.karol.fimpp.Context.$anonfun: apply(f: stasiak.karol.fimpp.Function) :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$20: stasiak.karol.fimpp.FimppParser.~[String,Option[List[stasiak.karol.fimpp.Expr]]]) :: 1
+stasiak.karol.fimpp.StringInnardsParser$: scala$util$parsing$combinator$Parsers$$lastNoSuccessVar() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$literal$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(x0$14: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Expr,String],stasiak.karol.fimpp.Expr]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$expression$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$globalDeclStat$2$$anonfun$apply$124: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$globalDeclStat$3: apply() :: 1
+stasiak.karol.fimpp.Trollestia: <init>() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: applyOrElse([A1 <: String, B1 >: String]x1: A1,default: A1 => B1) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayAssignment$3$$anonfun$apply$190: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallAssign$2$$anonfun$apply$131$$anonfun$apply$132: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ordinalExpression$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: applyOrElse([A1 <: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[String,Option[List[String]]],List[stasiak.karol.fimpp.Statement]],stasiak.karol.fimpp.FimppParser.~[String,Option[String]]], B1 >: stasiak.karol.fimpp.Function]x4: A1,default: A1 => B1) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayAssignment$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$3: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser$$anonfun$stringInnards$1$$anonfun$apply$224: apply() :: 1
+stasiak.karol.fimpp.NullValue: productPrefix() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$6: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$4: apply() :: 1
+stasiak.karol.fimpp.StringValue: eval(context: stasiak.karol.fimpp.Context) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$number$4$$anonfun$apply$25: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayRetrieval$3$$anonfun$apply$196: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$7$$anonfun$apply$72: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$4: apply() :: 1
+stasiak.karol.fimpp.MethodCall.$anonfun: apply(x$3: String) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$callFunctionEachStat$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$4$$anonfun$apply$93$$anonfun$apply$94: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ordinalLiteral$4$$anonfun$apply$2: applyOrElse(Ljava/lang/Object;Lscala/Function1;) :: 1
+stasiak.karol.fimpp.FunctionCall.$anonfun: apply(x$4: stasiak.karol.fimpp.Expr) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$5$$anonfun$apply$99$$anonfun$apply$101: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$wrappedModule$6$$anonfun$apply$219: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$printStat$2$$anonfun$apply$183: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$1$$anonfun$apply$106$$anonfun$apply$108$$anonfun$apply$6: apply$mcJ$sp() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$mainFunction$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ifStat$3$$anonfun$apply$84: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$increment$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$8$$anonfun$apply$105: apply() :: 1
+stasiak.karol.fimpp.RuntimeGlobalReference$: toJava() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$3$$anonfun$apply$64: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$26: stasiak.karol.fimpp.FimppParser.~[List[stasiak.karol.fimpp.Expr],String]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$comma$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$number$2: apply() :: 1
+stasiak.karol.fimpp.RuntimeArray: toJava() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$4$$anonfun$apply$152: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$6$$anonfun$apply$170$$anonfun$apply$171$$anonfun$apply$172: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$5$$anonfun$apply$99$$anonfun$apply$100: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$headerEnd$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$eitherLessOrCondition$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$: skipWhitespace() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ifStat$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(x$1: String) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$listExpression$1$$anonfun$apply$28: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$assignment$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ifStat$4$$anonfun$apply$85$$anonfun$apply$88: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallAssign$1$$anonfun$apply$128: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$7$$anonfun$apply$60$$anonfun$apply$61: apply() :: 1
+stasiak.karol.fimpp.JavaInterop.$anonfun: apply(className: String) :: 1
+stasiak.karol.fimpp.StringInnardsParser.$anonfun: apply(l: List[stasiak.karol.fimpp.Expr]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$4$$anonfun$apply$49: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$6$$anonfun$apply$57$$anonfun$apply$58: apply() :: 1
+stasiak.karol.fimpp.RepeatStat.$anonfun: apply(x$19: stasiak.karol.fimpp.Statement) :: 1
+stasiak.karol.fimpp.WhileStat.$anonfun: apply(x$13: stasiak.karol.fimpp.Statement) :: 1
+stasiak.karol.fimpp.RuntimeNull: productArity() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$6$$anonfun$apply$203: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$1: apply() :: 1
+stasiak.karol.fimpp.RepeatStat$$anonfun$interpret$1: apply$mcVJ$sp(J) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$5$$anonfun$apply$117$$anonfun$apply$121: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$classImportStat$2$$anonfun$apply$142: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$4: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Expr,Option[Unit]],Unit],stasiak.karol.fimpp.Expr]) :: 1
+stasiak.karol.fimpp.RuntimeBuiltin: convertTo(context: stasiak.karol.fimpp.Context,clazz: Class[_]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayRetrieval$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldGetStat$4$$anonfun$apply$179: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser$: whiteSpace() :: 1
+stasiak.karol.fimpp.RuntimeNull: toJava() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$listOfIdentifiers$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$3: apply() :: 1
+stasiak.karol.fimpp.ConstructorCall.$anonfun: apply(x$6: stasiak.karol.fimpp.Expr) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$5$$anonfun$apply$156: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$12: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$kw$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arglist$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$13: apply() :: 1
+stasiak.karol.fimpp.JavaInterop.$anonfun: apply(x$7: Int, String) :: 1
+stasiak.karol.fimpp.StringInnardsParser$$anonfun$stringInnards$1$$anonfun$apply$224$$anonfun$apply$226: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldGetStat$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(x0$28: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[String,List[stasiak.karol.fimpp.Expr]],String]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$8$$anonfun$apply$73: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$3$$anonfun$apply$110: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$1: isDefinedAt(Ljava/lang/Object;) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayInit$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$headerEnd$2$$anonfun$apply$11: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$wrappedModule$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$5$$anonfun$apply$68: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$c_likeModule$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$9$$anonfun$apply$80: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arglist$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$2: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[String,Option[Unit]],Unit],String]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCallBranches$6$$anonfun$apply$167$$anonfun$apply$168: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$7: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$methodCall$2$$anonfun$apply$174: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayInit$1: apply() :: 1
+stasiak.karol.fimpp.Function.$anonfun: apply(x$1: stasiak.karol.fimpp.Statement) :: 1
+stasiak.karol.fimpp.NopStat: productArity() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: applyOrElse([A1 <: String, B1 >: Long]x3: A1,default: A1 => B1) :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(i: String) :: 1
+stasiak.karol.fimpp.RuntimeGlobalReference: productPrefix() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$globalDeclStat$1: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$whileStat$5: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayAssignment$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$relationalCondition$6$$anonfun$apply$57: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun.$anonfun: apply(x0$11: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Condition,Unit],stasiak.karol.fimpp.Alternative]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$ifStat$7$$anonfun$apply$91: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$callFunctionStat$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser: <init>() :: 1
+stasiak.karol.fimpp.NopStat: canEqual(x$1: Any) :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$34: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Expr,String],stasiak.karol.fimpp.Expr]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$callFunctionEachStat$3: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$8$$anonfun$apply$123: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$18: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$fieldSetStat$5: apply() :: 1
+stasiak.karol.fimpp.StringInnardsParser: skipWhitespace() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$arrayAssignment$3$$anonfun$apply$191$$anonfun$apply$192$$anonfun$apply$193: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$callFunctionEachStat$4: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$globalDeclStat$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$19: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[Long,List[stasiak.karol.fimpp.Statement]],Option[List[stasiak.karol.fimpp.Statement]]],Option[List[stasiak.karol.fimpp.Statement]]]) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$functionCallAssign$3$$anonfun$apply$134: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$4$$anonfun$apply$66: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$commentContent$1: apply() :: 1
+stasiak.karol.fimpp.ListExpression: eval(context: stasiak.karol.fimpp.Context) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$statement$19: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$function$1$$anonfun$applyOrElse$2: apply() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$number$4$$anonfun$apply$24: apply() :: 1
+stasiak.karol.fimpp.JavaInterop.$anonfun.$anonfun: apply(cn: String) :: 1
+stasiak.karol.fimpp.BuiltInFunctions: <init>() :: 1
+stasiak.karol.fimpp.RuntimeArray: apply(array: scala.collection.mutable.ListBuffer[stasiak.karol.fimpp.RuntimeValue]) :: 1
+stasiak.karol.fimpp.NopStat: productElement(x$1: Int) :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$condOperator$7$$anonfun$apply$71: apply() :: 1
+stasiak.karol.fimpp.FimppParser$: whiteSpace() :: 1
+stasiak.karol.fimpp.FimppParser$$anonfun$repeatStat$4$$anonfun$apply$111$$anonfun$apply$115: apply() :: 1
+stasiak.karol.fimpp.FimppParser.$anonfun: apply(x0$8: stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.FimppParser.~[stasiak.karol.fimpp.Condition,Unit],stasiak.karol.fimpp.Condition]) :: 1

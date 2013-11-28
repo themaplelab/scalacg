@@ -5,7 +5,7 @@ import probe.ObjectManager
 
 object Counter {
   def main(args: Array[String]): Unit = {
-    val path = "dumps/nov28/tca-wala/phantm/edges"
+    val path = "dumps/nov28/tca-wala/tictactoe/edges"
     val methodToCount = Map[String, Int]().withDefaultValue(0)
     val nameToCount = Map[String, Int]().withDefaultValue(0)
 

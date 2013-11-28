@@ -13,8 +13,7 @@ import probe.ProbeMethod
 
 object Experiments {
   //  final lazy val benchmarks = List("argot", "fimpp", "joos", "kiama", "phantm", "scalisp", "see", "tictactoe")
-  //  final lazy val benchmarks = List("argot", "fimpp", "joos", "scalisp", "see", "tictactoe")
-  final lazy val benchmarks = List("kiama")
+  final lazy val benchmarks = List("tictactoe")
 
   def main(args: Array[String]) = {
     var prefix = ""

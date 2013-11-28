@@ -1,0 +1,178 @@
+apply :: 151
+blob :: 32
+key :: 15
+equals :: 10
+name :: 9
+value :: 6
+<init> :: 5
+valueName :: 4
+org$clapper$argot$HasValue$_setter_$hasValue_$eq :: 4
+setFromString :: 4
+setByName :: 3
+flagValue_= :: 2
+shortNamesOnSet :: 2
+convert :: 2
+org$clapper$argot$MultiValueArg$_setter_$supportsMultipleValues_$eq :: 2
+supportsMultipleValues :: 2
+longNamesOnSet :: 2
+org$clapper$argot$SingleValueArg$_setter_$supportsMultipleValues_$eq :: 2
+storeValue :: 2
+optValue :: 2
+optValue_= :: 2
+apply$mcI$sp :: 2
+toString :: 2
+org$clapper$argot$ArgotParser$$anonfun$$$outer :: 1
+set :: 1
+checkValidity :: 1
+names :: 1
+convertString :: 1
+clear :: 1
+longNamesOffSet :: 1
+main :: 1
+shortNamesOffSet :: 1
+flagValue :: 1
+==================================================
+ca.uwaterloo.scalacg.Library: blob() :: 32
+org.clapper.argot.CommandLineArgument: equals(o: Any) :: 10
+org.clapper.argot.ArgotTest$$anonfun$8: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 6
+org.clapper.argot.ArgotTest$$anonfun$6: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 6
+org.clapper.argot.ArgotParser$$anonfun$13: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 6
+org.clapper.argot.ArgotTest$$anonfun$4: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 6
+org.clapper.argot.ArgotTest$$anonfun$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 6
+org.clapper.argot.ArgotTest$$anonfun$7: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 6
+org.clapper.argot.ArgotParser.$anonfun: apply(s: String) :: 6
+org.clapper.argot.ArgotParser$$anonfun$12: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 6
+org.clapper.argot.ArgotTest$$anonfun$5: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 6
+org.clapper.argot.ArgotTest$$anonfun$3: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 6
+org.clapper.argot.ArgotParser$$anonfun$10: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 6
+org.clapper.argot.ArgotParser.$anonfun: apply(name: String) :: 5
+org.clapper.argot.HasValue: setFromString(s: String) :: 4
+org.clapper.argot.CommandLineOption: key() :: 3
+org.clapper.argot.FlagOption: name() :: 3
+org.clapper.argot.Parameter: name() :: 3
+org.clapper.argot.Parameter: key() :: 3
+org.clapper.argot.FlagOption: setByName(name: String) :: 3
+org.clapper.argot.ArgotParser.$anonfun: apply() :: 3
+org.clapper.argot.CommandLineOption: name() :: 3
+org.clapper.argot.FlagOption: value() :: 2
+org.clapper.argot.MultiValueParameter: key() :: 2
+org.clapper.argot.ArgotTest$$anonfun$3$$anonfun$1: apply() :: 2
+org.clapper.argot.FlagOption: convert() :: 2
+org.clapper.argot.FlagOption: flagValue_=(x$1: Option[T]) :: 2
+org.clapper.argot.FlagOption: shortNamesOnSet() :: 2
+org.clapper.argot.Conversions$$anonfun$parseInt$1: apply() :: 2
+org.clapper.argot.SingleValueParameter: key() :: 2
+org.clapper.argot.ArgotParser$$anonfun$17: apply() :: 2
+org.clapper.argot.MultiValueArg: value() :: 2
+org.clapper.argot.FlagOption: longNamesOnSet() :: 2
+org.clapper.argot.ArgotParser$$anonfun$16: apply() :: 2
+org.clapper.argot.SingleValueArg: value() :: 2
+org.clapper.argot.MultiValueOption: key() :: 2
+org.clapper.argot.SingleValueOption: key() :: 2
+org.clapper.argot.ArgotTest.$anonfun: apply(s: String,opt: org.clapper.argot.CommandLineArgument[String]) :: 2
+org.clapper.argot.ArgotParser$$anonfun$15: apply() :: 2
+org.clapper.argot.MultiValueOption.$anonfun: apply(x$3: String) :: 1
+org.clapper.argot.ArgotParser$$anonfun$11: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(x$23: org.clapper.argot.Parameter[_]) :: 1
+org.clapper.argot.MultiValueArg: optValue_=(x$1: Seq[T]) :: 1
+org.clapper.argot.ArgotParser$$anonfun$checkMissing$1$3: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser$$anonfun$replaceOption$2: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(x$14: String,x$15: String) :: 1
+org.clapper.argot.MultiValueParameter: org$clapper$argot$HasValue$_setter_$hasValue_$eq(Z) :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(x$28: org.clapper.argot.Parameter[_]) :: 1
+org.clapper.argot.ArgotParser$$anonfun$usageString$6: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(x$25: String) :: 1
+org.clapper.argot.SingleValueOption$$anonfun$1: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser: <init>() :: 1
+org.clapper.argot.FlagOption$$anonfun$5: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.SingleValueArg: storeValue(v: T) :: 1
+org.clapper.argot.SingleValueParameter: org$clapper$argot$HasValue$_setter_$hasValue_$eq(Z) :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(x$13: String) :: 1
+org.clapper.argot.FlagOption.$anonfun: apply(x$7: String) :: 1
+org.clapper.argot.MultiValueParameter: valueName() :: 1
+org.clapper.argot.FlagOption: shortNamesOffSet() :: 1
+org.clapper.argot.ArgotParser$$anonfun$14: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser$$anonfun$7: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser$$anonfun$flag$1: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.SingleValueOption: org$clapper$argot$SingleValueArg$_setter_$supportsMultipleValues_$eq(Z) :: 1
+org.clapper.argot.ArgotConverters: <init>() :: 1
+org.clapper.argot.ArgotParser$$anonfun$checkMissing$1$1: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.MultiValueArg: supportsMultipleValues() :: 1
+org.clapper.argot.FlagOption: longNamesOffSet() :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(x$24: String) :: 1
+org.clapper.argot.MultiValueOption: org$clapper$argot$HasValue$_setter_$hasValue_$eq(Z) :: 1
+org.clapper.argot.FlagOption$$anonfun$wellDefined$2: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotTest: main(args: Array[String]) :: 1
+org.clapper.argot.FlagOption.$anonfun: apply(x$6: String) :: 1
+org.clapper.argot.ArgotParser$$anonfun$usageString$1: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser$$anonfun$replaceOption$3: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.FlagOption: set() :: 1
+org.clapper.argot.ArgotTest.$anonfun: apply(onOff: Boolean,opt: org.clapper.argot.FlagOption[Int]) :: 1
+org.clapper.argot.SingleValueArg: optValue_=(x$1: Option[T]) :: 1
+org.clapper.argot.ArgotParser$$anonfun$org$clapper$argot$ArgotParser$$handleOneOption$1$1: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.FlagOption$$anonfun$6: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.MultiValueParameter: org$clapper$argot$MultiValueArg$_setter_$supportsMultipleValues_$eq(Z) :: 1
+org.clapper.argot.FlagOption$$anonfun$3: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser$$anonfun$usageString$4: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.SingleValueOption.$anonfun: apply(x$2: String) :: 1
+org.clapper.argot.SingleValueParameter: org$clapper$argot$SingleValueArg$_setter_$supportsMultipleValues_$eq(Z) :: 1
+org.clapper.argot.SingleValueParameter: valueName() :: 1
+org.clapper.argot.FlagOption: flagValue() :: 1
+org.clapper.argot.FlagOption.$anonfun: apply(x$4: String) :: 1
+org.clapper.argot.FlagOption.$anonfun: apply(x$5: String) :: 1
+org.clapper.argot.Parameter: toString() :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(x$17: String,x$18: String) :: 1
+org.clapper.argot.ArgotParser$$anonfun$multiOption$1: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser$$anonfun$replaceOption$1: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.MultiValueOption: valueName() :: 1
+org.clapper.argot.MultiValueArg: storeValue(v: T) :: 1
+org.clapper.argot.FlagOption: clear() :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(x$26: org.clapper.argot.Parameter[_]) :: 1
+org.clapper.argot.FlagOption: checkValidity(optName: String) :: 1
+org.clapper.argot.FlagOption: key() :: 1
+org.clapper.argot.ArgotTest.$anonfun.$anonfun: apply() :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(args: Seq[Int]) :: 1
+org.clapper.argot.ArgotParser$$anonfun$usageString$2: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser$$anonfun$replaceOption$4: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotTest.$anonfun: apply(onOff: Boolean,opt: org.clapper.argot.FlagOption[Boolean]) :: 1
+org.clapper.argot.ArgotParser$$anonfun$8: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(x$20: String,x$21: String) :: 1
+org.clapper.argot.SingleValueArg: optValue() :: 1
+org.clapper.argot.ArgotParser.$anonfun.$anonfun: apply(name: String) :: 1
+org.clapper.argot.ArgotParser$$anonfun$parseNext$1$1: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser$$anonfun$flag$2: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.FlagOption.$anonfun: apply(x$10: String) :: 1
+org.clapper.argot.ArgotParser$$anonfun$checkMissing$1$2: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotTest.$anonfun: apply(s: String,opt: org.clapper.argot.Parameter[java.io.File]) :: 1
+org.clapper.argot.Conversions.$anonfun: apply() :: 1
+org.clapper.argot.FlagOption$$anonfun$4: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(x$16: String) :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(x$22: org.clapper.argot.Parameter[_]) :: 1
+org.clapper.argot.MultiValueArg: optValue() :: 1
+org.clapper.argot.ArgotParser$$anonfun$usageString$5: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotTest: <init>() :: 1
+org.clapper.argot.MultiValueOption: org$clapper$argot$MultiValueArg$_setter_$supportsMultipleValues_$eq(Z) :: 1
+org.clapper.argot.FlagOption.$anonfun: apply(s: String) :: 1
+org.clapper.argot.SingleValueArg: supportsMultipleValues() :: 1
+org.clapper.argot.Conversions: <init>() :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(x$27: org.clapper.argot.Parameter[_]) :: 1
+org.clapper.argot.Parameter: convertString(s: String) :: 1
+org.clapper.argot.ArgotException: <init>(msg: String) :: 1
+org.clapper.argot.ArgotTest.$anonfun: apply(s: String,opt: org.clapper.argot.MultiValueOption[String]) :: 1
+org.clapper.argot.ArgotTest$$anonfun$3$$anonfun$1: apply$mcI$sp() :: 1
+org.clapper.argot.ArgotParser$$anonfun$8$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotTest.$anonfun: apply(s: String,opt: org.clapper.argot.CommandLineArgument[Int]) :: 1
+org.clapper.argot.FlagOption: names() :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(opt: org.clapper.argot.CommandLineOption[_]) :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(p: org.clapper.argot.Parameter[_]) :: 1
+org.clapper.argot.Conversions$$anonfun$parseInt$1: apply$mcI$sp() :: 1
+org.clapper.argot.ArgotParser$$anonfun$8: org$clapper$argot$ArgotParser$$anonfun$$$outer() :: 1
+org.clapper.argot.SingleValueOption: org$clapper$argot$HasValue$_setter_$hasValue_$eq(Z) :: 1
+org.clapper.argot.ArgotParser$$anonfun$option$1: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.SingleValueOption: valueName() :: 1
+org.clapper.argot.ArgotParser$$anonfun$usageString$3: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.FlagOption$$anonfun$wellDefined$1: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser.$anonfun: apply(key: String) :: 1
+org.clapper.argot.CommandLineOption: toString() :: 1
+org.clapper.argot.MultiValueOption$$anonfun$2: apply(Ljava/lang/Object;) :: 1
+org.clapper.argot.ArgotParser$$anonfun$9: apply(Ljava/lang/Object;) :: 1
