@@ -3,8 +3,11 @@ package ca.uwaterloo.scalacg.util
 import scala.collection.immutable.{ Set => ImmutableSet }
 import scala.collection.mutable.Map
 import scala.collection.mutable.Set
-
 import ca.uwaterloo.scalacg.config.Global
+import ca.uwaterloo.scalacg.plugin.PluginOptions
+import ca.uwaterloo.scalacg.analysis.Analysis.Ba
+import ca.uwaterloo.scalacg.util.Worklist
+import scala.collection.immutable.{ Set => ImmutableSet }
 
 trait TypesCollections extends Global {
   import global._
@@ -29,6 +32,8 @@ trait TypesCollections extends Global {
 
 trait TypeOps extends TypesCollections {
   import global._
+
+  def concretization: AbstractTypeConcretization
 
   /**
    * Get the constructors of a type.
@@ -89,83 +94,106 @@ trait TypeOps extends TypesCollections {
     tpe.baseClasses.map(_.fullName).mkString(sep)
   }
 
-}
+  trait AbstractTypeConcretization {
+    val global: TypeOps.this.global.type = TypeOps.this.global
+    /**
+     * Expand the abstract type to its concrete types.
+     */
+    def expand(t: Type): Set[Type]
+    /**
+     * Compute the type concretization for the given type
+     */
+    def addTypeConcretization(tpe: Type): Unit = {}
+  }
 
-trait TypeConcretization extends Global {
-  import global._
+  class BoundsTypeConcretization extends AbstractTypeConcretization {
+    import global._
 
-  val concretization = Map[Symbol, Set[Type]]()
-
-  /**
-   * Expand the abstract type to its concrete types.
-   */
-  def expand(t: Type) = {
-    val sym = t.typeSymbol
-    if (sym.isAbstractType) {
-      concretization.getOrElse(sym, Set())
-    } else {
-      Set(t)
+    def expand(t: Type) = {
+      val sym = t.typeSymbol
+      if (sym.isAbstractType) {
+        val upperBound = t.bounds.hi
+        assert(upperBound != NoType)
+        assert(!upperBound.typeSymbol.isAbstractType)
+        Set(upperBound)
+      } else {
+        Set(t)
+      }
     }
   }
 
-  /**
-   * Compute the type concretization for the given type
-   * TODO Karim: this method definitely needs some optimization.
-   */
-  def addTypeConcretization(tpe: Type) = {
-    // Find all definitions of abstract type members ("type aliases")
-    for {
-      sym <- tpe.members // concrete type
-      superClass <- tpe.baseClasses
-      absSym <- superClass.tpe.decls // abstract type
-      if absSym.isAbstractType
-      if absSym.name == sym.name
-    } {
-      concretization +=
-        (absSym -> (concretization.getOrElse(absSym, Set()) + sym.tpe.dealias))
+  class TypeConcretization extends AbstractTypeConcretization {
+    import global._
+
+    val concretization = Map[Symbol, Set[Type]]()
+    
+    def expand(t: Type) = {
+      val sym = t.typeSymbol
+      if (sym.isAbstractType) {
+        concretization.getOrElse(sym, Set())
+      } else {
+        Set(t)
+      }
     }
 
-    // Find all instantiations of generic type parameters (generics behave the same way)
-    tpe.typeSymbol.info match {
-      // class declaration and has a set of parents
-      case ClassInfoType(parents, _, _) =>
-        for { parent <- parents } {
-          val args = parent.typeArguments
-          val cstr = parent.typeConstructor
-          val params = cstr.typeParams
+    /**
+     * TODO Karim: this method definitely needs some optimization.
+     */
+    override def addTypeConcretization(tpe: Type) = {
+      // Find all definitions of abstract type members ("type aliases")
+      for {
+        sym <- tpe.members // concrete type
+        superClass <- tpe.baseClasses
+        absSym <- superClass.tpe.decls // abstract type
+        if absSym.isAbstractType
+        if absSym.name == sym.name
+      } {
+        concretization +=
+          (absSym -> (concretization.getOrElse(absSym, Set()) + sym.tpe.dealias))
+      }
+
+      // Find all instantiations of generic type parameters (generics behave the same way)
+      tpe.typeSymbol.info match {
+        // class declaration and has a set of parents
+        case ClassInfoType(parents, _, _) =>
+          for { parent <- parents } {
+            val args = parent.typeArguments
+            val cstr = parent.typeConstructor
+            val params = cstr.typeParams
+            for {
+              (arg, param) <- (args zip params)
+            } {
+              def paramToConcrete = param -> (concretization.getOrElse(param, Set() + arg))
+              concretization += paramToConcrete
+            }
+          }
+        case PolyType(typeParams, _) =>
+          // handles the case: new List[Int]
           for {
-            (arg, param) <- (args zip params)
+            (arg, param) <- (tpe.typeArguments zip typeParams)
           } {
-            def paramToConcrete = param -> (concretization.getOrElse(param, Set() + arg))
-            concretization += paramToConcrete
+            concretization += (param -> (concretization.getOrElse(param, Set() + arg)))
+          }
+        case _ =>
+        // TODO: are we missing any cases?
+      }
+
+      // transitively follow abstract type concretizations
+      var oldConcretization = concretization
+      do {
+        oldConcretization = concretization
+        for {
+          (absSym, tpes) <- concretization
+          tpe <- tpes
+        } {
+          tpe match {
+            case TypeRef(_, sym, _) =>
+              concretization +=
+                (absSym -> (concretization(absSym) ++ concretization.getOrElse(sym, Set())))
+            case _ =>
           }
         }
-      case PolyType(typeParams, _) =>
-        // handles the case: new List[Int]
-        for {
-          (arg, param) <- (tpe.typeArguments zip typeParams)
-        } {
-          concretization += (param -> (concretization.getOrElse(param, Set() + arg)))
-        }
-      case _ =>
-      // TODO: are we missing any cases?
+      } while (oldConcretization != concretization)
     }
-
-    // transitively follow abstract type concretizations
-    var oldConcretization = concretization
-    do {
-      oldConcretization = concretization
-      for {
-        (absSym, tpes) <- concretization
-        tpe <- tpes
-      } {
-        tpe match {
-          case TypeRef(_, sym, _) =>
-            concretization +=
-              (absSym -> (concretization(absSym) ++ concretization.getOrElse(sym, Set())))
-          case _ =>
-        }
-      }
-    } while (oldConcretization != concretization)
   }
 }

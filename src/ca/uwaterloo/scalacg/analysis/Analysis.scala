@@ -8,7 +8,6 @@ import ca.uwaterloo.scalacg.util.Lookup
 import ca.uwaterloo.scalacg.util.MethodOps
 import ca.uwaterloo.scalacg.util.SuperCalls
 import ca.uwaterloo.scalacg.util.TreeTraversal
-import ca.uwaterloo.scalacg.util.TypeConcretization
 import ca.uwaterloo.scalacg.util.Worklist
 
 /**
@@ -20,13 +19,13 @@ object Analysis extends Enumeration {
   val Ra = Value("ra") // Name-based analysis
   val Tca = Value("tca") // Trait-composition analysis
   val Tcra = Value("tcra") // TODO: what's that?
+  val Ba = Value("ba") // Bounds-based analysis
 
   final val Default = Tca // The analysis by default runs TCA
 }
 
 trait CallGraphAnalysis extends CallGraphWorklists
   with MethodOps
-  with TypeConcretization
   with TreeTraversal
   with SuperCalls
   with Lookup {
@@ -48,7 +47,17 @@ trait CallGraphAnalysis extends CallGraphWorklists
   // Plugin options
   val pluginOptions: PluginOptions
 
+  var concretization: AbstractTypeConcretization = null
+
+  def createConcretization: AbstractTypeConcretization =
+    if (pluginOptions.analysis == Analysis.Ba)
+      new BoundsTypeConcretization
+    else
+      new TypeConcretization
+
   def initialize = {
+    concretization = createConcretization
+
     // Get the ASTs from the current run
     trees ++= global.currentRun.units.map(_.body)
 
@@ -61,7 +70,11 @@ trait CallGraphAnalysis extends CallGraphWorklists
 
     // Entry points are initially reachable, main modules are initially instantiated.
     reachableMethods ++= mainMethods
-    instantiatedTypes ++= mainModules
+    instantiatedTypes ++=
+      (if (pluginOptions.analysis == Analysis.Ra)
+        types
+      else
+        mainModules)
 
     //    println("\n\ninitialiiiiiiiiiize")
     //    types.foreach { tpe =>
@@ -147,7 +160,7 @@ trait CallGraphAnalysis extends CallGraphWorklists
       reachableMethods ++= cbs
 
       // Add type concretizations 
-      addTypeConcretization(tpe)
+      concretization.addTypeConcretization(tpe)
     }
   }
 

@@ -8,7 +8,7 @@ object ThisType1 {
     def foo()
     @target("A.bar") def bar() {
       val x: this.type = this;
-      { "A.foo"; "B.foo"; "C.foo"; x }.foo(); // can only call B.foo() because that is the only type with a def. of foo() that can have A.bar() as a member
+      { "B.foo"; "C.foo"; x }.foo(); // can only call B.foo() because that is the only type with a def. of foo() that can have A.bar() as a member
     }
   }
 

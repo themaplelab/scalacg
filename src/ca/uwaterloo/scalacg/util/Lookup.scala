@@ -1,17 +1,21 @@
 package ca.uwaterloo.scalacg.util
 
 import scala.collection.mutable.Set
-
 import ca.uwaterloo.scalacg.analysis.CallSites
+import ca.uwaterloo.scalacg.analysis.Analysis
 import ca.uwaterloo.scalacg.config.Global
+import ca.uwaterloo.scalacg.plugin.PluginOptions
 
 /**
  * All method resolution related operations go in here.
  */
 trait Lookup extends Probe {
-  self: CallSites with Global with TypeConcretization with TypeOps =>
+  self: CallSites with Global with TypeOps =>
 
   import global._
+
+  // Plugin options
+  val pluginOptions: PluginOptions
 
   /**
    * Look for targets at the given call site in the given type.
@@ -20,7 +24,7 @@ trait Lookup extends Probe {
     val targets = Set[Symbol]()
 
     for {
-      expanded <- expand(instantiateTypeParams(tpe, callSite.receiver.widen))
+      expanded <- concretization.expand(instantiateTypeParams(tpe, callSite.receiver.widen))
       target = member(expanded, tpe, callSite.targetName)
       if target != NoSymbol && !target.isDeferred // a concrete member found.
     } {
@@ -46,7 +50,12 @@ trait Lookup extends Probe {
     val targets = Set[Symbol]()
 
     for (tpe <- types) {
-      targets ++= lookup_<:<(callSite, tpe)
+      pluginOptions.analysis match {
+        case Analysis.Ra | Analysis.Tcra =>
+          targets ++= lookupByName(callSite, tpe)
+        case _ =>
+          targets ++= lookup_<:<(callSite, tpe)
+      }
     }
 
     // Handle calls to the library.
@@ -64,7 +73,7 @@ trait Lookup extends Probe {
     val targets = Set[Symbol]()
 
     for {
-      expanded <- expand(instantiateTypeParams(tpe, callSite.receiver.widen))
+      expanded <- concretization.expand(instantiateTypeParams(tpe, callSite.receiver.widen))
       target = member_<:<(expanded, tpe, callSite.targetName)
       if target != NoSymbol && !target.isDeferred // a concrete member found.
     } {
@@ -86,6 +95,17 @@ trait Lookup extends Probe {
     }
 
     targets
+  }
+
+  /**
+   * Look for targets at the given call site in the given type, using only the target name.
+   */
+  def lookupByName(callSite: AbstractCallSite, tpe: Type) = {
+    val target = tpe.member(callSite.targetName)
+    if(target == NoSymbol) Set()
+    else if(target.isDeferred) Set()
+    else if(target.isOverloaded) target.alternatives
+    else Set(target)
   }
 
   /**
