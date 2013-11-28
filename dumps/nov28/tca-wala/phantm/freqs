@@ -1,0 +1,2076 @@
+phantm.types.TAnyArray: equals(t: Any) :: 471
+phantm.types.BaseTypeEnvironment: equals(e: Any) :: 471
+phantm.ast.Trees.Eval: equals(x$1: Any) :: 470
+phantm.ast.Trees.While: equals(x$1: Any) :: 470
+phantm.ast.Trees.Div: equals(x$1: Any) :: 470
+phantm.cfg.Trees.Identifier: equals(x$1: Any) :: 470
+phantm.phases.CallGraphGeneration: equals(x$1: Any) :: 470
+phantm.symbols.LookupResult: equals(x$1: Any) :: 470
+phantm.cfg.Trees.PHPEmptyArray: equals(x$1: Any) :: 470
+phantm.ast.Trees.PHPFloat: equals(x$1: Any) :: 470
+phantm.ast.Trees.Constant: equals(x$1: Any) :: 470
+phantm.ast.Trees.Empty: equals(x$1: Any) :: 470
+phantm.cfg.Trees.AssumeProperty: equals(x$1: Any) :: 470
+phantm.ast.Trees.Alternatives: equals(x$1: Any) :: 470
+phantm.ast.Trees.Catch: equals(x$1: Any) :: 470
+phantm.ast.Trees.MCFile: equals(x$1: Any) :: 470
+phantm.util.UObject: equals(x$1: Any) :: 470
+phantm.ast.Trees.Goto: equals(x$1: Any) :: 470
+phantm.ast.Trees.ConstantDecl: equals(x$1: Any) :: 470
+phantm.cfg.Trees.FunctionCall: equals(x$1: Any) :: 470
+phantm.cfg.Trees.FuncRef: equals(x$1: Any) :: 470
+phantm.ast.Trees.If: equals(x$1: Any) :: 470
+phantm.cfg.Trees.Return: equals(x$1: Any) :: 470
+phantm.cfg.Trees.MethodCall: equals(x$1: Any) :: 470
+phantm.ast.Trees.Unset: equals(x$1: Any) :: 470
+phantm.ast.Trees.StaticFunctionRef: equals(x$1: Any) :: 470
+phantm.cfg.Trees.ArrayCurIsValid: equals(x$1: Any) :: 470
+phantm.ast.Trees.Identifier: equals(x$1: Any) :: 470
+phantm.ast.Trees.MCDir: equals(x$1: Any) :: 470
+phantm.ast.Trees.NextArrayEntry: equals(x$1: Any) :: 470
+phantm.cfg.Trees.AssignBinary: equals(x$1: Any) :: 470
+phantm.ast.Trees.OAIdentifier: equals(x$1: Any) :: 470
+phantm.ast.Trees.SimpleVariable: equals(x$1: Any) :: 470
+phantm.ast.Trees.InstanceOf: equals(x$1: Any) :: 470
+phantm.Settings: equals(x$1: Any) :: 470
+phantm.ast.Trees.Equal: equals(x$1: Any) :: 470
+phantm.ast.Trees.Return: equals(x$1: Any) :: 470
+phantm.cfg.Trees.Clone: equals(x$1: Any) :: 470
+phantm.ast.Trees.CalledClass: equals(x$1: Any) :: 470
+phantm.ast.Trees.Try: equals(x$1: Any) :: 470
+phantm.ast.Trees.PHPString: equals(x$1: Any) :: 470
+phantm.ast.Trees.ArgumentDecl: equals(x$1: Any) :: 470
+phantm.ast.Trees.MCMethod: equals(x$1: Any) :: 470
+phantm.ast.Trees.Void: equals(x$1: Any) :: 470
+phantm.ast.Trees.ClassConstant: equals(x$1: Any) :: 470
+phantm.util.JavaListIteratorWrapper: equals(x$1: Any) :: 470
+phantm.ast.Trees.DynamicObjectProperty: equals(x$1: Any) :: 470
+phantm.ast.Trees.Isset: equals(x$1: Any) :: 470
+phantm.ast.Trees.MethodCall: equals(x$1: Any) :: 470
+phantm.ast.Trees.VoidExpr: equals(x$1: Any) :: 470
+phantm.ast.Trees.DynamicClassRef: equals(x$1: Any) :: 470
+phantm.types.ObjectStore: equals(x$1: Any) :: 470
+phantm.ast.Trees.Include: equals(x$1: Any) :: 470
+phantm.ast.Trees.SmallerEqual: equals(x$1: Any) :: 470
+phantm.ast.Trees.Execute: equals(x$1: Any) :: 470
+phantm.phases.PhaseException: equals(x$1: Any) :: 470
+phantm.ast.Trees.Concat: equals(x$1: Any) :: 470
+phantm.types.IntKey: equals(x$1: Any) :: 470
+phantm.ast.Trees.New: equals(x$1: Any) :: 470
+phantm.util.URealRef: equals(x$1: Any) :: 470
+phantm.ast.Trees.MCLine: equals(x$1: Any) :: 470
+phantm.cfg.Trees.PHPTrue: equals(x$1: Any) :: 470
+phantm.ast.Trees.MethodDecl: equals(x$1: Any) :: 470
+phantm.ast.Trees.InitVariable: equals(x$1: Any) :: 470
+phantm.util.ConstantsResolver: equals(x$1: Any) :: 470
+phantm.ast.Trees.Global: equals(x$1: Any) :: 470
+phantm.cfg.EdgeImp: equals(x$1: Any) :: 470
+phantm.ast.Trees.PHPInteger: equals(x$1: Any) :: 470
+phantm.types.TObjectRef: equals(v: Any) :: 470
+phantm.ast.Trees.Program: equals(x$1: Any) :: 470
+phantm.ast.Trees.Smaller: equals(x$1: Any) :: 470
+phantm.ast.Trees.CallArg: equals(x$1: Any) :: 470
+phantm.ast.Trees.MCFunction: equals(x$1: Any) :: 470
+phantm.ast.Trees.BooleanAnd: equals(x$1: Any) :: 470
+phantm.types.TArray: equals(t: Any) :: 470
+phantm.ast.Trees.Closure: equals(x$1: Any) :: 470
+phantm.ast.Trees.Exit: equals(x$1: Any) :: 470
+phantm.ast.Trees.PostInc: equals(x$1: Any) :: 470
+phantm.annotations.SourceAnnotations.Parser.AnyStringEntry: equals(x$1: Any) :: 470
+phantm.util.UString: equals(x$1: Any) :: 470
+phantm.ast.Trees.MCNamespace: equals(x$1: Any) :: 470
+phantm.ast.Trees.VarFunctionRef: equals(x$1: Any) :: 470
+phantm.ast.Trees.DynamicMethodRef: equals(x$1: Any) :: 470
+phantm.cfg.Trees.ClassRefCalledClass: equals(x$1: Any) :: 470
+phantm.ast.Trees.Require: equals(x$1: Any) :: 470
+phantm.phases.PhasesContext: equals(x$1: Any) :: 470
+phantm.phases.PhaseSeq: equals(x$1: Any) :: 470
+phantm.cfg.Trees.PHPAny: equals(x$1: Any) :: 470
+phantm.types.TUnion: equals(t: Any) :: 470
+phantm.cfg.VertexImp: equals(x$1: Any) :: 470
+phantm.ast.Trees.FunctionCall: equals(x$1: Any) :: 470
+phantm.cfg.Trees.ArrayCurElement: equals(x$1: Any) :: 470
+phantm.annotations.SourceAnnotations.Parser.AnyIntEntry: equals(x$1: Any) :: 470
+phantm.ast.Trees.PreInc: equals(x$1: Any) :: 470
+phantm.ast.Trees.Silence: equals(x$1: Any) :: 470
+phantm.ast.Trees.ClassProperty: equals(x$1: Any) :: 470
+phantm.util.Reporter.Error: equals(o: Any) :: 470
+phantm.util.API.Reader.APIPos: equals(x$1: Any) :: 470
+phantm.util.IncludeResolver: equals(x$1: Any) :: 470
+phantm.ast.Trees.ClassDecl: equals(x$1: Any) :: 470
+phantm.phases.CGContext: equals(x$1: Any) :: 470
+phantm.ast.Trees.Identical: equals(x$1: Any) :: 470
+phantm.ast.Trees.Ternary: equals(x$1: Any) :: 470
+phantm.ast.Trees.BitwiseOr: equals(x$1: Any) :: 470
+phantm.ast.Trees.VariableVariable: equals(x$1: Any) :: 470
+phantm.cfg.Trees.ArrayEntry: equals(x$1: Any) :: 470
+phantm.cfg.Trees.Print: equals(x$1: Any) :: 470
+phantm.ast.Trees.Mult: equals(x$1: Any) :: 470
+phantm.ast.Trees.LabelDecl: equals(x$1: Any) :: 470
+phantm.ast.Trees.FunctionDecl: equals(x$1: Any) :: 470
+phantm.cfg.Trees.Assign: equals(x$1: Any) :: 470
+phantm.ast.Trees.NamespaceStart: equals(x$1: Any) :: 470
+phantm.cfg.Trees.ObjectProperty: equals(x$1: Any) :: 470
+phantm.cfg.Trees.PHPNull: equals(x$1: Any) :: 470
+phantm.ast.Trees.Namespaced: equals(x$1: Any) :: 470
+phantm.cfg.Trees.PHPFalse: equals(x$1: Any) :: 470
+phantm.helpers.CFGGraphs: equals(x$1: Any) :: 470
+phantm.types.TClass: equals(x$1: Any) :: 470
+phantm.ast.Trees.Static: equals(x$1: Any) :: 470
+phantm.ast.Trees.Foreach: equals(x$1: Any) :: 470
+phantm.ast.Trees.Minus: equals(x$1: Any) :: 470
+phantm.cfg.Trees.StaticMethodCall: equals(x$1: Any) :: 470
+phantm.ast.Trees.ArrayEntry: equals(x$1: Any) :: 470
+phantm.annotations.SourceAnnotations.Parser.AnyEntry: equals(x$1: Any) :: 470
+phantm.ast.Trees.Mod: equals(x$1: Any) :: 470
+phantm.cfg.Trees.ClassConstant: equals(x$1: Any) :: 470
+phantm.types.StringKey: equals(x$1: Any) :: 470
+phantm.types.ObjectIdTmp: equals(x$1: Any) :: 470
+phantm.ast.Trees.StaticMethodRef: equals(x$1: Any) :: 470
+phantm.ast.Trees.Clone: equals(x$1: Any) :: 470
+phantm.types.TFunction: equals(x$1: Any) :: 470
+phantm.cfg.Trees.Unset: equals(x$1: Any) :: 470
+phantm.types.ObjectId: equals(x$1: Any) :: 470
+phantm.ast.Trees.Break: equals(x$1: Any) :: 470
+phantm.ast.Trees.BitwiseAnd: equals(x$1: Any) :: 470
+phantm.ast.Trees.THObject: equals(x$1: Any) :: 470
+phantm.ast.Trees.BooleanXor: equals(x$1: Any) :: 470
+phantm.ast.Trees.Label: equals(x$1: Any) :: 470
+phantm.cfg.Trees.NextArrayEntry: equals(x$1: Any) :: 470
+phantm.ast.Trees.OAExpression: equals(x$1: Any) :: 470
+phantm.ast.Trees.BooleanNot: equals(x$1: Any) :: 470
+phantm.ast.Trees.Import: equals(x$1: Any) :: 470
+phantm.ast.Trees.NSIdentifier: equals(x$1: Any) :: 470
+phantm.util.UObjRef: equals(x$1: Any) :: 470
+phantm.ast.Trees.ShiftRight: equals(x$1: Any) :: 470
+phantm.ast.Trees.ListVar: equals(x$1: Any) :: 470
+phantm.types.TypeFlowAnalyzer: equals(x$1: Any) :: 470
+phantm.types.TStringLit: equals(x$1: Any) :: 470
+phantm.phases.CollectSymbols: equals(x$1: Any) :: 470
+phantm.cfg.Trees.VariableVar: equals(x$1: Any) :: 470
+phantm.ast.Trees.Html: equals(x$1: Any) :: 470
+phantm.ast.Trees.ShiftLeft: equals(x$1: Any) :: 470
+phantm.util.UArray: equals(x$1: Any) :: 470
+phantm.cfg.Trees.PHPString: equals(x$1: Any) :: 470
+phantm.ast.Trees.DynamicFunctionRef: equals(x$1: Any) :: 470
+phantm.ast.Trees.Assign: equals(x$1: Any) :: 470
+phantm.ast.Trees.DoWhile: equals(x$1: Any) :: 470
+phantm.cfg.Trees.TempID: equals(x$1: Any) :: 470
+phantm.ast.Trees.InterfaceDecl: equals(x$1: Any) :: 470
+phantm.ast.Trees.MCClass: equals(x$1: Any) :: 470
+phantm.cfg.Trees.ClassRefUnknown: equals(x$1: Any) :: 470
+phantm.ast.Trees.PHPTrue: equals(x$1: Any) :: 470
+phantm.cfg.Trees.AssumeNotProperty: equals(x$1: Any) :: 470
+phantm.cfg.Trees.ClassRefFixed: equals(x$1: Any) :: 470
+phantm.util.UFloat: equals(x$1: Any) :: 470
+phantm.ast.Trees.Switch: equals(x$1: Any) :: 470
+phantm.cfg.Trees.ClassProperty: equals(x$1: Any) :: 470
+phantm.cfg.Trees.New: equals(x$1: Any) :: 470
+phantm.ast.Trees.VarClassRef: equals(x$1: Any) :: 470
+phantm.ast.Trees.PHPNull: equals(x$1: Any) :: 470
+phantm.cfg.Trees.VariableClassProperty: equals(x$1: Any) :: 470
+phantm.ast.Trees.ClassConstantDecl: equals(x$1: Any) :: 470
+phantm.cfg.LabeledDirectedGraphImp.Group: equals(x$1: Any) :: 470
+phantm.ast.Trees.OAArray: equals(x$1: Any) :: 470
+phantm.cfg.Trees.Constant: equals(x$1: Any) :: 470
+phantm.cfg.Trees.PHPLong: equals(x$1: Any) :: 470
+phantm.phases.TypeFlowAnalysis: equals(x$1: Any) :: 470
+phantm.ast.Trees.Array: equals(x$1: Any) :: 470
+phantm.annotations.SourceAnnotations.Parser.Entry: equals(x$1: Any) :: 470
+phantm.phases.CheckContext: equals(x$1: Any) :: 470
+phantm.cfg.Trees.PHPFloat: equals(x$1: Any) :: 470
+phantm.ast.Trees.For: equals(x$1: Any) :: 470
+phantm.ast.Trees.Print: equals(x$1: Any) :: 470
+phantm.ast.Trees.Block: equals(x$1: Any) :: 470
+phantm.types.TIntLit: equals(x$1: Any) :: 470
+phantm.ast.Trees.StaticMethodCall: equals(x$1: Any) :: 470
+phantm.types.ObjectIdDump: equals(x$1: Any) :: 470
+phantm.types.TypeEnvironment: equals(e: Any) :: 470
+phantm.cfg.Trees.ClassRefDynamic: equals(x$1: Any) :: 470
+phantm.cfg.Trees.NoVar: equals(x$1: Any) :: 470
+phantm.cfg.Trees.ArrayCurKey: equals(x$1: Any) :: 470
+phantm.types.TypeTransferFunction: equals(x$1: Any) :: 470
+phantm.ast.Trees.OAMethod: equals(x$1: Any) :: 470
+phantm.cfg.Trees.Cast: equals(x$1: Any) :: 470
+phantm.util.UInt: equals(x$1: Any) :: 470
+phantm.ast.Trees.Echo: equals(x$1: Any) :: 470
+phantm.phases.PureStatementsChecks: equals(x$1: Any) :: 470
+phantm.ast.Trees.BooleanOr: equals(x$1: Any) :: 470
+phantm.ast.Trees.PropertyDecl: equals(x$1: Any) :: 470
+phantm.cfg.Trees.AssignUnary: equals(x$1: Any) :: 470
+phantm.phases.CFGGenerator: equals(x$1: Any) :: 470
+phantm.ast.Trees.PostDec: equals(x$1: Any) :: 470
+phantm.cfg.Trees.Assume: equals(x$1: Any) :: 470
+phantm.cfg.Trees.ArrayNext: equals(x$1: Any) :: 470
+phantm.types.TRealObject: equals(o: Any) :: 470
+phantm.phases.SymContext: equals(x$1: Any) :: 470
+phantm.phases.ASTIntegrityChecks: equals(x$1: Any) :: 470
+phantm.util.DumpCollector: equals(x$1: Any) :: 470
+phantm.ast.Trees.BitwiseXor: equals(x$1: Any) :: 470
+phantm.ast.Trees.PreDec: equals(x$1: Any) :: 470
+phantm.helpers.CheckContext: equals(x$1: Any) :: 470
+phantm.cfg.Trees.Ternary: equals(x$1: Any) :: 470
+phantm.ast.STToAST: equals(x$1: Any) :: 470
+phantm.ast.Trees.PHPFalse: equals(x$1: Any) :: 470
+phantm.ast.Trees.Throw: equals(x$1: Any) :: 470
+phantm.ast.Trees.ExpandArray: equals(x$1: Any) :: 470
+phantm.ast.Trees.Cast: equals(x$1: Any) :: 470
+phantm.ast.Trees.Continue: equals(x$1: Any) :: 470
+phantm.types.TFloatLit: equals(x$1: Any) :: 470
+phantm.ast.Trees.ObjectProperty: equals(x$1: Any) :: 470
+phantm.cfg.Trees.SubTypeOf: equals(x$1: Any) :: 470
+phantm.ast.Trees.Plus: equals(x$1: Any) :: 470
+phantm.ast.Trees.StaticClassRef: equals(x$1: Any) :: 470
+phantm.ast.Trees.BitwiseNot: equals(x$1: Any) :: 470
+phantm.types.ObjectIdUse: toString() :: 311
+phantm.symbols.MVProtected: toString() :: 311
+phantm.phases.Phase: toString() :: 311
+phantm.InlineNone: toString() :: 311
+phantm.symbols.MVPublic: toString() :: 311
+phantm.InlineLeaves: toString() :: 311
+phantm.util.ENotice: toString() :: 311
+phantm.util.UTrue: toString() :: 311
+phantm.util.UFalse: toString() :: 311
+phantm.types.BaseTypeEnvironment: toString() :: 311
+phantm.types.TypeLattice: toString() :: 311
+phantm.InlineManual: toString() :: 311
+phantm.symbols.MVPrivate: toString() :: 311
+phantm.util.UNull: toString() :: 311
+phantm.types.TAnyClass: toString() :: 311
+phantm.InlineFull: toString() :: 311
+phantm.ast.Trees.Label: toString() :: 310
+phantm.ast.Trees.CastString: toString() :: 310
+phantm.phases.CollectSymbols: toString() :: 310
+phantm.util.UFloat: toString() :: 310
+phantm.ast.Trees.SimpleVariable: toString() :: 310
+phantm.ast.Trees.Eval: toString() :: 310
+phantm.types.TypeFlowAnalyzer: toString() :: 310
+phantm.ast.Trees.MCMethod: toString() :: 310
+phantm.cfg.Trees.IsResource: toString() :: 310
+phantm.ast.Trees.Switch: toString() :: 310
+phantm.ast.Trees.Catch: toString() :: 310
+phantm.ast.Trees.DynamicFunctionRef: toString() :: 310
+phantm.ast.Trees.Continue: toString() :: 310
+phantm.util.Position: toString() :: 310
+phantm.phases.ASTIntegrityChecks: toString() :: 310
+phantm.ast.Trees.Identical: toString() :: 310
+phantm.cfg.Trees.Identifier: toString() :: 310
+phantm.ast.Trees.CastBool: toString() :: 310
+phantm.cfg.Trees.IsScalar: toString() :: 310
+phantm.types.TFloat: toString() :: 310
+phantm.ast.Trees.Block: toString() :: 310
+phantm.cfg.Trees.Isset: toString() :: 310
+phantm.ast.Trees.Try: toString() :: 310
+phantm.ast.Trees.InterfaceDecl: toString() :: 310
+phantm.cfg.Trees.IsInt: toString() :: 310
+phantm.types.ObjectStore: toString() :: 310
+phantm.ast.Trees.PostDec: toString() :: 310
+phantm.cfg.Trees.ClassRefCalledClass: toString() :: 310
+phantm.ast.Trees.OAMethod: toString() :: 310
+phantm.ast.Trees.BitwiseOr: toString() :: 310
+phantm.ast.Trees.OAArray: toString() :: 310
+phantm.ast.Trees.Isset: toString() :: 310
+phantm.ast.Trees.ClassDecl: toString() :: 310
+phantm.ast.Trees.Foreach: toString() :: 310
+phantm.phases.CGContext: toString() :: 310
+phantm.cfg.Trees.GEQ: toString() :: 310
+phantm.ast.Trees.StaticClassRef: toString() :: 310
+phantm.ast.Trees.ClassProperty: toString() :: 310
+phantm.ast.Trees.DynamicClassRef: toString() :: 310
+phantm.ast.Trees.NSIdentifier: toString() :: 310
+phantm.types.TFunction: toString() :: 310
+phantm.ast.Trees.CastObject: toString() :: 310
+phantm.ast.Trees.MFProtected: toString() :: 310
+phantm.ast.Trees.Assign: toString() :: 310
+phantm.cfg.Trees.MULT: toString() :: 310
+phantm.ast.Trees.NSResolved: toString() :: 310
+phantm.ast.Trees.MCDir: toString() :: 310
+phantm.ast.Trees.ClassConstant: toString() :: 310
+phantm.types.ObjectIdTmp: toString() :: 310
+phantm.phases.CFGGenerator: toString() :: 310
+phantm.phases.SymContext: toString() :: 310
+phantm.cfg.ControlFlowGraph: toString() :: 310
+phantm.cfg.Trees.Tree: toString() :: 310
+phantm.ast.Trees.CFFinal: toString() :: 310
+phantm.cfg.Trees.ClassRefFixed: toString() :: 310
+phantm.types.IntKey: toString() :: 310
+phantm.cfg.Trees.IsString: toString() :: 310
+phantm.ast.Trees.Execute: toString() :: 310
+phantm.ast.Trees.PHPInteger: toString() :: 310
+phantm.cfg.Trees.FuncRef: toString() :: 310
+phantm.cfg.Trees.BITWISEOR: toString() :: 310
+phantm.ast.Trees.SmallerEqual: toString() :: 310
+phantm.ast.Trees.Plus: toString() :: 310
+phantm.types.TTop: toString() :: 310
+phantm.ast.Trees.Throw: toString() :: 310
+phantm.types.TypeEnvironment: toString() :: 310
+phantm.ast.Trees.While: toString() :: 310
+phantm.ast.Trees.ShiftLeft: toString() :: 310
+phantm.types.TClass: toString() :: 310
+phantm.ast.Trees.Ternary: toString() :: 310
+phantm.ast.Trees.PHPFloat: toString() :: 310
+phantm.util.UObjRef: toString() :: 310
+phantm.ast.Trees.Return: toString() :: 310
+phantm.ast.Trees.StaticMethodRef: toString() :: 310
+phantm.ast.Trees.PHPString: toString() :: 310
+phantm.ast.Trees.InitVariable: toString() :: 310
+phantm.cfg.Trees.BITWISEXOR: toString() :: 310
+phantm.ast.Trees.PreInc: toString() :: 310
+phantm.ast.Trees.BitwiseXor: toString() :: 310
+phantm.ast.Trees.Identifier: toString() :: 310
+phantm.util.UString: toString() :: 310
+phantm.cfg.Trees.IsObject: toString() :: 310
+phantm.helpers.CFGGraphs: toString() :: 310
+phantm.ast.Trees.NSNone: toString() :: 310
+phantm.ast.Trees.For: toString() :: 310
+phantm.ast.Trees.ArrayEntry: toString() :: 310
+phantm.ast.Trees.VarClassRef: toString() :: 310
+phantm.ast.Trees.PHPNull: toString() :: 310
+phantm.ast.Trees.BitwiseNot: toString() :: 310
+phantm.ast.Trees.BooleanAnd: toString() :: 310
+phantm.ast.Trees.THArray: toString() :: 310
+phantm.util.JavaListIteratorWrapper: toString() :: 310
+phantm.annotations.SourceAnnotations.Parser.AnyIntEntry: toString() :: 310
+phantm.types.TTrue: toString() :: 310
+phantm.types.TAnyArray: toString() :: 310
+phantm.cfg.LabeledDirectedGraphImp: toString() :: 310
+phantm.cfg.EdgeImp: toString() :: 310
+phantm.cfg.Trees.PREDEC: toString() :: 310
+phantm.phases.CallGraphGeneration: toString() :: 310
+phantm.cfg.Trees.ClassRefDynamic: toString() :: 310
+phantm.ast.Trees.Concat: toString() :: 310
+phantm.cfg.Trees.LEQ: toString() :: 310
+phantm.types.StringKey: toString() :: 310
+phantm.phases.CheckContext: toString() :: 310
+phantm.util.UObject: toString() :: 310
+phantm.ast.Trees.Html: toString() :: 310
+phantm.cfg.Trees.MINUS: toString() :: 310
+phantm.phases.PhasesContext: toString() :: 310
+phantm.ast.Trees.MFPublic: toString() :: 310
+phantm.cfg.Trees.SHIFTRIGHT: toString() :: 310
+phantm.ast.Trees.PropertyDecl: toString() :: 310
+phantm.cfg.Trees.POSTDEC: toString() :: 310
+phantm.util.UInt: toString() :: 310
+phantm.ast.Trees.Minus: toString() :: 310
+phantm.ast.Trees.ObjectProperty: toString() :: 310
+phantm.types.TAnyObject: toString() :: 310
+phantm.util.DumpCollector: toString() :: 310
+phantm.types.TString: toString() :: 310
+phantm.types.ObjectId: toString() :: 310
+phantm.ast.Trees.Silence: toString() :: 310
+phantm.ast.Trees.MethodCall: toString() :: 310
+phantm.ast.Trees.If: toString() :: 310
+phantm.ast.Trees.Constant: toString() :: 310
+phantm.cfg.Trees.SILENCE: toString() :: 310
+phantm.cfg.Trees.IsFloat: toString() :: 310
+phantm.ast.Trees.FunctionCall: toString() :: 310
+phantm.ast.Trees.VarFunctionRef: toString() :: 310
+phantm.ast.Trees.CallArg: toString() :: 310
+phantm.ast.Trees.VoidExpr: toString() :: 310
+phantm.cfg.LabeledDirectedGraphImp.Group: toString() :: 310
+phantm.cfg.Trees.BITSIWENOT: toString() :: 310
+phantm.types.TInt: toString() :: 310
+phantm.types.TBottom: toString() :: 310
+phantm.cfg.Trees.BOOLEANAND: toString() :: 310
+phantm.ast.STToAST: toString() :: 310
+phantm.ast.Trees.MFFinal: toString() :: 310
+phantm.ast.Trees.PostInc: toString() :: 310
+phantm.util.URealRef: toString() :: 310
+phantm.ast.Trees.Echo: toString() :: 310
+phantm.types.TUninitialized: toString() :: 310
+phantm.ast.Trees.Goto: toString() :: 310
+phantm.ast.Trees.OAIdentifier: toString() :: 310
+phantm.phases.TypeFlowAnalysis: toString() :: 310
+phantm.ast.Trees.NSCurrent: toString() :: 310
+phantm.ast.Trees.MethodDecl: toString() :: 310
+phantm.ast.Trees.Include: toString() :: 310
+phantm.ast.Trees.Global: toString() :: 310
+phantm.dataflow.StronglyConnectedComponents.Node: toString() :: 310
+phantm.ast.Trees.ShiftRight: toString() :: 310
+phantm.ast.Trees.MCClass: toString() :: 310
+phantm.types.TypeTransferFunction: toString() :: 310
+phantm.ast.Trees.DynamicMethodRef: toString() :: 310
+phantm.ast.Trees.ClassConstantDecl: toString() :: 310
+phantm.ast.Trees.MFPrivate: toString() :: 310
+phantm.ast.Trees.ListVar: toString() :: 310
+phantm.ast.Trees.Clone: toString() :: 310
+phantm.annotations.SourceAnnotations.Parser.AnyEntry: toString() :: 310
+phantm.ast.Trees.Alternatives: toString() :: 310
+phantm.ast.Trees.StaticFunctionRef: toString() :: 310
+phantm.ast.Trees.CastInt: toString() :: 310
+phantm.ast.Trees.DoWhile: toString() :: 310
+phantm.util.UArray: toString() :: 310
+phantm.ast.Trees.Div: toString() :: 310
+phantm.cfg.Trees.PLUS: toString() :: 310
+phantm.util.API.Reader.APIPos: toString() :: 310
+phantm.ast.Trees.MFStatic: toString() :: 310
+phantm.ast.Trees.NSGlobal: toString() :: 310
+phantm.cfg.Trees.DIV: toString() :: 310
+phantm.ast.Trees.ExpandArray: toString() :: 310
+phantm.cfg.Trees.ClassRefUnknown: toString() :: 310
+phantm.cfg.Trees.IsBool: toString() :: 310
+phantm.util.ConstantsResolver: toString() :: 310
+phantm.types.TAny: toString() :: 310
+phantm.ast.Trees.InstanceOf: toString() :: 310
+phantm.ast.Trees.PreDec: toString() :: 310
+phantm.ast.Trees.BooleanXor: toString() :: 310
+phantm.ast.Trees.MCLine: toString() :: 310
+phantm.ast.Trees.THObject: toString() :: 310
+phantm.cfg.Trees.BOOLEANXOR: toString() :: 310
+phantm.ast.Trees.Program: toString() :: 310
+phantm.ast.Trees.Unset: toString() :: 310
+phantm.cfg.Trees.SHIFTLEFT: toString() :: 310
+phantm.ast.Trees.MFAbstract: toString() :: 310
+phantm.ast.Trees.MCNamespace: toString() :: 310
+phantm.cfg.Trees.IDENTICAL: toString() :: 310
+phantm.ast.Trees.PHPFalse: toString() :: 310
+phantm.symbols.LookupResult: toString() :: 310
+phantm.ast.Trees.BooleanNot: toString() :: 310
+phantm.ast.Trees.NextArrayEntry: toString() :: 310
+phantm.cfg.Trees.BOOLEANNOT: toString() :: 310
+phantm.ast.Trees.Static: toString() :: 310
+phantm.ast.Trees.Array: toString() :: 310
+phantm.ast.Trees.BooleanOr: toString() :: 310
+phantm.util.Reporter.Error: toString() :: 310
+phantm.ast.Trees.MCFile: toString() :: 310
+phantm.ast.Trees.CalledClass: toString() :: 310
+phantm.ast.Trees.Exit: toString() :: 310
+phantm.ast.Trees.CastUnset: toString() :: 310
+phantm.ast.Trees.Namespaced: toString() :: 310
+phantm.ast.Trees.PHPTrue: toString() :: 310
+phantm.ast.Trees.FunctionDecl: toString() :: 310
+phantm.types.TFalse: toString() :: 310
+phantm.ast.Trees.Smaller: toString() :: 310
+phantm.types.TNumeric: toString() :: 310
+phantm.cfg.Trees.CONCAT: toString() :: 310
+phantm.ast.Trees.CFNormal: toString() :: 310
+phantm.cfg.Trees.NOTEQUALS: toString() :: 310
+phantm.ast.Trees.DynamicObjectProperty: toString() :: 310
+phantm.ast.Trees.CastArray: toString() :: 310
+phantm.cfg.Trees.INSTANCEOF: toString() :: 310
+phantm.cfg.Trees.EQUALS: toString() :: 310
+phantm.ast.Trees.LabelDecl: toString() :: 310
+phantm.cfg.Trees.IsNull: toString() :: 310
+phantm.Settings: toString() :: 310
+phantm.ast.Trees.Mult: toString() :: 310
+phantm.ast.Trees.VariableVariable: toString() :: 310
+phantm.cfg.Trees.BOOLEANOR: toString() :: 310
+phantm.cfg.Trees.IsArray: toString() :: 310
+phantm.ast.Trees.MCFunction: toString() :: 310
+phantm.types.ObjectIdDump: toString() :: 310
+phantm.ast.Trees.Require: toString() :: 310
+phantm.symbols.FunctionSymbol: toString() :: 310
+phantm.ast.Trees.OAExpression: toString() :: 310
+phantm.cfg.Trees.POSTINC: toString() :: 310
+phantm.ast.Trees.Import: toString() :: 310
+phantm.ast.Trees.CFAbstract: toString() :: 310
+phantm.ast.Trees.Equal: toString() :: 310
+phantm.annotations.SourceAnnotations.Parser.AnyStringEntry: toString() :: 310
+phantm.ast.Trees.NamespaceStart: toString() :: 310
+phantm.types.TResource: toString() :: 310
+phantm.ast.Trees.Void: toString() :: 310
+phantm.cfg.Trees.MOD: toString() :: 310
+phantm.ast.Trees.CastDouble: toString() :: 310
+phantm.phases.PhaseSeq: toString() :: 310
+phantm.helpers.CheckContext: toString() :: 310
+phantm.ast.Trees.Break: toString() :: 310
+phantm.ast.Trees.Closure: toString() :: 310
+phantm.ast.Trees.ConstantDecl: toString() :: 310
+phantm.phases.PureStatementsChecks: toString() :: 310
+phantm.annotations.SourceAnnotations.Parser.Entry: toString() :: 310
+phantm.cfg.Trees.GT: toString() :: 310
+phantm.ast.Trees.Mod: toString() :: 310
+phantm.cfg.VertexImp: toString() :: 310
+phantm.ast.Trees.New: toString() :: 310
+phantm.cfg.Trees.BITWISEAND: toString() :: 310
+phantm.cfg.Trees.LT: toString() :: 310
+phantm.cfg.Trees.NOTIDENTICAL: toString() :: 310
+phantm.ast.Trees.Empty: toString() :: 310
+phantm.ast.Trees.StaticMethodCall: toString() :: 310
+phantm.ast.Trees.Cast: toString() :: 310
+phantm.types.TBoolean: toString() :: 310
+phantm.cfg.Trees.Empty: toString() :: 310
+phantm.ast.Trees.ArgumentDecl: toString() :: 310
+phantm.ast.Trees.BitwiseAnd: toString() :: 310
+phantm.ast.Trees.Print: toString() :: 310
+phantm.cfg.Trees.PREINC: toString() :: 310
+phantm.types.TNull: toString() :: 310
+phantm.util.IncludeResolver: toString() :: 310
+phantm.types.TObjectRef: toString() :: 309
+phantm.types.TStringLit: toString() :: 309
+phantm.types.TObjectTmp: toString() :: 309
+phantm.types.TRealObject: toString() :: 309
+phantm.types.TArray: toString() :: 309
+phantm.types.TUnion: toString() :: 309
+phantm.types.TIntLit: toString() :: 309
+phantm.types.TFloatLit: toString() :: 309
+ca.uwaterloo.scalacg.Library: blob() :: 122
+phantm.annotations.SourceAnnotations.Parser.$anonfun: apply() :: 21
+phantm.annotations.SourceAnnotations.Parser.$anonfun.$anonfun: apply() :: 17
+phantm.cfg.ASTToCFG: Emit() :: 14
+phantm.dataflow.StronglyConnectedComponents$$anonfun$tarjan$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.STToAST$$anonfun$base_variable$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$load$2$$anonfun$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$secondClassPass$1$$anonfun$5: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$elemToType$2: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$assignListItem$1$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CallGraphGeneration$CallGraph$$anonfun$computeReachableFromMain$1$$anonfun$2: apply(Ljava/lang/Object;) :: 11
+phantm.util.Unserializer$$anonfun$toMap$2: apply(Ljava/lang/Object;) :: 11
+phantm.helpers.ASTGraph$$anonfun$phantm$helpers$ASTGraph$$dotPrint$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeFlowAnalyzer$$anonfun$setupEnvironment$3$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeFlowAnalyzer$$anonfun$setupEnvironment$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$removeUninit$3: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$7$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$5: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trArgDecl$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CallGraphGeneration$CallGraph$$anonfun$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TArray$$anonfun$7: apply(Ljava/lang/Object;) :: 11
+phantm.types.TRealObject$$anonfun$injectAnyField$2: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.AnalysisAlgorithm$$anonfun$computeFixpoint$5: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$14: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$4: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typesDiff$1$6: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$load$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTraversal$$anonfun$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.Unserializer$$anonfun$importToEnv$5: apply(Ljava/lang/Object;) :: 11
+phantm.helpers.ASTGraph$$anonfun$elements$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TUnion$$anonfun$12: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.LabeledDirectedGraphImp$$anonfun$$minus$eq$2: apply(Ljava/lang/Object;) :: 11
+phantm.util.Unserializer$$anonfun$importToEnv$2: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$load$1$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$stmt$1$3: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$11: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$leqT$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TArray$$anonfun$injectAny$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$meetTypes$2$8: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.AnalysisAlgorithm$$anonfun$computeFixpoint$2: apply(Ljava/lang/Object;) :: 11
+phantm.parser.Parser$$anonfun$parse$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$14: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$11: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$load$1$$anonfun$apply$1$$anonfun$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.MethodGraphPhase$$anonfun$run$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$3: apply(Ljava/lang/Object;) :: 11
+phantm.phases.APIImportationPhase$$anonfun$run$1: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$typ$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$getInlinedRetType$1$4: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$firstClassPass0$2: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Writer$$anonfun$emitXML$2$$anonfun$apply$10: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$meetTypes$2$6$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$apply$4: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTraversal$$anonfun$elements$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$9: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$meetTypes$2$5: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$load$1$$anonfun$apply$7: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$stmt$1$9: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CallGraphPhase$$anonfun$run$3$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CallGraphGeneration$CallGraph$$anonfun$computeReachableFromMain$1$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$load$1$$anonfun$apply$1$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.StronglyConnectedComponents$$anonfun$getComponents$1$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TUnion$$anonfun$9: apply(Ljava/lang/Object;) :: 11
+phantm.phases.NSResolver$$anonfun$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TFunction$$anonfun$toString$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$12: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$17: apply(Ljava/lang/Object;) :: 11
+phantm.phases.IncludesConstantsResolutionPhase$$anonfun$run$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$11: apply(Ljava/lang/Object;) :: 11
+phantm.util.DumpCollector$$anonfun$3$$anonfun$apply$mcV$sp$3: apply(Ljava/lang/Object;) :: 11
+phantm.util.Unserializer$$anonfun$uValueToType$2: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$stmt$1$10: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typeFromSV$1$10: apply(Ljava/lang/Object;) :: 11
+phantm.phases.PhasesRunner$$anonfun$run$1$$anonfun$apply$mcV$sp$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$secondClassPass$2: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Writer$$anonfun$emitXML$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$secondIfacePass$1$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$stmt$1$6: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$exprStoreGet$1$2: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$14: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$leqT$1$4: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$removeUninit$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$load$2$$anonfun$apply$8: apply(Ljava/lang/Object;) :: 11
+phantm.phases.NamespaceResolverPhase$$anonfun$run$1$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Writer$$anonfun$emitXML$2$$anonfun$apply$11$$anonfun$apply$12: apply(Ljava/lang/Object;) :: 11
+phantm.phases.NSResolver$$anonfun$8: apply(Ljava/lang/Object;) :: 11
+phantm.types.TUnion$$anonfun$15: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$3: apply(Ljava/lang/Object;) :: 11
+phantm.util.IncludeResolver$$anonfun$getAST$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeFlowAnalyzer$$anonfun$analyze$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.MethodGraphGeneration$$anonfun$execute$3$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$firstIfacePass0$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.NSResolver$$anonfun$5: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$9: apply(Ljava/lang/Object;) :: 11
+phantm.util.Reporter$$anonfun$emitAll$2: apply(Ljava/lang/Object;) :: 11
+phantm.symbols.FunctionSymbol$$anonfun$importAPIFrom$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeEnvironment$$anonfun$checkMonotonicity$2$$anonfun$apply$4: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$expr$1$3: apply(Ljava/lang/Object;) :: 11
+phantm.phases.IncludesConstantsResolutionPhase$$anonfun$run$4: apply(Ljava/lang/Object;) :: 11
+phantm.util.IncludeResolver$$anonfun$phantm$util$IncludeResolver$$astFromScalar$1$2: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$8: apply(Ljava/lang/Object;) :: 11
+phantm.phases.NamespaceResolverPhase$$anonfun$run$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$protoErrors$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.IncludeResolver$$anonfun$1: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$3: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$convertAST$2: apply(Ljava/lang/Object;) :: 11
+phantm.symbols.ClassSymbol$$anonfun$getStaticProperties$1: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrentriesToArray$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$getInlinedRetType$1$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.MethodGraphGeneration$$anonfun$execute$3: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CallGraphPhase$$anonfun$run$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.ASTPruningPhase$$anonfun$1: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.StronglyConnectedComponents$$anonfun$getComponents$1$$anonfun$apply$1$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typesDiff$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.ParsingPhase$$anonfun$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$simpleText$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.Unserializer$$anonfun$unser$1: apply(Ljava/lang/Object;) :: 11
+phantm.helpers.CFGGraphs$$anonfun$visit$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.ASTPruner$$anonfun$trStmts$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$5: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$6: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$secondClassPass$1$$anonfun$apply$4: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trArgDecl$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeFlowAnalyzer$$anonfun$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typesDiff$1$7: apply(Ljava/lang/Object;) :: 11
+phantm.types.TUnion$$anonfun$addToSet$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeEnvironment$$anonfun$unionStoreFrom$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeFlowAnalyzer$$anonfun$setupEnvironment$3: apply(Ljava/lang/Object;) :: 11
+phantm.phases.ASTIntegrityChecks$$anonfun$visit$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTraversal$$anonfun$addRec$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$meetTypes$2$3: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.StronglyConnectedComponents$$anonfun$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$load$2$$anonfun$3: apply(Ljava/lang/Object;) :: 11
+phantm.helpers.ASTGraph$$anonfun$phantm$helpers$ASTGraph$$dotPrint$1$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$secondClassPass$1$$anonfun$6: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeEnvironment$$anonfun$checkMonotonicity$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$leqT$1$3$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.STToAST$$anonfun$deriveOAList$1$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$limitType$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.LabeledDirectedGraphImp$$anonfun$toDotString$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.PureStatementsChecks$$anonfun$isPure$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$elemToType$3: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$secondClassPass$1$$anonfun$3: apply(Ljava/lang/Object;) :: 11
+phantm.types.TArray$$anonfun$5: apply(Ljava/lang/Object;) :: 11
+phantm.ast.STToAST$$anonfun$class_statement$1: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$filterLines$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeEnvironment$$anonfun$toString$3: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$execute$3: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.AnalysisAlgorithm$$anonfun$detectUnreachable$2$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.TypeAnalyzingPhase$$anonfun$run$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$4: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trInitVariable$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.Unserializer$$anonfun$importToEnv$3: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$getReturnType$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typesDiff$1$4: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$joinTypes$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$12: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$secondIfacePass$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.IncludesConstantsResolutionPhase$$anonfun$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeFlowAnalyzer$$anonfun$analyze$5: apply(Ljava/lang/Object;) :: 11
+phantm.types.TArray$$anonfun$injectByType$2: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$importTypeDefs$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Writer$$anonfun$emitXML$2$$anonfun$apply$11: apply(Ljava/lang/Object;) :: 11
+phantm.types.TUnion$$anonfun$13: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trMethod$2: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$12: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.AnalysisAlgorithm$$anonfun$computeFixpoint$3: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CallGraphPhase$$anonfun$run$3$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TUnion$$anonfun$10: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$18: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typeFromSV$1$5: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$load$1$$anonfun$apply$1$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$12: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$variable$2: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$7$$anonfun$apply$21: apply(Ljava/lang/Object;) :: 11
+phantm.util.Unserializer$$anonfun$uValueToType$3: apply(Ljava/lang/Object;) :: 11
+phantm.phases.IncludesConstantsResolutionPhase$$anonfun$run$2: apply(Ljava/lang/Object;) :: 11
+phantm.util.DumpCollector$$anonfun$2$$anonfun$apply$mcV$sp$2: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$typ$3$$anonfun$apply$23: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$convertAST$2$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 11
+phantm.types.TArray$$anonfun$injectAnyString$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$meetTypes$2$6: apply(Ljava/lang/Object;) :: 11
+phantm.Main$$anonfun$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$1$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TArray$$anonfun$lookupByType$1: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$5$$anonfun$apply$15: apply(Ljava/lang/Object;) :: 11
+phantm.phases.NSResolver$$anonfun$3: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Writer$$anonfun$emitXML$2: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$load$2: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$load$1$$anonfun$apply$5: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.AnalysisAlgorithm$$anonfun$detectUnreachable$1: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$exprStoreGet$1$3: apply(Ljava/lang/Object;) :: 11
+phantm.types.TArray$$anonfun$injectAnyInt$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$15: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$leqT$1$5: apply(Ljava/lang/Object;) :: 11
+phantm.symbols.IfaceSymbol$$anonfun$lookupMethod$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$load$2$$anonfun$apply$9: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$10: apply(Ljava/lang/Object;) :: 11
+phantm.types.TUnion$$anonfun$16: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$getFunctionTypes$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$7: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$utyp$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.NSResolver$$anonfun$9: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$stmt$1$7: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$fixType$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typeFromSV$1$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$secondClassPass$3: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$firstIfacePass0$2$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 11
+phantm.symbols.IfaceSymbol$$anonfun$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TUnion$$anonfun$depth$4: apply(Ljava/lang/Object;) :: 11
+phantm.util.Reporter$$anonfun$emitAll$3: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeLattice$$anonfun$joinObjects$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$leqT$1$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CallGraphGeneration$CallGraph$$anonfun$addNode$1: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$assumeProp$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$fewerSkips$1$1$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.IncludeResolver$$anonfun$2: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$1: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.AnalysisAlgorithm$$anonfun$computeFixpoint$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CallGraphPhase$$anonfun$run$3: apply(Ljava/lang/Object;) :: 11
+phantm.phases.ASTPruningPhase$$anonfun$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typesDiff$1$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.NSResolver$$anonfun$6: apply(Ljava/lang/Object;) :: 11
+phantm.phases.TypeAnalyzingPhase$$anonfun$phantm$phases$TypeAnalyzingPhase$$displaySummary$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.symbols.FunctionSymbol$$anonfun$importAPIFrom$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.MethodGraphGeneration$$anonfun$execute$3$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typeFromSV$1$8: apply(Ljava/lang/Object;) :: 11
+phantm.phases.IncludesConstantsResolutionPhase$$anonfun$run$5: apply(Ljava/lang/Object;) :: 11
+phantm.util.Unserializer$$anonfun$uValueToType$1: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$getVarType$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.Unserializer$$anonfun$toTypeMap$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trProperty$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$13: apply(Ljava/lang/Object;) :: 11
+phantm.phases.ASTIntegrityChecks$$anonfun$visit$2: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$expr$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$6: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Writer$$anonfun$reduceFT$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TRealObject$$anonfun$2: apply(Ljava/lang/Object;) :: 11
+phantm.ast.STToAST$$anonfun$deriveOAList$1$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$limitType$1$2: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.LabeledDirectedGraphImp$$anonfun$toDotString$3: apply(Ljava/lang/Object;) :: 11
+phantm.phases.MethodGraphGeneration$$anonfun$execute$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.PureStatementsChecks$$anonfun$isPure$2: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$elemToType$4: apply(Ljava/lang/Object;) :: 11
+phantm.phases.ParsingPhase$$anonfun$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeEnvironment$$anonfun$checkMonotonicity$2: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$7: apply(Ljava/lang/Object;) :: 11
+phantm.types.TUnion$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 11
+phantm.symbols.FunctionSymbol$$anonfun$toString$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeEnvironment$$anonfun$union$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.Reporter$$anonfun$emitNormal$3: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.LabeledDirectedGraphImp$Group$$anonfun$followGraph$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$uninitToNull$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeFlowAnalyzer$$anonfun$3: apply(Ljava/lang/Object;) :: 11
+phantm.util.Unserializer$$anonfun$unser$2: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.AnalysisAlgorithm$$anonfun$detectUnreachable$2$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.LabeledDirectedGraphImp$$anonfun$betweenEdges$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeFlowAnalyzer$$anonfun$analyze$6: apply(Ljava/lang/Object;) :: 11
+phantm.util.Unserializer$$anonfun$importToEnv$4: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$4: apply(Ljava/lang/Object;) :: 11
+phantm.types.TRealObject$$anonfun$injectAnyField$1: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$fewerSkips$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$secondClassPass$1$$anonfun$4: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$16: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$meetTypes$2$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typesDiff$1$5: apply(Ljava/lang/Object;) :: 11
+phantm.types.TUnion$$anonfun$toText$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.Unserializer$$anonfun$toMap$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeFlowAnalyzer$$anonfun$setupEnvironment$1: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$filterLines$2: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$assignListItem$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.AnalysisAlgorithm$$anonfun$pass$1$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.AnalysisAlgorithm$$anonfun$pass$1: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.LabeledDirectedGraphImp$Group$$anonfun$toDotString$1: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$getConstType$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.STToAST$$anonfun$variable_without_objects$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$elemToType$1: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$array$4: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.AnalysisAlgorithm$$anonfun$computeFixpoint$4: apply(Ljava/lang/Object;) :: 11
+phantm.phases.TypeAnalyzingPhase$$anonfun$run$2: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$13: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$3: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$5: apply(Ljava/lang/Object;) :: 11
+phantm.phases.NSResolver$$anonfun$10: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$13: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$getInlinedRetType$1$3: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeEnvironment$$anonfun$toString$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$9: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$typVar$3$$anonfun$apply$28: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.StronglyConnectedComponents$$anonfun$getComponents$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.MethodGraphPhase$$anonfun$run$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$2: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$array$5$$anonfun$apply$8: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$firstClassPass0$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.Unserializer$$anonfun$importToEnv$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$elemsToType$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.STToAST$$anonfun$deriveOAList$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$load$1$$anonfun$apply$1$$anonfun$apply$4: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.LabeledDirectedGraphImp$$anonfun$$minus$eq$1: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.StronglyConnectedComponents$$anonfun$getComponents$1$$anonfun$apply$1$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.ObjectStore$$anonfun$toString$3: apply(Ljava/lang/Object;) :: 11
+phantm.types.TArray$$anonfun$injectAnyString$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.IncludesConstantsResolutionPhase$$anonfun$run$3: apply(Ljava/lang/Object;) :: 11
+phantm.types.TUnion$$anonfun$11: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CFGGenerator$$anonfun$visit$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.Unserializer$$anonfun$uValueToType$4: apply(Ljava/lang/Object;) :: 11
+phantm.symbols.GlobalSymbols$$anonfun$getClasses$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.NSResolver$$anonfun$4: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$stmt$1$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TArray$$anonfun$injectAny$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$10: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeEnvironment$$anonfun$checkMonotonicity$2$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 11
+phantm.parser.Parser$$anonfun$parse$1: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$convertAST$2$$anonfun$apply$4: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$10: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$16: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeFlowAnalyzer$$anonfun$1: apply(Ljava/lang/Object;) :: 11
+phantm.Main$$anonfun$handleArgs$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$secondClassPass$4: apply(Ljava/lang/Object;) :: 11
+phantm.symbols.IfaceSymbol$$anonfun$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$11: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$typVar$2: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$stmt$1$8: apply(Ljava/lang/Object;) :: 11
+phantm.phases.DumpsCollectionPhase$$anonfun$run$1: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.StronglyConnectedComponents$$anonfun$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$apply$3: apply(Ljava/lang/Object;) :: 11
+phantm.util.Reporter$$anonfun$emitAll$3$$anonfun$apply$4: apply(Ljava/lang/Object;) :: 11
+phantm.types.TUnion$$anonfun$8: apply(Ljava/lang/Object;) :: 11
+phantm.phases.TypeFlowAnalysis$$anonfun$visit$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.IncludeResolver$$anonfun$importIncludes$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typeFromSV$1$3: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$4$$anonfun$apply$12: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$firstIfacePass0$2$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 11
+phantm.util.Reporter$$anonfun$2: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$load$1$$anonfun$apply$6: apply(Ljava/lang/Object;) :: 11
+phantm.dataflow.AnalysisAlgorithm$$anonfun$detectUnreachable$2: apply(Ljava/lang/Object;) :: 11
+phantm.util.Reporter$$anonfun$emitNormal$1: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$exprStoreGet$1$4: apply(Ljava/lang/Object;) :: 11
+phantm.types.TArray$$anonfun$injectAnyInt$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$checkAgainstFType$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$4$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Reader$$anonfun$load$3: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$fixType$1$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.NSResolver$$anonfun$1: apply(Ljava/lang/Object;) :: 11
+phantm.symbols.IfaceSymbol$$anonfun$lookupMethod$2: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typesDiff$1$3: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Writer$$anonfun$phantm$util$API$Writer$$typeToXML$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$execute$2: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$6$$anonfun$apply$18: apply(Ljava/lang/Object;) :: 11
+phantm.phases.PureStatementsChecks$$anonfun$checkPures$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trMethod$1: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$assumeProp$1$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeFlowAnalyzer$$anonfun$analyze$4: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$secondClassPass$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$2: apply(Ljava/lang/Object;) :: 11
+phantm.types.TArray$$anonfun$depth$3: apply(Ljava/lang/Object;) :: 11
+phantm.types.TUnion$$anonfun$14: apply(Ljava/lang/Object;) :: 11
+phantm.util.API$Writer$$anonfun$4: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTSimpleTraversal$$anonfun$execute$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.NSResolver$$anonfun$7: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$stmt$1$5: apply(Ljava/lang/Object;) :: 11
+phantm.types.ObjectStore$$anonfun$newObject$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$13: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$1: apply(Ljava/lang/Object;) :: 11
+phantm.helpers.STGraph$$anonfun$phantm$helpers$STGraph$$dotPrint$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.PhasesRunner$$anonfun$run$1$$anonfun$apply$mcV$sp$1: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$exprStoreGet$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$getAnyType$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TArray$$anonfun$injectByType$1$$anonfun$apply$mcV$sp$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.IncludesConstantsResolutionPhase$$anonfun$run$6: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$leqT$1$3: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.LabeledDirectedGraphImp$$anonfun$toString$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CallGraphGeneration$CallGraph$$anonfun$computeReachableFromMain$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CallGraphPhase$$anonfun$run$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.ParsingPhase$$anonfun$3: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$expr$1$2: apply(Ljava/lang/Object;) :: 11
+phantm.phases.NSWrapper$$anonfun$trStmts$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeTransferFunction$$anonfun$getInlinedRetType$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.IncludeResolver$$anonfun$importIncludes$1$$anonfun$apply$1: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$trStmt$7: apply(Ljava/lang/Object;) :: 11
+phantm.types.TRealObject$$anonfun$3: apply(Ljava/lang/Object;) :: 11
+phantm.ast.ASTTransform$$anonfun$8: apply(Ljava/lang/Object;) :: 11
+phantm.annotations.SourceAnnotations$Parser$$anonfun$typedef$3: apply(Ljava/lang/Object;) :: 11
+phantm.phases.PureStatementsChecks$$anonfun$isPure$3: apply(Ljava/lang/Object;) :: 11
+phantm.util.IncludeResolver$$anonfun$phantm$util$IncludeResolver$$astFromScalar$1$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TypeLattice$$anonfun$meetObjects$1: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$fewerSkips$1$1$$anonfun$apply$1$$anonfun$apply$2: apply(Ljava/lang/Object;) :: 11
+phantm.util.DumpCollector$$anonfun$1$$anonfun$apply$mcV$sp$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TArray$$anonfun$merge$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.ASTIntegrityChecks$$anonfun$visit$3: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$firstIfacePass0$1: apply(Ljava/lang/Object;) :: 11
+phantm.util.Unserializer$$anonfun$toScalarMap$1: apply(Ljava/lang/Object;) :: 11
+phantm.phases.CollectSymbols$$anonfun$14: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.ASTToCFG$$anonfun$convertAST$1: apply(Ljava/lang/Object;) :: 11
+phantm.cfg.LabeledDirectedGraphImp$$anonfun$toDotString$4: apply(Ljava/lang/Object;) :: 11
+phantm.phases.MethodGraphGeneration$$anonfun$execute$2: apply(Ljava/lang/Object;) :: 11
+phantm.ast.STToAST$$anonfun$childrenNames$1: apply(Ljava/lang/Object;) :: 11
+phantm.types.TUnion.$anonfun: apply(t: phantm.types.Type) :: 10
+phantm.ast.ASTTransform.$anonfun: apply(ex: phantm.ast.Trees.Expression) :: 7
+phantm.util.UTrue: hashCode() :: 6
+phantm.util.UFalse: hashCode() :: 6
+phantm.types.TypeLattice: hashCode() :: 6
+phantm.InlineManual: hashCode() :: 6
+phantm.InlineFull: hashCode() :: 6
+phantm.types.TAnyClass: hashCode() :: 6
+phantm.util.UNull: hashCode() :: 6
+phantm.InlineNone: hashCode() :: 6
+phantm.InlineLeaves: hashCode() :: 6
+phantm.util.ENotice: hashCode() :: 6
+phantm.cfg.Trees.Skip: hashCode() :: 5
+phantm.ast.Trees.PostInc: hashCode() :: 5
+phantm.cfg.Trees.BITSIWENOT: hashCode() :: 5
+phantm.ast.Trees.MFFinal: hashCode() :: 5
+phantm.ast.Trees.PHPNull: hashCode() :: 5
+phantm.ast.Trees.Global: hashCode() :: 5
+phantm.cfg.Trees.BOOLEANAND: hashCode() :: 5
+phantm.cfg.EdgeImp: hashCode() :: 5
+phantm.ast.Trees.BooleanAnd: hashCode() :: 5
+phantm.cfg.Trees.PHPFloat: hashCode() :: 5
+phantm.util.JavaListIteratorWrapper: hashCode() :: 5
+phantm.cfg.Trees.PREDEC: hashCode() :: 5
+phantm.cfg.Trees.AssumeProperty: hashCode() :: 5
+phantm.util.URealRef: hashCode() :: 5
+phantm.ast.Trees.Goto: hashCode() :: 5
+phantm.ast.Trees.OAIdentifier: hashCode() :: 5
+phantm.ast.Trees.Clone: hashCode() :: 5
+phantm.ast.Trees.NSGlobal: hashCode() :: 5
+phantm.ast.Trees.MFPrivate: hashCode() :: 5
+phantm.ast.Trees.MFStatic: hashCode() :: 5
+phantm.ast.Trees.PropertyDecl: hashCode() :: 5
+phantm.cfg.Trees.ClassRefDynamic: hashCode() :: 5
+phantm.util.UArray: hashCode() :: 5
+phantm.ast.Trees.DoWhile: hashCode() :: 5
+phantm.phases.PhasesContext: hashCode() :: 5
+phantm.ast.Trees.Concat: hashCode() :: 5
+phantm.ast.Trees.ShiftRight: hashCode() :: 5
+phantm.ast.Trees.ListVar: hashCode() :: 5
+phantm.ast.Trees.Html: hashCode() :: 5
+phantm.ast.Trees.MCClass: hashCode() :: 5
+phantm.cfg.Trees.LEQ: hashCode() :: 5
+phantm.ast.Trees.StaticFunctionRef: hashCode() :: 5
+phantm.ast.Trees.Alternatives: hashCode() :: 5
+phantm.util.API.Reader.APIPos: hashCode() :: 5
+phantm.cfg.Trees.Clone: hashCode() :: 5
+phantm.types.TypeTransferFunction: hashCode() :: 5
+phantm.cfg.Trees.PHPAny: hashCode() :: 5
+phantm.ast.Trees.DynamicMethodRef: hashCode() :: 5
+phantm.util.DumpCollector: hashCode() :: 5
+phantm.cfg.LabeledDirectedGraphImp.Group: hashCode() :: 5
+phantm.ast.Trees.Constant: hashCode() :: 5
+phantm.phases.PhaseException: hashCode() :: 5
+phantm.ast.Trees.Minus: hashCode() :: 5
+phantm.ast.Trees.MCNamespace: hashCode() :: 5
+phantm.ast.Trees.CallArg: hashCode() :: 5
+phantm.cfg.Trees.Unset: hashCode() :: 5
+phantm.util.ConstantsResolver: hashCode() :: 5
+phantm.ast.Trees.VarFunctionRef: hashCode() :: 5
+phantm.ast.Trees.Unset: hashCode() :: 5
+phantm.cfg.Trees.Ternary: hashCode() :: 5
+phantm.cfg.Trees.IsBool: hashCode() :: 5
+phantm.types.ObjectId: hashCode() :: 5
+phantm.ast.Trees.MCLine: hashCode() :: 5
+phantm.ast.Trees.THObject: hashCode() :: 5
+phantm.cfg.Trees.AssumeNotProperty: hashCode() :: 5
+phantm.ast.Trees.Program: hashCode() :: 5
+phantm.ast.Trees.BooleanNot: hashCode() :: 5
+phantm.ast.Trees.Exit: hashCode() :: 5
+phantm.ast.STToAST: hashCode() :: 5
+phantm.ast.Trees.MethodDecl: hashCode() :: 5
+phantm.ast.Trees.Echo: hashCode() :: 5
+phantm.ast.Trees.CalledClass: hashCode() :: 5
+phantm.ast.Trees.PHPFalse: hashCode() :: 5
+phantm.cfg.Trees.SubTypeOf: hashCode() :: 5
+phantm.ast.Trees.CastUnset: hashCode() :: 5
+phantm.ast.Trees.FunctionDecl: hashCode() :: 5
+phantm.ast.Trees.NSCurrent: hashCode() :: 5
+phantm.ast.Trees.BooleanOr: hashCode() :: 5
+phantm.phases.TypeFlowAnalysis: hashCode() :: 5
+phantm.ast.Trees.Include: hashCode() :: 5
+phantm.cfg.Trees.NOTEQUALS: hashCode() :: 5
+phantm.annotations.SourceAnnotations.Parser.AnyEntry: hashCode() :: 5
+phantm.ast.Trees.LabelDecl: hashCode() :: 5
+phantm.cfg.Trees.DIV: hashCode() :: 5
+phantm.ast.Trees.ExpandArray: hashCode() :: 5
+phantm.Settings: hashCode() :: 5
+phantm.ast.Trees.Mult: hashCode() :: 5
+phantm.cfg.Trees.PHPNull: hashCode() :: 5
+phantm.ast.Trees.Div: hashCode() :: 5
+phantm.ast.Trees.ClassConstantDecl: hashCode() :: 5
+phantm.ast.Trees.Smaller: hashCode() :: 5
+phantm.cfg.Trees.PLUS: hashCode() :: 5
+phantm.util.API$Reader$$anonfun$load$1: phantm$util$API$Reader$$anonfun$$$outer() :: 5
+phantm.cfg.Trees.EQUALS: hashCode() :: 5
+phantm.cfg.Trees.IsNull: hashCode() :: 5
+phantm.ast.Trees.CastInt: hashCode() :: 5
+phantm.ast.Trees.VariableVariable: hashCode() :: 5
+phantm.cfg.Trees.PHPLong: hashCode() :: 5
+phantm.cfg.Trees.ClassRefUnknown: hashCode() :: 5
+phantm.cfg.Trees.BOOLEANXOR: hashCode() :: 5
+phantm.ast.Trees.Import: hashCode() :: 5
+phantm.cfg.Trees.PHPEmptyArray: hashCode() :: 5
+phantm.ast.Trees.Require: hashCode() :: 5
+phantm.cfg.Trees.ClassProperty: hashCode() :: 5
+phantm.ast.Trees.OAExpression: hashCode() :: 5
+phantm.dataflow.AnalysisAlgorithm.$anonfun: apply(e: phantm.cfg.EdgeImp[S]) :: 5
+phantm.ast.Trees.MFAbstract: hashCode() :: 5
+phantm.ast.Trees.PreDec: hashCode() :: 5
+phantm.ast.Trees.CFAbstract: hashCode() :: 5
+phantm.ast.Trees.BooleanXor: hashCode() :: 5
+phantm.ast.Trees.InstanceOf: hashCode() :: 5
+phantm.cfg.Trees.BOOLEANOR: hashCode() :: 5
+phantm.cfg.Trees.Cast: hashCode() :: 5
+phantm.cfg.Trees.SHIFTLEFT: hashCode() :: 5
+phantm.ast.Trees.Array: hashCode() :: 5
+phantm.ast.Trees.PHPTrue: hashCode() :: 5
+phantm.annotations.SourceAnnotations.Parser.Entry: hashCode() :: 5
+phantm.ast.Trees.Closure: hashCode() :: 5
+phantm.ast.Trees.NamespaceStart: hashCode() :: 5
+phantm.symbols.LookupResult: hashCode() :: 5
+phantm.phases.PhaseSeq: hashCode() :: 5
+phantm.helpers.CheckContext: hashCode() :: 5
+phantm.ast.Trees.Equal: hashCode() :: 5
+phantm.cfg.Trees.MOD: hashCode() :: 5
+phantm.cfg.Trees.BOOLEANNOT: hashCode() :: 5
+phantm.cfg.Trees.ClassConstant: hashCode() :: 5
+phantm.annotations.SourceAnnotations.Parser.AnyStringEntry: hashCode() :: 5
+phantm.ast.Trees.ConstantDecl: hashCode() :: 5
+phantm.ast.Trees.Namespaced: hashCode() :: 5
+phantm.ast.Trees.Mod: hashCode() :: 5
+phantm.cfg.Trees.IDENTICAL: hashCode() :: 5
+phantm.cfg.Trees.PHPString: hashCode() :: 5
+phantm.ast.Trees.CastDouble: hashCode() :: 5
+phantm.util.Reporter.Error: hashCode() :: 5
+phantm.cfg.Trees.AssignUnary: hashCode() :: 5
+phantm.phases.PureStatementsChecks: hashCode() :: 5
+phantm.ast.Trees.Static: hashCode() :: 5
+phantm.ast.Trees.MCFile: hashCode() :: 5
+phantm.ast.Trees.NextArrayEntry: hashCode() :: 5
+phantm.util.IncludeResolver: hashCode() :: 5
+phantm.cfg.Trees.Print: hashCode() :: 5
+phantm.ast.Trees.Cast: hashCode() :: 5
+phantm.ast.Trees.ArgumentDecl: hashCode() :: 5
+phantm.cfg.Trees.LT: hashCode() :: 5
+phantm.ast.Trees.CFNormal: hashCode() :: 5
+phantm.ast.Trees.CastArray: hashCode() :: 5
+phantm.ast.Trees.DynamicObjectProperty: hashCode() :: 5
+phantm.cfg.Trees.INSTANCEOF: hashCode() :: 5
+phantm.ast.Trees.Print: hashCode() :: 5
+phantm.cfg.Trees.PREINC: hashCode() :: 5
+phantm.cfg.Trees.Constant: hashCode() :: 5
+phantm.cfg.Trees.CONCAT: hashCode() :: 5
+phantm.ast.Trees.Continue: hashCode() :: 5
+phantm.cfg.Trees.ArrayNext: hashCode() :: 5
+phantm.ast.Trees.Catch: hashCode() :: 5
+phantm.cfg.Trees.IsArray: hashCode() :: 5
+phantm.cfg.Trees.POSTINC: hashCode() :: 5
+phantm.ast.Trees.SimpleVariable: hashCode() :: 5
+phantm.util.UFloat: hashCode() :: 5
+phantm.types.TypeFlowAnalyzer: hashCode() :: 5
+phantm.cfg.Trees.IsResource: hashCode() :: 5
+phantm.ast.Trees.Label: hashCode() :: 5
+phantm.ast.Trees.Block: hashCode() :: 5
+phantm.cfg.Trees.PHPFalse: hashCode() :: 5
+phantm.ast.Trees.CastString: hashCode() :: 5
+phantm.ast.Trees.DynamicFunctionRef: hashCode() :: 5
+phantm.ast.Trees.MCFunction: hashCode() :: 5
+phantm.cfg.Trees.ObjectProperty: hashCode() :: 5
+phantm.ast.Trees.Void: hashCode() :: 5
+phantm.ast.Trees.New: hashCode() :: 5
+phantm.ast.Trees.PostDec: hashCode() :: 5
+phantm.cfg.Trees.ClassRefCalledClass: hashCode() :: 5
+phantm.ast.Trees.OAArray: hashCode() :: 5
+phantm.cfg.Trees.GT: hashCode() :: 5
+phantm.ast.Trees.ClassDecl: hashCode() :: 5
+phantm.cfg.Trees.Assign: hashCode() :: 5
+phantm.ast.Trees.Try: hashCode() :: 5
+phantm.cfg.VertexImp: hashCode() :: 5
+phantm.ast.Trees.Isset: hashCode() :: 5
+phantm.cfg.Trees.NoVar: hashCode() :: 5
+phantm.cfg.Trees.Isset: hashCode() :: 5
+phantm.cfg.Trees.StaticMethodCall: hashCode() :: 5
+phantm.ast.Trees.Break: hashCode() :: 5
+phantm.ast.Trees.BitwiseOr: hashCode() :: 5
+phantm.phases.CFGGenerator: hashCode() :: 5
+phantm.types.TypeTransferFunction.$anonfun: apply(t: phantm.types.Type) :: 5
+phantm.types.IntKey: hashCode() :: 5
+phantm.phases.SymContext: hashCode() :: 5
+phantm.cfg.Trees.Return: hashCode() :: 5
+phantm.ast.Trees.CFFinal: hashCode() :: 5
+phantm.ast.Trees.CastObject: hashCode() :: 5
+phantm.ast.Trees.StaticMethodCall: hashCode() :: 5
+phantm.ast.Trees.BitwiseAnd: hashCode() :: 5
+phantm.cfg.Trees.BITWISEAND: hashCode() :: 5
+phantm.ast.Trees.MCDir: hashCode() :: 5
+phantm.cfg.Trees.Empty: hashCode() :: 5
+phantm.cfg.Trees.IsString: hashCode() :: 5
+phantm.ast.Trees.Execute: hashCode() :: 5
+phantm.cfg.Trees.NOTIDENTICAL: hashCode() :: 5
+phantm.ast.Trees.Empty: hashCode() :: 5
+phantm.cfg.Trees.PHPTrue: hashCode() :: 5
+phantm.cfg.Trees.Assume: hashCode() :: 5
+phantm.ast.Trees.CastBool: hashCode() :: 5
+phantm.ast.Trees.Identical: hashCode() :: 5
+phantm.cfg.Trees.MethodCall: hashCode() :: 5
+phantm.types.TClass: hashCode() :: 5
+phantm.cfg.Trees.BITWISEOR: hashCode() :: 5
+phantm.util.UObjRef: hashCode() :: 5
+phantm.ast.Trees.Switch: hashCode() :: 5
+phantm.ast.Trees.MCMethod: hashCode() :: 5
+phantm.ast.Trees.PHPFloat: hashCode() :: 5
+phantm.cfg.Trees.FuncRef: hashCode() :: 5
+phantm.cfg.Trees.IsScalar: hashCode() :: 5
+phantm.cfg.Trees.Identifier: hashCode() :: 5
+phantm.ast.Trees.Eval: hashCode() :: 5
+phantm.ast.Trees.Plus: hashCode() :: 5
+phantm.phases.CollectSymbols: hashCode() :: 5
+phantm.cfg.Trees.FunctionCall: hashCode() :: 5
+phantm.ast.Trees.Throw: hashCode() :: 5
+phantm.ast.Trees.InitVariable: hashCode() :: 5
+phantm.phases.ASTIntegrityChecks: hashCode() :: 5
+phantm.ast.Trees.SmallerEqual: hashCode() :: 5
+phantm.ast.Trees.StaticClassRef: hashCode() :: 5
+phantm.util.UString: hashCode() :: 5
+phantm.cfg.Trees.IsObject: hashCode() :: 5
+phantm.ast.Trees.OAMethod: hashCode() :: 5
+phantm.ast.Trees.Identifier: hashCode() :: 5
+phantm.phases.CGContext: hashCode() :: 5
+phantm.ast.Trees.PreInc: hashCode() :: 5
+phantm.ast.Trees.Foreach: hashCode() :: 5
+phantm.cfg.Trees.ArrayCurIsValid: hashCode() :: 5
+phantm.cfg.Trees.GEQ: hashCode() :: 5
+phantm.ast.Trees.DynamicClassRef: hashCode() :: 5
+phantm.cfg.Trees.IsInt: hashCode() :: 5
+phantm.cfg.Trees.New: hashCode() :: 5
+phantm.types.ObjectStore: hashCode() :: 5
+phantm.cfg.Trees.ArrayEntry: hashCode() :: 5
+phantm.ast.Trees.InterfaceDecl: hashCode() :: 5
+phantm.ast.Trees.ClassProperty: hashCode() :: 5
+phantm.types.TFunction: hashCode() :: 5
+phantm.types.ObjectIdUse: hashCode() :: 5
+phantm.ast.Trees.BitwiseXor: hashCode() :: 5
+phantm.ast.Trees.NSIdentifier: hashCode() :: 5
+phantm.ast.Trees.ClassConstant: hashCode() :: 5
+phantm.annotations.SourceAnnotations.Parser.AnyIntEntry: hashCode() :: 5
+phantm.phases.CallGraphGeneration: hashCode() :: 5
+phantm.ast.Trees.MFProtected: hashCode() :: 5
+phantm.ast.Trees.ArrayEntry: hashCode() :: 5
+phantm.ast.Trees.VarClassRef: hashCode() :: 5
+phantm.ast.Trees.For: hashCode() :: 5
+phantm.cfg.Trees.MULT: hashCode() :: 5
+phantm.ast.Trees.NSResolved: hashCode() :: 5
+phantm.cfg.Trees.ArrayCurKey: hashCode() :: 5
+phantm.ast.Trees.BitwiseNot: hashCode() :: 5
+phantm.ast.Trees.Assign: hashCode() :: 5
+phantm.cfg.Trees.ClassRefFixed: hashCode() :: 5
+phantm.ast.Trees.THArray: hashCode() :: 5
+phantm.ast.Trees.ShiftLeft: hashCode() :: 5
+phantm.ast.Trees.MFPublic: hashCode() :: 5
+phantm.ast.Trees.PHPString: hashCode() :: 5
+phantm.ast.Trees.Ternary: hashCode() :: 5
+phantm.ast.Trees.While: hashCode() :: 5
+phantm.util.UInt: hashCode() :: 5
+phantm.cfg.Trees.VariableVar: hashCode() :: 5
+phantm.types.StringKey: hashCode() :: 5
+phantm.cfg.Trees.POSTDEC: hashCode() :: 5
+phantm.ast.Trees.PHPInteger: hashCode() :: 5
+phantm.cfg.Trees.MINUS: hashCode() :: 5
+phantm.util.UObject: hashCode() :: 5
+phantm.phases.CheckContext: hashCode() :: 5
+phantm.cfg.Trees.AssignBinary: hashCode() :: 5
+phantm.ast.Trees.StaticMethodRef: hashCode() :: 5
+phantm.cfg.Trees.SHIFTRIGHT: hashCode() :: 5
+phantm.cfg.Trees.TempID: hashCode() :: 5
+phantm.cfg.Trees.VariableClassProperty: hashCode() :: 5
+phantm.ast.Trees.Return: hashCode() :: 5
+phantm.ast.Trees.VoidExpr: hashCode() :: 5
+phantm.cfg.Trees.BITWISEXOR: hashCode() :: 5
+phantm.cfg.Trees.SILENCE: hashCode() :: 5
+phantm.cfg.Trees.IsFloat: hashCode() :: 5
+phantm.helpers.CFGGraphs: hashCode() :: 5
+phantm.ast.Trees.MethodCall: hashCode() :: 5
+phantm.cfg.Trees.ArrayCurElement: hashCode() :: 5
+phantm.ast.Trees.Silence: hashCode() :: 5
+phantm.ast.Trees.If: hashCode() :: 5
+phantm.ast.Trees.FunctionCall: hashCode() :: 5
+phantm.cfg.Trees.NextArrayEntry: hashCode() :: 5
+phantm.ast.Trees.ObjectProperty: hashCode() :: 5
+phantm.ast.Trees.NSNone: hashCode() :: 5
+phantm.cfg.ASTToCFG.$anonfun: apply(a: phantm.ast.Trees.CallArg) :: 4
+phantm.types.TypeLattice.$anonfun: apply(x: phantm.types.Type,y: phantm.types.Type) :: 4
+phantm.types.TArray$$anonfun$hashCode$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.cfg.LabeledDirectedGraphImp$Group: phantm$cfg$LabeledDirectedGraphImp$Group$$$outer() :: 4
+phantm.phases.CallGraphGeneration$$anonfun$execute$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeTransferFunction$$anonfun$removeUninit$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.ast.ASTTransform.$anonfun: apply(ad: phantm.ast.Trees.ArgumentDecl) :: 4
+phantm.types.TypeTransferFunction$$anonfun$allTypesBut$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.annotations.SourceAnnotations.Parser.$anonfun.$anonfun.$anonfun: apply() :: 4
+phantm.types.TypeTransferFunction.$anonfun: apply(k: phantm.types.ArrayKey) :: 4
+phantm.util.API$Reader$$anonfun$elemsToType$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.ast.ASTTransform.$anonfun: apply(ca: phantm.ast.Trees.CallArg) :: 4
+phantm.types.TypeTransferFunction$$anonfun$uninitToNull$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeTransferFunction$$anonfun$apply$default$7$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.phases.CollectSymbols$$anonfun$execute$4: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.ast.STToAST$$anonfun$statement$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.phases.ASTIntegrityChecks$$anonfun$execute$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeTransferFunction$$anonfun$8: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.util.API$Writer$$anonfun$emitXML$2$$anonfun$5: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.helpers.CFGGraphs$$anonfun$execute$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.ast.ASTSimpleTraversal$$anonfun$traverse$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeTransferFunction$$anonfun$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TArray$$anonfun$lookupByType$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TUnion$$anonfun$depth$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.ast.ASTTransform.$anonfun: apply(st: phantm.ast.Trees.Statement) :: 4
+phantm.phases.ParsingPhase$$anonfun$4: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.cfg.LabeledDirectedGraphImp: V() :: 4
+phantm.types.TUnion$$anonfun$hashCode$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeTransferFunction$$anonfun$6: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TRealObject$$anonfun$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TArray$$anonfun$6: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeFlowAnalyzer$$anonfun$4: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.cfg.ASTToCFG.$anonfun: apply(v: phantm.ast.Trees.Variable) :: 4
+phantm.types.TypeEnvironment$$anonfun$toString$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.util.Reporter$$anonfun$emitAll$3$$anonfun$apply$3: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.util.Reporter$$anonfun$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.ObjectIdDump: hashCode() :: 4
+phantm.types.TArray.$anonfun: apply(x: phantm.types.ArrayKey, phantm.types.Type) :: 4
+phantm.cfg.LabeledDirectedGraphImp: outEdges(v: phantm.cfg.VertexImp[LabelType]) :: 4
+phantm.annotations.AnnotationsStore$$anonfun$getReturnType$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typeFromSV$1$6: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.util.Reporter$$anonfun$emitAll$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TArray$$anonfun$depth$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TArray$$anonfun$4: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeFlowAnalyzer$$anonfun$analyze$7: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$limitType$1$3: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeTransferFunction$$anonfun$17: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeTransferFunction$$anonfun$10: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.util.API$Writer$$anonfun$emitXML$2$$anonfun$6: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.ObjectStore$$anonfun$toString$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.ObjectIdTmp: hashCode() :: 4
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$meetTypes$2$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$meetTypes$2$4: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeTransferFunction$$anonfun$15: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeFlowAnalyzer$$anonfun$analyze$3: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typeFromSV$1$11: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.phases.CollectSymbols$$anonfun$execute$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$meetTypes$2$9: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.util.API.Reader.$anonfun: apply(el: scala.xml.Node) :: 4
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typeFromSV$1$7: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeTransferFunction$$anonfun$apply$default$6$1: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typeFromSV$1$8$$anonfun$apply$2: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeLattice$$anonfun$phantm$types$TypeLattice$$meetTypes$2$7: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typeFromSV$1$9: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 4
+phantm.ast.ASTTransform.$anonfun: apply(v: phantm.ast.Trees.Variable) :: 3
+phantm.types.TUninitialized: hashCode() :: 3
+phantm.util.DumpCollector: content() :: 3
+phantm.types.TypeLattice.$anonfun: apply(k: phantm.types.ArrayKey) :: 3
+phantm.types.TBottom: hashCode() :: 3
+phantm.types.TTrue: hashCode() :: 3
+phantm.util.DumpCollector.$anonfun.$anonfun: apply(l: String) :: 3
+phantm.types.TString: hashCode() :: 3
+phantm.types.TAny: hashCode() :: 3
+phantm.types.TInt: hashCode() :: 3
+phantm.types.TFalse: hashCode() :: 3
+phantm.cfg.LabeledDirectedGraphImp.$anonfun: apply(e: phantm.cfg.EdgeImp[LabelType]) :: 3
+phantm.types.TypeLattice.$anonfun: apply(x: phantm.types.Type) :: 3
+phantm.util.DumpCollector: lineNr() :: 3
+phantm.types.TNumeric: hashCode() :: 3
+phantm.util.Unserializer.$anonfun: apply(v: phantm.util.UValue) :: 3
+phantm.dataflow.AnalysisAlgorithm.$anonfun: apply(v: phantm.cfg.VertexImp[S]) :: 3
+phantm.cfg.ASTToCFG.$anonfun: apply() :: 3
+phantm.cfg.ASTToCFG: FreshVariable() :: 3
+phantm.util.DumpCollector.$anonfun.$anonfun: <init>() :: 3
+phantm.annotations.SourceAnnotations.Parser.$anonfun: apply(comment: String) :: 3
+phantm.util.Positional: setPos(p: phantm.util.Positional) :: 3
+phantm.phases.NSResolver.$anonfun: apply(scr: phantm.ast.Trees.StaticClassRef) :: 3
+phantm.dataflow.AnalysisAlgorithm.$anonfun.$anonfun: apply(e: phantm.cfg.EdgeImp[S]) :: 3
+phantm.types.TArray.$anonfun: apply() :: 3
+phantm.annotations.SourceAnnotations.Parser.$anonfun.$anonfun: apply(t: phantm.types.Type) :: 3
+phantm.types.TResource: hashCode() :: 3
+phantm.types.TypeTransferFunction.$anonfun: apply(f: String) :: 3
+phantm.types.TNull: hashCode() :: 3
+phantm.phases.ASTIntegrityChecks.$anonfun: apply(arg: phantm.ast.Trees.CallArg) :: 3
+phantm.types.TypeTransferFunction.$anonfun: apply(f: phantm.types.Type) :: 3
+phantm.types.TBoolean: hashCode() :: 3
+phantm.phases.CollectSymbols.$anonfun.$anonfun: apply() :: 3
+phantm.types.TypeTransferFunction.$anonfun: apply() :: 3
+phantm.util.Reporter.$anonfun: apply() :: 3
+phantm.ast.ASTTransform.$anonfun: apply(scr: phantm.ast.Trees.StaticClassRef) :: 3
+phantm.types.TFloat: hashCode() :: 3
+phantm.annotations.SourceAnnotations.Parser.$anonfun: apply(l: String) :: 3
+phantm.types.TTop: hashCode() :: 3
+phantm.cfg.ControlFlowGraph: entry() :: 3
+phantm.util.API$Writer$$anonfun$emitXML$2: phantm$util$API$Writer$$anonfun$$$outer() :: 3
+phantm.util.DumpCollector.$anonfun: apply() :: 3
+phantm.phases.PhasesRunner$$anonfun$run$1: apply$mcV$sp() :: 2
+phantm.phases.PureStatementsChecks.$anonfun: apply(stmt: phantm.ast.Trees.Statement) :: 2
+phantm.phases.CollectSymbols.$anonfun: apply(p: phantm.ast.Trees.PropertyDecl) :: 2
+phantm.types.TypeTransferFunction.$anonfun: apply(kt: String, phantm.types.Type) :: 2
+phantm.phases.CollectSymbols.$anonfun: apply(c: phantm.ast.Trees.ClassDecl) :: 2
+phantm.types.TypeFlowAnalyzer$$anonfun$analyze$1: apply$mcI$sp() :: 2
+phantm.ast.STToAST.$anonfun.$anonfun: apply(id: Option[phantm.ast.Trees.Expression]) :: 2
+phantm.util.API.Reader.$anonfun.$anonfun: apply(f: scala.xml.Node) :: 2
+phantm.ast.Trees.VariableVariable: <init>(name: phantm.ast.Trees.Expression) :: 2
+phantm.phases.TypeAnalyzingPhase.$anonfun: apply() :: 2
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$protoErrors$1$1: apply$mcVI$sp(I) :: 2
+phantm.types.BaseTypeEnvironment: copy() :: 2
+phantm.cfg.LabeledDirectedGraphImp: inEdges(v: phantm.cfg.VertexImp[LabelType]) :: 2
+phantm.types.TUnion: hashCode() :: 2
+phantm.phases.CallGraphPhase.$anonfun: apply(v: phantm.cfg.VertexImp[Int]) :: 2
+phantm.phases.IncludesConstantsResolutionPhase.$anonfun: apply(d: phantm.util.DumpCollector) :: 2
+phantm.dataflow.StronglyConnectedComponents.$anonfun: apply(e: phantm.cfg.EdgeImp[S]) :: 2
+phantm.util.Reporter.$anonfun: apply(i: Int) :: 2
+phantm.phases.IncludesConstantsResolutionPhase.$anonfun: apply(f: String) :: 2
+phantm.types.TIntLit: hashCode() :: 2
+phantm.util.Unserializer$$anonfun$unser$1: apply$mcVI$sp(I) :: 2
+phantm.types.TypeTransferFunction.$anonfun: apply(e: phantm.types.ArrayKey, phantm.types.Type) :: 2
+phantm.symbols.IfaceSymbol.$anonfun: apply(p: phantm.symbols.IfaceSymbol) :: 2
+phantm.ast.STToAST.$anonfun: apply(n: Int) :: 2
+phantm.phases.CollectSymbols.$anonfun.$anonfun: apply(i: phantm.ast.Trees.InterfaceDecl) :: 2
+phantm.types.TFloatLit: hashCode() :: 2
+phantm.ast.ASTTransform.$anonfun: apply(md: phantm.ast.Trees.MethodDecl) :: 2
+phantm.types.TArray: hashCode() :: 2
+phantm.types.TypeLattice.$anonfun: apply(index: String) :: 2
+phantm.ast.ASTTransform.$anonfun: apply(pd: phantm.ast.Trees.PropertyDecl) :: 2
+phantm.util.API$Reader$$anonfun$load$1$$anonfun$apply$1: phantm$util$API$Reader$$anonfun$$anonfun$$$outer() :: 2
+phantm.util.DumpCollector$$anonfun$1: apply$mcV$sp() :: 2
+phantm.phases.CallGraphGeneration: CallGraph() :: 2
+phantm.types.TypeTransferFunction: apply(Ljava/lang/Object;Ljava/lang/Object;) :: 2
+phantm.util.DumpCollector$$anonfun$2: apply$mcV$sp() :: 2
+phantm.phases.CallGraphGeneration$CallGraph$: entry() :: 2
+phantm.types.TypeFlowAnalyzer.$anonfun: apply() :: 2
+phantm.types.TypeEnvironment.$anonfun.$anonfun: apply() :: 2
+phantm.types.TypeTransferFunction.$anonfun: apply(i: Int) :: 2
+phantm.phases.ASTPruningPhase.$anonfun: apply(dc: phantm.util.DumpCollector) :: 2
+phantm.util.DumpCollector$$anonfun$3: apply$mcV$sp() :: 2
+phantm.types.TypeLattice.$anonfun: apply(t1: phantm.types.Type) :: 2
+phantm.ast.ASTTransform.$anonfun.$anonfun: apply(v: phantm.ast.Trees.Variable) :: 2
+phantm.types.TStringLit: hashCode() :: 2
+phantm.util.Unserializer.$anonfun: apply(e: Int) :: 2
+phantm.types.TypeTransferFunction.$anonfun: apply(v: phantm.cfg.Trees.Variable) :: 2
+phantm.phases.NSResolver.$anonfun: apply(pd: phantm.ast.Trees.PropertyDecl) :: 2
+phantm.phases.MethodGraphGeneration$MethodGraph$: entry() :: 2
+phantm.util.IncludeResolver.$anonfun: apply(prefix: String) :: 2
+phantm.ast.STToAST$$anonfun$base_variable$1: apply$mcVI$sp(I) :: 2
+phantm.phases.CollectSymbols.$anonfun.$anonfun: apply(a: phantm.ast.Trees.ArgumentDecl) :: 2
+phantm.util.Unserializer: unser(r: Boolean) :: 2
+phantm.ast.ASTTransform.$anonfun: apply(cl: phantm.ast.Trees.ClassConstantDecl) :: 2
+phantm.types.TypeEnvironment.$anonfun: apply(x: phantm.cfg.Trees.SimpleVariable, phantm.types.Type) :: 2
+phantm.util.Reporter$$anonfun$emitNormal$1: apply$mcVI$sp(I) :: 2
+phantm.types.BaseTypeEnvironment: union(e: phantm.types.TypeEnvironment) :: 2
+phantm.cfg.ASTToCFG.$anonfun: apply(e: phantm.ast.Trees.Expression) :: 2
+phantm.util.Unserializer$$anonfun$unser$2: apply$mcVI$sp(I) :: 2
+phantm.types.TObjectRef: hashCode() :: 2
+phantm.phases.MethodGraphPhase.$anonfun: apply(v: phantm.cfg.VertexImp[String]) :: 2
+phantm.phases.CollectSymbols.$anonfun: apply(node: phantm.ast.Trees.Tree,ctx: phantm.phases.SymContext) :: 2
+phantm.phases.NSResolver.$anonfun: apply(cl: phantm.ast.Trees.ClassConstantDecl) :: 2
+phantm.phases.CollectSymbols.$anonfun: apply(m: phantm.ast.Trees.MethodDecl) :: 2
+phantm.phases.NSResolver.$anonfun: apply(md: phantm.ast.Trees.MethodDecl) :: 2
+phantm.ast.STToAST$$anonfun$variable_without_objects$1: apply$mcVI$sp(I) :: 2
+phantm.types.ObjectStore.$anonfun: apply(x: phantm.types.ObjectId, phantm.types.TRealObject) :: 2
+phantm.util.Reporter.$anonfun.$anonfun: apply() :: 2
+phantm.util.API$Reader$$anonfun$load$2: phantm$util$API$Reader$$anonfun$$$outer() :: 2
+phantm.phases.MethodGraphGeneration: MethodGraph() :: 2
+phantm.types.TArray$$anonfun$injectByType$1: apply$mcV$sp() :: 2
+phantm.util.API.Writer.$anonfun: apply(check$ifrefutable$3: String, List[phantm.types.TFunction], List[phantm.types.Type]) :: 1
+phantm.phases.ASTIntegrityChecks.$anonfun: apply(node: phantm.ast.Trees.Tree,ctx: phantm.phases.CheckContext) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(t: phantm.types.Type,e: phantm.types.ArrayKey, phantm.types.Type) :: 1
+phantm.util.IncludeResolver: <init>() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$typVar$3: apply() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$array$5$$anonfun$apply$7: apply() :: 1
+phantm.cfg.Trees.IsBool: <init>() :: 1
+phantm.phases.CallGraphPhase.$anonfun: apply(ssc: tarjan.SCC) :: 1
+phantm.util.Positional: <(p: phantm.util.Positional) :: 1
+phantm.types.TTrue: <init>() :: 1
+phantm.types.TUninitialized: productIterator() :: 1
+phantm.types.TTop: productArity() :: 1
+phantm.util.UFalse: productPrefix() :: 1
+phantm.cfg.ASTToCFG.$anonfun: apply(x$4: phantm.ast.Trees.Variable) :: 1
+phantm.types.TBoolean: canEqual(x$1: Any) :: 1
+phantm.cfg.Trees.EQUALS: <init>() :: 1
+phantm.util.IncludeResolver.$anonfun: apply(incl: String) :: 1
+phantm.types.TypeEnvironment: checkMonotonicity(Lphantm/cfg/VertexImp;Lphantm/dataflow/Environment;Lphantm/phases/PhasesContext;Lscala/collection/Iterable;) :: 1
+phantm.phases.IncludesConstantsResolutionPhase.$anonfun: apply(x$1: String, phantm.ast.Trees.Scalar) :: 1
+phantm.types.TArray.$anonfun: apply(x$9: Int,x$10: Int) :: 1
+phantm.util.Positional: col_=(x$1: Int) :: 1
+phantm.types.TypeFlowAnalyzer: <init>() :: 1
+phantm.phases.CollectSymbols$$anonfun$secondClassPass$3$$anonfun$8: apply() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$7: apply() :: 1
+phantm.types.TResource: productIterator() :: 1
+phantm.util.API.Reader.$anonfun.$anonfun: apply(a: scala.xml.Node) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$getFunctionTypes$2: apply() :: 1
+phantm.cfg.ASTToCFG.$anonfun: apply(c: phantm.ast.Trees.Expression, phantm.cfg.VertexImp[phantm.cfg.Trees.Statement]) :: 1
+phantm.phases.TypeAnalyzingPhase.$anonfun: apply(x$1: phantm.symbols.FunctionSymbol, Int) :: 1
+phantm.ast.STToAST.$anonfun: apply(c: phantm.parser.ParseNode) :: 1
+phantm.types.TAny: productElement(x$1: Int) :: 1
+phantm.util.ENotice: canEqual(x$1: Any) :: 1
+phantm.InlineLeaves: productIterator() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$array$5: apply() :: 1
+phantm.types.TypeTransferFunction: typeFromSV(sv: phantm.cfg.Trees.SimpleValue) :: 1
+phantm.types.TUninitialized: productArity() :: 1
+phantm.cfg.LabeledDirectedGraphImp.$anonfun: apply(v: phantm.cfg.VertexImp[LabelType]) :: 1
+phantm.util.ENotice: productElement(x$1: Int) :: 1
+phantm.ast.Trees.NSNone: <init>() :: 1
+phantm.types.TRealObject.$anonfun: apply(x$1: String, phantm.types.Type) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$typVar$3$$anonfun$apply$27: apply() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$50: phantm.types.Type) :: 1
+phantm.phases.NSWrapper.$anonfun: apply(s: phantm.ast.Trees.Statement) :: 1
+phantm.util.API.Reader.$anonfun: apply(f: scala.xml.Node) :: 1
+phantm.types.TypeEnvironment.$anonfun.$anonfun: apply(check$ifrefutable$2: phantm.cfg.Trees.Statement, phantm.types.TypeEnvironment) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$7$$anonfun$apply$19: apply() :: 1
+phantm.util.ENotice: productIterator() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$utyp$1$$anonfun$apply$25$$anonfun$apply$26: apply() :: 1
+phantm.ast.Trees.MFProtected: <init>() :: 1
+phantm.types.TypeHelpers: <init>() :: 1
+phantm.symbols.FunctionSymbol.$anonfun: apply(x$1: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.InlineManual: productIterator() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$15: phantm.types.Type,x$16: phantm.types.Type) :: 1
+phantm.types.TBoolean: <init>() :: 1
+phantm.phases.CollectSymbols.$anonfun: apply(x: phantm.ast.Trees.ClassDecl) :: 1
+phantm.types.TUnion.$anonfun: apply(x$22: phantm.types.Type) :: 1
+phantm.phases.CollectSymbols$$anonfun$secondClassPass$4$$anonfun$9: apply() :: 1
+phantm.ast.Trees.MFPublic: <init>() :: 1
+phantm.types.TNull: productIterator() :: 1
+phantm.ast.Trees.CastString: <init>() :: 1
+phantm.util.UTrue: productArity() :: 1
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$stmt$1$4: apply() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(check$ifrefutable$2: phantm.types.Type, Int) :: 1
+phantm.types.TRealObject.$anonfun: apply(x: String, phantm.types.Type) :: 1
+phantm.annotations.SourceAnnotations.Parser.$anonfun: apply(ae: phantm.annotations.SourceAnnotations.Parser.ArrayEntryType) :: 1
+phantm.cfg.Trees.PREINC: <init>() :: 1
+phantm.cfg.Trees.BOOLEANNOT: <init>() :: 1
+phantm.phases.PhasesRunner$$anonfun$run$1: apply() :: 1
+phantm.ast.Trees.CastInt: <init>() :: 1
+phantm.types.TArray.$anonfun: apply(x$12: phantm.types.ArrayKey, phantm.types.Type) :: 1
+phantm.ast.Trees.CastObject: <init>() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(kt: phantm.types.ArrayKey, phantm.types.Type) :: 1
+phantm.phases.MethodGraphGeneration.$anonfun: apply(x$3: String, phantm.symbols.ClassSymbol) :: 1
+phantm.types.TypeEnvironment: copy() :: 1
+phantm.types.TArray.$anonfun: apply(a: Int,b: phantm.types.Type) :: 1
+phantm.types.TTrue: productArity() :: 1
+phantm.cfg.ASTToCFG.$anonfun: apply(check$ifrefutable$3: String, List[phantm.cfg.VertexImp[phantm.cfg.Trees.Statement], phantm.util.Positional) :: 1
+phantm.cfg.ASTToCFG.$anonfun.$anonfun.$anonfun: apply(eIn: phantm.cfg.EdgeImp[phantm.cfg.Trees.Statement]) :: 1
+phantm.util.Positional.$anonfun: apply() :: 1
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typeFromSV$1$1: isDefinedAt(Ljava/lang/Object;) :: 1
+phantm.phases.ASTPruner.$anonfun: apply(x$7: phantm.ast.Trees.Statement) :: 1
+phantm.util.Positional: previousPos() :: 1
+phantm.cfg.Trees.PLUS: <init>() :: 1
+phantm.types.TRealObject.$anonfun: apply(a: Int,b: Int) :: 1
+phantm.phases.MethodGraphGeneration$$anonfun$execute$3: phantm$phases$MethodGraphGeneration$$anonfun$$$outer() :: 1
+phantm.phases.CollectSymbols$$anonfun$secondClassPass$2$$anonfun$7: apply() :: 1
+phantm.util.UTrue: productElement(x$1: Int) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$3: String,x$4: phantm.util.Positional) :: 1
+phantm.phases.CallGraphGeneration.CallGraph: <init>() :: 1
+phantm.types.TBottom: canEqual(x$1: Any) :: 1
+phantm.types.TypeFlowAnalyzer.$anonfun: apply(x$2: String, phantm.types.TypeEnvironment) :: 1
+phantm.phases.CallGraphGeneration.CallGraph.$anonfun: apply(mf: phantm.cfg.VertexImp[Int]) :: 1
+phantm.types.TNull: productPrefix() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$6$$anonfun$apply$16: apply() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(f: phantm.types.FunctionType) :: 1
+phantm.phases.CallGraphGeneration: CallGraph$lzycompute() :: 1
+phantm.types.TUninitialized: productPrefix() :: 1
+phantm.dataflow.StronglyConnectedComponents$$anonfun$getComponents$1: phantm$dataflow$StronglyConnectedComponents$$anonfun$$$outer() :: 1
+phantm.types.TArray$$anonfun$lookup$1: apply() :: 1
+phantm.types.TUnion.$anonfun: apply(a: Int,b: phantm.types.Type) :: 1
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$lookupConstructor$1$2: apply() :: 1
+phantm.ast.Trees.MFAbstract: <init>() :: 1
+phantm.dataflow.StronglyConnectedComponents.$anonfun: apply(scc: StronglyConnectedComponents.this.SCC) :: 1
+phantm.types.TArray.$anonfun: apply(t: phantm.types.Type) :: 1
+phantm.util.DumpCollector$$anonfun$2: apply() :: 1
+phantm.phases.CollectSymbols.$anonfun.$anonfun: apply(x$10: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.InlineManual: productPrefix() :: 1
+phantm.types.TInt: <init>() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$array$2$$anonfun$apply$2: apply() :: 1
+phantm.types.TArray$$anonfun$depth$1: apply$mcIII$sp(II) :: 1
+phantm.phases.ASTPruner: trStmts(sts: List[phantm.ast.Trees.Statement]) :: 1
+phantm.annotations.FunctionAnnotation: shouldInline_=(x$1: Boolean) :: 1
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$lookupConstructor$1$1: apply() :: 1
+phantm.util.Reporter.$anonfun: apply(e: Reporter.this.Error) :: 1
+phantm.types.ObjectIdUse: productPrefix() :: 1
+phantm.types.TypeEnvironment.$anonfun: isDefinedAt(x1: phantm.cfg.Trees.SimpleVariable, phantm.types.Type) :: 1
+phantm.phases.TypeAnalyzingPhase: <init>() :: 1
+phantm.cfg.Trees.LEQ: <init>() :: 1
+phantm.Settings.$anonfun: apply() :: 1
+phantm.types.TypeEnvironment$$anonfun$getGlobalsType$1: isDefinedAt(Ljava/lang/Object;) :: 1
+phantm.cfg.Trees.Isset: <init>() :: 1
+phantm.types.TypeLattice: productArity() :: 1
+phantm.types.TArray.$anonfun: apply(check$ifrefutable$3: phantm.types.ArrayKey, phantm.types.Type) :: 1
+phantm.util.UNull: productIterator() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(a: phantm.cfg.Trees.SimpleValue) :: 1
+phantm.util.Unserializer.$anonfun: apply(x$3: phantm.util.UValue, phantm.util.UValue) :: 1
+phantm.cfg.Trees.Empty: <init>() :: 1
+phantm.types.TypeEnvironment: checkMonotonicity(vrtx: phantm.cfg.VertexImp[phantm.cfg.Trees.Statement],e: phantm.types.TypeEnvironment,ctx: phantm.phases.PhasesContext,inEdges: Iterable[phantm.cfg.Trees.Statement, phantm.types.TypeEnvironment) :: 1
+phantm.helpers.ASTGraph.$anonfun: apply(n: _) :: 1
+phantm.phases.ASTPruner: trStmt(st: phantm.ast.Trees.Statement) :: 1
+phantm.ast.ASTTransform.$anonfun.$anonfun: apply(ex: phantm.ast.Trees.Expression) :: 1
+phantm.types.TypeFlowAnalyzer.$anonfun: apply(cs: phantm.symbols.ClassSymbol) :: 1
+phantm.cfg.Trees.BITSIWENOT: <init>() :: 1
+phantm.phases.ParsingPhase.$anonfun: apply(x$1: String, phantm.parser.Parser, Option[phantm.parser.ParseNode]) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$6: apply() :: 1
+phantm.types.defaultTypeWF: <init>() :: 1
+phantm.ast.ASTTraversal.$anonfun: apply(x$1: Int) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$7: phantm.types.Type,x$8: phantm.types.Type) :: 1
+phantm.types.TypeLattice: productElement(x$1: Int) :: 1
+phantm.helpers.Main: <init>() :: 1
+phantm.cfg.Trees.POSTINC: <init>() :: 1
+phantm.types.TAny: <init>() :: 1
+phantm.annotations.TypeAnnotation: typ_=(x$1: phantm.types.Type) :: 1
+phantm.dataflow.StronglyConnectedComponents$$anonfun$getComponents$1$$anonfun$apply$1: phantm$dataflow$StronglyConnectedComponents$$anonfun$$anonfun$$$outer() :: 1
+phantm.types.TypeFlowAnalyzer.$anonfun: apply(check$ifrefutable$1: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.types.TBottom: <init>() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$typVar$1: apply() :: 1
+phantm.types.TBottom: productElement(x$1: Int) :: 1
+phantm.types.TypeTransferFunction.$anonfun.$anonfun: apply(t: phantm.types.Type,e: phantm.types.ArrayKey, phantm.types.Type) :: 1
+phantm.symbols.MethodSymbol: cs() :: 1
+phantm.types.TypeFlowAnalyzer.$anonfun: apply(l: phantm.cfg.Trees.Statement) :: 1
+phantm.phases.CollectSymbols.$anonfun: apply(c: phantm.ast.Trees.ClassConstantDecl) :: 1
+phantm.util.UNull: productPrefix() :: 1
+phantm.helpers.STGraph.$anonfun: apply(c: phantm.parser.ParseNode) :: 1
+phantm.util.DumpCollector$$anonfun$3: phantm$util$DumpCollector$$anonfun$$$outer() :: 1
+phantm.util.Reporter.$anonfun.$anonfun: apply(x: Reporter.this.Error,y: Reporter.this.Error) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$typ$3: apply() :: 1
+phantm.annotations.AnnotationsStore.$anonfun: apply(x$1: phantm.types.Type,x$2: phantm.types.Type) :: 1
+phantm.cfg.ASTToCFG.FreshVariable: <init>() :: 1
+phantm.cfg.LabeledDirectedGraphImp.$anonfun: apply(x: LabeledDirectedGraphImp.this.Group) :: 1
+phantm.types.TNull: canEqual(x$1: Any) :: 1
+phantm.types.TypeEnvironment.$anonfun.$anonfun: apply(x$2: phantm.cfg.Trees.Statement, phantm.types.TypeEnvironment) :: 1
+phantm.util.API.Reader.$anonfun.$anonfun: apply(cc: scala.xml.Node) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$5$$anonfun$apply$14: apply() :: 1
+phantm.types.TFalse: productArity() :: 1
+phantm.types.TInt: productPrefix() :: 1
+phantm.Settings: <init>() :: 1
+phantm.cfg.LabeledDirectedGraphImp.Group.$anonfun: apply(eOut: phantm.cfg.EdgeImp[LabelType]) :: 1
+phantm.types.TUninitialized: canEqual(x$1: Any) :: 1
+phantm.types.TypeFlowAnalyzer.$anonfun: apply(d: phantm.util.DumpCollector) :: 1
+phantm.types.TAny: productPrefix() :: 1
+phantm.phases.CollectSymbols.$anonfun: apply(pi: phantm.ast.Trees.StaticClassRef) :: 1
+phantm.phases.MethodGraphGeneration.MethodGraph: entry() :: 1
+phantm.cfg.Trees.IsResource: <init>() :: 1
+phantm.util.UFalse: productArity() :: 1
+phantm.util.Positional: file_=(x$1: Option[String]) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$utyp$1: apply() :: 1
+phantm.dataflow.AnalysisAlgorithm$$anonfun$pass$1: phantm$dataflow$AnalysisAlgorithm$$anonfun$$$outer() :: 1
+phantm.annotations.SourceAnnotations.Parser.$anonfun.$anonfun: apply(i: String) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$4$$anonfun$apply$11: apply() :: 1
+phantm.cfg.Trees.BOOLEANXOR: <init>() :: 1
+phantm.Main: main(args: Array[String]) :: 1
+phantm.ast.ASTTransform$$anonfun$7: phantm$ast$ASTTransform$$anonfun$$$outer() :: 1
+phantm.ast.Trees.PHPNull: <init>() :: 1
+phantm.cfg.Trees.MULT: <init>() :: 1
+phantm.types.TTop: productPrefix() :: 1
+phantm.phases.MethodGraphGeneration.$anonfun.$anonfun: apply(check$ifrefutable$2: String, phantm.symbols.MethodSymbol) :: 1
+phantm.ast.STToAST.$anonfun: apply(x$4: phantm.ast.Trees.MemberFlag) :: 1
+phantm.helpers.ASTGraph.$anonfun: apply(x$1: Int) :: 1
+phantm.types.TFloat: productPrefix() :: 1
+phantm.types.TRealObject$$anonfun$1: apply$mcIII$sp(II) :: 1
+phantm.util.UFalse: productElement(x$1: Int) :: 1
+phantm.util.Reporter: <init>() :: 1
+phantm.InlineFull: productPrefix() :: 1
+phantm.types.TArray.$anonfun.$anonfun: <init>() :: 1
+phantm.util.Unserializer.$anonfun: apply(x$6: phantm.util.UValue, phantm.util.UValue) :: 1
+phantm.phases.IncludesConstantsResolutionPhase.$anonfun: apply(x$2: String, phantm.ast.Trees.Scalar) :: 1
+phantm.cfg.LabeledDirectedGraphImp: E() :: 1
+phantm.ast.Trees.NSName: <init>() :: 1
+phantm.types.TypeEnvironment.$anonfun: apply(tmp: phantm.cfg.Trees.SimpleVariable, phantm.types.Type) :: 1
+phantm.types.TAnyClass: canEqual(x$1: Any) :: 1
+phantm.helpers.CFGGraphs.$anonfun: apply(node: phantm.ast.Trees.Tree,ctx: phantm.helpers.CheckContext) :: 1
+phantm.cfg.Trees.INSTANCEOF: <init>() :: 1
+phantm.types.ObjectIdUse: productElement(x$1: Int) :: 1
+phantm.cfg.Trees.IsInt: <init>() :: 1
+phantm.cfg.ASTToCFG.FreshName: <init>() :: 1
+phantm.symbols.Symbolic: getSymbol() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(a: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.types.TypeFlowAnalyzer$$anonfun$analyze$1: apply() :: 1
+phantm.util.API.Reader.$anonfun: apply(c: scala.xml.Node) :: 1
+phantm.util.API.Writer.$anonfun.$anonfun: apply(t: phantm.types.Type) :: 1
+phantm.util.Unserializer.$anonfun: apply(x$5: phantm.types.ObjectId, phantm.types.TRealObject) :: 1
+phantm.phases.SymbolsChecksPhase: <init>() :: 1
+phantm.cfg.ASTToCFG.$anonfun.$anonfun: apply(x$17: phantm.cfg.VertexImp[phantm.cfg.Trees.Statement], phantm.util.Positional) :: 1
+phantm.types.TAnyClass: <init>() :: 1
+phantm.phases.MethodGraphPhase: <init>() :: 1
+phantm.types.TFunction.$anonfun: apply(a: phantm.types.Type, Boolean, Boolean) :: 1
+phantm.cfg.Trees.BOOLEANAND: <init>() :: 1
+phantm.dataflow.StronglyConnectedComponents.$anonfun: apply(x$2: phantm.cfg.VertexImp[S]) :: 1
+phantm.util.DumpCollector$$anonfun$1: apply() :: 1
+phantm.cfg.Trees.BITWISEOR: <init>() :: 1
+phantm.phases.ASTPruningPhase: <init>() :: 1
+phantm.types.ObjectStore.$anonfun: apply(x: phantm.symbols.PropertySymbol) :: 1
+phantm.types.TypeFlowAnalyzer.$anonfun.$anonfun: apply(ps: phantm.symbols.PropertySymbol) :: 1
+phantm.util.UNull: <init>() :: 1
+phantm.annotations.CommentAnnotation: annotateFromC(from: phantm.annotations.CommentAnnotation) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$18: phantm.types.Type,x$19: phantm.types.Type) :: 1
+phantm.cfg.Trees: <init>() :: 1
+phantm.cfg.Trees.PREDEC: <init>() :: 1
+phantm.util.ENotice: <init>() :: 1
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$varFromVar$1$1: apply() :: 1
+phantm.phases.CollectSymbols.$anonfun: apply(check$ifrefutable$3: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.phases.PhasesContext: <init>() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$array$2$$anonfun$apply$1: apply() :: 1
+phantm.symbols.GlobalSymbols.$anonfun: apply(x: String, phantm.symbols.ClassSymbol) :: 1
+phantm.types.TUnion.$anonfun: apply(x$23: phantm.types.Type) :: 1
+phantm.annotations.SourceAnnotations.Parser.$anonfun: apply(x0$5: phantm.annotations.SourceAnnotations.Parser.~[phantm.types.Type,List[phantm.types.Type]]) :: 1
+phantm.types.TString: productElement(x$1: Int) :: 1
+phantm.util.API.Reader.$anonfun: apply(a: phantm.types.Type,b: phantm.types.Type) :: 1
+phantm.types.TypeTransferFunction: leq(t1: phantm.types.Type,t2: phantm.types.Type) :: 1
+phantm.cfg.ASTToCFG.$anonfun: apply(check$ifrefutable$1: Option[phantm.ast.Trees.Variable], Int) :: 1
+phantm.phases.CollectSymbols.$anonfun.$anonfun: apply(x$9: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.util.IncludeResolver.$anonfun.$anonfun: apply(l: String) :: 1
+phantm.util.Reporter$$anonfun$emitNormal$2: apply() :: 1
+phantm.types.TypeLattice: canEqual(x$1: Any) :: 1
+phantm.cfg.ASTToCFG$: phantm$cfg$ASTToCFG$$FreshName$1$lzycompute(Lscala/runtime/VolatileObjectRef;) :: 1
+phantm.util.IncludeResolver$$anonfun$importIncludes$1$$anonfun$apply$1$$anonfun$apply$2: apply() :: 1
+phantm.util.Unserializer.$anonfun: apply(check$ifrefutable$4: phantm.types.ObjectId, phantm.types.TRealObject) :: 1
+phantm.types.TAnyObject: <init>() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$20: phantm.types.Type) :: 1
+phantm.types.TArray.$anonfun.$anonfun: apply(t: phantm.types.Type) :: 1
+phantm.parser.Parser.$anonfun: apply(c: phantm.parser.Comment) :: 1
+phantm.types.TUnion.$anonfun: apply(x$25: Int,x$26: Int) :: 1
+phantm.phases.PhasesRunner.$anonfun: apply() :: 1
+phantm.types.TNumeric: productArity() :: 1
+phantm.types.TArray.$anonfun: apply(x$6: phantm.types.Type,x$7: phantm.types.Type) :: 1
+phantm.util.UNull: canEqual(x$1: Any) :: 1
+phantm.types.TFloat: productElement(x$1: Int) :: 1
+phantm.ast.ASTTransform$$anonfun$4: phantm$ast$ASTTransform$$anonfun$$$outer() :: 1
+phantm.phases.ParsingPhase.$anonfun: apply(a: phantm.ast.Trees.Program,b: phantm.ast.Trees.Program) :: 1
+phantm.types.TAnyClass: productElement(x$1: Int) :: 1
+phantm.phases.CollectSymbols.$anonfun: apply(check$ifrefutable$4: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$58: phantm.types.FunctionType) :: 1
+phantm.InlineFull: productIterator() :: 1
+phantm.ast.Trees$PHPNull$: apply() :: 1
+phantm.types.TBottom: productPrefix() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$4: apply() :: 1
+phantm.types.TInt: productIterator() :: 1
+phantm.Main.$anonfun: apply(x$2: String) :: 1
+phantm.symbols.Symbolic: setSymbol(sym: phantm.symbols.Symbol) :: 1
+phantm.types.TypeEnvironment$$anonfun$union$1$$anonfun$apply$2: apply() :: 1
+phantm.types.TArray.$anonfun: apply(x$11: phantm.types.ArrayKey, phantm.types.Type) :: 1
+phantm.cfg.ASTToCFG$$anonfun$fewerSkips$1$1$$anonfun$apply$1: phantm$cfg$ASTToCFG$$anonfun$$anonfun$$$outer() :: 1
+phantm.ast.ASTTransform.$anonfun: apply(th: phantm.ast.Trees.TypeHint) :: 1
+phantm.cfg.Trees.IsScalar: <init>() :: 1
+phantm.symbols.Scope: registerVariable(cs: phantm.symbols.VariableSymbol) :: 1
+phantm.InlineNone: productIterator() :: 1
+phantm.phases.PhasesRunner.$anonfun.$anonfun: <init>() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$array$3: apply() :: 1
+phantm.annotations.SourceAnnotations.Parser.$anonfun: apply(i: String) :: 1
+phantm.phases.TypeAnalyzingPhase.$anonfun: apply(f: String) :: 1
+phantm.types.TArray.$anonfun: apply(k: phantm.types.ArrayKey) :: 1
+phantm.types.TypeTransferFunction.$anonfun: isDefinedAt(x1: phantm.types.ArrayKey, phantm.types.Type) :: 1
+phantm.types.TFalse: canEqual(x$1: Any) :: 1
+phantm.cfg.Trees.NOTEQUALS: <init>() :: 1
+phantm.phases.CallGraphPhase: <init>() :: 1
+phantm.types.RecProtection: <init>() :: 1
+phantm.types.TypeEnvironment$$anonfun$union$1$$anonfun$apply$1: apply() :: 1
+phantm.phases.CollectSymbols.$anonfun.$anonfun: apply(check$ifrefutable$1: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$5$$anonfun$apply$13: apply() :: 1
+phantm.util.API.Writer.$anonfun: apply(e: phantm.types.ArrayKey, phantm.types.Type) :: 1
+phantm.types.TUnion.$anonfun: apply(x$24: phantm.types.Type) :: 1
+phantm.util.Positional: setPosBetween(from: phantm.util.Positional,to: phantm.util.Positional) :: 1
+phantm.ast.Trees.NSGlobal: <init>() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$typ$2: apply() :: 1
+phantm.types.TypeEnvironment$$anonfun$getGlobalsType$1: applyOrElse(Ljava/lang/Object;Lscala/Function1;) :: 1
+phantm.phases.CollectSymbols.$anonfun: apply(a: phantm.ast.Trees.ArgumentDecl) :: 1
+phantm.types.TResource: productElement(x$1: Int) :: 1
+phantm.types.TFalse: productElement(x$1: Int) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$5: apply() :: 1
+phantm.cfg.ASTToCFG$: FreshVariable$1$lzycompute(Lscala/runtime/VolatileObjectRef;Lscala/runtime/VolatileObjectRef;) :: 1
+phantm.phases.CollectSymbols.$anonfun: apply(x: phantm.ast.Trees.InterfaceDecl) :: 1
+phantm.phases.PureStatementsPhase: <init>() :: 1
+phantm.symbols.MVProtected: <init>() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$4$$anonfun$apply$10: apply() :: 1
+phantm.Main: <init>() :: 1
+phantm.types.TypeEnvironment.$anonfun: apply(k: phantm.cfg.Trees.SimpleVariable) :: 1
+phantm.types.TString: productPrefix() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x: phantm.symbols.PropertySymbol) :: 1
+phantm.types.TypeEnvironment.$anonfun: apply(check$ifrefutable$1: phantm.cfg.Trees.SimpleVariable, phantm.types.Type) :: 1
+phantm.phases.TypeAnalyzingPhase$$anonfun$1: apply() :: 1
+phantm.types.TTrue: canEqual(x$1: Any) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$1: String,x$2: phantm.util.Positional) :: 1
+phantm.ast.STToAST.$anonfun: apply(x: phantm.ast.Trees.Expression,y: phantm.ast.Trees.Expression) :: 1
+phantm.types.TBoolean: productArity() :: 1
+phantm.phases.CollectSymbols.$anonfun.$anonfun: apply(check$ifrefutable$2: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.InlineFull: productElement(x$1: Int) :: 1
+phantm.types.BaseTypeEnvironment$: union(Lphantm/dataflow/Environment;) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$1: apply() :: 1
+phantm.ast.STToAST.$anonfun: apply(oa: phantm.ast.Trees.ObjectAccess) :: 1
+phantm.util.API.Writer.$anonfun: apply(a: phantm.types.Type, Boolean, Boolean) :: 1
+phantm.phases.MethodGraphGeneration.$anonfun: apply(x$2: String, phantm.symbols.ClassSymbol) :: 1
+phantm.types.ArrayKey: <init>() :: 1
+phantm.cfg.Trees.POSTDEC: <init>() :: 1
+phantm.phases.IncludesConstantsResolutionPhase.$anonfun: apply(check$ifrefutable$1: String, phantm.ast.Trees.Scalar) :: 1
+phantm.types.TypeEnvironment: union(e: phantm.types.TypeEnvironment) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$utyp$1$$anonfun$apply$25: apply() :: 1
+phantm.ast.ASTTraversal.$anonfun: apply(el: Any) :: 1
+phantm.util.API.Reader.$anonfun.$anonfun.$anonfun: apply(x$1: scala.xml.Node, phantm.types.Type, Boolean, Boolean) :: 1
+phantm.types.TUninitialized: <init>() :: 1
+phantm.cfg.Trees.IsArray: <init>() :: 1
+phantm.cfg.Trees.IsFloat: <init>() :: 1
+phantm.annotations.SourceAnnotations.Parser.$anonfun: apply(x0$7: phantm.annotations.SourceAnnotations.Parser.~[phantm.types.Type,String]) :: 1
+phantm.ast.ASTTraversal.$anonfun: apply(n: _) :: 1
+phantm.cfg.ASTToCFG.$anonfun: apply(v: phantm.cfg.VertexImp[phantm.cfg.Trees.Statement]) :: 1
+phantm.types.TString: productArity() :: 1
+phantm.phases.CollectSymbols.$anonfun: apply(x$12: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.types.TRealObject.$anonfun: apply(check$ifrefutable$1: String, phantm.types.Type) :: 1
+phantm.cfg.Trees.IsObject: <init>() :: 1
+phantm.InlineFull: <init>() :: 1
+phantm.types.TBoolean: productIterator() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$56: phantm.cfg.Trees.SimpleValue) :: 1
+phantm.types.TUnion$$anonfun$depth$2: apply$mcIII$sp(II) :: 1
+phantm.util.Unserializer.$anonfun: apply(x$2: phantm.util.UValue, phantm.util.UValue) :: 1
+phantm.types.TNumeric: canEqual(x$1: Any) :: 1
+phantm.Main.$anonfun: apply(path: String) :: 1
+phantm.cfg.Trees.DIV: <init>() :: 1
+phantm.ast.ASTTransform$$anonfun$1: phantm$ast$ASTTransform$$anonfun$$$outer() :: 1
+phantm.util.Reporter$$anonfun$emitAll$1$$anonfun$apply$2: apply() :: 1
+phantm.types.TFunctionAny: <init>() :: 1
+phantm.types.TBottom: productIterator() :: 1
+phantm.cfg.Trees.BOOLEANOR: <init>() :: 1
+phantm.types.TFunction: args() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$typ$3$$anonfun$apply$22: apply() :: 1
+phantm.types.TypeLattice.$anonfun.$anonfun: apply(y: phantm.types.Type) :: 1
+phantm.util.Unserializer.$anonfun: apply(check$ifrefutable$3: String, phantm.types.Type) :: 1
+phantm.phases.CollectSymbols.$anonfun: apply(x$13: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.symbols.Symbolic: hasSymbol() :: 1
+phantm.util.Reporter$$anonfun$emitQuickFix$1: apply() :: 1
+phantm.symbols.ID: <init>() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$54: phantm.types.Type, Int) :: 1
+phantm.cfg.Trees.SILENCE: <init>() :: 1
+phantm.parser.Parser.$anonfun: apply(c: phantm.util.Positional, String) :: 1
+phantm.phases.CallGraphPhase.$anonfun.$anonfun: apply(e: phantm.cfg.EdgeImp[Int]) :: 1
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typeFromSV$1$8$$anonfun$apply$1: isDefinedAt(Ljava/lang/Object;) :: 1
+phantm.types.TAnyClass: productIterator() :: 1
+phantm.util.API.Writer.$anonfun.$anonfun.$anonfun: apply(t: phantm.types.Type) :: 1
+phantm.types.TBoolean: productElement(x$1: Int) :: 1
+phantm.types.TypeLattice.$anonfun: apply(k: String) :: 1
+phantm.types.TypeTransferFunction: <init>() :: 1
+phantm.types.TArray.$anonfun: apply(check$ifrefutable$2: phantm.types.ArrayKey, phantm.types.Type) :: 1
+phantm.ast.Trees.CastUnset: <init>() :: 1
+phantm.cfg.Trees.IsString: <init>() :: 1
+phantm.types.TFalse: productPrefix() :: 1
+phantm.types.TArray.$anonfun: apply(x$8: phantm.types.ArrayKey, phantm.types.Type) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$array$6$$anonfun$apply$9: apply() :: 1
+phantm.types.TInt: canEqual(x$1: Any) :: 1
+phantm.phases.CallGraphGeneration.$anonfun: apply(node: phantm.ast.Trees.Tree,ctx: phantm.phases.CGContext) :: 1
+phantm.cfg.ASTToCFG: FreshName() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$array$5$$anonfun$apply$3: apply() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$14: phantm.types.Type) :: 1
+phantm.annotations.SourceAnnotations.Parser.$anonfun.$anonfun: apply(x0$8: phantm.annotations.SourceAnnotations.Parser.~[String,phantm.types.Type]) :: 1
+phantm.types.TString: productIterator() :: 1
+phantm.ast.ASTTransform.$anonfun: apply(iv: phantm.ast.Trees.InitVariable) :: 1
+phantm.phases.TypeFlowAnalysis.$anonfun: apply(m: phantm.ast.Trees.MethodDecl) :: 1
+phantm.helpers.Main: main(args: Array[String]) :: 1
+phantm.util.Positional: line_end_=(x$1: Int) :: 1
+phantm.util.Reporter$$anonfun$get$1: apply() :: 1
+phantm.types.TResource: canEqual(x$1: Any) :: 1
+phantm.cfg.ASTToCFG.$anonfun: apply(av: Option[phantm.ast.Trees.Expression], phantm.ast.Trees.Expression, Boolean) :: 1
+phantm.InlineFull: productArity() :: 1
+phantm.annotations.SourceAnnotations.Parser: <init>() :: 1
+phantm.util.API.Reader.$anonfun.$anonfun.$anonfun: apply(a: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.types.TypeEnvironment.$anonfun: apply(x$3: phantm.cfg.Trees.SimpleVariable, phantm.types.Type) :: 1
+phantm.phases.CallGraphGeneration.CallGraph.$anonfun: apply() :: 1
+phantm.ast.Trees.NSResolved: <init>() :: 1
+phantm.types.TAny: canEqual(x$1: Any) :: 1
+phantm.types.TFloat: canEqual(x$1: Any) :: 1
+phantm.phases.NSWrapper: trStmt(st: phantm.ast.Trees.Statement) :: 1
+phantm.phases.CallGraphGeneration.CallGraph.$anonfun.$anonfun: apply(x$4: phantm.cfg.EdgeImp[Int]) :: 1
+phantm.types.TNull: <init>() :: 1
+phantm.util.Positional: setPos(p: phantm.parser.ParseNode) :: 1
+phantm.util.Reporter.$anonfun: apply(x: Option[String], scala.collection.immutable.Set[Reporter.this.Error]) :: 1
+phantm.util.Reporter.$anonfun: apply(x$4: scala.collection.immutable.Set[Reporter.this.Error],x$5: scala.collection.immutable.Set[Reporter.this.Error]) :: 1
+phantm.types.TTop: <init>() :: 1
+phantm.cfg.LabeledDirectedGraphImp.Group.$anonfun: apply(sg: LabeledDirectedGraphImp.this.Group) :: 1
+phantm.cfg.ASTToCFG.$anonfun.$anonfun: apply(check$ifrefutable$4: phantm.cfg.VertexImp[phantm.cfg.Trees.Statement], phantm.util.Positional) :: 1
+phantm.phases.APIImportationPhase.$anonfun: apply(api: String) :: 1
+phantm.symbols.Symbolic: opt_sym_=(x$1: Option[phantm.symbols.Symbol]) :: 1
+phantm.phases.CollectSymbols.$anonfun: apply(i: phantm.symbols.IfaceSymbol, phantm.ast.Trees.InterfaceDecl) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$48: phantm.types.Type,x$49: phantm.types.Type) :: 1
+phantm.util.API.Reader.$anonfun.$anonfun: apply(a: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.phases.NSResolver: trExpr(e: phantm.ast.Trees.Expression) :: 1
+phantm.util.API.Writer.$anonfun.$anonfun: apply(x: phantm.types.Type,y: phantm.types.Type) :: 1
+phantm.types.TypeFlowAnalyzer.$anonfun: apply(v: phantm.cfg.VertexImp[phantm.cfg.Trees.Statement], phantm.types.TypeEnvironment) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$array$5$$anonfun$apply$4: apply() :: 1
+phantm.ast.Trees.CastBool: <init>() :: 1
+phantm.types.TRealObject$$anonfun$lookupField$1: apply() :: 1
+phantm.annotations.SourceAnnotations.Parser.$anonfun: apply(x0$6: phantm.annotations.SourceAnnotations.Parser.~[phantm.annotations.SourceAnnotations.Parser.~[String,String],phantm.types.Type]) :: 1
+phantm.util.UNull: productElement(x$1: Int) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$array$2: apply() :: 1
+phantm.types.TypeLattice: productIterator() :: 1
+phantm.phases.CollectSymbols$$anonfun$firstIfacePass0$2: phantm$phases$CollectSymbols$$anonfun$$$outer() :: 1
+phantm.cfg.ASTToCFG.$anonfun: apply(v: phantm.ast.Trees.InitVariable) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(unser: phantm.util.DumpCollector) :: 1
+phantm.types.TypeFlowAnalyzer.$anonfun: apply(x: phantm.cfg.VertexImp[phantm.cfg.Trees.Statement], phantm.types.TypeEnvironment) :: 1
+phantm.cfg.LabeledDirectedGraphImp: edges() :: 1
+phantm.types.TAnyClass: productArity() :: 1
+phantm.types.TString: canEqual(x$1: Any) :: 1
+phantm.types.TypeEnvironment: union(Lphantm/dataflow/Environment;) :: 1
+phantm.util.UFalse: <init>() :: 1
+phantm.cfg.Trees.LT: <init>() :: 1
+phantm.annotations.SourceAnnotations.Parser.$anonfun: apply(x0$3: phantm.annotations.SourceAnnotations.Parser.~[phantm.annotations.SourceAnnotations.Parser.~[String,String],phantm.types.Type]) :: 1
+phantm.types.TypeFlowAnalyzer$$anonfun$getSuperGlobal$1$1: apply() :: 1
+phantm.types.TNumeric: <init>() :: 1
+phantm.phases.ParsingPhase: <init>() :: 1
+phantm.util.API.Reader.$anonfun.$anonfun: apply(m: scala.xml.Node) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(a: phantm.types.FunctionType, Int) :: 1
+phantm.util.Unserializer.$anonfun: apply(check$ifrefutable$2: phantm.util.UValue, phantm.util.UValue) :: 1
+phantm.util.API.Reader.$anonfun.$anonfun.$anonfun: apply(check$ifrefutable$1: scala.xml.Node, phantm.types.Type, Boolean, Boolean) :: 1
+phantm.cfg.Trees.GT: <init>() :: 1
+phantm.util.UTrue: canEqual(x$1: Any) :: 1
+phantm.types.TInt: productArity() :: 1
+phantm.util.IncludeResolver.$anonfun: apply(p: String) :: 1
+phantm.util.IncludeResolver.$anonfun.$anonfun.$anonfun: apply() :: 1
+phantm.types.TBottom: productArity() :: 1
+phantm.annotations.SourceAnnotations.Parser.$anonfun: apply(x$3: String) :: 1
+phantm.dataflow.StronglyConnectedComponents.$anonfun.$anonfun.$anonfun: apply(e: phantm.cfg.EdgeImp[S]) :: 1
+phantm.cfg.ASTToCFG.$anonfun: apply(x$3: Option[phantm.ast.Trees.Variable], Int) :: 1
+phantm.phases.CollectSymbols.$anonfun: apply(i: phantm.ast.Trees.StaticClassRef) :: 1
+phantm.InlineManual: productArity() :: 1
+phantm.helpers.ASTGraph.$anonfun: apply(c: Any) :: 1
+phantm.phases.APIImportationPhase: <init>() :: 1
+phantm.symbols.IfaceSymbol.$anonfun: apply(x$4: phantm.symbols.IfaceSymbol) :: 1
+phantm.phases.NSResolver.$anonfun: apply(ad: phantm.ast.Trees.ArgumentDecl) :: 1
+phantm.util.API.Reader.$anonfun: apply(cc: scala.xml.Node) :: 1
+phantm.symbols.Scope: lookupVariable(n: String) :: 1
+phantm.ast.ASTTransform.$anonfun: apply(x0$1: Option[phantm.ast.Trees.Expression], phantm.ast.Trees.Expression, Boolean) :: 1
+phantm.types.TArray$$anonfun$injectByType$1: phantm$types$TArray$$anonfun$$$outer() :: 1
+phantm.InlineNone: <init>() :: 1
+phantm.util.API$Writer$$anonfun$emitXML$2$$anonfun$apply$11: phantm$util$API$Writer$$anonfun$$anonfun$$$outer() :: 1
+phantm.cfg.ASTToCFG$$anonfun$phantm$cfg$ASTToCFG$$stmt$1$1: apply() :: 1
+phantm.Settings$$anonfun$get$1: apply() :: 1
+phantm.phases.MethodGraphGeneration.$anonfun.$anonfun: apply(x$1: String, phantm.symbols.MethodSymbol) :: 1
+phantm.types.TypeFlowAnalyzer.$anonfun: apply(check$ifrefutable$2: phantm.cfg.VertexImp[phantm.cfg.Trees.Statement], phantm.types.TypeEnvironment) :: 1
+phantm.util.API.Reader.$anonfun.$anonfun: apply(check$ifrefutable$2: scala.xml.Node, phantm.types.Type, Boolean, Boolean) :: 1
+phantm.types.TRealObject.$anonfun: apply(x$2: String, phantm.types.Type) :: 1
+phantm.types.TTrue: productElement(x$1: Int) :: 1
+phantm.types.TInt: productElement(x$1: Int) :: 1
+phantm.annotations.SourceAnnotations: <init>() :: 1
+phantm.types.TAnyArray: <init>() :: 1
+phantm.InlineManual: <init>() :: 1
+phantm.phases.TypeFlowAnalysis.$anonfun: apply() :: 1
+phantm.types.TypeFlowAnalyzer.$anonfun: apply(x$3: phantm.cfg.VertexImp[phantm.cfg.Trees.Statement], phantm.types.TypeEnvironment) :: 1
+phantm.cfg.Trees.NOTIDENTICAL: <init>() :: 1
+phantm.phases.PhasesRunner.$anonfun.$anonfun: apply(x$1: phantm.phases.Phase, Int) :: 1
+phantm.phases.MethodGraphGeneration.MethodGraph: <init>() :: 1
+phantm.ast.Trees.MFStatic: <init>() :: 1
+phantm.types.TypeLattice: <init>() :: 1
+phantm.types.ObjectIdUse: canEqual(x$1: Any) :: 1
+phantm.phases.TypeAnalyzingPhase$$anonfun$phantm$phases$TypeAnalyzingPhase$$displaySummary$1$2: apply() :: 1
+phantm.types.TFunctionAny: ret() :: 1
+phantm.util.Reporter$Error: phantm$util$Reporter$Error$$$outer() :: 1
+phantm.cfg.Trees.MINUS: <init>() :: 1
+phantm.phases.PhasesRunner$$anonfun$run$1: phantm$phases$PhasesRunner$$anonfun$$$outer() :: 1
+phantm.phases.PhasesRunner.$anonfun.$anonfun: apply(check$ifrefutable$1: phantm.phases.Phase, Int) :: 1
+phantm.phases.CallGraphGeneration.CallGraph: entry() :: 1
+phantm.types.TBoolean: productPrefix() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$7$$anonfun$apply$20: apply() :: 1
+phantm.types.TRealObject.$anonfun: apply() :: 1
+phantm.InlineNone: productArity() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$9: phantm.types.Type,x$10: phantm.types.Type) :: 1
+phantm.types.TNumeric: productElement(x$1: Int) :: 1
+phantm.cfg.ASTToCFG.$anonfun.$anonfun: apply(eOut: phantm.cfg.EdgeImp[phantm.cfg.Trees.Statement]) :: 1
+phantm.annotations.CommentAnnotation: attachComment(com: Option[String]) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$21: phantm.types.Type,x$22: phantm.types.Type) :: 1
+phantm.types.TUnion: <init>() :: 1
+phantm.util.Unserializer.$anonfun: apply(check$ifrefutable$5: phantm.util.UValue, phantm.util.UValue) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$5: phantm.types.Type,x$6: phantm.types.Type) :: 1
+phantm.cfg.Trees.Skip: <init>() :: 1
+phantm.util.Positional: line_=(x$1: Int) :: 1
+phantm.types.TTop: productElement(x$1: Int) :: 1
+phantm.annotations.FunctionTypeAnnotation: annotateFromFT(from: phantm.annotations.FunctionTypeAnnotation) :: 1
+phantm.types.TTop: canEqual(x$1: Any) :: 1
+phantm.phases.TypeFlowAnalysis$$anonfun$getCFG$1: apply() :: 1
+phantm.types.TypeFlowAnalyzer.$anonfun: apply(e1: phantm.types.TypeEnvironment,e2: phantm.types.TypeEnvironment) :: 1
+phantm.phases.CallGraphGeneration.CallGraph.$anonfun.$anonfun: apply(x$3: phantm.cfg.EdgeImp[Int]) :: 1
+phantm.symbols.ClassSymbol.$anonfun: apply(x: String, phantm.symbols.PropertySymbol) :: 1
+phantm.phases.CallGraphPhase.$anonfun.$anonfun: apply(v: phantm.cfg.VertexImp[Int]) :: 1
+phantm.util.DumpCollector$$anonfun$1: phantm$util$DumpCollector$$anonfun$$$outer() :: 1
+phantm.phases.APIExportingPhase: <init>() :: 1
+phantm.types.TypeEnvironment.$anonfun: apply(id: phantm.types.ObjectId) :: 1
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typeFromSV$1$1: applyOrElse(Ljava/lang/Object;Lscala/Function1;) :: 1
+phantm.util.Reporter$$anonfun$emitAll$1$$anonfun$apply$1: apply() :: 1
+phantm.helpers.Helper: generate(input: String,output: String,ctx: phantm.phases.PhasesContext) :: 1
+phantm.util.Positional: col_end_=(x$1: Int) :: 1
+phantm.util.API.Writer.$anonfun: apply(x$4: String, List[phantm.types.TFunction], List[phantm.types.Type]) :: 1
+phantm.util.API.Reader.$anonfun.$anonfun.$anonfun: apply(a: scala.xml.Node) :: 1
+phantm.util.UFalse: canEqual(x$1: Any) :: 1
+phantm.phases.ParsingPhase.$anonfun: apply(f: String) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$55: phantm.types.Type, Int) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$2: apply() :: 1
+phantm.ast.Trees.CastDouble: <init>() :: 1
+phantm.util.UTrue: <init>() :: 1
+phantm.types.TArray.$anonfun: apply(x$5: phantm.types.Type) :: 1
+phantm.phases.PureStatementsChecks.$anonfun: apply(v: Option[phantm.ast.Trees.Expression], phantm.ast.Trees.Expression, Boolean) :: 1
+phantm.symbols.IfaceSymbol.$anonfun: apply(x$5: phantm.symbols.IfaceSymbol) :: 1
+phantm.util.Reporter.$anonfun: apply(errsPerFile: scala.collection.immutable.Set[Reporter.this.Error]) :: 1
+phantm.InlineFull: canEqual(x$1: Any) :: 1
+phantm.types.TArray$$anonfun$injectByType$1: apply() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$variable$1: apply() :: 1
+phantm.types.TArray.$anonfun: apply(x$13: phantm.types.ArrayKey, phantm.types.Type) :: 1
+phantm.util.ENotice: productPrefix() :: 1
+phantm.types.TFalse: <init>() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$array$1: apply() :: 1
+phantm.types.TypeFlowAnalyzer.$anonfun: apply(mf: phantm.symbols.FunctionSymbol) :: 1
+phantm.ast.ASTSimpleTraversal.$anonfun: apply(t: phantm.ast.Trees.Tree,ctx: phantm.ast.DummyContext) :: 1
+phantm.cfg.ASTToCFG: <init>() :: 1
+phantm.symbols.MVPrivate: <init>() :: 1
+phantm.InlineManual: productElement(x$1: Int) :: 1
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typeFromSV$1$4: apply() :: 1
+phantm.phases.CFGGenerationPhase: <init>() :: 1
+phantm.types.TFalse: productIterator() :: 1
+phantm.util.Positional$$anonfun$getPos$1: apply() :: 1
+phantm.cfg.ASTToCFG.$anonfun: apply(c: Option[phantm.ast.Trees.Expression], phantm.ast.Trees.Statement) :: 1
+phantm.cfg.Trees.BITWISEXOR: <init>() :: 1
+phantm.types.TypeFlowAnalyzer.$anonfun: apply(msg: String,pos: phantm.util.Positional) :: 1
+phantm.ast.Trees.MFPrivate: <init>() :: 1
+phantm.ast.ASTTransform.$anonfun: apply(x$3: Option[phantm.ast.Trees.Variable]) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$array$5$$anonfun$apply$4$$anonfun$apply$6: apply() :: 1
+phantm.types.TFloat: productIterator() :: 1
+phantm.util.API.Writer.$anonfun.$anonfun: apply(ft1: phantm.types.TFunction,ft2: phantm.types.TFunction) :: 1
+phantm.types.TResource: <init>() :: 1
+phantm.util.API.Writer.$anonfun: apply(x$3: phantm.types.Type) :: 1
+phantm.util.Positional: getPos() :: 1
+phantm.cfg.Trees.MOD: <init>() :: 1
+phantm.cfg.ASTToCFG$: phantm$cfg$ASTToCFG$$Emit$1$lzycompute(Lphantm/cfg/ControlFlowGraph;Lscala/runtime/VolatileObjectRef;) :: 1
+phantm.types.TResource: productArity() :: 1
+phantm.phases.SymbolsCollectionPhase: <init>() :: 1
+phantm.types.TFloat: productArity() :: 1
+phantm.ast.Trees.CFFinal: <init>() :: 1
+phantm.util.UNull: productArity() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$array$6: apply() :: 1
+phantm.util.API.Reader.$anonfun: apply(e: scala.xml.Node) :: 1
+phantm.annotations.CommentAnnotation: comment_=(x$1: Option[String]) :: 1
+phantm.phases.MethodGraphGeneration: MethodGraph$lzycompute() :: 1
+phantm.annotations.SourceAnnotations.Parser.$anonfun: apply(x0$1: List[phantm.annotations.SourceAnnotations.Parser.ArrayEntryType]) :: 1
+phantm.types.TAnyClass: productPrefix() :: 1
+phantm.ast.Trees: <init>() :: 1
+phantm.types.TypeTransferFunction: apply(node: phantm.cfg.Trees.Statement,envInit: phantm.types.TypeEnvironment) :: 1
+phantm.ast.Trees.NSCurrent: <init>() :: 1
+phantm.InlineNone: productElement(x$1: Int) :: 1
+phantm.ast.Trees.CFAbstract: <init>() :: 1
+phantm.phases.CallGraphGeneration.CallGraph.$anonfun: apply(x$1: phantm.symbols.FunctionSymbol) :: 1
+phantm.types.TypeLattice: productPrefix() :: 1
+phantm.types.TTrue: productIterator() :: 1
+phantm.phases.NSWrapper: trStmts(sts: List[phantm.ast.Trees.Statement]) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$12: phantm.types.Type,x$13: phantm.types.Type) :: 1
+phantm.annotations.SourceAnnotations.Parser.$anonfun.$anonfun: apply(x0$4: phantm.annotations.SourceAnnotations.Parser.~[phantm.annotations.SourceAnnotations.Parser.~[String,String],phantm.types.Type]) :: 1
+phantm.types.ObjectIdUse: productArity() :: 1
+phantm.util.Reporter$$anonfun$emitAll$3: phantm$util$Reporter$$anonfun$$$outer() :: 1
+phantm.types.TypeTransferFunction.$anonfun.$anonfun: applyOrElse([A1 <: phantm.types.ArrayKey, phantm.types.Type) :: 1
+phantm.dataflow.AnalysisAlgorithm.$anonfun: apply() :: 1
+phantm.util.Positional: setPos(line: Int,col: Int,file: String) :: 1
+phantm.util.API$Reader$APIPos: phantm$util$API$Reader$APIPos$$$outer() :: 1
+phantm.cfg.ASTToCFG.Emit: <init>() :: 1
+phantm.InlineLeaves: productArity() :: 1
+phantm.phases.IncludesConstantsResolutionPhase: <init>() :: 1
+phantm.ast.Trees.PHPNull: apply() :: 1
+phantm.ast.Trees.CFNormal: <init>() :: 1
+phantm.types.TypeTransferFunction$$anonfun$phantm$types$TypeTransferFunction$$typeFromSV$1$8$$anonfun$apply$1: applyOrElse(Ljava/lang/Object;Lscala/Function1;) :: 1
+phantm.symbols.FunctionSymbol.$anonfun: apply(x: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.types.TTrue: productPrefix() :: 1
+phantm.util.API.Writer.$anonfun.$anonfun: apply(arg: phantm.types.Type, Boolean, Boolean) :: 1
+phantm.phases.DumpsCollectionPhase: <init>() :: 1
+phantm.types.TTop: productIterator() :: 1
+phantm.cfg.LabeledDirectedGraphImp.$anonfun: apply(edge: phantm.cfg.EdgeImp[LabelType]) :: 1
+phantm.types.TypeTransferFunction.$anonfun: applyOrElse([A1 <: phantm.types.ArrayKey, phantm.types.Type) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(check$ifrefutable$1: phantm.types.Type, Int) :: 1
+phantm.cfg.Trees.BITWISEAND: <init>() :: 1
+phantm.phases.NamespaceResolverPhase.$anonfun: apply(stmt: phantm.ast.Trees.Statement) :: 1
+phantm.phases.CollectSymbols$$anonfun$secondClassPass$1: phantm$phases$CollectSymbols$$anonfun$$$outer() :: 1
+phantm.types.TAny: productArity() :: 1
+phantm.annotations.SourceAnnotations.Parser.$anonfun: apply(x$2: String) :: 1
+phantm.helpers.CFGGraphs.$anonfun: apply(m: phantm.ast.Trees.MethodDecl) :: 1
+phantm.phases.DumpsCollectionPhase.$anonfun: apply(path: String) :: 1
+phantm.cfg.Trees.GEQ: <init>() :: 1
+phantm.cfg.ASTToCFG.$anonfun: apply(check$ifrefutable$2: phantm.cfg.VertexImp[phantm.cfg.Trees.Statement], phantm.util.Positional) :: 1
+phantm.util.Reporter.$anonfun: apply(a: Option[String], scala.collection.immutable.Set[Reporter.this.Error]) :: 1
+phantm.types.TArray.$anonfun: apply(check$ifrefutable$4: phantm.types.ArrayKey, phantm.types.Type) :: 1
+phantm.phases.NamespaceResolverPhase.$anonfun.$anonfun: apply(stmt: phantm.ast.Trees.Statement) :: 1
+phantm.types.TNull: productElement(x$1: Int) :: 1
+phantm.util.Unserializer.$anonfun: apply(x$4: String, phantm.types.Type) :: 1
+phantm.InlineLeaves: canEqual(x$1: Any) :: 1
+phantm.types.TString: <init>() :: 1
+phantm.types.BaseTypeEnvironment$: copy() :: 1
+phantm.types.BaseTypeEnvironment: <init>() :: 1
+phantm.InlineLeaves: productElement(x$1: Int) :: 1
+phantm.types.TFloat: <init>() :: 1
+phantm.phases.CallGraphGeneration.CallGraph.$anonfun: apply(x$2: phantm.cfg.EdgeImp[Int]) :: 1
+phantm.cfg.Trees.IDENTICAL: <init>() :: 1
+phantm.phases.PureStatementsChecks.$anonfun: apply(a: phantm.ast.Trees.CallArg) :: 1
+phantm.dataflow.StronglyConnectedComponents.$anonfun.$anonfun.$anonfun: apply(x$3: StronglyConnectedComponents.this.SCC) :: 1
+phantm.ast.Trees.THArray: <init>() :: 1
+phantm.phases.ASTChecksPhase: <init>() :: 1
+phantm.types.TypeTransferFunction.$anonfun.$anonfun: isDefinedAt(x2: phantm.types.ArrayKey, phantm.types.Type) :: 1
+phantm.ast.ASTTransform.$anonfun: apply(c: phantm.ast.Trees.Catch) :: 1
+phantm.ast.ASTTransform.$anonfun: apply(c: Option[phantm.ast.Trees.Expression], phantm.ast.Trees.Statement) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$typ$3$$anonfun$apply$23$$anonfun$apply$24: apply() :: 1
+phantm.annotations.FunctionAnnotation: isPure_=(x$1: Boolean) :: 1
+phantm.InlineLeaves: <init>() :: 1
+phantm.annotations.SourceAnnotations.Parser.$anonfun: apply(s: String) :: 1
+phantm.types.TAny: productIterator() :: 1
+phantm.phases.ParsingPhase.$anonfun: apply(c: String, phantm.parser.Parser, Option[phantm.parser.ParseNode]) :: 1
+phantm.types.TypeLattice.$anonfun: apply(x$5: phantm.types.Type) :: 1
+phantm.annotations.FunctionTypeAnnotation: ftyps_=(x$1: scala.collection.immutable.Set[phantm.types.FunctionType]) :: 1
+phantm.util.UTrue: productPrefix() :: 1
+phantm.types.TypeLattice.$anonfun.$anonfun: apply(t2: phantm.types.Type) :: 1
+phantm.cfg.LabeledDirectedGraphImp.$anonfun: apply(x$6: phantm.cfg.EdgeImp[LabelType]) :: 1
+phantm.ast.Trees.MFFinal: <init>() :: 1
+phantm.cfg.EdgeCounter: <init>() :: 1
+phantm.cfg.Trees.SHIFTRIGHT: <init>() :: 1
+phantm.util.ENotice: productArity() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$42: phantm.types.Type,x$43: phantm.types.Type) :: 1
+phantm.InlineNone: productPrefix() :: 1
+phantm.cfg.ASTToCFG.$anonfun: apply(x$18: String, List[phantm.cfg.VertexImp[phantm.cfg.Trees.Statement], phantm.util.Positional) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$59: phantm.types.Type,x$60: phantm.types.Type) :: 1
+phantm.InlineLeaves: productPrefix() :: 1
+phantm.types.TNull: productArity() :: 1
+phantm.types.TArray$$anonfun$lookup$2: apply() :: 1
+phantm.dataflow.StronglyConnectedComponents.$anonfun.$anonfun: apply(v: phantm.cfg.VertexImp[S]) :: 1
+phantm.util.Unserializer.$anonfun: apply(check$ifrefutable$1: phantm.util.UValue, phantm.util.UValue) :: 1
+phantm.types.TFunctionAny$: ret() :: 1
+phantm.phases.CallGraphGeneration$CallGraph$$anonfun$addNode$2: apply() :: 1
+phantm.util.IncludeResolver.$anonfun: apply(scalar: phantm.ast.Trees.Scalar) :: 1
+phantm.phases.CFGGenerator.$anonfun: apply(m: phantm.ast.Trees.MethodDecl) :: 1
+phantm.InlineManual: canEqual(x$1: Any) :: 1
+phantm.symbols.FunctionSymbol.$anonfun: apply(check$ifrefutable$1: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.types.ObjectIdUse: productIterator() :: 1
+phantm.types.TUninitialized: productElement(x$1: Int) :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$51: phantm.types.Type,x$52: phantm.types.Type) :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$6$$anonfun$apply$17: apply() :: 1
+phantm.cfg.Trees.CONCAT: <init>() :: 1
+phantm.util.UTrue: productIterator() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$array$5$$anonfun$apply$4$$anonfun$apply$5: apply() :: 1
+phantm.InlineNone: canEqual(x$1: Any) :: 1
+phantm.util.DumpCollector$$anonfun$3: apply() :: 1
+phantm.util.IncludeResolver.$anonfun: apply(ph: phantm.phases.Phase) :: 1
+phantm.util.UFalse: productIterator() :: 1
+phantm.util.Reporter.$anonfun.$anonfun: apply(e: Reporter.this.Error) :: 1
+phantm.types.TypeEnvironment.$anonfun: applyOrElse([A1 <: phantm.cfg.Trees.SimpleVariable, phantm.types.Type) :: 1
+phantm.dataflow.AnalysisAlgorithm$$anonfun$1: apply() :: 1
+phantm.ast.ASTSimpleTraversal.$anonfun: apply(tr: phantm.ast.Trees.Tree) :: 1
+phantm.util.Evaluator: <init>() :: 1
+phantm.types.TypeFlowAnalyzer.$anonfun: apply(x$1: String, phantm.symbols.ArgumentSymbol) :: 1
+phantm.types.TypeLattice.$anonfun: apply(x$6: phantm.types.Type) :: 1
+phantm.phases.MethodGraphGeneration.$anonfun: apply(check$ifrefutable$1: String, phantm.symbols.ClassSymbol) :: 1
+phantm.symbols.Scope: variables_=(x$1: scala.collection.mutable.HashMap[String,phantm.symbols.VariableSymbol]) :: 1
+phantm.phases.TypeAnalyzingPhase.$anonfun: apply(check$ifrefutable$1: phantm.symbols.FunctionSymbol, Int) :: 1
+phantm.types.TResource: productPrefix() :: 1
+phantm.dataflow.AnalysisAlgorithm$$anonfun$detectUnreachable$2: phantm$dataflow$AnalysisAlgorithm$$anonfun$$$outer() :: 1
+phantm.annotations.AnnotationsStore: <init>() :: 1
+phantm.ast.ASTTransform.$anonfun: apply(x$2: Option[phantm.ast.Trees.Variable]) :: 1
+phantm.symbols.Scope: registerPredefVariables() :: 1
+phantm.util.API.Reader.$anonfun.$anonfun: apply(x$2: scala.xml.Node, phantm.types.Type, Boolean, Boolean) :: 1
+phantm.cfg.Trees.IsNull: <init>() :: 1
+phantm.phases.CollectSymbols.$anonfun: apply(c: phantm.symbols.ClassSymbol, phantm.ast.Trees.ClassDecl) :: 1
+phantm.annotations.SourceAnnotations.Parser.$anonfun.$anonfun: apply(x0$2: List[phantm.annotations.SourceAnnotations.Parser.ArrayEntryType]) :: 1
+phantm.util.DumpCollector$$anonfun$2: phantm$util$DumpCollector$$anonfun$$$outer() :: 1
+phantm.annotations.FunctionTypeAnnotation: registerFType(ftyp: phantm.types.FunctionType) :: 1
+phantm.types.ObjectIdUse: <init>() :: 1
+phantm.phases.NamespaceResolverPhase: <init>() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$typedef$1: apply() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$46: phantm.types.Type,x$47: phantm.types.Type) :: 1
+phantm.types.TNumeric: productPrefix() :: 1
+phantm.types.TNumeric: productIterator() :: 1
+phantm.ast.Trees.CastArray: <init>() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$typedef$2: apply() :: 1
+phantm.annotations.SourceAnnotations$Parser$$anonfun$arrayentry$1: apply() :: 1
+phantm.cfg.ASTToCFG.$anonfun: apply(x$6: phantm.cfg.VertexImp[phantm.cfg.Trees.Statement], phantm.util.Positional) :: 1
+phantm.symbols.MVPublic: <init>() :: 1
+phantm.cfg.Trees.SHIFTLEFT: <init>() :: 1
+phantm.types.TypeTransferFunction.$anonfun: apply(x$17: phantm.types.Type) :: 1
