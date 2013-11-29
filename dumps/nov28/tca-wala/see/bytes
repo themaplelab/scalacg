@@ -1,0 +1,225 @@
+Classfile jar:file:/Users/karim/Documents/workspace/scalabench/local/dist/tca-this-super/see/see-plugin.jar!/see/values/Table$Empty$.class
+  Last modified 26-Nov-2013; size 1777 bytes
+  MD5 checksum 36cda439349917be27e20896821f9900
+  Compiled from "Table.scala"
+public class see.values.Table$Empty$ extends see.values.Table
+  SourceFile: "Table.scala"
+  InnerClasses:
+       public static #55= #2 of #4; //Empty$=class see/values/Table$Empty$ of class see/values/Table
+    Scala: length = 0x0
+     
+  minor version: 0
+  major version: 50
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Utf8               see/values/Table$Empty$
+   #2 = Class              #1             //  see/values/Table$Empty$
+   #3 = Utf8               see/values/Table
+   #4 = Class              #3             //  see/values/Table
+   #5 = Utf8               Table.scala
+   #6 = Utf8               MODULE$
+   #7 = Utf8               Lsee/values/Table$Empty$;
+   #8 = Utf8               <clinit>
+   #9 = Utf8               ()V
+  #10 = Utf8               <init>
+  #11 = NameAndType        #10:#9         //  "<init>":()V
+  #12 = Methodref          #2.#11         //  see/values/Table$Empty$."<init>":()V
+  #13 = Utf8               toString
+  #14 = Utf8               ()Ljava/lang/String;
+  #15 = Utf8               Lca/uwaterloo/scalacg/annotation/MethodUID;
+  #16 = Utf8               value
+  #17 = Integer            1928
+  #18 = Utf8               EmptyTable
+  #19 = String             #18            //  EmptyTable
+  #20 = Utf8               this
+  #21 = Utf8               toBool
+  #22 = Utf8               ()Z
+  #23 = Integer            1929
+  #24 = Utf8               toLong
+  #25 = Utf8               ()J
+  #26 = Integer            1930
+  #27 = Utf8               size
+  #28 = Utf8               ()I
+  #29 = Integer            1931
+  #30 = Utf8               isFlat
+  #31 = Integer            1932
+  #32 = Utf8               map
+  #33 = Utf8               (Lscala/Function1;)Lsee/values/Table$Empty$;
+  #34 = Integer            1933
+  #35 = Utf8               mapf
+  #36 = Utf8               Lscala/Function1;
+  #37 = Utf8               readResolve
+  #38 = Utf8               ()Ljava/lang/Object;
+  #39 = Integer            1934
+  #40 = NameAndType        #6:#7          //  MODULE$:Lsee/values/Table$Empty$;
+  #41 = Fieldref           #2.#40         //  see/values/Table$Empty$.MODULE$:Lsee/values/Table$Empty$;
+  #42 = Utf8               (Lscala/Function1;)Lsee/values/Container;
+  #43 = NameAndType        #32:#33        //  map:(Lscala/Function1;)Lsee/values/Table$Empty$;
+  #44 = Methodref          #2.#43         //  see/values/Table$Empty$.map:(Lscala/Function1;)Lsee/values/Table$Empty$;
+  #45 = Utf8               (Lscala/Function1;)Lsee/values/Table;
+  #46 = Integer            1927
+  #47 = Utf8               scala/collection/immutable/Nil$
+  #48 = Class              #47            //  scala/collection/immutable/Nil$
+  #49 = Utf8               Lscala/collection/immutable/Nil$;
+  #50 = NameAndType        #6:#49         //  MODULE$:Lscala/collection/immutable/Nil$;
+  #51 = Fieldref           #48.#50        //  scala/collection/immutable/Nil$.MODULE$:Lscala/collection/immutable/Nil$;
+  #52 = Utf8               (Lscala/collection/immutable/List;)V
+  #53 = NameAndType        #10:#52        //  "<init>":(Lscala/collection/immutable/List;)V
+  #54 = Methodref          #4.#53         //  see/values/Table."<init>":(Lscala/collection/immutable/List;)V
+  #55 = Utf8               Empty$
+  #56 = Utf8               Code
+  #57 = Utf8               LocalVariableTable
+  #58 = Utf8               LineNumberTable
+  #59 = Utf8               RuntimeVisibleAnnotations
+  #60 = Utf8               Signature
+  #61 = Utf8               (Lscala/Function1<Lsee/values/Val;Lsee/values/Val;>;)Lsee/values/Table$Empty$;
+  #62 = Utf8               SourceFile
+  #63 = Utf8               InnerClasses
+  #64 = Utf8               Scala
+{
+  public static final see.values.Table$Empty$ MODULE$;
+    flags: ACC_PUBLIC, ACC_STATIC, ACC_FINAL
+
+
+  public static {};
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: new           #2                  // class see/values/Table$Empty$
+         3: invokespecial #12                 // Method "<init>":()V
+         6: return        
+
+  public java.lang.String toString();
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: ldc           #19                 // String EmptyTable
+         2: areturn       
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+               0       3     0  this   Lsee/values/Table$Empty$;
+      LineNumberTable:
+        line 24: 0
+    RuntimeVisibleAnnotations:
+      0: #15(#16=I#17)
+
+  public boolean toBool();
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_0      
+         1: ireturn       
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+               0       2     0  this   Lsee/values/Table$Empty$;
+      LineNumberTable:
+        line 26: 0
+    RuntimeVisibleAnnotations:
+      0: #15(#16=I#23)
+
+  public long toLong();
+    flags: ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: lconst_0      
+         1: lreturn       
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+               0       2     0  this   Lsee/values/Table$Empty$;
+      LineNumberTable:
+        line 27: 0
+    RuntimeVisibleAnnotations:
+      0: #15(#16=I#26)
+
+  public int size();
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_0      
+         1: ireturn       
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+               0       2     0  this   Lsee/values/Table$Empty$;
+      LineNumberTable:
+        line 28: 0
+    RuntimeVisibleAnnotations:
+      0: #15(#16=I#29)
+
+  public boolean isFlat();
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_1      
+         1: ireturn       
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+               0       2     0  this   Lsee/values/Table$Empty$;
+      LineNumberTable:
+        line 29: 0
+    RuntimeVisibleAnnotations:
+      0: #15(#16=I#31)
+
+  public see.values.Table$Empty$ map(scala.Function1<see.values.Val, see.values.Val>);
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=2, args_size=2
+         0: aload_0       
+         1: areturn       
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+               0       2     0  this   Lsee/values/Table$Empty$;
+               0       2     1  mapf   Lscala/Function1;
+      LineNumberTable:
+        line 30: 0
+    Signature: #61                          // (Lscala/Function1<Lsee/values/Val;Lsee/values/Val;>;)Lsee/values/Table$Empty$;
+    RuntimeVisibleAnnotations:
+      0: #15(#16=I#34)
+
+  public see.values.Container map(scala.Function1);
+    flags: ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0       
+         1: aload_1       
+         2: invokevirtual #44                 // Method map:(Lscala/Function1;)Lsee/values/Table$Empty$;
+         5: areturn       
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+               0       6     0  this   Lsee/values/Table$Empty$;
+               0       6     1  mapf   Lscala/Function1;
+      LineNumberTable:
+        line 23: 0
+
+  public see.values.Table map(scala.Function1);
+    flags: ACC_PUBLIC, ACC_BRIDGE, ACC_SYNTHETIC
+    Code:
+      stack=2, locals=2, args_size=2
+         0: aload_0       
+         1: aload_1       
+         2: invokevirtual #44                 // Method map:(Lscala/Function1;)Lsee/values/Table$Empty$;
+         5: areturn       
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+               0       6     0  this   Lsee/values/Table$Empty$;
+               0       6     1  mapf   Lscala/Function1;
+      LineNumberTable:
+        line 23: 0
+
+  public see.values.Table$Empty$();
+    flags: ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0       
+         1: getstatic     #51                 // Field scala/collection/immutable/Nil$.MODULE$:Lscala/collection/immutable/Nil$;
+         4: invokespecial #54                 // Method see/values/Table."<init>":(Lscala/collection/immutable/List;)V
+         7: aload_0       
+         8: putstatic     #41                 // Field MODULE$:Lsee/values/Table$Empty$;
+        11: return        
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+               0      12     0  this   Lsee/values/Table$Empty$;
+      LineNumberTable:
+        line 23: 0
+    RuntimeVisibleAnnotations:
+      0: #15(#16=I#46)
+}

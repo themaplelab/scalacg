@@ -13,7 +13,7 @@ import probe.ProbeMethod
 
 object Experiments {
   //  final lazy val benchmarks = List("argot", "fimpp", "joos", "kiama", "phantm", "scalisp", "see", "tictactoe")
-  final lazy val benchmarks = List("tictactoe")
+  final lazy val benchmarks = List("see")
 
   def main(args: Array[String]) = {
     var prefix = ""
@@ -95,7 +95,7 @@ object Experiments {
 
       //            (reachA -- reachB).toSeq.sortWith((a, b) => a.name < b.name).foreach(println)
       //            println("===========================================================================")
-      (edgesB -- edgesA).toSeq.sortWith((a, b) => a.src.name < b.src.name).foreach(println)
+      (edgesA -- edgesB).toSeq.sortWith((a, b) => a.src.name < b.src.name).foreach(println)
       //            if (name != "tca-wala") {
       //              println("===========================================================================")
       //              (typesA -- typesB).toSeq.sorted.foreach(println)
