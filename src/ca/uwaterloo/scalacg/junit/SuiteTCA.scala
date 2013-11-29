@@ -4,6 +4,9 @@ import org.junit.Test
 
 class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "callgraph:super", "callgraph:assert")) {
 
+  // TCA-WALA examples
+  @Test def testTcaWalaThis() { testPath = "junit/src/tests/tca/wala/"; runTest("This") }
+  
   //tictactoe
   @Test def testTicTacToe() { testPath = "junit/src/"; runTest("tictactoe") }
 
