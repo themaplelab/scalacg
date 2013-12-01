@@ -4,6 +4,7 @@ object Apply {
 
   def main(args: Array[String]): Unit = {
     val t: Type = TTop
+    ApplyObject.toString
     val o = O.lookupByType(t)
     val a = new API.Writer().typeToXML(t, t => t)
   }
@@ -27,4 +28,5 @@ object Apply {
     }
   }
 
+  case class ApplyObject(v: String)
 }
