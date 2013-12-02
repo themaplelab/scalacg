@@ -189,4 +189,6 @@ class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "cal
   @Test def testMultipleBounds() { runTest("MultipleBounds") }
 
   @Test def testDefInDef() { runTest("DefInDef") }
+
+  @Test def variantsExample() { runTest("VariantsExample") }
 }
