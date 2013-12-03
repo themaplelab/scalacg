@@ -18,7 +18,7 @@ trait SuperCalls {
    * - super.bar: This gets translated into a call to super$bar, i.e., to a method with SUPERACCESSOR flag set. This
    * 				needs some logic to determine the name of the callee, then resolve that call.
    */
-  def lookupSuper(callSite: CallSite, types: Set[Type]) = {
+  def lookupSuper(callSite: AbstractCallSite, types: Set[Type]) = {
     assert(callSite.isSuperCall, "attempting to compute super calls for non-super call site.")
 
     val targets = Set[Symbol]()

@@ -12,7 +12,7 @@ import probe.GXLReader
 import probe.ProbeMethod
 
 object Experiments {
-  //  final lazy val benchmarks = List("argot", "ensime", "fimpp", "joos", "kiama", "phantm", "scalaxb", "scalisp", "see", "tictactoe")
+  //  final lazy val benchmarks = List("argot", "ensime", "fimpp", "joos", "kiama", "phantm", "scalariform", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
   final lazy val benchmarks = List("scalaxb")
   final lazy val experiments = List("tcra-ra", "ba-tcra", "std-ba", "tca-std")
 

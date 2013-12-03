@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-ant dist.plugin -Danalysis=tca  -Dthis=true  -Dsuper=true  > this-analysis
-ant dist.plugin -Danalysis=tca  -Dthis=false -Dsuper=true  > standard-analysis
-ant dist.plugin -Danalysis=ba   -Dthis=false -Dsuper=true  > bounds-analysis
-ant dist.plugin -Danalysis=tcra -Dthis=false -Dsuper=false > tcra-analysis
-ant dist.plugin -Danalysis=ra   -Dthis=false -Dsuper=false > ra-analysis
-ant dist.deps > deps-output
-ant dist.walacg > bytecode
+set -e
+benchmarks=( argot ensime fimpp joos kiama phantm scalariform scalaxb scalisp see squeryl tictactoe )
 
+date
+
+for benchmark in ${benchmarks[@]}
+do
+  ./run ${benchmark}
+done
+date

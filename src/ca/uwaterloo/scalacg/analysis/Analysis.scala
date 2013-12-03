@@ -240,19 +240,13 @@ trait CallGraphAnalysis extends CallGraphWorklists
   }
 
   /**
-   * If it's a super call, call lookupSuper with types that contain the enclosing class of the call site
+   * If it's a super call, call lookupSuper with types that contain the enclosing class of the receiver
    * in their linearization (i.e., tpe.baseClasses).
    */
   private def processSuperCall(callSite: AbstractCallSite, types: Set[Type]) = {
-    val allTargets = Set[Symbol]()
-
-    abstractToCallSites(callSite).foreach { cs =>
-      val targets = lookupSuper(cs, types)
-      addTargets(cs, targets)
-      allTargets ++= targets
-    }
-
-    allTargets
+    val targets = lookupSuper(callSite, types)
+    addTargets(callSite, targets)
+    targets
   }
 
   /**

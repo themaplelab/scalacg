@@ -1,12 +1,23 @@
 #!/usr/bin/env bash
 
+set -e
 benchmark=$1
 
-ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=tca  -Dthis=true  -Dsuper=true  > ${benchmark}-this-analysis
-ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=tca  -Dthis=false -Dsuper=true  > ${benchmark}-standard-analysis
-ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=ba   -Dthis=false -Dsuper=true  > ${benchmark}-bounds-analysis
-ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=tcra -Dthis=false -Dsuper=false > ${benchmark}-tcra-analysis
-ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=ra   -Dthis=false -Dsuper=false > ${benchmark}-ra-analysis
-ant bm-deps.jar -Dbm=${benchmark} > ${benchmark}-deps-output
-./walacg ${benchmark} > ${benchmark}-bytecode
+# make some directories
+mkdir -p dist/tca-this-super/${benchmark}
+mkdir -p dist/tca-super/${benchmark}
+mkdir -p dist/ba-super/${benchmark}
+mkdir -p dist/tcra-super/${benchmark}
+mkdir -p dist/ra/${benchmark}
+mkdir -p dist/wala/${benchmark}
 
+# run the source-level analyses
+ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=tca  -Dthis=true  -Dsuper=true  > dist/tca-this-super/${benchmark}/tca-this-log
+ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=tca  -Dthis=false -Dsuper=true  > dist/tca-super/${benchmark}/tca-std-log
+ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=ba   -Dthis=false -Dsuper=true  > dist/ba-super/${benchmark}/ba-log
+ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=tcra -Dthis=false -Dsuper=true  > dist/tcra/${benchmark}/tcra-log
+ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=ra   -Dthis=false -Dsuper=false > dist/ra/${benchmark}/ra-log
+ant bm-deps.jar -Dbm=${benchmark} > dist/tca-this-super/${benchmark}/deps-log
+
+# run wala
+./walacg ${benchmark} > dist/wala/${benchmark}/wala-log

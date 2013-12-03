@@ -2,18 +2,18 @@ package ca.uwaterloo.scalacg.util
 
 import java.io.PrintStream
 import java.util.zip.GZIPOutputStream
-import scala.annotation.migration
+
 import scala.collection.mutable.StringBuilder
 import scala.reflect.io.AbstractFile
+
 import ca.uwaterloo.scalacg.analysis.CallGraphAnalysis
 import ca.uwaterloo.scalacg.config.Global
-import ca.uwaterloo.scalacg.probe.CallEdge
 import ca.uwaterloo.scalacg.probe.CallSiteContext
-import ca.uwaterloo.scalacg.probe.GXLWriter
+import probe.CallEdge
 import probe.CallGraph
 import probe.ObjectManager
 import probe.ProbeMethod
-import ca.uwaterloo.scalacg.probe.TextWriter
+import probe.TextWriter
 
 trait Probe extends Global {
 
@@ -30,10 +30,8 @@ trait Probe extends Global {
    * Get a probe method for the given symbol
    */
   def probeMethod(methodSymbol: Symbol): ProbeMethod = {
-    //    println(methodSymbol.fullName + " ::" + methodSymbol.pkg + "::" + methodSymbol.cls + "::" + methodSymbol.nme)
     val probeClass = ObjectManager.v().getClass(methodSymbol.pkg, methodSymbol.cls)
     val probeMethod = ObjectManager.v().getMethod(probeClass, methodSymbol.nme, methodSymbol.paramsSig)
-    //    println(probeMethod.correctToString)
     probeMethod
   }
 
@@ -87,7 +85,7 @@ trait CallGraphPrinter {
     } {
       val callbackMethod = probeMethod(callback)
       probeCallGraph.entryPoints.add(callbackMethod)
-      if (isApplication(callback)) probeSummary.edges.add(new CallEdge(libraryBlob, callbackMethod, unknownContext))
+      if (isApplication(callback)) probeSummary.edges.add(new CallEdge(libraryBlob, callbackMethod))
 
       val e = methodToId.getOrElse(callback, 0) + " ===> " + callbackMethod.show
       callbacksOut.println(e)
@@ -99,13 +97,14 @@ trait CallGraphPrinter {
       callSite <- callGraph.keys
       source = callSite.enclMethod
       target <- callGraph(callSite)
-      sourceFile = if (callSite.position.isDefined) relativize(callSite.position.source.file) else "unknown"
-      line = if (callSite.position.isDefined) callSite.position.line.toString else "-1"
+      //      sourceFile = if (callSite.position.isDefined) relativize(callSite.position.source.file) else "unknown"
+      //      line = if (callSite.position.isDefined) callSite.position.line.toString else "-1"
       sourceMethod = probeMethod(source)
       targetMethod = probeMethod(target)
-      context = new CallSiteContext(sourceFile + " : line " + line)
+      //      context = new CallSiteContext(sourceFile + " : line " + line)
     } {
-      val edge = new CallEdge(sourceMethod, targetMethod, context)
+      //      val edge = new CallEdge(sourceMethod, targetMethod, context)
+      val edge = new probe.CallEdge(sourceMethod, targetMethod)
       probeCallGraph.edges.add(edge)
 
       val isSourceApp = isApplication(source)
@@ -121,10 +120,12 @@ trait CallGraphPrinter {
 
       // Now put the edge in the summary call graph
       if (isSourceApp && isTargetApp) {
-        val edge = new CallEdge(sourceMethod, targetMethod, context)
+        //        val edge = new CallEdge(sourceMethod, targetMethod, context)
+        val edge = new CallEdge(sourceMethod, targetMethod)
         probeSummary.edges.add(edge)
       } else if (isSourceApp && !isTargetApp) {
-        val edge = new CallEdge(sourceMethod, libraryBlob, context)
+        //        val edge = new CallEdge(sourceMethod, libraryBlob, context)
+        val edge = new CallEdge(sourceMethod, libraryBlob)
         probeSummary.edges.add(edge)
       } else {
         throw new UnsupportedOperationException("source method cannot be in the library: " + sourceMethod)

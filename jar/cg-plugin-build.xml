@@ -4,7 +4,7 @@
 		<jar destfile="jar/callgraph-plugin.jar">
 			<fileset dir="bin" excludes="ca/uwaterloo/scalacg/junit/**/*.class" />
 			<fileset file="jar/scalac-plugin.xml" />
-			<zipgroupfileset file="lib/probe.jar" />
+			<zipgroupfileset file="${basedir}/../probe/jar/probe.jar" />
 			<zipgroupfileset file="lib/gxl.jar" />
 		</jar>
 		<copy file="jar/callgraph-plugin.jar" tofile="${basedir}/../scalabench/callgraph-plugin.jar" />

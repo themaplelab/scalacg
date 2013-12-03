@@ -17,7 +17,7 @@ trait CallSites extends Global with Probe {
 
     // Is this a super call?
     lazy val isSuperCall = hasSuperReceiver || hasSuperAccessor
-    
+
     lazy val isFunctionCall = receiver.isInstanceOf[MethodType]
 
     // The super receiver, if any.
@@ -47,6 +47,14 @@ trait CallSites extends Global with Probe {
 
     // Does this call site us super in this fashion super[Z]?
     lazy val hasStaticSuperReference = superReceiver.isDefined && superReceiver.get.mix.nonEmpty
+    
+    // Get the named super (the Z in super[Z]) of this call site, if any
+    lazy val staticSuperReference = {
+      if (hasStaticSuperReference) {
+        val superClass = receiver.baseClasses find (_.name.toTypeName == superReceiver.get.mix)
+        if (superClass.isDefined) superClass.get.tpe else NoType
+      } else NoType
+    }
 
     // Does this call site has a "super" accessor (e.g., super$bar)?
     lazy val hasSuperAccessor = staticTarget.isSuperAccessor
@@ -67,14 +75,6 @@ trait CallSites extends Global with Probe {
   class CallSite(receiverTree: Tree, override val staticTarget: Symbol,
     val enclMethod: Symbol, val position: Position, val annotations: ImmutableSet[String])
     extends AbstractCallSite(receiverTree, staticTarget) {
-
-    // Get the named super (the Z in super[Z]) of this call site, if any
-    lazy val staticSuperReference = {
-      if (hasStaticSuperReference) {
-        val superClass = receiver.baseClasses find (_.name.toTypeName == superReceiver.get.mix)
-        if (superClass.isDefined) superClass.get.tpe else NoType
-      } else NoType
-    }
 
     // If the receiver is a This, then thisEnclMethod is the method whose implicit
     // this parameter is of the same class as the receiver This. Otherwise, thisEnclMethod
