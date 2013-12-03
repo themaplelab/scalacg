@@ -115,7 +115,11 @@ trait TypeOps extends TypesCollections {
         val upperBound = t.bounds.hi
         assert(upperBound != NoType)
         assert(!upperBound.typeSymbol.isAbstractType)
-        Set(upperBound)
+        if (!upperBound.typeArguments.exists(_.typeSymbol.isAbstractType)) {
+          Set(upperBound)
+        } else {
+          Set(definitions.AnyTpe)
+        }
       } else {
         Set(t)
       }
@@ -126,7 +130,7 @@ trait TypeOps extends TypesCollections {
     import global._
 
     val concretization = Map[Symbol, Set[Type]]()
-    
+
     def expand(t: Type) = {
       val sym = t.typeSymbol
       if (sym.isAbstractType) {
