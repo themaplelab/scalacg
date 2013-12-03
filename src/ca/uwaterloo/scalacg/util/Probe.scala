@@ -2,11 +2,9 @@ package ca.uwaterloo.scalacg.util
 
 import java.io.PrintStream
 import java.util.zip.GZIPOutputStream
-
 import scala.annotation.migration
 import scala.collection.mutable.StringBuilder
 import scala.reflect.io.AbstractFile
-
 import ca.uwaterloo.scalacg.analysis.CallGraphAnalysis
 import ca.uwaterloo.scalacg.config.Global
 import ca.uwaterloo.scalacg.probe.CallEdge
@@ -15,6 +13,7 @@ import ca.uwaterloo.scalacg.probe.GXLWriter
 import probe.CallGraph
 import probe.ObjectManager
 import probe.ProbeMethod
+import ca.uwaterloo.scalacg.probe.TextWriter
 
 trait Probe extends Global {
 
@@ -138,8 +137,8 @@ trait CallGraphPrinter {
     libraryOut.close
 
     // Write GXL file in gzip format to save space.
-    new GXLWriter().write(probeCallGraph, new GZIPOutputStream(out))
-    new GXLWriter().write(probeSummary, new GZIPOutputStream(summary))
+    new TextWriter().write(probeCallGraph, new GZIPOutputStream(out))
+    new TextWriter().write(probeSummary, new GZIPOutputStream(summary))
   }
 
   lazy val unknownContext = new CallSiteContext("unknown : -1")
