@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
+benchmark=$1
 
-ant bm-plugin.jar -Dbm=kiama -Dthis=false > kiama-standard
-ant bm-plugin.jar -Dbm=kiama > kiama-this
+ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=tca  -Dthis=true  -Dsuper=true  > ${benchmark}-this-analysis
+ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=tca  -Dthis=false -Dsuper=true  > ${benchmark}-standard-analysis
+ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=ba   -Dthis=false -Dsuper=true  > ${benchmark}-bounds-analysis
+ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=tcra -Dthis=false -Dsuper=false > ${benchmark}-tcra-analysis
+ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=ra   -Dthis=false -Dsuper=false > ${benchmark}-ra-analysis
+ant bm-deps.jar -Dbm=${benchmark} > ${benchmark}-deps-output
+./walacg ${benchmark} > ${benchmark}-bytecode
 

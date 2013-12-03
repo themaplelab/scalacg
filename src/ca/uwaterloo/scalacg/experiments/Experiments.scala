@@ -12,8 +12,9 @@ import probe.GXLReader
 import probe.ProbeMethod
 
 object Experiments {
-  //  final lazy val benchmarks = List("argot", "fimpp", "joos", "kiama", "phantm", "scalisp", "see", "tictactoe")
-  final lazy val benchmarks = List("see")
+  //  final lazy val benchmarks = List("argot", "ensime", "fimpp", "joos", "kiama", "phantm", "scalaxb", "scalisp", "see", "tictactoe")
+  final lazy val benchmarks = List("scalaxb")
+  final lazy val experiments = List("tcra-ra", "ba-tcra", "std-ba", "tca-std")
 
   def main(args: Array[String]) = {
     var prefix = ""
@@ -23,7 +24,7 @@ object Experiments {
     args.length match {
       case 0 =>
         prefix = "../scalabench/local/dist/"
-        experiment = "tca-wala"
+        experiment = "ba-tcra"
       case 2 =>
         prefix = args(0)
         experiment = args(1)
@@ -31,17 +32,20 @@ object Experiments {
         throw new IllegalArgumentException("Wrong number of arguments.")
     }
 
+    lazy val tcra_ra = new Experiment("tcra-ra", prefix)("tcra", "callgraph.gxl.gzip")("ra", "callgraph.gxl.gzip")
+    lazy val ba_tcra = new Experiment("ba-tcra", prefix)("ba-super", "callgraph.gxl.gzip")("tcra", "callgraph.gxl.gzip")
+    lazy val std_ba = new Experiment("std-ba", prefix)("tca-super", "callgraph.gxl.gzip")("ba-super", "callgraph.gxl.gzip")
+    lazy val tca_std = new Experiment("tca-std", prefix)("tca-this-super", "callgraph.gxl.gzip")("tca-super", "callgraph.gxl.gzip")
+
     lazy val tca_wala = new Experiment("tca-wala", prefix)("tca-this-super", "callgraph-summary.gxl.gzip")("wala", "wala-callgraph-summary.gxl.gzip")
-    lazy val this_nothis = new Experiment("this-nothis", prefix)("tca-this-super", "callgraph.gxl.gzip")("tca-super", "callgraph.gxl.gzip")
-    lazy val tca_ra = new Experiment("tca-ra", prefix)("tca-this-super", "callgraph.gxl.gzip")("ra", "callgraph.gxl.gzip")
-    lazy val tca_dyn = new Experiment("tca-dyn", prefix)("tca-this-super", "callgraph.gxl.gzip")("dyn", "callgraph.gxl.gzip")
 
     experiment match {
       case "tca-wala" => tca_wala.print
-      case "this-nothis" => this_nothis.print
-      case "tca-ra" => tca_ra.print
-      case "tca-dynamic" => tca_dyn.print
-      case _ => throw new IllegalArgumentException("Uknown experiment requested")
+      case "tcra-ra" => tcra_ra.print
+      case "ba-tcra" => ba_tcra.print
+      case "std-ba" => std_ba.print
+      case "tca-std" => tca_std.print
+      case _ => throw new IllegalArgumentException("Uknown experiment!")
     }
   }
 
