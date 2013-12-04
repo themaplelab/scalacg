@@ -6,24 +6,25 @@ import java.util.zip.GZIPInputStream
 
 object LatexGenerator {
 
-  final val benchmarks = List("argot", "ensime", "fimpp", "joos", "kiama", "phantm", "scalariform", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
-  //  final val benchmarks = List("tictactoe")
+  final val benchmarks = List("argot", "ensime", "fimpp", "joos", "kiama", "phantm", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
   final val analyses = List("RA", "TCRA", "BA", "TCA$_{std}$", "TCA$_{this}$", "WALA$_{rta}$")
+  final val statistics = List("LOC", "# classes", "# modules", "# traits", "# mixins", "#methods", "# closures")
   final val algorithms = analyses.dropRight(1).mkString(", ") + ", and " + analyses.last
 
-  //  val tca_this = ("tca-this-super", Map[String, CallGraph]().withDefaultValue(new CallGraph()))
-  //  val tca_std = ("tca-super", Map[String, CallGraph]().withDefaultValue(new CallGraph()))
-  //  val ba = ("ba-super", Map[String, CallGraph]().withDefaultValue(new CallGraph()))
-  //  val tcra = ("tcra", Map[String, CallGraph]().withDefaultValue(new CallGraph()))
-  //  val ra = ("ra", Map[String, CallGraph]().withDefaultValue(new CallGraph()))
   val base = "dist"
 
   def main(args: Array[String]): Unit = {
     val out = new PrintStream("paper_data.tex")
-    val table = new PrintStream("table_results.tex")
+    val table_results = new PrintStream("table_results.tex")
+    val table_benchmarks = new PrintStream("table_benchmarks.tex")
 
     val nodes = "nodes"
     val edges = "edges"
+    val classes = "classes"
+    val modules = "modules"
+    val traits = "traits"
+    val mixins = "mixins"
+    val closures = "closures" // these include anonfun
 
     val tca_this_analysis = "tca this"
     val tca_std_analysis = "tca std"
@@ -31,24 +32,38 @@ object LatexGenerator {
     val tcra_analysis = "tcra"
     val ra_analysis = "ra"
     val wala_analysis = "wala"
+    val bench = "benchmark"
 
-    def emitTableHeader = {
-      table.println("\\begin{table}")
-      table.println("  \\centering")
-      table.println("  \\begin{tabular}{l" + ("|r" * analyses.size * 2) + "}")
-      table.println("    " + (analyses.map(a => s"& \\multicolumn{2}{|c}{\\textbf{$a}} ").mkString) + "\\\\")
-      table.println("    " + ("& \\textbf{nodes} & \\textbf{edges} " * analyses.size) + "\\\\")
-      table.println("    \\hline")
+    def emitTableHeaders = {
+      // The results table
+      table_results.println("\\begin{table}")
+      table_results.println("\\centering")
+      table_results.println("\\resizebox{\\columnwidth}{!} {")
+      table_results.println("  \\begin{tabular}{l" + ("|r" * (analyses.size - 1) * 2) + "||r|r" + "}")
+      table_results.println("    \\toprule")
+      table_results.println("    " + (analyses.map(a => s"& \\multicolumn{2}{|c}{\\textbf{$a}} ").mkString) + "\\\\")
+      table_results.println("    " + ("& \\textbf{nodes} & \\textbf{edges} " * analyses.size) + "\\\\")
+      
+      // The benchmarks table
+      table_results.println("\\begin{table}")
+      table_results.println("\\centering")
+      table_results.println("\\resizebox{\\columnwidth}{!} {")
+      table_results.println("  \\begin{tabular}{l" + ("|r" * analyses.size) + "}")
+      table_results.println("    \\toprule")
+      table_results.println("    " + (analyses.map(a => s"& \\multicolumn{2}{|c}{\\textbf{$a}} ").mkString) + "\\\\")
+      table_results.println("    " + ("& \\textbf{nodes} & \\textbf{edges} " * analyses.size) + "\\\\")
     }
 
-    def emitTableFooter = {
-      table.println("  \\end{tabular}")
-      table.println("  \\caption{Number of nodes and edges in call graphs computed using the " + algorithms + " algorithms.}")
-      table.println("  \\label{table:Results}")
-      table.println("\\end{table}")
+    def emitTableFooters = {
+      table_results.println("    \\bottomrule")
+      table_results.println("  \\end{tabular}")
+      table_results.println("}")
+      table_results.println("  \\caption{Number of nodes and edges in call graphs computed using the " + algorithms + " algorithms.}")
+      table_results.println("  \\label{table:Results}")
+      table_results.println("\\end{table}")
     }
 
-    emitTableHeader
+    emitTableHeaders
 
     for (benchmark <- benchmarks) {
       var row = new StringBuilder("    ")
@@ -95,13 +110,13 @@ object LatexGenerator {
       emit(wala_analysis, edges, wala.edges.size)
 
       // end the row
-      table.println(row append " \\\\")
-      table.println("    \\hline")
+      table_results.println("    \\midrule")
+      table_results.println(row append " \\\\")
     }
 
-    emitTableFooter
+    emitTableFooters
 
     out.close
-    table.close
+    table_results.close
   }
 }

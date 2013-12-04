@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+benchmark=$1
+
+# count
+line=$(cloc-1.60/cloc build_src/${benchmark}/ | grep Scala)
+tokens=( $line )
+count=${tokens[${#tokens[@]} - 1]}
+echo "# loc : " $count 

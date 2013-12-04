@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+benchmark=$1
+
+# make some directories
+mkdir -p dist/stats/${benchmark}
+
+# run the source-level analyses
+ant bm.stats -Dbm=${benchmark} -Danalysis=tca  -Dthis=true  -Dsuper=false  > dist/stats/${benchmark}/stats-log 
