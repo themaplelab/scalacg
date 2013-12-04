@@ -5,8 +5,12 @@ benchmarks=( argot ensime fimpp joos kiama phantm scalariform scalaxb scalisp se
 
 date
 
+echo "running analyses"
 for benchmark in ${benchmarks[@]}
 do
   ./run ${benchmark}
 done
+
+echo "generating LaTeX files"
+java -jar latex.jar
 date

@@ -113,12 +113,12 @@ trait TypeOps extends TypesCollections {
       val sym = t.typeSymbol
       if (sym.isAbstractType) {
         val upperBound = t.bounds.hi
-        assert(upperBound != NoType)
-        assert(!upperBound.typeSymbol.isAbstractType)
-        if (!upperBound.typeArguments.exists(_.typeSymbol.isAbstractType)) {
-          Set(upperBound)
-        } else {
+        assert(upperBound != NoType) // NOTE: this should never happen
+        //        assert(!upperBound.typeSymbol.isAbstractType) // NOTE: Karim: occurs in the benchmark factorie
+        if (upperBound.typeSymbol.isAbstractType || upperBound.typeArguments.exists(_.typeSymbol.isAbstractType)) {
           Set(definitions.AnyTpe)
+        } else {
+          Set(upperBound)
         }
       } else {
         Set(t)
