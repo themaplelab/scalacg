@@ -27,35 +27,26 @@ abstract class MethodAnnotation extends PluginComponent with Annotations {
     var mixinsCount = 0
     var closuresCount = 0
     var methodsCount = 0
+    var classesAtmCount = 0
+    var classesAtpCount = 0
 
     override def run = {
       super.run
       println(s"Finished $phaseName in ${Timer.elapsed} seconds.")
-      println(s"# classes  : $classesCount")
-      println(s"# anonfun  : $anonfunCount")
-      println(s"# modules  : $modulesCount")
-      println(s"# traits   : $traitsCount")
-      println(s"# mixins   : $mixinsCount")
-      println(s"# closures : $closuresCount")
-      println(s"# methods  : $methodsCount")
+      println(s"# classes     : $classesCount")
+      println(s"# classes atm : $classesAtmCount")
+      println(s"# classes atp : $classesAtpCount")
+      println(s"# anonfun     : $anonfunCount")
+      println(s"# modules     : $modulesCount")
+      println(s"# traits      : $traitsCount")
+      println(s"# mixins      : $mixinsCount")
+      println(s"# closures    : $closuresCount")
+      println(s"# methods     : $methodsCount")
     }
 
     // We are overriding apply because we want this phase to run on each file separately.
     def apply(unit: global.CompilationUnit) = {
       import global._
-
-      def getReceiver(tree: Tree): Option[Tree] = tree match {
-        case a: Apply => getReceiver(a.fun)
-        case s: Select => Some(s.qualifier)
-        case t: TypeApply => getReceiver(t.fun)
-        case i: Ident => Some(i)
-        case _ => assert(assertion = false, message = "getReceiver on unexpected tree " + tree + " of type " + tree.getClass); null
-      }
-
-      def normalizeMultipleParameters(tree: Apply): Apply = tree.fun match {
-        case a: Apply => normalizeMultipleParameters(a)
-        case _ => tree
-      }
 
       unit.body.foreach { node =>
         node match {
@@ -88,6 +79,8 @@ abstract class MethodAnnotation extends PluginComponent with Annotations {
             else if (sym.isClass) classesCount += 1
 
             if (sym.mixinClasses.nonEmpty) mixinsCount += 1
+            if (sym.info.typeParams exists (_.isAbstractType)) classesAtpCount += 1
+            if (sym.info.members exists (_.isAbstractType)) classesAtmCount += 1
           }
           case nw: New => if (nw.tpt.tpe.dealias.typeSymbol.mixinClasses.nonEmpty) mixinsCount += 1
           case vd: ValDef if definitions.isFunctionType(vd.symbol.tpe) && vd.rhs.isEmpty => closuresCount += 1
