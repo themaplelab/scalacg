@@ -98,3 +98,27 @@ trait GlobalConstants {
 
   final val AnnotationPhaseName = "methodannotation"
 }
+
+trait Statistics {
+  // Benchmark characteristics
+  var classesCount: Int
+  var anonfunCount: Int
+  var objectsCount: Int
+  var traitsCount: Int
+  var traitCompsCount: Int
+  var closuresCount: Int
+  var methodsCount: Int
+  var classesAtmCount: Int
+  var classesAtpCount: Int
+
+  // Call sites characteristics
+  var abstractCallSitesCount: Int
+  var abstractThisCallSitesCount: Int
+  var abstractSuperCallSitesCount: Int
+
+  var concreteCallSitesCount: Int
+  var concreteThisCallSitesCount: Int
+  var concreteSuperCallSitesCount: Int
+  
+  var overridingMethodsCount: Int
+}

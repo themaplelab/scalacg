@@ -76,26 +76,14 @@ trait CallGraphAnalysis extends CallGraphWorklists
       else
         mainModules)
 
-    //    println("\n\ninitialiiiiiiiiiize")
-    //    types.foreach { tpe =>
-    //      println(tpe.baseClasses.map(_.fullName).mkString("\t"))
-    //      println(tpe.toString + " :: " + tpe.typeSymbol.isAbstractClass)
-    //      println("\n")
-    //    }
-    //    println("\n\n")
-    //    types.filter(_.typeSymbol.name containsName "ConcreteType").foreach(println)
+    // Gather some stats
+    var abstractCallSitesCount = 0
+    var abstractThisCallSitesCount = 0
+    var abstractSuperCallSitesCount = 0
 
-    //    println("=" * 50)
-    //    packageNames.foreach(println)
-    //    println("=" * 50)
-    //    abstractToCallSites.values.flatten.foreach { cs =>
-    //      println(cs)
-    //      println(cs.receiver.baseClasses.map(_.fullName).mkString("\t"))
-    //      println(cs.receiver.toString + " :: " + cs.receiver.typeSymbol.isAbstractClass)
-    //      println(cs.receiver.getClass)
-    //      println("\n")
-    //    }
-    //    println("\n\n")
+    var concreteCallSitesCount = 0
+    var concreteThisCallSitesCount = 0
+    var concreteSuperCallSitesCount = 0
   }
 
   var counter = 0

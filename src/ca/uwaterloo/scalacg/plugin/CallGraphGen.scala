@@ -9,12 +9,13 @@ import ca.uwaterloo.scalacg.util.Annotations
 import ca.uwaterloo.scalacg.util.Assertions
 import ca.uwaterloo.scalacg.util.Timer
 import ca.uwaterloo.scalacg.util.CallGraphPrinter
+import ca.uwaterloo.scalacg.config.Statistics
 
 /**
  * Phase that annotates generates the call graph.
  */
 abstract class CallGraphGen extends PluginComponent {
-  self: CallGraphAnalysis with Assertions with Annotations with CallGraphPrinter =>
+  self: CallGraphAnalysis with Assertions with Annotations with CallGraphPrinter with Statistics =>
   import global._
 
   // The call graph
@@ -31,7 +32,6 @@ abstract class CallGraphGen extends PluginComponent {
     println("Special handling for calls via \"this\": " + pluginOptions.doThis)
     println("Applying assertions: " + pluginOptions.doAssertions)
 
-    Timer.start
     new CallGraphPhase(prevPhase)
   }
 
@@ -41,11 +41,41 @@ abstract class CallGraphGen extends PluginComponent {
       assert(assertion = false)
     }
 
+    private def collectStats = {
+      abstractCallSites.foreach { abs =>
+        val count = abstractToCallSites(abs).size
+        abstractCallSitesCount += 1; concreteCallSitesCount += count
+        if (abs.hasThisReceiver) { abstractThisCallSitesCount += 1; concreteThisCallSitesCount += count }
+        if (abs.isSuperCall) { abstractSuperCallSitesCount += 1; concreteSuperCallSitesCount += count }
+      }
+    }
+
     override def run = {
+      Timer.start
+
       initialize
       buildCallGraph
 
       println(s"Finished $phaseName in ${Timer.elapsed} seconds.")
+
+      println
+      println("Statistics")
+      println("----------")
+      println(s"# classes                   : $classesCount")
+      println(s"# classes w abs type member : $classesAtmCount")
+      println(s"# classes w abs type param  : $classesAtpCount")
+      println(s"# anonfun                   : $anonfunCount")
+      println(s"# objects                   : $objectsCount")
+      println(s"# traits                    : $traitsCount")
+      println(s"# trait compositions        : $traitCompsCount")
+      println(s"# closures                  : $closuresCount")
+      println(s"# methods                   : $methodsCount")
+      println(s"# abstract call sites       : $abstractCallSitesCount")
+      println(s"# abstract this call sites  : $abstractThisCallSitesCount")
+      println(s"# abstract super call sites : $abstractSuperCallSitesCount")
+      println(s"# concrete call sites       : $concreteCallSitesCount")
+      println(s"# concrete this call sites  : $concreteThisCallSitesCount")
+      println(s"# concrete super call sites : $concreteSuperCallSitesCount")
 
       // Print out the probe call graph
       println("Printing call graph to disk ...")

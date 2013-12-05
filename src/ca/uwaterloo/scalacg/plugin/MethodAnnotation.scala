@@ -13,35 +13,16 @@ abstract class MethodAnnotation extends PluginComponent with Annotations {
 
   def newPhase(prevPhase: Phase) = {
     println(s"Starting phase $phaseName ...")
-    Timer.start
     new AnnotationPhase(prevPhase)
   }
 
   class AnnotationPhase(prevPhase: Phase) extends StdPhase(prevPhase) {
     var serialNumber = 1
 
-    var classesCount = 0
-    var anonfunCount = 0
-    var modulesCount = 0
-    var traitsCount = 0
-    var mixinsCount = 0
-    var closuresCount = 0
-    var methodsCount = 0
-    var classesAtmCount = 0
-    var classesAtpCount = 0
-
     override def run = {
+      Timer.start
       super.run
       println(s"Finished $phaseName in ${Timer.elapsed} seconds.")
-      println(s"# classes     : $classesCount")
-      println(s"# classes atm : $classesAtmCount")
-      println(s"# classes atp : $classesAtpCount")
-      println(s"# anonfun     : $anonfunCount")
-      println(s"# modules     : $modulesCount")
-      println(s"# traits      : $traitsCount")
-      println(s"# mixins      : $mixinsCount")
-      println(s"# closures    : $closuresCount")
-      println(s"# methods     : $methodsCount")
     }
 
     // We are overriding apply because we want this phase to run on each file separately.
@@ -51,7 +32,6 @@ abstract class MethodAnnotation extends PluginComponent with Annotations {
       unit.body.foreach { node =>
         node match {
           case dd: DefDef => {
-            methodsCount += 1
 
             val defdef = dd.symbol // NSC marks this as OPT, so just call it once
 

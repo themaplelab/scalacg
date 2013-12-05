@@ -4,6 +4,7 @@ import scala.collection.immutable.{ Set => ImmutableSet }
 import scala.collection.mutable.Set
 import ca.uwaterloo.scalacg.config.Global
 import ca.uwaterloo.scalacg.util.Probe
+import scala.runtime.ScalaRunTime
 
 trait CallSites extends Global with Probe {
   import global._
@@ -47,7 +48,7 @@ trait CallSites extends Global with Probe {
 
     // Does this call site us super in this fashion super[Z]?
     lazy val hasStaticSuperReference = superReceiver.isDefined && superReceiver.get.mix.nonEmpty
-    
+
     // Get the named super (the Z in super[Z]) of this call site, if any
     lazy val staticSuperReference = {
       if (hasStaticSuperReference) {
@@ -70,6 +71,15 @@ trait CallSites extends Global with Probe {
     }
 
     override def toString = "<" + receiver + " :: " + signature(staticTarget) + ">"
+
+    override def equals(other: Any): Boolean = other match {
+      case that: AbstractCallSite => (that canEqual this) && receiver == that.receiver && staticTarget == that.staticTarget
+      case _ => false
+    }
+
+    def canEqual(other: Any): Boolean = other.isInstanceOf[AbstractCallSite]
+
+    override def hashCode: Int = 41 * (41 + (if (receiver != null) receiver.hashCode else 0)) + staticTarget.hashCode
   }
 
   class CallSite(receiverTree: Tree, override val staticTarget: Symbol,
@@ -88,6 +98,15 @@ trait CallSites extends Global with Probe {
     }
 
     override def toString = "<" + receiver + " :: " + signature(staticTarget) + " :: " + signature(enclMethod) + ">"
+
+    override def equals(other: Any): Boolean = other match {
+      case that: CallSite => (that canEqual this) && receiver == that.receiver && staticTarget == that.staticTarget && enclMethod == that.enclMethod
+      case _ => false
+    }
+
+    override def canEqual(other: Any): Boolean = other.isInstanceOf[CallSite]
+
+    override def hashCode: Int = 41 * (super.hashCode) + enclMethod.hashCode
   }
 
   object CallSite {
