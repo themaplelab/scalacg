@@ -4,16 +4,16 @@ import java.io.FileInputStream
 import java.util.zip.GZIPInputStream
 
 import scala.collection.mutable.Map
-import scala.collection.mutable.{ Set => MutableSet }
+import scala.collection.mutable.{Set => MutableSet}
 import scala.reflect.io.File
 
 import probe.CallEdge
-import probe.GXLReader
 import probe.ProbeMethod
+import probe.TextReader
 
 object Experiments {
-  //  final lazy val benchmarks = List("argot", "ensime", "fimpp", "joos", "kiama", "phantm", "scalariform", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
-  final lazy val benchmarks = List("scalaxb")
+  final lazy val benchmarks = List("argot", "ensime", "fimpp", "joos", "kiama", "phantm", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
+  //    final lazy val benchmarks = List("argot")
   final lazy val experiments = List("tcra-ra", "ba-tcra", "std-ba", "tca-std")
 
   def main(args: Array[String]) = {
@@ -24,7 +24,7 @@ object Experiments {
     args.length match {
       case 0 =>
         prefix = "../scalabench/local/dist/"
-        experiment = "ba-tcra"
+        experiment = "std-tcra"
       case 2 =>
         prefix = args(0)
         experiment = args(1)
@@ -36,8 +36,9 @@ object Experiments {
     lazy val ba_tcra = new Experiment("ba-tcra", prefix)("ba-super", "callgraph.gxl.gzip")("tcra", "callgraph.gxl.gzip")
     lazy val std_ba = new Experiment("std-ba", prefix)("tca-super", "callgraph.gxl.gzip")("ba-super", "callgraph.gxl.gzip")
     lazy val tca_std = new Experiment("tca-std", prefix)("tca-this-super", "callgraph.gxl.gzip")("tca-super", "callgraph.gxl.gzip")
-
     lazy val tca_wala = new Experiment("tca-wala", prefix)("tca-this-super", "callgraph-summary.gxl.gzip")("wala", "wala-callgraph-summary.gxl.gzip")
+
+    lazy val std_tcra = new Experiment("std-tcra", prefix)("tca-super", "callgraph.gxl.gzip")("tcra-super", "callgraph.gxl.gzip")
 
     experiment match {
       case "tca-wala" => tca_wala.print
@@ -45,6 +46,7 @@ object Experiments {
       case "ba-tcra" => ba_tcra.print
       case "std-ba" => std_ba.print
       case "tca-std" => tca_std.print
+      case "std-tcra" => std_tcra.print
       case _ => throw new IllegalArgumentException("Uknown experiment!")
     }
   }
@@ -70,8 +72,8 @@ object Experiments {
       lazy val pathB = prefix + dirB + File.separator + benchmark + File.separator + cgB
       lazy val streamA = new GZIPInputStream(new FileInputStream(pathA))
       lazy val streamB = new GZIPInputStream(new FileInputStream(pathB))
-      lazy val supergraph = new GXLReader().readCallGraph(streamA)
-      lazy val subgraph = new GXLReader().readCallGraph(streamB)
+      lazy val supergraph = new TextReader().readCallGraph(streamA)
+      lazy val subgraph = new TextReader().readCallGraph(streamB)
 
       // Get the set of instantiated types
       lazy val typesA = getTypes(prefix + dirA + File.separator + benchmark + File.separator + "instantiated.txt")
@@ -97,14 +99,14 @@ object Experiments {
       val edgesA: Set[CallEdge] = supergraph.edges
       val edgesB: Set[CallEdge] = subgraph.edges
 
-      //            (reachA -- reachB).toSeq.sortWith((a, b) => a.name < b.name).foreach(println)
-      //            println("===========================================================================")
-      (edgesA -- edgesB).toSeq.sortWith((a, b) => a.src.name < b.src.name).foreach(println)
-      //            if (name != "tca-wala") {
-      //              println("===========================================================================")
-      //              (typesA -- typesB).toSeq.sorted.foreach(println)
-      //            }
-      println("\n")
+      //      (reachB -- reachA).toSeq.sortWith((a, b) => a.name < b.name).foreach(println)
+      //      println("===========================================================================")
+      //      (edgesB -- edgesA).toSeq.sortWith((a, b) => a.src.name < b.src.name).foreach(println)
+      //      if (name != "tca-wala") {
+      //        println("===========================================================================")
+      //        (typesB -- typesA).toSeq.sorted.foreach(println)
+      //      }
+      //      println("\n")
 
       edges.a(benchmark) = edgesA.size
       edges.b(benchmark) = edgesB.size
