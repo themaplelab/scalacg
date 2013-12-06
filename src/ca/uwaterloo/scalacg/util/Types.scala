@@ -115,7 +115,7 @@ trait TypeOps extends TypesCollections {
   class TypeConcretization extends AbstractTypeConcretization {
     import global._
 
-    val concretization = Map[Symbol, Set[Type]]()
+    val concretization = Map[Symbol, Set[Type]]().withDefaultValue(Set())
 
     def expand(t: Type) = {
       val sym = t.typeSymbol
@@ -139,7 +139,7 @@ trait TypeOps extends TypesCollections {
         if absSym.name == sym.name
       } {
         concretization +=
-          (absSym -> (concretization.getOrElse(absSym, Set()) + sym.tpe.dealias))
+          absSym -> (concretization(absSym) + sym.tpe.dealias)
       }
 
       // Find all instantiations of generic type parameters (generics behave the same way)
@@ -153,8 +153,7 @@ trait TypeOps extends TypesCollections {
             for {
               (arg, param) <- (args zip params)
             } {
-              def paramToConcrete = param -> (concretization.getOrElse(param, Set() + arg))
-              concretization += paramToConcrete
+              concretization += param -> (concretization(param) + arg)
             }
           }
         case PolyType(typeParams, _) =>
@@ -162,7 +161,7 @@ trait TypeOps extends TypesCollections {
           for {
             (arg, param) <- (tpe.typeArguments zip typeParams)
           } {
-            concretization += (param -> (concretization.getOrElse(param, Set() + arg)))
+            concretization += param -> (concretization(param) + arg)
           }
         case _ =>
         // TODO: are we missing any cases?
@@ -179,7 +178,7 @@ trait TypeOps extends TypesCollections {
           tpe match {
             case TypeRef(_, sym, _) =>
               concretization +=
-                (absSym -> (concretization(absSym) ++ concretization.getOrElse(sym, Set())))
+                absSym -> (concretization(sym) ++ concretization(absSym))
             case _ =>
           }
         }
