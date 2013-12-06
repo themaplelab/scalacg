@@ -58,7 +58,6 @@ trait CallGraphPrinter {
    * Return a probe call graph in GXL format.
    */
   def printProbeCallGraph = {
-    println("Call graph is available at callgraph.gxl.gzip and its summary at callgraph-summary.gxl.gzip")
     val out = new PrintStream("callgraph.gxl.gzip")
     val probeCallGraph = new CallGraph
 
@@ -140,6 +139,9 @@ trait CallGraphPrinter {
     // Write GXL file in gzip format to save space.
     new TextWriter().write(probeCallGraph, new GZIPOutputStream(out))
     new TextWriter().write(probeSummary, new GZIPOutputStream(summary))
+    
+    println("Call graph is available at callgraph.gxl.gzip and its summary at callgraph-summary.gxl.gzip")
+    println
   }
 
   lazy val unknownContext = new CallSiteContext("unknown : -1")

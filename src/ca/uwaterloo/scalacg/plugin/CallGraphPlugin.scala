@@ -31,18 +31,20 @@ class CallGraphPlugin(val global: Global) extends Plugin with GlobalConstants {
   // Process the plugin-specific options.
   override def processOptions(options: List[String], error: String => Unit) = {
     options match {
-      case analysisName :: tail if Analysis.values.map(_.toString) contains analysisName =>
+      case analysisName :: tail if Analysis.values.map(_.toString) contains analysisName => {
         pluginOptions.analysis = Analysis.withName(analysisName)
         processOptions(tail, error)
-      case "this" :: tail =>
-        pluginOptions.doThis = true
-        processOptions(tail, error)
-      case "super" :: tail =>
-        pluginOptions.doSuperCalls = true
-        processOptions(tail, error)
-      case "assert" :: tail =>
+      }
+      //      case "this" :: tail =>
+      //        pluginOptions.doThis = true
+      //        processOptions(tail, error)
+      //      case "super" :: tail =>
+      //        pluginOptions.doSuperCalls = true
+      //        processOptions(tail, error)
+      case "assert" :: tail => {
         pluginOptions.doAssertions = true
         processOptions(tail, error)
+      }
       case option :: _ => error("Error, unknown option: " + option)
       case nil => // no more options to process
     }
@@ -86,6 +88,15 @@ class CallGraphPlugin(val global: Global) extends Plugin with GlobalConstants {
  * The plugin options.
  */
 case class PluginOptions(var analysis: Analysis.Value = Analysis.Default,
-  var doThis: Boolean = false,
-  var doSuperCalls: Boolean = false,
-  var doAssertions: Boolean = false)
+  var doAssertions: Boolean = false) {
+
+  lazy val doThis = analysis match {
+    case Analysis.tca_expand_this => true
+    case _ => false
+  }
+
+  lazy val doSuperCalls = analysis match {
+    case Analysis.ra_all => false
+    case _ => true
+  }
+}

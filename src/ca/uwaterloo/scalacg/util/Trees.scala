@@ -28,6 +28,27 @@ trait TraversalCollections extends Global with CallSites with TypesCollections w
 
 trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
   import global._
+  // Benchmark characteristics
+  var classesCount = 0
+  var anonfunCount = 0
+  var objectsCount = 0
+  var traitsCount = 0
+  var traitCompsCount = 0
+  var closuresCount = 0
+  var methodsCount = 0
+  var classesAtmCount = 0
+  var classesAtpCount = 0
+
+  // Call sites characteristics
+  var abstractCallSitesCount = 0
+  var abstractThisCallSitesCount = 0
+  var abstractSuperCallSitesCount = 0
+
+  var concreteCallSitesCount = 0
+  var concreteThisCallSitesCount = 0
+  var concreteSuperCallSitesCount = 0
+
+  var overridingMethodsCount = 0
 
   // Traversal
   val abstractCallSites = Set[AbstractCallSite]()
@@ -61,8 +82,28 @@ trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
       case module: ModuleDef => findType(module)
       case nw: New => findInstantiatedTypes(nw)
       case apply: Apply => findCallSitesInApply(apply)
-      case _: Select | _: Ident => findCallSitesSelectOrIdent // TODO: This causes duplicate call sites (see foreach in Reachable1b) 
+      case _: Select | _: Ident => findCallSitesSelectOrIdent // TODO: This causes duplicate call sites (see foreach in Reachable1b)
+      case dd: DefDef => updateMethodsCount(dd)
+      case vd: ValDef => updateClosuresCount(vd)
       case _ => processChildren
+    }
+
+    def updateMethodsCount(dd: DefDef) = {
+      methodsCount += 1
+      val symbol = dd.symbol
+      
+      // count only concrete methods, because those are the ones that can have "this" call sites in them
+      if (!symbol.isConstructor &&
+        symbol.isMethod &&
+        !symbol.isDeferred &&
+        symbol.isOverridingSymbol) overridingMethodsCount += 1
+      processChildren
+    }
+
+    def updateClosuresCount(vd: ValDef) = {
+      // count only uninitialized closures, initialized ones are counted for by anonfun
+      if (definitions.isFunctionType(vd.symbol.tpe) && vd.rhs.isEmpty) closuresCount += 1
+      processChildren
     }
 
     /**
@@ -91,6 +132,16 @@ trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
         if (!applicationTypes(tpe)) {
           applicationTypes += tpe
           types += tpe
+
+          // Update some stats
+          if (cls.isTrait) traitsCount += 1
+          else if (cls.isModuleOrModuleClass) objectsCount += 1
+          else if (cls.isAnonymousFunction) anonfunCount += 1
+          else if (cls.isClass) classesCount += 1
+
+          if (cls.mixinClasses.nonEmpty) traitCompsCount += 1
+          if (tpe.typeParams exists (_.isAbstractType)) classesAtpCount += 1
+          if (tpe.members exists (_.isAbstractType)) classesAtmCount += 1
 
           // Update the map thisEnclMethodToTypes 
           tpe.members filter (_.isMethod) foreach { method => thisEnclMethodToTypes(method) += tpe }
@@ -125,6 +176,7 @@ trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
         // Do not process a type multiple times 
         if (!types(tpe)) {
           types += tpe
+          if (tpe.typeSymbol.mixinClasses.nonEmpty) traitCompsCount += 1
         }
       }
       case _ => // don't care

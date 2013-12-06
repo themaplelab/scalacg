@@ -16,12 +16,13 @@ import ca.uwaterloo.scalacg.util.Worklist
 object Analysis extends Enumeration {
   type Analysis = Value
 
-  val Ra = Value("ra") // Name-based analysis
-  val Tca = Value("tca") // Trait-composition analysis
-  val Tcra = Value("tcra") // TODO: what's that?
-  val Ba = Value("ba") // Bounds-based analysis
+  val ra_all = Value("ra-all") // name-based analysis
+  val ra_inst = Value("ra-inst") // name-based analysis limited to instantiated types
+  val tca_bounds = Value("tca-bounds") // subtype-based analysis using abstract type bounds
+  val tca_expand = Value("tca-expand") // subtype-based analysis using concretization of abstract types
+  val tca_expand_this = Value("tca-expand-this") // tca-expand with special treatement of this
 
-  final val Default = Tca // The analysis by default runs TCA
+  final val Default = tca_expand_this // The analysis by default runs tca-expand-this
 }
 
 trait CallGraphAnalysis extends CallGraphWorklists
@@ -50,7 +51,7 @@ trait CallGraphAnalysis extends CallGraphWorklists
   var concretization: AbstractTypeConcretization = null
 
   def createConcretization: AbstractTypeConcretization =
-    if (pluginOptions.analysis == Analysis.Ba)
+    if (pluginOptions.analysis == Analysis.tca_bounds)
       new BoundsTypeConcretization
     else
       new TypeConcretization
@@ -71,7 +72,7 @@ trait CallGraphAnalysis extends CallGraphWorklists
     // Entry points are initially reachable, main modules are initially instantiated.
     reachableMethods ++= mainMethods
     instantiatedTypes ++=
-      (if (pluginOptions.analysis == Analysis.Ra)
+      (if (pluginOptions.analysis == Analysis.ra_all)
         types
       else
         mainModules)

@@ -1,13 +1,10 @@
 package ca.uwaterloo.scalacg.util
 
-import scala.collection.immutable.{ Set => ImmutableSet }
+import scala.collection.immutable.{Set => ImmutableSet}
 import scala.collection.mutable.Map
 import scala.collection.mutable.Set
+
 import ca.uwaterloo.scalacg.config.Global
-import ca.uwaterloo.scalacg.plugin.PluginOptions
-import ca.uwaterloo.scalacg.analysis.Analysis.Ba
-import ca.uwaterloo.scalacg.util.Worklist
-import scala.collection.immutable.{ Set => ImmutableSet }
 
 trait TypesCollections extends Global {
   import global._
@@ -17,17 +14,6 @@ trait TypesCollections extends Global {
   val mainModules: Set[Type]
   val thisEnclMethodToTypes: Map[Symbol, ImmutableSet[Type]]
   val packageNames: Set[String]
-
-  class TypeWorklist[A <: Type] extends Worklist[A] {
-    override def +=(elem: A) = {
-      // No new types are accepted if they equivalent to types that have been reachable before
-      if (!reachableItems.exists(e => e =:= elem)) {
-        newItems += elem
-        reachableItems += elem
-        //      if(elem.toString contains "ConcreteType") println("adding ConcreteType to set of reachables :: " + elem.getClass)
-      }
-    }
-  }
 }
 
 trait TypeOps extends TypesCollections {

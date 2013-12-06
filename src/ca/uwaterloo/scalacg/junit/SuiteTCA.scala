@@ -2,7 +2,7 @@ package ca.uwaterloo.scalacg.junit
 
 import org.junit.Test
 
-class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:this", "callgraph:super", "callgraph:assert")) {
+class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:tca-expand-this", "callgraph:assert")) {
 
   // TCA-WALA examples
   @Test def testTcaWalaToString() { testPath = "junit/src/tests/tca/wala/"; runTest("ToString") }

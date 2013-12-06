@@ -73,7 +73,9 @@ trait CallSites extends Global with Probe {
     override def toString = "<" + receiver + " :: " + signature(staticTarget) + ">"
 
     override def equals(other: Any): Boolean = other match {
-      case that: AbstractCallSite => (that canEqual this) && receiver == that.receiver && staticTarget == that.staticTarget
+      case that: AbstractCallSite => (that canEqual this) &&
+        receiver == that.receiver &&
+        staticTarget == that.staticTarget
       case _ => false
     }
 
@@ -100,13 +102,21 @@ trait CallSites extends Global with Probe {
     override def toString = "<" + receiver + " :: " + signature(staticTarget) + " :: " + signature(enclMethod) + ">"
 
     override def equals(other: Any): Boolean = other match {
-      case that: CallSite => (that canEqual this) && receiver == that.receiver && staticTarget == that.staticTarget && enclMethod == that.enclMethod
+      case that: CallSite => (that canEqual this) &&
+        receiver == that.receiver &&
+        staticTarget == that.staticTarget &&
+        enclMethod == that.enclMethod &&
+        position == that.position
       case _ => false
     }
 
     override def canEqual(other: Any): Boolean = other.isInstanceOf[CallSite]
 
-    override def hashCode: Int = 41 * (super.hashCode) + enclMethod.hashCode
+    override def hashCode: Int =
+      41 * (
+        41 * (
+          super.hashCode) + enclMethod.hashCode) + position.hashCode
+
   }
 
   object CallSite {
