@@ -3,12 +3,10 @@ package ca.uwaterloo.scalacg.util
 import java.io.PrintStream
 import java.util.zip.GZIPOutputStream
 
-import scala.collection.mutable.StringBuilder
 import scala.reflect.io.AbstractFile
 
 import ca.uwaterloo.scalacg.analysis.CallGraphAnalysis
 import ca.uwaterloo.scalacg.config.Global
-import ca.uwaterloo.scalacg.probe.CallSiteContext
 import probe.CallEdge
 import probe.CallGraph
 import probe.ObjectManager
@@ -96,35 +94,27 @@ trait CallGraphPrinter {
       callSite <- callGraph.keys
       source = callSite.enclMethod
       target <- callGraph(callSite)
-      //      sourceFile = if (callSite.position.isDefined) relativize(callSite.position.source.file) else "unknown"
-      //      line = if (callSite.position.isDefined) callSite.position.line.toString else "-1"
+      sourceFile = if (callSite.position.isDefined) relativize(callSite.position.source.file) else "unknown"
+      line = if (callSite.position.isDefined) callSite.position.line.toString else "-1"
       sourceMethod = probeMethod(source)
       targetMethod = probeMethod(target)
-      //      context = new CallSiteContext(sourceFile + " : line " + line)
+      context = s"$sourceFile : $line"
     } {
-      //      val edge = new CallEdge(sourceMethod, targetMethod, context)
-      val edge = new probe.CallEdge(sourceMethod, targetMethod)
+      val edge = new CallEdge(sourceMethod, targetMethod, context)
       probeCallGraph.edges.add(edge)
 
       val isSourceApp = isApplication(source)
       val isTargetApp = isApplication(target)
-
-      //      if (sourceMethod.name == "apply" && targetMethod.name == "paramString") {
-      //        println(sourceMethod + " :: " + isSourceApp + " :: " + getPackageName(source) + " :: " + packageNames.contains(getPackageName(source)))
-      //        println(targetMethod + " :: " + isTargetApp + " :: " + getPackageName(target) + " :: " + packageNames.contains(getPackageName(target)))
-      //      }
 
       // Print out library methods to be added to the WALA call graph
       if (!isTargetApp) libraryOut.println(sourceMethod.show + " ===> " + targetMethod.show)
 
       // Now put the edge in the summary call graph
       if (isSourceApp && isTargetApp) {
-        //        val edge = new CallEdge(sourceMethod, targetMethod, context)
-        val edge = new CallEdge(sourceMethod, targetMethod)
+        val edge = new CallEdge(sourceMethod, targetMethod, context)
         probeSummary.edges.add(edge)
       } else if (isSourceApp && !isTargetApp) {
-        //        val edge = new CallEdge(sourceMethod, libraryBlob, context)
-        val edge = new CallEdge(sourceMethod, libraryBlob)
+        val edge = new CallEdge(sourceMethod, libraryBlob, context)
         probeSummary.edges.add(edge)
       } else {
         throw new UnsupportedOperationException("source method cannot be in the library: " + sourceMethod)
@@ -139,12 +129,10 @@ trait CallGraphPrinter {
     // Write GXL file in gzip format to save space.
     new TextWriter().write(probeCallGraph, new GZIPOutputStream(out))
     new TextWriter().write(probeSummary, new GZIPOutputStream(summary))
-    
+
     println("Call graph is available at callgraph.gxl.gzip and its summary at callgraph-summary.gxl.gzip")
     println
   }
-
-  lazy val unknownContext = new CallSiteContext("unknown : -1")
 
   /**
    * Print the mapping of all annotated methods to their source level signature.
@@ -176,18 +164,6 @@ trait CallGraphPrinter {
     for (pkg <- packageNames) {
       out.println(pkg)
     }
-  }
-
-  /**
-   * Get the prefix of the output files based on the plugin options.
-   */
-  lazy val prefix = {
-    val ret = new StringBuilder
-    ret ++= pluginOptions.analysis.toString.toLowerCase + "-"
-    if (pluginOptions.doThis) ret ++= "this-"
-    if (pluginOptions.doSuperCalls) ret ++= "super-"
-    if (pluginOptions.doAssertions) ret ++= "assert-"
-    ret.toString
   }
 
   /**

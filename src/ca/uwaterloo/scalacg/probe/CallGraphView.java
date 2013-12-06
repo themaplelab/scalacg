@@ -1,14 +1,21 @@
 package ca.uwaterloo.scalacg.probe;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
+import java.util.zip.GZIPInputStream;
+
 import probe.CallGraph;
 import probe.Jui;
 import probe.ProbeClass;
 import probe.ProbeMethod;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.*;
-import java.util.zip.GZIPInputStream;
 
 public class CallGraphView extends Jui {
 
@@ -72,9 +79,9 @@ public class CallGraphView extends Jui {
 		if (supergraph == null) {
 			usage();
 		}
-		
+
 		for (CallEdge edge : sortedSuperGraphEdges) {
-			addContext(edge.context(), edge.src());
+			// addContext(edge.context(), edge.src());
 			addMethod(edge.src());
 			addMethod(edge.dst());
 		}
@@ -209,7 +216,7 @@ public class CallGraphView extends Jui {
 		// Add the other incoming nodes
 		for (CallEdge edge : sortedSuperGraphEdges) {
 			if (edge.dst().equals(m)) {
-				sb.append(node(edge.src(), edge.context()));
+				// sb.append(node(edge.src(), edge.context()));
 			}
 		}
 		sb.append("</td>");
@@ -218,7 +225,7 @@ public class CallGraphView extends Jui {
 		sb.append("<td width=\"50%\" valign=\"top\">");
 		for (CallEdge edge : sortedSuperGraphEdges) {
 			if (edge.src().equals(m)) {
-				sb.append(node(edge.dst(), edge.context()));
+				// sb.append(node(edge.dst(), edge.context()));
 			}
 		}
 		sb.append("</td>");

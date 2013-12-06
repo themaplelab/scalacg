@@ -68,9 +68,9 @@ public class CallEdge extends probe.CallEdge {
 		return result == 0 ? super.compareTo(other) : result;
 	}
 
-	public CallingContext context() {
-		return ctx;
-	}
+	// public CallingContext context() {
+	// return ctx;
+	// }
 
 	/**
 	 * Convert from probe.CallEdge to CallEdge
