@@ -9,6 +9,6 @@ echo "compiling benchmarks"
 for benchmark in ${benchmarks[@]}
 do
   mkdir -p dist/scalac/${benchmark}
-  ant bm.jar -Dbm=${benchmark} -Danalysis=scalac   -Dthis=false -Dsuper=false > dist/scalac/${benchmark}/scalac-log
+  ant -logger org.apache.tools.ant.listener.ProfileLogger bm.jar -Dbm=${benchmark} -Danalysis=scalac > dist/scalac/${benchmark}/scalac-log
 done
 date

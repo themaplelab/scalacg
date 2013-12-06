@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+benchmarks=( argot ensime fimpp joos kiama phantm scalaxb scalisp see squeryl tictactoe )
+
+date
+
+echo "asserting subset sanity checks ..."
+for benchmark in ${benchmarks[@]}
+do
+  ./findreflection ${benchmark}
+done
+date

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+benchmark=$1
+tca_expand_this="tca-expand-this"
+
+# gather reflection stats
+sourceCount=$(find build_src/${benchmark}/ -name \*.scala -exec grep "java.lang.reflect" {} \; | wc -l)
+echo "$benchmark scala source has $sourceCount occurrences of java.lang.reflect"
+
+bytecodeCount=$(unzip -p dist/${tca_expand_this}/${benchmark}/${benchmark}-plugin.jar | grep "java.lang.reflect" | wc -l)
+echo "$benchmark bytecode has $bytecodeCount occurrences of java.lang.reflect"
+echo ""
