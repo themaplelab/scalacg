@@ -11,10 +11,10 @@ object LatexGenerator {
 
   final val benchmarks = List("argot", "ensime", "fimpp", "joos", "kiama", "phantm", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
 
-  final val analyses = List("RA$^{all}$", "TCA$^{names}$", "TCA$^{bounds}$", "TCA$^{expand}$", "TCA$^{expand-this}$", "WALA$^{rta}$")
+  final val analyses = List("\\raAll", "\\raInst", "\\tcaBounds", "\\tcaExpand", "\\tcaExpandThis", "\\walaRta")
   final val algorithms = analyses.dropRight(1).mkString(", ") + ", and " + analyses.last
 
-  final val chatacteristics = List("LOC") ++ List("classes", "objects", "traits", "trait comp.", "methods", "closures").map(a => s"\\texttt{\\#}$a")
+  final val chatacteristics = List("LOC", "classes", "objects", "traits", "trait comp.", "methods", "closures")
 
   final lazy val floatFormat = new DecimalFormat("#,###.##")
   final lazy val intFormat = "%,d"
@@ -103,12 +103,12 @@ object LatexGenerator {
 
         // Emit edges
         row append s" & $edges"
-        emit(ra_all, edges, ra.edges.size)
-        emit(ra_inst, edges, tcra.edges.size)
-        emit(tca_bounds, edges, ba.edges.size)
-        emit(tca_expand, edges, tca_std.edges.size)
-        emit(tca_expand_this, edges, tca_this.edges.size)
-        emit(wala_rta, edges, wala.edges.size)
+        emit(ra_all, edges, ra.edgesIgnoringContext.size)
+        emit(ra_inst, edges, tcra.edgesIgnoringContext.size)
+        emit(tca_bounds, edges, ba.edgesIgnoringContext.size)
+        emit(tca_expand, edges, tca_std.edgesIgnoringContext.size)
+        emit(tca_expand_this, edges, tca_this.edgesIgnoringContext.size)
+        emit(wala_rta, edges, wala.edgesIgnoringContext.size)
         table.println(row append " \\\\")
         //        if (benchmark != benchmarks.last) table.println("    \\addlinespace")
 
@@ -139,7 +139,9 @@ object LatexGenerator {
       table.println("\\resizebox{\\columnwidth}{!} {")
       table.println("  \\begin{tabular}{l" + ("r" * chatacteristics.size) + "}")
       table.println("    \\toprule")
+      table.println("    & " + ("& \\textbf{\\texttt{\\#}} " * chatacteristics.tail.size) + "\\\\")
       table.println("    " + (chatacteristics.map(a => s"& \\textbf{$a} ").mkString) + "\\\\")
+      table.println("    \\midrule")
 
       for (benchmark <- benchmarks) {
         var row = new StringBuilder("    ")
@@ -155,7 +157,6 @@ object LatexGenerator {
         emitBench(mixins, nMixins)
         emitBench(methods, nMethods)
         emitBench(closures, nClosures)
-        table.println("    \\midrule")
         table.println(row append " \\\\")
 
         def emitBench(k: String, v: Int) = {
@@ -195,6 +196,7 @@ object LatexGenerator {
       table.println("  \\begin{tabular}{l" + ("r" * analyses.size) + "r" + "}")
       table.println("    \\toprule")
       table.println("    " + (analyses.map(a => s"& \\textbf{$a} ").mkString) + s"& \\textbf{$scalac} " + "\\\\")
+      table.println("    \\midrule")
 
       for (benchmark <- benchmarks) {
         var row = new StringBuilder("    ")
@@ -209,7 +211,6 @@ object LatexGenerator {
         emitTime(tca_expand_this, time_tca_expand_this)
         emitTime(wala_rta, time_wala_rta)
         emitTime(scalac, time_scalac)
-        table.println("    \\midrule")
         table.println(row append " \\\\")
 
         def emitTime(analysis: String, v: Float) = {
