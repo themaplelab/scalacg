@@ -14,7 +14,7 @@ object LatexGenerator {
   final val analyses = List("\\raAll", "\\raInst", "\\tcaBounds", "\\tcaExpand", "\\tcaExpandThis", "\\walaRta")
   final val algorithms = analyses.dropRight(1).mkString(", ") + ", and " + analyses.last
 
-  final val chatacteristics = List("LOC", "classes", "objects", "traits", "trait comp.", "methods", "closures")
+  final val chatacteristics = List("LOC") ++ List("classes", "objects", "traits", "trait comp.", "methods", "closures").map(a => s"\\texttt{\\#} $a")
 
   final lazy val floatFormat = new DecimalFormat("#,###.##")
   final lazy val intFormat = "%,d"
@@ -69,10 +69,9 @@ object LatexGenerator {
       // Emit Header
       table.println("\\begin{table}")
       table.println("\\centering")
-      table.println("\\resizebox{\\columnwidth}{!} {")
-      table.println("  \\begin{tabular}{l" + ("r" * (analyses.size + 1)) + "}")
+      table.println("  \\begin{tabularx}{\\columnwidth}{ll" + ("R" * analyses.size) + "}")
       table.println("    \\toprule")
-      table.println("    & " + (analyses.map(a => s"& \\textbf{$a} ").mkString) + "\\\\")
+      table.println("    & " + (analyses.map(a => s"& \\rot{\\textbf{$a}} ").mkString) + "\\\\")
 
       for (benchmark <- benchmarks) {
         var row = new StringBuilder("    ")
@@ -122,8 +121,7 @@ object LatexGenerator {
 
       // Emit Footer
       table.println("    \\bottomrule")
-      table.println("  \\end{tabular}")
-      table.println("}")
+      table.println("  \\end{tabularx}")
       table.println("  \\caption{Number of nodes and edges in call graphs computed using the " + algorithms + " algorithms.}")
       table.println("  \\label{table:Results}")
       table.println("\\end{table}")
@@ -136,11 +134,9 @@ object LatexGenerator {
       // Table Header
       table.println("\\begin{table}")
       table.println("\\centering")
-      table.println("\\resizebox{\\columnwidth}{!} {")
-      table.println("  \\begin{tabular}{l" + ("r" * chatacteristics.size) + "}")
+      table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("R" * chatacteristics.size) + "}")
       table.println("    \\toprule")
-      table.println("    & " + ("& \\textbf{\\texttt{\\#}} " * chatacteristics.tail.size) + "\\\\")
-      table.println("    " + (chatacteristics.map(a => s"& \\textbf{$a} ").mkString) + "\\\\")
+      table.println("    " + (chatacteristics.map(a => s"& \\rot{\\textbf{$a}} ").mkString) + "\\\\")
       table.println("    \\midrule")
 
       for (benchmark <- benchmarks) {
@@ -178,8 +174,7 @@ object LatexGenerator {
 
       // Table Footer
       table.println("    \\bottomrule")
-      table.println("  \\end{tabular}")
-      table.println("}")
+      table.println("  \\end{tabularx}")
       table.println("  \\caption{Benchmark characteristics.}")
       table.println("  \\label{table:Benchmarks}")
       table.println("\\end{table}")
@@ -192,10 +187,9 @@ object LatexGenerator {
       // Table Header
       table.println("\\begin{table}")
       table.println("\\centering")
-      table.println("\\resizebox{\\columnwidth}{!} {")
-      table.println("  \\begin{tabular}{l" + ("r" * analyses.size) + "r" + "}")
+      table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("R" * analyses.size) + "R" + "}")
       table.println("    \\toprule")
-      table.println("    " + (analyses.map(a => s"& \\textbf{$a} ").mkString) + s"& \\textbf{$scalac} " + "\\\\")
+      table.println("    " + (analyses.map(a => s"& \\rot{\\textbf{$a}} ").mkString) + s"& \\rot{\\textbf{$scalac}} " + "\\\\")
       table.println("    \\midrule")
 
       for (benchmark <- benchmarks) {
@@ -235,8 +229,7 @@ object LatexGenerator {
 
       // Table Footer
       table.println("    \\bottomrule")
-      table.println("  \\end{tabular}")
-      table.println("}")
+      table.println("  \\end{tabularx}")
       table.println("  \\caption{The time taken by the " + algorithms + " algorithms to compute the call graphs.}")
       table.println("  \\label{table:Time}")
       table.println("\\end{table}")
