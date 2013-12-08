@@ -1,19 +1,17 @@
 package ca.uwaterloo.scalacg.util
 
-import scala.collection.immutable.{Set => ImmutableSet}
-import scala.collection.mutable.Map
-import scala.collection.mutable.Set
+import scala.collection.mutable
 
 import ca.uwaterloo.scalacg.config.Global
 
 trait TypesCollections extends Global {
   import global._
 
-  val applicationTypes: Set[Type]
-  val types: Set[Type]
-  val mainModules: Set[Type]
-  val thisEnclMethodToTypes: Map[Symbol, ImmutableSet[Type]]
-  val packageNames: Set[String]
+  val applicationTypes: mutable.Set[Type]
+  val types: mutable.Set[Type]
+  val mainModules: mutable.Set[Type]
+  val thisEnclMethodToTypes: mutable.Map[Symbol, Set[Type]]
+  val packageNames: mutable.Set[String]
 }
 
 trait TypeOps extends TypesCollections {
@@ -67,8 +65,8 @@ trait TypeOps extends TypesCollections {
    * For those types that contain tpe in their linearizations, get those linearizations,
    * starting from the given type (wherever its linearization order is).
    */
-  def trimmedLinearizations(types: Set[Type], cls: Symbol) = {
-    val trimmed = Set[List[Symbol]]()
+  def trimmedLinearizations(types: mutable.Set[Type], cls: Symbol) = {
+    val trimmed = mutable.Set[List[Symbol]]()
     types.foreach { tpe => if (tpe.baseClasses contains cls) trimmed += (tpe.baseClasses dropWhile (_ != cls)).tail }
     trimmed
   }
@@ -115,17 +113,34 @@ trait TypeOps extends TypesCollections {
   class TypeConcretization extends AbstractTypeConcretization {
     import global._
 
-    val concretization = Map[Symbol, Set[Type]]().withDefaultValue(Set())
+    val concretization = mutable.Map[Symbol, Set[Type]]().withDefaultValue(Set())
+
+    val maxConcretizations = 1000
 
     def expand(t: Type) = {
       val sym = t.typeSymbol
       if (sym.isAbstractType) {
-        concretization.getOrElse(sym, Set())
+        val conc = concretization(sym)
+        if (conc.contains(NoType))
+          // NoType indicates falling back to bounds-based analysis
+          Set(definitions.AnyTpe)
+        else
+          conc
       } else {
         Set(t)
       }
     }
 
+    private def addConcreteType(absSym: Symbol, newTpe: Type): Unit = {
+      val old = concretization(absSym)
+      if (!old.contains(NoType))
+        concretization += absSym -> (old + newTpe)
+    }
+    private def addConcreteTypes(absSym: Symbol, newTpe: Set[Type]): Unit = {
+      val old = concretization(absSym)
+      if (!old.contains(NoType))
+        concretization += absSym -> (old ++ newTpe)
+    }
     /**
      * TODO Karim: this method definitely needs some optimization.
      */
@@ -138,8 +153,7 @@ trait TypeOps extends TypesCollections {
         if absSym.isAbstractType
         if absSym.name == sym.name
       } {
-        concretization +=
-          absSym -> (concretization(absSym) + sym.tpe.dealias)
+        addConcreteType(absSym, sym.tpe.dealias)
       }
 
       // Find all instantiations of generic type parameters (generics behave the same way)
@@ -153,7 +167,7 @@ trait TypeOps extends TypesCollections {
             for {
               (arg, param) <- (args zip params)
             } {
-              concretization += param -> (concretization(param) + arg)
+              addConcreteType(param, arg)
             }
           }
         case PolyType(typeParams, _) =>
@@ -161,28 +175,61 @@ trait TypeOps extends TypesCollections {
           for {
             (arg, param) <- (tpe.typeArguments zip typeParams)
           } {
-            concretization += param -> (concretization(param) + arg)
+            addConcreteType(param, arg)
           }
         case _ =>
         // TODO: are we missing any cases?
       }
 
       // transitively follow abstract type concretizations
-      var oldConcretization = concretization
+      var changed = false
       do {
-        oldConcretization = concretization
+        changed = false
         for {
           (absSym, tpes) <- concretization
           tpe <- tpes
         } {
+          var newConc = concretization(absSym)
           tpe match {
             case TypeRef(_, sym, _) =>
-              concretization +=
-                absSym -> (concretization(sym) ++ concretization(absSym))
+              if (concretization(sym).contains(NoType))
+                // NoType indicates falling back to bounds-based analysis
+                newConc = Set(NoType)
+              else
+                newConc ++= concretization(sym)
             case _ =>
           }
+          val params = tpe.typeArgs.map(_.typeSymbol)
+          if (!params.isEmpty) {
+            def crossProduct[A](list: List[Set[A]]): Set[List[A]] = list match {
+              case Nil => Set(List())
+              case x :: xs =>
+                val tails = crossProduct(xs)
+                for (chosen_x <- x; tail <- tails)
+                  yield chosen_x :: tail
+            }
+            val instantiations = params.map(concretization)
+            if (instantiations.exists(_.contains(NoType))) {
+              // NoType indicates falling back to bounds-based analysis
+              newConc = Set(NoType)
+            } else {
+              val argSet = crossProduct(params.map(concretization))
+              val instantiatedTypes =
+                argSet.map(tpe.instantiateTypeParams(params, _))
+              newConc ++= instantiatedTypes
+            }
+          }
+          if (newConc.size > maxConcretizations) {
+            // NoType indicates falling back to bounds-based analysis
+            newConc = Set(NoType)
+            println("WARNING: abstract type " + absSym + " has more than " + maxConcretizations + " concretizations; falling back to bounds-based")
+          }
+          if (newConc != concretization(absSym)) {
+            concretization += (absSym -> newConc)
+            changed = true
+          }
         }
-      } while (oldConcretization != concretization)
+      } while (changed)
     }
   }
 }
