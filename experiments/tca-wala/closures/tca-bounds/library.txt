@@ -1,0 +1,7 @@
+tests.tca.wala	Closures.$anonfun	<init>	 ===> scala.runtime	AbstractFunction0	<init>	
+tests.tca.wala	Closures.$anonfun	apply	 ===> scala	Predef	println	x: Any
+tests.tca.wala	Closures.A	<init>	 ===> java.lang	Object	<init>	
+tests.tca.wala	Closures.$anonfun	apply	 ===> scala	Predef	println	x: Any
+tests.tca.wala	Closures	<init>	 ===> java.lang	Object	<init>	
+tests.tca.wala	Closures	bar	y:  ===> scala	Function0	apply	
+tests.tca.wala	Closures.$anonfun	<init>	 ===> scala.runtime	AbstractFunction0	<init>	

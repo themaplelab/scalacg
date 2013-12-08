@@ -1,0 +1,26 @@
+Compiled from "Closures.scala"
+public final class tests.tca.wala.Closures$$anonfun$1 extends scala.runtime.AbstractFunction0<tests.tca.wala.Closures$A> implements scala.Serializable {
+  public static final long serialVersionUID;
+
+  public final tests.tca.wala.Closures$A apply();
+    Code:
+       0: getstatic     #25                 // Field scala/Predef$.MODULE$:Lscala/Predef$;
+       3: ldc           #27                 // String foo1
+       5: invokevirtual #31                 // Method scala/Predef$.println:(Ljava/lang/Object;)V
+       8: new           #33                 // class tests/tca/wala/Closures$A
+      11: dup           
+      12: invokespecial #34                 // Method tests/tca/wala/Closures$A."<init>":()V
+      15: areturn       
+
+  public final java.lang.Object apply();
+    Code:
+       0: aload_0       
+       1: invokevirtual #39                 // Method apply:()Ltests/tca/wala/Closures$A;
+       4: areturn       
+
+  public tests.tca.wala.Closures$$anonfun$1();
+    Code:
+       0: aload_0       
+       1: invokespecial #40                 // Method scala/runtime/AbstractFunction0."<init>":()V
+       4: return        
+}

@@ -1,0 +1,48 @@
+[[syntax trees at end of                   uncurry]] // Closures.scala
+package tests.tca.wala {
+  object Closures extends Object {
+    def <init>(): tests.tca.wala.Closures.type = {
+      Closures.super.<init>();
+      ()
+    };
+    def main(args: Array[String]): Unit = this.bar(Closures.this.foo1());
+    private[this] val foo1: () => tests.tca.wala.Closures.A = {
+      @SerialVersionUID(0) final <synthetic> class $anonfun extends scala.runtime.AbstractFunction0[tests.tca.wala.Closures.A] with Serializable {
+        def <init>(): anonymous class $anonfun = {
+          $anonfun.super.<init>();
+          ()
+        };
+        final def apply(): tests.tca.wala.Closures.A = {
+          scala.this.Predef.println("foo1");
+          new tests.tca.wala.Closures.A()
+        }
+      };
+      (new anonymous class $anonfun(): () => tests.tca.wala.Closures.A)
+    };
+    <stable> <accessor> def foo1(): () => tests.tca.wala.Closures.A = Closures.this.foo1;
+    private[this] val foo2: () => tests.tca.wala.Closures.A = {
+      @SerialVersionUID(0) final <synthetic> class $anonfun extends scala.runtime.AbstractFunction0[tests.tca.wala.Closures.A] with Serializable {
+        def <init>(): anonymous class $anonfun = {
+          $anonfun.super.<init>();
+          ()
+        };
+        final def apply(): tests.tca.wala.Closures.A = {
+          scala.this.Predef.println("foo2");
+          new tests.tca.wala.Closures.A()
+        }
+      };
+      (new anonymous class $anonfun(): () => tests.tca.wala.Closures.A)
+    };
+    <stable> <accessor> def foo2(): () => tests.tca.wala.Closures.A = Closures.this.foo2;
+    def bar(y: () => tests.tca.wala.Closures.A): Unit = {
+      y.apply();
+      ()
+    };
+    class A extends Object {
+      def <init>(): tests.tca.wala.Closures.A = {
+        A.super.<init>();
+        ()
+      }
+    }
+  }
+}

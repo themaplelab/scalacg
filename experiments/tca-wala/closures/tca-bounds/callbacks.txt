@@ -1,0 +1,2 @@
+4 ===> tests.tca.wala	Closures.$anonfun	apply	
+7 ===> tests.tca.wala	Closures.$anonfun	apply	

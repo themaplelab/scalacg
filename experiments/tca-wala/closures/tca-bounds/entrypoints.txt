@@ -1,0 +1,5 @@
+2 ===> tests.tca.wala	Closures	main	args: Array[String]
+0 ===> scala	Predef	<init>	
+1 ===> tests.tca.wala	Closures	<init>	
+4 ===> tests.tca.wala	Closures.$anonfun	apply	
+7 ===> tests.tca.wala	Closures.$anonfun	apply	

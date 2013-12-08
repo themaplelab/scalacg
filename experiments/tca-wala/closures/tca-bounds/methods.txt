@@ -1,0 +1,10 @@
+4 ===> tests.tca.wala	Closures.$anonfun	apply	
+1 ===> tests.tca.wala	Closures	<init>	
+7 ===> tests.tca.wala	Closures.$anonfun	apply	
+10 ===> tests.tca.wala	Closures.A	<init>	
+5 ===> tests.tca.wala	Closures	foo1	
+3 ===> tests.tca.wala	Closures.$anonfun	<init>	
+9 ===> tests.tca.wala	Closures	bar	y: 
+6 ===> tests.tca.wala	Closures.$anonfun	<init>	
+2 ===> tests.tca.wala	Closures	main	args: Array[String]
+8 ===> tests.tca.wala	Closures	foo2	

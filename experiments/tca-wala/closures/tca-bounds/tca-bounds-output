@@ -1,0 +1,51 @@
+==============================
+Closures
+==============================
+Starting phase methodannotation ...
+Finished methodannotation in 0.01 seconds.
+
+Starting phase callgraph ...
+
+Running plugin with the following options ...
+Analysis                : TCA-BOUNDS
+Handling super calls    : true
+This special treatement : false
+Applying assertions     : false
+
+Items in work list: 1
+	Found 2 new call sites
+	Found 1 new instantiated types
+Items in work list: 3
+	Found 4 new call sites
+	Found 2 new instantiated types
+Items in work list: 6
+	Found 4 new call sites
+	Found 2 new instantiated types
+Items in work list: 4
+	Found 1 new call sites
+
+Finished callgraph in 0.1 seconds.
+
+Statistics
+----------
+# classes                   : 3
+# classes w abs type member : 0
+# classes w abs type param  : 0
+# anonfun                   : 2
+# objects                   : 1
+# traits                    : 0
+# trait compositions        : 4
+# closures                  : 1
+# methods                   : 12
+# abstract call sites       : 13
+# abstract this call sites  : 2
+# abstract super call sites : 6
+# concrete call sites       : 15
+# concrete this call sites  : 2
+# concrete super call sites : 6
+# overriding methods        : 2
+
+Printing call graph to disk ...
+Call graph is available at callgraph.gxl.gzip and its summary at callgraph-summary.gxl.gzip
+
+

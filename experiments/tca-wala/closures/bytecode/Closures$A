@@ -1,0 +1,8 @@
+Compiled from "Closures.scala"
+public class tests.tca.wala.Closures$A {
+  public tests.tca.wala.Closures$A();
+    Code:
+       0: aload_0       
+       1: invokespecial #9                  // Method java/lang/Object."<init>":()V
+       4: return        
+}
