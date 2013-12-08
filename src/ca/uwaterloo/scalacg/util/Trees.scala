@@ -24,6 +24,7 @@ trait TraversalCollections extends Global with CallSites with TypesCollections w
   val abstractToCallSites: Map[AbstractCallSite, ImmutableSet[CallSite]]
   val callSitesInMethod: Map[Symbol, ImmutableSet[AbstractCallSite]]
   val instantiatedTypesInMethod: Map[Symbol, ImmutableSet[Type]]
+  val typeAppliesInMethod: Map[Symbol, ImmutableSet[TypeApply]]
 }
 
 trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
@@ -55,6 +56,7 @@ trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
   val abstractToCallSites = Map[AbstractCallSite, ImmutableSet[CallSite]]().withDefaultValue(ImmutableSet.empty[CallSite])
   val callSitesInMethod = Map[Symbol, ImmutableSet[AbstractCallSite]]().withDefaultValue(ImmutableSet.empty[AbstractCallSite])
   val instantiatedTypesInMethod = Map[Symbol, ImmutableSet[Type]]().withDefaultValue(ImmutableSet.empty[Type])
+  val typeAppliesInMethod = Map[Symbol, ImmutableSet[TypeApply]]().withDefaultValue(ImmutableSet.empty)
 
   // Types
   val applicationTypes = Set[Type]()
@@ -85,13 +87,17 @@ trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
       case _: Select | _: Ident => findCallSitesSelectOrIdent // TODO: This causes duplicate call sites (see foreach in Reachable1b)
       case dd: DefDef => updateMethodsCount(dd)
       case vd: ValDef => updateClosuresCount(vd)
+      case ta: TypeApply =>
+        val method = enclMethod
+        typeAppliesInMethod += (method -> (typeAppliesInMethod(method) + ta))
+        processChildren
       case _ => processChildren
     }
 
     def updateMethodsCount(dd: DefDef) = {
       methodsCount += 1
       val symbol = dd.symbol
-      
+
       // count only concrete methods, because those are the ones that can have "this" call sites in them
       if (!symbol.isConstructor &&
         symbol.isMethod &&
@@ -316,7 +322,7 @@ trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
       }
 
       args foreach (traverse(_, apply :: ancestors))
-      callee.children foreach (traverse(_, apply :: ancestors)) // TODO: This causes duplicate call sites (see foreach in Reachable1b)
+      traverse(callee, apply :: ancestors) // TODO: This causes duplicate call sites (see foreach in Reachable1b)
     }
 
     // Find call sites resulting from Select(qual, name) or Ident(qual, name)

@@ -151,7 +151,8 @@ trait CallGraphPrinter {
     val out = new PrintStream("instantiated.txt")
     for (tpe <- instantiatedTypes.reachableItems) {
       var linearization = tpe.baseClasses
-      if (linearization.head.tpe != tpe) linearization = tpe.typeSymbol :: linearization
+      if (linearization.isEmpty || linearization.head.tpe != tpe)
+        linearization = tpe.typeSymbol :: linearization
       out.println(linearization.map(_.fullName).mkString("\t"))
     }
   }

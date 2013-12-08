@@ -88,6 +88,19 @@ trait TypeOps extends TypesCollections {
      * Compute the type concretization for the given type
      */
     def addTypeConcretization(tpe: Type): Unit = {}
+    /**
+     * Compute the type concretization for the given method call
+     */
+    def addMethodInstantiation(method: Symbol, args: List[Type]): Unit = {}
+    
+    protected def upperBound(tpe: Type): Type = {
+      val bound = tpe.bounds.hi
+      assert(bound != NoType) // NOTE: this should never happen
+      if (bound.typeSymbol.isAbstractType || bound.typeArguments.exists(_.typeSymbol.isAbstractType))
+        definitions.AnyTpe
+      else
+        bound
+    }
   }
 
   class BoundsTypeConcretization extends AbstractTypeConcretization {
@@ -96,14 +109,7 @@ trait TypeOps extends TypesCollections {
     def expand(t: Type) = {
       val sym = t.typeSymbol
       if (sym.isAbstractType) {
-        val upperBound = t.bounds.hi
-        assert(upperBound != NoType) // NOTE: this should never happen
-        //        assert(!upperBound.typeSymbol.isAbstractType) // NOTE: Karim: occurs in the benchmark factorie
-        if (upperBound.typeSymbol.isAbstractType || upperBound.typeArguments.exists(_.typeSymbol.isAbstractType)) {
-          Set(definitions.AnyTpe)
-        } else {
-          Set(upperBound)
-        }
+        Set(upperBound(t))
       } else {
         Set(t)
       }
@@ -117,13 +123,16 @@ trait TypeOps extends TypesCollections {
 
     val maxConcretizations = 1000
 
+    var needsClosure = false
+
     def expand(t: Type) = {
+      if (needsClosure) computeClosure
       val sym = t.typeSymbol
       if (sym.isAbstractType) {
         val conc = concretization(sym)
         if (conc.contains(NoType))
           // NoType indicates falling back to bounds-based analysis
-          Set(definitions.AnyTpe)
+          Set(upperBound(t))
         else
           conc
       } else {
@@ -180,7 +189,10 @@ trait TypeOps extends TypesCollections {
         case _ =>
         // TODO: are we missing any cases?
       }
+      needsClosure = true
+    }
 
+    private def computeClosure(): Unit = {
       // transitively follow abstract type concretizations
       var changed = false
       do {
@@ -199,7 +211,8 @@ trait TypeOps extends TypesCollections {
                 newConc ++= concretization(sym)
             case _ =>
           }
-          val params = tpe.typeArgs.map(_.typeSymbol)
+          val origParams = tpe.typeArgs.map(_.typeSymbol)
+          val params = origParams.map(_.deSkolemize)
           if (!params.isEmpty) {
             def crossProduct[A](list: List[Set[A]]): Set[List[A]] = list match {
               case Nil => Set(List())
@@ -215,7 +228,7 @@ trait TypeOps extends TypesCollections {
             } else {
               val argSet = crossProduct(params.map(concretization))
               val instantiatedTypes =
-                argSet.map(tpe.instantiateTypeParams(params, _))
+                argSet.map(tpe.instantiateTypeParams(origParams, _))
               newConc ++= instantiatedTypes
             }
           }
@@ -230,6 +243,15 @@ trait TypeOps extends TypesCollections {
           }
         }
       } while (changed)
+      needsClosure = false
+    }
+
+    override def addMethodInstantiation(method: Symbol, args: List[Type]) = {
+      assert(method.tpe.typeParams.length == args.length)
+      for ((param, arg) <- method.tpe.typeParams zip args) {
+        addConcreteType(param, arg)
+      }
+      needsClosure = true
     }
   }
 }

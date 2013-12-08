@@ -165,6 +165,11 @@ trait CallGraphAnalysis extends CallGraphWorklists
       val t = instantiatedTypesInMethod(method).filter(_.typeSymbol.name containsName "ConcreteType")
       if (t.nonEmpty) println("found ConcreteType in method " + signature(method))
       instantiatedTypes ++= instantiatedTypesInMethod(method)
+
+      // Find TypeApplys that instantiate method type parameters
+      for (ta <- typeAppliesInMethod(method)) {
+        concretization.addMethodInstantiation(ta.fun.symbol, ta.args.map(_.tpe))
+      }
     }
 
     reachableMethods.clear
