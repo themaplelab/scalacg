@@ -1,5 +1,6 @@
-tests.tca.wala.Closures.$anonfun	scala.Serializable	java.io.Serializable	scala.runtime.AbstractFunction0	scala.Function0	java.lang.Object	scala.Any
-tests.tca.wala.Closures.A	java.lang.Object	scala.Any
-scala.Predef	scala.LowPriorityImplicits	java.lang.Object	scala.Any
 tests.tca.wala.Closures	java.lang.Object	scala.Any
+tests.tca.wala.Closures.A	java.lang.Object	scala.Any
 tests.tca.wala.Closures.$anonfun	scala.Serializable	java.io.Serializable	scala.runtime.AbstractFunction0	scala.Function0	java.lang.Object	scala.Any
+tests.tca.wala.Closures.B	java.lang.Object	scala.Any
+tests.tca.wala.Closures.$anonfun	scala.Serializable	java.io.Serializable	scala.runtime.AbstractFunction0	scala.Function0	java.lang.Object	scala.Any
+scala.Predef	scala.LowPriorityImplicits	java.lang.Object	scala.Any

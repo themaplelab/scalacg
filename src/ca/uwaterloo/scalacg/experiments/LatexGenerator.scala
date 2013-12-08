@@ -50,8 +50,13 @@ object LatexGenerator {
 
   final val base = "dist"
 
+  final val sep = "\t"
+
   def main(args: Array[String]): Unit = {
     val data = new PrintStream("paper_data.tex")
+    val out = Map[String, PrintStream]("nodes" -> new PrintStream("nodes.csv"),
+      "edges" -> new PrintStream("edges.csv"),
+      "time" -> new PrintStream("time.csv"))
 
     // Emit latex files
     emitTableResults
@@ -59,6 +64,7 @@ object LatexGenerator {
     emitTableTimes
 
     data.close
+    out.values foreach (_.close)
 
     def readCallGraph(file: String) = new TextReader().readCallGraph(new GZIPInputStream(new FileInputStream(file)))
 
@@ -67,7 +73,7 @@ object LatexGenerator {
       val table = new PrintStream("table_results.tex")
 
       // Emit Header
-      table.println("\\begin{table}")
+      table.println("\\begin{table}[!t]")
       table.println("\\centering")
       table.println("  \\begin{tabularx}{\\columnwidth}{ll" + ("R" * analyses.size) + "}")
       table.println("    \\toprule")
@@ -75,9 +81,10 @@ object LatexGenerator {
 
       for (benchmark <- benchmarks) {
         var row = new StringBuilder("    ")
+        var csv = new StringBuilder("")
 
         // add benchmark name in italics
-        row append s"\\multirow{2}{*}{\\textit{$benchmark}}"
+        row append s"\\multirow{2}{*}{\\$benchmark}"
 
         // Read the call graphs for this benchmark
         lazy val ra = readCallGraph(base + "/ra-all/" + benchmark + "/" + cg)
@@ -98,7 +105,9 @@ object LatexGenerator {
         table.println("    \\midrule")
         table.println(row append " \\\\")
         table.println("    \\cmidrule{2-8}")
+        out(nodes).println(csv dropRight 1) // get rid of the last separator character
         row.clear
+        csv.clear
 
         // Emit edges
         row append s" & $edges"
@@ -109,21 +118,24 @@ object LatexGenerator {
         emit(tca_expand_this, edges, tca_this.edgesIgnoringContext.size)
         emit(wala_rta, edges, wala.edgesIgnoringContext.size)
         table.println(row append " \\\\")
-        //        if (benchmark != benchmarks.last) table.println("    \\addlinespace")
+        out(edges).println(csv dropRight 1) // get rid of the last separator character
 
         def emit(analysis: String, k: String, v: Int) = {
           val key = analysis + " " + benchmark + " " + k
           val value = intFormat format v
           data.println(s"\\pgfkeyssetvalue{$key}{$value}")
           row append s" & \\pgfkeysvalueof{$key}" // add the key to the current results row
+
+          // print out to csv too
+          csv append s"${value}${sep}"
         }
       }
 
       // Emit Footer
       table.println("    \\bottomrule")
       table.println("  \\end{tabularx}")
-      table.println("  \\caption{Number of nodes and edges in call graphs computed using the " + algorithms + " algorithms.}")
-      table.println("  \\label{table:Results}")
+      table.println("  \\caption{Number of nodes and edges in the summarized version of call graphs computed using the " + algorithms + ".}")
+      table.println("  \\label{table:results}")
       table.println("\\end{table}")
       table.close
     }
@@ -132,7 +144,7 @@ object LatexGenerator {
       val table = new PrintStream("table_benchmarks.tex")
 
       // Table Header
-      table.println("\\begin{table}")
+      table.println("\\begin{table}[!t]")
       table.println("\\centering")
       table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("R" * chatacteristics.size) + "}")
       table.println("    \\toprule")
@@ -143,7 +155,7 @@ object LatexGenerator {
         var row = new StringBuilder("    ")
         lazy val logfile = io.Source.fromFile(base + "/tca-expand-this/" + benchmark + "/" + log).getLines.toList
 
-        row append s"\\textit{$benchmark}"
+        row append s"\\$benchmark"
 
         // Read the stats log file
         emitBench(loc, nLoc)
@@ -175,8 +187,8 @@ object LatexGenerator {
       // Table Footer
       table.println("    \\bottomrule")
       table.println("  \\end{tabularx}")
-      table.println("  \\caption{Benchmark characteristics.}")
-      table.println("  \\label{table:Benchmarks}")
+      table.println("  \\caption{Various characteristics of our benchmark programs.}")
+      table.println("  \\label{table:benchmark:info}")
       table.println("\\end{table}")
       table.close
     }
@@ -185,7 +197,7 @@ object LatexGenerator {
       val table = new PrintStream("table_time.tex")
 
       // Table Header
-      table.println("\\begin{table}")
+      table.println("\\begin{table}[!t]")
       table.println("\\centering")
       table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("R" * analyses.size) + "R" + "}")
       table.println("    \\toprule")
@@ -194,8 +206,9 @@ object LatexGenerator {
 
       for (benchmark <- benchmarks) {
         var row = new StringBuilder("    ")
+        var csv = new StringBuilder("")
 
-        row append s"\\textit{$benchmark}"
+        row append s"\\$benchmark"
 
         // Read the time info
         emitTime(ra_all, time_ra_all)
@@ -206,12 +219,16 @@ object LatexGenerator {
         emitTime(wala_rta, time_wala_rta)
         emitTime(scalac, time_scalac)
         table.println(row append " \\\\")
+        out(time).println(csv dropRight 1) // get rid of the last separator character
 
         def emitTime(analysis: String, v: Float) = {
           val key = analysis + " " + benchmark + " " + time
           val value = floatFormat format v
           data.println(s"\\pgfkeyssetvalue{$key}{$value}")
           row append s" & \\pgfkeysvalueof{$key}" // add the key to the current results row
+
+          // print out to csv too
+          csv append s"${value}${sep}"
         }
 
         def extractAnalysisTime(log: List[String]) = log.find(_ contains "Finished callgraph in").get.split(" ").dropRight(1).last.trim.toFloat
@@ -231,7 +248,7 @@ object LatexGenerator {
       table.println("    \\bottomrule")
       table.println("  \\end{tabularx}")
       table.println("  \\caption{The time taken by the " + algorithms + " algorithms to compute the call graphs.}")
-      table.println("  \\label{table:Time}")
+      table.println("  \\label{table:results:time}")
       table.println("\\end{table}")
       table.close
     }

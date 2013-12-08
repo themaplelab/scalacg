@@ -3,13 +3,15 @@ package tests.tca.wala
 object Closures {
 
   def main(args: Array[String]): Unit = {
-    this.bar(foo1)
+	val foo1: () => A = () => { println("foo1"); new A; }
+	val foo2: () => B = () => { println("foo2"); new B; }
+    this.bar1(foo1)
+    this.bar2(foo2)
   }
 
-  val foo1: () => A = () => { println("foo1"); new A; }
-  val foo2: () => A = () => { println("foo2"); new A; }
-
-  def bar(y: () => A) { y() }
+  def bar1(y: () => A) { y() }
+  def bar2(z: () => B) { z() }
 
   class A
+  class B
 }

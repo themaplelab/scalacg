@@ -5,10 +5,11 @@ import org.junit.Test
 class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:tca-expand-this", "callgraph:assert")) {
 
   // TCA-WALA examples
+  @Test def testTcaWalaClosures() { testPath = "junit/src/tests/tca/wala/"; options = List("callgraph:tca-bounds"); runTest("Closures") }
   @Test def testTcaWalaToString() { testPath = "junit/src/tests/tca/wala/"; runTest("ToString") }
   @Test def testTcaWalaApply() { testPath = "junit/src/tests/tca/wala/"; runTest("Apply") }
   @Test def testTcaWalaThis() { testPath = "junit/src/tests/tca/wala/"; runTest("This") }
-  
+
   //tictactoe
   @Test def testTicTacToe() { testPath = "junit/src/"; runTest("tictactoe") }
 

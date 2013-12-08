@@ -3,7 +3,7 @@ package ca.uwaterloo.scalacg.junit
 import scala.tools.nsc
 import ca.uwaterloo.scalacg.config.GlobalConstants
 
-abstract class Suite(var testPath: String, options: List[String] = Nil) extends GlobalConstants {
+abstract class Suite(var testPath: String, var options: List[String] = Nil) extends GlobalConstants {
 
   def runTest(filename: String) {
     val settings = new nsc.Settings
