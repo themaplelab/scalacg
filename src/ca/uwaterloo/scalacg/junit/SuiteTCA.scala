@@ -194,4 +194,9 @@ class SuiteTCA extends Suite("junit/src/tests/tca/", List("callgraph:tca-expand-
   @Test def testDefInDef() { runTest("DefInDef") }
 
   @Test def variantsExample() { runTest("VariantsExample") }
+
+  @Test def polymorphicRecursion1() { runTest("PolymorphicRecursion1") }
+  @Test def polymorphicRecursion2() { runTest("PolymorphicRecursion2") }
+  @Test def polymorphicRecursion3() { runTest("PolymorphicRecursion3") }
+  @Test def polymorphicRecursion4() { runTest("PolymorphicRecursion4") }
 }
