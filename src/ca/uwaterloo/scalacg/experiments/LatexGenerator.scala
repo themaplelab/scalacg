@@ -17,7 +17,7 @@ object LatexGenerator {
   final val analyses = List("\\ra", "\\tcaNames", "\\tcaBounds", "\\tcaExpand", "\\tcaExpandThis", "\\rtaWala")
   final val algorithms = analyses.dropRight(1).mkString(", ") + ", and " + analyses.last
 
-  final val chatacteristics = List("LOC") ++ List("classes", "objects", "traits", "trait comp.", "methods", "closures").map(a => s"\\texttt{\\#} $a")
+  final val chatacteristics = List("LOC") ++ List("classes", "objects", "traits", "trait comp.", "methods", "closures", "abstract types", "concretizations").map(a => s"\\texttt{\\#} $a")
 
   final val rq1Header = List("\\rtaWala~-~\\tcaBounds", "\\codett{apply}", "\\codett{toString}", "\\codett{equals}")
   final val rq2Header = List("\\tcaNames~-~\\tcaBounds", "\\codett{apply}")
@@ -31,7 +31,7 @@ object LatexGenerator {
   // constant file names
   final val cg = "callgraph-summary.gxl.gzip"
   final val walacg = "wala-" + cg
-  final val log = "tca-expand-this-log"
+  final val log = "tca-expand-log"
 
   // keys for table of characteristics
   final val bench = "benchmark"
@@ -42,6 +42,8 @@ object LatexGenerator {
   final val mixins = "mixins"
   final val methods = "methods"
   final val closures = "closures" // these include anonfun
+  final val abstractTypes = "abstract types"
+  final val conretizations = "concretizations"
 
   // keys for table of analyses
   final val tca_expand_this = "tca expand this"
@@ -91,10 +93,10 @@ object LatexGenerator {
     emitTableResults
     emitTableBenchmarks
     emitTableTimes
-    emitTableRQ1
-    emitTableRQ2
-    emitTableRQ3
-    emitTableRQ4
+    //    emitTableRQ1
+    //    emitTableRQ2
+    //    emitTableRQ3
+    //    emitTableRQ4
 
     data.close
     out.values foreach (_.close)
@@ -188,7 +190,7 @@ object LatexGenerator {
 
       for (benchmark <- benchmarks) {
         var row = new StringBuilder("    ")
-        lazy val logfile = io.Source.fromFile(s"$base/tca-expand-this/$benchmark/$log").getLines.toList
+        lazy val logfile = io.Source.fromFile(s"$base/tca-expand/$benchmark/$log").getLines.toList
 
         row append s"\\$benchmark"
 
@@ -200,6 +202,8 @@ object LatexGenerator {
         emitBench(mixins, nMixins)
         emitBench(methods, nMethods)
         emitBench(closures, nClosures)
+        emitBench(abstractTypes, nAbstractTypes)
+        emitBench(conretizations, nConcretizations)
         table.println(row append " \\\\")
 
         def emitBench(k: String, v: Int) = {
@@ -217,6 +221,8 @@ object LatexGenerator {
         lazy val nMethods = extract("# methods  ")
         lazy val nClosures = extract("# anonfun  ") + extract("# closures  ")
         lazy val nLoc = extract("# loc :")
+        lazy val nAbstractTypes = extract("# abstract types    ")
+        lazy val nConcretizations = extract("# concretizations   ")
       }
 
       // Table Footer

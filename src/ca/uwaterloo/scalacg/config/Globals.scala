@@ -120,5 +120,12 @@ trait Statistics {
   var concreteThisCallSitesCount: Int
   var concreteSuperCallSitesCount: Int
   
+  var callSitesCount: Int
+  var thisCallSitesCount: Int
+  var superCallSitesCount: Int
+  var thisCallSitesNotSuper: Int
+  var abstractReceiverCount: Int
+  var concretizationCount: Int
+  
   var overridingMethodsCount: Int
 }

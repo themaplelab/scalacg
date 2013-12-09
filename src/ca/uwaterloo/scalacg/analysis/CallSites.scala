@@ -12,6 +12,8 @@ trait CallSites extends Global with Probe {
   class AbstractCallSite(receiverTree: Tree, val staticTarget: Symbol) {
     // The type of the receiver.
     lazy val receiver = receiverTree.tpe
+    
+    lazy val hasAbstractReceiver = receiver != null && receiver.typeSymbol.isAbstractType
 
     // Is this a constructor call?
     lazy val isConstructorCall = staticTarget.isConstructor

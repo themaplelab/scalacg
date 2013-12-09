@@ -35,12 +35,35 @@ abstract class CallGraphGen extends PluginComponent {
     }
 
     private def printStats = {
-      abstractCallSites.foreach { abs =>
-        val count = abstractToCallSites(abs).size
-        abstractCallSitesCount += 1; concreteCallSitesCount += count
-        if (abs.hasThisReceiver) { abstractThisCallSitesCount += 1; concreteThisCallSitesCount += count }
-        if (abs.isSuperCall) { abstractSuperCallSitesCount += 1; concreteSuperCallSitesCount += count }
+      // We should loop over abstract call sites in methods, other wise, 2 call sites from different methods are equal.
+      callSitesInMethod.keys.foreach { m =>
+        callSitesInMethod(m).foreach { cs =>
+          callSitesCount += 1
+          if (cs.isSuperCall) superCallSitesCount += 1
+          if (cs.hasThisReceiver) {
+            thisCallSitesCount += 1
+
+            // check for call sites with this as a receiver, and that are not inside methods called via super.
+            if (!(callSitesInMethod.values.flatten exists { c => c.isSuperCall && c.staticTarget == m }))
+              thisCallSitesNotSuperCount += 1
+          }
+          if (cs.hasAbstractReceiver) abstractReceiverCount += 1
+        }
       }
+
+      // Count concretizations
+      if (concretization.isInstanceOf[TypeConcretization]) {
+        val conc = concretization.asInstanceOf[TypeConcretization]
+        abstractTypesCount = conc.concretization.keys.size
+        concretizationCount = conc.concretization.values.flatten.size
+      }
+
+      //      abstractCallSites.foreach { abs =>
+      //        val count = abstractToCallSites(abs).size
+      //        abstractCallSitesCount += 1; concreteCallSitesCount += count
+      //        if (abs.hasThisReceiver) { abstractThisCallSitesCount += 1; concreteThisCallSitesCount += count }
+      //        if (abs.isSuperCall) { abstractSuperCallSitesCount += 1; concreteSuperCallSitesCount += count }
+      //      }
 
       println("Statistics")
       println("----------")
@@ -53,12 +76,18 @@ abstract class CallGraphGen extends PluginComponent {
       println(s"# trait compositions        : $traitCompsCount")
       println(s"# closures                  : $closuresCount")
       println(s"# methods                   : $methodsCount")
-      println(s"# abstract call sites       : $abstractCallSitesCount")
-      println(s"# abstract this call sites  : $abstractThisCallSitesCount")
-      println(s"# abstract super call sites : $abstractSuperCallSitesCount")
-      println(s"# concrete call sites       : $concreteCallSitesCount")
-      println(s"# concrete this call sites  : $concreteThisCallSitesCount")
-      println(s"# concrete super call sites : $concreteSuperCallSitesCount")
+      println(s"# abstract types            : $abstractTypesCount")
+      println(s"# concretizations           : $concretizationCount")
+      //      println(s"# abstract call sites       : $abstractCallSitesCount")
+      //      println(s"# abstract this call sites  : $abstractThisCallSitesCount")
+      //      println(s"# abstract super call sites : $abstractSuperCallSitesCount")
+      //      println(s"# concrete call sites       : $concreteCallSitesCount")
+      //      println(s"# concrete this call sites  : $concreteThisCallSitesCount")
+      //      println(s"# concrete super call sites : $concreteSuperCallSitesCount")
+      println(s"# call sites                : $callSitesCount")
+      println(s"# this call sites           : $thisCallSitesCount")
+      println(s"# super call sites          : $superCallSitesCount")
+      println(s"# this-not-super call sites : $thisCallSitesNotSuperCount")
       println(s"# overriding methods        : $overridingMethodsCount")
       println
     }
@@ -86,7 +115,7 @@ abstract class CallGraphGen extends PluginComponent {
       println
       println(s"Finished $phaseName in ${Timer.elapsed} seconds.")
       println
-      
+
       printStats
 
       // Print out the probe call graph
