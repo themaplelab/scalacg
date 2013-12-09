@@ -4,20 +4,26 @@ import java.io.FileInputStream
 import java.io.PrintStream
 import java.text.DecimalFormat
 import java.util.zip.GZIPInputStream
+
+import scala.collection.JavaConversions.asScalaSet
+
+import ca.uwaterloo.scalacg.util.Math
 import probe.TextReader
-import ca.uwaterloo.scalacg.util.Timer
 
 object LatexGenerator {
 
   final val benchmarks = List("argot", "ensime", "fimpp", "joos", "kiama", "phantm", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
 
-  final val analyses = List("\\raAll", "\\raInst", "\\tcaBounds", "\\tcaExpand", "\\tcaExpandThis", "\\walaRta")
+  final val analyses = List("\\ra", "\\tcaNames", "\\tcaBounds", "\\tcaExpand", "\\tcaExpandThis", "\\rtaWala")
   final val algorithms = analyses.dropRight(1).mkString(", ") + ", and " + analyses.last
 
   final val chatacteristics = List("LOC") ++ List("classes", "objects", "traits", "trait comp.", "methods", "closures").map(a => s"\\texttt{\\#} $a")
 
+  final val rq1Header = List("\\rtaWala~-~\\tcaBounds", "\\codett{apply}", "\\codett{toString}", "\\codett{equals}")
+
   final lazy val floatFormat = new DecimalFormat("#,###.##")
   final lazy val intFormat = "%,d"
+  final lazy val perFormat = "%5s"
 
   // constant file names
   final val cg = "callgraph-summary.gxl.gzip"
@@ -38,9 +44,9 @@ object LatexGenerator {
   final val tca_expand_this = "tca expand this"
   final val tca_expand = "tca expand"
   final val tca_bounds = "tca bounds"
-  final val ra_inst = "ra inst"
-  final val ra_all = "ra all"
-  final val wala_rta = "wala rta"
+  final val tca_names = "tca names"
+  final val ra = "ra"
+  final val rta_wala = "rta wala"
   final val nodes = "nodes"
   final val edges = "edges"
 
@@ -48,20 +54,31 @@ object LatexGenerator {
   final val time = "time"
   final val scalac = "scalac"
 
+  // keys for table of differences
+  final val rq1 = "rq1"
+  final val valueKey = "value"
+  final val perKey = "percentage"
+  final val totalKey = "total"
+  final val applyKey = "apply"
+  final val toStringKey = "toString"
+  final val equalsKey = "equals"
+
   final val base = "dist"
 
   final val sep = "\t"
 
   def main(args: Array[String]): Unit = {
     val data = new PrintStream("paper_data.tex")
-    val out = Map[String, PrintStream]("nodes" -> new PrintStream("nodes.csv"),
-      "edges" -> new PrintStream("edges.csv"),
-      "time" -> new PrintStream("time.csv"))
+    val out = Map[String, PrintStream](nodes -> new PrintStream(s"$nodes.csv"),
+      edges -> new PrintStream(s"$edges.csv"),
+      time -> new PrintStream(s"$time.csv"),
+      rq1 -> new PrintStream(s"$rq1.csv"))
 
     // Emit latex files
     emitTableResults
     emitTableBenchmarks
     emitTableTimes
+    emitTableRQ1
 
     data.close
     out.values foreach (_.close)
@@ -75,6 +92,8 @@ object LatexGenerator {
       // Emit Header
       table.println("\\begin{table}[!t]")
       table.println("\\centering")
+      table.println("  \\caption{Number of nodes and edges in the summarized version of call graphs computed using the " + algorithms + ".}")
+      table.println("  \\label{table:results}")
       table.println("  \\begin{tabularx}{\\columnwidth}{ll" + ("R" * analyses.size) + "}")
       table.println("    \\toprule")
       table.println("    & " + (analyses.map(a => s"& \\rot{\\textbf{$a}} ").mkString) + "\\\\")
@@ -87,21 +106,21 @@ object LatexGenerator {
         row append s"\\multirow{2}{*}{\\$benchmark}"
 
         // Read the call graphs for this benchmark
-        lazy val ra = readCallGraph(base + "/ra-all/" + benchmark + "/" + cg)
-        lazy val tcra = readCallGraph(base + "/ra-inst/" + benchmark + "/" + cg)
-        lazy val ba = readCallGraph(base + "/tca-bounds/" + benchmark + "/" + cg)
-        lazy val tca_std = readCallGraph(base + "/tca-expand/" + benchmark + "/" + cg)
-        lazy val tca_this = readCallGraph(base + "/tca-expand-this/" + benchmark + "/" + cg)
-        lazy val wala = readCallGraph(base + "/wala-rta/" + benchmark + "/" + walacg)
+        lazy val raCG = readCallGraph(s"$base/ra-all/$benchmark/$cg")
+        lazy val tcaNamesCG = readCallGraph(s"$base/ra-inst/$benchmark/$cg")
+        lazy val tcaBoundsCG = readCallGraph(s"$base/tca-bounds/$benchmark/$cg")
+        lazy val tcaExpandCG = readCallGraph(s"$base/tca-expand/$benchmark/$cg")
+        lazy val tcaExpandThisCG = readCallGraph(s"$base/tca-expand-this/$benchmark/$cg")
+        lazy val rtaWalaCG = readCallGraph(s"$base/wala-rta/$benchmark/$walacg")
 
         // Emit nodes
         row append s" & $nodes"
-        emit(ra_all, nodes, ra.findReachables.size)
-        emit(ra_inst, nodes, tcra.findReachables.size)
-        emit(tca_bounds, nodes, ba.findReachables.size)
-        emit(tca_expand, nodes, tca_std.findReachables.size)
-        emit(tca_expand_this, nodes, tca_this.findReachables.size)
-        emit(wala_rta, nodes, wala.findReachables.size)
+        emit(ra, nodes, raCG.findReachables.size)
+        emit(tca_names, nodes, tcaNamesCG.findReachables.size)
+        emit(tca_bounds, nodes, tcaBoundsCG.findReachables.size)
+        emit(tca_expand, nodes, tcaExpandCG.findReachables.size)
+        emit(tca_expand_this, nodes, tcaExpandThisCG.findReachables.size)
+        emit(rta_wala, nodes, rtaWalaCG.findReachables.size)
         table.println("    \\midrule")
         table.println(row append " \\\\")
         table.println("    \\cmidrule{2-8}")
@@ -111,17 +130,17 @@ object LatexGenerator {
 
         // Emit edges
         row append s" & $edges"
-        emit(ra_all, edges, ra.edgesIgnoringContext.size)
-        emit(ra_inst, edges, tcra.edgesIgnoringContext.size)
-        emit(tca_bounds, edges, ba.edgesIgnoringContext.size)
-        emit(tca_expand, edges, tca_std.edgesIgnoringContext.size)
-        emit(tca_expand_this, edges, tca_this.edgesIgnoringContext.size)
-        emit(wala_rta, edges, wala.edgesIgnoringContext.size)
+        emit(ra, edges, raCG.edgesIgnoringContext.size)
+        emit(tca_names, edges, tcaNamesCG.edgesIgnoringContext.size)
+        emit(tca_bounds, edges, tcaBoundsCG.edgesIgnoringContext.size)
+        emit(tca_expand, edges, tcaExpandCG.edgesIgnoringContext.size)
+        emit(tca_expand_this, edges, tcaExpandThisCG.edgesIgnoringContext.size)
+        emit(rta_wala, edges, rtaWalaCG.edgesIgnoringContext.size)
         table.println(row append " \\\\")
         out(edges).println(csv dropRight 1) // get rid of the last separator character
 
         def emit(analysis: String, k: String, v: Int) = {
-          val key = analysis + " " + benchmark + " " + k
+          val key = s"$analysis $benchmark $k"
           val value = intFormat format v
           data.println(s"\\pgfkeyssetvalue{$key}{$value}")
           row append s" & \\pgfkeysvalueof{$key}" // add the key to the current results row
@@ -134,8 +153,6 @@ object LatexGenerator {
       // Emit Footer
       table.println("    \\bottomrule")
       table.println("  \\end{tabularx}")
-      table.println("  \\caption{Number of nodes and edges in the summarized version of call graphs computed using the " + algorithms + ".}")
-      table.println("  \\label{table:results}")
       table.println("\\end{table}")
       table.close
     }
@@ -146,6 +163,8 @@ object LatexGenerator {
       // Table Header
       table.println("\\begin{table}[!t]")
       table.println("\\centering")
+      table.println("  \\caption{Various characteristics of our benchmark programs.}")
+      table.println("  \\label{table:benchmark:info}")
       table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("R" * chatacteristics.size) + "}")
       table.println("    \\toprule")
       table.println("    " + (chatacteristics.map(a => s"& \\rot{\\textbf{$a}} ").mkString) + "\\\\")
@@ -153,7 +172,7 @@ object LatexGenerator {
 
       for (benchmark <- benchmarks) {
         var row = new StringBuilder("    ")
-        lazy val logfile = io.Source.fromFile(base + "/tca-expand-this/" + benchmark + "/" + log).getLines.toList
+        lazy val logfile = io.Source.fromFile(s"$base/tca-expand-this/$benchmark/$log").getLines.toList
 
         row append s"\\$benchmark"
 
@@ -168,7 +187,7 @@ object LatexGenerator {
         table.println(row append " \\\\")
 
         def emitBench(k: String, v: Int) = {
-          val key = bench + " " + benchmark + " " + k
+          val key = s"$bench $benchmark $k"
           val value = intFormat format v
           data.println(s"\\pgfkeyssetvalue{$key}{$value}")
           row append s" & \\pgfkeysvalueof{$key}" // add the key to the current benchmarks row
@@ -187,8 +206,6 @@ object LatexGenerator {
       // Table Footer
       table.println("    \\bottomrule")
       table.println("  \\end{tabularx}")
-      table.println("  \\caption{Various characteristics of our benchmark programs.}")
-      table.println("  \\label{table:benchmark:info}")
       table.println("\\end{table}")
       table.close
     }
@@ -199,6 +216,8 @@ object LatexGenerator {
       // Table Header
       table.println("\\begin{table}[!t]")
       table.println("\\centering")
+      table.println("  \\caption{The time taken by " + algorithms + " to compute the call graphs.}")
+      table.println("  \\label{table:results:time}")
       table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("R" * analyses.size) + "R" + "}")
       table.println("    \\toprule")
       table.println("    " + (analyses.map(a => s"& \\rot{\\textbf{$a}} ").mkString) + s"& \\rot{\\textbf{$scalac}} " + "\\\\")
@@ -211,18 +230,18 @@ object LatexGenerator {
         row append s"\\$benchmark"
 
         // Read the time info
-        emitTime(ra_all, time_ra_all)
-        emitTime(ra_inst, time_ra_inst)
+        emitTime(ra, time_ra_all)
+        emitTime(tca_names, time_ra_inst)
         emitTime(tca_bounds, time_tca_bounds)
         emitTime(tca_expand, time_tca_expand)
         emitTime(tca_expand_this, time_tca_expand_this)
-        emitTime(wala_rta, time_wala_rta)
+        emitTime(rta_wala, time_wala_rta)
         emitTime(scalac, time_scalac)
         table.println(row append " \\\\")
         out(time).println(csv dropRight 1) // get rid of the last separator character
 
         def emitTime(analysis: String, v: Float) = {
-          val key = analysis + " " + benchmark + " " + time
+          val key = s"$analysis $benchmark $time"
           val value = floatFormat format v
           data.println(s"\\pgfkeyssetvalue{$key}{$value}")
           row append s" & \\pgfkeysvalueof{$key}" // add the key to the current results row
@@ -232,23 +251,84 @@ object LatexGenerator {
         }
 
         def extractAnalysisTime(log: List[String]) = log.find(_ contains "Finished callgraph in").get.split(" ").dropRight(1).last.trim.toFloat
-        lazy val time_ra_all = extractAnalysisTime(io.Source.fromFile(base + "/ra-all/" + benchmark + "/ra-all-log").getLines.toList)
-        lazy val time_ra_inst = extractAnalysisTime(io.Source.fromFile(base + "/ra-inst/" + benchmark + "/ra-inst-log").getLines.toList)
-        lazy val time_tca_bounds = extractAnalysisTime(io.Source.fromFile(base + "/tca-bounds/" + benchmark + "/tca-bounds-log").getLines.toList)
-        lazy val time_tca_expand = extractAnalysisTime(io.Source.fromFile(base + "/tca-expand/" + benchmark + "/tca-expand-log").getLines.toList)
-        lazy val time_tca_expand_this = extractAnalysisTime(io.Source.fromFile(base + "/tca-expand-this/" + benchmark + "/tca-expand-this-log").getLines.toList)
-        lazy val time_wala_rta = io.Source.fromFile(base + "/wala-rta/" + benchmark + "/wala-rta-log").getLines.toList.find(_ contains "WALA took:").get.split(":").last.trim.toFloat
+        lazy val time_ra_all = extractAnalysisTime(io.Source.fromFile(s"$base/ra-all/$benchmark/ra-all-log").getLines.toList)
+        lazy val time_ra_inst = extractAnalysisTime(io.Source.fromFile(s"$base/ra-inst/$benchmark/ra-inst-log").getLines.toList)
+        lazy val time_tca_bounds = extractAnalysisTime(io.Source.fromFile(s"$base/tca-bounds/$benchmark/tca-bounds-log").getLines.toList)
+        lazy val time_tca_expand = extractAnalysisTime(io.Source.fromFile(s"$base/tca-expand/$benchmark/tca-expand-log").getLines.toList)
+        lazy val time_tca_expand_this = extractAnalysisTime(io.Source.fromFile(s"$base/tca-expand-this/$benchmark/tca-expand-this-log").getLines.toList)
+        lazy val time_wala_rta = io.Source.fromFile(s"$base/wala-rta/$benchmark/wala-rta-log").getLines.toList.find(_ contains "WALA took:").get.split(":").last.trim.toFloat
         lazy val time_scalac = {
-          val line = io.Source.fromFile(base + "/scalac/" + benchmark + "/scalac-log").getLines.toList.find(_ contains "scalac.nowarn: finished").get
-          Timer.round(line.split(" ").last.trim.drop(1).dropRight(3).toFloat / 1000.0).toFloat
+          val line = io.Source.fromFile(s"$base/scalac/$benchmark/scalac-log").getLines.toList.find(_ contains "scalac.nowarn: finished").get
+          Math.round(line.split(" ").last.trim.drop(1).dropRight(3).toFloat / 1000.0).toFloat
         }
       }
 
       // Table Footer
       table.println("    \\bottomrule")
       table.println("  \\end{tabularx}")
-      table.println("  \\caption{The time taken by the " + algorithms + " algorithms to compute the call graphs.}")
-      table.println("  \\label{table:results:time}")
+      table.println("\\end{table}")
+      table.close
+    }
+
+    def emitTableRQ1 = {
+      val table = new PrintStream("table_rq1.tex")
+
+      // Emit Header
+      table.println("\\begin{table}[!t]")
+      table.println("\\centering")
+      table.println("  \\caption{Comparison of precision between \\tcaBounds and \\rtaWala with respect to call edges.}")
+      table.println("  \\label{table:benchmark:rq1}")
+      table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("RL" * rq1Header.size) + "}")
+      table.println("    \\toprule")
+      table.println("    " + (rq1Header.map(a => s"& \\multicolumn{2}{c}{\\textbf{$a}} ").mkString) + "\\\\")
+      table.println("    \\midrule")
+
+      for (benchmark <- benchmarks) {
+        import scala.collection.JavaConversions._
+
+        var row = new StringBuilder("    ")
+        var csv = new StringBuilder("")
+
+        // add benchmark name in italics
+        row append s"\\$benchmark"
+
+        // Read the call graphs for this benchmark
+        lazy val rtaWalaCG = readCallGraph(s"$base/wala-rta/$benchmark/$walacg")
+        lazy val tcaBoundsCG = readCallGraph(s"$base/tca-bounds/$benchmark/$cg")
+        val rtaWalaEdges = rtaWalaCG.edgesIgnoringContext
+        val tcaBoundsEdges = tcaBoundsCG.edgesIgnoringContext
+        val diffEdges = rtaWalaEdges -- tcaBoundsEdges
+        val totalDiff = diffEdges.size
+        val applyDiff = diffEdges.filter(_.dst.name == "apply").size
+        val toStringDiff = diffEdges.filter(_.dst.name == "toString").size
+        val equalsDiff = diffEdges.filter(_.dst.name == "equals").size
+
+        // Emit values
+        emit(totalKey, totalDiff, rtaWalaEdges.size)
+        emit(applyKey, applyDiff)
+        emit(toStringKey, toStringDiff)
+        emit(equalsKey, equalsDiff)
+
+        table.println(row append " \\\\")
+        out(rq1).println(csv dropRight 1) // get rid of the last separator character
+
+        def emit(k: String, v: Int, t: Int = totalDiff) = {
+          var key = s"rta wala tca bounds $benchmark nodes $valueKey $k"
+          var value = intFormat format v
+          data.println(s"\\pgfkeyssetvalue{$key}{$value}")
+          row append s" & \\pgfkeysvalueof{$key}"
+          csv append s"${value}${sep}"
+
+          key = s"rta wala tca bounds $benchmark nodes $perKey $k"
+          value = intFormat format Math.percentage(v, t)
+          data.println(s"\\pgfkeyssetvalue{$key}{$value}")
+          row append s" & (\\pgfkeysvalueof{$key}\\%)"
+        }
+      }
+
+      // Table Footer
+      table.println("    \\bottomrule")
+      table.println("  \\end{tabularx}")
       table.println("\\end{table}")
       table.close
     }
