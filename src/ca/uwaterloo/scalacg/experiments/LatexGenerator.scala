@@ -20,6 +20,9 @@ object LatexGenerator {
   final val chatacteristics = List("LOC") ++ List("classes", "objects", "traits", "trait comp.", "methods", "closures").map(a => s"\\texttt{\\#} $a")
 
   final val rq1Header = List("\\rtaWala~-~\\tcaBounds", "\\codett{apply}", "\\codett{toString}", "\\codett{equals}")
+  final val rq2Header = List("\\tcaNames~-~\\tcaBounds", "\\codett{apply}")
+  final val rq3Header = List("\\tcaBounds~-~\\tcaExpand") ++ List("abstract types").map(a => s"\\texttt{\\#} $a")
+  final val rq4Header = List("\\tcaExpand~-~\\tcaExpandThis") ++ List("call sites", "\\thistt call sites", "\\supertt call sites").map(a => s"\\texttt{\\#} $a")
 
   final lazy val floatFormat = new DecimalFormat("#,###.##")
   final lazy val intFormat = "%,d"
@@ -56,29 +59,42 @@ object LatexGenerator {
 
   // keys for table of differences
   final val rq1 = "rq1"
+  final val rq2 = "rq2"
+  final val rq3 = "rq3"
+  final val rq4 = "rq4"
   final val valueKey = "value"
   final val perKey = "percentage"
   final val totalKey = "total"
   final val applyKey = "apply"
   final val toStringKey = "toString"
   final val equalsKey = "equals"
+  final val absTpeKey = "abstract types"
+  final val csKey = "call sites"
+  final val thisKey = "this"
+  final val superKey = "super"
 
   final val base = "dist"
 
   final val sep = "\t"
 
   def main(args: Array[String]): Unit = {
-    val data = new PrintStream("paper_data.tex")
-    val out = Map[String, PrintStream](nodes -> new PrintStream(s"$nodes.csv"),
-      edges -> new PrintStream(s"$edges.csv"),
-      time -> new PrintStream(s"$time.csv"),
-      rq1 -> new PrintStream(s"$rq1.csv"))
+    val data = new PrintStream("tex/paper_data.tex")
+    val out = Map[String, PrintStream](nodes -> new PrintStream(s"csv/$nodes.csv"),
+      edges -> new PrintStream(s"csv/$edges.csv"),
+      time -> new PrintStream(s"csv/$time.csv"),
+      rq1 -> new PrintStream(s"csv/$rq1.csv"),
+      rq2 -> new PrintStream(s"csv/$rq2.csv"),
+      rq3 -> new PrintStream(s"csv/$rq3.csv"),
+      rq4 -> new PrintStream(s"csv/$rq4.csv"))
 
     // Emit latex files
     emitTableResults
     emitTableBenchmarks
     emitTableTimes
     emitTableRQ1
+    emitTableRQ2
+    emitTableRQ3
+    emitTableRQ4
 
     data.close
     out.values foreach (_.close)
@@ -87,7 +103,7 @@ object LatexGenerator {
 
     // Emit the results table with all the nodes, edges in it.
     def emitTableResults = {
-      val table = new PrintStream("table_results.tex")
+      val table = new PrintStream("tex/table_results.tex")
 
       // Emit Header
       table.println("\\begin{table}[!t]")
@@ -158,7 +174,7 @@ object LatexGenerator {
     }
 
     def emitTableBenchmarks = {
-      val table = new PrintStream("table_benchmarks.tex")
+      val table = new PrintStream("tex/table_benchmarks.tex")
 
       // Table Header
       table.println("\\begin{table}[!t]")
@@ -211,7 +227,7 @@ object LatexGenerator {
     }
 
     def emitTableTimes = {
-      val table = new PrintStream("table_time.tex")
+      val table = new PrintStream("tex/table_time.tex")
 
       // Table Header
       table.println("\\begin{table}[!t]")
@@ -271,13 +287,13 @@ object LatexGenerator {
     }
 
     def emitTableRQ1 = {
-      val table = new PrintStream("table_rq1.tex")
+      val table = new PrintStream("tex/table_rq1.tex")
 
       // Emit Header
       table.println("\\begin{table}[!t]")
       table.println("\\centering")
-      table.println("  \\caption{Comparison of precision between \\tcaBounds and \\rtaWala with respect to call edges.}")
-      table.println("  \\label{table:benchmark:rq1}")
+      table.println("  \\caption{Comparison of precision between \\rtaWala and \\tcaBounds with respect to call edges.}")
+      table.println("  \\label{table:results:rq1}")
       table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("RL" * rq1Header.size) + "}")
       table.println("    \\toprule")
       table.println("    " + (rq1Header.map(a => s"& \\multicolumn{2}{c}{\\textbf{$a}} ").mkString) + "\\\\")
@@ -313,13 +329,13 @@ object LatexGenerator {
         out(rq1).println(csv dropRight 1) // get rid of the last separator character
 
         def emit(k: String, v: Int, t: Int = totalDiff) = {
-          var key = s"rta wala tca bounds $benchmark nodes $valueKey $k"
+          var key = s"$rq1 $benchmark $k $valueKey"
           var value = intFormat format v
           data.println(s"\\pgfkeyssetvalue{$key}{$value}")
           row append s" & \\pgfkeysvalueof{$key}"
           csv append s"${value}${sep}"
 
-          key = s"rta wala tca bounds $benchmark nodes $perKey $k"
+          key = s"$rq1 $benchmark $k $perKey"
           value = intFormat format Math.percentage(v, t)
           data.println(s"\\pgfkeyssetvalue{$key}{$value}")
           row append s" & (\\pgfkeysvalueof{$key}\\%)"
@@ -332,6 +348,202 @@ object LatexGenerator {
       table.println("\\end{table}")
       table.close
     }
+
+    def emitTableRQ2 = {
+      val table = new PrintStream("tex/table_rq2.tex")
+
+      // Emit Header
+      table.println("\\begin{table}[!t]")
+      table.println("\\centering")
+      table.println("  \\caption{Comparison of precision between \\tcaBounds and \\tcaNames with respect to call edges.}")
+      table.println("  \\label{table:results:rq2}")
+      table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("RL" * rq2Header.size) + "}")
+      table.println("    \\toprule")
+      table.println("    " + (rq2Header.map(a => s"& \\multicolumn{2}{c}{\\textbf{$a}} ").mkString) + "\\\\")
+      table.println("    \\midrule")
+
+      for (benchmark <- benchmarks) {
+        import scala.collection.JavaConversions._
+
+        var row = new StringBuilder("    ")
+        var csv = new StringBuilder("")
+
+        // add benchmark name in italics
+        row append s"\\$benchmark"
+
+        // Read the call graphs for this benchmark
+        lazy val tcaBoundsCG = readCallGraph(s"$base/tca-bounds/$benchmark/$cg")
+        lazy val tcaNamesCG = readCallGraph(s"$base/ra-inst/$benchmark/$cg")
+        val tcaBoundsEdges = tcaBoundsCG.edgesIgnoringContext
+        val tcaNamesEdges = tcaNamesCG.edgesIgnoringContext
+        val diffEdges = tcaNamesEdges -- tcaBoundsEdges
+        val totalDiff = diffEdges.size
+        val applyDiff = diffEdges.filter(_.dst.name == "apply").size
+
+        // Emit values
+        emit(totalKey, totalDiff, tcaNamesEdges.size)
+        emit(applyKey, applyDiff)
+
+        table.println(row append " \\\\")
+        out(rq2).println(csv dropRight 1) // get rid of the last separator character
+
+        def emit(k: String, v: Int, t: Int = totalDiff) = {
+          var key = s"$rq2 $benchmark $k $valueKey"
+          var value = intFormat format v
+          data.println(s"\\pgfkeyssetvalue{$key}{$value}")
+          row append s" & \\pgfkeysvalueof{$key}"
+          csv append s"${value}${sep}"
+
+          key = s"$rq2 $benchmark $k $perKey"
+          value = intFormat format Math.percentage(v, t)
+          data.println(s"\\pgfkeyssetvalue{$key}{$value}")
+          row append s" & (\\pgfkeysvalueof{$key}\\%)"
+        }
+      }
+
+      // Table Footer
+      table.println("    \\bottomrule")
+      table.println("  \\end{tabularx}")
+      table.println("\\end{table}")
+      table.close
+    }
+
+    def emitTableRQ3 = {
+      val table = new PrintStream("tex/table_rq3.tex")
+
+      // Emit Header
+      table.println("\\begin{table}[!t]")
+      table.println("\\centering")
+      table.println("  \\caption{Comparison of precision between \\tcaExpand and \\tcaBounds with respect to call edges.}")
+      table.println("  \\label{table:results:rq3}")
+      table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("RL" * rq3Header.size) + "}")
+      table.println("    \\toprule")
+      table.println("    " + (rq3Header.map(a => s"& \\multicolumn{2}{c}{\\textbf{$a}} ").mkString) + "\\\\")
+      table.println("    \\midrule")
+
+      for (benchmark <- benchmarks) {
+        import scala.collection.JavaConversions._
+
+        var row = new StringBuilder("    ")
+        var csv = new StringBuilder("")
+        lazy val logfile = io.Source.fromFile(s"$base/tca-expand-this/$benchmark/$log").getLines.toList
+
+        // add benchmark name in italics
+        row append s"\\$benchmark"
+
+        // Read the call graphs for this benchmark
+        lazy val tcaBoundsCG = readCallGraph(s"$base/tca-bounds/$benchmark/$cg")
+        lazy val tcaExpandCG = readCallGraph(s"$base/tca-expand/$benchmark/$cg")
+        val tcaBoundsEdges = tcaBoundsCG.edgesIgnoringContext
+        val tcaExpandEdges = tcaExpandCG.edgesIgnoringContext
+        val diffEdges = tcaBoundsEdges -- tcaExpandEdges
+        val totalDiff = diffEdges.size
+
+        // Emit values
+        emit(edges, totalDiff, tcaBoundsEdges.size)
+        emit(absTpeKey, absClasses, totClasses)
+
+        table.println(row append " \\\\")
+        out(rq3).println(csv dropRight 1) // get rid of the last separator character
+
+        def extract(what: String) = logfile.find(_ contains what).get.split(":").last.trim.toInt
+        lazy val absClasses = extract("# classes w abs type member") + extract("# classes w abs type param")
+        lazy val totClasses = extract("# classes  ") + extract("# objects  ") + extract("# traits  ") + extract("# anonfun  ")
+
+        def emit(k: String, v: Int, t: Int = totalDiff) = {
+          var key = s"$rq3 $benchmark $k $valueKey"
+          var value = intFormat format v
+          data.println(s"\\pgfkeyssetvalue{$key}{$value}")
+          row append s" & \\pgfkeysvalueof{$key}"
+          csv append s"${value}${sep}"
+
+          key = s"$rq3 $benchmark $k $perKey"
+          value = intFormat format Math.percentage(v, t)
+          data.println(s"\\pgfkeyssetvalue{$key}{$value}")
+          row append s" & (\\pgfkeysvalueof{$key}\\%)"
+        }
+      }
+
+      // Table Footer
+      table.println("    \\bottomrule")
+      table.println("  \\end{tabularx}")
+      table.println("\\end{table}")
+      table.close
+    }
+
+    def emitTableRQ4 = {
+      val table = new PrintStream("tex/table_rq4.tex")
+
+      // Emit Header
+      table.println("\\begin{table}[!t]")
+      table.println("\\centering")
+      table.println("  \\caption{Comparison of precision between \\tcaExpandThis and \\tcaExpand with respect to call edges.}")
+      table.println("  \\label{table:results:rq4}")
+      table.println("  \\begin{tabularx}{\\columnwidth}{lRLR" + ("RL" * rq4Header.tail.tail.size) + "}")
+      table.println("    \\toprule")
+      table.println(s"    & \\multicolumn{2}{c}{\\textbf{${rq4Header.head}}} & \\textbf{${rq4Header.tail.head}} " + (rq4Header.tail.tail.map(a => s"& \\multicolumn{2}{c}{\\textbf{$a}} ").mkString) + "\\\\")
+      table.println("    \\midrule")
+
+      for (benchmark <- benchmarks) {
+        import scala.collection.JavaConversions._
+
+        var row = new StringBuilder("    ")
+        var csv = new StringBuilder("")
+        lazy val logfile = io.Source.fromFile(s"$base/tca-expand-this/$benchmark/$log").getLines.toList
+
+        // add benchmark name in italics
+        row append s"\\$benchmark"
+
+        // Read the call graphs for this benchmark
+        lazy val tcaExpandThisCG = readCallGraph(s"$base/tca-expand-this/$benchmark/$cg")
+        lazy val tcaExpandCG = readCallGraph(s"$base/tca-expand/$benchmark/$cg")
+        val tcaExpandThisEdges = tcaExpandThisCG.edgesIgnoringContext
+        val tcaExpandEdges = tcaExpandCG.edgesIgnoringContext
+        val diffEdges = tcaExpandEdges -- tcaExpandThisEdges
+        val totalDiff = diffEdges.size
+
+        // Emit values
+        emit(edges, totalDiff, tcaExpandEdges.size)
+        emitValue(csKey, totalCS)
+        emit(s"$thisKey $csKey", thisCS, totalCS)
+        emit(s"$superKey $csKey", superCS, totalCS)
+
+        table.println(row append " \\\\")
+        out(rq4).println(csv dropRight 1) // get rid of the last separator character
+
+        def extract(what: String) = logfile.find(_ contains what).get.split(":").last.trim.toInt
+        lazy val totalCS = extract("# concrete call sites     ")
+        lazy val thisCS = extract("# concrete this call sites")
+        lazy val superCS = extract("# concrete super call sites")
+
+        def emitValue(k: String, v: Int) = {
+          val key = s"$rq4 $benchmark $k $valueKey"
+          val value = intFormat format v
+          data.println(s"\\pgfkeyssetvalue{$key}{$value}")
+          row append s" & \\pgfkeysvalueof{$key}"
+          csv append s"${value}${sep}"
+        }
+
+        def emitPercentage(k: String, v: Int, t: Int = totalDiff) = {
+          val key = s"$rq4 $benchmark $k $perKey"
+          val value = intFormat format Math.percentage(v, t)
+          data.println(s"\\pgfkeyssetvalue{$key}{$value}")
+          row append s" & (\\pgfkeysvalueof{$key}\\%)"
+        }
+
+        def emit(k: String, v: Int, t: Int = totalDiff) = {
+          emitValue(k, v)
+          emitPercentage(k, v, t)
+        }
+      }
+
+      // Table Footer
+      table.println("    \\bottomrule")
+      table.println("  \\end{tabularx}")
+      table.println("\\end{table}")
+      table.close
+    }
+
   }
 
 }
