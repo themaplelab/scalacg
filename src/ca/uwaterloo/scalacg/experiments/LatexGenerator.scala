@@ -11,18 +11,17 @@ import ca.uwaterloo.scalacg.util.Math
 import probe.TextReader
 
 object LatexGenerator {
-
   final val benchmarks = List("argot", "ensime", "fimpp", "joos", "kiama", "phantm", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
 
   final val analyses = List("\\ra", "\\tcaNames", "\\tcaBounds", "\\tcaExpand", "\\tcaExpandThis", "\\rtaWala")
   final val algorithms = analyses.dropRight(1).mkString(", ") + ", and " + analyses.last
 
-  final val chatacteristics = List("LOC") ++ List("classes", "objects", "traits", "trait comp.", "methods", "closures", "abstract types", "concretizations").map(a => s"\\texttt{\\#} $a")
+  final val chatacteristics = List("LOC") ++ List("classes", "objects", "traits", "trait comp.", "methods", "closures", "abstract-typed receivers", "abstract types", "concretizations").map(a => s"\\texttt{\\#} $a")
 
-  final val rq1Header = List("\\rtaWala~-~\\tcaBounds", "\\codett{apply}", "\\codett{toString}", "\\codett{equals}")
-  final val rq2Header = List("\\tcaNames~-~\\tcaBounds", "\\codett{apply}")
+  final val rq1Header = List("\\rtaWala~-~\\tcaBounds", "\\code{apply}", "\\code{toString}", "\\code{equals}")
+  final val rq2Header = List("\\tcaNames~-~\\tcaBounds", "\\code{apply}")
   final val rq3Header = List("\\tcaBounds~-~\\tcaExpand") ++ List("abstract types").map(a => s"\\texttt{\\#} $a")
-  final val rq4Header = List("\\tcaExpand~-~\\tcaExpandThis") ++ List("call sites", "\\thistt call sites", "\\supertt call sites").map(a => s"\\texttt{\\#} $a")
+  final val rq4Header = List("\\tcaExpand~-~\\tcaExpandThis") ++ List("call sites", "eligible \\code{this} call sites").map(a => s"\\texttt{\\#} $a")
 
   final lazy val floatFormat = new DecimalFormat("#,###.##")
   final lazy val intFormat = "%,d"
@@ -42,6 +41,7 @@ object LatexGenerator {
   final val mixins = "mixins"
   final val methods = "methods"
   final val closures = "closures" // these include anonfun
+  final val abstractReceivers = "abstract receivers"
   final val abstractTypes = "abstract types"
   final val conretizations = "concretizations"
 
@@ -93,10 +93,10 @@ object LatexGenerator {
     emitTableResults
     emitTableBenchmarks
     emitTableTimes
-    //    emitTableRQ1
-    //    emitTableRQ2
-    //    emitTableRQ3
-    //    emitTableRQ4
+    emitTableRQ1
+    emitTableRQ2
+    emitTableRQ3
+    emitTableRQ4
 
     data.close
     out.values foreach (_.close)
@@ -202,6 +202,7 @@ object LatexGenerator {
         emitBench(mixins, nMixins)
         emitBench(methods, nMethods)
         emitBench(closures, nClosures)
+        emitBench(abstractReceivers, nAbstractReceivers)
         emitBench(abstractTypes, nAbstractTypes)
         emitBench(conretizations, nConcretizations)
         table.println(row append " \\\\")
@@ -221,6 +222,7 @@ object LatexGenerator {
         lazy val nMethods = extract("# methods  ")
         lazy val nClosures = extract("# anonfun  ") + extract("# closures  ")
         lazy val nLoc = extract("# loc :")
+        lazy val nAbstractReceivers = extract("# call sites w abs receivers")
         lazy val nAbstractTypes = extract("# abstract types    ")
         lazy val nConcretizations = extract("# concretizations   ")
       }
@@ -238,7 +240,7 @@ object LatexGenerator {
       // Table Header
       table.println("\\begin{table}[!t]")
       table.println("\\centering")
-      table.println("  \\caption{The time taken by " + algorithms + " to compute the call graphs.}")
+      table.println("  \\caption{The time (in seconds) taken by " + algorithms + " to compute the call graphs.}")
       table.println("  \\label{table:results:time}")
       table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("R" * analyses.size) + "R" + "}")
       table.println("    \\toprule")
@@ -432,7 +434,7 @@ object LatexGenerator {
 
         var row = new StringBuilder("    ")
         var csv = new StringBuilder("")
-        lazy val logfile = io.Source.fromFile(s"$base/tca-expand-this/$benchmark/$log").getLines.toList
+        lazy val logfile = io.Source.fromFile(s"$base/tca-expand/$benchmark/$log").getLines.toList
 
         // add benchmark name in italics
         row append s"\\$benchmark"
@@ -495,7 +497,7 @@ object LatexGenerator {
 
         var row = new StringBuilder("    ")
         var csv = new StringBuilder("")
-        lazy val logfile = io.Source.fromFile(s"$base/tca-expand-this/$benchmark/$log").getLines.toList
+        lazy val logfile = io.Source.fromFile(s"$base/tca-expand/$benchmark/$log").getLines.toList
 
         // add benchmark name in italics
         row append s"\\$benchmark"
@@ -512,15 +514,13 @@ object LatexGenerator {
         emit(edges, totalDiff, tcaExpandEdges.size)
         emitValue(csKey, totalCS)
         emit(s"$thisKey $csKey", thisCS, totalCS)
-        emit(s"$superKey $csKey", superCS, totalCS)
 
         table.println(row append " \\\\")
         out(rq4).println(csv dropRight 1) // get rid of the last separator character
 
         def extract(what: String) = logfile.find(_ contains what).get.split(":").last.trim.toInt
-        lazy val totalCS = extract("# concrete call sites     ")
-        lazy val thisCS = extract("# concrete this call sites")
-        lazy val superCS = extract("# concrete super call sites")
+        lazy val totalCS = extract("# call sites     ")
+        lazy val thisCS = extract("# this-not-super call sites")
 
         def emitValue(k: String, v: Int) = {
           val key = s"$rq4 $benchmark $k $valueKey"

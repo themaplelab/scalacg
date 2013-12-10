@@ -85,6 +85,7 @@ abstract class CallGraphGen extends PluginComponent {
       //      println(s"# concrete this call sites  : $concreteThisCallSitesCount")
       //      println(s"# concrete super call sites : $concreteSuperCallSitesCount")
       println(s"# call sites                : $callSitesCount")
+      println(s"# call sites w abs receivers: $abstractReceiverCount")
       println(s"# this call sites           : $thisCallSitesCount")
       println(s"# super call sites          : $superCallSitesCount")
       println(s"# this-not-super call sites : $thisCallSitesNotSuperCount")
