@@ -77,6 +77,14 @@ trait CallGraphAnalysis extends CallGraphWorklists
       else
         mainModules)
 
+    // TODO
+//    for (method <- instantiatedTypesInMethod.keys) {
+//      if(instantiatedTypesInMethod(method).find(_.toString contains "org.kiama.example.oberon0.L0.c.CAddExp").nonEmpty) {
+//        println(signature(method))
+//      }
+//    }
+//    sys.exit(0)
+
     // Gather some stats
     var abstractCallSitesCount = 0
     var abstractThisCallSitesCount = 0
@@ -162,8 +170,6 @@ trait CallGraphAnalysis extends CallGraphWorklists
       callSites ++= callSitesInMethod(method)
 
       // Find new instantiated types
-      val t = instantiatedTypesInMethod(method).filter(_.typeSymbol.name containsName "ConcreteType")
-      if (t.nonEmpty) println("found ConcreteType in method " + signature(method))
       instantiatedTypes ++= instantiatedTypesInMethod(method)
 
       // Find TypeApplys that instantiate method type parameters
@@ -292,7 +298,7 @@ trait CallGraphAnalysis extends CallGraphWorklists
    *
    * TODO: filter needs OPT?
    */
-  private def filterForThis(callSite: CallSite, types: Set[Type]) = {
+  def filterForThis(callSite: CallSite, types: Set[Type]) = {
     if (callSite.enclMethod.isConstructor || callSite.thisEnclMethod == NoSymbol || superCalled.reachableItems.contains(callSite.thisEnclMethod)) types
     //    else types.filter { tpe => tpe.members.toSet contains callSite.thisEnclMethod }
     else types intersect thisEnclMethodToTypes(callSite.thisEnclMethod)

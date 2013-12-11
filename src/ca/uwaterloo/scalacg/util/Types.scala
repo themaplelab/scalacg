@@ -92,8 +92,8 @@ trait TypeOps extends TypesCollections {
      * Compute the type concretization for the given method call
      */
     def addMethodInstantiation(method: Symbol, args: List[Type]): Unit = {}
-    
-    protected def upperBound(tpe: Type): Type = {
+
+    def upperBound(tpe: Type): Type = {
       val bound = tpe.bounds.hi
       assert(bound != NoType) // NOTE: this should never happen
       if (bound.typeSymbol.isAbstractType || bound.typeArguments.exists(_.typeSymbol.isAbstractType))

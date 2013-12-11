@@ -125,6 +125,7 @@ trait Statistics {
   var superCallSitesCount: Int
   var thisCallSitesNotSuper: Int
   var abstractReceiverCount: Int
+  var abstractReceiverConcretizationCount: Int
   var concretizationCount: Int
   
   var overridingMethodsCount: Int

@@ -11,19 +11,21 @@ import ca.uwaterloo.scalacg.util.Math
 import probe.TextReader
 
 object LatexGenerator {
-  final val benchmarks = List("argot", "ensime", "fimpp", "joos", "kiama", "phantm", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
+  final val benchmarks = List("argot", "ensime", "fimpp", "kiama", "phantm", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
 
   final val analyses = List("\\ra", "\\tcaNames", "\\tcaBounds", "\\tcaExpand", "\\tcaExpandThis", "\\rtaWala")
   final val algorithms = analyses.dropRight(1).mkString(", ") + ", and " + analyses.last
 
-  final val chatacteristics = List("LOC") ++ List("classes", "objects", "traits", "trait comp.", "methods", "closures", "abstract-typed receivers", "abstract types", "concretizations").map(a => s"\\texttt{\\#} $a")
+  final val characteristics = List("LOC") ++ List("classes", "objects", "traits", "trait;compositions", "methods",
+    "closures", "receivers with;abstract types", "concretized;receivers", "optimized \\code{this};call sites",
+    "abstract types", "concretizations").map(a => s"\\texttt{\\#} $a")
 
   final val rq1Header = List("\\rtaWala~-~\\tcaBounds", "\\code{apply}", "\\code{toString}", "\\code{equals}")
   final val rq2Header = List("\\tcaNames~-~\\tcaBounds", "\\code{apply}")
   final val rq3Header = List("\\tcaBounds~-~\\tcaExpand") ++ List("abstract types").map(a => s"\\texttt{\\#} $a")
   final val rq4Header = List("\\tcaExpand~-~\\tcaExpandThis") ++ List("call sites", "eligible \\code{this} call sites").map(a => s"\\texttt{\\#} $a")
 
-  final lazy val floatFormat = new DecimalFormat("#,###.##")
+  final lazy val floatFormat = new DecimalFormat("#,###.#")
   final lazy val intFormat = "%,d"
   final lazy val perFormat = "%5s"
 
@@ -42,6 +44,8 @@ object LatexGenerator {
   final val methods = "methods"
   final val closures = "closures" // these include anonfun
   final val abstractReceivers = "abstract receivers"
+  final val abstractReceiversConcretization = "abstract receivers concretization"
+  final val optimizedThis = "optimized this call sites"
   final val abstractTypes = "abstract types"
   final val conretizations = "concretizations"
 
@@ -78,6 +82,13 @@ object LatexGenerator {
   final val base = "dist"
 
   final val sep = "\t"
+
+  def doubleLines(str: String) = {
+    val tokens = str.split(';') // should yield 1 or 2 tokens exactly
+    if (tokens.size == 1) s"\\rot{\\textbf{$str}}" // one line
+    else if (tokens.size == 2) s"\\rot{\\textbf{${tokens(0)}}} \\rot{\\textbf{${tokens(1)}}}" // two lines
+    else throw new RuntimeException("more than 2 lines is not allowed.")
+  }
 
   def main(args: Array[String]): Unit = {
     val data = new PrintStream("tex/paper_data.tex")
@@ -183,9 +194,9 @@ object LatexGenerator {
       table.println("\\centering")
       table.println("  \\caption{Various characteristics of our benchmark programs.}")
       table.println("  \\label{table:benchmark:info}")
-      table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("R" * chatacteristics.size) + "}")
+      table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("R" * characteristics.size) + "}")
       table.println("    \\toprule")
-      table.println("    " + (chatacteristics.map(a => s"& \\rot{\\textbf{$a}} ").mkString) + "\\\\")
+      table.println("    " + (characteristics.map(a => s"& ${doubleLines(a)} ").mkString) + "\\\\")
       table.println("    \\midrule")
 
       for (benchmark <- benchmarks) {
@@ -203,6 +214,8 @@ object LatexGenerator {
         emitBench(methods, nMethods)
         emitBench(closures, nClosures)
         emitBench(abstractReceivers, nAbstractReceivers)
+        emitBench(abstractReceiversConcretization, nAbstractReceiversConcretization)
+        emitBench(optimizedThis, nOptimizedThis)
         emitBench(abstractTypes, nAbstractTypes)
         emitBench(conretizations, nConcretizations)
         table.println(row append " \\\\")
@@ -222,7 +235,9 @@ object LatexGenerator {
         lazy val nMethods = extract("# methods  ")
         lazy val nClosures = extract("# anonfun  ") + extract("# closures  ")
         lazy val nLoc = extract("# loc :")
-        lazy val nAbstractReceivers = extract("# call sites w abs receivers")
+        lazy val nAbstractReceivers = extract("# abstract receivers    ")
+        lazy val nAbstractReceiversConcretization = extract("# abstract receivers conc")
+        lazy val nOptimizedThis = extract("# optimized this call sites")
         lazy val nAbstractTypes = extract("# abstract types    ")
         lazy val nConcretizations = extract("# concretizations   ")
       }
@@ -520,7 +535,7 @@ object LatexGenerator {
 
         def extract(what: String) = logfile.find(_ contains what).get.split(":").last.trim.toInt
         lazy val totalCS = extract("# call sites     ")
-        lazy val thisCS = extract("# this-not-super call sites")
+        lazy val thisCS = extract("# optimized this call sites")
 
         def emitValue(k: String, v: Int) = {
           val key = s"$rq4 $benchmark $k $valueKey"

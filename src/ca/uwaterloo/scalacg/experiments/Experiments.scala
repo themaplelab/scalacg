@@ -4,7 +4,7 @@ import java.io.FileInputStream
 import java.util.zip.GZIPInputStream
 
 import scala.collection.mutable.Map
-import scala.collection.mutable.{Set => MutableSet}
+import scala.collection.mutable.{ Set => MutableSet }
 import scala.reflect.io.File
 
 import probe.CallEdge
@@ -12,8 +12,8 @@ import probe.ProbeMethod
 import probe.TextReader
 
 object Experiments {
-  final lazy val benchmarks = List("argot", "ensime", "fimpp", "joos", "kiama", "phantm", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
-  //    final lazy val benchmarks = List("argot")
+  //  final lazy val benchmarks = List("argot", "ensime", "fimpp", "kiama", "phantm", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
+  final lazy val benchmarks = List("kiama")
   final lazy val experiments = List("tcra-ra", "ba-tcra", "std-ba", "tca-std")
 
   def main(args: Array[String]) = {
@@ -24,7 +24,7 @@ object Experiments {
     args.length match {
       case 0 =>
         prefix = "../scalabench/local/dist/"
-        experiment = "std-tcra"
+        experiment = "tca-std"
       case 2 =>
         prefix = args(0)
         experiment = args(1)
@@ -35,7 +35,7 @@ object Experiments {
     lazy val tcra_ra = new Experiment("tcra-ra", prefix)("tcra", "callgraph.gxl.gzip")("ra", "callgraph.gxl.gzip")
     lazy val ba_tcra = new Experiment("ba-tcra", prefix)("ba-super", "callgraph.gxl.gzip")("tcra", "callgraph.gxl.gzip")
     lazy val std_ba = new Experiment("std-ba", prefix)("tca-super", "callgraph.gxl.gzip")("ba-super", "callgraph.gxl.gzip")
-    lazy val tca_std = new Experiment("tca-std", prefix)("tca-this-super", "callgraph.gxl.gzip")("tca-super", "callgraph.gxl.gzip")
+    lazy val tca_std = new Experiment("tca-std", prefix)("tca-expand-this", "callgraph.gxl.gzip")("tca-expand", "callgraph.gxl.gzip")
     lazy val tca_wala = new Experiment("tca-wala", prefix)("tca-this-super", "callgraph-summary.gxl.gzip")("wala", "wala-callgraph-summary.gxl.gzip")
 
     lazy val std_tcra = new Experiment("std-tcra", prefix)("tca-super", "callgraph.gxl.gzip")("tcra-super", "callgraph.gxl.gzip")
@@ -102,10 +102,10 @@ object Experiments {
       //      (reachB -- reachA).toSeq.sortWith((a, b) => a.name < b.name).foreach(println)
       //      println("===========================================================================")
       //      (edgesB -- edgesA).toSeq.sortWith((a, b) => a.src.name < b.src.name).foreach(println)
-      //      if (name != "tca-wala") {
-      //        println("===========================================================================")
-      //        (typesB -- typesA).toSeq.sorted.foreach(println)
-      //      }
+      if (name != "tca-wala") {
+        println("===========================================================================")
+        (typesB -- typesA).toSeq.sorted.foreach(println)
+      }
       //      println("\n")
 
       edges.a(benchmark) = edgesA.size

@@ -9,7 +9,7 @@ import scala.runtime.ScalaRunTime
 trait CallSites extends Global with Probe {
   import global._
 
-  class AbstractCallSite(receiverTree: Tree, val staticTarget: Symbol) {
+  class AbstractCallSite(val receiverTree: Tree, val staticTarget: Symbol) {
     // The type of the receiver.
     lazy val receiver = receiverTree.tpe
     
