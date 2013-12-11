@@ -17,8 +17,7 @@ object LatexGenerator {
   final val algorithms = analyses.dropRight(1).mkString(", ") + ", and " + analyses.last
 
   final val characteristics = List("LOC") ++ List("classes", "objects", "traits", "trait;compositions", "methods",
-    "closures", "receivers with;abstract types", "concretized;receivers", "optimized \\code{this};call sites",
-    "abstract types", "concretizations").map(a => s"\\texttt{\\#} $a")
+    "closures", "call sites", "call sites on;abstract types", "call sites;on \\code{this}").map(a => s"\\texttt{\\#} $a")
 
   final val rq1Header = List("\\rtaWala~-~\\tcaBounds", "\\code{apply}", "\\code{toString}", "\\code{equals}")
   final val rq2Header = List("\\tcaNames~-~\\tcaBounds", "\\code{apply}")
@@ -43,11 +42,9 @@ object LatexGenerator {
   final val mixins = "mixins"
   final val methods = "methods"
   final val closures = "closures" // these include anonfun
-  final val abstractReceivers = "abstract receivers"
-  final val abstractReceiversConcretization = "abstract receivers concretization"
-  final val optimizedThis = "optimized this call sites"
-  final val abstractTypes = "abstract types"
-  final val conretizations = "concretizations"
+  final val totalCallSites = "total call sites"
+  final val callSitesAbstract = "call sites on abstract types"
+  final val callSitesThis = "call sites on this"
 
   // keys for table of analyses
   final val tca_expand_this = "tca expand this"
@@ -213,11 +210,9 @@ object LatexGenerator {
         emitBench(mixins, nMixins)
         emitBench(methods, nMethods)
         emitBench(closures, nClosures)
-        emitBench(abstractReceivers, nAbstractReceivers)
-        emitBench(abstractReceiversConcretization, nAbstractReceiversConcretization)
-        emitBench(optimizedThis, nOptimizedThis)
-        emitBench(abstractTypes, nAbstractTypes)
-        emitBench(conretizations, nConcretizations)
+        emitBench(totalCallSites, nTotalCallSites)
+        emitBench(callSitesAbstract, nCallSitesAbstract)
+        emitBench(callSitesThis, nCallSitesThis)
         table.println(row append " \\\\")
 
         def emitBench(k: String, v: Int) = {
@@ -235,11 +230,9 @@ object LatexGenerator {
         lazy val nMethods = extract("# methods  ")
         lazy val nClosures = extract("# anonfun  ") + extract("# closures  ")
         lazy val nLoc = extract("# loc :")
-        lazy val nAbstractReceivers = extract("# abstract receivers    ")
-        lazy val nAbstractReceiversConcretization = extract("# abstract receivers conc")
-        lazy val nOptimizedThis = extract("# optimized this call sites")
-        lazy val nAbstractTypes = extract("# abstract types    ")
-        lazy val nConcretizations = extract("# concretizations   ")
+        lazy val nTotalCallSites = extract("# total call sites")
+        lazy val nCallSitesAbstract = extract("# call sites on abs types")
+        lazy val nCallSitesThis = extract("# call sites on this")
       }
 
       // Table Footer
@@ -534,8 +527,8 @@ object LatexGenerator {
         out(rq4).println(csv dropRight 1) // get rid of the last separator character
 
         def extract(what: String) = logfile.find(_ contains what).get.split(":").last.trim.toInt
-        lazy val totalCS = extract("# call sites     ")
-        lazy val thisCS = extract("# optimized this call sites")
+        lazy val totalCS = extract("# total call sites")
+        lazy val thisCS = extract("# call sites on this")
 
         def emitValue(k: String, v: Int) = {
           val key = s"$rq4 $benchmark $k $valueKey"

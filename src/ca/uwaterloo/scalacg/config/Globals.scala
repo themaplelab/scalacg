@@ -112,21 +112,10 @@ trait Statistics {
   var classesAtpCount: Int
 
   // Call sites characteristics
-  var abstractCallSitesCount: Int
-  var abstractThisCallSitesCount: Int
-  var abstractSuperCallSitesCount: Int
+  var callSitesTotalCount: Int
+  var callSitesThisCount: Int
+  var callSitesSuperCount: Int
+  var callSitesAbstractTypesCount: Int
 
-  var concreteCallSitesCount: Int
-  var concreteThisCallSitesCount: Int
-  var concreteSuperCallSitesCount: Int
-  
-  var callSitesCount: Int
-  var thisCallSitesCount: Int
-  var superCallSitesCount: Int
-  var thisCallSitesNotSuper: Int
-  var abstractReceiverCount: Int
-  var abstractReceiverConcretizationCount: Int
-  var concretizationCount: Int
-  
   var overridingMethodsCount: Int
 }

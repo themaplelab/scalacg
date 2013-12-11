@@ -36,9 +36,9 @@ object Experiments {
     lazy val ba_tcra = new Experiment("ba-tcra", prefix)("ba-super", "callgraph.gxl.gzip")("tcra", "callgraph.gxl.gzip")
     lazy val std_ba = new Experiment("std-ba", prefix)("tca-super", "callgraph.gxl.gzip")("ba-super", "callgraph.gxl.gzip")
     lazy val tca_std = new Experiment("tca-std", prefix)("tca-expand-this", "callgraph.gxl.gzip")("tca-expand", "callgraph.gxl.gzip")
-    lazy val tca_wala = new Experiment("tca-wala", prefix)("tca-this-super", "callgraph-summary.gxl.gzip")("wala", "wala-callgraph-summary.gxl.gzip")
+    lazy val tca_wala = new Experiment("tca-wala", prefix)("tca-bounds", "callgraph-summary.gxl.gzip")("wala-rta", "wala-callgraph-summary.gxl.gzip")
 
-    lazy val std_tcra = new Experiment("std-tcra", prefix)("tca-super", "callgraph.gxl.gzip")("tcra-super", "callgraph.gxl.gzip")
+    lazy val std_tcra = new Experiment("std-tcra", prefix)("tca-expand", "callgraph.gxl.gzip")("tca-names", "callgraph.gxl.gzip")
 
     experiment match {
       case "tca-wala" => tca_wala.print
@@ -99,14 +99,14 @@ object Experiments {
       val edgesA: Set[CallEdge] = supergraph.edges
       val edgesB: Set[CallEdge] = subgraph.edges
 
-      //      (reachB -- reachA).toSeq.sortWith((a, b) => a.name < b.name).foreach(println)
-      //      println("===========================================================================")
-      //      (edgesB -- edgesA).toSeq.sortWith((a, b) => a.src.name < b.src.name).foreach(println)
+      (reachB -- reachA).toSeq.sortWith((a, b) => a.name < b.name).foreach(println)
+      println("===========================================================================")
+      (edgesB -- edgesA).toSeq.sortWith((a, b) => a.src.name < b.src.name).foreach(println)
       if (name != "tca-wala") {
         println("===========================================================================")
         (typesB -- typesA).toSeq.sorted.foreach(println)
       }
-      //      println("\n")
+      println("\n")
 
       edges.a(benchmark) = edgesA.size
       edges.b(benchmark) = edgesB.size

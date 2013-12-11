@@ -1,6 +1,6 @@
 package ca.uwaterloo.scalacg.plugin
 
-import scala.collection.immutable.{ Set => ImmutableSet }
+import scala.collection.immutable.{Set => ImmutableSet}
 import scala.collection.mutable.Map
 import scala.tools.nsc.Phase
 import scala.tools.nsc.plugins.PluginComponent
@@ -35,81 +35,20 @@ abstract class CallGraphGen extends PluginComponent {
     }
 
     private def printStats = {
+      val abstractReceivers = collection.mutable.Set.empty[Type]
       // We should loop over abstract call sites in methods, other wise, 2 call sites from different methods are equal.
       callSitesInMethod.keys.foreach { m =>
         callSitesInMethod(m).foreach { cs =>
-          callSitesCount += 1
-          if (cs.isSuperCall) superCallSitesCount += 1
-          if (cs.hasThisReceiver) {
-            thisCallSitesCount += 1
-
-            // check for call sites with this as a receiver, and that are not inside methods called via super.
-            //            if (!(callSitesInMethod.values.flatten exists { c => c.isSuperCall && c.staticTarget == m })) {
-            //              thisCallSitesNotSuperCount += 1
-            //            }
-            val tempCallSite = CallSite(cs.receiverTree, cs.staticTarget, m, NoPosition, Set.empty[String])
-            val filtered = filterForThis(tempCallSite, instantiatedTypes.reachableItems)
-            if ((instantiatedTypes.reachableItems diff filtered).nonEmpty) thisCallSitesNotSuperCount += 1
+          callSitesTotalCount += 1
+          if (!cs.isConstructorCall && !cs.isFunctionCall) {
+            if (cs.isSuperCall) callSitesSuperCount += 1
+            else {
+              if (cs.hasThisReceiver) callSitesThisCount += 1
+              if (cs.hasAbstractReceiver) callSitesAbstractTypesCount += 1
+            }
           }
         }
       }
-
-      //      abstractToCallSites.values.flatten.foreach { cs =>
-      //        val filtered = filterForThis(cs, instantiatedTypes.reachableItems)
-      //        if ((instantiatedTypes.reachableItems diff filtered).nonEmpty) thisCallSitesNotSuperCount += 1
-      //      }
-
-      /*
-       * We should count the # of unique abstract receivers, 
-       * because it doesn't matter where that abstract receiver is, or what method it is calling.
-       */
-      val abstractReceivers = abstractCallSites.collect { case abs if abs.hasAbstractReceiver => abs.receiver }
-      abstractReceiverCount = abstractReceivers.size
-
-      abstractReceivers.foreach { receiver =>
-        if (concretization.isInstanceOf[TypeConcretization]) {
-          val found = instantiatedTypes.reachableItems.find { inst =>
-            val tpe = instantiateTypeParams(inst, receiver.widen)
-            val expand = concretization.expand(tpe)
-            val bounds = if (tpe.typeSymbol.isAbstractType) Set(concretization.upperBound(tpe)) else Set(tpe)
-
-            val conc = concretization.asInstanceOf[TypeConcretization].concretization(tpe.typeSymbol)
-            (expand diff bounds).nonEmpty
-          }
-          if (found.isDefined) abstractReceiverConcretizationCount += 1
-        }
-      }
-
-      //      abstractCallSites.foreach { abs =>
-      //        if (abs.hasAbstractReceiver) {
-      //          abstractReceiverCount += 1
-      //          if (concretization.isInstanceOf[TypeConcretization]) {
-      //            val found = instantiatedTypes.reachableItems.find { inst =>
-      //              val tpe = instantiateTypeParams(inst, abs.receiver.widen)
-      //              val expand = concretization.expand(tpe)
-      //              val bounds = if (tpe.typeSymbol.isAbstractType) Set(concretization.upperBound(tpe)) else Set(tpe)
-      //
-      //              val conc = concretization.asInstanceOf[TypeConcretization].concretization(tpe.typeSymbol)
-      //              (expand diff bounds).nonEmpty
-      //            }
-      //            if (found.isDefined) abstractReceiverConcretizationCount += 1
-      //          }
-      //        }
-      //      }
-
-      // Count concretizations
-      if (concretization.isInstanceOf[TypeConcretization]) {
-        val conc = concretization.asInstanceOf[TypeConcretization]
-        abstractTypesCount = conc.concretization.keys.size
-        concretizationCount = conc.concretization.values.flatten.size
-      }
-
-      //      abstractCallSites.foreach { abs =>
-      //        val count = abstractToCallSites(abs).size
-      //        abstractCallSitesCount += 1; concreteCallSitesCount += count
-      //        if (abs.hasThisReceiver) { abstractThisCallSitesCount += 1; concreteThisCallSitesCount += count }
-      //        if (abs.isSuperCall) { abstractSuperCallSitesCount += 1; concreteSuperCallSitesCount += count }
-      //      }
 
       println("Statistics")
       println("----------")
@@ -122,20 +61,10 @@ abstract class CallGraphGen extends PluginComponent {
       println(s"# trait compositions        : $traitCompsCount")
       println(s"# closures                  : $closuresCount")
       println(s"# methods                   : $methodsCount")
-      println(s"# abstract types            : $abstractTypesCount")
-      println(s"# concretizations           : $concretizationCount")
-      //      println(s"# abstract call sites       : $abstractCallSitesCount")
-      //      println(s"# abstract this call sites  : $abstractThisCallSitesCount")
-      //      println(s"# abstract super call sites : $abstractSuperCallSitesCount")
-      //      println(s"# concrete call sites       : $concreteCallSitesCount")
-      //      println(s"# concrete this call sites  : $concreteThisCallSitesCount")
-      //      println(s"# concrete super call sites : $concreteSuperCallSitesCount")
-      println(s"# call sites                : $callSitesCount")
-      println(s"# abstract receivers        : $abstractReceiverCount")
-      println(s"# abstract receivers conc   : $abstractReceiverConcretizationCount")
-      println(s"# this call sites           : $thisCallSitesCount")
-      println(s"# super call sites          : $superCallSitesCount")
-      println(s"# optimized this call sites : $thisCallSitesNotSuperCount")
+      println(s"# total call sites          : $callSitesTotalCount")
+      println(s"# call sites on abs types   : $callSitesAbstractTypesCount")
+      println(s"# call sites on this        : $callSitesThisCount")
+      println(s"# call sites on super       : $callSitesSuperCount")
       println(s"# overriding methods        : $overridingMethodsCount")
       println
     }

@@ -23,8 +23,6 @@ trait SuperCalls {
 
     val targets = Set[Symbol]()
 
-    // TODO: do we handle super calls differently in RA than TCA, or is it consistent regardless of analysis?
-
     /*
      * If super[Z], lookup only Z, else it's call to the super constructor (i.e, don't resolve the call).
      * NOTE: Calls to the constructors are handled in processCallSites anyways.

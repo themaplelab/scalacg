@@ -1,6 +1,6 @@
 package ca.uwaterloo.scalacg.util
 
-import scala.collection.immutable.{ Set => ImmutableSet }
+import scala.collection.immutable.{Set => ImmutableSet}
 import scala.collection.mutable.Map
 import scala.collection.mutable.Set
 
@@ -41,22 +41,10 @@ trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
   var classesAtpCount = 0
 
   // Call sites characteristics
-  var abstractCallSitesCount = 0
-  var abstractThisCallSitesCount = 0
-  var abstractSuperCallSitesCount = 0
-
-  var concreteCallSitesCount = 0
-  var concreteThisCallSitesCount = 0
-  var concreteSuperCallSitesCount = 0
-  
-  var callSitesCount = 0
-  var thisCallSitesCount = 0
-  var superCallSitesCount = 0
-  var thisCallSitesNotSuperCount = 0
-  var abstractReceiverCount = 0
-  var abstractReceiverConcretizationCount = 0
-  var abstractTypesCount = 0
-  var concretizationCount = 0
+  var callSitesTotalCount = 0
+  var callSitesThisCount = 0
+  var callSitesSuperCount = 0
+  var callSitesAbstractTypesCount = 0
 
   var overridingMethodsCount = 0
 

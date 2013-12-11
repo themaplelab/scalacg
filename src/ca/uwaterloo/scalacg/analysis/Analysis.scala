@@ -78,12 +78,12 @@ trait CallGraphAnalysis extends CallGraphWorklists
         mainModules)
 
     // TODO
-//    for (method <- instantiatedTypesInMethod.keys) {
-//      if(instantiatedTypesInMethod(method).find(_.toString contains "org.kiama.example.oberon0.L0.c.CAddExp").nonEmpty) {
-//        println(signature(method))
-//      }
-//    }
-//    sys.exit(0)
+    for (method <- instantiatedTypesInMethod.keys) {
+      if (instantiatedTypesInMethod(method).find(lineariztionStringOf(_) startsWith "org.kiama.output.Postfix").nonEmpty) {
+        println(signature(method))
+      }
+    }
+    sys.exit(0)
 
     // Gather some stats
     var abstractCallSitesCount = 0
