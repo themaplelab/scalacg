@@ -1,6 +1,6 @@
 package ca.uwaterloo.scalacg.plugin
 
-import scala.collection.immutable.{Set => ImmutableSet}
+import scala.collection.immutable.{ Set => ImmutableSet }
 import scala.collection.mutable.Map
 import scala.tools.nsc.Phase
 import scala.tools.nsc.plugins.PluginComponent
@@ -43,9 +43,27 @@ abstract class CallGraphGen extends PluginComponent {
           if (!cs.isConstructorCall && !cs.isFunctionCall) {
             if (cs.isSuperCall) callSitesSuperCount += 1
             else {
-              if (cs.hasThisReceiver) callSitesThisCount += 1
+              if (cs.hasThisReceiver) {
+                callSitesThisCount += 1
+              }
               if (cs.hasAbstractReceiver) callSitesAbstractTypesCount += 1
             }
+          }
+        }
+      }
+
+      var callSitesReachableThisInheritCount = 0
+      callSites.reachableItems.map(abstractToCallSites).flatten.foreach { cs =>
+        if (cs.hasThisReceiver) {
+          callSitesReachableThisCount += 1
+          if (cs.enclMethod.isConstructor) callSitesReachableThisConstructorCount += 1
+          else if (cs.thisEnclMethod == NoSymbol) callSitesReachableThisNoSymbolCount += 1
+          else if (superCalled.reachableItems.contains(cs.thisEnclMethod)) callSitesReachableThisSuperCount += 1
+          else {
+            val lookupTypes = filterForThis(cs, instantiatedTypes.reachableItems)
+            val refined = lookup_<:<(cs, lookupTypes)
+            val original = lookup_<:<(cs, instantiatedTypes.reachableItems)
+            if (refined == original) callSitesReachableThisInheritCount += 1
           }
         }
       }
@@ -66,6 +84,11 @@ abstract class CallGraphGen extends PluginComponent {
       println(s"# call sites on this        : $callSitesThisCount")
       println(s"# call sites on super       : $callSitesSuperCount")
       println(s"# overriding methods        : $overridingMethodsCount")
+      println(s"# reach call sites on this  : $callSitesReachableThisCount")
+      println(s"# const call sites on this  : $callSitesReachableThisConstructorCount")
+      println(s"# no sym call sites on this : $callSitesReachableThisNoSymbolCount")
+      println(s"# super call sites on this  : $callSitesReachableThisSuperCount")
+      println(s"# inherit call sites on this: $callSitesReachableThisInheritCount")
       println
     }
 

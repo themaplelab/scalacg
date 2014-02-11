@@ -7,6 +7,8 @@ import ca.uwaterloo.scalacg.analysis.CallSites
 import ca.uwaterloo.scalacg.util.Worklist
 import probe.ProbeClass
 import probe.ProbeMethod
+import probe.ProbeClass
+import probe.ProbeMethod
 
 /**
  * This is where all the global properties/finals shared across our code-base are found.
@@ -116,6 +118,10 @@ trait Statistics {
   var callSitesThisCount: Int
   var callSitesSuperCount: Int
   var callSitesAbstractTypesCount: Int
+  var callSitesReachableThisCount: Int
+  var callSitesReachableThisConstructorCount: Int
+  var callSitesReachableThisNoSymbolCount: Int
+  var callSitesReachableThisSuperCount: Int
 
   var overridingMethodsCount: Int
 }

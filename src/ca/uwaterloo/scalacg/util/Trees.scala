@@ -45,6 +45,10 @@ trait TreeTraversal extends Trees with TraversalCollections with TypeOps {
   var callSitesThisCount = 0
   var callSitesSuperCount = 0
   var callSitesAbstractTypesCount = 0
+  var callSitesReachableThisCount = 0
+  var callSitesReachableThisConstructorCount = 0
+  var callSitesReachableThisNoSymbolCount = 0
+  var callSitesReachableThisSuperCount = 0
 
   var overridingMethodsCount = 0
 

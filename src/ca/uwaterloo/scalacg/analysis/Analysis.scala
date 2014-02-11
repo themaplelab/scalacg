@@ -78,12 +78,11 @@ trait CallGraphAnalysis extends CallGraphWorklists
         mainModules)
 
     // TODO
-    for (method <- instantiatedTypesInMethod.keys) {
-      if (instantiatedTypesInMethod(method).find(lineariztionStringOf(_) startsWith "org.kiama.output.Postfix").nonEmpty) {
-        println(signature(method))
-      }
-    }
-    sys.exit(0)
+    //    for (method <- instantiatedTypesInMethod.keys) {
+    //      if (instantiatedTypesInMethod(method).find(lineariztionStringOf(_) startsWith "org.kiama.output.Postfix").nonEmpty) {
+    //        println(signature(method))
+    //      }
+    //    }
 
     // Gather some stats
     var abstractCallSitesCount = 0
