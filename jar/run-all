@@ -8,15 +8,19 @@ date
 echo "running analyses"
 for benchmark in ${benchmarks[@]}
 do
+  echo "analyzing ${benchmark} ..."
   ./run ${benchmark}
+  echo ""
 done
 
 # run sanity checks
+echo "checking subset relation ..."
 ./sanity-all
 
 # compile using scalac
+echo "compiling benchmarks using scalac ..."
 ./scalac-all
 
-#echo "generating LaTeX files"
+echo "generating statistics ..."
 java -cp $SCALA_HOME/lib/scala-library.jar:$SCALA_HOME/lib/scala-reflect.jar:latex.jar ca.uwaterloo.scalacg.experiments.LatexGenerator
 date

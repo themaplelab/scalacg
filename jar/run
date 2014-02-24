@@ -18,12 +18,19 @@ mkdir -p dist/${ra_all}/${benchmark}
 mkdir -p dist/${wala_rta}/${benchmark}
 
 # run the source-level analyses
+echo -e "\t running tca-expand-this ..."
 ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=tca-expand-this > dist/${tca_expand_this}/${benchmark}/tca-expand-this-log
+echo -e "\t running tca-expand ..."
 ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=tca-expand      > dist/${tca_expand}/${benchmark}/tca-expand-log
+echo -e "\t running tca-bounds ..."
 ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=tca-bounds      > dist/${tca_bounds}/${benchmark}/tca-bounds-log
+echo -e "\t running tca-names ..."
 ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=ra-inst         > dist/${ra_inst}/${benchmark}/ra-inst-log
+echo -e "\t running ra ..."
 ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=ra-all          > dist/${ra_all}/${benchmark}/ra-all-log
+echo -e "\t archiving dependencies for WALA ..."
 ant bm-deps.jar -Dbm=${benchmark}                              > dist/${tca_expand_this}/${benchmark}/deps-log
 
 # run wala
+echo -e "\t running rta-wala ..."
 ./walacg ${benchmark} > dist/${wala_rta}/${benchmark}/wala-rta-log
