@@ -37,7 +37,7 @@ object LatexGenerator {
   final lazy val perFormat = "%5s"
 
   // constant file names
-  final val cg = "callgraph-summary.gxl.gzip"
+  final val cg = "callgraph-summary.txt.gzip"
   final val walacg = "wala-" + cg
   final val log = "tca-expand-log"
 

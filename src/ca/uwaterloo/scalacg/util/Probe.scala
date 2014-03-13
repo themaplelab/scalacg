@@ -53,13 +53,13 @@ trait CallGraphPrinter {
   self: Probe with CallGraphAnalysis with Annotations =>
 
   /**
-   * Return a probe call graph in GXL format.
+   * Return a probe call graph in text format.
    */
   def printProbeCallGraph = {
-    val out = new PrintStream("callgraph.gxl.gzip")
+    val out = new PrintStream("callgraph.txt.gzip")
     val probeCallGraph = new CallGraph
 
-    val summary = new PrintStream("callgraph-summary.gxl.gzip")
+    val summary = new PrintStream("callgraph-summary.txt.gzip")
     val probeSummary = new CallGraph
 
     val entryPointsOut = new PrintStream("entrypoints.txt")
@@ -126,11 +126,11 @@ trait CallGraphPrinter {
     entryPointsOut.close
     libraryOut.close
 
-    // Write GXL file in gzip format to save space.
+    // Write txt files in gzip format to save space.
     new TextWriter().write(probeCallGraph, new GZIPOutputStream(out))
     new TextWriter().write(probeSummary, new GZIPOutputStream(summary))
 
-    println("Call graph is available at callgraph.gxl.gzip and its summary at callgraph-summary.gxl.gzip")
+    println("Call graph is available at callgraph.txt.gzip and its summary at callgraph-summary.txt.gzip")
     println
   }
 
