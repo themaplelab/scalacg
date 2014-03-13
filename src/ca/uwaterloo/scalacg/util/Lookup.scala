@@ -51,7 +51,7 @@ trait Lookup extends Probe {
 
     for (tpe <- types) {
       pluginOptions.analysis match {
-        case Analysis.ra_all | Analysis.ra_inst =>
+        case Analysis.ra | Analysis.tca_names =>
           targets ++= lookupByName(callSite, tpe)
         case _ =>
           targets ++= lookup_<:<(callSite, tpe)

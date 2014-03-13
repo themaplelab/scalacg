@@ -15,7 +15,7 @@ object LatexGenerator {
 
   final val analyses = List("\\ra", "\\tcaNames", "\\tcaBounds", "\\tcaExpand", "\\tcaExpandThis", "\\rtaWala")
   final val algorithms = analyses.dropRight(1).mkString(", ") + ", and " + analyses.last
-
+  
   final val characteristics = List("LOC") ++ List("classes", "objects", "traits", "trait;compositions", "methods",
     "closures", "call sites", "call sites on;abstract types", "call sites;on \\code{this}").map(a => s"\\texttt{\\#} $a")
 
@@ -23,7 +23,15 @@ object LatexGenerator {
   final val rq2Header = List("\\tcaNames~-~\\tcaBounds", "\\code{apply}")
   final val rq3Header = List("\\tcaBounds~-~\\tcaExpand") ++ List("abstract types").map(a => s"\\texttt{\\#} $a")
   final val rq4Header = List("\\tcaExpand~-~\\tcaExpandThis") ++ List("call sites", "eligible \\code{this} call sites").map(a => s"\\texttt{\\#} $a")
-
+  
+  final val analyses_csv = List("ra", "tca-names", "tca-bounds", "tca-expand", "tca-expand-this", "rta-wala")
+  final val characteristics_csv = List("LOC", "# classes", "# objects", "# traits", "# trait compositions", "# methods",
+    "# closures", "# call sites", "# call sites on abstract types", "# call sites on this")
+  final val rq1Header_csv = List("rta-wala - tca-bounds", "apply", "toString", "equals")
+  final val rq2Header_csv = List("tca-names - tca-bounds", "apply")
+  final val rq3Header_csv = List("tca-bounds - tca-expand", "#abstract types")
+  final val rq4Header_csv = List("tca-expand - tca-expand-this", "#call sites", "#eligible this call sites")
+  
   final lazy val floatFormat = new DecimalFormat("#,###.#")
   final lazy val intFormat = "%,d"
   final lazy val perFormat = "%5s"
@@ -92,19 +100,16 @@ object LatexGenerator {
     val out = Map[String, PrintStream](nodes -> new PrintStream(s"csv/$nodes.csv"),
       edges -> new PrintStream(s"csv/$edges.csv"),
       time -> new PrintStream(s"csv/$time.csv"),
-      rq1 -> new PrintStream(s"csv/$rq1.csv"),
-      rq2 -> new PrintStream(s"csv/$rq2.csv"),
-      rq3 -> new PrintStream(s"csv/$rq3.csv"),
-      rq4 -> new PrintStream(s"csv/$rq4.csv"))
+      bench -> new PrintStream(s"csv/$bench.csv"))
 
     // Emit latex files
     emitTableResults
     emitTableBenchmarks
     emitTableTimes
-    emitTableRQ1
-    emitTableRQ2
-    emitTableRQ3
-    emitTableRQ4
+    // emitTableRQ1
+    // emitTableRQ2
+    // emitTableRQ3
+    // emitTableRQ4
 
     data.close
     out.values foreach (_.close)
@@ -123,6 +128,9 @@ object LatexGenerator {
       table.println("  \\begin{tabularx}{\\columnwidth}{ll" + ("R" * analyses.size) + "}")
       table.println("    \\toprule")
       table.println("    & " + (analyses.map(a => s"& \\rot{\\textbf{$a}} ").mkString) + "\\\\")
+      
+      out(nodes).println("program" + sep + analyses_csv.mkString(sep))
+      out(edges).println("program" + sep + analyses_csv.mkString(sep))
 
       for (benchmark <- benchmarks) {
         var row = new StringBuilder("    ")
@@ -130,6 +138,7 @@ object LatexGenerator {
 
         // add benchmark name in italics
         row append s"\\multirow{2}{*}{\\$benchmark}"
+        csv append benchmark append sep
 
         // Read the call graphs for this benchmark
         lazy val raCG = readCallGraph(s"$base/ra-all/$benchmark/$cg")
@@ -156,6 +165,7 @@ object LatexGenerator {
 
         // Emit edges
         row append s" & $edges"
+        csv append benchmark append sep
         emit(ra, edges, raCG.edgesIgnoringContext.size)
         emit(tca_names, edges, tcaNamesCG.edgesIgnoringContext.size)
         emit(tca_bounds, edges, tcaBoundsCG.edgesIgnoringContext.size)
@@ -187,7 +197,7 @@ object LatexGenerator {
       val table = new PrintStream("tex/table_benchmarks.tex")
 
       // Table Header
-      table.println("\\begin{table}[!t]")
+      table.println("\\begin{table}[!b]")
       table.println("\\centering")
       table.println("  \\caption{Various characteristics of our benchmark programs.}")
       table.println("  \\label{table:benchmark:info}")
@@ -195,12 +205,16 @@ object LatexGenerator {
       table.println("    \\toprule")
       table.println("    " + (characteristics.map(a => s"& ${doubleLines(a)} ").mkString) + "\\\\")
       table.println("    \\midrule")
+      
+      out(bench).println("program" + sep + characteristics_csv.mkString(sep))
 
       for (benchmark <- benchmarks) {
         var row = new StringBuilder("    ")
+        var csv = new StringBuilder("")
         lazy val logfile = io.Source.fromFile(s"$base/tca-expand/$benchmark/$log").getLines.toList
 
         row append s"\\$benchmark"
+        csv append benchmark append sep
 
         // Read the stats log file
         emitBench(loc, nLoc)
@@ -214,12 +228,16 @@ object LatexGenerator {
         emitBench(callSitesAbstract, nCallSitesAbstract)
         emitBench(callSitesThis, nCallSitesThis)
         table.println(row append " \\\\")
+        out(bench).println(csv dropRight 1) // get rid of the last separator character
 
         def emitBench(k: String, v: Int) = {
           val key = s"$bench $benchmark $k"
           val value = intFormat format v
           data.println(s"\\pgfkeyssetvalue{$key}{$value}")
           row append s" & \\pgfkeysvalueof{$key}" // add the key to the current benchmarks row
+
+          // print out to csv too
+          csv append s"${value}${sep}"
         }
 
         def extract(what: String) = logfile.find(_ contains what).get.split(":").last.trim.toInt
@@ -254,12 +272,15 @@ object LatexGenerator {
       table.println("    \\toprule")
       table.println("    " + (analyses.map(a => s"& \\rot{\\textbf{$a}} ").mkString) + s"& \\rot{\\textbf{$scalac}} " + "\\\\")
       table.println("    \\midrule")
+      
+      out(time).println("program" + sep + analyses_csv.mkString(sep) + sep + scalac)
 
       for (benchmark <- benchmarks) {
         var row = new StringBuilder("    ")
         var csv = new StringBuilder("")
 
         row append s"\\$benchmark"
+        csv append benchmark append sep
 
         // Read the time info
         emitTime(ra, time_ra_all)

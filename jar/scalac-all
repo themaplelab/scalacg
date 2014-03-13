@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
-benchmarks=( argot ensime fimpp joos kiama phantm scalaxb scalisp see squeryl tictactoe )
+benchmarks=( argot ensime fimpp kiama phantm scalaxb scalisp see squeryl tictactoe )
 
 date
 

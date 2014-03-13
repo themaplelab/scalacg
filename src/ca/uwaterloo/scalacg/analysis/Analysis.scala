@@ -16,8 +16,8 @@ import ca.uwaterloo.scalacg.util.Worklist
 object Analysis extends Enumeration {
   type Analysis = Value
 
-  val ra_all = Value("ra-all") // name-based analysis
-  val ra_inst = Value("ra-inst") // name-based analysis limited to instantiated types
+  val ra = Value("ra") // name-based analysis
+  val tca_names = Value("tca-names") // name-based analysis limited to instantiated types
   val tca_bounds = Value("tca-bounds") // subtype-based analysis using abstract type bounds
   val tca_expand = Value("tca-expand") // subtype-based analysis using concretization of abstract types
   val tca_expand_this = Value("tca-expand-this") // tca-expand with special treatement of this
@@ -72,7 +72,7 @@ trait CallGraphAnalysis extends CallGraphWorklists
     // Entry points are initially reachable, main modules are initially instantiated.
     reachableMethods ++= mainMethods
     instantiatedTypes ++=
-      (if (pluginOptions.analysis == Analysis.ra_all)
+      (if (pluginOptions.analysis == Analysis.ra)
         types
       else
         mainModules)

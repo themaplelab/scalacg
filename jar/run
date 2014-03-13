@@ -5,16 +5,16 @@ benchmark=$1
 tca_expand_this="tca-expand-this"
 tca_expand="tca-expand"
 tca_bounds="tca-bounds"
-ra_inst="ra-inst"
-ra_all="ra-all"
+tca_names="tca-names"
+ra="ra"
 wala_rta="wala-rta"
 
 # make some directories
 mkdir -p dist/${tca_expand_this}/${benchmark}
 mkdir -p dist/${tca_expand}/${benchmark}
 mkdir -p dist/${tca_bounds}/${benchmark}
-mkdir -p dist/${ra_inst}/${benchmark}
-mkdir -p dist/${ra_all}/${benchmark}
+mkdir -p dist/${tca_names}/${benchmark}
+mkdir -p dist/${ra}/${benchmark}
 mkdir -p dist/${wala_rta}/${benchmark}
 
 # run the source-level analyses
@@ -25,9 +25,9 @@ ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=tca-expand      > dist/${tca_expa
 echo -e "\t running tca-bounds ..."
 ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=tca-bounds      > dist/${tca_bounds}/${benchmark}/tca-bounds-log
 echo -e "\t running tca-names ..."
-ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=ra-inst         > dist/${ra_inst}/${benchmark}/ra-inst-log
+ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=tca-names       > dist/${tca_names}/${benchmark}/tca-names-log
 echo -e "\t running ra ..."
-ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=ra-all          > dist/${ra_all}/${benchmark}/ra-all-log
+ant bm-plugin.jar -Dbm=${benchmark} -Danalysis=ra          > dist/${ra}/${benchmark}/ra-log
 echo -e "\t archiving dependencies for WALA ..."
 ant bm-deps.jar -Dbm=${benchmark}                              > dist/${tca_expand_this}/${benchmark}/deps-log
 

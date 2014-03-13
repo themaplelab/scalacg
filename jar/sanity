@@ -6,15 +6,15 @@ cg="callgraph-summary.gxl.gzip"
 tca_expand_this="tca-expand-this"
 tca_expand="tca-expand"
 tca_bounds="tca-bounds"
-ra_inst="ra-inst"
-ra_all="ra-all"
+tca_names="tca-names"
+ra="ra"
 wala_rta="wala-rta"
 
 # diff call graphs
 ./cgdiff dist/${tca_expand_this}/${benchmark}/${cg} dist/${tca_expand}/${benchmark}/${cg}
 ./cgdiff dist/${tca_expand}/${benchmark}/${cg} dist/${tca_bounds}/${benchmark}/${cg}
-./cgdiff dist/${tca_bounds}/${benchmark}/${cg} dist/${ra_inst}/${benchmark}/${cg}
-./cgdiff dist/${ra_inst}/${benchmark}/${cg} dist/${ra_all}/${benchmark}/${cg}
+./cgdiff dist/${tca_bounds}/${benchmark}/${cg} dist/${tca_names}/${benchmark}/${cg}
+./cgdiff dist/${tca_names}/${benchmark}/${cg} dist/${ra}/${benchmark}/${cg}
 
 # success
 echo ${benchmark} success

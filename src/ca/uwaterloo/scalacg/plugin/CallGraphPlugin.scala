@@ -96,7 +96,7 @@ case class PluginOptions(var analysis: Analysis.Value = Analysis.Default,
   }
 
   lazy val doSuperCalls = analysis match {
-    case Analysis.ra_all => false
+    case Analysis.ra => false
     case _ => true
   }
 }
