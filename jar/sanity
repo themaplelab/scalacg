@@ -2,7 +2,7 @@
 
 set -e
 benchmark=$1
-cg="callgraph-summary.gxl.gzip"
+cg="callgraph-summary.txt.gzip"
 tca_expand_this="tca-expand-this"
 tca_expand="tca-expand"
 tca_bounds="tca-bounds"
