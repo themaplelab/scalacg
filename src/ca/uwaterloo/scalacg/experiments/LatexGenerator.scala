@@ -141,8 +141,8 @@ object LatexGenerator {
         csv append benchmark append sep
 
         // Read the call graphs for this benchmark
-        lazy val raCG = readCallGraph(s"$base/ra-all/$benchmark/$cg")
-        lazy val tcaNamesCG = readCallGraph(s"$base/ra-inst/$benchmark/$cg")
+        lazy val raCG = readCallGraph(s"$base/ra/$benchmark/$cg")
+        lazy val tcaNamesCG = readCallGraph(s"$base/tca-names/$benchmark/$cg")
         lazy val tcaBoundsCG = readCallGraph(s"$base/tca-bounds/$benchmark/$cg")
         lazy val tcaExpandCG = readCallGraph(s"$base/tca-expand/$benchmark/$cg")
         lazy val tcaExpandThisCG = readCallGraph(s"$base/tca-expand-this/$benchmark/$cg")
@@ -283,8 +283,8 @@ object LatexGenerator {
         csv append benchmark append sep
 
         // Read the time info
-        emitTime(ra, time_ra_all)
-        emitTime(tca_names, time_ra_inst)
+        emitTime(ra, time_ra)
+        emitTime(tca_names, time_tca_name)
         emitTime(tca_bounds, time_tca_bounds)
         emitTime(tca_expand, time_tca_expand)
         emitTime(tca_expand_this, time_tca_expand_this)
@@ -304,8 +304,8 @@ object LatexGenerator {
         }
 
         def extractAnalysisTime(log: List[String]) = log.find(_ contains "Finished callgraph in").get.split(" ").dropRight(1).last.trim.toFloat
-        lazy val time_ra_all = extractAnalysisTime(io.Source.fromFile(s"$base/ra-all/$benchmark/ra-all-log").getLines.toList)
-        lazy val time_ra_inst = extractAnalysisTime(io.Source.fromFile(s"$base/ra-inst/$benchmark/ra-inst-log").getLines.toList)
+        lazy val time_ra = extractAnalysisTime(io.Source.fromFile(s"$base/ra/$benchmark/ra-log").getLines.toList)
+        lazy val time_tca_name = extractAnalysisTime(io.Source.fromFile(s"$base/tca-names/$benchmark/tca-names-log").getLines.toList)
         lazy val time_tca_bounds = extractAnalysisTime(io.Source.fromFile(s"$base/tca-bounds/$benchmark/tca-bounds-log").getLines.toList)
         lazy val time_tca_expand = extractAnalysisTime(io.Source.fromFile(s"$base/tca-expand/$benchmark/tca-expand-log").getLines.toList)
         lazy val time_tca_expand_this = extractAnalysisTime(io.Source.fromFile(s"$base/tca-expand-this/$benchmark/tca-expand-this-log").getLines.toList)
@@ -410,7 +410,7 @@ object LatexGenerator {
 
         // Read the call graphs for this benchmark
         lazy val tcaBoundsCG = readCallGraph(s"$base/tca-bounds/$benchmark/$cg")
-        lazy val tcaNamesCG = readCallGraph(s"$base/ra-inst/$benchmark/$cg")
+        lazy val tcaNamesCG = readCallGraph(s"$base/tca-names/$benchmark/$cg")
         val tcaBoundsEdges = tcaBoundsCG.edgesIgnoringContext
         val tcaNamesEdges = tcaNamesCG.edgesIgnoringContext
         val diffEdges = tcaNamesEdges -- tcaBoundsEdges
