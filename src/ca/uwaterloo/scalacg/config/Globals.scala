@@ -122,6 +122,9 @@ trait Statistics {
   var callSitesReachableThisConstructorCount: Int
   var callSitesReachableThisNoSymbolCount: Int
   var callSitesReachableThisSuperCount: Int
+  var callSitesReachableCount: Int
+  var callSitesMonomorphicCount: Int
+  var callSitesPolymorphicCount: Int
 
   var overridingMethodsCount: Int
 }

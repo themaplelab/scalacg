@@ -54,6 +54,11 @@ abstract class CallGraphGen extends PluginComponent {
 
       var callSitesReachableThisInheritCount = 0
       callSites.reachableItems.map(abstractToCallSites).flatten.foreach { cs =>
+        // reachable mono and poly call sites
+        callSitesReachableCount += 1
+        if (callGraph(cs).size == 1) callSitesMonomorphicCount += 1
+        else if (callGraph(cs).size > 1) callSitesPolymorphicCount += 1
+        
         if (cs.hasThisReceiver) {
           callSitesReachableThisCount += 1
           if (cs.enclMethod.isConstructor) callSitesReachableThisConstructorCount += 1
@@ -89,6 +94,9 @@ abstract class CallGraphGen extends PluginComponent {
       println(s"# no sym call sites on this : $callSitesReachableThisNoSymbolCount")
       println(s"# super call sites on this  : $callSitesReachableThisSuperCount")
       println(s"# inherit call sites on this: $callSitesReachableThisInheritCount")
+      println(s"# reachable call sites      : $callSitesReachableCount")
+      println(s"# monomorphic call sites    : $callSitesMonomorphicCount")
+      println(s"# polymorphic call sites    : $callSitesPolymorphicCount")
       println
     }
 
