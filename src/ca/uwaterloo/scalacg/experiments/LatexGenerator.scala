@@ -14,8 +14,9 @@ object LatexGenerator {
   final val benchmarks = List("argot", "ensime", "fimpp", "kiama", "phantm", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
 
   final val analyses = List("\\ra", "\\tcaNames", "\\tcaBounds", "\\tcaExpand", "\\tcaExpandThis", "\\rtaWala")
+  final val analyses_cs = List("\\ra", "\\tcaExpandThis")
   final val algorithms = analyses.dropRight(1).mkString(", ") + ", and " + analyses.last
-  
+
   final val characteristics = List("LOC") ++ List("classes", "objects", "traits", "trait;compositions", "methods",
     "closures", "call sites", "call sites on;abstract types", "call sites;on \\code{this}").map(a => s"\\texttt{\\#} $a")
 
@@ -23,15 +24,16 @@ object LatexGenerator {
   final val rq2Header = List("\\tcaNames~-~\\tcaBounds", "\\code{apply}")
   final val rq3Header = List("\\tcaBounds~-~\\tcaExpand") ++ List("abstract types").map(a => s"\\texttt{\\#} $a")
   final val rq4Header = List("\\tcaExpand~-~\\tcaExpandThis") ++ List("call sites", "eligible \\code{this} call sites").map(a => s"\\texttt{\\#} $a")
-  
+
   final val analyses_csv = List("ra", "tca-names", "tca-bounds", "tca-expand", "tca-expand-this", "rta-wala")
+  final val analyses_cs_csv = List("ra", "tca-expand-this")
   final val characteristics_csv = List("LOC", "# classes", "# objects", "# traits", "# trait compositions", "# methods",
     "# closures", "# call sites", "# call sites on abstract types", "# call sites on this")
   final val rq1Header_csv = List("rta-wala - tca-bounds", "apply", "toString", "equals")
   final val rq2Header_csv = List("tca-names - tca-bounds", "apply")
   final val rq3Header_csv = List("tca-bounds - tca-expand", "#abstract types")
   final val rq4Header_csv = List("tca-expand - tca-expand-this", "#call sites", "#eligible this call sites")
-  
+
   final lazy val floatFormat = new DecimalFormat("#,###.#")
   final lazy val intFormat = "%,d"
   final lazy val perFormat = "%5s"
@@ -63,6 +65,10 @@ object LatexGenerator {
   final val rta_wala = "rta wala"
   final val nodes = "nodes"
   final val edges = "edges"
+  final val callsites = "callsites"
+  final val monoKey = "mono"
+  final val polyKey = "poly"
+  final val reachableKey = "reachable"
 
   // keys for table of times
   final val time = "time"
@@ -99,13 +105,16 @@ object LatexGenerator {
     val data = new PrintStream("tex/paper_data.tex")
     val out = Map[String, PrintStream](nodes -> new PrintStream(s"csv/$nodes.csv"),
       edges -> new PrintStream(s"csv/$edges.csv"),
+      callsites -> new PrintStream(s"csv/$callsites.csv"),
       time -> new PrintStream(s"csv/$time.csv"),
       bench -> new PrintStream(s"csv/$bench.csv"))
 
     // Emit latex files
-    emitTableResults
-    emitTableBenchmarks
-    emitTableTimes
+    // TODO: select the tables to emit
+    //    emitTableResults
+    emitTableCallsites
+    //    emitTableBenchmarks
+    //    emitTableTimes
     // emitTableRQ1
     // emitTableRQ2
     // emitTableRQ3
@@ -128,7 +137,7 @@ object LatexGenerator {
       table.println("  \\begin{tabularx}{\\columnwidth}{ll" + ("R" * analyses.size) + "}")
       table.println("    \\toprule")
       table.println("    & " + (analyses.map(a => s"& \\rot{\\textbf{$a}} ").mkString) + "\\\\")
-      
+
       out(nodes).println("program" + sep + analyses_csv.mkString(sep))
       out(edges).println("program" + sep + analyses_csv.mkString(sep))
 
@@ -193,6 +202,69 @@ object LatexGenerator {
       table.close
     }
 
+    // Emit the results table with the callsite stats in it.
+    def emitTableCallsites = {
+      val table = new PrintStream("tex/table_callsites.tex")
+
+      // Emit Header
+      table.println("\\begin{table}[!t]")
+      table.println("\\centering")
+      table.println("  \\caption{Number of reachable, monomorphic, and polymorphic call sites in the summarized version of call graphs computed using the \\ra, and \\tcaExpandThis.}")
+      table.println("  \\label{table:callsites}")
+      table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("R" * 3 * analyses_cs.size) + "}")
+      table.println("    \\toprule")
+      table.println("    " + (analyses_cs.map(a => s"& \\multicolumn{3}{c}{\\textbf{$a}} ").mkString) + "\\\\")
+      table.println("    " + (analyses_cs.map(e => analyses_cs.indexOf(e) * 3).map(a => s"\\cmidrule(lr){${2 + a}-${4 + a}} ").mkString) + "\\\\")
+      table.println("	 & \\textbf{Total} & \\textbf{Mono} & \\textbf{Poly} & \\textbf{Total} & \\textbf{Mono} & \\textbf{Poly} \\\\")
+      table.println("    " + (analyses_cs.map(e => analyses_cs.indexOf(e) * 3).map(a => s"\\cmidrule(lr){${2 + a}-${4 + a}} ").mkString) + "\\\\")
+
+      out(callsites).println("program" + sep + analyses_cs_csv.mkString(sep))
+      out(callsites).println("" + sep + totalKey + sep + monoKey + sep + polyKey)
+
+      for (benchmark <- benchmarks) {
+        var row = new StringBuilder("    ")
+        var csv = new StringBuilder("")
+
+        // add benchmark name in italics
+        row append s"\\$benchmark"
+        csv append benchmark append sep
+
+        // Emit nodes
+        // Read the time info
+        emitCallSites("ra")
+        emitCallSites("tca-expand-this")
+        table.println(row append " \\\\")
+        out(time).println(csv dropRight 1) // get rid of the last separator character
+
+        def emitCallSites(analysis: String) = {
+          emit(analysis, totalKey, total(analysis))
+          emit(analysis, monoKey, mono(analysis))
+          emit(analysis, polyKey, poly(analysis))
+        }
+
+        def emit(analysis: String, k: String, v: Int) = {
+          val key = s"$analysis $benchmark $k $reachableKey $callsites"
+          val value = intFormat format v
+          data.println(s"\\pgfkeyssetvalue{$key}{$value}")
+          row append s" & \\pgfkeysvalueof{$key}" // add the key to the current results row
+
+          // print out to csv too
+          csv append s"${value}${sep}"
+        }
+
+        def extract(analysis: String, what: String) = io.Source.fromFile(s"$base/$analysis/$benchmark/$analysis-log").getLines.toList.find(_ contains what).get.split(":").last.trim.toInt
+        def total(analysis: String) = extract(analysis, "# reachable call sites")
+        def mono(analysis: String) = extract(analysis, "# monomorphic call sites")
+        def poly(analysis: String) = extract(analysis, "# polymorphic call sites")
+      }
+
+      // Emit Footer
+      table.println("    \\bottomrule")
+      table.println("  \\end{tabularx}")
+      table.println("\\end{table}")
+      table.close
+    }
+
     def emitTableBenchmarks = {
       val table = new PrintStream("tex/table_benchmarks.tex")
 
@@ -205,7 +277,7 @@ object LatexGenerator {
       table.println("    \\toprule")
       table.println("    " + (characteristics.map(a => s"& ${doubleLines(a)} ").mkString) + "\\\\")
       table.println("    \\midrule")
-      
+
       out(bench).println("program" + sep + characteristics_csv.mkString(sep))
 
       for (benchmark <- benchmarks) {
@@ -272,7 +344,7 @@ object LatexGenerator {
       table.println("    \\toprule")
       table.println("    " + (analyses.map(a => s"& \\rot{\\textbf{$a}} ").mkString) + s"& \\rot{\\textbf{$scalac}} " + "\\\\")
       table.println("    \\midrule")
-      
+
       out(time).println("program" + sep + analyses_csv.mkString(sep) + sep + scalac)
 
       for (benchmark <- benchmarks) {
