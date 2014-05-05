@@ -36,21 +36,31 @@ abstract class CallGraphGen extends PluginComponent {
 
     private def printStats = {
       val abstractReceivers = collection.mutable.Set.empty[Type]
-      // We should loop over abstract call sites in methods, other wise, 2 call sites from different methods are equal.
-      callSitesInMethod.keys.foreach { m =>
-        callSitesInMethod(m).foreach { cs =>
-          callSitesTotalCount += 1
-          if (!cs.isConstructorCall && !cs.isFunctionCall) {
-            if (cs.isSuperCall) callSitesSuperCount += 1
-            else {
-              if (cs.hasThisReceiver) {
-                callSitesThisCount += 1
-              }
-              if (cs.hasAbstractReceiver) callSitesAbstractTypesCount += 1
-            }
+      abstractToCallSites.values.flatten.foreach { cs =>
+        callSitesTotalCount += 1
+        if (!cs.isConstructorCall && !cs.isFunctionCall) {
+          if (cs.isSuperCall) callSitesSuperCount += 1
+          else {
+            if (cs.hasThisReceiver) callSitesThisCount += 1
+            if (cs.hasAbstractReceiver) callSitesAbstractTypesCount += 1
           }
         }
       }
+      // We should loop over abstract call sites in methods, other wise, 2 call sites from different methods are equal.
+      //      callSitesInMethod.keys.foreach { m =>
+      //        callSitesInMethod(m).foreach { cs =>
+      //          callSitesTotalCount += 1
+      //          if (!cs.isConstructorCall && !cs.isFunctionCall) {
+      //            if (cs.isSuperCall) callSitesSuperCount += 1
+      //            else {
+      //              if (cs.hasThisReceiver) {
+      //                callSitesThisCount += 1
+      //              }
+      //              if (cs.hasAbstractReceiver) callSitesAbstractTypesCount += 1
+      //            }
+      //          }
+      //        }
+      //      }
 
       var callSitesReachableThisInheritCount = 0
       callSites.reachableItems.map(abstractToCallSites).flatten.foreach { cs =>
@@ -58,7 +68,7 @@ abstract class CallGraphGen extends PluginComponent {
         callSitesReachableCount += 1
         if (callGraph(cs).size == 1) callSitesMonomorphicCount += 1
         else if (callGraph(cs).size > 1) callSitesPolymorphicCount += 1
-        
+
         if (cs.hasThisReceiver) {
           callSitesReachableThisCount += 1
           if (cs.enclMethod.isConstructor) callSitesReachableThisConstructorCount += 1
