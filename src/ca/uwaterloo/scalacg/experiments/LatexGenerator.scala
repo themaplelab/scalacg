@@ -209,7 +209,7 @@ object LatexGenerator {
       // Emit Header
       table.println("\\begin{table}[!t]")
       table.println("\\centering")
-      table.println("  \\caption{Number of reachable, monomorphic, and polymorphic call sites in the summarized version of call graphs computed using the \\ra, and \\tcaExpandThis.}")
+      table.println("  \\caption{Number of all, monomorphic, and polymorphic reachable call sites in the summarized version of call graphs computed using the \\ra, and \\tcaExpandThis.}")
       table.println("  \\label{table:callsites}")
       table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("R" * 3 * analyses_cs.size) + "}")
       table.println("    \\toprule")
