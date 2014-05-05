@@ -111,10 +111,10 @@ object LatexGenerator {
 
     // Emit latex files
     // TODO: select the tables to emit
-    //    emitTableResults
+    emitTableResults
     emitTableCallsites
-    //    emitTableBenchmarks
-    //    emitTableTimes
+    emitTableBenchmarks
+    emitTableTimes
     // emitTableRQ1
     // emitTableRQ2
     // emitTableRQ3
