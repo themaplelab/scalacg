@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -e
+wala_rta="wala-rta"
+benchmarks=( argot ensime fimpp kiama phantm scalaxb scalisp see squeryl tictactoe )
+
+date
+
+echo "running wala-rta"
+for benchmark in ${benchmarks[@]}
+do
+  mkdir -p dist/${wala_rta}/${benchmark}
+  ./walacg ${benchmark} > dist/${wala_rta}/${benchmark}/wala-rta-log
+done
+
+#echo "generating LaTeX files"
+#java -cp $SCALA_HOME/lib/scala-library.jar:$SCALA_HOME/lib/scala-reflect.jar:latex.jar ca.uwaterloo.scalacg.experiments.LatexGenerator
+date
