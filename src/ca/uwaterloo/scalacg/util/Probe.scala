@@ -171,7 +171,7 @@ trait CallGraphPrinter {
    * Get the relative path for an absolute source file path.
    */
   private def relativize(file: AbstractFile) = {
-    file.toString().replaceFirst(".+/build_src/[^/]+/", "")
+    file.toString.replaceFirst(".+/build_src/[^/]+/", "")
   }
 
   /**

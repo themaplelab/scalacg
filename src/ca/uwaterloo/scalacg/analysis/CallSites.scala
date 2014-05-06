@@ -100,6 +100,9 @@ trait CallSites extends Global with Probe {
         NoSymbol
       }
     }
+    
+    lazy val csid = if(position.isDefined) position.source.file.toString + "::" + position.line + "::" + position.column
+    				else "unknown::-1::-1"
 
     override def toString = "<" + receiver + " :: " + signature(staticTarget) + " :: " + signature(enclMethod) + ">"
 

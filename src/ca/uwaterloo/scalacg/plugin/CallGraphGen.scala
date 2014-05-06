@@ -4,12 +4,12 @@ import scala.collection.immutable.{ Set => ImmutableSet }
 import scala.collection.mutable.Map
 import scala.tools.nsc.Phase
 import scala.tools.nsc.plugins.PluginComponent
-
 import ca.uwaterloo.scalacg.analysis.CallGraphAnalysis
 import ca.uwaterloo.scalacg.util.Annotations
 import ca.uwaterloo.scalacg.util.Assertions
 import ca.uwaterloo.scalacg.util.CallGraphPrinter
 import ca.uwaterloo.scalacg.util.Timer
+import java.io.PrintStream
 
 /**
  * Phase that annotates generates the call graph.
@@ -35,17 +35,6 @@ abstract class CallGraphGen extends PluginComponent {
     }
 
     private def printStats = {
-      val abstractReceivers = collection.mutable.Set.empty[Type]
-      abstractToCallSites.values.flatten.foreach { cs =>
-        callSitesTotalCount += 1
-        if (!cs.isConstructorCall && !cs.isFunctionCall) {
-          if (cs.isSuperCall) callSitesSuperCount += 1
-          else {
-            if (cs.hasThisReceiver) callSitesThisCount += 1
-            if (cs.hasAbstractReceiver) callSitesAbstractTypesCount += 1
-          }
-        }
-      }
       // We should loop over abstract call sites in methods, other wise, 2 call sites from different methods are equal.
       //      callSitesInMethod.keys.foreach { m =>
       //        callSitesInMethod(m).foreach { cs =>
@@ -62,12 +51,29 @@ abstract class CallGraphGen extends PluginComponent {
       //        }
       //      }
 
+      abstractToCallSites.values.flatten.foreach { cs =>
+        callSitesTotalCount += 1
+        if (!cs.isConstructorCall && !cs.isFunctionCall) {
+          if (cs.isSuperCall) callSitesSuperCount += 1
+          else {
+            if (cs.hasThisReceiver) callSitesThisCount += 1
+            if (cs.hasAbstractReceiver) callSitesAbstractTypesCount += 1
+          }
+        }
+      }
+
       var callSitesReachableThisInheritCount = 0
+      val out = new PrintStream("callsites.txt")
       callSites.reachableItems.map(abstractToCallSites).flatten.foreach { cs =>
         // reachable mono and poly call sites
         callSitesReachableCount += 1
-        if (callGraph(cs).size == 1) callSitesMonomorphicCount += 1
-        else if (callGraph(cs).size > 1) callSitesPolymorphicCount += 1
+        if (callGraph(cs).size == 1) {
+          callSitesMonomorphicCount += 1
+          out.println(cs.csid + " ===> " + "mono")
+        } else if (callGraph(cs).size > 1) {
+          callSitesPolymorphicCount += 1
+          out.println(cs.csid + " ===> " + "poly")
+        }
 
         if (cs.hasThisReceiver) {
           callSitesReachableThisCount += 1
@@ -82,6 +88,7 @@ abstract class CallGraphGen extends PluginComponent {
           }
         }
       }
+      out.close()
 
       println("Statistics")
       println("----------")
