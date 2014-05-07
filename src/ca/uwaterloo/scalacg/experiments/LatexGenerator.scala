@@ -68,6 +68,11 @@ object LatexGenerator {
   final val callsites = "callsites"
   final val monoKey = "mono"
   final val polyKey = "poly"
+  final val mono2unreachKey = "mono to unreachable"
+  final val mono2monoKey = "mono to mono"
+  final val poly2unreachKey = "poly to unreachable"
+  final val poly2monoKey = "poly to mono"
+  final val poly2polyKey = "poly to poly"
   final val reachableKey = "reachable"
 
   // keys for table of times
@@ -211,15 +216,15 @@ object LatexGenerator {
       table.println("\\centering")
       table.println("  \\caption{Number of all, monomorphic, and polymorphic reachable call sites in the summarized version of call graphs computed using the \\ra, and \\tcaExpandThis.}")
       table.println("  \\label{table:callsites}")
-      table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("R" * 3 * analyses_cs.size) + "}")
+      table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("R" * 7) + "}")
       table.println("    \\toprule")
-      table.println("    " + (analyses_cs.map(a => s"& \\multicolumn{3}{c}{\\textbf{$a}} ").mkString) + "\\\\")
-      table.println("    " + (analyses_cs.map(e => analyses_cs.indexOf(e) * 3).map(a => s"\\cmidrule(lr){${2 + a}-${4 + a}} ").mkString) + "\\\\")
-      table.println("	 & \\textbf{Total} & \\textbf{Mono} & \\textbf{Poly} & \\textbf{Total} & \\textbf{Mono} & \\textbf{Poly} \\\\")
-      table.println("    " + (analyses_cs.map(e => analyses_cs.indexOf(e) * 3).map(a => s"\\cmidrule(lr){${2 + a}-${4 + a}} ").mkString) + "\\\\")
+      table.println("    & \\multicolumn{2}{c}{\\textbf{\\ra}} & \\multicolumn{5}{c}{\\textbf{\\ra to \\tcaExpandThis}}" + "\\\\")
+      table.println("    \\cmidrule(lr){2-3} \\cmidrule(lr){4-8}" + "\\\\")
+      table.println("	 & \\textbf{Mono} & \\textbf{Poly} & \\textbf{M to U} & \\textbf{M to M} & \\textbf{P to U} & \\textbf{P to M} & \\textbf{P to P} \\\\")
+      table.println("    \\cmidrule(lr){2-3} \\cmidrule(lr){4-8}" + "\\\\")
 
       out(callsites).println("program" + sep + analyses_cs_csv.mkString(sep))
-      out(callsites).println("" + sep + totalKey + sep + monoKey + sep + polyKey)
+      out(callsites).println("" + sep + monoKey + sep + polyKey + sep + mono2unreachKey + sep + mono2monoKey + sep + poly2unreachKey + sep + poly2monoKey + sep + poly2polyKey)
 
       for (benchmark <- benchmarks) {
         var row = new StringBuilder("    ")
@@ -231,15 +236,46 @@ object LatexGenerator {
 
         // Emit nodes
         // Read the time info
-        emitCallSites("ra")
-        emitCallSites("tca-expand-this")
+        emitCallsites
         table.println(row append " \\\\")
         out(time).println(csv dropRight 1) // get rid of the last separator character
 
-        def emitCallSites(analysis: String) = {
-          emit(analysis, totalKey, total(analysis))
-          emit(analysis, monoKey, mono(analysis))
-          emit(analysis, polyKey, poly(analysis))
+        def emitCallsites = {
+          val raCallsites = readCallsites("ra")
+          val tcaCallsites = readCallsites("tca-expand-this")
+
+          val mono = raCallsites(monoKey).size
+          val poly = raCallsites(polyKey).size
+          val mono2mono = (raCallsites(monoKey) & tcaCallsites(monoKey)).size
+          //          val mono2unreach = raCallsites(monoKey).size - mono2mono
+          val mono2unreach = (raCallsites(monoKey) &~ tcaCallsites.values.flatten.toSet).size
+          val poly2mono = (raCallsites(polyKey) & tcaCallsites(monoKey)).size
+          val poly2poly = (raCallsites(polyKey) & tcaCallsites(polyKey)).size
+          //          val poly2unreach = raCallsites(polyKey).size - poly2mono - poly2poly
+          val poly2unreach = (raCallsites(polyKey) &~ tcaCallsites.values.flatten.toSet).size
+
+          emit(ra, monoKey, mono)
+          emit(ra, polyKey, poly)
+          emit(tca_expand_this, mono2unreachKey, mono2unreach)
+          emit(tca_expand_this, mono2monoKey, mono2mono)
+          emit(tca_expand_this, poly2unreachKey, poly2unreach)
+          emit(tca_expand_this, poly2monoKey, poly2mono)
+          emit(tca_expand_this, poly2polyKey, poly2poly)
+        }
+
+        def readCallsites(analysis: String) = {
+          val cslog = io.Source.fromFile(s"$base/$analysis/$benchmark/callsites.txt")
+          invertMap(cslog.getLines.map { line =>
+            val cs = line.split(" ===> ")(0)
+            val tpe = line.split(" ===> ")(1)
+            cs -> tpe
+          }.toMap)
+        }
+
+        def invertMap[A, B](m: Map[A, B]): Map[B, Set[A]] = {
+          val k = ((m values) toSet)
+          val v = k map { e => ((m keys) toSet) filter { x => m(x) == e } }
+          (k zip v) toMap
         }
 
         def emit(analysis: String, k: String, v: Int) = {
