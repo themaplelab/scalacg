@@ -238,7 +238,7 @@ object LatexGenerator {
         // Read the time info
         emitCallsites
         table.println(row append " \\\\")
-        out(time).println(csv dropRight 1) // get rid of the last separator character
+        out(callsites).println(csv dropRight 1) // get rid of the last separator character
 
         def emitCallsites = {
           val raCallsites = readCallsites("ra")
@@ -246,13 +246,20 @@ object LatexGenerator {
 
           val mono = raCallsites(monoKey).size
           val poly = raCallsites(polyKey).size
+
           val mono2mono = (raCallsites(monoKey) & tcaCallsites(monoKey)).size
-          //          val mono2unreach = raCallsites(monoKey).size - mono2mono
-          val mono2unreach = (raCallsites(monoKey) &~ tcaCallsites.values.flatten.toSet).size
           val poly2mono = (raCallsites(polyKey) & tcaCallsites(monoKey)).size
           val poly2poly = (raCallsites(polyKey) & tcaCallsites(polyKey)).size
-          //          val poly2unreach = raCallsites(polyKey).size - poly2mono - poly2poly
+
+          val mono2unreach = (raCallsites(monoKey) &~ tcaCallsites.values.flatten.toSet).size
           val poly2unreach = (raCallsites(polyKey) &~ tcaCallsites.values.flatten.toSet).size
+
+          //          val mono2mono = (raCallsites(monoKey) filter { cs => tcaCallsites(monoKey) contains cs }).size
+          //          val poly2mono = (raCallsites(polyKey) filter { cs => tcaCallsites(monoKey) contains cs }).size
+          //          val poly2poly = (raCallsites(polyKey) filter { cs => tcaCallsites(polyKey) contains cs }).size
+          //          
+          //          val mono2unreach = (raCallsites(monoKey) filterNot { cs => tcaCallsites.values.flatten.toList contains cs }).size
+          //          val poly2unreach = (raCallsites(polyKey) filterNot { cs => tcaCallsites.values.flatten.toList contains cs }).size
 
           emit(ra, monoKey, mono)
           emit(ra, polyKey, poly)
@@ -265,17 +272,11 @@ object LatexGenerator {
 
         def readCallsites(analysis: String) = {
           val cslog = io.Source.fromFile(s"$base/$analysis/$benchmark/callsites.txt")
-          invertMap(cslog.getLines.map { line =>
+          cslog.getLines.map { line =>
             val cs = line.split(" ===> ")(0)
             val tpe = line.split(" ===> ")(1)
-            cs -> tpe
-          }.toMap)
-        }
-
-        def invertMap[A, B](m: Map[A, B]): Map[B, Set[A]] = {
-          val k = ((m values) toSet)
-          val v = k map { e => ((m keys) toSet) filter { x => m(x) == e } }
-          (k zip v) toMap
+            tpe -> cs
+          }.toList.groupBy(_._1).mapValues(_.map(_._2).toSet)
         }
 
         def emit(analysis: String, k: String, v: Int) = {
