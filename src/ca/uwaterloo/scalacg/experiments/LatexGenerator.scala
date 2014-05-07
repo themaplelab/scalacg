@@ -254,13 +254,6 @@ object LatexGenerator {
           val mono2unreach = (raCallsites(monoKey) &~ tcaCallsites.values.flatten.toSet).size
           val poly2unreach = (raCallsites(polyKey) &~ tcaCallsites.values.flatten.toSet).size
 
-          //          val mono2mono = (raCallsites(monoKey) filter { cs => tcaCallsites(monoKey) contains cs }).size
-          //          val poly2mono = (raCallsites(polyKey) filter { cs => tcaCallsites(monoKey) contains cs }).size
-          //          val poly2poly = (raCallsites(polyKey) filter { cs => tcaCallsites(polyKey) contains cs }).size
-          //          
-          //          val mono2unreach = (raCallsites(monoKey) filterNot { cs => tcaCallsites.values.flatten.toList contains cs }).size
-          //          val poly2unreach = (raCallsites(polyKey) filterNot { cs => tcaCallsites.values.flatten.toList contains cs }).size
-
           emit(ra, monoKey, mono)
           emit(ra, polyKey, poly)
           emit(tca_expand_this, mono2unreachKey, mono2unreach)
