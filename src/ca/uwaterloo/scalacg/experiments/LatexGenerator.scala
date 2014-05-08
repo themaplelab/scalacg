@@ -219,9 +219,9 @@ object LatexGenerator {
       table.println("  \\begin{tabularx}{\\columnwidth}{ll" + ("R" * 4) + "}")
       table.println("    \\toprule")
       table.println("    & \\multicolumn{2}{c}{} & \\multicolumn{3}{c}{\\textbf{\\tcaExpandThis}} \\\\")
-      table.println("    \\cmidrule(lr){4-6} \\\\")
-      table.println("    & \\multicolumn{2}{c}{\\textbf{\\ra}} & & \\textbf{Unreach} & \\textbf{Mono} & \\textbf{Poly} \\\\")
-      table.println("    \\cmidrule(lr){2-3} \\cmidrule(lr){4-6} \\\\")
+      table.println("    \\cmidrule(l){4-6} \\\\")
+      table.println("    & \\multicolumn{2}{c}{\\textbf{\\ra}} & \\textbf{Unreachable} & \\textbf{Mono} & \\textbf{Poly} \\\\")
+      table.println("    \\cmidrule{2-3} \\cmidrule(l){4-6} \\\\")
 
       out(monoKey).println("" + sep + sep + sep + analyses_cs_csv.last)
       out(polyKey).println("" + sep + sep + sep + analyses_cs_csv.last)
