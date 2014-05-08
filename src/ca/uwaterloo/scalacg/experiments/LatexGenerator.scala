@@ -110,7 +110,8 @@ object LatexGenerator {
     val data = new PrintStream("tex/paper_data.tex")
     val out = Map[String, PrintStream](nodes -> new PrintStream(s"csv/$nodes.csv"),
       edges -> new PrintStream(s"csv/$edges.csv"),
-      callsites -> new PrintStream(s"csv/$callsites.csv"),
+      monoKey -> new PrintStream(s"csv/$monoKey.csv"),
+      polyKey -> new PrintStream(s"csv/$polyKey.csv"),
       time -> new PrintStream(s"csv/$time.csv"),
       bench -> new PrintStream(s"csv/$bench.csv"))
 
@@ -172,7 +173,6 @@ object LatexGenerator {
         emit(rta_wala, nodes, rtaWalaCG.findReachables.size)
         table.println("    \\midrule")
         table.println(row append " \\\\")
-        table.println("    \\cmidrule{2-8}")
         out(nodes).println(csv dropRight 1) // get rid of the last separator character
         row.clear
         csv.clear
@@ -214,54 +214,63 @@ object LatexGenerator {
       // Emit Header
       table.println("\\begin{table}[!t]")
       table.println("\\centering")
-      table.println("  \\caption{Number of all, monomorphic, and polymorphic reachable call sites in the summarized version of call graphs computed using the \\ra, and \\tcaExpandThis.}")
+      table.println("  \\caption{Number of monomorphic and polymorphic reachable call sites in the summarized version of call graphs computed using \\ra, and how many of them became unreachable, monomorphic, or polymorphic in \\tcaExpandThis.}")
       table.println("  \\label{table:callsites}")
-      table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("R" * 7) + "}")
+      table.println("  \\begin{tabularx}{\\columnwidth}{ll" + ("R" * 4) + "}")
       table.println("    \\toprule")
-      table.println("    & \\multicolumn{2}{c}{\\textbf{\\ra}} & \\multicolumn{5}{c}{\\textbf{\\ra to \\tcaExpandThis}}" + "\\\\")
-      table.println("    \\cmidrule(lr){2-3} \\cmidrule(lr){4-8}" + "\\\\")
-      table.println("	 & \\textbf{Mono} & \\textbf{Poly} & \\textbf{M to U} & \\textbf{M to M} & \\textbf{P to U} & \\textbf{P to M} & \\textbf{P to P} \\\\")
-      table.println("    \\cmidrule(lr){2-3} \\cmidrule(lr){4-8}" + "\\\\")
+      table.println("    & \\multicolumn{2}{c}{} & \\multicolumn{3}{c}{\\textbf{\\tcaExpandThis}} \\\\")
+      table.println("    \\cmidrule(lr){4-6} \\\\")
+      table.println("    & \\multicolumn{2}{c}{\\textbf{\\ra}} & & \\textbf{Unreach} & \\textbf{Mono} & \\textbf{Poly} \\\\")
+      table.println("    \\cmidrule(lr){2-3} \\cmidrule(lr){4-6} \\\\")
 
-      out(callsites).println("program" + sep + analyses_cs_csv.mkString(sep))
-      out(callsites).println("" + sep + monoKey + sep + polyKey + sep + mono2unreachKey + sep + mono2monoKey + sep + poly2unreachKey + sep + poly2monoKey + sep + poly2polyKey)
+      out(monoKey).println("" + sep + sep + sep + analyses_cs_csv.last)
+      out(polyKey).println("" + sep + sep + sep + analyses_cs_csv.last)
+
+      out(monoKey).println("program" + sep + analyses_cs_csv.head + sep + "unreach" + sep + monoKey + sep + polyKey)
+      out(polyKey).println("program" + sep + analyses_cs_csv.head + sep + "unreach" + sep + monoKey + sep + polyKey)
 
       for (benchmark <- benchmarks) {
         var row = new StringBuilder("    ")
         var csv = new StringBuilder("")
 
         // add benchmark name in italics
-        row append s"\\$benchmark"
+        row append s"\\multirow{2}{*}{\\$benchmark}"
         csv append benchmark append sep
 
-        // Emit nodes
-        // Read the time info
-        emitCallsites
+        // Emit Mono
+        row append s" & \\textbf{Mono}"
+        emit(ra, monoKey, mono)
+        emit(tca_expand_this, mono2unreachKey, mono2unreach)
+        emit(tca_expand_this, mono2monoKey, mono2mono)
+        table.println(row append " & - \\\\")
+        out(monoKey).println(csv dropRight 1) // get rid of the last separator character
+        row.clear
+        csv.clear
+        
+        // Emit Poly
+        row append s" & \\textbf{Poly}"
+        csv append benchmark append sep
+        emit(ra, polyKey, poly)
+        emit(tca_expand_this, poly2unreachKey, poly2unreach)
+        emit(tca_expand_this, poly2monoKey, poly2mono)
+        emit(tca_expand_this, poly2polyKey, poly2poly)
         table.println(row append " \\\\")
-        out(callsites).println(csv dropRight 1) // get rid of the last separator character
+        out(polyKey).println(csv dropRight 1) // get rid of the last separator character
+        
+        if(benchmark != benchmarks.last) table.println("    \\midrule")
 
-        def emitCallsites = {
-          val raCallsites = readCallsites("ra")
-          val tcaCallsites = readCallsites("tca-expand-this")
+        lazy val raCallsites = readCallsites("ra")
+        lazy val tcaCallsites = readCallsites("tca-expand-this")
 
-          val mono = raCallsites(monoKey).size
-          val poly = raCallsites(polyKey).size
+        lazy val mono = raCallsites(monoKey).size
+        lazy val poly = raCallsites(polyKey).size
 
-          val mono2mono = (raCallsites(monoKey) & tcaCallsites(monoKey)).size
-          val poly2mono = (raCallsites(polyKey) & tcaCallsites(monoKey)).size
-          val poly2poly = (raCallsites(polyKey) & tcaCallsites(polyKey)).size
+        lazy val mono2mono = (raCallsites(monoKey) & tcaCallsites(monoKey)).size
+        lazy val poly2mono = (raCallsites(polyKey) & tcaCallsites(monoKey)).size
+        lazy val poly2poly = (raCallsites(polyKey) & tcaCallsites(polyKey)).size
 
-          val mono2unreach = (raCallsites(monoKey) &~ tcaCallsites.values.flatten.toSet).size
-          val poly2unreach = (raCallsites(polyKey) &~ tcaCallsites.values.flatten.toSet).size
-
-          emit(ra, monoKey, mono)
-          emit(ra, polyKey, poly)
-          emit(tca_expand_this, mono2unreachKey, mono2unreach)
-          emit(tca_expand_this, mono2monoKey, mono2mono)
-          emit(tca_expand_this, poly2unreachKey, poly2unreach)
-          emit(tca_expand_this, poly2monoKey, poly2mono)
-          emit(tca_expand_this, poly2polyKey, poly2poly)
-        }
+        lazy val mono2unreach = (raCallsites(monoKey) &~ tcaCallsites.values.flatten.toSet).size
+        lazy val poly2unreach = (raCallsites(polyKey) &~ tcaCallsites.values.flatten.toSet).size
 
         def readCallsites(analysis: String) = {
           val cslog = io.Source.fromFile(s"$base/$analysis/$benchmark/callsites.txt")
@@ -281,11 +290,6 @@ object LatexGenerator {
           // print out to csv too
           csv append s"${value}${sep}"
         }
-
-        def extract(analysis: String, what: String) = io.Source.fromFile(s"$base/$analysis/$benchmark/$analysis-log").getLines.toList.find(_ contains what).get.split(":").last.trim.toInt
-        def total(analysis: String) = extract(analysis, "# reachable call sites")
-        def mono(analysis: String) = extract(analysis, "# monomorphic call sites")
-        def poly(analysis: String) = extract(analysis, "# polymorphic call sites")
       }
 
       // Emit Footer
