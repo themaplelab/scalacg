@@ -16,6 +16,7 @@ mkdir -p dist/${tca_bounds}/${benchmark}
 mkdir -p dist/${tca_names}/${benchmark}
 mkdir -p dist/${ra}/${benchmark}
 mkdir -p dist/${wala_rta}/${benchmark}
+mkdir -p dist/scalac/${benchmark}
 
 # run the source-level analyses
 echo -e "\t running tca-expand-this ..."
@@ -34,3 +35,7 @@ ant bm-deps.jar -Dbm=${benchmark}                              > dist/${tca_expa
 # run wala
 echo -e "\t running rta-wala ..."
 ./walacg ${benchmark} > dist/${wala_rta}/${benchmark}/wala-rta-log
+
+# run scalac
+echo -e "\t running scalac ..."
+./scalac-only ${benchmark}

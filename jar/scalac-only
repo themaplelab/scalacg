@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+benchmark=$1
+
+date
+
+echo "compiling $1"
+mkdir -p dist/scalac/${benchmark}
+ant -logger org.apache.tools.ant.listener.ProfileLogger bm.jar -Dbm=${benchmark} -Danalysis=scalac > dist/scalac/${benchmark}/scalac-log
+date

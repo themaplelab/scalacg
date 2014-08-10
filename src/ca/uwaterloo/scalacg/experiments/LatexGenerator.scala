@@ -11,7 +11,7 @@ import ca.uwaterloo.scalacg.util.Math
 import probe.TextReader
 
 object LatexGenerator {
-  final val benchmarks = List("argot", "ensime", "fimpp", "kiama", "phantm", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
+  final val benchmarks = List("argot", "ensime", "fimpp", "kiama", "phantm", "scalap", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
 
   final val analyses = List("\\ra", "\\tcaNames", "\\tcaBounds", "\\tcaExpand", "\\tcaExpandThis", "\\rtaWala")
   final val analyses_cs = List("\\ra", "\\tcaExpandThis")
@@ -307,7 +307,7 @@ object LatexGenerator {
       table.println("\\centering")
       table.println("  \\caption{Various characteristics of our benchmark programs.}")
       table.println("  \\label{table:benchmark:info}")
-      table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("R" * characteristics.size) + "}")
+      table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("r" * characteristics.size) + "}")
       table.println("    \\toprule")
       table.println("    " + (characteristics.map(a => s"& ${doubleLines(a)} ").mkString) + "\\\\")
       table.println("    \\midrule")
