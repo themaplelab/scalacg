@@ -11,7 +11,7 @@ import ca.uwaterloo.scalacg.util.Math
 import probe.TextReader
 
 object LatexGenerator {
-  final val benchmarks = List("argot", "ensime", "fimpp", "kiama", "phantm", "scalap", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
+  final val benchmarks = List("argot", "ensime", "fimpp", "kiama", "phantm", "scalap", "scalariform", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
 
   final val analyses = List("\\ra", "\\tcaNames", "\\tcaBounds", "\\tcaExpand", "\\tcaExpandThis", "\\rtaWala")
   final val analyses_cs = List("\\ra", "\\tcaExpandThis")
@@ -307,7 +307,8 @@ object LatexGenerator {
       table.println("\\centering")
       table.println("  \\caption{Various characteristics of our benchmark programs.}")
       table.println("  \\label{table:benchmark:info}")
-      table.println("  \\begin{tabularx}{\\columnwidth}{l" + ("r" * characteristics.size) + "}")
+      table.println("  \\resizebox{\\columnwidth}{!}{")
+      table.println("  \\begin{tabular}{l" + ("r" * characteristics.size) + "}")
       table.println("    \\toprule")
       table.println("    " + (characteristics.map(a => s"& ${doubleLines(a)} ").mkString) + "\\\\")
       table.println("    \\midrule")
@@ -361,7 +362,7 @@ object LatexGenerator {
 
       // Table Footer
       table.println("    \\bottomrule")
-      table.println("  \\end{tabularx}")
+      table.println("  \\end{tabular}}")
       table.println("\\end{table}")
       table.close
     }
