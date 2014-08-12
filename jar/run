@@ -38,4 +38,4 @@ echo -e "\t running rta-wala ..."
 
 # run scalac
 echo -e "\t running scalac ..."
-./scalac-only ${benchmark}
+ant -logger org.apache.tools.ant.listener.ProfileLogger bm.jar -Dbm=${benchmark} -Danalysis=scalac > dist/scalac/${benchmark}/scalac-log
