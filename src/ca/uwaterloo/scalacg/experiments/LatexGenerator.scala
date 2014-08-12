@@ -11,7 +11,7 @@ import ca.uwaterloo.scalacg.util.Math
 import probe.TextReader
 
 object LatexGenerator {
-  final val benchmarks = List("argot", "ensime", "factorie", "fimpp", "kiama", "phantm", "scalap", "scalariform", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
+  final val benchmarks = List("argot", "casbah", "ensime", "factorie", "fimpp", "kiama", "phantm", "scalap", "scalariform", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
 
   final val analyses = List("\\ra", "\\tcaNames", "\\tcaBounds", "\\tcaExpand", "\\tcaExpandThis", "\\rtaWala")
   final val analyses_cs = List("\\ra", "\\tcaExpandThis")
