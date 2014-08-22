@@ -218,7 +218,7 @@ object LatexGenerator {
       emitTableCallsites(tca_bounds)
       emitTableCallsites(tca_names)
     }
-    
+
     // Emit the results table with the callsite stats in it.
     def emitTableCallsites(analysis: String) = {
       val analysisNoSpaces = analysis.replaceAll(" ", "")
@@ -231,7 +231,7 @@ object LatexGenerator {
       table.println("\\begin{table}[!t]")
       table.println("\\centering")
       table.println("  \\caption{Number of monomorphic and polymorphic reachable call sites in the summarized version of call graphs computed using \\ra, and how many of them became unreachable, monomorphic, or polymorphic in " + analysisCmd + ".}")
-      table.println("  \\label{table:callsites}")
+      table.println("  \\label{table:" + analysisNoSpaces + "callsites}")
       table.println("  \\begin{tabularx}{\\columnwidth}{ll" + ("R" * 4) + "}")
       table.println("    \\toprule")
       table.println("    & \\multicolumn{2}{c}{} & \\multicolumn{3}{c}{\\textbf{" + analysisCmd + "}} \\\\")
