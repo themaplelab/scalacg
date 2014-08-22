@@ -1,0 +1,25 @@
+java -cp callgraph-plugin.jar probe.CallGraphDiff dist/tca-expand/factorie/callgraph-summary.txt.gzip dist/tca-bounds/factorie/callgraph-summary.txt.gzip 
+
+===========================================================================
+Missing call edges in dist/tca-bounds/factorie/callgraph-summary.txt.gzip: 1
+===========================================================================
+cc/factorie/app/nlp/ner/OntonotesChainNer.scala : 383 :: cc.factorie.app.nlp.ner.BasicOntonotesNER.HashedTokenQueue.$anonfun.$anonfun: apply(token: cc.factorie.app.nlp.Token) 
+===> cc.factorie.variable.BooleanDomain.CategoricalValue: category()
+
+
+TCA-Bounds
+==========
+ca.uwaterloo.scalacg.Library: blob()
+cc.factorie.app.nlp.ner.BilouOntonotesNerDomain: bilouSuffixIntValue(bilouIntValue: Int)
+cc.factorie.util.Attr.attr: apply([C <: Object]m: scala.reflect.ClassTag[C])
+cc.factorie.variable.CategoricalDomain: apply(i: Int)
+cc.factorie.variable.MutableDiscreteVar: intValue()
+
+TCA-Expand
+==========
+ca.uwaterloo.scalacg.Library: blob()
+cc.factorie.app.nlp.ner.BilouOntonotesNerDomain: bilouSuffixIntValue(bilouIntValue: Int)
+cc.factorie.util.Attr.attr: apply([C <: Object]m: scala.reflect.ClassTag[C])
+cc.factorie.variable.BooleanDomain.CategoricalValue: category()
+cc.factorie.variable.CategoricalDomain: apply(i: Int)
+cc.factorie.variable.MutableDiscreteVar: intValue()
