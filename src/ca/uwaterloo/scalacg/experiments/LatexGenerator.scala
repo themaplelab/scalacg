@@ -4,11 +4,10 @@ import java.io.FileInputStream
 import java.io.PrintStream
 import java.text.DecimalFormat
 import java.util.zip.GZIPInputStream
-
 import scala.collection.JavaConversions.asScalaSet
-
 import ca.uwaterloo.scalacg.util.Math
 import probe.TextReader
+import java.io.BufferedInputStream
 
 object LatexGenerator {
   final val benchmarks = List("argot", "casbah", "ensime", "factorie", "fimpp", "kiama", "phantm", "scalap", "scalariform", "scalaxb", "scalisp", "see", "squeryl", "tictactoe")
@@ -115,10 +114,16 @@ object LatexGenerator {
       time -> new PrintStream(s"csv/$time.csv"),
       bench -> new PrintStream(s"csv/$bench.csv"))
 
+    val analysisCmds = Map[String, String](tca_expand_this -> "\\tcaExpandThis",
+      tca_expand -> "\\tcaExpand",
+      tca_bounds -> "\\tcaBounds",
+      tca_names -> "\\tcaNames",
+      ra -> "\\ra")
+
     // Emit latex files
     // TODO: select the tables to emit
     emitTableResults
-    emitTableCallsites
+    emitTablesCallsites
     emitTableBenchmarks
     emitTableTimes
     // emitTableRQ1
@@ -207,18 +212,29 @@ object LatexGenerator {
       table.close
     }
 
+    def emitTablesCallsites = {
+      emitTableCallsites(tca_expand_this)
+      emitTableCallsites(tca_expand)
+      emitTableCallsites(tca_bounds)
+      emitTableCallsites(tca_names)
+    }
+    
     // Emit the results table with the callsite stats in it.
-    def emitTableCallsites = {
-      val table = new PrintStream("tex/table_callsites.tex")
+    def emitTableCallsites(analysis: String) = {
+      val analysisNoSpaces = analysis.replaceAll(" ", "")
+      val analysisHyphens = analysis.replaceAll(" ", "-")
+      val analysisCmd = analysisCmds(analysis)
+
+      val table = new PrintStream("tex/table_" + analysisNoSpaces + "_callsites.tex")
 
       // Emit Header
       table.println("\\begin{table}[!t]")
       table.println("\\centering")
-      table.println("  \\caption{Number of monomorphic and polymorphic reachable call sites in the summarized version of call graphs computed using \\ra, and how many of them became unreachable, monomorphic, or polymorphic in \\tcaExpandThis.}")
+      table.println("  \\caption{Number of monomorphic and polymorphic reachable call sites in the summarized version of call graphs computed using \\ra, and how many of them became unreachable, monomorphic, or polymorphic in " + analysisCmd + ".}")
       table.println("  \\label{table:callsites}")
       table.println("  \\begin{tabularx}{\\columnwidth}{ll" + ("R" * 4) + "}")
       table.println("    \\toprule")
-      table.println("    & \\multicolumn{2}{c}{} & \\multicolumn{3}{c}{\\textbf{\\tcaExpandThis}} \\\\")
+      table.println("    & \\multicolumn{2}{c}{} & \\multicolumn{3}{c}{\\textbf{" + analysisCmd + "}} \\\\")
       table.println("    \\cmidrule(l){4-6} \\\\")
       table.println("    & \\multicolumn{2}{c}{\\textbf{\\ra}} & \\textbf{Unreachable} & \\textbf{Mono} & \\textbf{Poly} \\\\")
       table.println("    \\cmidrule{2-3} \\cmidrule(l){4-6} \\\\")
@@ -240,27 +256,27 @@ object LatexGenerator {
         // Emit Mono
         row append s" & \\textbf{Mono}"
         emit(ra, monoKey, mono)
-        emit(tca_expand_this, mono2unreachKey, mono2unreach)
-        emit(tca_expand_this, mono2monoKey, mono2mono)
+        emit(analysis, mono2unreachKey, mono2unreach)
+        emit(analysis, mono2monoKey, mono2mono)
         table.println(row append " & - \\\\")
         out(monoKey).println(csv dropRight 1) // get rid of the last separator character
         row.clear
         csv.clear
-        
+
         // Emit Poly
         row append s" & \\textbf{Poly}"
         csv append benchmark append sep
         emit(ra, polyKey, poly)
-        emit(tca_expand_this, poly2unreachKey, poly2unreach)
-        emit(tca_expand_this, poly2monoKey, poly2mono)
-        emit(tca_expand_this, poly2polyKey, poly2poly)
+        emit(analysis, poly2unreachKey, poly2unreach)
+        emit(analysis, poly2monoKey, poly2mono)
+        emit(analysis, poly2polyKey, poly2poly)
         table.println(row append " \\\\")
         out(polyKey).println(csv dropRight 1) // get rid of the last separator character
-        
-        if(benchmark != benchmarks.last) table.println("    \\midrule")
+
+        if (benchmark != benchmarks.last) table.println("    \\midrule")
 
         lazy val raCallsites = readCallsites("ra")
-        lazy val tcaCallsites = readCallsites("tca-expand-this")
+        lazy val tcaCallsites = readCallsites(analysisHyphens)
 
         lazy val mono = raCallsites(monoKey).size
         lazy val poly = raCallsites(polyKey).size
@@ -272,8 +288,8 @@ object LatexGenerator {
         lazy val mono2unreach = (raCallsites(monoKey) &~ tcaCallsites.values.flatten.toSet).size
         lazy val poly2unreach = (raCallsites(polyKey) &~ tcaCallsites.values.flatten.toSet).size
 
-        def readCallsites(analysis: String) = {
-          val cslog = io.Source.fromFile(s"$base/$analysis/$benchmark/callsites.txt")
+        def readCallsites(a: String) = {
+          val cslog = io.Source.fromInputStream(new GZIPInputStream(new BufferedInputStream(new FileInputStream(s"$base/$a/$benchmark/callsites.txt.gzip"))))
           cslog.getLines.map { line =>
             val cs = line.split(" ===> ")(0)
             val tpe = line.split(" ===> ")(1)
@@ -281,8 +297,8 @@ object LatexGenerator {
           }.toList.groupBy(_._1).mapValues(_.map(_._2).toSet)
         }
 
-        def emit(analysis: String, k: String, v: Int) = {
-          val key = s"$analysis $benchmark $k $reachableKey $callsites"
+        def emit(a: String, k: String, v: Int) = {
+          val key = s"$a $benchmark $k $reachableKey $callsites"
           val value = intFormat format v
           data.println(s"\\pgfkeyssetvalue{$key}{$value}")
           row append s" & \\pgfkeysvalueof{$key}" // add the key to the current results row

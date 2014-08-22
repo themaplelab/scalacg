@@ -10,6 +10,8 @@ import ca.uwaterloo.scalacg.util.Assertions
 import ca.uwaterloo.scalacg.util.CallGraphPrinter
 import ca.uwaterloo.scalacg.util.Timer
 import java.io.PrintStream
+import java.util.zip.GZIPOutputStream
+import java.io.PrintWriter
 
 /**
  * Phase that annotates generates the call graph.
@@ -63,7 +65,7 @@ abstract class CallGraphGen extends PluginComponent {
       }
 
       var callSitesReachableThisInheritCount = 0
-      val out = new PrintStream("callsites.txt")
+      val out = new PrintWriter(new GZIPOutputStream(new PrintStream("callsites.txt.gzip")))
       callSites.reachableItems.map(abstractToCallSites).flatten.foreach { cs =>
         // reachable mono and poly call sites
         callSitesReachableCount += 1
