@@ -280,7 +280,16 @@ trait CallGraphAnalysis extends CallGraphWorklists
    * Add edges from each real call site abstracted by callSite to the given set of targets.
    */
   private def addTargets(callSite: AbstractCallSite, targets: Set[Symbol]) = {
-    abstractToCallSites(callSite).foreach { cs => callGraph(cs) ++= targets }
+    abstractToCallSites(callSite).foreach { cs =>
+      callGraph(cs) ++= targets
+
+      // TODO
+      if (callSite.targetName.toString == "category") {
+        if (cs.position.line == 383 && cs.position.source.file.toString.contains("OntonotesChainNer.scala")) {
+          println("HOBBA: " + cs.receiver + " :: " + signature(cs.enclMethod) + " :: " + (targets map signature))
+        }
+      }
+    }
   }
 
   /**

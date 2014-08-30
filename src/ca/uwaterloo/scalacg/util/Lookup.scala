@@ -89,9 +89,9 @@ trait Lookup extends Probe {
       //        throw new IllegalStateException("adding edge to Type.toText")
       //      }
 
-      //      if (callSite.staticTarget.nameString == "toString") { // TODO
-      //        println("Found targets: " + callSite.receiver + " :: " + tpe + " :: " + expanded + " :: " + (targets map signature))
-      //      }
+      if (callSite.targetName.toString == "category") { // TODO
+        println("Found targets: " + callSite.receiver + " :: " + tpe + " :: " + expanded + " :: " + (targets map signature))
+      }
     }
 
     targets
@@ -102,9 +102,9 @@ trait Lookup extends Probe {
    */
   def lookupByName(callSite: AbstractCallSite, tpe: Type) = {
     val target = tpe.member(callSite.targetName)
-    if(target == NoSymbol) Set()
-    else if(target.isDeferred) Set()
-    else if(target.isOverloaded) target.alternatives
+    if (target == NoSymbol) Set()
+    else if (target.isDeferred) Set()
+    else if (target.isOverloaded) target.alternatives
     else Set(target)
   }
 
