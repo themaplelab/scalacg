@@ -284,11 +284,11 @@ trait CallGraphAnalysis extends CallGraphWorklists
       callGraph(cs) ++= targets
 
       // TODO
-      if (callSite.targetName.toString == "category") {
-        if (cs.position.line == 383 && cs.position.source.file.toString.contains("OntonotesChainNer.scala")) {
-          println("HOBBA: " + cs.receiver + " :: " + signature(cs.enclMethod) + " :: " + (targets map signature))
-        }
-      }
+      //      if (callSite.targetName.toString == "category") {
+      //        if (cs.position.line == 383 && cs.position.source.file.toString.contains("OntonotesChainNer.scala")) {
+      //          println("HOBBA: " + cs.receiver + " :: " + signature(cs.enclMethod) + " :: " + (targets map signature))
+      //        }
+      //      }
     }
   }
 

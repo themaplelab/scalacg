@@ -96,6 +96,17 @@ trait TypeOps extends TypesCollections {
     def upperBound(tpe: Type): Type = {
       val bound = tpe.bounds.hi
       assert(bound != NoType) // NOTE: this should never happen
+
+      // TODO
+      //      if(tpe.toString contains "cc.factorie.app.nlp.ner.OntonotesNerDomain.Value") {
+      //        println("="*50)
+      //        println(tpe)
+      //        println(bound)
+      //        println(bound.typeSymbol + " :: " + bound.typeSymbol.isAbstractType)
+      //        println(bound.typeArguments + " :: " + bound.typeArguments.exists(_.typeSymbol.isAbstractType))
+      //        println("="*50)
+      //      }
+
       if (bound.typeSymbol.isAbstractType || bound.typeArguments.exists(_.typeSymbol.isAbstractType))
         definitions.AnyTpe
       else

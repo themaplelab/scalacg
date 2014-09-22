@@ -72,8 +72,11 @@ trait Lookup extends Probe {
   def lookup_<:<(callSite: AbstractCallSite, tpe: Type) = {
     val targets = Set[Symbol]()
 
+    val instType = instantiateTypeParams(tpe, callSite.receiver.widen)
+    val bound = concretization.upperBound(instType)
     for {
-      expanded <- concretization.expand(instantiateTypeParams(tpe, callSite.receiver.widen))
+      expanded <- concretization.expand(instType)
+      if expanded <:< bound
       target = member_<:<(expanded, tpe, callSite.targetName)
       if target != NoSymbol && !target.isDeferred // a concrete member found.
     } {
@@ -89,10 +92,15 @@ trait Lookup extends Probe {
       //        throw new IllegalStateException("adding edge to Type.toText")
       //      }
 
-      if (callSite.targetName.toString == "category") { // TODO
-        println("Found targets: " + callSite.receiver + " :: " + tpe + " :: " + expanded + " :: " + (targets map signature))
-      }
+      //      if (callSite.targetName.toString == "category") { // TODO
+      //        println("Found targets: " + callSite.receiver + " :: " + tpe + " :: " + expanded + " :: " + (targets map signature))
+      //      }
     }
+
+    //    if (callSite.targetName.toString == "category" 
+    //      && callSite.receiver.toString == "cc.factorie.app.nlp.ner.OntonotesNerDomain.Value") { // TODO
+    //      println("Found targets: " + callSite.receiver + " :: " + tpe + " :: " + (targets map signature))
+    //    }
 
     targets
   }
