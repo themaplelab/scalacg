@@ -233,7 +233,7 @@ object LatexGenerator {
       val table = new PrintStream(s"tex/table_${analysisNoSpaces}_${baseAnalysisNoSpaces}_callsites.tex")
 
       // Emit Header
-      table.println("\\begin{table}[!t]")
+      table.println("\\begin{table}[p]")
       table.println("\\centering")
       table.println("  \\caption{Number of monomorphic and polymorphic reachable call sites in the summarized version of call graphs computed using " + baseAnalysisCmd + " and how many of them became unreachable, monomorphic, or polymorphic in " + analysisCmd + ".}")
       table.println("  \\label{table:" + analysisNoSpaces + ":" + baseAnalysisNoSpaces + ":callsites}")
