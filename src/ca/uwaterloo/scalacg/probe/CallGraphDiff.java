@@ -19,7 +19,6 @@ public class CallGraphDiff {
 	private static boolean dashCE = false;
 	private static boolean dashR = false;
 
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		processArguments(args);
 

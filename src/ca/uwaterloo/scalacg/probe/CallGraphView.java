@@ -29,7 +29,8 @@ public class CallGraphView extends Jui {
 
 	private static int nextMethodId = 1;
 	private static int nextClassId = 1;
-	private static int nextContextId = 1;
+
+	// private static int nextContextId = 1;
 
 	public static void usage() {
 		System.out
@@ -65,11 +66,14 @@ public class CallGraphView extends Jui {
 					supergraphName = args[i];
 
 					// Sort the edges based on their context
-					Set<CallEdge> superGraphEdges = CallEdge.probeToScalacgEdge(supergraph.edges());
-					sortedSuperGraphEdges = new TreeSet<CallEdge>(new CallEdgeComparer());
+					Set<CallEdge> superGraphEdges = CallEdge
+							.probeToScalacgEdge(supergraph.edges());
+					sortedSuperGraphEdges = new TreeSet<CallEdge>(
+							new CallEdgeComparer());
 					sortedSuperGraphEdges.addAll(superGraphEdges);
 				} else if (subgraphReachables == null) {
-					subgraphReachables = readCallGraph(args[i]).findReachables();
+					subgraphReachables = readCallGraph(args[i])
+							.findReachables();
 					subgraphName = args[i];
 				} else {
 					usage();
@@ -389,7 +393,8 @@ public class CallGraphView extends Jui {
 		sb.append(node(m.cls()));
 
 		/* The method signature */
-		sb.append(link("node", nodeid, escape(m.name()) + "(" + escape(m.signature()) + ")"));
+		sb.append(link("node", nodeid,
+				escape(m.name()) + "(" + escape(m.signature()) + ")"));
 
 		/* The calling context */
 		sb.append(node(context));
@@ -440,7 +445,8 @@ public class CallGraphView extends Jui {
 	 * @return
 	 */
 	public String link(String key, String value, String text) {
-		return "<a href=" + url(key, value) + " style=\"text-decoration: none\">" + text + "</a>";
+		return "<a href=" + url(key, value)
+				+ " style=\"text-decoration: none\">" + text + "</a>";
 	}
 
 	/**
@@ -481,10 +487,12 @@ public class CallGraphView extends Jui {
 	 * @return
 	 */
 	public String searchForm() {
-		return "" + "<form>" + "<table><tr><td>" + "Search for: " + "<input type=\"text\" name=\"search\"></td>"
-				+ "<td bgcolor=\"pink\">" + supergraphName + " /\\ " + subgraphName + "</td>"
-				+ "<td bgcolor=\"lightblue\">" + supergraphName + " - " + subgraphName + "</td>" + "</tr></table>"
-				+ "</form>" + "<hr>";
+		return "" + "<form>" + "<table><tr><td>" + "Search for: "
+				+ "<input type=\"text\" name=\"search\"></td>"
+				+ "<td bgcolor=\"pink\">" + supergraphName + " /\\ "
+				+ subgraphName + "</td>" + "<td bgcolor=\"lightblue\">"
+				+ supergraphName + " - " + subgraphName + "</td>"
+				+ "</tr></table>" + "</form>" + "<hr>";
 	}
 
 	/**
@@ -520,14 +528,14 @@ public class CallGraphView extends Jui {
 	 * @param ctx
 	 * @param inMethod
 	 */
-	private void addContext(CallingContext<?> ctx, ProbeMethod inMethod) {
-		if (!contextIdMap.containsKey(ctx)) {
-			String id = "x" + nextContextId++;
-			contextIdMap.put(ctx, id);
-			idContextMap.put(id, ctx);
-			contextMethodMap.put(ctx, inMethod);
-		}
-	}
+	// private void addContext(CallingContext<?> ctx, ProbeMethod inMethod) {
+	// if (!contextIdMap.containsKey(ctx)) {
+	// String id = "x" + nextContextId++;
+	// contextIdMap.put(ctx, id);
+	// idContextMap.put(id, ctx);
+	// contextMethodMap.put(ctx, inMethod);
+	// }
+	// }
 
 	/**
 	 * Read the call graph from the given file.
@@ -539,9 +547,11 @@ public class CallGraphView extends Jui {
 		CallGraph ret;
 		try {
 			try {
-				ret = new GXLReader().readCallGraph(new FileInputStream(filename));
+				ret = new GXLReader().readCallGraph(new FileInputStream(
+						filename));
 			} catch (RuntimeException e) {
-				ret = new GXLReader().readCallGraph(new GZIPInputStream(new FileInputStream(filename)));
+				ret = new GXLReader().readCallGraph(new GZIPInputStream(
+						new FileInputStream(filename)));
 			}
 		} catch (IOException e) {
 			throw new RuntimeException("caught IOException " + e);

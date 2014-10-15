@@ -1,10 +1,5 @@
 package ca.uwaterloo.scalacg.probe;
 
-import probe.CallGraph;
-import probe.ProbeClass;
-import probe.ProbeMethod;
-import probe.URIs;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -12,6 +7,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import probe.CallGraph;
+import probe.ProbeClass;
+import probe.ProbeMethod;
 
 /**
  * Writes a call graph to a text file.

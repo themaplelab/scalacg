@@ -9,7 +9,7 @@ object Apply2 {
     }
   }
 
-  case class AddFive {
+  case class AddFive() {
     def apply(x: Int) = x + 5
   }
 

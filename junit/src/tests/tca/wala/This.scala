@@ -12,11 +12,11 @@ object This {
     def toStr = toString
   }
 
-  case class Native extends Val {
+  case class Native() extends Val {
     override def toString = "Native"
   }
 
-  case class Assoc extends Val {
+  case class Assoc() extends Val {
     override def toString = "\"" + toStr + "\""
     override def toStr = "Assoc"
   }

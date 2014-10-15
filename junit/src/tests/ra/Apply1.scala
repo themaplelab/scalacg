@@ -15,7 +15,7 @@ object Apply1 {
     println(v3)
   }
 
-  case class AddFive {
+  case class AddFive() {
     def apply(x: Int) = x + 5
   }
   

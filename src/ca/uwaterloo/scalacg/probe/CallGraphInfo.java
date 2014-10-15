@@ -28,7 +28,7 @@ public class CallGraphInfo {
 		System.exit(1);
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static final void main(String[] args) {
 		// Parse the options
 		boolean doneOptions = false;
